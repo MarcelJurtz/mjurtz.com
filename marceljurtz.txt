@@ -1,0 +1,15 @@
+<span id="a">marcel@archbook</span>:<span id="b">~</span><span id="c">$</span> cat readme.txt<!-- slightdelayhere-->
+<br/>
+<br/>
+<!-- slightdelayhere-->Hi, I'm Marcel<!-- laglaglaglaglaglaglaglaglaglaglaglag --><p>This is my personal website,<!-- laglaglaglag --> please use any of the links below for furter information.</p>
+<p><!-- laglaglaglaglaglaglaglaglaglaglaglag -->I'm the cofounder of <a target="_blank" href="http://www.vicious-dino.de">Vicious Dino</a>, our indie-gamedev-studio.</p>
+<!-- laglaglaglaglaglag --> 
+<p>Additionally, I'm working on some other sideprojects, which are usually available on <a href="https://github.com/MarcelJurtz">GitHub</a>. <!-- laglaglaglag -->For general information and documentation,<!-- laglag --> consider visiting my <a href="http://www.blog.mjurtz.com">blog</a>.</p>
+<!-- owlsqweoifjqwoefijqwoeifjqwoefijwef -->
+To get in touch with me, feel free to use any of the following options</p>
+<ul>
+	<li><a href="mailto:marcel@mjurtz.com">Mail</a></li>
+	<li><a href="https://twitter.com/MarcelJurtz">Twitter</a></li>
+	<li><a href="https://www.xing.com/profile/Marcel_Jurtz">Xing</a></li>
+</ul>
+<p><!-- slightdelayhere--><a href="Impressum.html">Impressum</a></p>

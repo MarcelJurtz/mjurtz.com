@@ -1,7 +1,7 @@
 <span id="a">marcel@archbook</span>:<span id="b">~</span><span id="c">$</span> cat readme.txt<!-- slightdelayhere-->
 <br/>
 <br/>
-<!-- slightdelayhere-->Hi, I'm Marcel<!-- laglaglaglaglaglaglaglaglaglaglaglag --><p>This is my personal website,<!-- laglaglaglag --> please use any of the links below for furter information.</p>
+<!-- slightdelayhere-->Hi, I'm Marcel<!-- laglaglaglaglaglaglaglaglaglaglaglag --><p>This is my personal website,<!-- laglaglaglag --> please use any of the links below for further information.</p>
 <p><!-- laglaglaglaglaglaglaglaglaglaglaglag -->I'm the cofounder of <a target="_blank" href="http://www.vicious-dino.de">Vicious Dino</a>, our indie-gamedev-studio.</p>
 <!-- laglaglaglaglaglag --> 
 <p>Additionally, I'm working on some other sideprojects, which are usually available on <a href="https://github.com/MarcelJurtz">GitHub</a>. <!-- laglaglaglag -->For general information and documentation,<!-- laglag --> consider visiting my <a href="http://www.blog.mjurtz.com">blog</a>.</p>

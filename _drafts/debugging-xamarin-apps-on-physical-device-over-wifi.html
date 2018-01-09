@@ -1,0 +1,46 @@
+---
+layout: post
+title: Xamarin Debugging over WIFI
+date: 
+type: post
+parent_id: '0'
+published: false
+password: ''
+status: future
+categories:
+- Android
+tags:
+- ".NET"
+- Android
+- App
+- CSharp
+- Development
+- Programming
+- Tools
+- Windows
+- Xamarin
+meta:
+  _edit_last: '2'
+  _adinserter_block_exceptions: ''
+  _yoast_wpseo_content_score: '60'
+  _yoast_wpseo_primary_category: '22'
+  _yoast_wpseo_focuskw_text_input: adb
+  _yoast_wpseo_focuskw: adb
+  _yoast_wpseo_metadesc: Xamarin uses ADB for debugging on physical devices. However,
+    you are not limited to connecting your device via USB, you can also use your WIFI
+    connection!
+  _yoast_wpseo_linkdex: '71'
+author:
+  login: Marcel
+  email: marcel@mjurtz.com
+  display_name: Marcel Jurtz
+  first_name: Marcel
+  last_name: Jurtz
+---
+<p>Xamarin utilizes the Android Debug Bridge (ADB) for debugging on physical devices, which are usually connected over usb. While this feature definitely is useful, it would sometimes be more practical if you could do this over WIFI instead.</p>
+<p>Luckily, that is possible! You can simple switch between using USB and TCP/IP for debugging. To get started, you need to connect your device via USB to the computer you're debugging from. I'm using Windows, so the commands I'll execute the following commands from the commandline (which runs as an administrator), but since they are adb commands, they should be the same on Linux or macOS.</p>
+<p>The first command to switch from USB to TCP/IP is <code class="EnlighterJSRAW" data-enlighter-language="generic">adb tcpip &lt;port&gt;</code>. Replace &lt;port&gt; with anything you like, I'll use the same as Xamarin suggests in their <a href="https://developer.xamarin.com/guides/android/getting_started/installation/set_up_device_for_development/">documentation</a>, which is 5555. After this is done, you'll want to connect adb to your device. To do this, you need its IP address, which can be discovered by going to <em>Settings</em> - <em>WIFI</em> - <em>More</em> (the dots-symbol in the upper right corner) - <em>Advanced</em>.</p>
+<p>After you obtained the IP, connect to the device using adb connect <code class="EnlighterJSRAW" data-enlighter-language="generic">&lt;ip&gt;:&lt;port&gt;</code>. After this step, you can disconnect the device from USB. When using <code class="EnlighterJSRAW" data-enlighter-language="generic">adb devices</code>, this should now list a device at the matching IP address. Visual Studio will now also display the devices IP address in the debugging window.</p>
+<p>To switch back from WIFI to USB, simply use <code class="EnlighterJSRAW" data-enlighter-language="generic">adb usb</code>.</p>
+<p>Since this is all based on ADB, debugging over WIFI is not restricted to use with Xamarin &amp; Visual Studio. You can also use this for regular Android apps that are developed with Android Studio!</p>
+<p>&nbsp;</p>

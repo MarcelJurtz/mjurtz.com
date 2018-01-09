@@ -1,0 +1,57 @@
+---
+layout: post
+title: C# – Mastering the Basics - Extension Methods
+date: 2017-12-22 12:00:58.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- CSharp
+tags:
+- ".NET"
+- ".NET Core"
+- CSharp
+- Development
+- Programming
+meta:
+  _edit_last: '2'
+  _adinserter_block_exceptions: ''
+  _yoast_wpseo_focuskw_text_input: Extension methods
+  _yoast_wpseo_focuskw: Extension methods
+  _yoast_wpseo_metadesc: Extension methods in C# offer a simple way to customize the
+    functionality of existing classes. This guide teaches you how to create and use
+    such methods.
+  _yoast_wpseo_linkdex: '86'
+  _yoast_wpseo_content_score: '30'
+  _yoast_wpseo_primary_category: '42'
+  _wpas_done_all: '1'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1514095969;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:589;}i:1;a:1:{s:2:"id";i:669;}i:2;a:1:{s:2:"id";i:544;}}}}
+author:
+  login: Marcel
+  email: marcel@mjurtz.com
+  display_name: Marcel Jurtz
+  first_name: Marcel
+  last_name: Jurtz
+---
+<p>In this series, I go over the very basics of the C# programming language. In todays guide, I will focus on writing custom extension methods for existing, prebuilt classes.</p>
+<p>You can use extension methods to add custom functionality to classes that are built by others. In my very case, I'd like to extend the functionality of the String class to set its first letter to upper case. I already implemented this functionality in my sideproject <a href="https://github.com/MarcelJurtz/CryptoFolio">CryptoFolio</a>, be sure to check out <a href="https://blog.mjurtz.com/2017/12/sideproject-cryptofolio/">my article on the topic</a>!</p>
+<p>As you can see in <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods">Microsofts documentation</a>, extension methods are defined as static methods, but are called by using instance method syntax. This means that we will create a static method which can later be called by any object of the type <em>String</em>.<i> </i>While the implementation of such a method is very similar to a regular method, there is one thing you'll have to remember when writing extension methods: the <em>this</em> keyword before the parameter. Let's see an example of how this works:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public static class StringExtensions {
+    public static String ToFirstLetterUpperCase(this String s)
+    {
+        if (s == null)
+            return null;
+
+        if (s.Length &gt; 1)
+            return char.ToUpper(s[0]) + s.Substring(1);
+
+        return s.ToUpper();
+    }
+}</pre>
+<p>In the example, I've added a new class called <em>StringExtensions</em>. This is the place where I will store all of my custom exension methods for strings. As you can see, the method looks very normal, the only thing different is the previously mentioned <em>this</em> keyword right before the parameters data type.</p>
+<p>After creating the extension method, it can be used by simply calling <em>ToFirstLetterUpperCase()</em> on any string:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">String s = "hello world!";
+Console.WriteLine(s.ToFirstLetterUpperCase());
+// Output: Hello world!</pre>

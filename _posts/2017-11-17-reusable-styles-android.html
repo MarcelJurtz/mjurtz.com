@@ -1,0 +1,92 @@
+---
+layout: post
+title: Reusable Styles for Android
+date: 2017-11-17 18:00:27.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Android
+tags:
+- Android
+- Clean Code
+- Development
+meta:
+  _edit_last: '2'
+  _adinserter_block_exceptions: ''
+  _yoast_wpseo_focuskw_text_input: Styles
+  _yoast_wpseo_focuskw: Styles
+  _yoast_wpseo_metadesc: Styles for Android can be used to drastically decrease the
+    size of your layout files. In this post, I'll give a basic introduction to styles.
+  _yoast_wpseo_linkdex: '84'
+  _yoast_wpseo_content_score: '90'
+  _yoast_wpseo_primary_category: '22'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1513266711;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:521;}i:1;a:1:{s:2:"id";i:461;}i:2;a:1:{s:2:"id";i:504;}}}}
+  _wpas_done_all: '1'
+author:
+  login: Marcel
+  email: marcel@mjurtz.com
+  display_name: Marcel Jurtz
+  first_name: Marcel
+  last_name: Jurtz
+---
+<p>View definitions under android are often used for many different controls. However, there is an easy way to recycle defined styles and use them for other controls, often saving a lot of code. So, styles basically allow you to move your repeatedly used styles out of the layout file into a styles.xml file (which is located in the values-folder). This article covers the basics of using styles on Android.</p>
+<p>Think of the following layout, which represents two simple buttons inside a LinearLayout:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="xml">&lt;LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"&gt;
+
+        &lt;Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/cmdPrevPage"
+            android:id="@+id/cmdPrevPage" /&gt;
+
+        &lt;Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/cmdNextPage"
+            android:id="@+id/cmdNextPage" /&gt;
+
+&lt;/LinearLayout&gt;</pre>
+<p>The buttons look nearly identical, which leads us to creating a new entry in styles.xml looking like this:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="xml">&lt;style name="button"&gt;
+        &lt;item name="android:layout_width"&gt;match_parent&lt;/item&gt;
+        &lt;item name="android:layout_height"&gt;wrap_content&lt;/item&gt;
+        &lt;item name="android:weight"&gt;1&lt;/item&gt;
+&lt;/style&gt;</pre>
+<p>The style contains all the elements, that both buttons have in common. Of course, this does not include its ID and text properties. To apply this to the buttons, simply change the first snippet to the following:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="xml">&lt;LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"&gt;
+
+        &lt;Button
+            style="@style/button"
+            android:text="@string/cmdPrevPage"
+            android:id="@+id/cmdPrevPage" /&gt;
+
+        &lt;Button
+            style="@style/button"
+            android:text="@string/cmdNextPage"
+            android:id="@+id/cmdNextPage" /&gt;
+
+&lt;/LinearLayout&gt;</pre>
+<p>This small example already shows the advantage of using styles: your layout becomes clearer and if you want to change some layouts, you only have to do this in one place.</p>
+<p>However, this approach is not the end of the story. Often only small details of controls are different, for example the positioning of a button on the left or right. In order to be able to handle such minimal changes in case of multiple use, we can use inheritance. Let us go back to the previous example to demonstrate this principle.</p>
+<p>One of the buttons is used to mark "Next", the other one for "Back". Let's say the code is developed for an app that represents a blog. With these two buttons you can switch back and forth between the available pages. It is realistic, however, that such a navigation is implemented for the articles themselves, but also for categories or tags, which is why a simple possibility for multiple use is required. With the following two styles this can be realized very easily:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="xml">&lt;style name="button_prev" parent="@android:style/button"&gt;
+    &lt;item name="android:text"&gt;@string/cmdPrevPage&lt;/item&gt;
+&lt;/style&gt;
+
+&lt;style name="button_next" parent="@android:style/button"&gt;
+    &lt;item name="android:text"&gt;@string/cmdNextPage&lt;/item&gt;
+&lt;/style&gt;</pre>
+<p>Further information on this topic is available in the <a href="https://developer.android.com/guide/topics/ui/look-and-feel/themes.html">Android developer documentation</a>.</p>

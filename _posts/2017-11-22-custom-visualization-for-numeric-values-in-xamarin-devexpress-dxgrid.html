@@ -1,0 +1,67 @@
+---
+layout: post
+title: Custom Visualization for Numeric Values in Xamarin / DevExpress dxGrid
+date: 2017-11-22 17:00:53.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Xamarin
+tags:
+- ".NET"
+- App
+- Design
+- Development
+- Layout
+- Programming
+- Xamarin
+meta:
+  _edit_last: '2'
+  _adinserter_block_exceptions: ''
+  _yoast_wpseo_content_score: '60'
+  _yoast_wpseo_primary_category: '61'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1513226032;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:473;}i:1;a:1:{s:2:"id";i:639;}i:2;a:1:{s:2:"id";i:544;}}}}
+  _yoast_wpseo_focuskw_text_input: dxGrid
+  _yoast_wpseo_focuskw: dxGrid
+  _yoast_wpseo_metadesc: With DevExpress dxGrid, you can display tables in Xamarin
+    apps easily. This article shows how to customize the view of numeric columns of
+    such tables.
+  _yoast_wpseo_linkdex: '78'
+  _wpas_done_all: '1'
+author:
+  login: Marcel
+  email: marcel@mjurtz.com
+  display_name: Marcel Jurtz
+  first_name: Marcel
+  last_name: Jurtz
+---
+<p>The dxGrid <a href="https://components.xamarin.com/view/devexpress-grid">grid control for Xamarin</a>, which DevExpress provides free of charge, is a powerful feature for mobile application development. However, many of the functions are a little bit hidden. In this article I will discuss how to customize the display of column values.</p>
+<p>In my concrete example my grid contains a numeric column, which can contain numbers with or without decimal places. I want these decimal places to be displayed only if they exist. The magic term that DevExpress provides fortunately is <em>DisplayFormat</em>. You can use this parameter to make various adjustments that describe the corresponding value and its representation.</p>
+<p>The <a href="https://documentation.devexpress.com/Xamarin/DevExpress.Mobile.DataGrid.GridColumn.DisplayFormat.property">documentation of DevExpress</a> describes the use of standard or custom numeric format strings, which can be used when using the dxGrid. Both of these types of formatting are documented in the MSDN:</p>
+<ul>
+<li><a href="https://msdn.microsoft.com/en-us/library/dwhawy9k(v=vs.85).aspx">Standard Numeric Format Strings</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/0c899ak8(v=vs.85)">Custom Numeric Format Strings</a></li>
+</ul>
+<p>To solve my problem I use the custom formats. The available elements for controlling the display are easy to understand, and in my case I only need the following two elements:</p>
+<ul>
+<li>0 to display the number before the decimal point</li>
+<li># for optional display of decimal places</li>
+</ul>
+<p>The combination of these elements solves my problem with the following statement:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">String.Format("{0:0.###}", myNumber)</pre>
+<p>The prefix 0: ensures that the formatting is only applied to the first argument of the statement and can be omitted in this case, but is useful for concatenated strings.</p>
+<p>While this method can be used for all Xamarin controls, the dxGrid also offers the possibility to make adjustments directly in the XAML file:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="xml">&lt;dxGrid:GridControl 
+    x:Name="grid" 
+    &lt;!-- ... --&gt;
+    IsReadOnly="true"&gt;
+    &lt;dxGrid:GridControl.Columns&gt;
+        &lt;!-- ... --&gt;
+        &lt;dxGrid:NumberColumn 
+            FieldName="NumberSample" 
+            Caption = "Number" 
+            DisplayFormat="0:0.###" /&gt;
+    &lt;/dxGrid:GridControl.Columns&gt;
+&lt;/dxGrid:GridControl&gt;</pre>

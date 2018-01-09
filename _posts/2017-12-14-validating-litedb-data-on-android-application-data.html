@@ -1,0 +1,44 @@
+---
+layout: post
+title: Validating LiteDB Data from an Android App
+date: 2017-12-14 21:00:28.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Tips
+tags:
+- Android
+- App
+- Development
+- Tools
+meta:
+  _edit_last: '2'
+  _adinserter_block_exceptions: ''
+  _yoast_wpseo_content_score: '30'
+  _yoast_wpseo_primary_category: '53'
+  _yoast_wpseo_focuskw_text_input: LiteDB
+  _yoast_wpseo_focuskw: LiteDB
+  _yoast_wpseo_metadesc: While using LiteDB in Xamarin based mobile applications,
+    it is quite useful to inspect the local data. This article shows you how to do
+    this with ADB.
+  _yoast_wpseo_linkdex: '80'
+  _wpas_done_all: '1'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1513637164;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:639;}i:1;a:1:{s:2:"id";i:544;}i:2;a:1:{s:2:"id";i:461;}}}}
+author:
+  login: Marcel
+  email: marcel@mjurtz.com
+  display_name: Marcel Jurtz
+  first_name: Marcel
+  last_name: Jurtz
+---
+<p>In my new sideproject CryptoFolio, which I announced in <a href="https://blog.mjurtz.com/2017/12/sideproject-cryptofolio/">this article</a>, I described that I'd like to use LiteDB to locally store data that I received from the coinmarketcap-API. LiteDB is basically a NoSQL database, in particular a document store. It functions on a serverless file basis and can be accessed via a simple API.</p>
+<p>While it is quite easy to implement the databases functionality itself, testing the resulting data structure is somewhat more difficult. But to be sure that my data is saved correctly, I needed a way to explore the database located on the android device. Therefore, I use the following approach:</p>
+<p>I start by downloading <a href="https://github.com/JosefNemec/LiteDbExplorer">LiteDB Explorer</a>, a free tool to visually inspect LiteDB database files. However, to view such a file, I need access to it first.</p>
+<p>You can do this by using the Android Debug Bridge (ADB). After enabling the developer options on your device, you can use the command <code class="EnlighterJSRAW" data-enlighter-language="generic">adb backup -noapk com.your.packagename</code> to copy your applications data from the smartphone to the pc. Note that you can use <code class="EnlighterJSRAW" data-enlighter-language="generic">adb restore backup.db</code> to go the opposite way, which can be useful for restoring application backups.</p>
+<p>After entering the command, you'll have to confirm the operation on the device.  The backup will be copied to your home directory per default. As a result of this operation, you will receive an .ab-file. I recommend using ADB Backup Extractor, which you can download from <a href="https://sourceforge.net/projects/adbextractor/files/latest/download">SourceForge</a> for free. This tool converts the .ab-file to a regular .tar-file, which can easily be extracted using a tool like 7-Zip.</p>
+<p>Use this command to convert your ab file:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="generic">java -jar abe.jar [-debug] [-useenv=yourenv] unpack &lt;backup.ab&gt; &lt;backup.tar&gt; [password]</pre>
+<p>Among the unzipped files you will now find the database file. Use the previously mentioned explorer to visualize it.</p>

@@ -1,0 +1,61 @@
+---
+layout: post
+title: Getting Started with Loggin in C#
+date: 
+type: post
+parent_id: '0'
+published: false
+password: ''
+status: draft
+categories:
+- CSharp
+tags:
+- ".NET"
+- CSharp
+- Development
+- Programming
+- Tools
+meta:
+  _edit_last: '2'
+  _adinserter_block_exceptions: ''
+  _yoast_wpseo_focuskw_text_input: Logging
+  _yoast_wpseo_focuskw: Logging
+  _yoast_wpseo_metadesc: Logging helps you to test your software and track user interactions.
+    This article discusses the basics of logging with NLog under C#.
+  _yoast_wpseo_linkdex: '75'
+  _yoast_wpseo_content_score: '60'
+  _yoast_wpseo_primary_category: '42'
+author:
+  login: Marcel
+  email: marcel@mjurtz.com
+  display_name: Marcel Jurtz
+  first_name: Marcel
+  last_name: Jurtz
+---
+<p>Today, I will cover logging in C# using <a href="http://nlog-project.org/">NLog</a>. NLog is a free logging platform for .NET, Xamarin and more and allows you to quickly add a logging functionality to your project.</p>
+<p>To jump right into the topic, download the nuget packages NLog and NLog.config. The latter simply adds a config file to your project, in which you can filter your logs and configure where which logs will be stored. Let's start with setting up the configuration.</p>
+<p>The default config file is pretty straight forward and describes itself quite well. In this article, I'd like to set up two log files: In the first one, all kinds of information will be saved. The second one will be used for exceptions and fatal errors. To be more specific: NLog differentiates between several log levels:</p>
+<ul>
+<li>Fatal</li>
+<li>Error</li>
+<li>Warn</li>
+<li>Info</li>
+<li>Debug</li>
+<li>Trace</li>
+</ul>
+<p>The higher the position of an element in the list, the greater the prioritization level of corresponding messages. Nevertheless, you are completely free in the implementation of the actual logging. But let's get back to the config file.</p>
+<h2>Setup &amp; Get started</h2>
+<p>At first, we will define several targets. A target is a location where log message can be stored by NLog. You can use a lot of <a href="https://github.com/nlog/nlog/wiki/Targets#targets">different kinds of targets</a> (you can also build custom ones), but we will stick to the simple 'File'. To try this out, we can add a simple target as shown below:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;targets&gt;
+  &lt;target name="errorlog" xsi:type="File" fileName="errorlog.txt"/&gt;
+&lt;/targets&gt;</pre>
+<p>The second important part of this setup is the filtering. To specify, which  kinds of logs should be written to which target, you will need to set up rules. The following rule states the logs, that are at least of the type 'Error' will be written to errorlog.txt:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;rules&gt;
+  &lt;logger name="*" minlevel="Error" writeTo="errorlog" /&gt;
+&lt;/rules&gt;</pre>
+<p>That's all it takes for initial setup. By now, you should be able to log errormessages from any part of your program by applying the following syntax:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">Logger logger = LogManager.GetCurrentClassLogger();
+logger.Error("Hello World!");</pre>
+<h2>A little more Details</h2>
+<p>In the last few minutes, we were able to set up basic functionality for logging. Now, let's add some more customization. I want to cover two things here, which are the customization of the log message layout and further configuration of the log files.</p>
+<p>NLog offers a simple way to set up custom message layouts. For example, I'd like to log exceptions by their message and stacktrace.</p>

@@ -1,0 +1,117 @@
+---
+layout: post
+title: C# – Mastering the Basics – Collections
+date: 2017-12-19 09:30:04.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- CSharp
+tags:
+- ".NET"
+- ".NET Core"
+- CSharp
+- Development
+- Programming
+meta:
+  _edit_last: '2'
+  _adinserter_block_exceptions: ''
+  _yoast_wpseo_content_score: '60'
+  _yoast_wpseo_primary_category: '42'
+  _yoast_wpseo_focuskw_text_input: Collections
+  _yoast_wpseo_focuskw: Collections
+  _yoast_wpseo_metadesc: Collections are used in a lot of programming languages. In
+    this article, I'll go over the basics on how to create collections and their differences.
+  _yoast_wpseo_linkdex: '83'
+  _wpas_done_all: '1'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1515463031;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:552;}i:1;a:1:{s:2:"id";i:682;}i:2;a:1:{s:2:"id";i:485;}}}}
+author:
+  login: Marcel
+  email: marcel@mjurtz.com
+  display_name: Marcel Jurtz
+  first_name: Marcel
+  last_name: Jurtz
+---
+<p>Altough the topic <em>"Collections"</em> matches programming in general, I've decided to add it to my series on mastering the basics of C#. For this reason, you will find some content here that is generally applicable, but I will also discuss different language-specific elements.</p>
+<p>Collections support several different use cases, e. g. searching through a set for objects with certain properties, or iterating through multiple elements by predefined sorting specifications.</p>
+<p>In the first part of this article, I will cover the two basic types of collections in C#, lists and dictionaries. Then, I will go over the groups of collections you might know from Java: lists, sets and maps. I'd like to describe and compare their characteristics and then implement their functionality in C#.</p>
+<h2>Collections in C#</h2>
+<p>The simplest form of collections in C# are arrays. An array allows you to store a group of objects of one specific type. The following example shows a string array, which contains three elements.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">String[] movies = new String[3];
+
+movies[0] = "The Matrix";
+movies[1] = "The Dark Knight";
+movies[2] = "#9";
+
+foreach(String movie in movies) {
+    Console.WriteLine(movie);
+}</pre>
+<p>In this simple example, you can see the problem with arrays: the size of it needs to be known before adding the elements. The "real" collections in C# can be utilized to handle this problem.</p>
+<p>The basis of C# collections are List&lt;T&gt; and Dictionary&lt;K,T&gt;, which will be covered in the following section.</p>
+<h3>List&lt;T&gt;</h3>
+<p>Lists offer a way to organize objects in a similar way arrays do. Basically, you create a List of a specific type, which allows you to dynamically add and remove items from this list. Opposed to arrays, lists don't need to specify the amount of objects they can contain, which allows you to dynamically change their size.</p>
+<p>The following snippet instaniates two new instances of the class "Person", adds both to a list and outputs the value of Name-properties (the class consists only of this one property).</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">List&lt;Person&gt; persons = new List&lt;Person&gt;();
+
+Person alice = new Person { Name = "Alice" };
+Person bob = new Person { Name = "Bob" };
+
+persons.Add(alice);
+persons.Add(bob);
+
+foreach(Person person in persons) {
+    Console.WriteLine(person.Name);
+}</pre>
+<p>Besides adding items, the List&lt;T&gt; class offers multiple useful properties and methods, such as Count to receive the amount of objects, Clear() to remove all items or Contains() to check if the list contains a specific object. Check out the <a href="https://msdn.microsoft.com/en-us/library/6sh2ey19(v=vs.110).aspx">MSDN page</a> for full documentation.</p>
+<p>One last thing I'd like to mention is the option to access a specific item by its index, as you're probably used to from using arrays.</p>
+<h3>Dictionary&lt;K,T&gt;</h3>
+<p>The second main type of collections C# offers is the Dictionary&lt;K,T&gt;. As the name suggests, it allows you to keep track of multiple objects by a unique key. Both object and key can be of whatever type you'd want it to be.</p>
+<p>The following snippet shows you how to create a dictionary with a string as key and a person as object. I've also added an int property named <em>Age</em> to the class <em>Person</em>.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">Dictionary&lt;String,Person&gt; persons = new Dictionary&lt;String,Person&gt;();
+
+Person alice = new Person { Name = "Alice", Age = 30 };
+Person bob = new Person { Name = "Bob", Age = 32 };
+
+persons.Add("alice", alice);
+persons.Add("bob", bob);
+
+Console.WriteLine($"{persons["bob"].Name} is {persons["bob"].Age} years old");
+// Output: Bob is 32 years old</pre>
+<p>As you can see, access to a dictionary works like accessing an array by replacing the index with the key. However, you can still iterate over the contained items. At this point, you can choose wether you want to iterate over the dictionary items (key &amp; value) or just key or value.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">// Iterate over dictionary entries
+foreach(var entry in persons) {
+    Console.WriteLine($"Key: {entry.Key}, Name: {entry.Value.Name}, Age: {entry.Value.Age}");
+}
+
+// Iterate over dictionary values
+foreach(Person person in persons.Values) {
+    Console.WriteLine(person.Name);
+}
+
+// Iterate over dictionary keys
+foreach(String key in persons.Keys) {
+    Console.WriteLine(key);
+}</pre>
+<h2>Set</h2>
+<p>In mathematics, a set is a collection of objects, which has two main criteria: there is no given order and each element of a set is unique.</p>
+<p>Of course, C# offers an implementation to cover such collections as well: <a href="https://msdn.microsoft.com/en-us/library/bb359438.aspx">HashSet&lt;T&gt;</a> is your way to go. HashSets offer high performance set operations on collections that can't hold duplicate elements nor use a specific order.</p>
+<p>The following snippet instantiates a new HashSet of type Person and adds alice and bob to it. While you can add an object multiple times, it will be added to the set only once, which is why the output of the snippet will only display bob only once.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">HashSet&lt;Person&gt; persons = new HashSet&lt;Person&gt;();
+
+persons.Add(bob);
+persons.Add(alice);
+persons.Add(bob);
+
+foreach(Person person in persons) {
+    Console.WriteLine(person.Name);
+}</pre>
+<h2>List</h2>
+<p>Compared to sets, lists are very simple to describe. Lists contain a dynamic amount of objects, whereby an object can be contained multiple times. Also, the order of items in a list is important. The previously described List&lt;T&gt; class already offers predefined methods to sort lists.</p>
+<p>Besides the List&lt;T&gt; class, there are other variants of lists available, that serve different purposes. ArrayList&lt;T&gt; stores data like an array does, and List&lt;T&gt; basically is a wrapper for ArrayList&lt;T&gt;. It allows you to access the list by index and is optimized for random access.</p>
+<p>Another option is LinkedList&lt;T&gt;, which maintains pointers to the actual objects along with references to the next and previous item. This results in more work when adding or removing items from the list since each objects reference must be updated. Also, you can't access a LinkedList via index. However, if you have heavy workload in the form of tail- or head-inserts, this might be your choice.</p>
+<h2>Map</h2>
+<p>The term map is used in Java for collections, which are known as Dictionary under C#. I've already covered this type of collection in the first chapter of the article, but the conclusions will be wrapped up here.</p>
+<p>Dictionaries (or Maps) are used to associate objects to a unique key, by which they can be accessed later. One possible use case for dictionaries could be the association of user session ids with the users properties.</p>
+<p>To conclude this, you may choose to use a dictionary when you need to look up a value by a key. If you have an object like <code class="EnlighterJSRAW" data-enlighter-language="csharp">{ key, value }</code> and you need to access both, key and value without knowing them, you might prefer list.</p>

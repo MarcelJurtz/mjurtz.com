@@ -1,0 +1,183 @@
+---
+layout: post
+title: Creating RESTful Services with ServiceStack
+date: 2017-09-21 18:00:26.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- CSharp
+tags:
+- ".NET"
+- ASP.NET
+- CSharp
+- Development
+- Programming
+- REST
+- ServiceStack
+meta:
+  _edit_last: '2'
+  _adinserter_block_exceptions: ''
+  _yoast_wpseo_content_score: '90'
+  _yoast_wpseo_primary_category: '42'
+  _oembed_599c3fef416111a9d45d250139df0841: "{{unknown}}"
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1514354706;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:544;}i:1;a:1:{s:2:"id";i:569;}i:2;a:1:{s:2:"id";i:619;}}}}
+  _wpas_done_all: '1'
+  _yoast_wpseo_focuskw_text_input: ServiceStack
+  _yoast_wpseo_focuskw: ServiceStack
+  _yoast_wpseo_metadesc: In this article, I describe how to set up a basic RESTful
+    webservice using ServiceStack. Additionally, I'll cover basic authentication.
+  _yoast_wpseo_linkdex: '78'
+author:
+  login: Marcel
+  email: marcel@mjurtz.com
+  display_name: Marcel Jurtz
+  first_name: Marcel
+  last_name: Jurtz
+---
+<p>This articles covers the basic usage of <a href="https://servicestack.net/">ServiceStack</a>, a .NET-framework for creating RESTful services. The framework has a really great <a href="http://docs.servicestack.net/">documentation</a>, where you can check out all the details.</p>
+<h2>Configuration</h2>
+<p>To get started, you'll want to create a new ASP.NET project, and load the ServiceStack package via NuGet. Then, you'll have to edit your <em>Web.config</em> to look like the following (mentioned versions may differ from your project):</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="generic">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!--
+  Informationen zur Konfiguration Ihrer ASP.NET-Anwendung finden Sie unter
+  https://go.microsoft.com/fwlink/?LinkId=169433
+  --&gt;
+&lt;configuration&gt;
+  &lt;system.web&gt;
+    &lt;compilation debug="true" targetFramework="4.6.1"/&gt;
+    &lt;httpRuntime targetFramework="4.6.1"/&gt;
+    &lt;httpHandlers&gt;
+      &lt;add path="*" type="ServiceStack.HttpHandlerFactory, ServiceStack" verb="*"/&gt;
+    &lt;/httpHandlers&gt;
+  &lt;/system.web&gt;
+  &lt;!-- Required for IIS7 --&gt;
+  &lt;system.webServer&gt;
+    &lt;modules runAllManagedModulesForAllRequests="true"/&gt;
+    &lt;validation validateIntegratedModeConfiguration="false" /&gt;
+    &lt;handlers&gt;
+      &lt;add path="*" name="ServiceStack.Factory" type="ServiceStack.HttpHandlerFactory, ServiceStack" verb="*" preCondition="integratedMode" resourceType="Unspecified" allowPathInfo="true" /&gt;
+    &lt;/handlers&gt;
+  &lt;/system.webServer&gt;
+  &lt;system.codedom&gt;
+    &lt;compilers&gt;
+      &lt;compiler language="c#;cs;csharp" extension=".cs"
+        type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3513ad364e35"
+        warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701"/&gt;
+      &lt;compiler language="vb;vbs;visualbasic;vbscript" extension=".vb"
+        type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3513ad364e35"
+        warningLevel="4" compilerOptions="/langversion:default /nowarn:41008 /define:_MYTYPE=<pre wp-pre-tag-0></pre>amp;quot;Web<pre wp-pre-tag-0></pre>amp;quot; /optionInfer+"/&gt;
+    &lt;/compilers&gt;
+  &lt;/system.codedom&gt;
+&lt;/configuration&gt;</pre>
+<p>The second step is the configuration of the file <em>Global.asax.cs</em>. I've created a new class <em>HelloAppHost</em> which inherits from <em>AppHostBase</em>.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public class HelloAppHost : AppHostBase
+{
+    public HelloAppHost() : base("Hello Web Services", typeof(HelloService).Assembly) { }
+    public override void Configure(Container container)
+    {
+        SetConfig(new HostConfig
+        {
+            DefaultContentType = MimeTypes.Json
+        });
+
+        // Authentication
+        Plugins.Add(new AuthFeature(() =&gt; new AuthUserSession(),
+            new IAuthProvider[] {
+                new CustomCredentialsAuthProvider()
+            }
+        ));
+
+        Plugins.Add(new RegistrationFeature());
+
+        container.Register&lt;ICacheClient&gt;(new MemoryCacheClient());
+        var userRep = new InMemoryAuthRepository();
+        container.Register&lt;IUserAuthRepository&gt;(userRep);
+    }
+}</pre>
+<p>I've added a authentication functionality, which will be covered later in this post. The other thing I set up, is to return JSON-formatted data as default. The last thing to do in this file is creating an instance of the above class:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">protected void Application_Start(object sender, EventArgs e)
+{
+    var appHost = new HelloAppHost();
+    appHost.Init();
+}</pre>
+<h2>Adding Routes</h2>
+<p>After configuring the service, routes can be added. The general structure consists of three elements: RequestDTO, ResponseDTO and a Service. The following example shows how to set up a route following this approach:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">[Route("/hello/{name*}")]
+public class Hello : IReturn&lt;HelloResponse&gt;
+{
+    public string Name { get; set; }
+}
+
+public class HelloResponse
+{
+    public string Result { get; set; }
+}
+
+public class HelloService : IService
+{
+    public object Get(Hello request)
+    {
+        var name = request.Name ?? "World";
+        return new HelloResponse { Result = $"Hello, {name}!" };
+    }
+}</pre>
+<p>This service responds to requests on <em>/hello/{name*}</em>. The curly brackets indicate a variable, the star is a wildcard to indicate, that this variable is optional. This way, the service will also respond if no name is submitted (it will use the default '<em>World'</em> for the response).</p>
+<p>While you can use the notation above to mark routes, you can also set these up in your configuration (<em>Global.asax.cs</em>). Just add the following contents after <em>container.register</em>...</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">Routes
+    .Add&lt;Hello&gt;("/hello")
+    .Add&lt;Hello&gt;("/hello/{Name}");</pre>
+<h2>HTTP Verbs</h2>
+<p>As shown in the example above, HelloService only implements the method <em>Get()</em>. This can be supplemented or extended by any other HTTP verb or Any, which will then respond to all requests on this path. ServiceStack also has a nice <a href="http://docs.servicestack.net/design-rest-services">documentation</a> about the usage of each verb.</p>
+<h2>Fallback Routes</h2>
+<p>You can use fallbacks to cover routes, that are not handled explicitly. In my case, I return information about the unhandled path and a timestamp. Again, wildcards are used.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">[FallbackRoute("/{Path*}")]
+public class Fallback : IReturn&lt;FallbackResponse&gt;
+{
+    public String Path { get; set; }
+}
+
+public class FallbackResponse
+{
+    public string Message { get; set; }
+    public string Path { get; set; }
+    public String Timestamp { get; set; }
+}
+
+public class FallbackService : IService
+{
+    public object Any(Fallback request)
+    {
+        return new FallbackResponse {
+            Message = "No matching path specified",
+            Path = request.Path ?? "/",
+            Timestamp = DateTime.Now.ToString()
+        };
+    }
+}</pre>
+<h2>Authentication</h2>
+<p>The last element I'd like to cover is the authentication of a user. ServiceStack offers the class <em>CredentialsAuthProvider</em>, from which custom providers can be derived. The following example covers two methods, TryAuthenticate, which tries to log in by checking username and password against custom logic, and OnAuthenticated, which will be used to assign session variables.</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public class CustomCredentialsAuthProvider : CredentialsAuthProvider
+{
+    public override bool TryAuthenticate(IServiceBase authService,
+    string userName, string password)
+    {
+        // Only checks if username equals password
+        // implement custom logic here
+        return userName.Equals(password);
+    }
+
+    public override IHttpResult OnAuthenticated(IServiceBase authService,
+        IAuthSession session, IAuthTokens tokens,
+        Dictionary&lt;string, string&gt; authInfo)
+    {
+        session.customElement= "Hello World";
+        return base.OnAuthenticated(authService, session, tokens, authInfo);
+    }
+}</pre>
+<p>After creating this functionality, you can try to log in using the <em>/auth</em> route via POST and adding a username and password parameter. If you want any of your routes to require authentication, just add the <em>[Authenticate]</em> attribute above its response (above the [Route...]). After doing so, requesting this route without earlier authentication will lead to an empty response.</p>
+<p>To log out, simply send a request (GET or POST) to <em>/auth/logout</em>.</p>
+<h2>Further Information</h2>
+<p>As I mentioned above, <a href="http://docs.servicestack.net/">ServiceStacks documentation</a> is really well written and maintained. I don't think you'll need any information besides what you can find there.</p>

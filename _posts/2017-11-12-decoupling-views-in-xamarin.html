@@ -1,0 +1,183 @@
+---
+layout: post
+title: Decoupling Views in Xamarin
+date: 2017-11-12 10:05:27.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- CSharp
+tags:
+- ".NET"
+- CSharp
+- Development
+- Programming
+- Windows
+- Xamarin
+meta:
+  _edit_last: '2'
+  _adinserter_block_exceptions: ''
+  _yoast_wpseo_content_score: '60'
+  _yoast_wpseo_primary_category: '42'
+  _yoast_wpseo_focuskw_text_input: Xamarin
+  _yoast_wpseo_focuskw: Xamarin
+  _yoast_wpseo_metadesc: This article covers the decoupling of views in Xamarin. An
+    example shows how to transfer data between pages without having them tied together.
+  _yoast_wpseo_linkdex: '88'
+  _wpas_done_all: '1'
+  _jetpack_related_posts_cache: a:1:{s:32:"8f6677c9d6b0f903e98ad32ec61f8deb";a:2:{s:7:"expires";i:1512541426;s:7:"payload";a:3:{i:0;a:1:{s:2:"id";i:532;}i:1;a:1:{s:2:"id";i:544;}i:2;a:1:{s:2:"id";i:603;}}}}
+author:
+  login: Marcel
+  email: marcel@mjurtz.com
+  display_name: Marcel Jurtz
+  first_name: Marcel
+  last_name: Jurtz
+---
+<p>As a software developer, you've probably stumbled across old source code you've written from time to time and you've just been thinking 'how the hell can someone come up with such bullshit?'. I don't see myself as an exception regarding this topic and just recently had such a case, which I would like to document in this article. More specifically, I want to discuss the decoupling of views under xamarin. The source I use in this article is available on my <a href="https://github.com/MarcelJurtz/XamarinDecouplingDemo">GitHub profile</a>.</p>
+<h2>Xamarin Navigation</h2>
+<p>Decoupling allows you to use multiple views without dependencies between them. Without decoupling, all relevant elements would have to be edited for individual changes. Xamarin relies on a simple page-based navigation structure that is managed in the form of a stack (see figure). A new page is added with Push(), the topmost page can be removed with Pop().</p>
+<p><img class="aligncenter size-medium wp-image-476" src="{{ site.baseurl }}/assets/XamarinNavigation-500x347.png" alt="Xamarin Navigation Scheme" height="347" width="500" /></p>
+<p>These pages are usually interdependent, for example, information is required on a page that is entered on the next page. After entering the required information, the user is taken back to the calling page and the information is transferred to this one. This is exactly the point I want to clarify with this article. The strict interaction of the sides is problematic in the case of subsequent changes.</p>
+<h2>Building the demo application</h2>
+<p>Take a look at the following screenshots to see how the demo application works. The app consists of two pages, whereby the second view is opened by a button on the first one. The second view contains an input field whose value will then be accessed in the first view. There is an additional button to abort the process. If the "Confirm" button is pressed even though no text has been entered, the user will be informed.</p>
+<p><img class="aligncenter size-full wp-image-479" src="{{ site.baseurl }}/assets/Xamarin_Decoupling_Screenshots.png" alt="Xamarin Decoupling Screenshots" height="425" width="1200" /></p>
+<p>The default configuration of Visual Studio already creates a default page for every new Xamarin project. I created an additional one next to it. For interaction I have created an interface which manages the possible handlers. The folder structure of my main project consists of the following files:</p>
+<ul>
+<li>App.xaml (+ code-behind)</li>
+<li>MainPage.xaml (+ code-behind)</li>
+<li>InputPage.xaml (+code-behind)</li>
+<li>IRequireDialogInteraction</li>
+</ul>
+<p>Since this project is used as showcase to demonstrate the decoupling of views, I don't follow the MVVM-approach here. However, this is done only to minimize possible distractions, MVVM can of course still be used.</p>
+<p>The first thing you'll want to do is to set up a navigation page. This is done in App.xaml.cs by adding <code class="EnlighterJSRAW" data-enlighter-language="csharp">MainPage = new NavigationPage(new MainPage());</code>. After doing so, you can navigate between your views via <code class="EnlighterJSRAW" data-enlighter-language="csharp">Navigation.PushAsync(page);</code>.</p>
+<p>The next thing is setting up the simple GUI:</p>
+<p>MainPage.xaml</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="xml">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamarinDecouplingDemo"
+             x:Class="XamarinDecouplingDemo.MainPage"&gt;
+    &lt;ContentPage.Content&gt;
+        &lt;StackLayout&gt;
+            &lt;Button
+                Text="Load second page"
+                Clicked="OnLoadButtonClick"/&gt;
+            &lt;Label
+                x:Name="lblInputText" /&gt;
+        &lt;/StackLayout&gt;
+    &lt;/ContentPage.Content&gt;
+&lt;/ContentPage&gt;</pre>
+<p>InputPage.xaml</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="xml">&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinDecouplingDemo.InputPage"&gt;
+    &lt;ContentPage.Content&gt;
+        &lt;Grid
+                Padding="30"
+                BackgroundColor="White"&gt;
+            &lt;Grid.RowDefinitions&gt;
+                &lt;RowDefinition Height="Auto" /&gt;
+                &lt;RowDefinition Height="Auto" /&gt;
+                &lt;RowDefinition Height="Auto" /&gt;
+            &lt;/Grid.RowDefinitions&gt;
+            &lt;Grid.ColumnDefinitions&gt;
+                &lt;ColumnDefinition Width="*" /&gt;
+                &lt;ColumnDefinition Width="*" /&gt;
+            &lt;/Grid.ColumnDefinitions&gt;
+
+            &lt;Label
+                    Grid.ColumnSpan="2"
+                    Grid.Row="0"
+                    HorizontalOptions="Start"
+                    Text="Text to return"/&gt;
+
+            &lt;Entry
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
+                    x:Name="txtTextToReturn"/&gt;
+
+            &lt;Button
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    x:Name="cmdCancel"
+                    Text="Cancel"
+                    Clicked="OnCancel"/&gt;
+
+            &lt;Button 
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    x:Name="cmdConfirm"
+                    Text="Confirm"
+                    Clicked="OnConfirm" /&gt;
+
+        &lt;/Grid&gt;
+    &lt;/ContentPage.Content&gt;
+&lt;/ContentPage&gt;</pre>
+<p>The second view can be left by clicking one of two buttons, cancel and confirm. These interactions will be required by the MainPage later, which is why methods for those will be added to <em>IRequireDialogInteraction</em>:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">interface IRequireDialogInteraction
+{
+    void OnDialogConfirmation(object sender, EventArgs e);
+    void OnDialogCancellation(object sender, EventArgs e);
+}
+</pre>
+<p>After the basic settings have been made, the actual magic will now happen in form of public EventHandler properties. MainPage needs a property of the type <em>InputPage</em>, which is used to interact with the second view. <em>InputPage</em> on the other hand will implement two event handlers, which can be accessed by <em>MainPage</em>. These will then be linked to the <em>Clicked</em>-property which is set in the xaml-file:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public partial class InputPage : ContentPage
+{
+    public InputPage ()
+    {
+      InitializeComponent();
+    }
+
+    public EventHandler Confirmed;
+    public EventHandler Cancelled;
+
+    public String enteredText { get { return txtTextToReturn.Text; } }
+
+    public void OnConfirm(object sender, EventArgs e)
+    {
+        Confirmed?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void OnCancel(object sender, EventArgs e)
+    {
+        Cancelled?.Invoke(this, EventArgs.Empty);
+    }
+}</pre>
+<p><em>MainPage</em> now only needs to link the event handlers to the methods which are implemented by <em>IRequireDialogInteraction</em> and can then access the <em>enteredText</em>-property of the <em>InputPage</em>-object:</p>
+<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public partial class MainPage : ContentPage, IRequireDialogInteraction
+{
+    private InputPage _InputPage;
+
+    public MainPage()
+    {
+        InitializeComponent();
+    }
+
+    public void OnDialogCancellation(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
+
+    public void OnDialogConfirmation(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+        lblInputText.Text = _InputPage.enteredText ?? "No text entered.";
+    }
+
+    public void OnLoadButtonClick(object sender, EventArgs e)
+    {
+        lblInputText.Text = "";
+
+        _InputPage = new InputPage();
+        _InputPage.Confirmed += OnDialogConfirmation;
+        _InputPage.Cancelled += OnDialogCancellation;
+
+        Navigation.PushAsync(_InputPage);
+    }
+}</pre>
+<p>And that's basically it! If you want to change the style in which user interaction happens, you'll be able to simply swap out the specific part in the methods <em>OnDialogConfirmation</em> or <em>OnDialogCancellation</em>.</p>
+<h2>Implementing Dialogs</h2>
+<p>Finally, I would like cover one specific detail which helped me a lot in my work with xamarin. <a href="https://github.com/rotorgames/Rg.Plugins.Popup">This plugin</a> (available on GitHub &amp; Nuget) allows you to show regular XAML-pages as dialogs. This is really helpful in combination with the decoupling shown above, since you can create custom dialogs, for example to display user prompts or general input fields to take off the load of some of the main pages. The usage looks exactly the same as that of the regular pages, except that the dialog-pages must inherit from <em>PopupPage</em> and are called with <em>PushPopupAsync()</em> instead of <em>PushAsync()</em>. The closing of the page takes place analogously with <em>PopPopupAsync()</em>.</p>

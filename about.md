@@ -4,29 +4,14 @@ title: About
 permalink: /about/
 ---
 
-<amp-img width="600" height="300" layout="responsive" src="http://lorempixel.com/600/300/sports"></amp-img>
+Hey, I'm Marcel. I'm glad that you found my blog, where I document my thoughts and write about everything that interested in.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac augue libero.
-Fusce ac tempor dolor. Ut est dui, gravida a consequat aliquet, fermentum
-sodales risus. Suspendisse eu arcu id mi ornare facilisis non id nisl. Maecenas
-nec congue arcu, non semper neque. Proin mollis nisl diam, eu ultrices diam
-facilisis et. Integer fringilla lorem quis semper venenatis.
+At the moment that includes mainly topics like software development with a focus on Android, C# and Xamarin, but also general related areas like encrypted communication or secure browsing. Regarding my topics in the area of software development I write about all sorts of subjects. From the introduction of a side project to a detailed description to a specific problems solution, you will find everything here.
 
-Aliquam vestibulum purus enim. Sed rhoncus interdum erat id consequat. Nulla
-cursus venenatis massa, quis convallis lacus condimentum vel. Etiam mollis,
-orci ac pharetra commodo, diam lectus hendrerit eros, ac elementum magna augue
-sed tellus. Maecenas molestie, nisi ut sodales scelerisque, purus neque
-imperdiet dui, mollis elementum sem augue vel ipsum. Nulla lacinia arcu at quam
-lobortis, vitae interdum tellus fermentum. Cum sociis natoque penatibus et
-magnis dis parturient montes, nascetur ridiculus mus. Fusce sodales semper erat,
-eu fringilla ligula vulputate id. Maecenas quis libero pellentesque lacus
-egestas vehicula sit amet et neque. Nulla nec facilisis sem. Pellentesque rutrum
-elementum molestie. Quisque eget dui ac quam placerat dictum. Suspendisse quis
-ante placerat, efficitur enim ut, commodo tortor. Etiam consequat, eros quis
-consequat congue, augue mauris molestie libero, sed iaculis lectus enim eu magna.
+In addition to these software-heavy topics, I am doing 3D printing as a hobby and I'm currently trying to build and consolidate CAD skills. I'm quite easy to inspire which is why you will see several posts on here that are a little out of the ordinary.
 
-Etiam sapien dolor, mattis vel feugiat nec, egestas eget risus. Lorem ipsum
-dolor sit amet, consectetur adipiscing elit. Aenean aliquam massa a est porta
- vehicula. Cras eu gravida massa. Integer non sem ac mi ultrices posuere a
- pretium tortor. Mauris vitae varius sem. Praesent faucibus nec felis et dictum.
- Vestibulum lorem velit, laoreet nec vestibulum in, varius nec enim.
+Of course, I use different platforms to document and exchange the results of my work. I therefore refer to [my GitHub profile](https://github.com/MarcelJurtz), where I manage all my software projects, and [my Thingiverse account](https://www.thingiverse.com/Zakarian/about), which I use to share 3D models.
+
+I am looking forward to any criticism, please feel free to contact me via mail to [marcel@mjurtz.com](mailto:marcel@mjurtz.com) (please use my PGP Key: [4404 F835 D61D F7C0 321D AFD0 3982 FC4C 265C 9C2D](https://mjurtz.com/pgp.txt)) or [Twitter (@MarcelJurtz)](https://twitter.com/MarcelJurtz).
+
+Please note that I’ve disabled the comments on here since I don’t have the time to moderate and approve these. German law is pretty strict on that topic. If you have any question or idea on how to improve this site, please also simply drop a message.

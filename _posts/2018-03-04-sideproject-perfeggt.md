@@ -30,20 +30,3 @@ To provide a better user experience, the user can provide the eggs weight in gra
 <span>After you have entered all the values and pressed the &#8220;<em>Calculate</em>&#8221; button, a second page will be loaded showing you the duration. Here you can now start a timer that exits the application. In the status bar you will now see a new entry indicating the time of completion. By clicking this entry, you can abort the countdown prematurely. As soon as the time has elapsed, the application will notify you with an alarm.</span>
 
 <span>I am looking forward to any feedback! The app is available in both <a href="https://play.google.com/store/apps/details?id=com.jurtz.android.pefectegg">PlayStore</a> and Open Source on <a href="https://github.com/MarcelJurtz/Perfeggt">GitHub</a>.</span>
-
-<div>
-</div>
-
-<div>
-</div>
-
-<div>
-</div>
-
-<span> </span>
-
-<div>
-</div>
-
-<div>
-</div>

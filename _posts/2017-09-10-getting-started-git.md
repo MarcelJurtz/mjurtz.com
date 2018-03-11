@@ -13,7 +13,7 @@ tags:
   - Programming
   - Tools
 ---
-This post represents an overview of version control with git. The mentioned commands and parameters are only a small part of what&#8217;s possible. Git is a popular system for version control. Projects on git are called _Repositories_. Repositories can be used local or with a server. There are several free hosters, for example:
+This post represents an overview of version control with git. The mentioned commands and parameters are only a small part of what's possible. Git is a popular system for version control. Projects on git are called _Repositories_. Repositories can be used local or with a server. There are several free hosters, for example:
 
   * [Github](https://github.com)
   * [GitLab](https://about.gitlab.com/)
@@ -21,12 +21,14 @@ This post represents an overview of version control with git. The mentioned comm
 
 ## Installation {#installation}
 
-  * Linux (Debian-based) 
-    <pre><code class="lang-Bash">apt-&lt;span class="hljs-built_in">get&lt;/span> install git-&lt;span class="hljs-built_in">all&lt;/span>
-</code></pre>
+* Linux (Debian-based)
 
-  * [Windows](https://git-for-windows.github.io/)
-  * [Mac](http://git-scm.com/download/mac)
+{% highlight bash %}
+apt-get install git-all
+{% endhighlight %}
+
+* [Windows](https://git-for-windows.github.io/)
+* [Mac](http://git-scm.com/download/mac)
 
 ## Elements {#elements}
 
@@ -34,7 +36,7 @@ Git-Repositories are separated into _working directory_, _staging area_ and _rep
   
 Changes on the files are saved here. The repository is the shared project of all contributing persons. Using the staging area, a developert can decide, which elements he/she wants to save from the working directory to the staging area.
 
-<img src="https://i0.wp.com/raw.githubusercontent.com/MarcelJurtz/GitTutorial/master/images/git_areas.png?w=750&#038;ssl=1" alt="Elements of a git-repository" data-recalc-dims="1" />
+![Areas of a git repository](/assets/2017/getting-started-git-areas.png)
 
 ## Basic administration of a repository {#basic-administration-of-a-repository}
 
@@ -42,35 +44,36 @@ All commands are initiated with the keyword _git_.
 
 Initialization of a folder as repository:
 
-<pre><code class="lang-Bash">&lt;span class="hljs-comment"># New repository&lt;/span>
+{% highlight bash %}
+# New repository
 git init
 
-&lt;span class="hljs-comment"># Download (clone) of an existing repository&lt;/span>
-git &lt;span class="hljs-keyword">clone&lt;/span> &lt;span class="hljs-title">/path&lt;/span>/to/repository
-</code></pre>
+# Download (clone) of an existing repository
+git clone path/to/repository
+{% endhighlight %}
 
 Editing / creating files: test.txt
 
-<pre><code class="lang-Bash">&lt;span class="hljs-meta"># Overview of the current status of the repository:&lt;/span>
+{% highlight bash %}
+# Overview of the current status of the repository
 git status
-&lt;span class="hljs-meta"># -&gt; test.txt is displayed red&lt;/span>
+# test.txt is displayed red
 
-&lt;span class="hljs-meta"># Splitting into separate parts:&lt;/span>
-&lt;span class="hljs-meta"># Untracked Files: New files&lt;/span>
-&lt;span class="hljs-meta"># Changes not staged for commit: Edited files&lt;/span>
+# Splitting into separate parts:
+# Untracked Files: New files
+# Changes not staged for commit: Edited files
 
-&lt;span class="hljs-meta"># Parameters:&lt;/span>
-&lt;span class="hljs-meta"># -u: Add all edited files, but no new ones.&lt;/span>
-&lt;span class="hljs-meta"># -A: Add all files (alternative: git add . )&lt;/span>
+# Parameters:
+# -u: Add all edited files, but no new ones.
+# -A: Add all files (alternative: git add . )
 
-
-&lt;span class="hljs-meta"># Adding files to the index&lt;/span>
+# Adding files to the index
 git add test.txt
-&lt;span class="hljs-meta"># -&gt; test.txt ist now displayed green&lt;/span>
+# test.txt ist now displayed green
 
-&lt;span class="hljs-meta"># Adding files to the repository&lt;/span>
-git commit -m &lt;span class="hljs-string">"Add test"&lt;/span>
-</code></pre>
+# Adding files to the repository
+git commit -m "Add test"
+{% endhighlight %}
 
 Each commit is commented with the -m-flag.
   
@@ -82,13 +85,14 @@ Git has some [naming-conventions](https://github.com/erlang/otp/wiki/Writing-goo
   * written in present tense
   * expressive
 
-<pre><code class="lang-Bash"># &lt;span class="hljs-built_in">Print&lt;/span> &lt;span class="hljs-built_in">all&lt;/span> commits including details &lt;span class="hljs-keyword">in&lt;/span> chronological order
-git &lt;span class="hljs-built_in">log&lt;/span>
-</code></pre>
+{% highlight bash %}
+# Print all commits including details in chronological order
+git log
+{% endhighlight %}
 
 The output of this command looks like the following:
 
-<img src="https://i0.wp.com/raw.githubusercontent.com/MarcelJurtz/GitTutorial/master/images/git_log.png?w=750&#038;ssl=1" alt="Git log output" data-recalc-dims="1" />
+![Output of the git log command](/assets/2017/getting-started-git-log.png)
 
   * SHA1-checksum
   * Name of the author
@@ -98,9 +102,10 @@ The output of this command looks like the following:
 
 This configuration is global for every repository (set it up once per device).
 
-<pre><code class="lang-Bash">git config --global user&lt;span class="hljs-selector-class">.name&lt;/span> &lt;span class="hljs-string">"Marcel Jurtz"&lt;/span>
-git config --global user&lt;span class="hljs-selector-class">.email&lt;/span> jurtzmarcel@gmail.com
-</code></pre>
+{% highlight bash %}
+git config --global user.name "Marcel Jurtz"
+git config --global user.email jurtzmarcel@gmail.com
+{% endhighlight %}
 
 You can set this for each project individually, just leave out the _&#8211;global_-flag.
 
@@ -112,7 +117,7 @@ In the following, _HEAD_ is often mentioned. HEAD is the most recent commit of t
 
 A remote is a repository on a server / different pc, for example hosted on Github.
 
-<img src="https://i0.wp.com/raw.githubusercontent.com/MarcelJurtz/GitTutorial/master/images/git_areas_extended.png?w=750&#038;ssl=1" alt="Remotes on git-repositories" data-recalc-dims="1" />
+![Remotes for shared repositories](/assets/2017/getting-started-git-remote.png)
 
 In the following, I use Github as remote server.
 
@@ -120,7 +125,7 @@ After creating an account on [Github](https://www.github.com), available _reposi
 
 When creating a new repository, you can select to add a README- and/or license- & .gitignore-file.
 
-Es wird zu Beginn die Möglichkeit gegeben, eine README-, sowie eine license- und eine .gitignore-Datei anzulegen:
+When creating a new repository (of course this can be done later as well), you are prompted to create a README-, license- and .gitignore-file:
 
   * README is a file that represents general information about the project. When hosted on GitHub, this file can be imagined as _landing page_ for visitors. README-files are usually written in markdown. Markdown is similar to HTML, but has lesser functionality and better readability (in my opinion).
   * license: All repositories on Github (free accounts) are publicly available. With a license-file, the usage of the repository can be adjusted to different preferences. GitHub offers some pre-defined licenses, for example MIT and GPLv3, along with information on the differences.
@@ -128,30 +133,33 @@ Es wird zu Beginn die Möglichkeit gegeben, eine README-, sowie eine license- un
 
 The following screenshot shows an exemplary repository on Github.
 
-<img src="https://i2.wp.com/raw.githubusercontent.com/MarcelJurtz/GitTutorial/master/images/git_repo.png?w=750&#038;ssl=1" alt="Git repository" data-recalc-dims="1" />
+![Example of a GitHub repository](/assets/2017/getting-started-git-github.png)
 
 The lading page offers some overview of a repository, for example the files and folders in the root-directory, amount of commits, branches, licensing-info and so on.
 
 After a repository has been created, it can be added as a remote:
 
-<pre><code class="lang-Bash">git remote &lt;span class="hljs-keyword">add&lt;/span>&lt;span class="bash"> origin url&lt;/span>
-</code></pre>
+{% highlight bash %}
+git remote add origin url
+{% endhighlight %}
 
 You can set individual names for the remote, I use _origin_ here.
 
 To upload changes commited in the working directory, use the following:
 
-<pre><code class="lang-Bash">git &lt;span class="hljs-built_in">push&lt;/span> &lt;span class="hljs-built_in">origin&lt;/span> master
-</code></pre>
+{% highlight bash %}
+git push origin master
+{% endhighlight %}
 
 And this to download changes from a remote:
 
-<pre><code class="lang-Bash">git pull origin &lt;span class="hljs-literal">master&lt;/span>
-</code></pre>
+{% highlight bash %}
+git pull origin master
+{% endhighlight %}
 
-Please know, that if you have an existing project on your pc and want to add it to a remote, which already contains files, for example README, license, or .gitignore,
+Please know that if you have an existing project on your pc and want to add it to a remote, which already contains files, for example README, license, or .gitignore,
   
-you&#8217;ll have to merge the repositories. If you don&#8217;t have any of these files locally, you&#8217;ll have no problems, since the files will be automatically implemented.
+youll have to merge the repositories. If you don't have any of these files locally, you'll have no problems, since the files will be automatically implemented.
   
 If you do, this will result into a merge-conflict. Continue reading, to find out more about merging.
 
@@ -161,10 +169,9 @@ For example, user A and user B are editing the same repository, both users can w
   
 A problem comes up, when both users push the same file: merge conflicts.
 
-Think of a file in the remote repository named test.txt, which has the following content:
+Think of a file in the remote repository named _test.txt_, which has the following content:
 
-    <span class="hljs-attribute">Hello</span>
-    
+> Hello    
 
 Using pull, both users get this file to their working directories.
   
@@ -172,135 +179,129 @@ Now, both users edit the file to the following:
 
 Version A:
 
-    Hello, I am <span class="hljs-keyword">A</span>!
-    
+> Hello, I am A!
 
 Version B:
 
-    Hello, I am B!
-    
+> Hello, I am B!
 
 Both users now push their version to the remote. The user submitting first will have no problems doing so. In my example, this will be user B.
   
 When user A pushes his updates, the push will result in an error like the following:
 
-    CONFLICT (content): <span class="hljs-keyword">Merge</span> conflict <span class="hljs-keyword">in</span> test.txt
-    <span class="hljs-keyword">Automatic</span> <span class="hljs-keyword">merge</span> <span class="hljs-keyword">failed</span>; fix conflicts and then <span class="hljs-keyword">commit</span> the result.
+> CONFLICT (content): Merge conflict in test.txt  
+> Automatic merge failed; fix conflicts and then commit the result.
     
 
 Git now modified the mentioned files, test.txt now has the following content:
 
-    <<<<<<< HEAD:test.txt
-    <span class="hljs-section">Hello, I am B!
-    =======</span>
-    Hello, I am A!
-    >>>>>>> commit-text:test.txt
+>  \<\<\<\<\<\<\< HEAD:test.txt  
+>  Hello, I am B!  
+>  =======  
+>  Hello, I am A!  
+>  \>\>\>\>\>\>\> commit-text:test.txt
     
 
 A now has to decide, which version is preferred and then commit the changes.
   
 A updates the file to the following:
 
-    Hello, we are A <span class="hljs-keyword">and</span> B!
-    
+>  Hello, we are A and B!
 
 After that, he creates a new commit to document the merge:
 
-<pre><code class="lang-Bash">git &lt;span class="hljs-keyword">add&lt;/span>&lt;span class="bash"> test.txt
-&lt;/span>git commit -m &lt;span class="hljs-string">"Resolve Merge Conflict"&lt;/span>
-</code></pre>
+{% highlight bash %}
+git add test.txt
+git commit -m "Resolve Merge Conflict"
+{% endhighlight %}
 
 ## Branching {#branching}
 
 Git uses _branches_ to support developing new features. This supports developing new functionality, without the need to edited the working current version of the project.
 
-<img src="https://i1.wp.com/raw.githubusercontent.com/MarcelJurtz/GitTutorial/master/images/branching.png?w=750&#038;ssl=1" alt="Git Branching" data-recalc-dims="1" />
+![Branches in git](/assets/2017/getting-started-git-branching.png)
 
 Use this to create a new branch:
 
-<pre><code class="lang-Bash">&lt;span class="hljs-symbol">git&lt;/span> &lt;span class="hljs-keyword">branch &lt;/span>&lt;span class="hljs-keyword">branch_name&lt;/span>
-</code></pre>
+{% highlight bash %}
+git branch branch_name
+{% endhighlight %}
 
 And this to view all existing branches:
 
-<pre><code class="lang-Bash">&lt;span class="hljs-attribute">git branch&lt;/span>
-</code></pre>
+{% highlight bash %}
+git branch
+{% endhighlight %}
 
-The current branch is marked by an asterisk.
-  
-Usually, this is _master_ in new projects.
-  
-As you may notice, we used this branch earlier to push commits.
-
-Replace this to push to other branches.
+The current branch is marked by an asterisk. Usually, this is _master_ in new projects. As you may notice, we used this branch earlier to push commits. Replace this to push to other branches.
 
 Changing branches
 
-<pre><code class="lang-Bash">&lt;span class="hljs-attribute">git&lt;/span> checkout branch_name
-</code></pre>
+{% highlight bash %}
+git checkout branch_name
+{% endhighlight %}
 
 Creating a branch and switching to it:
 
-<pre><code class="lang-Bash">git checkout -&lt;span class="hljs-selector-tag">b&lt;/span> branch_name
-</code></pre>
+{% highlight bash %}
+git checkout -b branch_name
+{% endhighlight %}
 
-When a branch is changed, files in the working directory are automatically updated to match that branch.
-  
-This way, you don&#8217;t have to use different folders for different branches and save space on your harddrive.
-
-Die beiden Befehle können auch zusammengefasst werden:
+When a branch is changed, files in the working directory are automatically updated to match that branch. This way, you don't have to use different folders for different branches and save space on your harddrive.
 
 To merge two branches, switch to the branch you want to merge to (using `git checkout`) and merge them:
 
-<pre><code class="lang-Bash">git &lt;span class="hljs-keyword">merge&lt;/span> branch_name
-</code></pre>
+{% highlight bash %}
+git merge branch_name
+{% endhighlight %}
 
 To view differences in branches, you can use
 
-<pre><code class="lang-Bash">git &lt;span class="hljs-built_in">diff&lt;/span> source_branch destination_branch
-</code></pre>
+{% highlight bash %}
+git diff source_branch destination_branch
+{% endhighlight %}
 
 Branches, that are no longer needed, can be deleted:
 
-<pre><code class="lang-Bash">&lt;span class="hljs-symbol">git&lt;/span> &lt;span class="hljs-keyword">branch &lt;/span>-d &lt;span class="hljs-keyword">branch_name&lt;/span>
-</code></pre>
+{% highlight bash %}
+git branch -d branch_name
+{% endhighlight %}
 
 ## Tags {#tags}
 
 Tags can be added to commits, to highlight completed versions of a project. To select a commit, the first 10 characters of the checksum are needed (`git log`).
 
-<pre><code class="lang-Bash">&lt;span class="hljs-comment"># Creating a new tag&lt;/span>
-git &lt;span class="hljs-keyword">tag&lt;/span> &lt;span class="hljs-title">1&lt;/span>.&lt;span class="hljs-number">0.0&lt;/span> d525ac9ddf
+{% highlight bash %}
+# Creating a new tag
+git tag 1.0.0 d525ac9ddf
 
-&lt;span class="hljs-comment"># Show all tags&lt;/span>
-git &lt;span class="hljs-keyword">tag&lt;/span>
+# Show all tags
+git tag
 
-&lt;span class="hljs-title"># Creating&lt;/span> a commented &lt;span class="hljs-keyword">tag&lt;/span>
-&lt;span class="hljs-title">git&lt;/span> &lt;span class="hljs-keyword">tag&lt;/span> &lt;span class="hljs-title">1&lt;/span>.&lt;span class="hljs-number">0.0&lt;/span> d525ac9ddf -m &lt;span class="hljs-string">"Commented Tag"&lt;/span>
+# Creating a commented tag
+git tag 1.0.0 d525ac9ddf -m "Commented Tag"
 
-&lt;span class="hljs-comment"># Show commit using its tag&lt;/span>
-git show &lt;span class="hljs-number">1.0&lt;/span>.&lt;span class="hljs-number">0&lt;/span>
-</code></pre>
+# Show commit using its tag
+git show 1.0.0
+{% endhighlight %}
 
 ## Resetting changes {#resetting-changes}
 
 To reset contents of the working directory, you can use the following:
 
-<pre><code class="lang-Bash">git &lt;span class="hljs-keyword">reset&lt;/span> &lt;span class="hljs-comment">-- filename&lt;/span>
-</code></pre>
+{% highlight bash %}
+git reset -- filename
+{% endhighlight %}
 
-This command obtains changes from HEAD and overwrites the content of the working directory to match HEAD.
-  
-Changes, that have been added to the staging area are not overwritten!
+This command obtains changes from HEAD and overwrites the content of the working directory to match HEAD. Changes that have been added to the staging area are not overwritten!
 
 To reset contents of the directory, use this:
 
-<pre><code class="lang-Bash">git &lt;span class="hljs-keyword">reset&lt;/span> &lt;span class="hljs-comment">--hard d525ac9&lt;/span>
-</code></pre>
+{% highlight bash %}
+git reset --hard d525ac9
+{% endhighlight %}
 
-As shown earlier, you need to add the first characters of the commits checksum to identify the commit.
-  
-This command should only be used with caution, since it changes the commit-history.
+As shown earlier, you need to add the first characters of the commits checksum to identify the commit. This command should only be used with caution, since it changes the commit-history.
 
 ## Conventions & Good Practices {#conventions-good-practices}
 
@@ -321,7 +322,7 @@ When contributing to public projects, you should also check the previous commits
 
 ## Alternatives {#alternatives}
 
-If you don&#8217;t like using the terminal, there are some GUI-clients. For example:
+If you don't like using the terminal, there are some GUI-clients. For example:
 
   * [SourceTree](https://www.sourcetreeapp.com/)
 

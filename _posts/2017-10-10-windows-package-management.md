@@ -19,26 +19,54 @@ While researching this topic I came across chocolatey, a CLI-tool that acts as p
 
 ## Install, Update, Uninstall
 
-A list of available packages can be viewed on <https://chocolatey.org/packages>. As with the Arch User Repository, packages are managed by users, which means that there is a very large selection of available packages. The pattern for installing packages is <code class="EnlighterJSRAW" data-enlighter-language="generic">choco install &lt;packagename&gt;</code>, a full list of commands can be found in [the docs](https://chocolatey.org/docs). Installed packages can be uninstalled using <code class="EnlighterJSRAW" data-enlighter-language="generic">choco uninstall &lt;packagename&gt;</code> or upgraded by using <code class="EnlighterJSRAW" data-enlighter-language="generic">choco upgrade&lt;packagename&gt;</code>. If you want to upgrade all installed packages, simply use the keyword _all_ instead of a specific packagename.
+A list of available packages can be viewed on <https://chocolatey.org/packages>. As with the Arch User Repository, packages are managed by users, which means that there is a very large selection of available packages. The pattern for installing packages is 
 
-By default, Chocolatey creates a directory under C: \ProgramData which contains the program files. The installation locations for the individual programs depend on the configuration of the package, but usually either _C:\Program Files_ or _C:\Program Files (x86)_ is used.
+> choco install <packagename></code>
+
+A full list of commands can be found in [the docs](https://chocolatey.org/docs). Installed packages can be uninstalled using 
+
+> choco uninstall <packagename></code> 
+
+or upgraded by using 
+
+> choco upgrade<packagename></code>
+
+If you want to upgrade all installed packages, simply use the keyword _all_ instead of a specific packagename.
+
+By default, Chocolatey creates a directory under _C: \ProgramData_ which contains the program files. The installation locations for the individual programs depend on the configuration of the package, but usually either _C:\Program Files_ or _C:\Program Files (x86)_ is used.
 
 ## Further Commands
 
 Of course, the package management does not only include installation, upgrade and deinstallation of packages, so this section is dedicated to some other features. Check out the docs for a complete list of features.
 
-You can search packages by using <code class="EnlighterJSRAW" data-enlighter-language="generic">choco search &lt;packagename&gt;</code>, which results into something similar to the following listing.
+You can search packages by using
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic">D:\&gt;choco search jenkins
+> choco search <packagename></code>
+
+which results into something similar to the following listing.
+
+{% highlight DOS %}
+D:\>choco search jenkins
 Chocolatey v0.10.8
 jenkins 2.60.3 [Approved]
 gradle 4.1.0 [Approved] Downloads cached for licensed users
 notify-me-ci 1.3.3.13 [Approved] Downloads cached for licensed users
 JenkinsOnDesktop 1.0
-4 packages found.</pre>
+4 packages found.
+{% endhighlight %}
 
-To check out the installed version of choco, you can use <code class="EnlighterJSRAW" data-enlighter-language="generic">choco --version</code> or <code class="EnlighterJSRAW" data-enlighter-language="generic">choco -v</code> (To upgrade chocolatey, just use the regular update command). To list all packages available, use <code class="EnlighterJSRAW" data-enlighter-language="generic">choco list</code>, if you only want to receive the packages that are installed locally, add the -l flag.
+To check out the installed version of choco, you can use
+
+> choco --version</code> 
+
+or 
+
+> choco -v
+
+To upgrade chocolatey, just use the regular update command. To list all packages available, use 
+
+> choco list
+
+If you only want to receive the packages that are installed locally, add the _-l_ flag.
 
 These few commands should be sufficient to enable you to get started with package management under Windows. As already mentioned, the documentation of the project conveys all further details in a simple and understandable way. And, if you&#8217;re not comfortable using the command line, there is also a graphical user interface for chocolatey available, which can be found under the name _chocolateygui_.
-
-&nbsp;

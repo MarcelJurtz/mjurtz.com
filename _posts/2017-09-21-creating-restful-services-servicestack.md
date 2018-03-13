@@ -24,38 +24,38 @@ This articles covers the basic usage of [ServiceStack](https://servicestack.net/
 To get started, you&#8217;ll want to create a new ASP.NET project, and load the ServiceStack package via NuGet. Then, you&#8217;ll have to edit your _Web.config_ to look like the following (mentioned versions may differ from your project):
 
 {% highlight xml %}
-&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   Informationen zur Konfiguration Ihrer ASP.NET-Anwendung finden Sie unter
   https://go.microsoft.com/fwlink/?LinkId=169433
-  --&gt;
-&lt;configuration&gt;
-  &lt;system.web&gt;
-    &lt;compilation debug="true" targetFramework="4.6.1"/&gt;
-    &lt;httpRuntime targetFramework="4.6.1"/&gt;
-    &lt;httpHandlers&gt;
-      &lt;add path="*" type="ServiceStack.HttpHandlerFactory, ServiceStack" verb="*"/&gt;
-    &lt;/httpHandlers&gt;
-  &lt;/system.web&gt;
-  &lt;!-- Required for IIS7 --&gt;
-  &lt;system.webServer&gt;
-    &lt;modules runAllManagedModulesForAllRequests="true"/&gt;
-    &lt;validation validateIntegratedModeConfiguration="false" /&gt;
-    &lt;handlers&gt;
-      &lt;add path="*" name="ServiceStack.Factory" type="ServiceStack.HttpHandlerFactory, ServiceStack" verb="*" preCondition="integratedMode" resourceType="Unspecified" allowPathInfo="true" /&gt;
-    &lt;/handlers&gt;
-  &lt;/system.webServer&gt;
-  &lt;system.codedom&gt;
-    &lt;compilers&gt;
-      &lt;compiler language="c#;cs;csharp" extension=".cs"
+  -->
+<configuration>
+  <system.web>
+    <compilation debug="true" targetFramework="4.6.1"/>
+    <httpRuntime targetFramework="4.6.1"/>
+    <httpHandlers>
+      <add path="*" type="ServiceStack.HttpHandlerFactory, ServiceStack" verb="*"/>
+    </httpHandlers>
+  </system.web>
+  <!-- Required for IIS7 -->
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true"/>
+    <validation validateIntegratedModeConfiguration="false" />
+    <handlers>
+      <add path="*" name="ServiceStack.Factory" type="ServiceStack.HttpHandlerFactory, ServiceStack" verb="*" preCondition="integratedMode" resourceType="Unspecified" allowPathInfo="true" />
+    </handlers>
+  </system.webServer>
+  <system.codedom>
+    <compilers>
+      <compiler language="c#;cs;csharp" extension=".cs"
         type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3513ad364e35"
-        warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701"/&gt;
-      &lt;compiler language="vb;vbs;visualbasic;vbscript" extension=".vb"
+        warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701"/>
+      <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb"
         type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3513ad364e35"
-        warningLevel="4" compilerOptions="/langversion:default /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+"/&gt;
-    &lt;/compilers&gt;
-  &lt;/system.codedom&gt;
-&lt;/configuration&gt;
+        warningLevel="4" compilerOptions="/langversion:default /nowarn:41008 /define:_MYTYPE=\"Web\" /optionInfer+"/>
+    </compilers>
+  </system.codedom>
+</configuration>
 {% endhighlight %}
 
 The second step is the configuration of the file _Global.asax.cs_. I&#8217;ve created a new class _HelloAppHost_ which inherits from _AppHostBase_.
@@ -72,7 +72,7 @@ public class HelloAppHost : AppHostBase
         });
 
         // Authentication
-        Plugins.Add(new AuthFeature(() =&gt; new AuthUserSession(),
+        Plugins.Add(new AuthFeature(() => new AuthUserSession(),
             new IAuthProvider[] {
                 new CustomCredentialsAuthProvider()
             }
@@ -80,9 +80,9 @@ public class HelloAppHost : AppHostBase
 
         Plugins.Add(new RegistrationFeature());
 
-        container.Register&lt;ICacheClient&gt;(new MemoryCacheClient());
+        container.Register<ICacheClient>(new MemoryCacheClient());
         var userRep = new InMemoryAuthRepository();
-        container.Register&lt;IUserAuthRepository&gt;(userRep);
+        container.Register<IUserAuthRepository>(userRep);
     }
 }
 {% endhighlight %}
@@ -103,7 +103,7 @@ After configuring the service, routes can be added. The general structure consi
 
 {% highlight C# %}
 [Route("/hello/{name*}")]
-public class Hello : IReturn&lt;HelloResponse&gt;
+public class Hello : IReturn<HelloResponse>
 {
     public string Name { get; set; }
 }
@@ -129,8 +129,8 @@ While you can use the notation above to mark routes, you can also set these up i
 
 {% highlight C# %}
 Routes
-    .Add&lt;Hello&gt;("/hello")
-    .Add&lt;Hello&gt;("/hello/{Name}");</pre>
+    .Add<Hello>("/hello")
+    .Add<Hello>("/hello/{Name}");</pre>
 {% endhighlight %}
 
 ## HTTP Verbs
@@ -143,7 +143,7 @@ You can use fallbacks to cover routes, that are not handled explicitly. In my ca
 
 {% highlight C# %}
 [FallbackRoute("/{Path*}")]
-public class Fallback : IReturn&lt;FallbackResponse&gt;
+public class Fallback : IReturn<FallbackResponse>
 {
     public String Path { get; set; }
 }
@@ -185,7 +185,7 @@ public class CustomCredentialsAuthProvider : CredentialsAuthProvider
 
     public override IHttpResult OnAuthenticated(IServiceBase authService,
         IAuthSession session, IAuthTokens tokens,
-        Dictionary&lt;string, string&gt; authInfo)
+        Dictionary<string, string> authInfo)
     {
         session.customElement= "Hello World";
         return base.OnAuthenticated(authService, session, tokens, authInfo);

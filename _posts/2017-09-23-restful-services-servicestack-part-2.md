@@ -23,23 +23,27 @@ Both projects, client and server are located on my [GitHub-profile](https://gith
 
 The structure of the client is very simple. There are two textboxes for entering username and password, as well as one for entering a name for the _hello/{name*}_ path. The button sends the request and the richtextbox is filled with the response.
 
-<img class="aligncenter size-full wp-image-419" src="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/09/client_gui.png?resize=372%2C232" alt="ServiceStack Client GUI" width="372" height="232" data-recalc-dims="1" />
+![ServiceStack Client Demo Application](/assets/2017/servicestack-client-demo.png)
 
 Access to the classes created for the server-side service is required. For this reason, these were also added to the project. This includes _Hello_ and _HelloResponse_.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">[Route("/hello/{name*}")]
+{% highlight c# %}
+[Route("/hello/{name*}")]
 public class Hello : IReturn&lt;HelloResponse&gt;
 {
     public string Name { get; set; }
 }
+
 public class HelloResponse
 {
     public string Result { get; set; }
-}</pre>
+}
+{% endhighlight %}
 
 The same applies to the custom AuthenticationProvider.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public class CustomAuthenticationProvider : CredentialsAuthProvider
+{% highlight c# %}
+public class CustomAuthenticationProvider : CredentialsAuthProvider
 {
     public override bool TryAuthenticate(IServiceBase authService, string userName, string password)
     {
@@ -52,11 +56,13 @@ The same applies to the custom AuthenticationProvider.
         //session.customElement = "Hello World";
         return base.OnAuthenticated(authService, session, tokens, authInfo);
     }
-}</pre>
+}
+{% endhighlight %}
 
 An additional class has been created to control access to the service. This encapsulates the requests, which can be easily accessed from outside.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">using System;
+{% highlight c# %}
+using System;
 using ServiceStack;
 
 namespace RESTfulDemoClient
@@ -98,11 +104,12 @@ namespace RESTfulDemoClient
         }
     }
 }
-</pre>
+{% endhighlight %}
 
 The class already contains all the logic required for access control, and the method _GetHelloResponse_ can be used to retrieve a response from the _Hello_-path, which is implemented like this:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">using(var client = new RESTfulServiceClient())
+{% highlight c# %}
+using(var client = new RESTfulServiceClient())
 {
     var request = new Hello() { Name = txtRequest.Text };
     try
@@ -114,4 +121,5 @@ The class already contains all the logic required for access control, and the me
     {
         txtResponse.Text = ex.StatusCode + " - " + ex.ErrorMessage;
     }
-}</pre>
+}
+{% endhighlight %}

@@ -32,7 +32,7 @@ In the following, I&#8217;ll be setting up a shared folder to synchronize my pla
 
 On windows and linux, the graphical user interface of syncthing is started via browser (localhost, default port is 8384). You can set a name for your device, which is used as default on connecting devices later. Each device is uniquely addressable by an id which can be accessed via Actions &#8211; Show ID. You can add a device by clicking _Add Remote Device_ in the lower right corner. Devices that are located in the same network are recognized automatically, otherwise they can be added by entering their id.
 
-<img class="aligncenter size-medium wp-image-465" src="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/1-500x268.png?resize=500%2C268" alt="Syncthing Overview" width="500" height="268" srcset="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/1.png?resize=500%2C268&ssl=1 500w, https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/1.png?w=1167&ssl=1 1167w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" />
+![Syncthing PC GUI](/assets/2017/syncthing-gui.png)
 
 When adding devices, there are multiple options available. One of these is to mark a device as _Introducer_. This allows to forward all devices that are available on the remote device to the current one, which is great for using Syncthing on a NAS-like server.
 
@@ -40,12 +40,12 @@ When adding devices, there are multiple options available. One of these is to ma
 
 After networking the devices with each other, directories can be created which will then be synchronized. To do this, simply click _Add Folder_ on the web interface. On Android, this can be done by clicking the plus-button:
 
-<img class="aligncenter size-medium wp-image-466" src="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/Screenshot_20171101-124423-360x640.png?resize=360%2C640" alt="Syncthing Android Main" width="360" height="640" srcset="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/Screenshot_20171101-124423.png?resize=360%2C640&ssl=1 360w, https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/Screenshot_20171101-124423.png?w=1080&ssl=1 1080w" sizes="(max-width: 360px) 100vw, 360px" data-recalc-dims="1" />
+![Syncthing Android GUI](/assets/2017/syncthing-android.png)
 
 You&#8217;ll want to specify the path of the folder, as well as the label, which will be displayed on all devices later. Since I&#8217;ll be using this folder for mp3-files, I won&#8217;t enable versioning for it, but you can select one of multiple options at this point. Finally it is specified for which of the available devices the directory should be available. After completing the setup, the devices that were selected will automatically receive a request to accept the shared folder. By doing this, a local folder needs to be set again. I&#8217;ve encountered minor problems here, where the shares won&#8217;t be recognized automatically on Android devices. I&#8217;ve solved this problem by switching to the Web GUI via settings. By using the web interface, you have the additional option of specifying the scanning interval and more (see _advanced settings_).
 
-<img class="aligncenter size-medium wp-image-469" src="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/Screenshot_20171101-135001-360x640.png?resize=360%2C640" alt="Syncthing New Folder" width="360" height="640" srcset="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/Screenshot_20171101-135001.png?resize=360%2C640&ssl=1 360w, https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/Screenshot_20171101-135001.png?w=1080&ssl=1 1080w" sizes="(max-width: 360px) 100vw, 360px" data-recalc-dims="1" />
+![Syncthing Android Settings](/assets/2017/syncthing-android-settings.png)
 
 After setting up everything correctly, synchronization should begin automatically. And that&#8217;s basically it! You can set up multiple folders for different devices and multiple filetypes to fit your individual needs.
 
-<img class="aligncenter size-medium wp-image-470" src="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/4-500x421.png?resize=500%2C421" alt="Synchting Synchronization Progress" width="500" height="421" srcset="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/4.png?resize=500%2C421&ssl=1 500w, https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/4.png?w=567&ssl=1 567w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" />
+![Syncthing Synchronization](/assets/2017/syncthing-synchronization.png)

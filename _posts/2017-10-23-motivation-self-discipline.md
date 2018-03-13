@@ -13,7 +13,7 @@ During my participation in various software development projects, I have noticed
 
 ## Laying Focus
 
-As you can see on GitHub, I don&#8217;t see myself as an exception, where I&#8217;ve started a lot of projects, but only a few end up finished. It is generally difficult to define a software project as completed, but that&#8217;s not the point I want to describe in this article. Therefore, i&#8217;m only interested in having a functioning MVP (Minimum Viable Product) in place.
+As you can see on GitHub, I don&#8217;t see myself as an exception, where I&#8217;ve started a lot of projects, but only a few end up finished. It is generally difficult to define a software project as completed, but that&#8217;s not the point I want to describe in this article. Therefore, I&#8217;m only interested in having a functioning MVP (Minimum Viable Product) in place.
 
 But why is that? In my case, I often have the problem of easily getting enthusiastic about a new project. As soon as it reaches a certain stage of development, however, it is difficult to find further motivation to complete the project. This is not necessarily because I don&#8217;t enjoy it anymore, definitely not. I rather face the problem of having a new idea that looks more promising than the one I&#8217;m currently working on.
 

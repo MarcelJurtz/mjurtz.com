@@ -45,22 +45,22 @@ The BoardManager has several tasks, which I&#8217;ll be covering in the followin
 
 I&#8217;ll start by drawing a chessboard manually. This helps to test the correct movements and positioning inside the squares of the chess board. The method is called in the scripts Start()-method.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">private void DrawChessBoard()
+{% highlight c# %}private void DrawChessBoard()
 {
     Vector3 widthLine = Vector3.right * 8;
     Vector3 heightLine = Vector3.forward * 8;
 
-    for (int i = 0; i &lt;= 8; i++)
+    for (int i = 0; i <= 8; i++)
     {
         Vector3 start = Vector3.forward * i;
         Debug.DrawLine(start, start + widthLine);
-        for (int j = 0; j &lt;= 8; j++)
+        for (int j = 0; j <= 8; j++)
         {
             start = Vector3.right * j;
             Debug.DrawLine(start, start + heightLine);
         }
     }
-}</pre>
+}{% endhighlight %}
 
 This function generates an 8&#215;8 grid, which symbolizes the chess board and is now used to simplify the positioning of the chess pieces. Before I will position the game pieces next, I want to add a function to hold the current mouse position on the chess board. This function will be implemented by displaying a cross on the labelled field.
 
@@ -68,7 +68,7 @@ The currently selected position will be identified by two integer values, which 
 
 I use a Raycast to check if the mouse is inside the board. I also assign the chessboard GameObject its own layer called &#8220;ChessPlane&#8221;, which is checked for availability by the Raycast.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">private void UpdateSelection()
+{% highlight c# %}private void UpdateSelection()
 {
     if (!Camera.main) return;
 
@@ -84,17 +84,17 @@ I use a Raycast to check if the mouse is inside the board. I also assign the che
         selectionX = -1;
         selectionY = -1;
     }
-}</pre>
+}{% endhighlight %}
 
 This method is also called in the _Update()_-method. As you can see in the snippet above, only the X and Y variables are set in the method, but no corresponding changes are made to the graphical user interface. I implement this functionality in the _DrawChessBoard()_-method to maintain a clear code structure through the related functional area. So, after drawing the board itself, I use the following code to display the current mouse position. By this instruction, two further lines are drawn, which are represented in the form of a cross on the chess board.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">if (selectionX &gt;= 0 && selectionY &gt;= 0)
+{% highlight c# %}if (selectionX >= 0 && selectionY >= 0)
 {
     Debug.DrawLine(Vector3.forward * selectionY + Vector3.right * selectionX,
         Vector3.forward * (selectionY + 1) + Vector3.right * (selectionX + 1));
     Debug.DrawLine(Vector3.forward * selectionY + Vector3.right * (selectionX + 1),
         Vector3.forward * (selectionY + 1) + Vector3.right * selectionX);
-}</pre>
+}{% endhighlight %}
 
 ## Initializing the Characters {#initialize_characters}
 
@@ -104,7 +104,7 @@ I would like to create a class for each type of character so that I can deduce t
 
 I&#8217;ve already done some preliminary work here, which is why this class needs an explanation. Each figure has a position, described by two-dimensional coordinates (X and Y). In addition, each figure is either white or black and should have information about the positions to which it may move. The differentiation between white and black figures is realized by a boolean. Alternatively, an enumeration could be used here as well, which I think would be better with regard to readability, but the boolean offers the advantage of comparing this property with a corresponding property of the _BoardManager_ to check the current active color and switching it with the != operator. I have provided the class with the keyword _abstract_, which prevents the use of the class itself, so only the subclasses can be used.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public abstract class ChessFigure : MonoBehaviour
+{% highlight c# %}public abstract class ChessFigure : MonoBehaviour
 {
     public int CurrentX { get; set; }
     public int CurrentY { get; set; }
@@ -120,7 +120,7 @@ I&#8217;ve already done some preliminary work here, which is why this class need
     {
         return new bool[8,8];
     }
-}</pre>
+}{% endhighlight %}
 
 So much for it. Next, a class is created for each type of character, inherited from the superclass. Since these classes will only overwrite the possible movements, they do not contain any logic of their own at the moment. Remember to adjust the different prefabs after adding the script using the public property &#8220;isWhite&#8221; and set the check mark in the editor to the white figures.
 
@@ -141,28 +141,28 @@ To assign the different prefabs to BoardManager, I&#8217;ll now add a public lis
 
 To instantiate the different figures correctly, different functionalities are needed. The figure must start on the correct field, but also take the right position (centered) within the field. To calculate the center of a field, I created a method GetTileCenter (). This requires the information about the size of a field, which I have stored in a constant called TILE\_SIZE (which is equal to 1). I also calculate the center using an offset (TILE\_OFFSET) of 0.5. The parameters correspond to the coordinates of the respective figure on the chess board, which are represented by X and Y (0-7).
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">private Vector3 GetTileCenter(int x, int y)
+{% highlight c# %}private Vector3 GetTileCenter(int x, int y)
 {
     Vector3 origin = Vector3.zero;
     origin.x += (TILE_SIZE * x) + TILE_OFFSET;
     origin.z += (TILE_SIZE * y) + TILE_OFFSET;
     return origin;
-}</pre>
+}{% endhighlight %}
 
 This method is now called by another one, which is used to instantiate the figures. Here too, I have already implemented another functionality, which I must briefly explain. _ChessFigurePositions_ is a two-dimensional array of the type GameObject, which holds information about the positions of figures on the board. When an entry of this is equal to null, that means that no figure is located on that position. _ActiveFigures_ is list of the type GameObject, used to keep track of all characters that are currently alive.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">private void SpawnChessFigure(int index, int x, int y)
+{% highlight c# %}private void SpawnChessFigure(int index, int x, int y)
 {
     GameObject go = Instantiate(chessFigures[index], GetTileCenter(x, y), chessFigures[index].transform.rotation) as GameObject;
     go.transform.SetParent(transform);
-    ChessFigurePositions[x, y] = go.GetComponent&lt;ChessFigure&gt;();
+    ChessFigurePositions[x, y] = go.GetComponent<ChessFigure>();
     ChessFigurePositions[x, y].SetPosition(x, y);
     activeFigures.Add(go);
-}</pre>
+}{% endhighlight %}
 
 With this method, it is now possible to instantiate game pieces, but there is no information on which position belongs to which figure. I create another method called _SpawnAllChessFigures()_, which handles this task. This is then called in the _Start()_ method of the script and will later also be used to implement the functionality to reset the game. The only difficulty here lies in the correct positioning of the game pieces, which is determined by the parameters of the spawn function.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">private void SpawnAllChessFigures()
+{% highlight c# %}private void SpawnAllChessFigures()
 {
     // White
     SpawnChessFigure(0, 4, 0); // King
@@ -199,7 +199,7 @@ With this method, it is now possible to instantiate game pieces, but there is no
     SpawnChessFigure(11, 5, 6);
     SpawnChessFigure(11, 6, 6);
     SpawnChessFigure(11, 7, 6);
-}</pre>
+}{% endhighlight %}
 
 ## Movement Control {#movement_control}
 
@@ -207,20 +207,20 @@ After all characters have been added to the board, they need to be able to chang
 
 To implement this functionality, I have created two new methods in the _BoardManager_: _SelectChessFigure()_ and _MoveChessFigure()_. To keep track of the currently active color, I have created a class wide boolean-variable named _isWhiteTurn_, which can be compared to the _isWhite_ property of the individual characters. The call of these two functions is in the _Update()_-method and listens for a mouse click.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">if(Input.GetMouseButtonDown(0))
+{% highlight c# %}if(Input.GetMouseButtonDown(0))
 {
-    if(selectionX &gt;= 0 && selectionY &gt;= 0)
+    if(selectionX >= 0 && selectionY >= 0)
     {
         if(selectedFigure == null) SelectChessFigure(selectionX, selectionY);
         else MoveChessFigure(selectionX, selectionY);
     }
-}</pre>
+}{% endhighlight %}
 
 I have created another boolean-variable inside the method, which is used to monitor whether the selected figure can move at all. If this is not the case, the figure should not be selectable, so that a different figure can be selected directly afterwards. Otherwise, the selection of a field to which the piece should moved follows. In case of no other possible movement a double click on a new figure would be required, which is circumvented by this implementation. So, the task of the nested for-loop is simply to check if the chosen figure is able to move.
 
 If the figure is able to move, all available target fields should be highlighted. I have outsourced this functionality to another class, which I will discuss next. The array containing information on the available movements is also filled here. This calculation takes place in the different classes of the individual game pieces, which will also be discussed soon.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">private void SelectChessFigure(int x, int y)
+{% highlight c# %}private void SelectChessFigure(int x, int y)
 {
     if (ChessFigurePositions[x, y] == null) return;
     if (ChessFigurePositions[x, y].isWhite != isWhiteTurn) return;
@@ -228,9 +228,9 @@ If the figure is able to move, all available target fields should be highlighted
     bool hasAtLeastOneMove = false;
     allowedMoves = ChessFigurePositions[x, y].PossibleMove();
 
-    for(int i = 0; i &lt; 8; i++)
+    for(int i = 0; i < 8; i++)
     {
-        for(int j = 0; j &lt; 8; j++)
+        for(int j = 0; j < 8; j++)
         {
             if(allowedMoves[i,j])
             {
@@ -245,11 +245,11 @@ If the figure is able to move, all available target fields should be highlighted
 
     selectedFigure = ChessFigurePositions[x, y];
     BoardHighlighting.Instance.HighlightAllowedMoves(allowedMoves);
-}</pre>
+}{% endhighlight %}
 
 The _MoveChessFigure()_-Method is implemented quite simple. If there is already a different colored figure on the target field, it will be destroyed. If this figure happens to be a king, the _EndGame-()_-method is called, which resets the game. Afterwards, the board layout and position properties of the selected piece are updated.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">private void MoveChessFigure(int x, int y)
+{% highlight c# %}private void MoveChessFigure(int x, int y)
 {
     if(allowedMoves[x,y])
     {
@@ -275,11 +275,11 @@ The _MoveChessFigure()_-Method is implemented quite simple. If there is already 
 
     BoardHighlighting.Instance.HideHighlights();
     selectedFigure = null;
-}</pre>
+}{% endhighlight %}
 
 Another detail that is visible in the implementation of the _EndGame()_-method is the access to the _BoardHighlighting_-class. This was implemented as a singleton, whereby only one instance of the class can exist, which is accessible from every area of the game.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">private void EndGame()
+{% highlight c# %}private void EndGame()
 {
     if (isWhiteTurn)
         Debug.Log("White team won!");
@@ -292,28 +292,28 @@ Another detail that is visible in the implementation of the _EndGame()_-method i
     isWhiteTurn = true;
     BoardHighlighting.Instance.HideHighlights();
     SpawnAllChessFigures();
-}</pre>
+}{% endhighlight %}
 
 ## Board Highlighting {#board_highlighting}
 
 The _BoardHighlighting_-class is used to <span>emphasise </span>possible target positions. I use a simple prefab in the form of a square plane, which is instantiated on the potential target fields. The possible fields are set by a parameter in form of a two-dimensional boolean array. The highlight objects are additionally managed in a list, which makes it easy to perform a reset between moves.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public class BoardHighlighting : MonoBehaviour {
+{% highlight c# %}public class BoardHighlighting : MonoBehaviour {
 
     public static BoardHighlighting Instance { get; set; }
 
     public GameObject highlightPrefab;
-    private List&lt;GameObject&gt; highlights;
+    private List<GameObject> highlights;
 
     private void Start()
     {
         Instance = this;
-        highlights = new List&lt;GameObject&gt;();
+        highlights = new List<GameObject>();
     }
 
     private GameObject GetHighlightObject()
     {
-        GameObject go = highlights.Find(g =&gt; !g.activeSelf);
+        GameObject go = highlights.Find(g => !g.activeSelf);
         if(go == null)
         {
             go = Instantiate(highlightPrefab);
@@ -324,9 +324,9 @@ The _BoardHighlighting_-class is used to <span>emphasise </span>possible target 
 
     public void HighlightAllowedMoves(bool[,] moves)
     {
-        for (int i = 0; i &lt; 8; i++)
+        for (int i = 0; i < 8; i++)
         {
-            for (int j = 0; j &lt; 8; j++)
+            for (int j = 0; j < 8; j++)
             {
                 if (moves[i, j])
                 {
@@ -342,7 +342,7 @@ The _BoardHighlighting_-class is used to <span>emphasise </span>possible target 
     {
         foreach (GameObject go in highlights) go.SetActive(false);
     }
-}</pre>
+}{% endhighlight %}
 
 And that&#8217;s it! Almost. The only thing missing is the assignment of the possible moves to the different pieces, which will be covered next.
 
@@ -352,7 +352,7 @@ The simplest character is also the most difficult to implement, so I&#8217;ll st
 
 Because the direction in which the figures move is different, I implement this logic for both colors separately:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public class Pawn : ChessFigure
+{% highlight c# %}public class Pawn : ChessFigure
 {
     public override bool[,] PossibleMove()
     {
@@ -422,11 +422,11 @@ Because the direction in which the figures move is different, I implement this l
 
         return r;
     }
-}</pre>
+}{% endhighlight %}
 
 The next character I&#8217;m going to implement will be the bishop. The bishop can run any number of fields diagonally, as long as no other figures stand in the way.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public class Bishop : ChessFigure
+{% highlight c# %}public class Bishop : ChessFigure
 {
     public override bool[,] PossibleMove()
     {
@@ -442,7 +442,7 @@ The next character I&#8217;m going to implement will be the bishop. The bishop c
         {
             i--;
             j++;
-            if (i &lt; 0 || j &gt;= 8) break;
+            if (i < 0 || j >= 8) break;
             c = BoardManager.Instance.ChessFigurePositions[i, j];
             if (c == null) r[i, j] = true;
             else
@@ -459,7 +459,7 @@ The next character I&#8217;m going to implement will be the bishop. The bishop c
         {
             i++;
             j++;
-            if (i &gt;= 8 || j &gt;= 8) break;
+            if (i >= 8 || j >= 8) break;
             c = BoardManager.Instance.ChessFigurePositions[i, j];
             if (c == null) r[i, j] = true;
             else
@@ -476,7 +476,7 @@ The next character I&#8217;m going to implement will be the bishop. The bishop c
         {
             i--;
             j--;
-            if (i &lt; 0 || j &lt; 0) break;
+            if (i < 0 || j < 0) break;
             c = BoardManager.Instance.ChessFigurePositions[i, j];
             if (c == null) r[i, j] = true;
             else
@@ -493,7 +493,7 @@ The next character I&#8217;m going to implement will be the bishop. The bishop c
         {
             i++;
             j--;
-            if (i &gt;= 8 || j &lt; 0) break;
+            if (i >= 8 || j < 0) break;
             c = BoardManager.Instance.ChessFigurePositions[i, j];
             if (c == null) r[i, j] = true;
             else
@@ -505,11 +505,11 @@ The next character I&#8217;m going to implement will be the bishop. The bishop c
 
         return r;
     }
-}</pre>
+}{% endhighlight %}
 
 The rook is implemented in a similar way to the bishop, but the movement here is straight (vertical and horizontal) instead of diagonal.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public class Rook : ChessFigure
+{% highlight c# %}public class Rook : ChessFigure
 {
     public override bool[,] PossibleMove()
     {
@@ -522,7 +522,7 @@ The rook is implemented in a similar way to the bishop, but the movement here is
         while(true)
         {
             i--;
-            if (i &lt; 0) break;
+            if (i < 0) break;
             c = BoardManager.Instance.ChessFigurePositions[i, CurrentY];
             if (c == null) r[i, CurrentY] = true;
             else
@@ -537,7 +537,7 @@ The rook is implemented in a similar way to the bishop, but the movement here is
         while (true)
         {
             i++;
-            if (i &gt;= 8) break;
+            if (i >= 8) break;
             c = BoardManager.Instance.ChessFigurePositions[i, CurrentY];
             if (c == null) r[i, CurrentY] = true;
             else
@@ -552,7 +552,7 @@ The rook is implemented in a similar way to the bishop, but the movement here is
         while (true)
         {
             i++;
-            if (i &gt;= 8) break;
+            if (i >= 8) break;
             c = BoardManager.Instance.ChessFigurePositions[CurrentX, i];
             if(c == null) r[CurrentX, i] = true;
             else
@@ -567,7 +567,7 @@ The rook is implemented in a similar way to the bishop, but the movement here is
         while (true)
         {
             i--;
-            if (i &lt; 0) break;
+            if (i < 0) break;
             c = BoardManager.Instance.ChessFigurePositions[CurrentX, i];
             if (c == null) r[CurrentX, i] = true;
             else
@@ -579,11 +579,11 @@ The rook is implemented in a similar way to the bishop, but the movement here is
 
         return r;
     }
-}</pre>
+}{% endhighlight %}
 
 Another complicated looking figure is the knight. The knight moves two fields straight ahead in one direction, followed by a 90 degree turn and a further movement by one field in this direction. Alternatively, the movement of a single field can be done first, followed by the two-field-movement. Figures that are on the fields within the movement sequence are irrelevant. However, the knight has a positive side: the movements do not have to be implemented separately for both colors.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public class Knight : ChessFigure
+{% highlight c# %}public class Knight : ChessFigure
 {
     public override bool[,] PossibleMove()
     {
@@ -611,18 +611,18 @@ Another complicated looking figure is the knight. The knight moves two fields st
     public void KnightMove(int x, int y, ref bool[,] r)
     {
         ChessFigure c;
-        if(x &gt;= 0 && x &lt; 8 && y &gt;= 0 && y &lt; 8)
+        if(x >= 0 && x < 8 && y >= 0 && y < 8)
         {
             c = BoardManager.Instance.ChessFigurePositions[x, y];
             if (c == null) r[x, y] = true;
             else if (c.isWhite != isWhite) r[x, y] = true;
         }
     }
-}</pre>
+}{% endhighlight %}
 
 The possible movements of the king correspond to two fields in any direction, which I have implemented as follows:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public class King : ChessFigure
+{% highlight c# %}public class King : ChessFigure
 {
     public override bool[,] PossibleMove()
     {
@@ -634,11 +634,11 @@ The possible movements of the king correspond to two fields in any direction, wh
         // Top
         i = CurrentX - 1;
         j = CurrentY + 1;
-        if(CurrentY &lt; 7)
+        if(CurrentY < 7)
         {
-            for(int k = 0; k &lt; 3; k++)
+            for(int k = 0; k < 3; k++)
             {
-                if(i &gt;= 0 && i &lt; 8)
+                if(i >= 0 && i < 8)
                 {
                     c = BoardManager.Instance.ChessFigurePositions[i, j];
                     if (c == null) r[i, j] = true;
@@ -651,11 +651,11 @@ The possible movements of the king correspond to two fields in any direction, wh
         // Bottom
         i = CurrentX - 1;
         j = CurrentY - 1;
-        if (CurrentY &gt; 0)
+        if (CurrentY > 0)
         {
-            for (int k = 0; k &lt; 3; k++)
+            for (int k = 0; k < 3; k++)
             {
-                if (i &gt;= 0 && i &lt; 8)
+                if (i >= 0 && i < 8)
                 {
                     c = BoardManager.Instance.ChessFigurePositions[i, j];
                     if (c == null) r[i, j] = true;
@@ -666,7 +666,7 @@ The possible movements of the king correspond to two fields in any direction, wh
         }
 
         // Left
-        if(CurrentX &gt; 0)
+        if(CurrentX > 0)
         {
             c = BoardManager.Instance.ChessFigurePositions[CurrentX - 1, CurrentY];
             if (c == null) r[CurrentX - 1, CurrentY] = true;
@@ -674,7 +674,7 @@ The possible movements of the king correspond to two fields in any direction, wh
         }
 
         // Right
-        if (CurrentX &lt; 7)
+        if (CurrentX < 7)
         {
             c = BoardManager.Instance.ChessFigurePositions[CurrentX + 1, CurrentY];
             if (c == null) r[CurrentX + 1, CurrentY] = true;
@@ -683,7 +683,7 @@ The possible movements of the king correspond to two fields in any direction, wh
 
         return r;
     }
-}</pre>
+}{% endhighlight %}
 
 And last but not least, the queen&#8217;s movements are still missing. These seem to be quite complex again, but here you can simply combine the already created movements of rook and bishop, which is why I don&#8217;t separately add a snippet of the source code for the queens implementation.
 

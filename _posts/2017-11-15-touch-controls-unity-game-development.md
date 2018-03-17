@@ -19,7 +19,7 @@ tags:
   - Programming
   - Unity
 ---
-Some time ago, I created [this game](https://github.com/MarcelJurtz/Escape) ([online playable version](https://marceljurtz.github.io/Escape-Web/)) in Unity, and I wanted to be able to play it on my Android phone. Since the input options on the smartphone are slightly different from those on the pc, a certain amount of adjustments were necessary. I won&#8217;t go over the specific details on the game mechanics, you can check out these on GitHub, they are described in the README file. However, the basic concept of the game is  the movement of a cube to one of the directions up, down, left or right. The information about which direction to use is displayed on the screen.
+Some time ago, I created [this game](https://github.com/MarcelJurtz/Escape) ([online playable version](https://marceljurtz.github.io/Escape-Web/)) in Unity, and I wanted to be able to play it on my Android phone. Since the input options on the smartphone are slightly different from those on the pc, a certain amount of adjustments were necessary. I won&#8217;t go over the specific details on the game mechanics, you can check out these on GitHub, they are described in the README file. However, the basic concept of the game is  the movement of a cube to one of the directions up, down, left or right. The information about which direction to use is displayed on the screen.
 
 On a PC, you would use your arrow keys to move the cube. Using Android, you don&#8217;t have any keys available. Instead, there is a touchscreen. So you need a way to receive information about user interaction on the touchscreen. Therefore, I&#8217;ve created the script _GestureRecognizer_, which can be seen in the listing below.
 
@@ -27,7 +27,8 @@ The script fetches user input at the first contact, which is saved in the _isTou
 
 However, the immediate evaluation is difficult, as the player will often carry out a minimal movement in a different direction than the intended one (just try it out). For this reason, I have defined a minimum distance that must be exceeded before the script actually communicates the movement. The current movements distance is saved in _SwipeDelta_, the minimal distance is saved in _SWIPE_TOLERANCE_, which is assigned 200 units.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">using System.Collections;
+{% highlight c# %}
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -117,14 +118,17 @@ public class GestureRecognizer : MonoBehaviour {
             resetSwipePosition();
         }
     }
-}</pre>
+}
+{% endhighlight %}
 
 To be able to move the cube with this script, it needs to be added to the Update() method of the cubes controller script. To support both touchscreen and keyboards, I simply add an _or_ operator to the if statement:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">if (Input.GetKeyDown(KeyCode.UpArrow) || swipeControls.SwipeUp)
+{% highlight c# %}
+if (Input.GetKeyDown(KeyCode.UpArrow) || swipeControls.SwipeUp)
 {
     // ...
-}</pre>
+}
+{% endhighlight %}
 
 SwipeControls is simply an instance of the above created _GestureRecognizer_ class.
 

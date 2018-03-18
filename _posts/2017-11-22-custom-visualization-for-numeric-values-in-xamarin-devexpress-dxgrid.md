@@ -33,21 +33,21 @@ To solve my problem I use the custom formats. The available elements for control
 
 The combination of these elements solves my problem with the following statement:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">String.Format("{0:0.###}", myNumber)</pre>
+{% highlight c# %}String.Format("{0:0.###}", myNumber){% endhighlight %}
 
 The prefix 0: ensures that the formatting is only applied to the first argument of the statement and can be omitted in this case, but is useful for concatenated strings.
 
 While this method can be used for all Xamarin controls, the dxGrid also offers the possibility to make adjustments directly in the XAML file:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="xml">&lt;dxGrid:GridControl 
+{% highlight xml %}<dxGrid:GridControl 
     x:Name="grid" 
-    &lt;!-- ... --&gt;
-    IsReadOnly="true"&gt;
-    &lt;dxGrid:GridControl.Columns&gt;
-        &lt;!-- ... --&gt;
-        &lt;dxGrid:NumberColumn 
+    <!-- ... -->
+    IsReadOnly="true">
+    <dxGrid:GridControl.Columns>
+        <!-- ... -->
+        <dxGrid:NumberColumn 
             FieldName="NumberSample" 
             Caption = "Number" 
-            DisplayFormat="0:0.###" /&gt;
-    &lt;/dxGrid:GridControl.Columns&gt;
-&lt;/dxGrid:GridControl&gt;</pre>
+            DisplayFormat="0:0.###" />
+    </dxGrid:GridControl.Columns>
+</dxGrid:GridControl>{% endhighlight %}

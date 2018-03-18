@@ -18,13 +18,14 @@ tags:
 ---
 This article describes the process of creating voxel explosions in Unity by using particles. For our models, we use [MagicaVoxel](https://ephtracy.github.io/), but every other tool can be used as well. The final result will look similar to this:
 
-<span class="embed-youtube" style="text-align:center; display: block;"></span>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/n4mzQTFuP68?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Setting up the test environment
 
 For test purposes, I&#8217;ve set up a basic FPS environment using the built-in CharacterController package. I then added a gun model to the _FirstPersonCharacter _game object, which is located as child element in the hierarchy of the _FPSController_. The following snippet shows the code I added as a custom script component to the gun:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">using UnityEngine;
+{% highlight c# %}
+using UnityEngine;
 
 public class GunScript : MonoBehaviour {
 
@@ -75,7 +76,7 @@ public class GunScript : MonoBehaviour {
         }
         return fireable;
     }
-}</pre>
+}{% endhighlight %}
 
 So basically, this script takes up three public variables, one for the camera of the controller, which is needed to shoot from the player&#8217;s perspective, a maxDistance to set how far can be shot, and an AudioClip to play a sound file when a shot has been fired. Additionally, there are a few private variables:
 
@@ -93,19 +94,19 @@ I created a custom tag called _Enemy_, which is going to be added to all the obj
 
 I&#8217;m using a basic model for testing purposes, that can bee seen in the screenshot below.
 
-<img src="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/voxelexplosion_1.png?resize=300%2C169" alt="Model for explosion" class="aligncenter size-full wp-image-508" width="300" height="169" data-recalc-dims="1" />
+![Voxel Explosion - Unity Prefab](/assets/2017/voxel_explosion_1.png)
 
 It currently consists of an empty _GameObject_ as parent, which has been expaned by adding a _MeshCollider_. The child element contains the actual content.
 
 At first, a _ParticleSystem_ is going to be added to the object. I use the following configuration here:
 
-<img src="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/voxelexplosion_2.png?resize=503%2C1518" alt="Voxel explosion particle configuration" class="aligncenter size-full wp-image-509" width="503" height="1518" srcset="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/voxelexplosion_2.png?w=503&ssl=1 503w, https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/voxelexplosion_2.png?resize=212%2C640&ssl=1 212w" sizes="(max-width: 503px) 100vw, 503px" data-recalc-dims="1" />
+![Voxel Explosion - Unity Prefab Settings](/assets/2017/voxel_explosion_2.png)
 
 Note that the last setting (shader) can&#8217;t be set yet. That will be created later. Also, _ExplosionMat_ is just a regular material. After configuring the _ParticleSystem_, the animation should look like some cubes exploding and falling on the ground. Now the colors of the cubes need to be adjusted. The problem is, that a custom shader and a bit of additional coding is needed here. Now you just create a new prefab and move the _ParticleSystem_ onto it. Then delete it from the object that has been used for testing.
 
 I&#8217;ll start with the shader. You use the context menu and add a new _shader_ &#8211; _standard surface shader_. You can open the newly created file with Visual Studio (or whatever editor you want) and edit it to match our plan:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">Shader "Custom/ExplosionShader" {
+{% highlight c# %}Shader "Custom/ExplosionShader" {
     Properties {
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
@@ -153,13 +154,13 @@ I&#8217;ll start with the shader. You use the context menu and add a new _shader
         ENDCG
     }
     FallBack "Diffuse"
-}</pre>
+}{% endhighlight %}
 
 There are two lines that need to be adjusted, I&#8217;ve marked them with the comment _//NEW LINE_. After that, the currently used material for the particles should be set to the color white. The color that is going to be set later will be mixed with the default color, and if that isn&#8217;t white the colors won&#8217;t match our wanted ones. Also, the shader of the material needs to be set to the newly created one.
 
 An additional script is needed to edit the palette.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">using UnityEngine;
+{% highlight c# %}using UnityEngine;
 
 public class ExplosionScript : MonoBehaviour {
 
@@ -194,7 +195,7 @@ public class ExplosionScript : MonoBehaviour {
             Destroy(gameObject);
         }       
     }
-}</pre>
+}{% endhighlight %}
 
 Again, here are some public and private variables:
 
@@ -209,7 +210,7 @@ The _gameObject_ itself is destroyed in the very end, since it is needed to assi
 
 All the particles of the explosion are collected inside the _particles _array. The for-loop is iterating through all of the particles and assigns a new color. The color is determined via random selection of a color of the above-mentioned array. I found this solution to be a bit ugly, so I created another script called _ColorManager_, which contains arrays for each of my models. It basically just contains the following code:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">private static Color32[] foxColors =
+{% highlight c# %}private static Color32[] foxColors =
 {
     new Color32(238, 0, 0, 255),
     new Color32(0, 0, 34, 255),
@@ -241,12 +242,12 @@ public static Color32[] getColor(string colorDescription)
         default:
             return emptyColors;
     }
-}</pre>
+}{% endhighlight %}
 
 &nbsp;
 
 Note that you can view the colors that have been used using MagicaVoxel by clicking on the tool marked by a _smaller-than sign_ and then clicking on _HSV_.
 
-<img src="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/voxelexplosion_3.png?resize=750%2C422" alt="Get used colors from MagicaVoxel" class="aligncenter size-full wp-image-510" width="750" height="422" srcset="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/voxelexplosion_3.png?w=1024&ssl=1 1024w, https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/voxelexplosion_3.png?resize=500%2C281&ssl=1 500w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" />
+![Voxel Explosion - MagicaVoxel Color Palette](/assets/2017/voxel_explosion_3.png)
 
 If this is done, the explosions should work!

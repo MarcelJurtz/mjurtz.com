@@ -130,7 +130,7 @@ While you can use the notation above to mark routes, you can also set these up i
 {% highlight C# %}
 Routes
     .Add<Hello>("/hello")
-    .Add<Hello>("/hello/{Name}");</pre>
+    .Add<Hello>("/hello/{Name}");{% endhighlight %}
 {% endhighlight %}
 
 ## HTTP Verbs

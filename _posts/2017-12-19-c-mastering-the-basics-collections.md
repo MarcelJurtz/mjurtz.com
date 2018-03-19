@@ -25,7 +25,7 @@ In the first part of this article, I will cover the two basic types of collectio
 
 The simplest form of collections in C# are arrays. An array allows you to store a group of objects of one specific type. The following example shows a string array, which contains three elements.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">String[] movies = new String[3];
+{% highlight c# %}String[] movies = new String[3];
 
 movies[0] = "The Matrix";
 movies[1] = "The Dark Knight";
@@ -33,7 +33,7 @@ movies[2] = "#9";
 
 foreach(String movie in movies) {
     Console.WriteLine(movie);
-}</pre>
+}{% endhighlight %}
 
 In this simple example, you can see the problem with arrays: the size of it needs to be known before adding the elements. The &#8220;real&#8221; collections in C# can be utilized to handle this problem.
 
@@ -45,7 +45,7 @@ Lists offer a way to organize objects in a similar way arrays do. Basically, you
 
 The following snippet instaniates two new instances of the class &#8220;Person&#8221;, adds both to a list and outputs the value of Name-properties (the class consists only of this one property).
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">List&lt;Person&gt; persons = new List&lt;Person&gt;();
+{% highlight c# %}List<Person> persons = new List<Person>();
 
 Person alice = new Person { Name = "Alice" };
 Person bob = new Person { Name = "Bob" };
@@ -55,7 +55,7 @@ persons.Add(bob);
 
 foreach(Person person in persons) {
     Console.WriteLine(person.Name);
-}</pre>
+}{% endhighlight %}
 
 Besides adding items, the List<T> class offers multiple useful properties and methods, such as Count to receive the amount of objects, Clear() to remove all items or Contains() to check if the list contains a specific object. Check out the [MSDN page](https://msdn.microsoft.com/en-us/library/6sh2ey19(v=vs.110).aspx) for full documentation.
 
@@ -67,7 +67,7 @@ The second main type of collections C# offers is the Dictionary<K,T>. As the nam
 
 The following snippet shows you how to create a dictionary with a string as key and a person as object. I&#8217;ve also added an int property named _Age_ to the class _Person_.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">Dictionary&lt;String,Person&gt; persons = new Dictionary&lt;String,Person&gt;();
+{% highlight c# %}Dictionary<String,Person> persons = new Dictionary<String,Person>();
 
 Person alice = new Person { Name = "Alice", Age = 30 };
 Person bob = new Person { Name = "Bob", Age = 32 };
@@ -76,11 +76,11 @@ persons.Add("alice", alice);
 persons.Add("bob", bob);
 
 Console.WriteLine($"{persons["bob"].Name} is {persons["bob"].Age} years old");
-// Output: Bob is 32 years old</pre>
+// Output: Bob is 32 years old{% endhighlight %}
 
 As you can see, access to a dictionary works like accessing an array by replacing the index with the key. However, you can still iterate over the contained items. At this point, you can choose wether you want to iterate over the dictionary items (key & value) or just key or value.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">// Iterate over dictionary entries
+{% highlight c# %}// Iterate over dictionary entries
 foreach(var entry in persons) {
     Console.WriteLine($"Key: {entry.Key}, Name: {entry.Value.Name}, Age: {entry.Value.Age}");
 }
@@ -93,7 +93,7 @@ foreach(Person person in persons.Values) {
 // Iterate over dictionary keys
 foreach(String key in persons.Keys) {
     Console.WriteLine(key);
-}</pre>
+}{% endhighlight %}
 
 ## Set
 
@@ -103,7 +103,7 @@ Of course, C# offers an implementation to cover such collections as well: [HashS
 
 The following snippet instantiates a new HashSet of type Person and adds alice and bob to it. While you can add an object multiple times, it will be added to the set only once, which is why the output of the snippet will only display bob only once.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">HashSet&lt;Person&gt; persons = new HashSet&lt;Person&gt;();
+{% highlight c# %}HashSet<Person> persons = new HashSet<Person>();
 
 persons.Add(bob);
 persons.Add(alice);
@@ -111,7 +111,7 @@ persons.Add(bob);
 
 foreach(Person person in persons) {
     Console.WriteLine(person.Name);
-}</pre>
+}{% endhighlight %}
 
 ## List
 

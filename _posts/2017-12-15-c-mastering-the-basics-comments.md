@@ -24,7 +24,7 @@ At first sight (especially at the beginning of your programming career), you mig
 
 A problem of overly intensive commenting is the justification of illegible code. According to the motto &#8220;the code is not readable, but the commentary explains everything I need&#8221; the whole code quickly becomes unreadable and it takes a lot more time to understand its functionality. A simple example of this is the following code, which in the form of static methods offers the possibility to convert temperatures from Fahrenheit to celsius and vice versa.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">class Converter
+{% highlight c# %}class Converter
 {
     /* Celsius to Fahrenheit
      * input: temperature in celsius
@@ -41,11 +41,11 @@ A problem of overly intensive commenting is the justification of illegible code.
     {
         return (x - 32) * 5 / 9;
     }
-}</pre>
+}{% endhighlight %}
 
 A much better approach for this very simple example could be implemented like the following, which will work without any comments and will still be understood much better than the previous variant.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">class TempConverter
+{% highlight c# %}class TempConverter
 {
     public static double FahrenheitToDecimal(double fahrenheit)
     {
@@ -58,7 +58,7 @@ A much better approach for this very simple example could be implemented like th
         double fahrenheit = celsius * 9 / 5 + 32;
         return fahrenheit;
     }
-}</pre>
+}{% endhighlight %}
 
 ### Readability of the Actual Code
 

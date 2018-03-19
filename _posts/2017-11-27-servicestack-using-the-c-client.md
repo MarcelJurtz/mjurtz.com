@@ -23,8 +23,8 @@ First, we will need to add a new project to our solution. This will function as 
 
 After the project has been set up, the C#-Client can easily be utilized. The following snippet is all that it takes to send a request to the service and save its response. Don&#8217;t forget to update the clients URL to match the address of your service.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">JsonServiceClient jsonServiceClient = new JsonServiceClient("http://localhost:61401");
-var response = jsonServiceClient.Post&lt;ExpenseResponse&gt;(new Expense { Amount = 500 });</pre>
+{% highlight c# %}JsonServiceClient jsonServiceClient = new JsonServiceClient("http://localhost:61401");
+var response = jsonServiceClient.Post<ExpenseResponse>(new Expense { Amount = 500 });{% endhighlight %}
 
 In order to make the example a little more valuable, we will improve the service from the last part a little bit.
 
@@ -32,7 +32,7 @@ In order to make the example a little more valuable, we will improve the service
 
 As you can see in the following snippet, I have installed a session mechanism that manages the current requests. I specified a general total of 1000, whereby each request reduces this amount by the requested withdrawals. Also, each request increments the request counter. I limit the amount of withdrawals to the total amount available. If more money is withdrawn, the service will not execute the request and the user will be informed. To keep track of the session data, I created another class called _TrackingData_, which is shown below the Post-method of our service.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public object Post(Expense request)
+{% highlight c# %}public object Post(Expense request)
 {
     var Session = base.SessionBag;
 
@@ -40,7 +40,7 @@ As you can see in the following snippet, I have installed a session mechanism th
     if (trackingData == null)
         trackingData = new TrackingData { TotalBalance = 1000, WithdrawalsAmount = 0 };
 
-    if(trackingData.TotalBalance &gt;= request.Amount)
+    if(trackingData.TotalBalance >= request.Amount)
     {
         trackingData.Withdrawals += request.Amount;
         trackingData.TotalBalance -= request.Amount;
@@ -66,16 +66,16 @@ As you can see in the following snippet, I have installed a session mechanism th
             Status = "Balance too low"
         };
     }
-}</pre>
+}{% endhighlight %}
 
 Let&#8217;s add some further modification to be able to increase our withdrawals. These modification reads a users input as long as he enters valid integers. When entering anything else, the loop will exit and the program stops.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public class TrackingData
+{% highlight c# %}public class TrackingData
 {
     public double Withdrawals { get; set; }
     public double TotalBalance { get; set; }
     public int WithdrawalsAmount { get; set;
-}</pre>
+}{% endhighlight %}
 
 With these adjustments it is possible to generate successive requests. After several requests, postman delivers a result similar to the following.
 
@@ -84,15 +84,15 @@ With these adjustments it is possible to generate successive requests. After sev
     "Total": 600,
     "Status": "OK",
     "WithdrawalsAmount": 3
-}</pre>
+}{% endhighlight %}
 
 ## Further Shortcuts
 
 Another small change I would like to make concerns the DTOs themselves. By specifying a return value using the IReturn interface, you do not need to specify the response type on the client side.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">[Route("/Expense")]
+{% highlight c# %}[Route("/Expense")]
 [Route("/Expense/{Amount}")]
-public class Expense : IReturn&lt;ExpenseResponse&gt;
+public class Expense : IReturn<ExpenseResponse>
 {
     public double Amount { get; set;
 }
@@ -103,21 +103,21 @@ public class ExpenseResponse
     public double Total { get; set; }
     public String Status { get; set; }
     public int WithdrawalsAmount { get; set; }
-}</pre>
+}{% endhighlight %}
 
 This change allows the usage of the client by following notation:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">var response = jsonServiceClient.Post(new Expense { Amount = 500 });</pre>
+{% highlight c# %}var response = jsonServiceClient.Post(new Expense { Amount = 500 });{% endhighlight %}
 
 ## Final Updates for the Client
 
 The last change I want to make is to loop the user input, so that we can test the session mechanism in our console application. The following snippet waits for user input, as long as this input is a valid integer. If not, it breaks and the program terminates.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">JsonServiceClient jsonServiceClient = new JsonServiceClient("http://localhost:61401");
+{% highlight c# %}JsonServiceClient jsonServiceClient = new JsonServiceClient("http://localhost:61401");
 int userInput;
 while(Int32.TryParse(Console.ReadLine(), out userInput)) {
     var response = jsonServiceClient.Post(new Expense { Amount = userInput });
     Console.WriteLine(String.Format("Status: {0} - Withdrawals: {1} (Total: {2}, {3} Withdrawals)", response.Status, response.Amount, response.Total, response.WithdrawalsAmount));
-}</pre>
+}{% endhighlight %}
 
 The program does not contain any logic yet, so you can mess with it in different places. However, this basic example shows how easy it is to set up the C#-Client for ServiceStack and how to use it. In the next part, we will cover the basics of authentication and authorization, which allows us to increase our services security.

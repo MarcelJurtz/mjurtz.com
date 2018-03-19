@@ -62,7 +62,7 @@ public class GestureRecognizer : MonoBehaviour {
         swipeDown = false;
 
         // Mobile Inputs
-        if(Input.touches.Length &gt; 0)
+        if(Input.touches.Length > 0)
         {
             if(Input.touches[0].phase == TouchPhase.Began)
             {
@@ -79,21 +79,21 @@ public class GestureRecognizer : MonoBehaviour {
 
         // Distance Calculation
         swipeDelta = Vector2.zero;
-        if(isTouching && Input.touches.Length &gt; 0)
+        if(isTouching && Input.touches.Length > 0)
         {
             swipeDelta = Input.touches[0].position - swipeStart;         
         }
 
         // Swipe Recognition
-        if(swipeDelta.magnitude &gt; SWIPE_TOLERANCE)
+        if(swipeDelta.magnitude > SWIPE_TOLERANCE)
         {
             float x = swipeDelta.x;
             float y = swipeDelta.y;
 
-            if(Mathf.Abs(x) &gt; Mathf.Abs(y))
+            if(Mathf.Abs(x) > Mathf.Abs(y))
             {
                 // Left or Right
-                if(x &lt; 0)
+                if(x < 0)
                 {
                     swipeLeft = true;
                 }
@@ -105,7 +105,7 @@ public class GestureRecognizer : MonoBehaviour {
             else
             {
                 // Up or Down
-                if (y &lt; 0)
+                if (y < 0)
                 {
                     swipeDown = true;
                 }

@@ -37,7 +37,7 @@ I have decided to use Bitcoin as an example, which leads to the following two pa
 
 Since we have no influence on the objects we receive from api, we have to adapt a class accordingly. In order to be able to design the properties according to my own ideas, I use the attributes [DataContract] and [DataMember], so that the properties do not have to be named identically to those of the API.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">[DataContract]
+{% highlight c# %}[DataContract]
 public class CoinDTO
 {
     [DataMember(Name = "id")]
@@ -81,7 +81,7 @@ public class CoinDTO
 
     [DataMember(Name = "last_updated")]
     public String LastUpdated { get; set; }
-}</pre>
+}{% endhighlight %}
 
 And that was actually the most complicated part. To obtain the data through the API, I directly specify the corresponding paths from the documentation, since we do not use request DTOs.
 
@@ -89,26 +89,26 @@ And that was actually the most complicated part. To obtain the data through the 
 {
     private const String SERVICE_URL = "https://api.coinmarketcap.com/v1/ticker/";
 
-    public List&lt;CoinDTO&gt; GetAllCurrencies()
+    public List<CoinDTO> GetAllCurrencies()
     {
-        List&lt;CoinDTO&gt; response;
+        List<CoinDTO> response;
         using (var client = new JsonServiceClient(SERVICE_URL))
         {
-            response = client.Get&lt;List&lt;CoinDTO&gt;&gt;("/");
+            response = client.Get<List<CoinDTO>>("/");
         }
         return response;
     }
 
     public CoinDTO GetBitcoin()
     {
-        List&lt;CoinDTO&gt; response;
+        List<CoinDTO> response;
         using (var client = new JsonServiceClient(SERVICE_URL))
         {
-            response = client.Get&lt;List&lt;CoinDTO&gt;&gt;("/bitcoin");
+            response = client.Get<List<CoinDTO>>("/bitcoin");
         }
         return response[0];
     }
-}</pre>
+}{% endhighlight %}
 
 Since the API always returns an array, I simply return the first element from the Bitcoin queries response. As promised, the implementation of an external service with the ServiceStack Client is quick and easy as usual. The concluding image shows the result of the query.
 

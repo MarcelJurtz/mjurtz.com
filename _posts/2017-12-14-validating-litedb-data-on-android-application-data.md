@@ -26,6 +26,6 @@ After entering the command, you&#8217;ll have to confirm the operation on the de
 
 Use this command to convert your ab file:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic">java -jar abe.jar [-debug] [-useenv=yourenv] unpack &lt;backup.ab&gt; &lt;backup.tar&gt; [password]</pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="generic">java -jar abe.jar [-debug] [-useenv=yourenv] unpack <backup.ab> <backup.tar> [password]{% endhighlight %}
 
 Among the unzipped files you will now find the database file. Use the previously mentioned explorer to visualize it.

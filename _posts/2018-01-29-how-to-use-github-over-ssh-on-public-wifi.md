@@ -17,7 +17,7 @@ When using GitHub via SSH, port 22 will be used per default. However, often time
 
 To test if our plan works out, you can use the following command:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="no-highlight">ssh -T -p 443 git@ssh.github.com</pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="no-highlight">ssh -T -p 443 git@ssh.github.com{% endhighlight %}
 
 This will test the ssh connection by using port 443. If this returns a positive result, you can change the port in your ssh config file.
 
@@ -25,6 +25,6 @@ You can find the SSH configuration in _~/.ssh/config_. To change the port, open 
 
 <pre class="EnlighterJSRAW" data-enlighter-language="no-highlight">Host github.com
   Hostname ssh.github.com
-  Port 443</pre>
+  Port 443{% endhighlight %}
 
 You can use whatever port you&#8217;d like. I&#8217;m using port 443, which is the default HTTPS port. That is also the one GitHub recommends to use in [their documentation](https://help.github.com/articles/using-ssh-over-the-https-port/). Save your changes and you will be able to work as you&#8217;re used to.

@@ -20,8 +20,8 @@ In todays episode, I&#8217;ll show you how to use three advanced statements in C
 
 You can use the null-conditional operator to prevent _NullReferenceException_s. The basic principle of the operator is to return a value if it is not null, and return null if it is. The following code shows you how to use the operator, which is initiated by a question mark, followed by a dot.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">List&lt;String&gt; stringList = null;
-int? val = stringList?.Count;</pre>
+{% highlight c# %}List<String> stringList = null;
+int? val = stringList?.Count;{% endhighlight %}
 
 You can see the operator preceding the call of the Count-property. Running the code without the operator would lead to a NullReferenceException, but this way, _null_ is assigned to the variable _val_ instead.
 
@@ -29,8 +29,8 @@ You can see the operator preceding the call of the Count-property. Running the c
 
 The next operator is the null-coalescing operator. It is initiated by two question marks and it&#8217;s used to assign different values based on wether the first choice is null or not. To get a better understanding of this, let&#8217;s look at an example:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">int? val = null;
-int result = val ?? 0;</pre>
+{% highlight c# %}int? val = null;
+int result = val ?? 0;{% endhighlight %}
 
 The value of the variable _val_ is assigned to _result_. However, if _val_ is equal to null, _result_ will receive the value 0.
 
@@ -40,23 +40,23 @@ The last operator in todays article is the ternary operator. It basically provid
 
 Let&#8217;s look at the following example:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">int val1 = 1;
+{% highlight c# %}int val1 = 1;
 int val2 = 2;
 int smaller;
 
-if (val1 &gt; val2)
+if (val1 > val2)
 {
     smaller = val2;
 }
 else
 {
     smaller = val1;
-}</pre>
+}{% endhighlight %}
 
 The if-statement takes up a lot of space while its logic is very simple. This can be replaced by the following code using the ternary operator:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">int val1 = 1;
+{% highlight c# %}int val1 = 1;
 int val2 = 2;
-int smaller = val1 &gt; val2 ? val2 : val1;</pre>
+int smaller = val1 > val2 ? val2 : val1;{% endhighlight %}
 
 By using the ternary operator, you can simplify the assignment of variable by typing an expression that returns either true or false after the assignment operator. Complete the statement by a question mark. After that, the two values separated by a colon represent the values that will be assigned to the variable. The first one will be used if the statement is true, otherwise the second one is assigned.

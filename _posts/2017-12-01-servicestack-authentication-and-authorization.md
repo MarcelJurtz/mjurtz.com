@@ -52,14 +52,14 @@ We&#8217;ll start with this one. The mentioned method servers the instantiation 
 
 The server configuration needs to be adjusted as shown in the snippet below. The first entry you see are the two mentioned elements. Next I created a user, which we can use to test the service.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public override void Configure(Funq.Container container)
+{% highlight c# %}public override void Configure(Funq.Container container)
 {
-    Plugins.Add(new AuthFeature(() =&gt;
+    Plugins.Add(new AuthFeature(() =>
         new AuthUserSession(), new IAuthProvider[] {
         new BasicAuthProvider() }));
 
     var userRepository = new InMemoryAuthRepository();
-    container.Register&lt;IUserAuthRepository&gt;(userRepository);
+    container.Register<IUserAuthRepository>(userRepository);
 
     string hash;
     string salt;
@@ -77,17 +77,17 @@ The server configuration needs to be adjusted as shown in the snippet below. The
         PasswordHash = hash,
         Salt = salt
     }, "password");
-}</pre>
+}{% endhighlight %}
 
 After the server has been configured, you&#8217;ll need to specify which routes require authentication. This is done simply by adding the [Authenticate]-attribute above the specific request-dtos class, like this:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">[Authenticate]
+{% highlight c# %}[Authenticate]
 [Route("/Expense")]
 [Route("/Expense/{Amount}")]
-public class Expense : IReturn&lt;ExpenseResponse&gt;
+public class Expense : IReturn<ExpenseResponse>
 {
     public double Amount { get; set; }
-}</pre>
+}{% endhighlight %}
 
 The service now won&#8217;t return any valid data as long as the user is not logged in. This can be tested by using postman, which will return HTTP statuscode 401 (unauthorized) for any request. If, however, the &#8220;_Authorization_&#8221; option (oh, the irony) is activated in the header data, the login works.
 
@@ -95,18 +95,18 @@ The service now won&#8217;t return any valid data as long as the user is not log
 
 Another approach I&#8217;d like to cover is the implementation of a custom authentication mechanism. By extending CredentialsAuthProvider and overriding the methods _TryAuthenticate_ and _OnAuthenticated_, you&#8217;re able to implement your very own login functionality, for example to match existing business logic. The following example simply checks for hardcoded credentials to demonstrate the basic functionality.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public class CustomCredentialsProvider : CredentialsAuthProvider
+{% highlight c# %}public class CustomCredentialsProvider : CredentialsAuthProvider
 {
     public override bool TryAuthenticate(IServiceBase authService, string userName, string password)
     {
         return userName == "MJurtz" && password == "password";
     }
 
-    public override IHttpResult OnAuthenticated(IServiceBase authService, IAuthSession session, IAuthTokens tokens, Dictionary&lt;string, string&gt; authInfo)
+    public override IHttpResult OnAuthenticated(IServiceBase authService, IAuthSession session, IAuthTokens tokens, Dictionary<string, string> authInfo)
     {
         return base.OnAuthenticated(authService, session, tokens, authInfo);
     }
-}</pre>
+}{% endhighlight %}
 
 _TryAuthenticate()_ is used to test for valid login credentials, _OnAuthenticated()_ will be executed after successful login. To test this, we use postman again. If you use your own mechanisms for authentication, it is necessary to send a request to _/Authenticate_ first. Here, username and password have to be provided in the body-field. Once this request has been successfully completed, ServiceStack&#8217;s automatic session functionality provides access to our service as usual.
 
@@ -116,17 +116,17 @@ Of course, you&#8217;ll want to be able to access the service with the ServiceSt
 
 ServiceStack offers an easy way to access username and password via the C# client. In the case of the _BasicAuthProvider_ this works as follows:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">JsonServiceClient client = new JsonServiceClient("http://localhost:61401") { UserName = "MJurtz", Password = "password" };</pre>
+{% highlight c# %}JsonServiceClient client = new JsonServiceClient("http://localhost:61401") { UserName = "MJurtz", Password = "password" };{% endhighlight %}
 
 In the case of a custom implementation, access via client is minimally more complicated:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">var authResponse = jsonServiceClient.Post(new Authenticate
+{% highlight c# %}var authResponse = jsonServiceClient.Post(new Authenticate
 {
     provider = "credentials",
     UserName = "MJurtz",
     Password = "password",
     RememberMe = true
-});</pre>
+});{% endhighlight %}
 
 ## Authorization in ServiceStack
 
@@ -144,8 +144,8 @@ In addition to the Authenticate request from earlier, services can be provided w
 
 We will continue the example with the BasicAuthProvider created at the beginning and assign rights to the user created there. Again, this is similar in both cases. To provide roles and permissions to a user, simply add the specific element either to the Roles- or Permissions-List.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">Roles = new List&lt;string&gt; { "User" }
-Permissions = new List&lt;string&gt; { "DoSomething"}</pre>
+{% highlight c# %}Roles = new List<string> { "User" }
+Permissions = new List<string> { "DoSomething"}{% endhighlight %}
 
 As an alternative to my hardcoded roles and permissions, you can of course transfer them to constants or, for more practical purposes, to a database.
 

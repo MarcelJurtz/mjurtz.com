@@ -37,7 +37,7 @@ I&#8217;ll start with a simple console application by entering _dotnet new conso
 
 This command generates all the neccessary files to get started. The entry point of your project will be program.cs, which is already populated with the source code for a basic _&#8216;Hello World&#8217;_ &#8211; application.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">using System;
+{% highlight c# %}using System;
 
 namespace Dotnet
 {
@@ -48,7 +48,7 @@ namespace Dotnet
             Console.WriteLine("Hello World!");
         }
     }
-}</pre>
+}{% endhighlight %}
 
 You can now run your program by entering _dotnet run_ inside your project folder. In this case, this will write &#8216;Hello World!&#8217; to the terminal.
 

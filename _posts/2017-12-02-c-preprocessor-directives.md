@@ -50,7 +50,7 @@ namespace CompilerDirectivesDemo
             Console.ReadLine();
         }
     }
-}</pre>
+}{% endhighlight %}
 
 VisualStudio automatically adjusts the display when saving, so that you can see directly in the editor which part of the if-statement will be executed.
 

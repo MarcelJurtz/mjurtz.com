@@ -25,12 +25,12 @@ To be able to integrate your service to Slack, you need to login to your Slack a
 
 Slack logging requires the nuget package _ServiceStack.Logging.Slack._ Add this to your project in Visual Studio. As soon as the package is installed, the base of the project is done. Next, the service will be adapted. The following source code must be added to the _Configure()_-method of your AppHost class:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">LogManager.LogFactory = new SlackLogFactory("webhook-url", debugEnabled: true)
+{% highlight c# %}LogManager.LogFactory = new SlackLogFactory("webhook-url", debugEnabled: true)
 {
     DefaultChannel = "logs",
     ErrorChannel = "errorlogs",
     BotUsername = "Sample ServiceStack Logger"
-};</pre>
+};{% endhighlight %}
 
 Replace the first parameter with the URL of the previously created webhook and adjust the logger to cover your personal preferences. I use the channel &#8220;logs&#8221;as default for all messages, and &#8220;errorlogs&#8221; for all error messages. Similarly, a separate channel can be created for each logging type (debug, info, warning, error, fatal).
 
@@ -40,4 +40,4 @@ And that&#8217;s it! The logger can now be accessed from any part of the program
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">public static ILog Log = LogManager.GetLogger(typeof(MyService));
 Log.Info("Hello World!");
-</pre>
+{% endhighlight %}

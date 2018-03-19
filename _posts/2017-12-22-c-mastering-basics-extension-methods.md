@@ -21,23 +21,23 @@ You can use extension methods to add custom functionality to classes that are bu
 
 As you can see in [Microsofts documentation](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods), extension methods are defined as static methods, but are called by using instance method syntax. This means that we will create a static method which can later be called by any object of the type _String_._ _While the implementation of such a method is very similar to a regular method, there is one thing you&#8217;ll have to remember when writing extension methods: the _this_ keyword before the parameter. Let&#8217;s see an example of how this works:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public static class StringExtensions {
+{% highlight c# %}public static class StringExtensions {
     public static String ToFirstLetterUpperCase(this String s)
     {
         if (s == null)
             return null;
 
-        if (s.Length &gt; 1)
+        if (s.Length > 1)
             return char.ToUpper(s[0]) + s.Substring(1);
 
         return s.ToUpper();
     }
-}</pre>
+}{% endhighlight %}
 
 In the example, I&#8217;ve added a new class called _StringExtensions_. This is the place where I will store all of my custom exension methods for strings. As you can see, the method looks very normal, the only thing different is the previously mentioned _this_ keyword right before the parameters data type.
 
 After creating the extension method, it can be used by simply calling _ToFirstLetterUpperCase()_ on any string:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">String s = "hello world!";
+{% highlight c# %}String s = "hello world!";
 Console.WriteLine(s.ToFirstLetterUpperCase());
-// Output: Hello world!</pre>
+// Output: Hello world!{% endhighlight %}

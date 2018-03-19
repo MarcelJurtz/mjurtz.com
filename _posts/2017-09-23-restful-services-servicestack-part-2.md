@@ -29,7 +29,7 @@ Access to the classes created for the server-side service is required. For this 
 
 {% highlight c# %}
 [Route("/hello/{name*}")]
-public class Hello : IReturn&lt;HelloResponse&gt;
+public class Hello : IReturn<HelloResponse>
 {
     public string Name { get; set; }
 }
@@ -51,7 +51,7 @@ public class CustomAuthenticationProvider : CredentialsAuthProvider
         // implement custom logic here
         return userName.Equals(password);
     }
-    public override IHttpResult OnAuthenticated(IServiceBase authService, IAuthSession session, IAuthTokens tokens, Dictionary&lt;string, string&gt; authInfo)
+    public override IHttpResult OnAuthenticated(IServiceBase authService, IAuthSession session, IAuthTokens tokens, Dictionary<string, string> authInfo)
     {
         //session.customElement = "Hello World";
         return base.OnAuthenticated(authService, session, tokens, authInfo);

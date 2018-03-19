@@ -36,7 +36,7 @@ For this reason I will build my pojos according to a relational database schema.
 
 In Android, this schema can be translated to regular POJO classes. Using Java annotations, you can tell your class what elements should be treated in which way. The class which represents a shopping list looks like this:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="java">@Entity(tableName = "shopping_list")
+{% highlight java %}@Entity(tableName = "shopping_list")
 public class ShoppingList {
 
     @PrimaryKey(autoGenerate = true)
@@ -48,8 +48,8 @@ public class ShoppingList {
     public int timestampSeconds;
 
     @Ignore
-    public List&lt;ShoppingListItem&gt; items;
-}</pre>
+    public List<ShoppingListItem> items;
+}{% endhighlight %}
 
 As you can see, there are already multiple annotations. The first one is the _@Entity_ annotation. It tells room that this class needs to be persisted to a database and what the name of the matching table will be. The next annotation is @PrimaryKey. You need to assign a primary key to each entity. Doing so, you specify a unique identifier to each of the tables entries. I added _autoGenerate = true_, so Room will be handling this matter for me.
 
@@ -59,7 +59,7 @@ Per default, room will use class and property names to specify the respective el
 
 You can see another annotation when checking out the class representing an item inside a shopping list:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="java">@Entity(
+{% highlight java %}@Entity(
         tableName = "shopping_list_item",
         foreignKeys = @ForeignKey(
                 entity = ShoppingList.class,
@@ -80,7 +80,7 @@ public class ShoppingListItem {
 
     @ColumnInfo(name = "timestamp_seconds")
     public int timestampSeconds;
-}</pre>
+}{% endhighlight %}
 
 As mentioned earlier, I&#8217;ve added a reference to the shopping list to each item. Since the id we specified for these is an automatically generate integer, we can simply access it here and store it as integer as well. By adding a _@ForeignKey_ annotation, you&#8217;ll firstly need to specify the referenced class, followed by the referenced row. Complete the statement by specifying the column of the current class with which the join is to be done. In my case, this is the _id_ column of the ShoppingList class and the _list_id_ column of the ShoppingListItem class. Note that the names must match those of the table and you may have overwritten them with _@ColumnInfo_ annotation.
 
@@ -94,7 +94,7 @@ The next part we will cover are the DAOs. Data Access Objects allow you to inter
 public interface ShoppingListDao {
 
     @Query("SELECT * FROM shopping_list")
-    List&lt;ShoppingList&gt; getAll();
+    List<ShoppingList> getAll();
 
     @Query("DELETE FROM shopping_list WHERE id = :id")
     void deleteListById(int id);
@@ -107,7 +107,7 @@ public interface ShoppingListDao {
 
     @Delete
     void deleteList(ShoppingList shoppingList);
-}</pre>
+}{% endhighlight %}
 
 A DAO is basically an interface that describes the interaction possibilities with the database. How exactly these look depends of course on your specific application. By specifying a Java annotation you can control the type of operation. In addition to the regular operations for creating, updating, or deleting objects, Room offers you the option of implementing your own queries using the query statement.
 
@@ -119,7 +119,7 @@ In my final section, the database itself, I will show you how to combine the com
 
 To interact with the SQLite database, you need to create a separate class that inherits from _RoomDatabase_ and passes the connection details via _@Database_ annotation. Google recommends using a singleton pattern, which I have implemented in my application.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="java">@Database(entities = {ShoppingList.class, ShoppingListItem.class}, version = 1)
+{% highlight java %}@Database(entities = {ShoppingList.class, ShoppingListItem.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
@@ -140,12 +140,12 @@ public abstract class AppDatabase extends RoomDatabase {
     public static void destroyInstance() {
         INSTANCE = null;
     }
-}</pre>
+}{% endhighlight %}
 
 As you may have noticed, I explicitly allowed Room to perform database operations in the UI thread. Please note you should not release something like this in a production-ready application. Otherwise, longer running operations may block the user interface and have negative effects on the UX.
 
 The following example shows you how to retrieve data from the database.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="java">List&lt;ShoppingList&gt; shoppingLists = AppDatabase.getAppDatabase(getApplicationContext()).shoppingListDao().getAll();</pre>
+{% highlight java %}List<ShoppingList> shoppingLists = AppDatabase.getAppDatabase(getApplicationContext()).shoppingListDao().getAll();{% endhighlight %}
 
 You can now perform all other operations in the same way. All information as well as advanced topics can be found directly on Google in the [corresponding documentation](https://developer.android.com/topic/libraries/architecture/room.html).

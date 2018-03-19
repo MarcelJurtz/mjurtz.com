@@ -57,7 +57,7 @@ public class GunScript : MonoBehaviour {
         {
             if(rcHit.transform.tag == "Enemy")
             {
-                ExplosionScript ex = rcHit.transform.gameObject.GetComponent&lt;ExplosionScript&gt;();
+                ExplosionScript ex = rcHit.transform.gameObject.GetComponent<ExplosionScript>();
                 
                 if(ex != null)
                 {
@@ -70,7 +70,7 @@ public class GunScript : MonoBehaviour {
     bool IsOkToShoot()
     {
         bool fireable = false;
-        if (Time.time &gt; nextFire) {
+        if (Time.time > nextFire) {
             nextFire = Time.time + fireRate;
             fireable = true;
         }
@@ -181,11 +181,11 @@ public class ExplosionScript : MonoBehaviour {
     {
         if(exploding)
         {
-            ParticleSystem explosionParticleSystem = explosion.GetComponent&lt;ParticleSystem&gt;();
+            ParticleSystem explosionParticleSystem = explosion.GetComponent<ParticleSystem>();
             ParticleSystem.Particle[] particles = new ParticleSystem.Particle[explosionParticleSystem.main.maxParticles];
             colors = ColorManager.getColor(colorDescriptor);
             int numParticlesAlive = explosionParticleSystem.GetParticles(particles);
-            for (int i = 0; i &lt; numParticlesAlive; i++)
+            for (int i = 0; i < numParticlesAlive; i++)
             {
                 particles[i].startColor = colors[Random.Range(0, colors.Length)];
             }

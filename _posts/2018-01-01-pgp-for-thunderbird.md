@@ -92,7 +92,7 @@ OCQ7jY28HEBVBWFF6oL+Tq8bqENBmf0W67Xnjc7zgjSKtOZl3jCePrQvp1PUvTpQ
 DV6Q91RF8Gq8TGZmhZkqv8CNdQcPWPxjefqGr+uuDcLh8kYcBjISqTYjRvZWw8ck
 Lid1jZe/8nmyCCXNB/ntXsYL4eo2SM0yb2lV8amV0cz9ru4khdWf
 =Q17/
------END PGP MESSAGE-----</pre>
+-----END PGP MESSAGE-----{% endhighlight %}
 
 In Thunderbird however, it will automatically be decrypted. Note that you might need to enter the passwort you&#8217;ve set for the key pair before the mail can be decrypted.
 

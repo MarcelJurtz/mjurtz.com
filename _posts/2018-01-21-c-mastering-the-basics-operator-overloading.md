@@ -22,24 +22,24 @@ To create custom functionality for operators in combination with your own classe
 
 I&#8217;ve created a simple class to demonstrate the concept of operator overloading. This class represents a rectangle, which only has the two properties _Length_ and _Width_.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public class Rectangle
+{% highlight c# %}public class Rectangle
 {
     public double Length { get; set; }
     public double Width { get; set; }
-}</pre>
+}{% endhighlight %}
 
 I&#8217;d like to start by overloading the + operator. When this is applied to two rectangles, I want to receive a new rectangle where both width and length from both input objects are added. You achieve this functionality by adding the following method to the class _Rectangle_.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public static Rectangle operator + (Rectangle a, Rectangle b)
+{% highlight c# %}public static Rectangle operator + (Rectangle a, Rectangle b)
 {
     return new Rectangle { Length = a.Length + b.Length, Width = a.Width + b.Width };
-}</pre>
+}{% endhighlight %}
 
 Quite easy, isn&#8217;t it? But of course, you&#8217;re not restricted to these simple operators, which is why I&#8217;ll cover all of the available operators in the next section.
 
 Another example I&#8217;d like to demonstrate is the comparison of two objects. In the following listing, you can see the comparison of two Rectangle objects with the operators _==_ and _!=_.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="csharp">public static bool operator == (Rectangle a, Rectangle b)
+{% highlight c# %}public static bool operator == (Rectangle a, Rectangle b)
 {
     return (a.Length == b.Length && a.Width == b.Width);
 }
@@ -47,7 +47,7 @@ Another example I&#8217;d like to demonstrate is the comparison of two objects. 
 public static bool operator != (Rectangle a, Rectangle b)
 {
     return (a.Length != b.Length || a.Width != b.Width);
-}</pre>
+}{% endhighlight %}
 
 ## (Non-)Overloadable Operators
 

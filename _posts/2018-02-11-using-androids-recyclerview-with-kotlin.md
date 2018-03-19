@@ -25,7 +25,7 @@ You can set up an Android project for Kotlin by simply clicking the checkbox for
 Before you can use the Recyclerview in your app, a little preparatory work is necessary. The first thing you&#8217;ll need to do is to add this dependency to your modules build.gradle file:
 
 <pre class="EnlighterJSRAW" data-enlighter-language="generic">implementation 'com.android.support:recyclerview-v7:26.1.0'
-</pre>
+{% endhighlight %}
 
 ## Basic GUI Setup
 
@@ -33,33 +33,33 @@ The next thing you&#8217;ll want to do is to set up a simple xaml page to displa
 
 The snippets I use in this article are from my ShoppingList-App, which is basically a minimalistic app to save shopping lists. The user can add and remove items from shopping lists, multiple shopping lists can be used at the same time.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic">&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;android.support.design.widget.CoordinatorLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<pre class="EnlighterJSRAW" data-enlighter-language="generic"><?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jurtz.marcel.shoppinglist.MainActivity"&gt;
+    tools:context="com.jurtz.marcel.shoppinglist.MainActivity">
 
-    &lt;android.support.v7.widget.RecyclerView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/rvShoppingLists"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp" /&gt;
+        android:layout_margin="8dp" />
 
-&lt;/android.support.design.widget.CoordinatorLayout &gt;</pre>
+</android.support.design.widget.CoordinatorLayout >{% endhighlight %}
 
 ## RecyclerView Components: Adapter & ViewHolder
 
 While it offers the advantage of improved performance, the RecyclerView is a bit more complicated to create and requires additional components. In our _MainActivity_ class, the first thing to do now is to specify the RecyclerViews LayoutManager. This is required to define the appearance of the multiple items. I&#8217;d like to display them in a vertical list.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">rvShoppingLists.layoutManager = LinearLayoutManager(this)</pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">rvShoppingLists.layoutManager = LinearLayoutManager(this){% endhighlight %}
 
 The next thing you&#8217;ll want to do is to set the views adapter. You can think of the adapter as a bridge between view and model which defines the appearance of your the POJOs.
 
 To implement the adapter, add a new class which inherits from _RecyclerView.Adapter<T>_. As you can see, this class is generic and requires a ViewHolder, I&#8217;ve also created a custom class for this purpose. The following snippet shows the methods that need to be overridden.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">class ShoppingListAdapter(var shoppingLists: List&lt;ShoppingList?&gt;) : RecyclerView.Adapter&lt;ShoppingListViewHolder&gt;() {
+<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">class ShoppingListAdapter(var shoppingLists: List<ShoppingList?>) : RecyclerView.Adapter<ShoppingListViewHolder>() {
 
     override fun getItemCount(): Int {
         return 5
@@ -77,7 +77,7 @@ To implement the adapter, add a new class which inherits from _RecyclerView.Adap
 class ShoppingListViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
    
 
-}</pre>
+}{% endhighlight %}
 
 Note that I added _5_ as return value for _getItemCount()_, you can leave this for now, we will see what this does in the next steps.
 
@@ -85,37 +85,37 @@ Note that I added _5_ as return value for _getItemCount()_, you can leave this f
 
 Now, we will add a new layout file (xml) to specify how each row in the RecyclerView should look like. For this purpose, I&#8217;d like to use a CardView with a nested LinearLayout that contains two TextViews. In my app, I&#8217;m using the first TextView to display a shopping lists description and the amount of items in the second one.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic">&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<pre class="EnlighterJSRAW" data-enlighter-language="generic"><?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cvRowEntry"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="4dp"
-    android:layout_margin="8dp"&gt;
+    android:layout_margin="8dp">
 
-    &lt;LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"&gt;
+        android:orientation="vertical">
 
-        &lt;TextView
+        <TextView
             android:id="@+id/lblShoppingListRowItemHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="@string/rv_shopping_lists_placeholder_title"
-            android:textSize="24sp" /&gt;
+            android:textSize="24sp" />
 
-        &lt;TextView
+        <TextView
             android:id="@+id/lblShoppingListRowItemSubheader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@string/rv_shopping_lists_placeholder_subtitle" /&gt;
-    &lt;/LinearLayout&gt;
-&lt;/android.support.v7.widget.CardView&gt;</pre>
+            android:text="@string/rv_shopping_lists_placeholder_subtitle" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>{% endhighlight %}
 
 Now we want to link the view to the RecyclerView in the adapter. To do this, we will update the onCreateViewHolder method we overrode earlier.
 
@@ -123,7 +123,7 @@ Now we want to link the view to the RecyclerView in the adapter. To do this, we 
     val layoutInflater = LayoutInflater.from(parent?.context)
     val cellForRow = layoutInflater.inflate(R.layout.shopping_list_row, parent, false)
     return ShoppingListViewHolder(cellForRow)
-}</pre>
+}{% endhighlight %}
 
 This tells the RecyclerView that each row should look like the layout we just created. If you have left the _5_ in the getItemCount()-method, you will see that the view is displayed 5 times when running the app.
 
@@ -137,11 +137,11 @@ The first thing to do now is to update the _getItemCount()_-method to actually r
 
 <pre class="EnlighterJSRAW" data-enlighter-language="kotlin">override fun getItemCount(): Int {
     return shoppingLists.size ?: 0
-}</pre>
+}{% endhighlight %}
 
 In the next step, we will link the object to the view, which is done by the following:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">holder?.bindShoppingList(shoppingList = shoppingLists.get(position))</pre>
+<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">holder?.bindShoppingList(shoppingList = shoppingLists.get(position)){% endhighlight %}
 
 And, last but not least, declaring the views properties to the objects variable values:
 
@@ -159,7 +159,7 @@ And, last but not least, declaring the views properties to the objects variable 
 
         view.lblShoppingListRowItemSubheader.setText(count.toString() + " " + suffix)
     }
-}</pre>
+}{% endhighlight %}
 
 That&#8217;s it! I added the following code to my MainActivity to test the adapter:
 
@@ -176,6 +176,6 @@ list3.description = "Stuff for the apartment"
 
 var list = listOf(list1, list2, list3)
 
-rvShoppingLists.adapter = ShoppingListAdapter(list)</pre>
+rvShoppingLists.adapter = ShoppingListAdapter(list){% endhighlight %}
 
 &nbsp;

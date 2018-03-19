@@ -90,17 +90,17 @@ I now adjust the layout so that the life and poison points are displayed below e
 
 The adjustments to toggle between the different states are dynamic and are controlled by Java code. I&#8217;ve added the following code to be able to get the current devices resolution:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="java">screenLayout = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;</pre>
+{% highlight java %}screenLayout = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;{% endhighlight %}
 
 This returns an integer value. By using the following constants, I make it easier for myself to differentiate between them:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="java">private final int SCREEN_SMALL = 1;
+{% highlight java %}private final int SCREEN_SMALL = 1;
 private final int SCREEN_NORMAL = 2;
 private final int SCREEN_LARGE = 3;
-private final int SCREEN_XLARGE = 4;</pre>
+private final int SCREEN_XLARGE = 4;{% endhighlight %}
 
 And that&#8217;s it, actually. I use an activity for the game itself, which controls both the 2-player and 4-player view. To toggle the state of the different controls I use corresponding methods, which I have equipped with a Boolean parameter This tells me whether or not the corresponding controls should be repositioned. I set this initial as follows:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="java">repositionControlsOnToggle = screenLayout != SCREEN_XLARGE && view.GetPlayerAmount() == 4;</pre>
+{% highlight java %}repositionControlsOnToggle = screenLayout != SCREEN_XLARGE && view.GetPlayerAmount() == 4;{% endhighlight %}
 
 If you have any further questions, you can find the complete source code on [GitHub](https://github.com/MarcelJurtz/LifeCounter).

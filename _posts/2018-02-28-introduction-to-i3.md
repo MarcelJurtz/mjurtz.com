@@ -17,7 +17,7 @@ In today&#8217;s article I would like to give you an insight into the usage of a
 
 A tiling window manager divides the screen into non-overlapping areas. You are probably more used to a stack-based system where windows can overlap. However, the concept of avoiding overlapping offers a major advantage: Due to the pure operation of the computer via keyboard, it is possible to work at a faster pace after a short training period.
 
-<img src="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2018/02/i3_screenshot.png?resize=750%2C469&#038;ssl=1" alt="i3 showcase with multiple windows" width="750" height="469" class="aligncenter wp-image-799" srcset="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2018/02/i3_screenshot.png?resize=500%2C313&ssl=1 500w, https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2018/02/i3_screenshot.png?w=1440&ssl=1 1440w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" />
+![i3 Example Screenshot](/assets/2018/i3_screenshot.png)
 
 Of course, this is not everyone&#8217;s cup of tea, but I recommend you to give it a try. The Window Manager can be installed in parallel to your existing one and can be selected during the login process. Also, the installation doesn&#8217;t require much disk space (~2 MB).
 

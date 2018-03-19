@@ -24,7 +24,7 @@ First of all, I would like to briefly discuss the app, the optimization of which
 
 The feature at issue is simply managing the health of two players. Poisonpoints can also be managed, which use a similar functionality. Finally, the player can choose the color of his or her playing area using the appropriate controls.
 
-![Default 2-Player View](/assets/2017/android_screensize_1,png)
+![Default 2-Player View](/assets/2017/android_screensizes_1.png)
 
 ## The Problem &#8230;
 
@@ -32,7 +32,7 @@ So far, so good, this functionality has proven itself since the first release ve
 
 However, while this view is problematic for smartphone screens, tablets work quite well. For this reason, I would like to maintain the view for tablets, but adapt it for smaller devices. To make this description more specific: My 10-inch tablet should use the default view, while my Redmi Note 4 (5.5-inch) and my Nexus 5 (5-inch) should use the customized view. All three devices have a Full-HD display with a resolution of 1920 x 1080 px, which allows easy comparisons between them. The Redmi Note 4 should additionally be used as the maximum size for the customized layout, since the view is no longer really shifted here, but still looks quite suboptimal. The following picture shows the planned layout for the 4-player support.
 
-![2 and 4-Player Views for Tablets](/assets/2017/android_screensize_2,png)
+![2 and 4-Player Views for Tablets](/assets/2017/android_screensizes_2.png)
 
 ## &#8230; and its Solution
 
@@ -49,10 +49,10 @@ And it&#8217;s exactly these different categories that are interesting now: Low 
 
 I want to realize my idea as follows: devices with high screen resolutions should display the four-player view similar to the two-player view. All devices that are smaller will use a fallback layout which adds a little functionality. Here, the display of life- and poisonpoints should be hidden by pressing the setting button, but the colour selection should be shown instead. If the Poisonpoints are to be displayed, the Lifepoint display is shifted a little to the center of the screen. The following pictures are the best way to understand this.
 
-![4-Player Tablet View](/assets/2017/android_screensize_3,png)
+![4-Player Tablet View](/assets/2017/android_screensizes_3.png)
 
 
-![4-Player Smartphone View](/assets/2017/android_screensize_4,png)
+![4-Player Smartphone View](/assets/2017/android_screensizes_4.png)
 
 
 Within your Res/Layout folder, you can now create folders for the different resolutions. The necessary naming convention is based on the prefix &#8220;_layout-_&#8221; and the subsequent size.

@@ -100,11 +100,11 @@ protected void Application_Start(object sender, EventArgs e)
 
 By now, the service should be able to run. When starting the project, you should be able to see a window like the following:
 
-<img src="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/service_gui.png?resize=500%2C377&#038;ssl=1" alt="ServiceStack Service GUI" class="aligncenter size-medium wp-image-571" width="500" height="377" srcset="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/service_gui.png?resize=500%2C377&ssl=1 500w, https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/service_gui.png?w=770&ssl=1 770w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" />
+![The ServiceStack Meta Page](/assets/2017/servicestack_simple_service_01.png)
 
 This overview provides information on all available services in our application. By clicking on the _JSON_-entry of the Expense-Operation, information about the service is displayed.
 
-<img src="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/service_gui_2.png?resize=500%2C520&#038;ssl=1" alt="ServiceStack Service Detail" class="aligncenter size-medium wp-image-572" width="500" height="520" srcset="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/service_gui_2.png?resize=500%2C520&ssl=1 500w, https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/service_gui_2.png?w=772&ssl=1 772w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" />
+![The ServiceStack Meta Page - Detail](/assets/2017/servicestack_simple_service_02.png)
 
 As you can see, this gives plenty of information on the service, including its route (/json/reply/Expense), its HTTP-verb (POST) and its parameters. Also, it shows us how the response-object will look like.
 
@@ -112,7 +112,7 @@ As you can see, this gives plenty of information on the service, including its r
 
 To try this out, I use a tool called [Postman](https://www.getpostman.com/), which you can download as extension for chrome, but I recommend the standalone version, since the plugin is outdated. Postman allows us to test our routes and objects with the several HTTP-verbs and optional parameters.
 
-<img src="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/service_postman.png?resize=481%2C399&#038;ssl=1" alt="Testing ServiceStack with Postman" class="aligncenter size-full wp-image-573" width="481" height="399" srcset="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/service_postman.png?w=481&ssl=1 481w, https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/service_postman.png?resize=360%2C300&ssl=1 360w" sizes="(max-width: 481px) 100vw, 481px" data-recalc-dims="1" />
+![Testing ServiceStack with Postman](/assets/2017/servicestack_simple_service_03.png)
 
 As you can see in the image, I set the HTTP-verb to POST and added the previously noted route. I also added an &#8220;Amount&#8221;-parameter, which ServiceStack then maps to the POCOs pendant. The response we get displays pretty much what we&#8217;ve expected.
 

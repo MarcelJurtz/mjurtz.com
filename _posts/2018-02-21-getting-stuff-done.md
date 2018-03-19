@@ -29,7 +29,7 @@ I must also say that I enjoy my work. One might think that this approach only ap
 
 When working for longer periods of time, I will eventually lose my focus. Sport helps me to get fit again and allows me to think about my projects in parallel. Often times I had ideas for new apps or improvements of existing ones while jogging, which I probably wouldn&#8217;t have come up with when working stubbornly.
 
-[<img src="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2018/02/focus_running.png?resize=750%2C239&#038;ssl=1" alt="focus_running" class="aligncenter wp-image-783" width="750" height="239" srcset="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2018/02/focus_running.png?resize=500%2C159&ssl=1 500w, https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2018/02/focus_running.png?w=1500&ssl=1 1500w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" />](https://unsplash.com/photos/XMcoTHgNcQA)
+![Focus / Running - by Unsplash](/assets/2018/focus_running.png)
 
 So if you can&#8217;t get on with a problem, give yourself a little bit of fresh air in between and sit down again later with a clear head. I have noticed for myself that physical exercise, even if only half an hour, significantly increases my ability to concentrate afterwards. And hey, you&#8217;re doing something for your health, by the way.
 

@@ -25,11 +25,11 @@ If you don&#8217;t have anything installed on your pi, you can use [OctoPi](http
 
 As you can see in the [installation guide](https://github.com/foosel/OctoPrint/wiki/Setup-on-a-Raspberry-Pi-running-Raspbian#basic-setup), you&#8217;ll first need to install several packages for python. Of course, update your system first.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">sudo apt-get install python-pip python-dev python-setuptools python-virtualenv git libyaml-dev build-essential{% endhighlight %}
+{% highlight bash %}sudo apt-get install python-pip python-dev python-setuptools python-virtualenv git libyaml-dev build-essential{% endhighlight %}
 
 As soon as this is done, clone the repository from GitHub and run the installation script.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">git clone https://github.com/foosel/OctoPrint.git
+{% highlight bash %}git clone https://github.com/foosel/OctoPrint.git
 cd OctoPrint
 virtualenv venv
 ./venv/bin/pip install pip --upgrade
@@ -38,12 +38,12 @@ mkdir ~/.octoprint{% endhighlight %}
 
 After installing, you might have to update user configuration:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">sudo usermod -a -G tty pi
+{% highlight bash %}sudo usermod -a -G tty pi
 sudo usermod -a -G dialout pi{% endhighlight %}
 
 Now, you should be able to start the service:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">~/OctoPrint/venv/bin/octoprint serve{% endhighlight %}
+{% highlight bash %}~/OctoPrint/venv/bin/octoprint serve{% endhighlight %}
 
 You should be able to connect to the web interface by using the pi&#8217;s IP on port 5000. After your first connect, you&#8217;ll face an installation page. These steps are useful if you want to setup custom slicing for octoprint. Since I slice my models in cura and send stl files to the printer, I&#8217;ll skip these steps.
 
@@ -53,13 +53,13 @@ I currently don&#8217;t have a webcam for my pi, so I won&#8217;t install webcam
 
 I&#8217;d like to set up my installation to automatically start when the pi boots up. These steps are also covered in the [installation guide](https://github.com/foosel/OctoPrint/wiki/Setup-on-a-Raspberry-Pi-running-Raspbian#automatic-start-up), but I&#8217;ll wrap them up. Start by copying the init script and adjusting its privileges to be executable:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">sudo cp ~/OctoPrint/scripts/octoprint.init /etc/init.d/octoprint
+{% highlight bash %}sudo cp ~/OctoPrint/scripts/octoprint.init /etc/init.d/octoprint
 sudo chmod +x /etc/init.d/octoprint
 sudo cp ~/OctoPrint/scripts/octoprint.default /etc/default/octoprint{% endhighlight %}
 
-Remove the comment-symbol (#) from the DAEMON-line in your <code class="EnlighterJSRAW" data-enlighter-language="null">/etc/default/octoprint</code> file and add the script to your autostart with <code class="EnlighterJSRAW" data-enlighter-language="null">sudo update-rc.d octoprint defaults</code>.
+Remove the comment-symbol (#) from the DAEMON-line in your {% highlight bash %}/etc/default/octoprint{% endhighlight %} file and add the script to your autostart with {% highlight bash %}sudo update-rc.d octoprint defaults{% endhighlight %}.
 
-Besides having automatic startup enabled, you can now start, stop and monitor the octoprint service with <code class="EnlighterJSRAW">sudo service octoprint [start / stop / restart / status]</code>.
+Besides having automatic startup enabled, you can now start, stop and monitor the octoprint service with {% highlight bash %}sudo service octoprint [start / stop / restart / status]{% endhighlight %}.
 
 ## Connecting to a 3D-Printer
 
@@ -70,7 +70,3 @@ Well, that last step is quite simple. In my case, my Anet A8 came with a USB typ
 While that first introduction gave me some insights on what octoprint is capable of, but I&#8217;ve definitely barely scratched the surface. One cool thing for example is the built in API, which allows you to connect for example Android apps to monitor temperatures or to upload files.
 
 All in all, I&#8217;ve had a great start with Octoprint and really recommend trying it out. Stay tuned for future updates!
-
-&nbsp;
-
-&nbsp;

@@ -60,7 +60,7 @@ To get started, you&#8217;ll want to create a new ASP.NET project, and load the 
 
 The second step is the configuration of the file _Global.asax.cs_. I&#8217;ve created a new class _HelloAppHost_ which inherits from _AppHostBase_.
 
-{% highlight C# %}
+{% highlight c# %}
 public class HelloAppHost : AppHostBase
 {
     public HelloAppHost() : base("Hello Web Services", typeof(HelloService).Assembly) { }
@@ -89,7 +89,7 @@ public class HelloAppHost : AppHostBase
 
 I&#8217;ve added a authentication functionality, which will be covered later in this post. The other thing I set up, is to return JSON-formatted data as default. The last thing to do in this file is creating an instance of the above class:
 
-{% highlight C# %}
+{% highlight c# %}
 protected void Application_Start(object sender, EventArgs e)
 {
     var appHost = new HelloAppHost();
@@ -101,7 +101,7 @@ protected void Application_Start(object sender, EventArgs e)
 
 After configuring the service, routes can be added. The general structure consists of three elements: RequestDTO, ResponseDTO and a Service. The following example shows how to set up a route following this approach:
 
-{% highlight C# %}
+{% highlight c# %}
 [Route("/hello/{name*}")]
 public class Hello : IReturn<HelloResponse>
 {
@@ -127,10 +127,10 @@ This service responds to requests on _/hello/{name*}_. The curly brackets indica
 
 While you can use the notation above to mark routes, you can also set these up in your configuration (_Global.asax.cs_). Just add the following contents after _container.register_&#8230;
 
-{% highlight C# %}
+{% highlight c# %}
 Routes
     .Add<Hello>("/hello")
-    .Add<Hello>("/hello/{Name}");{% endhighlight %}
+    .Add<Hello>("/hello/{Name}");
 {% endhighlight %}
 
 ## HTTP Verbs
@@ -141,7 +141,7 @@ As shown in the example above, HelloService only implements the method _Get()_. 
 
 You can use fallbacks to cover routes, that are not handled explicitly. In my case, I return information about the unhandled path and a timestamp. Again, wildcards are used.
 
-{% highlight C# %}
+{% highlight c# %}
 [FallbackRoute("/{Path*}")]
 public class Fallback : IReturn<FallbackResponse>
 {
@@ -172,7 +172,7 @@ public class FallbackService : IService
 
 The last element I&#8217;d like to cover is the authentication of a user. ServiceStack offers the class _CredentialsAuthProvider_, from which custom providers can be derived. The following example covers two methods, TryAuthenticate, which tries to log in by checking username and password against custom logic, and OnAuthenticated, which will be used to assign session variables.
 
-{% highlight C# %}
+{% highlight c# %}
 public class CustomCredentialsAuthProvider : CredentialsAuthProvider
 {
     public override bool TryAuthenticate(IServiceBase authService,

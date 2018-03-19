@@ -38,6 +38,7 @@ Replace the first parameter with the URL of the previously created webhook and a
 
 And that&#8217;s it! The logger can now be accessed from any part of the program. While each type of logging has its own method, in slack there is no automatic differentiation between them apart from the different channel distribution.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">public static ILog Log = LogManager.GetLogger(typeof(MyService));
+{% highlight c# %}
+public static ILog Log = LogManager.GetLogger(typeof(MyService));
 Log.Info("Hello World!");
 {% endhighlight %}

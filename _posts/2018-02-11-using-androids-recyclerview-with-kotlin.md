@@ -24,7 +24,7 @@ You can set up an Android project for Kotlin by simply clicking the checkbox for
 
 Before you can use the Recyclerview in your app, a little preparatory work is necessary. The first thing you&#8217;ll need to do is to add this dependency to your modules build.gradle file:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic">implementation 'com.android.support:recyclerview-v7:26.1.0'
+{% highlight xml %}implementation 'com.android.support:recyclerview-v7:26.1.0'
 {% endhighlight %}
 
 ## Basic GUI Setup
@@ -33,7 +33,7 @@ The next thing you&#8217;ll want to do is to set up a simple xaml page to displa
 
 The snippets I use in this article are from my ShoppingList-App, which is basically a minimalistic app to save shopping lists. The user can add and remove items from shopping lists, multiple shopping lists can be used at the same time.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic"><?xml version="1.0" encoding="utf-8"?>
+{% highlight xml %}<?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -53,13 +53,13 @@ The snippets I use in this article are from my ShoppingList-App, which is basica
 
 While it offers the advantage of improved performance, the RecyclerView is a bit more complicated to create and requires additional components. In our _MainActivity_ class, the first thing to do now is to specify the RecyclerViews LayoutManager. This is required to define the appearance of the multiple items. I&#8217;d like to display them in a vertical list.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">rvShoppingLists.layoutManager = LinearLayoutManager(this){% endhighlight %}
+{% highlight kotlin %}rvShoppingLists.layoutManager = LinearLayoutManager(this){% endhighlight %}
 
 The next thing you&#8217;ll want to do is to set the views adapter. You can think of the adapter as a bridge between view and model which defines the appearance of your the POJOs.
 
 To implement the adapter, add a new class which inherits from _RecyclerView.Adapter<T>_. As you can see, this class is generic and requires a ViewHolder, I&#8217;ve also created a custom class for this purpose. The following snippet shows the methods that need to be overridden.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">class ShoppingListAdapter(var shoppingLists: List<ShoppingList?>) : RecyclerView.Adapter<ShoppingListViewHolder>() {
+{% highlight kotlin %}class ShoppingListAdapter(var shoppingLists: List<ShoppingList?>) : RecyclerView.Adapter<ShoppingListViewHolder>() {
 
     override fun getItemCount(): Int {
         return 5
@@ -85,7 +85,7 @@ Note that I added _5_ as return value for _getItemCount()_, you can leave this f
 
 Now, we will add a new layout file (xml) to specify how each row in the RecyclerView should look like. For this purpose, I&#8217;d like to use a CardView with a nested LinearLayout that contains two TextViews. In my app, I&#8217;m using the first TextView to display a shopping lists description and the amount of items in the second one.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="generic"><?xml version="1.0" encoding="utf-8"?>
+{% highlight xml %}<?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -119,7 +119,7 @@ Now, we will add a new layout file (xml) to specify how each row in the Recycler
 
 Now we want to link the view to the RecyclerView in the adapter. To do this, we will update the onCreateViewHolder method we overrode earlier.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ShoppingListViewHolder {
+{% highlight kotlin %}override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ShoppingListViewHolder {
     val layoutInflater = LayoutInflater.from(parent?.context)
     val cellForRow = layoutInflater.inflate(R.layout.shopping_list_row, parent, false)
     return ShoppingListViewHolder(cellForRow)
@@ -135,17 +135,17 @@ In my snippet above, you can see that I already added a _List<ShoppingList?>_ pa
 
 The first thing to do now is to update the _getItemCount()_-method to actually return the amount of available objects:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">override fun getItemCount(): Int {
+{% highlight kotlin %}override fun getItemCount(): Int {
     return shoppingLists.size ?: 0
 }{% endhighlight %}
 
 In the next step, we will link the object to the view, which is done by the following:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">holder?.bindShoppingList(shoppingList = shoppingLists.get(position)){% endhighlight %}
+{% highlight kotlin %}holder?.bindShoppingList(shoppingList = shoppingLists.get(position)){% endhighlight %}
 
 And, last but not least, declaring the views properties to the objects variable values:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">class ShoppingListViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+{% highlight kotlin %}class ShoppingListViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     fun bindShoppingList(shoppingList: ShoppingList?) {
         view.lblShoppingListRowItemHeader.setText(shoppingList?.description)
 
@@ -163,7 +163,7 @@ And, last but not least, declaring the views properties to the objects variable 
 
 That&#8217;s it! I added the following code to my MainActivity to test the adapter:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="kotlin">rvShoppingLists.layoutManager = LinearLayoutManager(this)
+{% highlight kotlin %}rvShoppingLists.layoutManager = LinearLayoutManager(this)
 
 var list1 = ShoppingList()
 list1.description = "Groceries"

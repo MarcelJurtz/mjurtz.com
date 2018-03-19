@@ -24,13 +24,7 @@ First of all, I would like to briefly discuss the app, the optimization of which
 
 The feature at issue is simply managing the health of two players. Poisonpoints can also be managed, which use a similar functionality. Finally, the player can choose the color of his or her playing area using the appropriate controls.
 
-<div id="attachment_527" style="max-width: 1010px" class="wp-caption aligncenter">
-  <img src="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/phones_2player.png?resize=750%2C675&#038;ssl=1" alt="phones_2player" class="size-full wp-image-527" width="750" height="675" srcset="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/phones_2player.png?w=1000&ssl=1 1000w, https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/phones_2player.png?resize=500%2C450&ssl=1 500w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" />
-  
-  <p class="wp-caption-text">
-    Default view of the 2-Player view on a smartphone
-  </p>
-</div>
+![Default 2-Player View](/assets/2017/android_screensize_1,png)
 
 ## The Problem &#8230;
 
@@ -38,13 +32,7 @@ So far, so good, this functionality has proven itself since the first release ve
 
 However, while this view is problematic for smartphone screens, tablets work quite well. For this reason, I would like to maintain the view for tablets, but adapt it for smaller devices. To make this description more specific: My 10-inch tablet should use the default view, while my Redmi Note 4 (5.5-inch) and my Nexus 5 (5-inch) should use the customized view. All three devices have a Full-HD display with a resolution of 1920 x 1080 px, which allows easy comparisons between them. The Redmi Note 4 should additionally be used as the maximum size for the customized layout, since the view is no longer really shifted here, but still looks quite suboptimal. The following picture shows the planned layout for the 4-player support.
 
-<div id="attachment_529" style="max-width: 2193px" class="wp-caption aligncenter">
-  <img src="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/tablet_2_and_4_players.png?resize=750%2C275&#038;ssl=1" alt="tablet_2_and_4_players" class="size-full wp-image-529" width="750" height="275" srcset="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/tablet_2_and_4_players.png?w=2183&ssl=1 2183w, https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/tablet_2_and_4_players.png?resize=500%2C183&ssl=1 500w, https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/tablet_2_and_4_players.png?w=1500&ssl=1 1500w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" />
-  
-  <p class="wp-caption-text">
-    2- and 4-Player view for tablets
-  </p>
-</div>
+![2 and 4-Player Views for Tablets](/assets/2017/android_screensize_2,png)
 
 ## &#8230; and its Solution
 
@@ -61,23 +49,11 @@ And it&#8217;s exactly these different categories that are interesting now: Low 
 
 I want to realize my idea as follows: devices with high screen resolutions should display the four-player view similar to the two-player view. All devices that are smaller will use a fallback layout which adds a little functionality. Here, the display of life- and poisonpoints should be hidden by pressing the setting button, but the colour selection should be shown instead. If the Poisonpoints are to be displayed, the Lifepoint display is shifted a little to the center of the screen. The following pictures are the best way to understand this.
 
-&nbsp;
+![4-Player Tablet View](/assets/2017/android_screensize_3,png)
 
-<div id="attachment_538" style="max-width: 910px" class="wp-caption aligncenter">
-  <img src="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/4_player_tablets.png?resize=750%2C543&#038;ssl=1" alt="4 Player Tablet View" class="size-full wp-image-538" width="750" height="543" srcset="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/4_player_tablets.png?w=900&ssl=1 900w, https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/4_player_tablets.png?resize=500%2C362&ssl=1 500w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" />
-  
-  <p class="wp-caption-text">
-    4 Player Tablet View
-  </p>
-</div>
 
-<div id="attachment_539" style="max-width: 1010px" class="wp-caption aligncenter">
-  <img src="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/4_player_phones.png?resize=750%2C432&#038;ssl=1" alt="4 Player Smartphone View" class="size-full wp-image-539" width="750" height="432" srcset="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/4_player_phones.png?w=1000&ssl=1 1000w, https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/4_player_phones.png?resize=500%2C288&ssl=1 500w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" />
-  
-  <p class="wp-caption-text">
-    4 Player Smartphone View
-  </p>
-</div>
+![4-Player Smartphone View](/assets/2017/android_screensize_4,png)
+
 
 Within your Res/Layout folder, you can now create folders for the different resolutions. The necessary naming convention is based on the prefix &#8220;_layout-_&#8221; and the subsequent size.
   

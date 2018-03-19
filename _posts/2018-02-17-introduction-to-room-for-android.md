@@ -90,7 +90,8 @@ You can also customize the OnDelete action. If CASCADE is specified as an OnDele
 
 The next part we will cover are the DAOs. Data Access Objects allow you to interact between the database and the entity. And here&#8217;s the best part: they are very easy to implement. I have created two DAOs, one for the lists and one for the entries. In order to keep the whole thing a little bit short here, I&#8217;m just going to go into the DAO of my list.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">@Dao
+{% highlight java %}
+@Dao
 public interface ShoppingListDao {
 
     @Query("SELECT * FROM shopping_list")

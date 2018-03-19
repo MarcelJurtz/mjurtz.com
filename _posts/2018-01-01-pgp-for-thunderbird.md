@@ -69,30 +69,31 @@ If you choose to not or not only use the key servers, you can export and import 
 
 To test your keys, I recommend simply sending an encrypted email to yourself and to verify it in your webmail client. The encrypted email will look like this:
 
-<pre class="EnlighterJSRAW" data-enlighter-language="no-highlight">-----BEGIN PGP MESSAGE-----
-Version: GnuPG v2
 
-hQIMAzeTl89mQ+b4AQ//ae5T5gcqMLo/nBIQHNw+O/HSeyOI5Lg0nexgPpB44c8Z
-fdUSpRnfK02P6KPrFXSm5h+BZzCX020aVstwzhdvHpK3wiEvrzDUcURrWBJ9RRAC
-AbM+r3+V7T017XOj8JIhsT+/NTKzZAqhZzRCC6DFL/cPYkS+n4+w1Hp817W5KIlJ
-HdrMFUx64DSWDZ1ylNzrqMi102+tTBqqTqJIm36j8qRXzvQfjYPlxrGPq3DxEW9S
-egsw0iKvkTfw+/qdvVFHPYUn/suUJBe89ZD8nFNX9FVv0vCFj2t/IbA9jCKocHOX
-0JnxgYrrz31M7NuFJHlXzzYahn2Ebe9ruwtG5K159/ITZUpYLK7/yeuBXNgu1OED
-8hvBoq9hwqGt/f8C/lovumNDs8ALvyIzRyhVJ2Flxi2WqFo/7IJwCPfD6HsUpR2d
-tyZTQ0fFXyFkIOEb4+QjEW8jgtDS0s8M2Ew+30BvYQ3hiDsNuQ5H23VN6pX3fHY8
-F1k7B5fn0EHYPe2R1WbEqEG8qzN+elnM/yJ4OQVirytpFhYBgoDSTMFEQKneBHjj
-jHXVVk913sSZnlhQFteEznIwP4OjNoAizRNzfOCXMCyblcyA9XtstZ00VhbcsdUN
-+kNT53Ut5HdA38OqOzuGB410P1XXjGh0wrZ19s4Bdb38Ji+Gm7WdNyUbTY3mOCLS
-wLUBXyQHI9gaWSA4uKuBJ95BbKrKvl3EdLjWfvfZT192tuK1NLb9CVkEjCIDH4gq
-abkb13N3dFyEaKVkacjCQLGNYJ8OxxNP3l6WAodqYZ2+bS6AaHtLAkgJ7tfAKp7+
-k8y4XZRSXu15DaE9DQST1ofIaAmJCzcJtDrloQpmBnQJVAPVI4ah+VTrzB4Bfrqw
-/5bUcJD09jBsGayOucGNmfTgq0dnuODoEWpPK7faOppjbFC7lHEWgfE/sE9lFwWX
-VFQV7Y5DWoJWSSKf19Lk7L7f14GniO/ONBh5iMlPZ2Nmcwkw2zIs7NWyk8SZgDxr
-OCQ7jY28HEBVBWFF6oL+Tq8bqENBmf0W67Xnjc7zgjSKtOZl3jCePrQvp1PUvTpQ
-DV6Q91RF8Gq8TGZmhZkqv8CNdQcPWPxjefqGr+uuDcLh8kYcBjISqTYjRvZWw8ck
-Lid1jZe/8nmyCCXNB/ntXsYL4eo2SM0yb2lV8amV0cz9ru4khdWf
-=Q17/
------END PGP MESSAGE-----{% endhighlight %}
+> -----BEGIN PGP MESSAGE-----  
+> Version: GnuPG v2  
+>   
+> hQIMAzeTl89mQ+b4AQ//ae5T5gcqMLo/nBIQHNw+O/HSeyOI5Lg0nexgPpB44c8Z  
+> fdUSpRnfK02P6KPrFXSm5h+BZzCX020aVstwzhdvHpK3wiEvrzDUcURrWBJ9RRAC  
+> AbM+r3+V7T017XOj8JIhsT+/NTKzZAqhZzRCC6DFL/cPYkS+n4+w1Hp817W5KIlJ  
+> HdrMFUx64DSWDZ1ylNzrqMi102+tTBqqTqJIm36j8qRXzvQfjYPlxrGPq3DxEW9S  
+> egsw0iKvkTfw+/qdvVFHPYUn/suUJBe89ZD8nFNX9FVv0vCFj2t/IbA9jCKocHOX  
+> 0JnxgYrrz31M7NuFJHlXzzYahn2Ebe9ruwtG5K159/ITZUpYLK7/yeuBXNgu1OED  
+> 8hvBoq9hwqGt/f8C/lovumNDs8ALvyIzRyhVJ2Flxi2WqFo/7IJwCPfD6HsUpR2d  
+> tyZTQ0fFXyFkIOEb4+QjEW8jgtDS0s8M2Ew+30BvYQ3hiDsNuQ5H23VN6pX3fHY8  
+> F1k7B5fn0EHYPe2R1WbEqEG8qzN+elnM/yJ4OQVirytpFhYBgoDSTMFEQKneBHjj  
+> jHXVVk913sSZnlhQFteEznIwP4OjNoAizRNzfOCXMCyblcyA9XtstZ00VhbcsdUN  
+> +kNT53Ut5HdA38OqOzuGB410P1XXjGh0wrZ19s4Bdb38Ji+Gm7WdNyUbTY3mOCLS  
+> wLUBXyQHI9gaWSA4uKuBJ95BbKrKvl3EdLjWfvfZT192tuK1NLb9CVkEjCIDH4gq  
+> abkb13N3dFyEaKVkacjCQLGNYJ8OxxNP3l6WAodqYZ2+bS6AaHtLAkgJ7tfAKp7+  
+> k8y4XZRSXu15DaE9DQST1ofIaAmJCzcJtDrloQpmBnQJVAPVI4ah+VTrzB4Bfrqw  
+> /5bUcJD09jBsGayOucGNmfTgq0dnuODoEWpPK7faOppjbFC7lHEWgfE/sE9lFwWX  
+> VFQV7Y5DWoJWSSKf19Lk7L7f14GniO/ONBh5iMlPZ2Nmcwkw2zIs7NWyk8SZgDxr  
+> OCQ7jY28HEBVBWFF6oL+Tq8bqENBmf0W67Xnjc7zgjSKtOZl3jCePrQvp1PUvTpQ  
+> DV6Q91RF8Gq8TGZmhZkqv8CNdQcPWPxjefqGr+uuDcLh8kYcBjISqTYjRvZWw8ck  
+> Lid1jZe/8nmyCCXNB/ntXsYL4eo2SM0yb2lV8amV0cz9ru4khdWf  
+> =Q17/  
+> -----END PGP MESSAGE-----  
 
 In Thunderbird however, it will automatically be decrypted. Note that you might need to enter the passwort you&#8217;ve set for the key pair before the mail can be decrypted.
 

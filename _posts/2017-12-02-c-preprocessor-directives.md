@@ -27,7 +27,8 @@ The first two directives I would like to mention are _#define_ and _#undef_. The
 
 The next symbols are _#if_, _#else_, _#elif_ and _#endif_. As you have probably already guessed, they are used to execute certain source code only under predefined conditions. And this is exactly where the symbols I defined in the previous section play a role. In the following source code I have defined a symbol, which is then checked for existence. According to this definition, the output _&#8220;Running in demomode!&#8221;_ will be performed. You can also use the predefined symbol _&#8220;DEBUG&#8221;_, to check wether your application runs in debug or release mode.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">#define DEMOMODE
+{% highlight c# %}
+#define DEMOMODE
 
 using System;
 

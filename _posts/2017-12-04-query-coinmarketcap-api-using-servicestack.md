@@ -85,7 +85,8 @@ public class CoinDTO
 
 And that was actually the most complicated part. To obtain the data through the API, I directly specify the corresponding paths from the documentation, since we do not use request DTOs.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">public class APIClient
+{% highlight c# %}
+public class APIClient
 {
     private const String SERVICE_URL = "https://api.coinmarketcap.com/v1/ticker/";
 

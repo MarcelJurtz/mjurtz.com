@@ -32,7 +32,8 @@ In order to make the example a little more valuable, we will improve the service
 
 As you can see in the following snippet, I have installed a session mechanism that manages the current requests. I specified a general total of 1000, whereby each request reduces this amount by the requested withdrawals. Also, each request increments the request counter. I limit the amount of withdrawals to the total amount available. If more money is withdrawn, the service will not execute the request and the user will be informed. To keep track of the session data, I created another class called _TrackingData_, which is shown below the Post-method of our service.
 
-{% highlight c# %}public object Post(Expense request)
+{% highlight c# %}
+public object Post(Expense request)
 {
     var Session = base.SessionBag;
 
@@ -66,25 +67,30 @@ As you can see in the following snippet, I have installed a session mechanism th
             Status = "Balance too low"
         };
     }
-}{% endhighlight %}
+}
+{% endhighlight %}
 
 Let&#8217;s add some further modification to be able to increase our withdrawals. These modification reads a users input as long as he enters valid integers. When entering anything else, the loop will exit and the program stops.
 
-{% highlight c# %}public class TrackingData
+{% highlight c# %}
+public class TrackingData
 {
     public double Withdrawals { get; set; }
     public double TotalBalance { get; set; }
     public int WithdrawalsAmount { get; set;
-}{% endhighlight %}
+}
+{% endhighlight %}
 
 With these adjustments it is possible to generate successive requests. After several requests, postman delivers a result similar to the following.
 
-<pre class="EnlighterJSRAW" data-enlighter-language="json">{
+{% highlight json %}
+{
     "Amount": 200,
     "Total": 600,
     "Status": "OK",
     "WithdrawalsAmount": 3
-}{% endhighlight %}
+}
+{% endhighlight %}
 
 ## Further Shortcuts
 

@@ -32,7 +32,7 @@ I wanted to keep the application very minimalistic, which is why each shopping l
 
 For this reason I will build my pojos according to a relational database schema. This results in the following schema:
 
-<img src="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2018/02/ShoppingListRoomERM.png?resize=750%2C139&#038;ssl=1" alt="ShoppingList Room ERM" class="aligncenter wp-image-768 size-full" width="750" height="139" srcset="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2018/02/ShoppingListRoomERM.png?w=802&ssl=1 802w, https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2018/02/ShoppingListRoomERM.png?resize=500%2C93&ssl=1 500w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" />
+![Example ERM for Room demo](room_db_introduction_erm.png)
 
 In Android, this schema can be translated to regular POJO classes. Using Java annotations, you can tell your class what elements should be treated in which way. The class which represents a shopping list looks like this:
 

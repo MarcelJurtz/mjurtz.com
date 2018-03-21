@@ -113,4 +113,4 @@ public class APIClient
 
 Since the API always returns an array, I simply return the first element from the Bitcoin queries response. As promised, the implementation of an external service with the ServiceStack Client is quick and easy as usual. The concluding image shows the result of the query.
 
-<img src="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/12/API_BreakPoint.png?resize=497%2C409&#038;ssl=1" alt="ServiceStack Client - CoinMarketCap Response" width="497" height="409" class="aligncenter size-full wp-image-617" data-recalc-dims="1" />
+![Coinmarketcap API with ServiceStack](/assets/2017/coinmarketcap_api_servicestack.png)

@@ -57,7 +57,7 @@ VisualStudio automatically adjusts the display when saving, so that you can see 
 
 As just mentioned, it is possible to use predefined symbols. You can edit these settings if you go to project settings and check the build tab.
 
-<img src="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/12/predefined_directives.png?resize=736%2C366&#038;ssl=1" alt="Predefined Directive Symbol" class="aligncenter size-full wp-image-650" width="736" height="366" srcset="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/12/predefined_directives.png?w=736&ssl=1 736w, https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/12/predefined_directives.png?resize=500%2C249&ssl=1 500w" sizes="(max-width: 736px) 100vw, 736px" data-recalc-dims="1" />
+![Preprocessor Directives](/assets/2017/preprocessor_directives.png)
 
 ## #region & #endregion
 
@@ -65,4 +65,4 @@ The last directives I would like to mention are #region and #endregion. These ar
 
 The code within such a block can be expanded and collapsed by the plus and minus symbols in Visual Studio, which are displayed next to the row number bar. An optional name following the #region-remark allows you to assign a name to each block.
 
-<img src="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/12/region_endregion.png?resize=750%2C320&#038;ssl=1" alt="Region & Endregion" class="aligncenter wp-image-604 size-full" width="750" height="320" srcset="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/12/region_endregion.png?w=879&ssl=1 879w, https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2017/12/region_endregion.png?resize=500%2C213&ssl=1 500w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" />
+![Preprocessor Directives - Regions](/assets/2017/preprocessor_directives_regions.png)

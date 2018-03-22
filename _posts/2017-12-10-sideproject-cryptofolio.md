@@ -23,7 +23,7 @@ tags:
 ---
 Today I would like to introduce my current side project. I&#8217;m currently developing [_CryptoFolio_](https://github.com/MarcelJurtz/CryptoFolio), an app that allows you to keep track of your investments in cryptocurrencies.
 
-<img src="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/12/Coin_banner.png?resize=750%2C108&#038;ssl=1" alt="Coins Banner" class="aligncenter wp-image-642 size-full" width="750" height="108" srcset="https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/12/Coin_banner.png?w=888&ssl=1 888w, https://i0.wp.com/blog.mjurtz.com/wp-content/uploads/2017/12/Coin_banner.png?resize=500%2C72&ssl=1 500w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" />
+![Cryptocoin Logos](/assets/2017/cryptofolio.png)
 
 ## Functionality & MVP
 

@@ -43,7 +43,7 @@ So much for that. The last thing you&#8217;ll need to install is the Enigmail ad
 
 The next step is to set up a key pair and link it to an email account. You can access the Enigmail configuration by clicking on the <span style="color: #22b14c;">hamburger menu</span> in Thunderbird. Select the <span style="color: #00a2e8;"><em>Enigmail</em></span> entry by hovering over the arrow symbol, which displays a context menu. Select <span style="color: #3f48cc;"><em>manage keys</em></span> to proceed.
 
-<img src="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/menuentry.png?resize=563%2C372&#038;ssl=1" alt="Enigmail Menu Entry" class="aligncenter size-full wp-image-698" width="563" height="372" srcset="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/menuentry.png?w=563&ssl=1 563w, https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/menuentry.png?resize=500%2C330&ssl=1 500w" sizes="(max-width: 563px) 100vw, 563px" data-recalc-dims="1" />
+![PGP Enigmail Setup](/assets/2018/pgp_enigmail_setup.png)
 
 The now displayed list contains all your locally saved keys. At this point, this list should be empty. To create a new key pair, select the _Create_ entry from the menu bar and then click the _New Keypair_ button. In the following dialog, start of by selecting the email address that the key pair should be assigned to. I recommend to set a password at this point, you can also specify how long you want the key pair to be valid.
 
@@ -53,7 +53,7 @@ The key generating process will take a short amount of time. After the keys have
 
 When creating an email, you&#8217;ll notice the new _enigmail-menu_:
 
-<img src="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/new_mail.png?resize=750%2C325&#038;ssl=1" alt="New email in Thunderbird - Enigmail Menu" class="aligncenter size-full wp-image-699" width="750" height="325" srcset="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/new_mail.png?w=845&ssl=1 845w, https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/new_mail.png?resize=500%2C217&ssl=1 500w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" />
+![PGP Email Encryption](/assets/2018/pgp_email_encryption.png)
 
 As it is stated in bold red letters, the mail is currently not being encrypted. To change this, you can click the lock icon. To digitally sign your mail, click the pen icon right next to it. Of course, you can do both simultaneously. You can also send your public key as an attachment, but note that this will only be useful if you don&#8217;t sign your mail as the recipient will already need the key to encrypt the mail otherwise.
 

@@ -47,13 +47,13 @@ At this point, I have to distinct between active and passive network nodes. Acti
 
 To commit a transaction, the sender must reference other transactions, in which he received at minimum the same amount of bitcoins he wants to send. The active network participants, the so-called _miners_, then validate the referenced transactions for whether they have not already been issued and either accept or reject them. This mechanism makes it possible to establish an exact history of where the money comes from and where it goes.
 
-<img src="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/transaktion_example.png?resize=500%2C223&#038;ssl=1" alt="Example of a bitcoin transaction" class="aligncenter wp-image-563 size-medium" width="500" height="223" srcset="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/transaktion_example.png?resize=500%2C223&ssl=1 500w, https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/transaktion_example.png?w=1500&ssl=1 1500w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" />
+![Example of a blockchain transaction](/assets/2017/blockchain_transaction_example.png)
 
 The example in the picture shows that a transaction can have several inputs. Inputs represent references to transactions the owner has received Bitcoins from, which he now wants to spend. However, transactions can also have multiple outputs. For example, if the output does not exactly match the input, the owner can transfer the difference to himself.
 
 Based on this principle, transactions can already be transparently traced back. However, a temporal component is missing. Miners are used for this purpose, which combine transactions from the network into blocks. All transactions within a block are considered to be processed at the same time.
 
-<img src="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/blockchain.png?resize=500%2C394&#038;ssl=1" alt="Concept of a Blockchain" class="aligncenter size-medium wp-image-564" width="500" height="394" srcset="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/blockchain.png?resize=500%2C394&ssl=1 500w, https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/blockchain.png?w=1500&ssl=1 1500w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" />
+![Block bundled transactions](/assets/2017/blockchain_transactions.png)
 
 However, once a block has been created, miners must solve a task before sharing it to the network, which prevents individual miners to flood the network. This task is based on the computation of cryptographic evidence, which must be difficult to solve but easy to verify. Published blocks are checked by the receiving nodes for validity of the task solution, and if correct, they are added to the nodes local blockchain. The node then starts creating the next block in the same way. I won&#8217;t go into the details on the algorithm which is responsible for the cryptographic evidence, but it is automatically updated in a way that a block takes about ten minutes to be discovered.
 

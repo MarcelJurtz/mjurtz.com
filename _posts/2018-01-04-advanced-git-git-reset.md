@@ -22,7 +22,7 @@ I talk about _git reset_. This command can be used to reset changes in your work
 
 In general, you can split the commands functionality into two separate parts. First, the command will move the current branch. Let&#8217;s look at an example. In my current project, I&#8217;ve made some changes that I&#8217;d like to reset. In my example, my current commit **25a5d0e** contains unwanted information and I&#8217;d like to return back to the state at commit **ea02e01**.
 
-<img src="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/Reset_History_New.png?resize=500%2C540&#038;ssl=1" alt="Git Reset Move Branch" class="aligncenter wp-image-703 size-medium" width="500" height="540" srcset="https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/Reset_History_New.png?resize=500%2C540&ssl=1 500w, https://i1.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/Reset_History_New.png?w=1069&ssl=1 1069w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" />
+![Git Reset - Move HEAD](/assets/2018/git_reset_move_head.png)
 
 Of course, this is a very simple example, git reset is not restricted to a single branch. I&#8217;d also like to mention, that this operation will lead to commits that don&#8217;t belong to any branch. In this case, git will automatically detect and delete them using its garbage collection mechanism.
 
@@ -32,7 +32,7 @@ As I mentioned earlier, the reset command moves the current branch (which is act
 
 To specify where contents should be copied to, you can use the parameters <span style="text-decoration: underline;"><em>&#8211;hard</em></span>, _&#8211;mixed_ or _&#8211;soft_. First of these copies the contents from the repository to both the index, and the working area. Appending _&#8211;mixed_ will lead to the contents being copied only to the index, not to the working area. When using _git reset_ without any parameters, this is what will be applied. The last option is to use _&#8211;soft_, which will prevent any content from being copied. In this case, only the branch-movement-part of the command will be executed.
 
-<img src="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/Reset.png?resize=500%2C206&#038;ssl=1" alt="Reset Copy Locations" class="aligncenter size-medium wp-image-704" width="500" height="206" srcset="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/Reset.png?resize=500%2C206&ssl=1 500w, https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/Reset.png?w=1500&ssl=1 1500w, https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2018/01/Reset.png?w=2250&ssl=1 2250w" sizes="(max-width: 500px) 100vw, 500px" data-recalc-dims="1" />
+![Git Reset - Move HEAD](/assets/2018/git_reset_copy_files.png)
 
 ## Conclusion
 

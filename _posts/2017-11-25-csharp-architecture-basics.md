@@ -22,7 +22,7 @@ The top level always represents the so-called solution. A solution can contain s
 
 The following image shows the structure of an example solution and its components.
 
-<img src="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/CSharp_Architecture.png?resize=750%2C428&#038;ssl=1" alt="CSharp_Example_Architecture" class="aligncenter size-full wp-image-555" width="750" height="428" srcset="https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/CSharp_Architecture.png?w=828&ssl=1 828w, https://i2.wp.com/blog.mjurtz.com/wp-content/uploads/2017/11/CSharp_Architecture.png?resize=500%2C285&ssl=1 500w" sizes="(max-width: 750px) 100vw, 750px" data-recalc-dims="1" />
+![C# Example Architecture](csharp_example_architecture.png)
 
 The application is divided into three levels: user interface layer, business logic layer and data access layer. The latter is usually realized by an object relational mapper like the entity framework or ORMLite, which I presented in [my last post](https://blog.mjurtz.com/2017/11/what-is-servicestack/). The UI layer contains the user views. These can be several projects, for example in the shape of a legacy WinForms application and a newer WPF implementation. The user interactions detected there are passed on to the business logic layer, which contains the actual logic of the software and the related POCOs.
 

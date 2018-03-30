@@ -9,7 +9,7 @@ exclude:
   - "/vendor/"
 
 # Site settings
-title: MJurtz
+title: Marcel Jurtz
 subtitle: "A software developers blog"
 email: marcel@mjurtz.com
 name: Marcel Jurtz

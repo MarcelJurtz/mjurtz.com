@@ -1,6 +1,6 @@
 ---
 title: 'Searching Blogposts in Jekyll'
-date: 2018-03-31T12:00:00+00:00
+date: 2018-03-30T12:00:00+00:00
 author: Marcel Jurtz
 layout: post
 permalink: /2018/03/jekyll-search

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ServiceStack Logging with Slack Integration</title>
+  <meta name="description" content="Besides my series on how to get started with ServiceStack, I have already published a few articles that are related to the topic, but do not belong directly ...">
+  
+  <meta name="author" content="Marcel Jurtz">
+  <meta name="copyright" content="&copy; Marcel Jurtz 2018">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/2017/12/servicestack-logging-with-slack-integration/">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <!--
+    <a href="/" class="logo">
+      
+      <span>Marcel Jurtz</span>
+      
+    </a>
+  -->
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <!--
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/typography/">Typography</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/gamedev/">GameDev</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/unity/">Unity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/git/">Git</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/programming/">Programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tools/">Tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/android/">Android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/app/">App</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/baseball/">Baseball</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/development/">Development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/editor/">Editor</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcache/">Bitcache</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcoin/">Bitcoin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cryptocurrency/">Cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net/">.NET</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-net/">ASP.NET</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/rest/">REST</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/servicestack/">ServiceStack</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/software/">Software</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/windows/">Windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/efficiency/">Efficiency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/productivity/">Productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/network/">Network</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/p2p/">P2P</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/syncthing/">Syncthing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/xamarin/">Xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/clean-code/">Clean Code</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/design/">Design</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/layout/">Layout</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/sideproject/">Sideproject</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net-core/">.NET Core</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/linux/">Linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/3d-printing/">3D-Printing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/raspberry-pi/">Raspberry Pi</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/email/">email</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/encryption/">Encryption</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/self/">Self</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/blog/">Blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/web/">Web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ruby/">Ruby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/javascript/">JavaScript</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/jekyll/">Jekyll</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/game-development/">Game development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tools/">Tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/android/">Android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/cryptocurrency/">Cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/productivity/">Productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tips/">Tips</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/xamarin/">Xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/hobby/">Hobby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/security/">Security</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/linux/">Linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/blog/">Blog</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    -->
+      <ul id="js-navigation-menu" class="navigation-menu-show">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="/feed.xml">RSS</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">ServiceStack Logging with Slack Integration</h1>
+      <p class="info">by <strong>Marcel Jurtz</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">December 7, 2017</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/CSharp">Csharp</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>Besides my series on how to get started with ServiceStack, I have already published a few articles that are related to the topic, but do not belong directly to the introductory series. In the <a href="https://blog.mjurtz.com/2017/12/query-coinmarketcap-api-using-servicestack/">last such article</a>, I used the example of <a href="https://coinmarketcap.com/">coinmarketcap.com</a> to show how to access third-party APIs using the C# client.</p>
+
+<p>Today, I’ll show you how to use ServiceStacks Logging API and link it to a slack channel. The prerequisites for this article are an existing Slack account and a simple ServiceStack service (<a href="https://blog.mjurtz.com/2017/11/servicestack-building-simple-service/">see my article on this topic</a>).</p>
+
+<h2 id="creating-the-service">Creating the Service</h2>
+
+<p>To be able to integrate your service to Slack, you need to login to your Slack account and create a <a href="https://my.slack.com/services/new/incoming-webhook/">new Incoming Webhook</a>. A default channel now needs to be specified. However, this will be overwritten by us later, so at this point the selection does not play an important role. After creating the webhook, Slack will provide an url that will be added to our logger in the next step.</p>
+
+<p>Slack logging requires the nuget package <em>ServiceStack.Logging.Slack.</em> Add this to your project in Visual Studio. As soon as the package is installed, the base of the project is done. Next, the service will be adapted. The following source code must be added to the <em>Configure()</em>-method of your AppHost class:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">LogManager</span><span class="p">.</span><span class="n">LogFactory</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SlackLogFactory</span><span class="p">(</span><span class="s">"webhook-url"</span><span class="p">,</span> <span class="n">debugEnabled</span><span class="p">:</span> <span class="k">true</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">DefaultChannel</span> <span class="p">=</span> <span class="s">"logs"</span><span class="p">,</span>
+    <span class="n">ErrorChannel</span> <span class="p">=</span> <span class="s">"errorlogs"</span><span class="p">,</span>
+    <span class="n">BotUsername</span> <span class="p">=</span> <span class="s">"Sample ServiceStack Logger"</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>Replace the first parameter with the URL of the previously created webhook and adjust the logger to cover your personal preferences. I use the channel “logs”as default for all messages, and “errorlogs” for all error messages. Similarly, a separate channel can be created for each logging type (debug, info, warning, error, fatal).</p>
+
+<h2 id="generating-logs">Generating Logs</h2>
+
+<p>And that’s it! The logger can now be accessed from any part of the program. While each type of logging has its own method, in slack there is no automatic differentiation between them apart from the different channel distribution.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">static</span> <span class="n">ILog</span> <span class="n">Log</span> <span class="p">=</span> <span class="n">LogManager</span><span class="p">.</span><span class="nf">GetLogger</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">MyService</span><span class="p">));</span>
+<span class="n">Log</span><span class="p">.</span><span class="nf">Info</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">);</span></code></pre></figure>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/.net">.NET</a>,&nbsp;<a href="/tag/csharp">CSharp</a>,&nbsp;<a href="/tag/development">Development</a>,&nbsp;<a href="/tag/programming">Programming</a>,&nbsp;<a href="/tag/servicestack">ServiceStack</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=ServiceStack+Logging+with+Slack+Integration&url=http%3A%2F%2Flocalhost%3A4000%2F2017%2F12%2Fservicestack-logging-with-slack-integration%2F&via=MarcelJurtz"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2017/12/servicestack-logging-with-slack-integration/') + '&title=ServiceStack Logging with Slack Integration'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Marcel Jurtz</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <!--
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/typography/">Typography</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/gamedev/">GameDev</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/unity/">Unity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/git/">Git</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/programming/">Programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tools/">Tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/android/">Android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/app/">App</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/baseball/">Baseball</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/development/">Development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/editor/">Editor</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcache/">Bitcache</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcoin/">Bitcoin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cryptocurrency/">Cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net/">.NET</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-net/">ASP.NET</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/rest/">REST</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/servicestack/">ServiceStack</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/software/">Software</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/windows/">Windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/efficiency/">Efficiency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/productivity/">Productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/network/">Network</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/p2p/">P2P</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/syncthing/">Syncthing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/xamarin/">Xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/clean-code/">Clean Code</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/design/">Design</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/layout/">Layout</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/sideproject/">Sideproject</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net-core/">.NET Core</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/linux/">Linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/3d-printing/">3D-Printing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/raspberry-pi/">Raspberry Pi</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/email/">email</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/encryption/">Encryption</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/self/">Self</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/blog/">Blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/web/">Web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ruby/">Ruby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/javascript/">JavaScript</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/jekyll/">Jekyll</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/game-development/">Game development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tools/">Tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/android/">Android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/cryptocurrency/">Cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/productivity/">Productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tips/">Tips</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/xamarin/">Xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/hobby/">Hobby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/security/">Security</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/linux/">Linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/blog/">Blog</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    -->
+    <ul class="pages">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="https://mjurtz.com/Impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:marcel@mjurtz.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">marcel@mjurtz.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/MarcelJurtz" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/MarcelJurtz" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <form action="/search.html" method="get">
+        <label for="search_box">Search Posts</label>
+        <input type="text" id="search_box" name="query">
+        <input type="submit" value="search">
+      </form>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

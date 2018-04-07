@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Octoprint on a Raspberry Pi</title>
+  <meta name="description" content="Being tired of running back and forth to my 3D-printer to change stl files and starting / stopping prints, I decided to give Octoprint a shot. Octoprint basi...">
+  
+  <meta name="author" content="Marcel Jurtz">
+  <meta name="copyright" content="&copy; Marcel Jurtz 2018">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/2017/12/octoprint-raspberry-pi/">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <!--
+    <a href="/" class="logo">
+      
+      <span>Marcel Jurtz</span>
+      
+    </a>
+  -->
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <!--
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/typography/">Typography</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/gamedev/">GameDev</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/unity/">Unity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/git/">Git</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/programming/">Programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tools/">Tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/android/">Android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/app/">App</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/baseball/">Baseball</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/development/">Development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/editor/">Editor</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcache/">Bitcache</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcoin/">Bitcoin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cryptocurrency/">Cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net/">.NET</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-net/">ASP.NET</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/rest/">REST</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/servicestack/">ServiceStack</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/software/">Software</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/windows/">Windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/efficiency/">Efficiency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/productivity/">Productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/network/">Network</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/p2p/">P2P</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/syncthing/">Syncthing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/xamarin/">Xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/clean-code/">Clean Code</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/design/">Design</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/layout/">Layout</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/sideproject/">Sideproject</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net-core/">.NET Core</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/linux/">Linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/3d-printing/">3D-Printing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/raspberry-pi/">Raspberry Pi</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/email/">email</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/encryption/">Encryption</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/self/">Self</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/blog/">Blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/web/">Web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ruby/">Ruby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/javascript/">JavaScript</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/jekyll/">Jekyll</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/game-development/">Game development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tools/">Tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/android/">Android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/cryptocurrency/">Cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/productivity/">Productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tips/">Tips</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/xamarin/">Xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/hobby/">Hobby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/security/">Security</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/linux/">Linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/blog/">Blog</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    -->
+      <ul id="js-navigation-menu" class="navigation-menu-show">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="/feed.xml">RSS</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">Octoprint on a Raspberry Pi</h1>
+      <p class="info">by <strong>Marcel Jurtz</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">December 23, 2017</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/Hobby">Hobby</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>Being tired of running back and forth to my 3D-printer to change stl files and starting / stopping prints, I decided to give <a href="https://octoprint.org/">Octoprint</a> a shot. Octoprint basically provides a webinterface for 3D-printers, which allows you to send tasks over your local network to the printer and to monitor the prints. The software also provides a plugin functionality, so you can create your custom addons if required.</p>
+
+<p>Note that you can use Octoprint for slicing, but in my case I will be starting of with only sending pre sliced stl files to print.</p>
+
+<h2 id="hardware--installation">Hardware &amp; Installation</h2>
+
+<p>In this article, I cover the usage in combination with a Raspberry Pi. If you have a spare Raspberry Pi 3, I recommend using it, since it has built in WIFI. However, you can of course also use older versions with wired connection or by adding a WIFI adapter.</p>
+
+<p>If you don’t have anything installed on your pi, you can use <a href="https://github.com/guysoft/OctoPi">OctoPi</a>, which is a preconfigured image which includes Octoprint. However, since I already have raspbian installed, I’ll install Octoprint manually.</p>
+
+<p>As you can see in the <a href="https://github.com/foosel/OctoPrint/wiki/Setup-on-a-Raspberry-Pi-running-Raspbian#basic-setup">installation guide</a>, you’ll first need to install several packages for python. Of course, update your system first.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>apt-get <span class="nb">install </span>python-pip python-dev python-setuptools python-virtualenv git libyaml-dev build-essential</code></pre></figure>
+
+<p>As soon as this is done, clone the repository from GitHub and run the installation script.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git clone https://github.com/foosel/OctoPrint.git
+<span class="nb">cd </span>OctoPrint
+virtualenv venv
+./venv/bin/pip <span class="nb">install </span>pip <span class="nt">--upgrade</span>
+./venv/bin/python setup.py <span class="nb">install
+mkdir</span> ~/.octoprint</code></pre></figure>
+
+<p>After installing, you might have to update user configuration:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> <span class="nb">tty </span>pi
+<span class="nb">sudo </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> dialout pi</code></pre></figure>
+
+<p>Now, you should be able to start the service:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">~/OctoPrint/venv/bin/octoprint serve</code></pre></figure>
+
+<p>You should be able to connect to the web interface by using the pi’s IP on port 5000. After your first connect, you’ll face an installation page. These steps are useful if you want to setup custom slicing for octoprint. Since I slice my models in cura and send stl files to the printer, I’ll skip these steps.</p>
+
+<h2 id="customization">Customization</h2>
+
+<p>I currently don’t have a webcam for my pi, so I won’t install webcam support. However, you can check out the instructions <a href="https://github.com/foosel/OctoPrint/wiki/Setup-on-a-Raspberry-Pi-running-Raspbian#webcam">here</a> if you’d like to do this.</p>
+
+<p>I’d like to set up my installation to automatically start when the pi boots up. These steps are also covered in the <a href="https://github.com/foosel/OctoPrint/wiki/Setup-on-a-Raspberry-Pi-running-Raspbian#automatic-start-up">installation guide</a>, but I’ll wrap them up. Start by copying the init script and adjusting its privileges to be executable:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo cp</span> ~/OctoPrint/scripts/octoprint.init /etc/init.d/octoprint
+<span class="nb">sudo chmod</span> +x /etc/init.d/octoprint
+<span class="nb">sudo cp</span> ~/OctoPrint/scripts/octoprint.default /etc/default/octoprint</code></pre></figure>
+
+<p>Remove the comment-symbol (#) from the DAEMON-line in your</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">/etc/default/octoprint</code></pre></figure>
+<p>file and add the script to your autostart with</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>update-rc.d octoprint defaults</code></pre></figure>
+<p>.</p>
+
+<p>Besides having automatic startup enabled, you can now start, stop and monitor the octoprint service with</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>service octoprint <span class="o">[</span>start / stop / restart / status]</code></pre></figure>
+<p>.</p>
+
+<h2 id="connecting-to-a-3d-printer">Connecting to a 3D-Printer</h2>
+
+<p>Well, that last step is quite simple. In my case, my Anet A8 came with a USB type B cable which can be direcly plugged into the Raspberry Pi. And that’s it. After connecting to the printer, you can’t just only upload files and print them, you’re also able to see the files available on the printers sd card and restart older jobs.</p>
+
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+
+<p>While that first introduction gave me some insights on what octoprint is capable of, but I’ve definitely barely scratched the surface. One cool thing for example is the built in API, which allows you to connect for example Android apps to monitor temperatures or to upload files.</p>
+
+<p>All in all, I’ve had a great start with Octoprint and really recommend trying it out. Stay tuned for future updates!</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/3d-printing">3D-Printing</a>,&nbsp;<a href="/tag/linux">Linux</a>,&nbsp;<a href="/tag/raspberry pi">Raspberry Pi</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=Octoprint+on+a+Raspberry+Pi&url=http%3A%2F%2Flocalhost%3A4000%2F2017%2F12%2Foctoprint-raspberry-pi%2F&via=MarcelJurtz"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2017/12/octoprint-raspberry-pi/') + '&title=Octoprint on a Raspberry Pi'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Marcel Jurtz</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <!--
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/typography/">Typography</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/gamedev/">GameDev</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/unity/">Unity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/git/">Git</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/programming/">Programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tools/">Tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/android/">Android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/app/">App</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/baseball/">Baseball</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/development/">Development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/editor/">Editor</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcache/">Bitcache</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcoin/">Bitcoin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cryptocurrency/">Cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net/">.NET</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-net/">ASP.NET</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/rest/">REST</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/servicestack/">ServiceStack</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/software/">Software</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/windows/">Windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/efficiency/">Efficiency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/productivity/">Productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/network/">Network</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/p2p/">P2P</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/syncthing/">Syncthing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/xamarin/">Xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/clean-code/">Clean Code</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/design/">Design</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/layout/">Layout</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/sideproject/">Sideproject</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net-core/">.NET Core</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/linux/">Linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/3d-printing/">3D-Printing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/raspberry-pi/">Raspberry Pi</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/email/">email</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/encryption/">Encryption</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/self/">Self</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/blog/">Blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/web/">Web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ruby/">Ruby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/javascript/">JavaScript</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/jekyll/">Jekyll</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/game-development/">Game development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tools/">Tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/android/">Android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/cryptocurrency/">Cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/productivity/">Productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tips/">Tips</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/xamarin/">Xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/hobby/">Hobby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/security/">Security</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/linux/">Linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/blog/">Blog</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    -->
+    <ul class="pages">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="https://mjurtz.com/Impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:marcel@mjurtz.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">marcel@mjurtz.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/MarcelJurtz" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/MarcelJurtz" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <form action="/search.html" method="get">
+        <label for="search_box">Search Posts</label>
+        <input type="text" id="search_box" name="query">
+        <input type="submit" value="search">
+      </form>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

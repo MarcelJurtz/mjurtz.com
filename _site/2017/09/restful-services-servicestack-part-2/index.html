@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>RESTful Services with ServiceStack &#8211; Part 2</title>
+  <meta name="description" content="In my last post, I’ve set up a basic RESTful service using ServiceStack. This article deals with the implementation of a corresponding functionality on the c...">
+  
+  <meta name="author" content="Marcel Jurtz">
+  <meta name="copyright" content="&copy; Marcel Jurtz 2018">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/2017/09/restful-services-servicestack-part-2/">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <!--
+    <a href="/" class="logo">
+      
+      <span>Marcel Jurtz</span>
+      
+    </a>
+  -->
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <!--
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/typography/">Typography</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/gamedev/">GameDev</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/unity/">Unity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/git/">Git</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/programming/">Programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tools/">Tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/android/">Android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/app/">App</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/baseball/">Baseball</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/development/">Development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/editor/">Editor</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcache/">Bitcache</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcoin/">Bitcoin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cryptocurrency/">Cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net/">.NET</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-net/">ASP.NET</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/rest/">REST</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/servicestack/">ServiceStack</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/software/">Software</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/windows/">Windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/efficiency/">Efficiency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/productivity/">Productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/network/">Network</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/p2p/">P2P</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/syncthing/">Syncthing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/xamarin/">Xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/clean-code/">Clean Code</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/design/">Design</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/layout/">Layout</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/sideproject/">Sideproject</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net-core/">.NET Core</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/linux/">Linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/3d-printing/">3D-Printing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/raspberry-pi/">Raspberry Pi</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/email/">email</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/encryption/">Encryption</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/self/">Self</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/blog/">Blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/web/">Web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ruby/">Ruby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/javascript/">JavaScript</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/jekyll/">Jekyll</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/game-development/">Game development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tools/">Tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/android/">Android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/cryptocurrency/">Cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/productivity/">Productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tips/">Tips</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/xamarin/">Xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/hobby/">Hobby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/security/">Security</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/linux/">Linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/blog/">Blog</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    -->
+      <ul id="js-navigation-menu" class="navigation-menu-show">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="/feed.xml">RSS</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">RESTful Services with ServiceStack &#8211; Part 2</h1>
+      <p class="info">by <strong>Marcel Jurtz</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">September 23, 2017</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/CSharp">Csharp</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>In my <a href="http://blog.mjurtz.com/2017/09/creating-restful-services-servicestack/">last post</a>, I’ve set up a basic RESTful service using ServiceStack. This article deals with the implementation of a corresponding functionality on the client side. The application will query the path provided by the server and apply the pre-defined authentication method, requiring the user to log in with username and password before the application delivers the desired content.</p>
+
+<p>Both projects, client and server are located on my <a href="https://github.com/MarcelJurtz/ServiceStackExamples">GitHub-profile</a> and can be viewed and downloaded there.</p>
+
+<p>The structure of the client is very simple. There are two textboxes for entering username and password, as well as one for entering a name for the <em>hello/{name*}</em> path. The button sends the request and the richtextbox is filled with the response.</p>
+
+<p><img src="/assets/2017/servicestack-client-demo.png" alt="ServiceStack Client Demo Application" /></p>
+
+<p>Access to the classes created for the server-side service is required. For this reason, these were also added to the project. This includes <em>Hello</em> and <em>HelloResponse</em>.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="na">[Route("/hello/{name*}")]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Hello</span> <span class="p">:</span> <span class="n">IReturn</span><span class="p">&lt;</span><span class="n">HelloResponse</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">HelloResponse</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Result</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The same applies to the custom AuthenticationProvider.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">class</span> <span class="nc">CustomAuthenticationProvider</span> <span class="p">:</span> <span class="n">CredentialsAuthProvider</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">TryAuthenticate</span><span class="p">(</span><span class="n">IServiceBase</span> <span class="n">authService</span><span class="p">,</span> <span class="kt">string</span> <span class="n">userName</span><span class="p">,</span> <span class="kt">string</span> <span class="n">password</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Only checks if username equals password
+</span>
+        <span class="c1">// implement custom logic here
+</span>
+        <span class="k">return</span> <span class="n">userName</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">password</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="n">IHttpResult</span> <span class="nf">OnAuthenticated</span><span class="p">(</span><span class="n">IServiceBase</span> <span class="n">authService</span><span class="p">,</span> <span class="n">IAuthSession</span> <span class="n">session</span><span class="p">,</span> <span class="n">IAuthTokens</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">authInfo</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//session.customElement = "Hello World";
+</span>
+        <span class="k">return</span> <span class="k">base</span><span class="p">.</span><span class="nf">OnAuthenticated</span><span class="p">(</span><span class="n">authService</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">authInfo</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>An additional class has been created to control access to the service. This encapsulates the requests, which can be easily accessed from outside.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">ServiceStack</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">RESTfulDemoClient</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">RESTfulServiceClient</span> <span class="p">:</span> <span class="n">IDisposable</span>
+    <span class="p">{</span>
+        <span class="k">private</span> <span class="k">const</span> <span class="n">String</span> <span class="n">url</span> <span class="p">=</span> <span class="s">"http://localhost:64424"</span><span class="p">;</span>
+        <span class="k">private</span> <span class="n">JsonServiceClient</span> <span class="n">serviceclient</span><span class="p">;</span>
+
+        <span class="k">private</span> <span class="n">JsonServiceClient</span> <span class="nf">getServiceClient</span><span class="p">(</span><span class="n">String</span> <span class="n">usern</span><span class="p">,</span> <span class="n">String</span> <span class="n">passw</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">serviceclient</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">serviceclient</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">JsonServiceClient</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+
+                <span class="kt">var</span> <span class="n">authResponse</span> <span class="p">=</span> <span class="n">serviceclient</span><span class="p">.</span><span class="nf">Post</span><span class="p">(</span><span class="k">new</span> <span class="n">Authenticate</span>
+                <span class="p">{</span>
+                    <span class="n">provider</span> <span class="p">=</span> <span class="n">CustomAuthenticationProvider</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="c1">//= credentials
+</span>
+                    <span class="n">UserName</span> <span class="p">=</span> <span class="n">usern</span><span class="p">,</span>
+                    <span class="n">Password</span> <span class="p">=</span> <span class="n">passw</span><span class="p">,</span>
+                    <span class="n">RememberMe</span> <span class="p">=</span> <span class="k">true</span><span class="p">,</span>
+                <span class="p">});</span>
+
+                <span class="n">serviceclient</span><span class="p">.</span><span class="n">AlwaysSendBasicAuthHeader</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">serviceclient</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="n">HelloResponse</span> <span class="nf">GetHelloResponse</span><span class="p">(</span><span class="n">Hello</span> <span class="n">request</span><span class="p">,</span> <span class="n">String</span> <span class="n">username</span><span class="p">,</span> <span class="n">String</span> <span class="n">password</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">this</span><span class="p">.</span><span class="nf">getServiceClient</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span>
+            <span class="kt">var</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">Post</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">response</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">void</span> <span class="nf">Dispose</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">serviceclient</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The class already contains all the logic required for access control, and the method <em>GetHelloResponse</em> can be used to retrieve a response from the <em>Hello</em>-path, which is implemented like this:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">using</span><span class="p">(</span><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RESTfulServiceClient</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Hello</span><span class="p">()</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="n">txtRequest</span><span class="p">.</span><span class="n">Text</span> <span class="p">};</span>
+    <span class="k">try</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">GetHelloResponse</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">txtUsername</span><span class="p">.</span><span class="n">Text</span><span class="p">,</span> <span class="n">txtPassword</span><span class="p">.</span><span class="n">Text</span><span class="p">);</span>
+        <span class="n">txtResponse</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">Result</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="n">ServiceStack</span><span class="p">.</span><span class="n">WebServiceException</span> <span class="n">ex</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">txtResponse</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="n">ex</span><span class="p">.</span><span class="n">StatusCode</span> <span class="p">+</span> <span class="s">" - "</span> <span class="p">+</span> <span class="n">ex</span><span class="p">.</span><span class="n">ErrorMessage</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/.net">.NET</a>,&nbsp;<a href="/tag/asp.net">ASP.NET</a>,&nbsp;<a href="/tag/csharp">CSharp</a>,&nbsp;<a href="/tag/development">Development</a>,&nbsp;<a href="/tag/programming">Programming</a>,&nbsp;<a href="/tag/rest">REST</a>,&nbsp;<a href="/tag/servicestack">ServiceStack</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=RESTful+Services+with+ServiceStack+%26%238211%3B+Part+2&url=http%3A%2F%2Flocalhost%3A4000%2F2017%2F09%2Frestful-services-servicestack-part-2%2F&via=MarcelJurtz"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2017/09/restful-services-servicestack-part-2/') + '&title=RESTful Services with ServiceStack &#8211; Part 2'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Marcel Jurtz</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <!--
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/typography/">Typography</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/gamedev/">GameDev</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/unity/">Unity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/git/">Git</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/programming/">Programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tools/">Tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/android/">Android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/app/">App</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/baseball/">Baseball</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/development/">Development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/editor/">Editor</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcache/">Bitcache</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcoin/">Bitcoin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cryptocurrency/">Cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net/">.NET</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-net/">ASP.NET</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/rest/">REST</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/servicestack/">ServiceStack</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/software/">Software</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/windows/">Windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/efficiency/">Efficiency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/productivity/">Productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/network/">Network</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/p2p/">P2P</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/syncthing/">Syncthing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/xamarin/">Xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/clean-code/">Clean Code</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/design/">Design</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/layout/">Layout</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/sideproject/">Sideproject</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net-core/">.NET Core</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/linux/">Linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/3d-printing/">3D-Printing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/raspberry-pi/">Raspberry Pi</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/email/">email</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/encryption/">Encryption</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/self/">Self</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/blog/">Blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/web/">Web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ruby/">Ruby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/javascript/">JavaScript</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/jekyll/">Jekyll</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/game-development/">Game development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tools/">Tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/android/">Android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/cryptocurrency/">Cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/productivity/">Productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tips/">Tips</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/xamarin/">Xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/hobby/">Hobby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/security/">Security</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/linux/">Linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/blog/">Blog</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    -->
+    <ul class="pages">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="https://mjurtz.com/Impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:marcel@mjurtz.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">marcel@mjurtz.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/MarcelJurtz" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/MarcelJurtz" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <form action="/search.html" method="get">
+        <label for="search_box">Search Posts</label>
+        <input type="text" id="search_box" name="query">
+        <input type="submit" value="search">
+      </form>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

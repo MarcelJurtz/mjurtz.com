@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Comments &#038; how to use them</title>
+  <meta name="description" content="Comments are used in a lot of programming languages. While this concept is useful for a lot of purposes, beginners often start bad habits when commenting the...">
+  
+  <meta name="author" content="Marcel Jurtz">
+  <meta name="copyright" content="&copy; Marcel Jurtz 2018">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/2017/12/c-mastering-the-basics-comments/">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <!--
+    <a href="/" class="logo">
+      
+      <span>Marcel Jurtz</span>
+      
+    </a>
+  -->
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <!--
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/typography/">Typography</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/gamedev/">GameDev</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/unity/">Unity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/git/">Git</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/programming/">Programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tools/">Tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/android/">Android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/app/">App</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/baseball/">Baseball</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/development/">Development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/editor/">Editor</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcache/">Bitcache</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcoin/">Bitcoin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cryptocurrency/">Cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net/">.NET</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-net/">ASP.NET</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/rest/">REST</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/servicestack/">ServiceStack</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/software/">Software</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/windows/">Windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/efficiency/">Efficiency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/productivity/">Productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/network/">Network</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/p2p/">P2P</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/syncthing/">Syncthing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/xamarin/">Xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/clean-code/">Clean Code</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/design/">Design</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/layout/">Layout</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/sideproject/">Sideproject</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net-core/">.NET Core</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/linux/">Linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/3d-printing/">3D-Printing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/raspberry-pi/">Raspberry Pi</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/email/">email</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/encryption/">Encryption</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/self/">Self</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/blog/">Blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/web/">Web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ruby/">Ruby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/javascript/">JavaScript</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/jekyll/">Jekyll</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/game-development/">Game development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tools/">Tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/android/">Android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/cryptocurrency/">Cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/productivity/">Productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tips/">Tips</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/xamarin/">Xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/hobby/">Hobby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/security/">Security</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/linux/">Linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/blog/">Blog</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    -->
+      <ul id="js-navigation-menu" class="navigation-menu-show">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="/feed.xml">RSS</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">Comments &#038; how to use them</h1>
+      <p class="info">by <strong>Marcel Jurtz</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">December 15, 2017</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/Tips">Tips</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>Comments are used in a lot of programming languages. While this concept is useful for a lot of purposes, beginners often start bad habits when commenting their code. In this article I will explain when comments are useful and on the other hand illustrate problems where commenting can be less meaningful or even disturbing.</p>
+
+<h2 id="bad-comments-">Bad Comments …</h2>
+
+<p>At first sight (especially at the beginning of your programming career), you might think of comments as the perfect way to describe elements of your code that you don’t fully understand. This approach is not entirely wrong, but it does have a few problems that I will now discuss.</p>
+
+<h3 id="comments-as-excuse-for-unreadable-code">Comments as excuse for unreadable code</h3>
+
+<p>A problem of overly intensive commenting is the justification of illegible code. According to the motto “the code is not readable, but the commentary explains everything I need” the whole code quickly becomes unreadable and it takes a lot more time to understand its functionality. A simple example of this is the following code, which in the form of static methods offers the possibility to convert temperatures from Fahrenheit to celsius and vice versa.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">Converter</span>
+<span class="p">{</span>
+    <span class="cm">/* Celsius to Fahrenheit
+     * input: temperature in celsius
+     */</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="kt">double</span> <span class="nf">cToF</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="p">*</span> <span class="m">9</span> <span class="p">/</span> <span class="m">5</span> <span class="p">+</span> <span class="m">32</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* Celsius to Fahrenheit
+     * input: temperature in celsius
+     */</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="kt">double</span> <span class="nf">fToC</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="p">-</span> <span class="m">32</span><span class="p">)</span> <span class="p">*</span> <span class="m">5</span> <span class="p">/</span> <span class="m">9</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>A much better approach for this very simple example could be implemented like the following, which will work without any comments and will still be understood much better than the previous variant.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">class</span> <span class="nc">TempConverter</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="kt">double</span> <span class="nf">FahrenheitToDecimal</span><span class="p">(</span><span class="kt">double</span> <span class="n">fahrenheit</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">celsius</span> <span class="p">=</span> <span class="p">(</span><span class="n">fahrenheit</span> <span class="p">-</span> <span class="m">32</span><span class="p">)</span> <span class="p">*</span> <span class="m">5</span> <span class="p">/</span> <span class="m">9</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">celsius</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="kt">double</span> <span class="nf">CelsiusToFahrenheit</span><span class="p">(</span><span class="kt">double</span> <span class="n">celsius</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">fahrenheit</span> <span class="p">=</span> <span class="n">celsius</span> <span class="p">*</span> <span class="m">9</span> <span class="p">/</span> <span class="m">5</span> <span class="p">+</span> <span class="m">32</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">fahrenheit</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h3 id="readability-of-the-actual-code">Readability of the Actual Code</h3>
+
+<p>Another important point you should consider is that comments can even decrease the readability of your code.  Of course, your source code will be hard to read if you have to read through ten lines of comments before each line of code. This of course a bit exaggerated, but the point becomes clear.</p>
+
+<p>This problem has to be considered especially in combination with the first one. By using comments to describe even the smallest of activities, there is a risk that source code will be poorly structured. Also, you’ll most likely spent less time thinking about naming things, which can reduce readability drastically.</p>
+
+<h3 id="code-changes-and-obsolete-comments">Code Changes and Obsolete Comments</h3>
+
+<p>The last problem I would like to address is the change of code. The more comments written, the higher the probability of changing code and not adapting a descriptive comment. I’m sure that you are aware of this and probably stumbled across that topic more than one time.</p>
+
+<p>However, this is usually not a very big problem, since the source code itself explains how a method works, for example. This is more difficult if you depend on the content of the comments. Accordingly, this problem also combines with the two previous points.</p>
+
+<p>While source code typically changes quite quickly, comments often remain unchanged. If the comment now describes a functionality but is obsolete, this can easily lead to confusion.</p>
+
+<h2 id="-and-how-to-avoid-them">… and how to avoid them</h2>
+
+<p>Enough of the problems that come with comments. Comments are by no means to be considered as ballast and are definitely useful. With this article, however, I want to create a certain basis to deal with this functionality in a more deliberate way.</p>
+
+<p>While comments are helpful to keep track of your thoughts, this tool should be used with thoughtfulness. Excessive use can easily lead to the opposite of the expected result. However, it is also important to note that the code alone is definitely not documentation enough. Of course, this does not mean that the entire project documentation should be in the form of comments, but the possibility of commenting on code should certainly not be ignored.</p>
+
+<p>All in all, I recommend that you think about the meaning of it before adding a comment. Are there other ways to communicate the content of the comment? Do I only use it to describe the functionality of a method? In this case, you should prefer to start with checking whether the naming of the components is clear enough. On the other hand, an argument for the use of comments could be the documentation of unexpected result values or the like, i. e. anything that is not quickly apparent from the source code itself.</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/clean code">Clean Code</a>,&nbsp;<a href="/tag/development">Development</a>,&nbsp;<a href="/tag/efficiency">Efficiency</a>,&nbsp;<a href="/tag/programming">Programming</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=Comments+%26%23038%3B+how+to+use+them&url=http%3A%2F%2Flocalhost%3A4000%2F2017%2F12%2Fc-mastering-the-basics-comments%2F&via=MarcelJurtz"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2017/12/c-mastering-the-basics-comments/') + '&title=Comments &#038; how to use them'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Marcel Jurtz</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <!--
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/typography/">Typography</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/gamedev/">GameDev</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/unity/">Unity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/git/">Git</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/programming/">Programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tools/">Tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/android/">Android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/app/">App</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/baseball/">Baseball</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/development/">Development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/editor/">Editor</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcache/">Bitcache</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcoin/">Bitcoin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cryptocurrency/">Cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net/">.NET</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-net/">ASP.NET</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/rest/">REST</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/servicestack/">ServiceStack</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/software/">Software</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/windows/">Windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/efficiency/">Efficiency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/productivity/">Productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/network/">Network</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/p2p/">P2P</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/syncthing/">Syncthing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/xamarin/">Xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/clean-code/">Clean Code</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/design/">Design</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/layout/">Layout</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/sideproject/">Sideproject</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net-core/">.NET Core</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/linux/">Linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/3d-printing/">3D-Printing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/raspberry-pi/">Raspberry Pi</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/email/">email</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/encryption/">Encryption</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/self/">Self</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/blog/">Blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/web/">Web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ruby/">Ruby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/javascript/">JavaScript</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/jekyll/">Jekyll</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/game-development/">Game development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tools/">Tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/android/">Android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/cryptocurrency/">Cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/productivity/">Productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tips/">Tips</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/xamarin/">Xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/hobby/">Hobby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/security/">Security</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/linux/">Linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/blog/">Blog</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    -->
+    <ul class="pages">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="https://mjurtz.com/Impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:marcel@mjurtz.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">marcel@mjurtz.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/MarcelJurtz" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/MarcelJurtz" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <form action="/search.html" method="get">
+        <label for="search_box">Search Posts</label>
+        <input type="text" id="search_box" name="query">
+        <input type="submit" value="search">
+      </form>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

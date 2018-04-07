@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Marcel Jurtz</title>
+    <description>A software developers blog.
+</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 07 Apr 2018 09:02:10 +0200</pubDate>
+    <lastBuildDate>Sat, 07 Apr 2018 09:02:10 +0200</lastBuildDate>
+    <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Searching Blogposts in Jekyll</title>
+        <description>&lt;p&gt;In one of my &lt;a href=&quot;/2018/03/moving-to-jekyll&quot;&gt;previous posts&lt;/a&gt;, I went over the details why I moved my blog from WordPress to Jekyll. So far, I really appreciate my new system, but I miss one particular feature: searching through my posts.&lt;/p&gt;
+
+&lt;p&gt;Since Jekyll is a static site generator and does not rely on a database for the posts, you can’t simply add a search functionality like WordPress does. So, I have to work with some frontend / clientside stuff.&lt;/p&gt;
+
+&lt;p&gt;After doing some research, I stumbled across &lt;a href=&quot;https://lunrjs.com/&quot;&gt;lunr.js&lt;/a&gt;, a JavaScript-based text search library to use on the client side.&lt;/p&gt;
+
+&lt;p&gt;I decided to give lunr a try and went on to add a search box to my main page. You can now see this in the very bottom of the screen. The is constructed as follows:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;form&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/search.html&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;method=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;get&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;label&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;for=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;search_box&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Search Posts&lt;span class=&quot;nt&quot;&gt;&amp;lt;/label&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;search_box&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;query&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;submit&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;search&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;When clicking the search-button, the user will be redirected to the &lt;em&gt;search.html&lt;/em&gt; file. This site lists all matches and a search box containing the entered values. The search page consists of my regular header and footer. Also, of course, it contains a script which fetches all matching posts. It then lists all matches inside an unordered list. Of course, all scripts and pages are also located in this Blogs &lt;a href=&quot;https://github.com/MarcelJurtz/blog.mjurtz.com&quot;&gt;GitHub Repository&lt;/a&gt;, feel free to check it out!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 30 Mar 2018 14:00:00 +0200</pubDate>
+        <link>http://localhost:4000/2018/03/jekyll-search</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/03/jekyll-search</guid>
+        
+        <category>Blog</category>
+        
+        <category>Web</category>
+        
+        <category>Ruby</category>
+        
+        <category>JavaScript</category>
+        
+        <category>Jekyll</category>
+        
+        
+        <category>Blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Sideproject - Sist!</title>
+        <description>&lt;p&gt;It’s time to announce a new sideproject-launch!&lt;/p&gt;
+
+&lt;p&gt;Some days ago, I’ve been looking for an app which allowed my to keep track of shopping lists in a simple and fast way. While there are lots of such apps available for Android, all I tested seemed to be overkill for what I really wanted. So I decided to create my own app for this purpose.&lt;/p&gt;
+
+&lt;p&gt;Besides creating a simple app, my goal was to learn something new while developing the app. I decided to use Androids built in SQLite database to store lists. I’ve been using the database for previous projects, but I did not really care about the implementation. That being said, I wrote the queries all by hand which ended up being pretty messy.&lt;/p&gt;
+
+&lt;p&gt;In my defense I would like to say that I was still at the beginning of my programming career and had no idea of the existence of things like object relational mappers.&lt;/p&gt;
+
+&lt;p&gt;So I took a look around and decided to try Google’s Room for Android. If you’re not familiar with this project, feel free to checkout my article on the topic: &lt;a href=&quot;/2018/02/introduction-to-room-for-android/&quot;&gt;Introduction to Room for Android&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The result of one weekend now meets my expectations: A simple Android app that fulfills the functionality I want. Multi-list management with individual entries and a focus on simplicity and speed. A small detail is for example the automatic expansion of the keyboard when adding new entries.&lt;/p&gt;
+
+&lt;p&gt;In addition to testing Room, I was able to try other Android features I hadn’t used before. These include controls such as CardView or RecyclerView.&lt;/p&gt;
+
+&lt;p&gt;I would be very happy if you would test the app and submit feedback to me. As always, the entire source code is also available on GitHub and I’m always available for criticism and suggestions for improvement.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.jurtz.marcel.shoppinglist&quot;&gt;Download from Google Play&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/MarcelJurtz/ShoppingList&quot;&gt;Sourcecode on GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 28 Mar 2018 20:00:00 +0200</pubDate>
+        <link>http://localhost:4000/2018/03/sideproject-sist</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/03/sideproject-sist</guid>
+        
+        <category>Android</category>
+        
+        <category>App</category>
+        
+        <category>Development</category>
+        
+        <category>Programming</category>
+        
+        <category>Sideproject</category>
+        
+        
+        <category>Android</category>
+        
+      </item>
+    
+      <item>
+        <title>Moving to Jekyll</title>
+        <description>&lt;p&gt;I decided that it is time for some changes. When I started this blog, I decided to use WordPress. My goal was to be able to write posts without having to focus on anything other than actual writing. Wordpress was the tool of my choice due to its simplicity.&lt;/p&gt;
+
+&lt;p&gt;Nevertheless, I wasn’t always really happy with the CMS. Problems occurred again and again, mainly in connection with performance, loading times and general page speed. Not to mention incompatible plugins and various little things. I don’t want to discuss this here at all, I was simply looking for something faster.&lt;/p&gt;
+
+&lt;p&gt;I don’t really like content management systems very much, I feel more comfortable when I am completely free in the design of my content. I’m also a fan of lightweight systems, a database-driven system only for managing content that I maintain on my own anyway, doesn’t really reflect this idea. However, completely discarding the CMS approach was not a solution, so I looked for compromises.&lt;/p&gt;
+
+&lt;p&gt;I finally found the result of my search under the term “Static Site Generator”. The idea behind such generators is that you have the code of your page on your computer. You can add content in a simple and easy way, for example by writing markdown files. The generator than builds a full HTML page by combining predefined templates and actual content.&lt;/p&gt;
+
+&lt;p&gt;There are many of these generators available, but one of the better known ones is called Jekyll. Jekyll is the software which GitHub pages uses as well. And that’s already a great positive aspect for Jekyll: You can directly integrate your website with GitHub pages and use it to add posts and general changes.&lt;/p&gt;
+
+&lt;p&gt;Jekyll is based on ruby and I have to admit that I haven’t used ruby before. But it’s really easy to get started. I recommend getting started with a template, there are plenty on GitHub. After that, just check out the files and you’ll get an idea of how Jekyll works very quickly. This allows you to customize your template and make it look how you want it to.&lt;/p&gt;
+
+&lt;p&gt;You can also convert your WordPress posts to Markdown by using the Jekyll Export Plugin. Just make sure that you don’t fuck up your images as I did.&lt;/p&gt;
+
+&lt;p&gt;These are my first movements using Jekyll and I have a lot to learn. However, I want to get this live as fast as possible, I appreciate any feedback. Jekyll looks really promising, I’ll keep you updated.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 04 Mar 2018 16:17:17 +0100</pubDate>
+        <link>http://localhost:4000/2018/03/moving-to-jekyll/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/03/moving-to-jekyll/</guid>
+        
+        <category>Blog</category>
+        
+        <category>Web</category>
+        
+        <category>Ruby</category>
+        
+        
+        <category>Blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Sideproject: Perfeggt</title>
+        <description>&lt;p&gt;Once again, it’s time to announce one of my side projects: Pefeggt – A boiling time calculator for eggs. Actually, I’ve been sitting on this one for quite a while and I decided to complete a working release this weekend. The app is built for Android and it helps you to calculate the perfect time you need to boil eggs to your preferred consistency.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2018/03-perfeggt-overview.png&quot; alt=&quot;Perfeggt Overview&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;functionality--usage&quot;&gt;Functionality &amp;amp; Usage&lt;/h1&gt;
+
+&lt;p&gt;To calculate the time, I’m using &lt;a href=&quot;http://newton.ex.ac.uk/teaching/CDHW/egg/&quot;&gt;Charles D. H. Williams formula from his paper “The Science of boiling an Egg”&lt;/a&gt;. &lt;span&gt;This calculation requires the weight and temperature of the egg, the height above sea level at the place where it is cooked and the desired internal temperature of the egg to determine its consistency.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;To provide a better user experience, the user can provide the eggs weight in grams as well as &lt;span&gt;the measurement in the form of sizes S (50 g.), M (58 g.), L (68 g.) and XL (75 g.). Alternatively, you can enter the weight directly. To specify the desired internal temperature, I have specified three possible selections to achieve either a soft, medium or hard result.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span&gt;Finally, it is necessary to state the current position regarding the altitude above sea level. This determines the boiling point of the water.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span&gt;After you have entered all the values and pressed the “&lt;em&gt;Calculate&lt;/em&gt;” button, a second page will be loaded showing you the duration. Here you can now start a timer that exits the application. In the status bar you will now see a new entry indicating the time of completion. By clicking this entry, you can abort the countdown prematurely. As soon as the time has elapsed, the application will notify you with an alarm.&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span&gt;I am looking forward to any feedback! The app is available in both &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.jurtz.android.pefectegg&quot;&gt;PlayStore&lt;/a&gt; and Open Source on &lt;a href=&quot;https://github.com/MarcelJurtz/Perfeggt&quot;&gt;GitHub&lt;/a&gt;.&lt;/span&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 04 Mar 2018 16:17:17 +0100</pubDate>
+        <link>http://localhost:4000/2018/03/sideproject-perfeggt/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/03/sideproject-perfeggt/</guid>
+        
+        <category>Android</category>
+        
+        <category>App</category>
+        
+        <category>Development</category>
+        
+        <category>Programming</category>
+        
+        <category>Sideproject</category>
+        
+        
+        <category>Android</category>
+        
+      </item>
+    
+      <item>
+        <title>Introduction to i3</title>
+        <description>&lt;p&gt;In today’s article I would like to give you an insight into the usage of a tiling window manager, which I will illustrate with the example of i3.&lt;/p&gt;
+
+&lt;p&gt;A tiling window manager divides the screen into non-overlapping areas. You are probably more used to a stack-based system where windows can overlap. However, the concept of avoiding overlapping offers a major advantage: Due to the pure operation of the computer via keyboard, it is possible to work at a faster pace after a short training period.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2018/i3_screenshot.png&quot; alt=&quot;i3 Example Screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Of course, this is not everyone’s cup of tea, but I recommend you to give it a try. The Window Manager can be installed in parallel to your existing one and can be selected during the login process. Also, the installation doesn’t require much disk space (~2 MB).&lt;/p&gt;
+
+&lt;h2 id=&quot;installation--setup&quot;&gt;Installation &amp;amp; Setup&lt;/h2&gt;
+
+&lt;p&gt;I’m using Arch in combination with the MATE desktop environment. My current window manager is marco, MATEs default which is based on Metacity. On Arch Linux you can install i3 via the package &lt;em&gt;i3&lt;/em&gt; in the official package sources. This should be the same for most other package managers, but if necessary consult the search engine of your choice for your particular case.&lt;/p&gt;
+
+&lt;p&gt;After installing, you only need to log out and then log in again with the new Window Manager. You can usually define that using the small gear symbol. Of course, you can also set i3 directly as the default WM, but for testing purposes I prefer the temporary setup.&lt;/p&gt;
+
+&lt;h2 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h2&gt;
+
+&lt;p&gt;It’s time to get our hands dirty. After you have successfully logged in, you will be greeted by a simple screen with no content except for some status indicators at the bottom. On the first start you get to choose wether you want to create your own configuration or use the standard setup. I will work with the standard first.&lt;/p&gt;
+
+&lt;p&gt;i3 is based on the use of a so-called mod key. This provides the basis for a large number of keyboard combinations. By default, either the Windows or alt key is used for this purpose.&lt;/p&gt;
+
+&lt;p&gt;As promised, everything is now controlled by keyboard combinations. Let’s begin with the basic functions.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;To create a new window, use &lt;em&gt;Mod + Enter&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;To close the current window, use &lt;em&gt;CTRL + d&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Per default, windows will be added horizontally. To switch to vertical mode, use &lt;em&gt;Mod + v&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Use &lt;em&gt;Mod + h&lt;/em&gt; to switch back to horizontal mode&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To switch between open windows, you can use the following commands:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;Mod + j&lt;/em&gt; to move left,&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Mod + ;&lt;/em&gt; to move right&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Mod + l&lt;/em&gt; to move up&lt;/li&gt;
+  &lt;li&gt;And &lt;em&gt;Mod + k&lt;/em&gt; to move down&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The last shortcuts I’d like you to know are _Mod + &lt;number&gt;_, where you can replace &lt;number&gt; by any number you want to switch between multiple screens. By pressing _Shift_ additionally, you can move the current window to the specified screen.&lt;/number&gt;&lt;/number&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion--further-steps&quot;&gt;Conclusion &amp;amp; Further Steps&lt;/h2&gt;
+
+&lt;p&gt;While I think that these few commands will help you to get started with i3, there are far more available. I definitely recommend you to check out &lt;a href=&quot;https://i3wm.org/docs/&quot;&gt;i3s official documentation&lt;/a&gt;, it’s great. And as always, just try everything out and have fun!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 28 Feb 2018 07:00:57 +0100</pubDate>
+        <link>http://localhost:4000/2018/02/introduction-to-i3/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/02/introduction-to-i3/</guid>
+        
+        <category>Efficiency</category>
+        
+        <category>Linux</category>
+        
+        <category>Software</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>Getting Stuff Done</title>
+        <description>&lt;p&gt;While being fun, programming is not easy. To be able to dive into a flow state in which you’re completely focussed on the topic, you need to cut off all distractions. With this article I would like to introduce you to my methods of working in a more focused manner and give you some tips that might make your life much easier. My experiences mostly come from the programming area, but the following tips can be extended to various other topics.&lt;/p&gt;
+
+&lt;h2 id=&quot;consistency-is-key&quot;&gt;Consistency is Key&lt;/h2&gt;
+
+&lt;p&gt;I have mentioned this point more often and I think it is the most important thing you should get used to.&lt;/p&gt;
+
+&lt;p&gt;Building a habit is the most effective way to achieve real long-term visible progress. We are all just human beings and short-term lows (peaks as well!) will always be present. But if you really force yourself to do something regularly at the beginning, you will feel progress quickly. Additionally, it won’t feel forced in the long run, I promise.&lt;/p&gt;
+
+&lt;h2 id=&quot;investing-time--being-productive&quot;&gt;Investing Time != Being Productive&lt;/h2&gt;
+
+&lt;p&gt;One thing I have been able to notice very much on myself lately is that the time brought in does not correlate with productivity. On the contrary, if I force myself to work long hours, I am often less productive than if I spend a comparatively short period of time working and filling the gap by doing sports before or after work.&lt;/p&gt;
+
+&lt;p&gt;I must also say that I enjoy my work. One might think that this approach only applies to cases where this is not the rule.&lt;/p&gt;
+
+&lt;p&gt;When working for longer periods of time, I will eventually lose my focus. Sport helps me to get fit again and allows me to think about my projects in parallel. Often times I had ideas for new apps or improvements of existing ones while jogging, which I probably wouldn’t have come up with when working stubbornly.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2018/focus_running.png&quot; alt=&quot;Focus / Running - by Unsplash&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So if you can’t get on with a problem, give yourself a little bit of fresh air in between and sit down again later with a clear head. I have noticed for myself that physical exercise, even if only half an hour, significantly increases my ability to concentrate afterwards. And hey, you’re doing something for your health, by the way.&lt;/p&gt;
+
+&lt;h2 id=&quot;done-is-better-than-perfect&quot;&gt;Done is better than Perfect&lt;/h2&gt;
+
+&lt;p&gt;That was a point which I found extremely hard to apply. I have always regarded myself as a perfectionist, which has been very difficult for me when developing apps. I could never stick to an MVP. Whenever I thought of new features I wanted to have them implemented immediately. However, since I’ve really forced myself to first implement the basic functionality, to document ideas in parallel and then to implement them later in a sorted way, I don’t have 20 side projects that are not making any progress. Instead, each project has functioning interim results and I can fully focus one single thing.&lt;/p&gt;
+
+&lt;h2 id=&quot;dont-try-to-multitask&quot;&gt;Don’t try to Multitask&lt;/h2&gt;
+
+&lt;p&gt;Just don’t. It doesn’t work. Concentrate on one thing, do it and then move on to something else. It’s normal for the brain to wander and to come up with ideas. Write down these ideas and come back to them later, this will help you to get your mind free and to focus again.&lt;/p&gt;
+
+&lt;p&gt;See other tasks as distractions, just like your mobile phone or TV. Of course you can switch back and forth between several tasks, but you always need a certain amount of time to find your way back into a topic. And that’s exactly the time you can save.&lt;/p&gt;
+
+&lt;p&gt;For my part, I see the problem more when my own todo list is too full. The feeling of having to do a lot of things increases the temptation to do several things at the same time. To prevent this, it can be very helpful to plan the whole day in the morning. And not only in the style of a simple todo list, but with fixed start and end times. This can help you not to plan the day too fully and to calculate realistic time expenditure.&lt;/p&gt;
+
+&lt;h2 id=&quot;tldr--what-to-do-now&quot;&gt;TL;DR &amp;amp; What to do now&lt;/h2&gt;
+
+&lt;p&gt;There are various ways to increase your own productivity. In this article, I have dealt with those who are the most important to me personally.&lt;/p&gt;
+
+&lt;p&gt;First of all, I’m recommending you build a habit. Suppose you want to learn something, be it a new programming language or whatever: set yourself a fixed time period for it every day. Avoid any distractions during this period. Turn off your cell phone. Use addons like LeechBlock if you can’t resist the temptation to surf Reddit. And focus on the essentials, you can finish the final touches later.&lt;/p&gt;
+
+&lt;p&gt;But also take time out and move between your sessions. If running is too boring or unproductive for you, listen to podcasts while you’re running.&lt;/p&gt;
+
+&lt;p&gt;This subject is very personal and although I hope that my opinion will help you, I recommend you to browse through &lt;a href=&quot;https://medium.com/search?q=productivity&quot;&gt;medium&lt;/a&gt;. You’ll find some great articles on this topic.&lt;/p&gt;
+</description>
+        <pubDate>Wed, 21 Feb 2018 17:30:38 +0100</pubDate>
+        <link>http://localhost:4000/2018/02/getting-stuff-done/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/02/getting-stuff-done/</guid>
+        
+        <category>Efficiency</category>
+        
+        <category>Productivity</category>
+        
+        <category>Self</category>
+        
+        
+        <category>Productivity</category>
+        
+      </item>
+    
+      <item>
+        <title>Introduction to Room for Android</title>
+        <description>&lt;p&gt;In the context of I/O 2017, Google released the Room Persistence Library, an intermediate layer between application logic and Android’s SQLite database. Using Room, you no longer have to handle stuff like network connection errors or caching yourself. Today’s article will help you get started with the library and teach you all the skills you need to implement Room in your own applications.&lt;/p&gt;
+
+&lt;h2 id=&quot;background-of-my-sample-application&quot;&gt;Background of my sample application&lt;/h2&gt;
+
+&lt;p&gt;The following code snippets are part of one of my side projects. This application manages shopping lists, which in itself can have entries. Actually, this is a very simple application, but it illustrates the functionality of Room very well.&lt;/p&gt;
+
+&lt;h2 id=&quot;room-components&quot;&gt;Room Components&lt;/h2&gt;
+
+&lt;p&gt;The structure of Room is based on three elements, which I will explain in detail below. These elements are the entities, data access objects and the database itself. While the purpose of the database should be clear, I would like to comment briefly on that of the other two.&lt;/p&gt;
+
+&lt;h3 id=&quot;entities&quot;&gt;Entities&lt;/h3&gt;
+
+&lt;p&gt;Entities in general represent real things. Almost anything can be an entity. Think of a car, a house, yourself.&lt;/p&gt;
+
+&lt;p&gt;I wanted to keep the application very minimalistic, which is why each shopping list only has a title and a timestamp. This allows the user to sort the list chronologically. The class for displaying entries has the same attributes, supplemented by a reference to a shopping list. This is already a bit strange, because this setup corresponds to that of a relational database. When working with object relational mappers, however, you would rather give each shopping list a list of entry elements directly. Room separates itself from this approach: Room doesn’t allow object references. Google covers this extensively in a &lt;a href=&quot;https://developer.android.com/training/data-storage/room/referencing-data.html#understand-no-object-references&quot;&gt;dedicated article&lt;/a&gt;. Instead, you have to explicitly tell Room what parts you need.&lt;/p&gt;
+
+&lt;p&gt;For this reason I will build my pojos according to a relational database schema. This results in the following schema:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;room_db_introduction_erm.png&quot; alt=&quot;Example ERM for Room demo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In Android, this schema can be translated to regular POJO classes. Using Java annotations, you can tell your class what elements should be treated in which way. The class which represents a shopping list looks like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tableName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;shopping_list&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ShoppingList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@PrimaryKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoGenerate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@ColumnInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;timestamp_seconds&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timestampSeconds&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Ignore&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingListItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see, there are already multiple annotations. The first one is the &lt;em&gt;@Entity&lt;/em&gt; annotation. It tells room that this class needs to be persisted to a database and what the name of the matching table will be. The next annotation is @PrimaryKey. You need to assign a primary key to each entity. Doing so, you specify a unique identifier to each of the tables entries. I added &lt;em&gt;autoGenerate = true&lt;/em&gt;, so Room will be handling this matter for me.&lt;/p&gt;
+
+&lt;p&gt;In general, I don’t recommend to use simple integers as primary keys, but that’s another topic. Also, for the sake of simplicity, I set the scope of all properties to public. When using &lt;em&gt;private&lt;/em&gt;, Room requires appropriate accessor methods to these properties.&lt;/p&gt;
+
+&lt;p&gt;Per default, room will use class and property names to specify the respective elements in the database. By using the &lt;em&gt;@ColumnInfo&lt;/em&gt; annotation, you can customize these. The last annotation in this example is &lt;em&gt;@Ignore&lt;/em&gt;, which tells room to ignore the property when loading or saving data.&lt;/p&gt;
+
+&lt;p&gt;You can see another annotation when checking out the class representing an item inside a shopping list:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;tableName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;shopping_list_item&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;foreignKeys&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@ForeignKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;entity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;parentColumns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;childColumns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;list_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;onDelete&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CASCADE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ShoppingListItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@PrimaryKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoGenerate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@ColumnInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@ColumnInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;list_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;listId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@ColumnInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@ColumnInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;timestamp_seconds&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timestampSeconds&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As mentioned earlier, I’ve added a reference to the shopping list to each item. Since the id we specified for these is an automatically generate integer, we can simply access it here and store it as integer as well. By adding a &lt;em&gt;@ForeignKey&lt;/em&gt; annotation, you’ll firstly need to specify the referenced class, followed by the referenced row. Complete the statement by specifying the column of the current class with which the join is to be done. In my case, this is the &lt;em&gt;id&lt;/em&gt; column of the ShoppingList class and the &lt;em&gt;list_id&lt;/em&gt; column of the ShoppingListItem class. Note that the names must match those of the table and you may have overwritten them with &lt;em&gt;@ColumnInfo&lt;/em&gt; annotation.&lt;/p&gt;
+
+&lt;p&gt;You can also customize the OnDelete action. If CASCADE is specified as an OnDelete action, all items in a list are deleted if the list itself is deleted.&lt;/p&gt;
+
+&lt;h3 id=&quot;data-access-objects&quot;&gt;Data Access Objects&lt;/h3&gt;
+
+&lt;p&gt;The next part we will cover are the DAOs. Data Access Objects allow you to interact between the database and the entity. And here’s the best part: they are very easy to implement. I have created two DAOs, one for the lists and one for the entries. In order to keep the whole thing a little bit short here, I’m just going to go into the DAO of my list.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Dao&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ShoppingListDao&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;SELECT * FROM shopping_list&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getAll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;DELETE FROM shopping_list WHERE id = :id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteListById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Insert&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;updateList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Delete&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;A DAO is basically an interface that describes the interaction possibilities with the database. How exactly these look depends of course on your specific application. By specifying a Java annotation you can control the type of operation. In addition to the regular operations for creating, updating, or deleting objects, Room offers you the option of implementing your own queries using the query statement.&lt;/p&gt;
+
+&lt;p&gt;Of course, you can also use parameters in your custom queries. To do this, simply enter the name of the parameter with a preceding colon in the query.&lt;/p&gt;
+
+&lt;p&gt;In my final section, the database itself, I will show you how to combine the components and how to persist your objects.&lt;/p&gt;
+
+&lt;h3 id=&quot;database&quot;&gt;Database&lt;/h3&gt;
+
+&lt;p&gt;To interact with the SQLite database, you need to create a separate class that inherits from &lt;em&gt;RoomDatabase&lt;/em&gt; and passes the connection details via &lt;em&gt;@Database&lt;/em&gt; annotation. Google recommends using a singleton pattern, which I have implemented in my application.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Database&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;entities&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingListItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AppDatabase&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RoomDatabase&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppDatabase&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INSTANCE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingListDao&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shoppingListDao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingListItemDao&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shoppingListItemDao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppDatabase&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getAppDatabase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;INSTANCE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;INSTANCE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;Room&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;databaseBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppDatabase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;shoppinglist-db&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;allowMainThreadQueries&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INSTANCE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;destroyInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;INSTANCE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you may have noticed, I explicitly allowed Room to perform database operations in the UI thread. Please note you should not release something like this in a production-ready application. Otherwise, longer running operations may block the user interface and have negative effects on the UX.&lt;/p&gt;
+
+&lt;p&gt;The following example shows you how to retrieve data from the database.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shoppingLists&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppDatabase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAppDatabase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;shoppingListDao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;You can now perform all other operations in the same way. All information as well as advanced topics can be found directly on Google in the &lt;a href=&quot;https://developer.android.com/topic/libraries/architecture/room.html&quot;&gt;corresponding documentation&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 17 Feb 2018 09:00:46 +0100</pubDate>
+        <link>http://localhost:4000/2018/02/introduction-to-room-for-android/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/02/introduction-to-room-for-android/</guid>
+        
+        <category>Android</category>
+        
+        <category>App</category>
+        
+        <category>Development</category>
+        
+        <category>Programming</category>
+        
+        
+        <category>Android</category>
+        
+      </item>
+    
+      <item>
+        <title>Using Androids Recyclerview with Kotlin</title>
+        <description>&lt;p&gt;Traditionally, you were using a listview to display several homogeneous elements in you Android app. However, this view is now deprecated. Android now offers an alternative, which aims to increase performance by only loading those elements, that are currently rendered on-screen: the &lt;em&gt;RecyclerView&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;This article shows you how to get started with the RecyclerView. To make things a bit more interesting, we will be using Kotlin instead of Java.&lt;/p&gt;
+
+&lt;p&gt;You can set up an Android project for Kotlin by simply clicking the checkbox for Kotlin support in the new project wizard.&lt;/p&gt;
+
+&lt;h2 id=&quot;preceding-configuration&quot;&gt;Preceding Configuration&lt;/h2&gt;
+
+&lt;p&gt;Before you can use the Recyclerview in your app, a little preparatory work is necessary. The first thing you’ll need to do is to add this dependency to your modules build.gradle file:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;implementation 'com.android.support:recyclerview-v7:26.1.0'&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;basic-gui-setup&quot;&gt;Basic GUI Setup&lt;/h2&gt;
+
+&lt;p&gt;The next thing you’ll want to do is to set up a simple xaml page to display the view. I’ll be using a coordinator layout, which allows me to add a FloatingActionButton at a later stage.&lt;/p&gt;
+
+&lt;p&gt;The snippets I use in this article are from my ShoppingList-App, which is basically a minimalistic app to save shopping lists. The user can add and remove items from shopping lists, multiple shopping lists can be used at the same time.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;android.support.design.widget.CoordinatorLayout&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;xmlns:app=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res-auto&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;xmlns:tools=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/tools&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;tools:context=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;com.jurtz.marcel.shoppinglist.MainActivity&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;android.support.v7.widget.RecyclerView&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/rvShoppingLists&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_margin=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;8dp&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/android.support.design.widget.CoordinatorLayout &amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;recyclerview-components-adapter--viewholder&quot;&gt;RecyclerView Components: Adapter &amp;amp; ViewHolder&lt;/h2&gt;
+
+&lt;p&gt;While it offers the advantage of improved performance, the RecyclerView is a bit more complicated to create and requires additional components. In our &lt;em&gt;MainActivity&lt;/em&gt; class, the first thing to do now is to specify the RecyclerViews LayoutManager. This is required to define the appearance of the multiple items. I’d like to display them in a vertical list.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-kotlin&quot; data-lang=&quot;kotlin&quot;&gt;&lt;span class=&quot;n&quot;&gt;rvShoppingLists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layoutManager&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The next thing you’ll want to do is to set the views adapter. You can think of the adapter as a bridge between view and model which defines the appearance of your the POJOs.&lt;/p&gt;
+
+&lt;p&gt;To implement the adapter, add a new class which inherits from _RecyclerView.Adapter&lt;T&gt;_. As you can see, this class is generic and requires a ViewHolder, I&amp;#8217;ve also created a custom class for this purpose. The following snippet shows the methods that need to be overridden.&lt;/T&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-kotlin&quot; data-lang=&quot;kotlin&quot;&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ShoppingListAdapter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;shoppingLists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?&amp;gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RecyclerView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Adapter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingListViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getItemCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onBindViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;holder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingListViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onCreateViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ViewGroup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;viewType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingListViewHolder&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ShoppingListViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RecyclerView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Note that I added &lt;em&gt;5&lt;/em&gt; as return value for &lt;em&gt;getItemCount()&lt;/em&gt;, you can leave this for now, we will see what this does in the next steps.&lt;/p&gt;
+
+&lt;h2 id=&quot;custom-layout-for-recyclerview-items&quot;&gt;Custom Layout for RecyclerView Items&lt;/h2&gt;
+
+&lt;p&gt;Now, we will add a new layout file (xml) to specify how each row in the RecyclerView should look like. For this purpose, I’d like to use a CardView with a nested LinearLayout that contains two TextViews. In my app, I’m using the first TextView to display a shopping lists description and the amount of items in the second one.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;android.support.v7.widget.CardView&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:android=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res/android&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;xmlns:app=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res-auto&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;xmlns:card_view=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.android.com/apk/res-auto&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/cvRowEntry&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;card_view:cardCornerRadius=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;4dp&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;android:layout_margin=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;8dp&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;LinearLayout&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;match_parent&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;android:orientation=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;vertical&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;TextView&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/lblShoppingListRowItemHeader&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:layout_margin=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;8dp&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:text=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@string/rv_shopping_lists_placeholder_title&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:textSize=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;24sp&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;TextView&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@+id/lblShoppingListRowItemSubheader&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:layout_width=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:layout_height=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wrap_content&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:layout_margin=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;8dp&quot;&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;android:text=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;@string/rv_shopping_lists_placeholder_subtitle&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/LinearLayout&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/android.support.v7.widget.CardView&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now we want to link the view to the RecyclerView in the adapter. To do this, we will update the onCreateViewHolder method we overrode earlier.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-kotlin&quot; data-lang=&quot;kotlin&quot;&gt;&lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;onCreateViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ViewGroup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;viewType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingListViewHolder&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;layoutInflater&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LayoutInflater&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;cellForRow&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;layoutInflater&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inflate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shopping_list_row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingListViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cellForRow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This tells the RecyclerView that each row should look like the layout we just created. If you have left the &lt;em&gt;5&lt;/em&gt; in the getItemCount()-method, you will see that the view is displayed 5 times when running the app.&lt;/p&gt;
+
+&lt;h2 id=&quot;adding-real-data&quot;&gt;Adding real Data&lt;/h2&gt;
+
+&lt;p&gt;Of course, that’s not all we want. Currently, we can display multiple instances of the basic view, but we want to be able to show actual data. This is where the ViewHolder comes in. Usually, you will have access to a collection of objects that will be displayed in the RecyclerView.&lt;/p&gt;
+
+&lt;p&gt;In my snippet above, you can see that I already added a &lt;em&gt;List&amp;lt;ShoppingList?&amp;gt;&lt;/em&gt; parameter to the adapters constructor. The ShoppingList class basically just contains a description  and a List of ShoppingListItem-objects, that again only have a &lt;em&gt;description&lt;/em&gt; field.&lt;/p&gt;
+
+&lt;p&gt;The first thing to do now is to update the &lt;em&gt;getItemCount()&lt;/em&gt;-method to actually return the amount of available objects:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-kotlin&quot; data-lang=&quot;kotlin&quot;&gt;&lt;span class=&quot;k&quot;&gt;override&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getItemCount&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shoppingLists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In the next step, we will link the object to the view, which is done by the following:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-kotlin&quot; data-lang=&quot;kotlin&quot;&gt;&lt;span class=&quot;n&quot;&gt;holder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bindShoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shoppingList&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shoppingLists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;And, last but not least, declaring the views properties to the objects variable values:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-kotlin&quot; data-lang=&quot;kotlin&quot;&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ShoppingListViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RecyclerView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ViewHolder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bindShoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;?)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lblShoppingListRowItemHeader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;suffix&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rv_shopping_list_items_suffix_single&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resources&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rv_shopping_list_items_suffix_multiple&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lblShoppingListRowItemSubheader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;suffix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;That’s it! I added the following code to my MainActivity to test the adapter:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-kotlin&quot; data-lang=&quot;kotlin&quot;&gt;&lt;span class=&quot;n&quot;&gt;rvShoppingLists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;layoutManager&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LinearLayoutManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;list1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;list1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Groceries&quot;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;list2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;list2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Clothes&quot;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;list3&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;list3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;description&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Stuff for the apartment&quot;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;listOf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;rvShoppingLists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;adapter&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingListAdapter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt; &lt;/p&gt;
+</description>
+        <pubDate>Sun, 11 Feb 2018 17:01:31 +0100</pubDate>
+        <link>http://localhost:4000/2018/02/using-androids-recyclerview-with-kotlin/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/02/using-androids-recyclerview-with-kotlin/</guid>
+        
+        <category>Android</category>
+        
+        <category>App</category>
+        
+        <category>Development</category>
+        
+        <category>Programming</category>
+        
+        
+        <category>Android</category>
+        
+      </item>
+    
+      <item>
+        <title>Using GitHub over SSH on public WIFI</title>
+        <description>&lt;p&gt;When using GitHub via SSH, port 22 will be used per default. However, often times you’ll see this port being blocked on public WIFI networks. On a Linux machine, there is a simple way to change the default port.&lt;/p&gt;
+
+&lt;p&gt;To test if our plan works out, you can use the following command:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;ssh &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 443 git@ssh.github.com&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This will test the ssh connection by using port 443. If this returns a positive result, you can change the port in your ssh config file.&lt;/p&gt;
+
+&lt;p&gt;You can find the SSH configuration in &lt;em&gt;~/.ssh/config&lt;/em&gt;. To change the port, open the file and add a new entry for github, which will look like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;Host github.com
+  Hostname ssh.github.com
+  Port 443&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;You can use whatever port you’d like. I’m using port 443, which is the default HTTPS port. That is also the one GitHub recommends to use in &lt;a href=&quot;https://help.github.com/articles/using-ssh-over-the-https-port/&quot;&gt;their documentation&lt;/a&gt;. Save your changes and you will be able to work as you’re used to.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 29 Jan 2018 07:00:11 +0100</pubDate>
+        <link>http://localhost:4000/2018/01/how-to-use-github-over-ssh-on-public-wifi/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/01/how-to-use-github-over-ssh-on-public-wifi/</guid>
+        
+        <category>Git</category>
+        
+        <category>Linux</category>
+        
+        <category>Tools</category>
+        
+        
+        <category>Tools</category>
+        
+      </item>
+    
+      <item>
+        <title>C# – Mastering the Basics – Operator Overloading</title>
+        <description>&lt;p&gt;Most of the built-in operators that are available in C# can be redefined. In todays article, I’ll be showing you how you can redefine operators to match your custom classes. Additionally, I’ll cover which operators actually can be overwritten.&lt;/p&gt;
+
+&lt;h2 id=&quot;redefining-operators-&quot;&gt;&lt;span&gt;Redefining Operators&lt;br /&gt; &lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;To create custom functionality for operators in combination with your own classes, you’ll simply need to create methods matching a specific pattern. These methods require the usage of the keyword &lt;em&gt;operator&lt;/em&gt;, followed by the actual operator you’ll want to overwrite.&lt;/p&gt;
+
+&lt;p&gt;I’ve created a simple class to demonstrate the concept of operator overloading. This class represents a rectangle, which only has the two properties &lt;em&gt;Length&lt;/em&gt; and &lt;em&gt;Width&lt;/em&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c#&quot; data-lang=&quot;c#&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Rectangle&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I’d like to start by overloading the + operator. When this is applied to two rectangles, I want to receive a new rectangle where both width and length from both input objects are added. You achieve this functionality by adding the following method to the class &lt;em&gt;Rectangle&lt;/em&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c#&quot; data-lang=&quot;c#&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Quite easy, isn’t it? But of course, you’re not restricted to these simple operators, which is why I’ll cover all of the available operators in the next section.&lt;/p&gt;
+
+&lt;p&gt;Another example I’d like to demonstrate is the comparison of two objects. In the following listing, you can see the comparison of two Rectangle objects with the operators &lt;em&gt;==&lt;/em&gt; and &lt;em&gt;!=&lt;/em&gt;.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c#&quot; data-lang=&quot;c#&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;non-overloadable-operators&quot;&gt;(Non-)Overloadable Operators&lt;/h2&gt;
+
+&lt;p&gt;Altough a lot of operators can be overloaded, there are some exceptions. To give you a better understanding and overview of allowed operators, I’ve listed them in the table below.&lt;/p&gt;
+
+&lt;table style=&quot;border-collapse: collapse; border-spacing: 0;&quot;&gt;
+  &lt;tr&gt;
+    &lt;th style=&quot;font-weight: bold; padding: 10px 5px; overflow: hidden; word-break: normal; text-align: center; border: 1px solid #000000;&quot;&gt;
+      Operator
+    &lt;/th&gt;
+    
+    &lt;th style=&quot;font-weight: bold; padding: 10px 5px; overflow: hidden; word-break: normal; text-align: center; border: 1px solid #000000;&quot;&gt;
+      Description
+    &lt;/th&gt;
+    
+    &lt;th style=&quot;font-weight: bold; padding: 10px 5px; overflow: hidden; word-break: normal; text-align: center; border: 1px solid #000000;&quot;&gt;
+      Overloadable
+    &lt;/th&gt;
+  &lt;/tr&gt;
+  
+  &lt;tr&gt;
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
+      +, -, *, /
+    &lt;/td&gt;
+    
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
+      Basic arithmetic operations
+    &lt;/td&gt;
+    
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; color: #009901; text-align: center; border: 1px solid #000000;&quot;&gt;
+      ✓
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  
+  &lt;tr&gt;
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
+      ++, &amp;#8212;
+    &lt;/td&gt;
+    
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
+      Increment / Decrement
+    &lt;/td&gt;
+    
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; color: #009901; text-align: center; border: 1px solid #000000;&quot;&gt;
+      ✓
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  
+  &lt;tr&gt;
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
+      ~
+    &lt;/td&gt;
+    
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
+      Bitwise complement
+    &lt;/td&gt;
+    
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; color: #009901; text-align: center; border: 1px solid #000000;&quot;&gt;
+      ✓
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  
+  &lt;tr&gt;
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
+      ==, !=, &amp;lt;, &amp;gt;, &amp;lt;=, &amp;gt;=
+    &lt;/td&gt;
+    
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
+      Comparison
+    &lt;/td&gt;
+    
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; color: #009901; text-align: center; border: 1px solid #000000;&quot;&gt;
+      ✓
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  
+  &lt;tr&gt;
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
+      &amp;amp;&amp;amp;, ||
+    &lt;/td&gt;
+    
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
+      Conditional logical operators
+    &lt;/td&gt;
+    
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; color: #cb0000; text-align: center; border: 1px solid #000000;&quot;&gt;
+      ✗
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  
+  &lt;tr&gt;
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
+      +=, -=, *=, /=, %=
+    &lt;/td&gt;
+    
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
+      Assignment Operators
+    &lt;/td&gt;
+    
+    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; color: #cb0000; text-align: center; border: 1px solid #000000;&quot;&gt;
+      ✗
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</description>
+        <pubDate>Sun, 21 Jan 2018 12:00:20 +0100</pubDate>
+        <link>http://localhost:4000/2018/01/c-mastering-the-basics-operator-overloading/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/01/c-mastering-the-basics-operator-overloading/</guid>
+        
+        <category>.NET</category>
+        
+        <category>CSharp</category>
+        
+        <category>Development</category>
+        
+        <category>Programming</category>
+        
+        
+        <category>CSharp</category>
+        
+      </item>
+    
+  </channel>
+</rss>

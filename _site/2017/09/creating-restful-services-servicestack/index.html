@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Creating RESTful Services with ServiceStack</title>
+  <meta name="description" content="This articles covers the basic usage of ServiceStack, a .NET-framework for creating RESTful services. The framework has a really great documentation, where y...">
+  
+  <meta name="author" content="Marcel Jurtz">
+  <meta name="copyright" content="&copy; Marcel Jurtz 2018">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/2017/09/creating-restful-services-servicestack/">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <!--
+    <a href="/" class="logo">
+      
+      <span>Marcel Jurtz</span>
+      
+    </a>
+  -->
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <!--
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/typography/">Typography</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/gamedev/">GameDev</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/unity/">Unity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/git/">Git</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/programming/">Programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tools/">Tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/android/">Android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/app/">App</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/baseball/">Baseball</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/development/">Development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/editor/">Editor</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcache/">Bitcache</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcoin/">Bitcoin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cryptocurrency/">Cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net/">.NET</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-net/">ASP.NET</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/rest/">REST</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/servicestack/">ServiceStack</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/software/">Software</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/windows/">Windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/efficiency/">Efficiency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/productivity/">Productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/network/">Network</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/p2p/">P2P</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/syncthing/">Syncthing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/xamarin/">Xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/clean-code/">Clean Code</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/design/">Design</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/layout/">Layout</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/sideproject/">Sideproject</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net-core/">.NET Core</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/linux/">Linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/3d-printing/">3D-Printing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/raspberry-pi/">Raspberry Pi</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/email/">email</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/encryption/">Encryption</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/self/">Self</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/blog/">Blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/web/">Web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ruby/">Ruby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/javascript/">JavaScript</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/jekyll/">Jekyll</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/game-development/">Game development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tools/">Tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/android/">Android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/cryptocurrency/">Cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/productivity/">Productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tips/">Tips</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/xamarin/">Xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/hobby/">Hobby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/security/">Security</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/linux/">Linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/blog/">Blog</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    -->
+      <ul id="js-navigation-menu" class="navigation-menu-show">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="/feed.xml">RSS</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">Creating RESTful Services with ServiceStack</h1>
+      <p class="info">by <strong>Marcel Jurtz</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">September 21, 2017</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/CSharp">Csharp</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>This articles covers the basic usage of <a href="https://servicestack.net/">ServiceStack</a>, a .NET-framework for creating RESTful services. The framework has a really great <a href="http://docs.servicestack.net/">documentation</a>, where you can check out all the details.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>To get started, you’ll want to create a new ASP.NET project, and load the ServiceStack package via NuGet. Then, you’ll have to edit your <em>Web.config</em> to look like the following (mentioned versions may differ from your project):</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="c">&lt;!--
+  Informationen zur Konfiguration Ihrer ASP.NET-Anwendung finden Sie unter
+  https://go.microsoft.com/fwlink/?LinkId=169433
+  --&gt;</span>
+<span class="nt">&lt;configuration&gt;</span>
+  <span class="nt">&lt;system.web&gt;</span>
+    <span class="nt">&lt;compilation</span> <span class="na">debug=</span><span class="s">"true"</span> <span class="na">targetFramework=</span><span class="s">"4.6.1"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;httpRuntime</span> <span class="na">targetFramework=</span><span class="s">"4.6.1"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;httpHandlers&gt;</span>
+      <span class="nt">&lt;add</span> <span class="na">path=</span><span class="s">"*"</span> <span class="na">type=</span><span class="s">"ServiceStack.HttpHandlerFactory, ServiceStack"</span> <span class="na">verb=</span><span class="s">"*"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/httpHandlers&gt;</span>
+  <span class="nt">&lt;/system.web&gt;</span>
+  <span class="c">&lt;!-- Required for IIS7 --&gt;</span>
+  <span class="nt">&lt;system.webServer&gt;</span>
+    <span class="nt">&lt;modules</span> <span class="na">runAllManagedModulesForAllRequests=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;validation</span> <span class="na">validateIntegratedModeConfiguration=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;handlers&gt;</span>
+      <span class="nt">&lt;add</span> <span class="na">path=</span><span class="s">"*"</span> <span class="na">name=</span><span class="s">"ServiceStack.Factory"</span> <span class="na">type=</span><span class="s">"ServiceStack.HttpHandlerFactory, ServiceStack"</span> <span class="na">verb=</span><span class="s">"*"</span> <span class="na">preCondition=</span><span class="s">"integratedMode"</span> <span class="na">resourceType=</span><span class="s">"Unspecified"</span> <span class="na">allowPathInfo=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/handlers&gt;</span>
+  <span class="nt">&lt;/system.webServer&gt;</span>
+  <span class="nt">&lt;system.codedom&gt;</span>
+    <span class="nt">&lt;compilers&gt;</span>
+      <span class="nt">&lt;compiler</span> <span class="na">language=</span><span class="s">"c#;cs;csharp"</span> <span class="na">extension=</span><span class="s">".cs"</span>
+        <span class="na">type=</span><span class="s">"Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3513ad364e35"</span>
+        <span class="na">warningLevel=</span><span class="s">"4"</span> <span class="na">compilerOptions=</span><span class="s">"/langversion:default /nowarn:1659;1699;1701"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;compiler</span> <span class="na">language=</span><span class="s">"vb;vbs;visualbasic;vbscript"</span> <span class="na">extension=</span><span class="s">".vb"</span>
+        <span class="na">type=</span><span class="s">"Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3513ad364e35"</span>
+        <span class="na">warningLevel=</span><span class="s">"4"</span> <span class="na">compilerOptions=</span><span class="s">"/langversion:default /nowarn:41008 /define:_MYTYPE=\"</span><span class="err">Web\"</span> <span class="err">/optionInfer+"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/compilers&gt;</span>
+  <span class="nt">&lt;/system.codedom&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span></code></pre></figure>
+
+<p>The second step is the configuration of the file <em>Global.asax.cs</em>. I’ve created a new class <em>HelloAppHost</em> which inherits from <em>AppHostBase</em>.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">class</span> <span class="nc">HelloAppHost</span> <span class="p">:</span> <span class="n">AppHostBase</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">HelloAppHost</span><span class="p">()</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="s">"Hello Web Services"</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">HelloService</span><span class="p">).</span><span class="n">Assembly</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Configure</span><span class="p">(</span><span class="n">Container</span> <span class="n">container</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nf">SetConfig</span><span class="p">(</span><span class="k">new</span> <span class="n">HostConfig</span>
+        <span class="p">{</span>
+            <span class="n">DefaultContentType</span> <span class="p">=</span> <span class="n">MimeTypes</span><span class="p">.</span><span class="n">Json</span>
+        <span class="p">});</span>
+
+        <span class="c1">// Authentication
+</span>
+        <span class="n">Plugins</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">AuthFeature</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">AuthUserSession</span><span class="p">(),</span>
+            <span class="k">new</span> <span class="n">IAuthProvider</span><span class="p">[]</span> <span class="p">{</span>
+                <span class="k">new</span> <span class="nf">CustomCredentialsAuthProvider</span><span class="p">()</span>
+            <span class="p">}</span>
+        <span class="p">));</span>
+
+        <span class="n">Plugins</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">RegistrationFeature</span><span class="p">());</span>
+
+        <span class="n">container</span><span class="p">.</span><span class="n">Register</span><span class="p">&lt;</span><span class="n">ICacheClient</span><span class="p">&gt;(</span><span class="k">new</span> <span class="nf">MemoryCacheClient</span><span class="p">());</span>
+        <span class="kt">var</span> <span class="n">userRep</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InMemoryAuthRepository</span><span class="p">();</span>
+        <span class="n">container</span><span class="p">.</span><span class="n">Register</span><span class="p">&lt;</span><span class="n">IUserAuthRepository</span><span class="p">&gt;(</span><span class="n">userRep</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>I’ve added a authentication functionality, which will be covered later in this post. The other thing I set up, is to return JSON-formatted data as default. The last thing to do in this file is creating an instance of the above class:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">protected</span> <span class="k">void</span> <span class="nf">Application_Start</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">appHost</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">HelloAppHost</span><span class="p">();</span>
+    <span class="n">appHost</span><span class="p">.</span><span class="nf">Init</span><span class="p">();</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="adding-routes">Adding Routes</h2>
+
+<p>After configuring the service, routes can be added. The general structure consists of three elements: RequestDTO, ResponseDTO and a Service. The following example shows how to set up a route following this approach:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="na">[Route("/hello/{name*}")]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Hello</span> <span class="p">:</span> <span class="n">IReturn</span><span class="p">&lt;</span><span class="n">HelloResponse</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">HelloResponse</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Result</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">HelloService</span> <span class="p">:</span> <span class="n">IService</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">object</span> <span class="nf">Get</span><span class="p">(</span><span class="n">Hello</span> <span class="n">request</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">name</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="n">Name</span> <span class="p">??</span> <span class="s">"World"</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">HelloResponse</span> <span class="p">{</span> <span class="n">Result</span> <span class="p">=</span> <span class="s">$"Hello, </span><span class="p">{</span><span class="n">name</span><span class="p">}</span><span class="s">!"</span> <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>This service responds to requests on <em>/hello/{name*}</em>. The curly brackets indicate a variable, the star is a wildcard to indicate, that this variable is optional. This way, the service will also respond if no name is submitted (it will use the default ‘<em>World’</em> for the response).</p>
+
+<p>While you can use the notation above to mark routes, you can also set these up in your configuration (<em>Global.asax.cs</em>). Just add the following contents after <em>container.register</em>…</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">Routes</span>
+    <span class="p">.</span><span class="n">Add</span><span class="p">&lt;</span><span class="n">Hello</span><span class="p">&gt;(</span><span class="s">"/hello"</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Add</span><span class="p">&lt;</span><span class="n">Hello</span><span class="p">&gt;(</span><span class="s">"/hello/{Name}"</span><span class="p">);</span></code></pre></figure>
+
+<h2 id="http-verbs">HTTP Verbs</h2>
+
+<p>As shown in the example above, HelloService only implements the method <em>Get()</em>. This can be supplemented or extended by any other HTTP verb or Any, which will then respond to all requests on this path. ServiceStack also has a nice <a href="http://docs.servicestack.net/design-rest-services">documentation</a> about the usage of each verb.</p>
+
+<h2 id="fallback-routes">Fallback Routes</h2>
+
+<p>You can use fallbacks to cover routes, that are not handled explicitly. In my case, I return information about the unhandled path and a timestamp. Again, wildcards are used.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="na">[FallbackRoute("/{Path*}")]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Fallback</span> <span class="p">:</span> <span class="n">IReturn</span><span class="p">&lt;</span><span class="n">FallbackResponse</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">String</span> <span class="n">Path</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">FallbackResponse</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Message</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Path</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="n">String</span> <span class="n">Timestamp</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">FallbackService</span> <span class="p">:</span> <span class="n">IService</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">object</span> <span class="nf">Any</span><span class="p">(</span><span class="n">Fallback</span> <span class="n">request</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">FallbackResponse</span> <span class="p">{</span>
+            <span class="n">Message</span> <span class="p">=</span> <span class="s">"No matching path specified"</span><span class="p">,</span>
+            <span class="n">Path</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="n">Path</span> <span class="p">??</span> <span class="s">"/"</span><span class="p">,</span>
+            <span class="n">Timestamp</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="nf">ToString</span><span class="p">()</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="authentication">Authentication</h2>
+
+<p>The last element I’d like to cover is the authentication of a user. ServiceStack offers the class <em>CredentialsAuthProvider</em>, from which custom providers can be derived. The following example covers two methods, TryAuthenticate, which tries to log in by checking username and password against custom logic, and OnAuthenticated, which will be used to assign session variables.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">class</span> <span class="nc">CustomCredentialsAuthProvider</span> <span class="p">:</span> <span class="n">CredentialsAuthProvider</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">TryAuthenticate</span><span class="p">(</span><span class="n">IServiceBase</span> <span class="n">authService</span><span class="p">,</span>
+    <span class="kt">string</span> <span class="n">userName</span><span class="p">,</span> <span class="kt">string</span> <span class="n">password</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Only checks if username equals password
+</span>
+        <span class="c1">// implement custom logic here
+</span>
+        <span class="k">return</span> <span class="n">userName</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">password</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="n">IHttpResult</span> <span class="nf">OnAuthenticated</span><span class="p">(</span><span class="n">IServiceBase</span> <span class="n">authService</span><span class="p">,</span>
+        <span class="n">IAuthSession</span> <span class="n">session</span><span class="p">,</span> <span class="n">IAuthTokens</span> <span class="n">tokens</span><span class="p">,</span>
+        <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">authInfo</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">session</span><span class="p">.</span><span class="n">customElement</span><span class="p">=</span> <span class="s">"Hello World"</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">base</span><span class="p">.</span><span class="nf">OnAuthenticated</span><span class="p">(</span><span class="n">authService</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">authInfo</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>After creating this functionality, you can try to log in using the <em>/auth</em> route via POST and adding a username and password parameter. If you want any of your routes to require authentication, just add the <em>[Authenticate]</em> attribute above its response (above the [Route…]). After doing so, requesting this route without earlier authentication will lead to an empty response.</p>
+
+<p>To log out, simply send a request (GET or POST) to <em>/auth/logout</em>.</p>
+
+<h2 id="further-information">Further Information</h2>
+
+<p>As I mentioned above, <a href="http://docs.servicestack.net/">ServiceStacks documentation</a> is really well written and maintained. I don’t think you’ll need any information besides what you can find there.</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/.net">.NET</a>,&nbsp;<a href="/tag/asp.net">ASP.NET</a>,&nbsp;<a href="/tag/csharp">CSharp</a>,&nbsp;<a href="/tag/development">Development</a>,&nbsp;<a href="/tag/programming">Programming</a>,&nbsp;<a href="/tag/rest">REST</a>,&nbsp;<a href="/tag/servicestack">ServiceStack</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=Creating+RESTful+Services+with+ServiceStack&url=http%3A%2F%2Flocalhost%3A4000%2F2017%2F09%2Fcreating-restful-services-servicestack%2F&via=MarcelJurtz"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2017/09/creating-restful-services-servicestack/') + '&title=Creating RESTful Services with ServiceStack'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Marcel Jurtz</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <!--
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/typography/">Typography</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/gamedev/">GameDev</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/unity/">Unity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/git/">Git</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/programming/">Programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tools/">Tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/android/">Android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/app/">App</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/baseball/">Baseball</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/development/">Development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/editor/">Editor</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcache/">Bitcache</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcoin/">Bitcoin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cryptocurrency/">Cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net/">.NET</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-net/">ASP.NET</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/rest/">REST</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/servicestack/">ServiceStack</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/software/">Software</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/windows/">Windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/efficiency/">Efficiency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/productivity/">Productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/network/">Network</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/p2p/">P2P</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/syncthing/">Syncthing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/xamarin/">Xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/clean-code/">Clean Code</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/design/">Design</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/layout/">Layout</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/sideproject/">Sideproject</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net-core/">.NET Core</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/linux/">Linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/3d-printing/">3D-Printing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/raspberry-pi/">Raspberry Pi</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/email/">email</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/encryption/">Encryption</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/self/">Self</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/blog/">Blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/web/">Web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ruby/">Ruby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/javascript/">JavaScript</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/jekyll/">Jekyll</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/game-development/">Game development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tools/">Tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/android/">Android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/cryptocurrency/">Cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/productivity/">Productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tips/">Tips</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/xamarin/">Xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/hobby/">Hobby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/security/">Security</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/linux/">Linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/blog/">Blog</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    -->
+    <ul class="pages">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="https://mjurtz.com/Impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:marcel@mjurtz.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">marcel@mjurtz.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/MarcelJurtz" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/MarcelJurtz" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <form action="/search.html" method="get">
+        <label for="search_box">Search Posts</label>
+        <input type="text" id="search_box" name="query">
+        <input type="submit" value="search">
+      </form>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+
+
+  </body>
+
+</html>

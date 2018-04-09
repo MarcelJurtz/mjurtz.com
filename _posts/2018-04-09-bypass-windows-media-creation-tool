@@ -1,0 +1,15 @@
+---
+title: 'Bypassing Microsofts Windows Media Creation Tool'
+date: 2018-04-09T18:00:00+00:00
+author: Marcel Jurtz
+layout: post
+permalink: /2018/04/bypass-windows-media-creation-tool/
+categories:
+  - Windows
+tags:
+  - Tools
+  - Windows
+---
+
+Remember when you could simply download official Windows ISO images to burn on DVDs and install? 
+Microsoft now uses this thing called 'Media Creation Tool' to download ISOs, but there's a simple way to bypass this and download actual images.

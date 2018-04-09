@@ -1,0 +1,455 @@
+<p>In this article, I’ll document the process of building an android app from scratch by using the MVP approach of clean architecture. The app itself will represent a minimalistic umpire indicator for tracking baseball games. Please consider using this in the dugout only. Since this will be a longer post, you can use the following links to jump between sections.</p>
+
+<ol>
+  <li><a href="#what_is_mvp">What is MVP?</a></li>
+  <li><a href="#app_background">Background on the app to be built</a></li>
+  <li><a href="#gui">Constructing the GUI</a></li>
+  <li><a href="#interfaces">Managing interfaces</a></li>
+  <li><a href="#model">Building the model</a></li>
+  <li><a href="#presenter">Connecting view and model by adding the presenter</a></li>
+</ol>
+
+<h3 id="what_is_mvp" style="padding-top: 150px; margin-top: -150px;">
+  1. What is MVP?
+</h3>
+
+<p>MVP is a design pattern which helps you to build clean, modular code, that can easily be tested. It consists of the model, the view and the presenter. The view just displays your GUI and can be represented by an activity. The model contains your business logic. The presenter connects these parts. This approach has the advantage, that you can build your model using pure Java, without any Android compontents.</p>
+
+<p>Usually, guides on how to implement MVP are based on several frameworks, like dagger2 for dependency injection. I found these guides very hard to get started as a beginner, so I implemented my interpretation of MVP without using any third-party framework.</p>
+
+<h3 id="app_background" style="padding-top: 150px; margin-top: -150px;">
+  2. Background on the app to be built
+</h3>
+
+<p>For anyone who is not familiar with baseball, this section gives a short summary of the concept of an umpires indicator. A baseball game usually consists of nine innings. Each team has a offensive half of an inning and a defensive half. After scoring three outs, the teams switch places. By scoring three outs, a player receives an out. By scoring four balls, a player receives a walk, which allows him to continue to the first base. The mentioned balls and strikes only apply to the batter, the player who is currently located on the home plate and tries to hit a pitch.</p>
+
+<p>The umpires indicator is used to track outs, balls and strikes (in this case also innings). The tool is usually a small mechanical gadget. The app will contain a simple GUI which covers this functionality. To keep this post simple, the functionality of the app will be quite minimalistic. Balls, Strikes, Outs and Innings will be represented by a number. The value range of each of these will match the pendant in real baseball games. The values will increase by tapping the text, when the value is higher than the maximum, it will reset to the minimum.</p>
+
+<p>The full sourcecode to this project is available on <a href="https://github.com/MarcelJurtz/UmpireIndicator">GitHub</a>.</p>
+
+<h3 id="gui" style="padding-top: 150px; margin-top: -150px;">
+  3. Constructing the GUI
+</h3>
+
+<p>You can use several tools for GUI-prototyping. I’ve stumbled across <a href="https://github.com/prikhi/pencil">Pencil on GitHub</a>, which looks pretty neat for this job. This wonderful example also shows, that I’m a talentless designer.</p>
+
+<p><img src="/assets/2017/android-mvp-gui.png" style="width: 300px" /></p>
+
+<p>Like the physical umpire indicators, this one will only be able to increase the counts. Each element will have a maximum value, after which the value will reset to its minimum value. I’ve decided to add TextViews above the different numbers to be able to differentiate between them.</p>
+
+<p>This layout has been realised in my MainActivity.xml file:</p>
+
+<figure class="highlight"><pre><code class="language-xaml" data-lang="xaml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jurtz.marcel.umpireindicator.MainActivity"&gt;
+
+
+    &lt;!-- Outs --&gt;
+
+     &lt;TextView
+        android:id="@+id/txtOuts"
+        style="@style/ScoreTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+         android:layout_marginBottom="@dimen/margin_main"
+        android:text="O" /&gt;
+
+    &lt;!-- Innings --&gt;
+
+    &lt;TextView
+        android:id="@+id/txtInnings"
+        style="@style/ScoreTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_main"
+        android:text="I" /&gt;
+
+    &lt;!-- Balls --&gt;
+
+    &lt;TextView
+        android:id="@+id/txtBalls"
+        style="@style/ScoreTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/margin_main"
+        android:layout_marginLeft="@dimen/margin_main"
+        android:text="B" /&gt;
+
+    &lt;!-- Strikes --&gt;
+
+    &lt;TextView
+        android:id="@+id/txtStrikes"
+        style="@style/ScoreTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/margin_main"
+        android:layout_marginRight="@dimen/margin_main"
+        android:text="S"/&gt;
+
+    &lt;!-- Descriptions --&gt;
+
+    &lt;TextView
+        android:id="@+id/lblBallsDescription"
+        style="@style/DescriptionTextView"
+        android:layout_alignLeft="@+id/txtBalls"
+        android:layout_alignStart="@+id/txtBalls"
+        android:layout_alignRight="@id/txtBalls"
+        android:layout_alignEnd="@id/txtBalls"
+        android:layout_alignTop="@+id/txtBalls"
+        android:text="Ball" /&gt;
+
+    &lt;TextView
+        android:id="@+id/lblStrikesDescription"
+        style="@style/DescriptionTextView"
+        android:layout_alignLeft="@+id/txtStrikes"
+        android:layout_alignStart="@+id/txtStrikes"
+        android:layout_alignRight="@id/txtStrikes"
+        android:layout_alignEnd="@id/txtStrikes"
+        android:layout_alignTop="@+id/txtStrikes"
+        android:text="Strike" /&gt;
+
+    &lt;TextView
+        android:id="@+id/lblOutsDescription"
+        style="@style/DescriptionTextViewCenter"
+        android:layout_alignTop="@+id/txtOuts"
+        android:text="Out" /&gt;
+
+    &lt;TextView
+        android:id="@+id/lblInningsDescription"
+        style="@style/DescriptionTextViewCenter"
+        android:layout_alignTop="@+id/txtInnings"
+        android:text="Inning" /&gt;
+
+&lt;/RelativeLayout&gt;</code></pre></figure>
+
+<p>I use stylings in here for minimizing duplicate entries:</p>
+
+<figure class="highlight"><pre><code class="language-xaml" data-lang="xaml">&lt;resources&gt;
+    &lt;!-- Base application theme. --&gt;
+    &lt;style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar"&gt;
+        &lt;!-- Customize your theme here. --&gt;
+        &lt;item name="colorPrimary"&gt;@color/colorPrimary&lt;/item&gt;
+        &lt;item name="colorPrimaryDark"&gt;@color/colorPrimaryDark&lt;/item&gt;
+        &lt;item name="colorAccent"&gt;@color/colorAccent&lt;/item&gt;
+    &lt;/style&gt;
+
+    &lt;style name="ScoreTextView"&gt;
+        &lt;item name="android:layout_width"&gt;wrap_content&lt;/item&gt;
+        &lt;item name="android:layout_height"&gt;wrap_content&lt;/item&gt;
+        &lt;item name="android:layout_gravity"&gt;center_horizontal&lt;/item&gt;
+        &lt;item name="android:textSize"&gt;64dp&lt;/item&gt;
+        &lt;item name="android:padding"&gt;@dimen/padding_main&lt;/item&gt;
+    &lt;/style&gt;
+
+    &lt;style name="DescriptionTextView"&gt;
+        &lt;item name="android:layout_width"&gt;match_parent&lt;/item&gt;
+        &lt;item name="android:layout_height"&gt;wrap_content&lt;/item&gt;
+        &lt;item name="android:gravity"&gt;center&lt;/item&gt;
+    &lt;/style&gt;
+
+    &lt;style name="DescriptionTextViewCenter"&gt;
+        &lt;item name="android:layout_width"&gt;match_parent&lt;/item&gt;
+        &lt;item name="android:layout_height"&gt;wrap_content&lt;/item&gt;
+        &lt;item name="android:layout_centerHorizontal"&gt;true&lt;/item&gt;
+        &lt;item name="android:gravity"&gt;center&lt;/item&gt;
+    &lt;/style&gt;
+
+&lt;/resources&gt;</code></pre></figure>
+
+<p>Also, I’m using a <em>dimen.xml</em> file to store size-related values:</p>
+
+<figure class="highlight"><pre><code class="language-xaml" data-lang="xaml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;dimen name="margin_main"&gt;50dp&lt;/dimen&gt;
+    &lt;dimen name="padding_main"&gt;25dp&lt;/dimen&gt;
+&lt;/resources&gt;</code></pre></figure>
+
+<p>The next part will be separating the GUI from the logic by creating interfaces.</p>
+
+<h3 id="interfaces" style="padding-top: 150px; margin-top: -150px;">
+  4. Managing Interfaces
+</h3>
+
+<p>I’ll add two interfaces for this project. One for the presenter, and one for the view. The interface that will be implemented by the presenter needs to be able to handle user interactions. Therefore, the following methods will be contained in this interface:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IUmpIndicatorPresenter</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">IUmpIndicatorView</span> <span class="n">view</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">onPause</span><span class="o">();</span>
+    <span class="kt">void</span> <span class="nf">onResume</span><span class="o">();</span>
+    <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">();</span>
+
+    <span class="kt">void</span> <span class="nf">onBallClick</span><span class="o">();</span>
+    <span class="kt">void</span> <span class="nf">onStrikeClick</span><span class="o">();</span>
+    <span class="kt">void</span> <span class="nf">onOutClick</span><span class="o">();</span>
+    <span class="kt">void</span> <span class="nf">onInningClick</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The first four methods are for general activity lifecycle handling. The <em>onCreate()</em>-method receives an instance of the <em>IUmpIndicatorView</em> interface, which will be implemented by the view (represented by the MainActivity). The other four methods are used to handle user interactions with the TextViews.</p>
+
+<p>The view implements the interface <em>IUmpIndicatorView</em>, which is shown below:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IUmpIndicatorView</span>  <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">setBallText</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">setStrikeText</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">setOutText</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">setInningText</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>This interface defines methods of the view, that will be accessed by the presenter. These methods are used to change the values of the TextViews.</p>
+
+<h3 id="model" style="padding-top: 150px; margin-top: -150px;">
+  5. Building the model
+</h3>
+
+<p>The model is responsible for managing the game itself. Therefore, it has values for the current balls, strikes, outs and inning. It also defines maximum values for each of these, as well as getter-methods to wrap the private properties.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Game</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">balls</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">strikes</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">outs</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">inning</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">BALLS_MIN</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">BALLS_MAX</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">STRIKES_MIN</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">STRIKES_MAX</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">OUTS_MIN</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">OUTS_MAX</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">INNINGS_MIN</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">INNINGS_MAX</span> <span class="o">=</span> <span class="mi">9</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Game</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">balls</span> <span class="o">=</span> <span class="n">BALLS_MIN</span><span class="o">;</span>
+        <span class="n">strikes</span> <span class="o">=</span> <span class="n">STRIKES_MIN</span><span class="o">;</span>
+        <span class="n">outs</span> <span class="o">=</span> <span class="n">OUTS_MIN</span><span class="o">;</span>
+        <span class="n">inning</span> <span class="o">=</span> <span class="n">INNINGS_MIN</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">//region Getter
+</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getBalls</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">balls</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getStrikes</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">strikes</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getOuts</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">outs</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getInning</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">inning</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">//endregion
+</span>
+
+    <span class="c1">//region Increase Values
+</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">increaseBalls</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">balls</span><span class="o">++;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">balls</span> <span class="o">&gt;</span> <span class="n">BALLS_MAX</span><span class="o">)</span> <span class="n">balls</span> <span class="o">=</span> <span class="n">BALLS_MIN</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">increaseStrikes</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">strikes</span><span class="o">++;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">strikes</span> <span class="o">&gt;</span> <span class="n">STRIKES_MAX</span><span class="o">)</span> <span class="n">strikes</span> <span class="o">=</span> <span class="n">STRIKES_MIN</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">increaseOuts</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">outs</span><span class="o">++;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">outs</span> <span class="o">&gt;</span> <span class="n">OUTS_MAX</span><span class="o">)</span> <span class="n">outs</span> <span class="o">=</span> <span class="n">OUTS_MIN</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">increaseInnings</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">inning</span><span class="o">++;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">inning</span> <span class="o">&gt;</span> <span class="n">INNINGS_MAX</span><span class="o">)</span> <span class="n">inning</span> <span class="o">=</span> <span class="n">INNINGS_MIN</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="c1">//endregion
+</span>
+<span class="o">}</span></code></pre></figure>
+
+<h3 id="presenter" style="padding-top: 150px; margin-top: -150px;">
+  6. Connecting view and model by adding the presenter
+</h3>
+
+<p>The last part is the combination of both elements. An instance of the presenter-interface needs to be built. This class sets the content of each of the views elements and updates the different properties on user interaction:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UmpIndicatorPresenter</span> <span class="kd">implements</span> <span class="n">IUmpIndicatorPresenter</span> <span class="o">{</span>
+
+    <span class="n">Game</span> <span class="n">game</span><span class="o">;</span>
+    <span class="n">IUmpIndicatorView</span> <span class="n">view</span><span class="o">;</span>
+
+    <span class="c1">//region Activity Lifecycle Methods
+</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">IUmpIndicatorView</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">game</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Game</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">view</span> <span class="o">=</span> <span class="n">view</span><span class="o">;</span>
+
+        <span class="n">view</span><span class="o">.</span><span class="na">setBallText</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">game</span><span class="o">.</span><span class="na">getBalls</span><span class="o">()));</span>
+        <span class="n">view</span><span class="o">.</span><span class="na">setStrikeText</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">game</span><span class="o">.</span><span class="na">getStrikes</span><span class="o">()));</span>
+        <span class="n">view</span><span class="o">.</span><span class="na">setOutText</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">game</span><span class="o">.</span><span class="na">getOuts</span><span class="o">()));</span>
+        <span class="n">view</span><span class="o">.</span><span class="na">setInningText</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">game</span><span class="o">.</span><span class="na">getInning</span><span class="o">()));</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onPause</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onResume</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+    <span class="c1">//endregion
+</span>
+
+    <span class="c1">//region View Click Handlind
+</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onBallClick</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">game</span><span class="o">.</span><span class="na">increaseBalls</span><span class="o">();</span>
+        <span class="n">view</span><span class="o">.</span><span class="na">setBallText</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">game</span><span class="o">.</span><span class="na">getBalls</span><span class="o">()));</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onStrikeClick</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">game</span><span class="o">.</span><span class="na">increaseStrikes</span><span class="o">();</span>
+        <span class="n">view</span><span class="o">.</span><span class="na">setStrikeText</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">game</span><span class="o">.</span><span class="na">getStrikes</span><span class="o">()));</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onOutClick</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">game</span><span class="o">.</span><span class="na">increaseOuts</span><span class="o">();</span>
+        <span class="n">view</span><span class="o">.</span><span class="na">setOutText</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">game</span><span class="o">.</span><span class="na">getOuts</span><span class="o">()));</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onInningClick</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">game</span><span class="o">.</span><span class="na">increaseInnings</span><span class="o">();</span>
+        <span class="n">view</span><span class="o">.</span><span class="na">setInningText</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">game</span><span class="o">.</span><span class="na">getInning</span><span class="o">()));</span>
+    <span class="o">}</span>
+    <span class="c1">//endregion
+</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>The view will be covered by the existing MainActivity.java file and just forward user interactions to the presenter:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">jurtz</span><span class="o">.</span><span class="na">marcel</span><span class="o">.</span><span class="na">umpireindicator</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.support.v7.app.AppCompatActivity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.view.View</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.widget.TextView</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.jurtz.marcel.umpireindicator.Interface.IUmpIndicatorPresenter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.jurtz.marcel.umpireindicator.Interface.IUmpIndicatorView</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.jurtz.marcel.umpireindicator.Interface.UmpIndicatorPresenter</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">AppCompatActivity</span> <span class="kd">implements</span> <span class="n">IUmpIndicatorView</span> <span class="o">{</span>
+
+    <span class="n">TextView</span> <span class="n">txtBalls</span><span class="o">;</span>
+    <span class="n">TextView</span> <span class="n">txtStrikes</span><span class="o">;</span>
+    <span class="n">TextView</span> <span class="n">txtOuts</span><span class="o">;</span>
+    <span class="n">TextView</span> <span class="n">txtInnings</span><span class="o">;</span>
+
+    <span class="n">IUmpIndicatorPresenter</span> <span class="n">presenter</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+
+        <span class="n">txtBalls</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">txtBalls</span><span class="o">);</span>
+        <span class="n">txtStrikes</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">txtStrikes</span><span class="o">);</span>
+        <span class="n">txtOuts</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">txtOuts</span><span class="o">);</span>
+        <span class="n">txtInnings</span> <span class="o">=</span> <span class="o">(</span><span class="n">TextView</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">txtInnings</span><span class="o">);</span>
+
+        <span class="n">presenter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UmpIndicatorPresenter</span><span class="o">();</span>
+        <span class="n">presenter</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+
+        <span class="c1">//region TextView onClickListeners
+</span>
+        <span class="n">txtBalls</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">presenter</span><span class="o">.</span><span class="na">onBallClick</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="n">txtStrikes</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">presenter</span><span class="o">.</span><span class="na">onStrikeClick</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="n">txtOuts</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">presenter</span><span class="o">.</span><span class="na">onOutClick</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="n">txtInnings</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">new</span> <span class="n">View</span><span class="o">.</span><span class="na">OnClickListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">presenter</span><span class="o">.</span><span class="na">onInningClick</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+        <span class="c1">//endregion
+</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">presenter</span><span class="o">.</span><span class="na">onDestroy</span><span class="o">();</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onDestroy</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onPause</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">presenter</span><span class="o">.</span><span class="na">onPause</span><span class="o">();</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onPause</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onResume</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onResume</span><span class="o">();</span>
+        <span class="n">presenter</span><span class="o">.</span><span class="na">onResume</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setBallText</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">txtBalls</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setStrikeText</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">txtStrikes</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setOutText</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">txtOuts</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setInningText</span><span class="o">(</span><span class="n">String</span> <span class="n">text</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">txtInnings</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>

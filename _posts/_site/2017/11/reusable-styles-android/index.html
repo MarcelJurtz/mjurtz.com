@@ -1,0 +1,69 @@
+<p>View definitions under android are often used for many different controls. However, there is an easy way to recycle defined styles and use them for other controls, often saving a lot of code. So, styles basically allow you to move your repeatedly used styles out of the layout file into a styles.xml file (which is located in the values-folder). This article covers the basics of using styles on Android.</p>
+
+<p>Think of the following layout, which represents two simple buttons inside a LinearLayout:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;LinearLayout</span>
+        <span class="na">android:orientation=</span><span class="s">"horizontal"</span>
+        <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+        <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:layout_weight=</span><span class="s">"0"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;Button</span>
+            <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+            <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+            <span class="na">android:layout_weight=</span><span class="s">"1"</span>
+            <span class="na">android:text=</span><span class="s">"@string/cmdPrevPage"</span>
+            <span class="na">android:id=</span><span class="s">"@+id/cmdPrevPage"</span> <span class="nt">/&gt;</span>
+
+        <span class="nt">&lt;Button</span>
+            <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+            <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+            <span class="na">android:layout_weight=</span><span class="s">"1"</span>
+            <span class="na">android:text=</span><span class="s">"@string/cmdNextPage"</span>
+            <span class="na">android:id=</span><span class="s">"@+id/cmdNextPage"</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/LinearLayout&gt;</span></code></pre></figure>
+
+<p>The buttons look nearly identical, which leads us to creating a new entry in styles.xml looking like this:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">"button"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">"android:layout_width"</span><span class="nt">&gt;</span>match_parent<span class="nt">&lt;/item&gt;</span>
+        <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">"android:layout_height"</span><span class="nt">&gt;</span>wrap_content<span class="nt">&lt;/item&gt;</span>
+        <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">"android:weight"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/style&gt;</span></code></pre></figure>
+
+<p>The style contains all the elements, that both buttons have in common. Of course, this does not include its ID and text properties. To apply this to the buttons, simply change the first snippet to the following:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;LinearLayout</span>
+        <span class="na">android:orientation=</span><span class="s">"horizontal"</span>
+        <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+        <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+        <span class="na">android:layout_weight=</span><span class="s">"0"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;Button</span>
+            <span class="na">style=</span><span class="s">"@style/button"</span>
+            <span class="na">android:text=</span><span class="s">"@string/cmdPrevPage"</span>
+            <span class="na">android:id=</span><span class="s">"@+id/cmdPrevPage"</span> <span class="nt">/&gt;</span>
+
+        <span class="nt">&lt;Button</span>
+            <span class="na">style=</span><span class="s">"@style/button"</span>
+            <span class="na">android:text=</span><span class="s">"@string/cmdNextPage"</span>
+            <span class="na">android:id=</span><span class="s">"@+id/cmdNextPage"</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/LinearLayout&gt;</span></code></pre></figure>
+
+<p>This small example already shows the advantage of using styles: your layout becomes clearer and if you want to change some layouts, you only have to do this in one place.</p>
+
+<p>However, this approach is not the end of the story. Often only small details of controls are different, for example the positioning of a button on the left or right. In order to be able to handle such minimal changes in case of multiple use, we can use inheritance. Let us go back to the previous example to demonstrate this principle.</p>
+
+<p>One of the buttons is used to mark “Next”, the other one for “Back”. Let’s say the code is developed for an app that represents a blog. With these two buttons you can switch back and forth between the available pages. It is realistic, however, that such a navigation is implemented for the articles themselves, but also for categories or tags, which is why a simple possibility for multiple use is required. With the following two styles this can be realized very easily:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">"button_prev"</span> <span class="na">parent=</span><span class="s">"@android:style/button"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">"android:text"</span><span class="nt">&gt;</span>@string/cmdPrevPage<span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">"button_next"</span> <span class="na">parent=</span><span class="s">"@android:style/button"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">"android:text"</span><span class="nt">&gt;</span>@string/cmdNextPage<span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/style&gt;</span></code></pre></figure>
+
+<p>Further information on this topic is available in the <a href="https://developer.android.com/guide/topics/ui/look-and-feel/themes.html">Android developer documentation</a>.</p>

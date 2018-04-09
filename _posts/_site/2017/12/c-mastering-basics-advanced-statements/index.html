@@ -1,0 +1,46 @@
+<p>In todays episode, I’ll show you how to use three advanced statements in C#. I’ll go over the so-called <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operators">null-conditional operator</a>, the <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operator">null-coalescing operator</a> and the <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/conditional-operator">ternary operator</a>.</p>
+
+<h2 id="null-conditional-operator">Null-Conditional Operator</h2>
+
+<p>You can use the null-conditional operator to prevent _NullReferenceException_s. The basic principle of the operator is to return a value if it is not null, and return null if it is. The following code shows you how to use the operator, which is initiated by a question mark, followed by a dot.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">List</span><span class="p">&lt;</span><span class="n">String</span><span class="p">&gt;</span> <span class="n">stringList</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="kt">int</span><span class="p">?</span> <span class="n">val</span> <span class="p">=</span> <span class="n">stringList</span><span class="p">?.</span><span class="n">Count</span><span class="p">;</span></code></pre></figure>
+
+<p>You can see the operator preceding the call of the Count-property. Running the code without the operator would lead to a NullReferenceException, but this way, <em>null</em> is assigned to the variable <em>val</em> instead.</p>
+
+<h2 id="null-coalescing-operator">Null-Coalescing Operator</h2>
+
+<p>The next operator is the null-coalescing operator. It is initiated by two question marks and it’s used to assign different values based on wether the first choice is null or not. To get a better understanding of this, let’s look at an example:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="kt">int</span><span class="p">?</span> <span class="n">val</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">result</span> <span class="p">=</span> <span class="n">val</span> <span class="p">??</span> <span class="m">0</span><span class="p">;</span></code></pre></figure>
+
+<p>The value of the variable <em>val</em> is assigned to <em>result</em>. However, if <em>val</em> is equal to null, <em>result</em> will receive the value 0.</p>
+
+<h2 id="ternary-operator">Ternary Operator</h2>
+
+<p>The last operator in todays article is the ternary operator. It basically provides a short hand version for if-else-statements that can be written in a single line.</p>
+
+<p>Let’s look at the following example:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="kt">int</span> <span class="n">val1</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">val2</span> <span class="p">=</span> <span class="m">2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">smaller</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">val1</span> <span class="p">&gt;</span> <span class="n">val2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">smaller</span> <span class="p">=</span> <span class="n">val2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="n">smaller</span> <span class="p">=</span> <span class="n">val1</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The if-statement takes up a lot of space while its logic is very simple. This can be replaced by the following code using the ternary operator:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="kt">int</span> <span class="n">val1</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">val2</span> <span class="p">=</span> <span class="m">2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">smaller</span> <span class="p">=</span> <span class="n">val1</span> <span class="p">&gt;</span> <span class="n">val2</span> <span class="p">?</span> <span class="n">val2</span> <span class="p">:</span> <span class="n">val1</span><span class="p">;</span></code></pre></figure>
+
+<p>By using the ternary operator, you can simplify the assignment of variable by typing an expression that returns either true or false after the assignment operator. Complete the statement by a question mark. After that, the two values separated by a colon represent the values that will be assigned to the variable. The first one will be used if the statement is true, otherwise the second one is assigned.</p>

@@ -6,9 +6,47 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 07 Apr 2018 09:02:10 +0200</pubDate>
-    <lastBuildDate>Sat, 07 Apr 2018 09:02:10 +0200</lastBuildDate>
+    <pubDate>Mon, 09 Apr 2018 21:54:30 +0200</pubDate>
+    <lastBuildDate>Mon, 09 Apr 2018 21:54:30 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Bypassing Microsofts Windows Media Creation Tool</title>
+        <description>&lt;p&gt;Remember when you could simply download official Windows ISO images to burn on DVDs and install? 
+Microsoft now uses this thing called ‘Media Creation Tool’ to download ISOs, but there’s a simple way to bypass this and download actual images.&lt;/p&gt;
+
+&lt;p&gt;When searching for Windows10 ISOs, you’ll likely find this url, which provides a download for the Media Creation Tool.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.microsoft.com/de-de/software-download/windows10&quot;&gt;https://www.microsoft.com/de-de/software-download/windows10&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But: there’s also this url&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.microsoft.com/de-de/software-download/windows10ISO&quot;&gt;https://www.microsoft.com/de-de/software-download/windows10ISO&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;However, when browsing this site on a windows machine, it automatically redirects you to the page I linked earlier.
+If you’re not using Windows, you’ll be able to use the second url to download the ISO file directly.
+To be able to this on Windows as well, you’ll simply need to fake your browsers user agent header to make Microsoft think you’re using Linux (for example).&lt;/p&gt;
+
+&lt;p&gt;That’s also pretty easy to achieve, there are many browser plugins available for this very purpose. 
+Just search “user agent switcher” in your addon repository and you’re good to go!&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 09 Apr 2018 20:00:00 +0200</pubDate>
+        <link>http://localhost:4000/2018/04/bypass-windows-media-creation-tool/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/04/bypass-windows-media-creation-tool/</guid>
+        
+        <category>Tools</category>
+        
+        <category>Windows</category>
+        
+        
+        <category>Windows</category>
+        
+      </item>
     
       <item>
         <title>Searching Blogposts in Jekyll</title>
@@ -648,164 +686,6 @@
         
         
         <category>Tools</category>
-        
-      </item>
-    
-      <item>
-        <title>C# – Mastering the Basics – Operator Overloading</title>
-        <description>&lt;p&gt;Most of the built-in operators that are available in C# can be redefined. In todays article, I’ll be showing you how you can redefine operators to match your custom classes. Additionally, I’ll cover which operators actually can be overwritten.&lt;/p&gt;
-
-&lt;h2 id=&quot;redefining-operators-&quot;&gt;&lt;span&gt;Redefining Operators&lt;br /&gt; &lt;/span&gt;&lt;/h2&gt;
-
-&lt;p&gt;To create custom functionality for operators in combination with your own classes, you’ll simply need to create methods matching a specific pattern. These methods require the usage of the keyword &lt;em&gt;operator&lt;/em&gt;, followed by the actual operator you’ll want to overwrite.&lt;/p&gt;
-
-&lt;p&gt;I’ve created a simple class to demonstrate the concept of operator overloading. This class represents a rectangle, which only has the two properties &lt;em&gt;Length&lt;/em&gt; and &lt;em&gt;Width&lt;/em&gt;.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c#&quot; data-lang=&quot;c#&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Rectangle&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;I’d like to start by overloading the + operator. When this is applied to two rectangles, I want to receive a new rectangle where both width and length from both input objects are added. You achieve this functionality by adding the following method to the class &lt;em&gt;Rectangle&lt;/em&gt;.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c#&quot; data-lang=&quot;c#&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Quite easy, isn’t it? But of course, you’re not restricted to these simple operators, which is why I’ll cover all of the available operators in the next section.&lt;/p&gt;
-
-&lt;p&gt;Another example I’d like to demonstrate is the comparison of two objects. In the following listing, you can see the comparison of two Rectangle objects with the operators &lt;em&gt;==&lt;/em&gt; and &lt;em&gt;!=&lt;/em&gt;.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c#&quot; data-lang=&quot;c#&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;operator&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;non-overloadable-operators&quot;&gt;(Non-)Overloadable Operators&lt;/h2&gt;
-
-&lt;p&gt;Altough a lot of operators can be overloaded, there are some exceptions. To give you a better understanding and overview of allowed operators, I’ve listed them in the table below.&lt;/p&gt;
-
-&lt;table style=&quot;border-collapse: collapse; border-spacing: 0;&quot;&gt;
-  &lt;tr&gt;
-    &lt;th style=&quot;font-weight: bold; padding: 10px 5px; overflow: hidden; word-break: normal; text-align: center; border: 1px solid #000000;&quot;&gt;
-      Operator
-    &lt;/th&gt;
-    
-    &lt;th style=&quot;font-weight: bold; padding: 10px 5px; overflow: hidden; word-break: normal; text-align: center; border: 1px solid #000000;&quot;&gt;
-      Description
-    &lt;/th&gt;
-    
-    &lt;th style=&quot;font-weight: bold; padding: 10px 5px; overflow: hidden; word-break: normal; text-align: center; border: 1px solid #000000;&quot;&gt;
-      Overloadable
-    &lt;/th&gt;
-  &lt;/tr&gt;
-  
-  &lt;tr&gt;
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
-      +, -, *, /
-    &lt;/td&gt;
-    
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
-      Basic arithmetic operations
-    &lt;/td&gt;
-    
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; color: #009901; text-align: center; border: 1px solid #000000;&quot;&gt;
-      ✓
-    &lt;/td&gt;
-  &lt;/tr&gt;
-  
-  &lt;tr&gt;
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
-      ++, &amp;#8212;
-    &lt;/td&gt;
-    
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
-      Increment / Decrement
-    &lt;/td&gt;
-    
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; color: #009901; text-align: center; border: 1px solid #000000;&quot;&gt;
-      ✓
-    &lt;/td&gt;
-  &lt;/tr&gt;
-  
-  &lt;tr&gt;
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
-      ~
-    &lt;/td&gt;
-    
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
-      Bitwise complement
-    &lt;/td&gt;
-    
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; color: #009901; text-align: center; border: 1px solid #000000;&quot;&gt;
-      ✓
-    &lt;/td&gt;
-  &lt;/tr&gt;
-  
-  &lt;tr&gt;
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
-      ==, !=, &amp;lt;, &amp;gt;, &amp;lt;=, &amp;gt;=
-    &lt;/td&gt;
-    
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
-      Comparison
-    &lt;/td&gt;
-    
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; color: #009901; text-align: center; border: 1px solid #000000;&quot;&gt;
-      ✓
-    &lt;/td&gt;
-  &lt;/tr&gt;
-  
-  &lt;tr&gt;
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
-      &amp;amp;&amp;amp;, ||
-    &lt;/td&gt;
-    
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
-      Conditional logical operators
-    &lt;/td&gt;
-    
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; color: #cb0000; text-align: center; border: 1px solid #000000;&quot;&gt;
-      ✗
-    &lt;/td&gt;
-  &lt;/tr&gt;
-  
-  &lt;tr&gt;
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
-      +=, -=, *=, /=, %=
-    &lt;/td&gt;
-    
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; border: 1px solid #000000;&quot;&gt;
-      Assignment Operators
-    &lt;/td&gt;
-    
-    &lt;td style=&quot;padding: 10px 5px; overflow: hidden; word-break: normal; color: #cb0000; text-align: center; border: 1px solid #000000;&quot;&gt;
-      ✗
-    &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
-</description>
-        <pubDate>Sun, 21 Jan 2018 12:00:20 +0100</pubDate>
-        <link>http://localhost:4000/2018/01/c-mastering-the-basics-operator-overloading/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/01/c-mastering-the-basics-operator-overloading/</guid>
-        
-        <category>.NET</category>
-        
-        <category>CSharp</category>
-        
-        <category>Development</category>
-        
-        <category>Programming</category>
-        
-        
-        <category>CSharp</category>
         
       </item>
     

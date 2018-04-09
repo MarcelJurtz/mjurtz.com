@@ -1,0 +1,172 @@
+<p>This articles covers the basic usage of <a href="https://servicestack.net/">ServiceStack</a>, a .NET-framework for creating RESTful services. The framework has a really great <a href="http://docs.servicestack.net/">documentation</a>, where you can check out all the details.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>To get started, you’ll want to create a new ASP.NET project, and load the ServiceStack package via NuGet. Then, you’ll have to edit your <em>Web.config</em> to look like the following (mentioned versions may differ from your project):</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="c">&lt;!--
+  Informationen zur Konfiguration Ihrer ASP.NET-Anwendung finden Sie unter
+  https://go.microsoft.com/fwlink/?LinkId=169433
+  --&gt;</span>
+<span class="nt">&lt;configuration&gt;</span>
+  <span class="nt">&lt;system.web&gt;</span>
+    <span class="nt">&lt;compilation</span> <span class="na">debug=</span><span class="s">"true"</span> <span class="na">targetFramework=</span><span class="s">"4.6.1"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;httpRuntime</span> <span class="na">targetFramework=</span><span class="s">"4.6.1"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;httpHandlers&gt;</span>
+      <span class="nt">&lt;add</span> <span class="na">path=</span><span class="s">"*"</span> <span class="na">type=</span><span class="s">"ServiceStack.HttpHandlerFactory, ServiceStack"</span> <span class="na">verb=</span><span class="s">"*"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/httpHandlers&gt;</span>
+  <span class="nt">&lt;/system.web&gt;</span>
+  <span class="c">&lt;!-- Required for IIS7 --&gt;</span>
+  <span class="nt">&lt;system.webServer&gt;</span>
+    <span class="nt">&lt;modules</span> <span class="na">runAllManagedModulesForAllRequests=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;validation</span> <span class="na">validateIntegratedModeConfiguration=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;handlers&gt;</span>
+      <span class="nt">&lt;add</span> <span class="na">path=</span><span class="s">"*"</span> <span class="na">name=</span><span class="s">"ServiceStack.Factory"</span> <span class="na">type=</span><span class="s">"ServiceStack.HttpHandlerFactory, ServiceStack"</span> <span class="na">verb=</span><span class="s">"*"</span> <span class="na">preCondition=</span><span class="s">"integratedMode"</span> <span class="na">resourceType=</span><span class="s">"Unspecified"</span> <span class="na">allowPathInfo=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/handlers&gt;</span>
+  <span class="nt">&lt;/system.webServer&gt;</span>
+  <span class="nt">&lt;system.codedom&gt;</span>
+    <span class="nt">&lt;compilers&gt;</span>
+      <span class="nt">&lt;compiler</span> <span class="na">language=</span><span class="s">"c#;cs;csharp"</span> <span class="na">extension=</span><span class="s">".cs"</span>
+        <span class="na">type=</span><span class="s">"Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3513ad364e35"</span>
+        <span class="na">warningLevel=</span><span class="s">"4"</span> <span class="na">compilerOptions=</span><span class="s">"/langversion:default /nowarn:1659;1699;1701"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;compiler</span> <span class="na">language=</span><span class="s">"vb;vbs;visualbasic;vbscript"</span> <span class="na">extension=</span><span class="s">".vb"</span>
+        <span class="na">type=</span><span class="s">"Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3513ad364e35"</span>
+        <span class="na">warningLevel=</span><span class="s">"4"</span> <span class="na">compilerOptions=</span><span class="s">"/langversion:default /nowarn:41008 /define:_MYTYPE=\"</span><span class="err">Web\"</span> <span class="err">/optionInfer+"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/compilers&gt;</span>
+  <span class="nt">&lt;/system.codedom&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span></code></pre></figure>
+
+<p>The second step is the configuration of the file <em>Global.asax.cs</em>. I’ve created a new class <em>HelloAppHost</em> which inherits from <em>AppHostBase</em>.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">class</span> <span class="nc">HelloAppHost</span> <span class="p">:</span> <span class="n">AppHostBase</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">HelloAppHost</span><span class="p">()</span> <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="s">"Hello Web Services"</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">HelloService</span><span class="p">).</span><span class="n">Assembly</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">Configure</span><span class="p">(</span><span class="n">Container</span> <span class="n">container</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nf">SetConfig</span><span class="p">(</span><span class="k">new</span> <span class="n">HostConfig</span>
+        <span class="p">{</span>
+            <span class="n">DefaultContentType</span> <span class="p">=</span> <span class="n">MimeTypes</span><span class="p">.</span><span class="n">Json</span>
+        <span class="p">});</span>
+
+        <span class="c1">// Authentication
+</span>
+        <span class="n">Plugins</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">AuthFeature</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="nf">AuthUserSession</span><span class="p">(),</span>
+            <span class="k">new</span> <span class="n">IAuthProvider</span><span class="p">[]</span> <span class="p">{</span>
+                <span class="k">new</span> <span class="nf">CustomCredentialsAuthProvider</span><span class="p">()</span>
+            <span class="p">}</span>
+        <span class="p">));</span>
+
+        <span class="n">Plugins</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">new</span> <span class="nf">RegistrationFeature</span><span class="p">());</span>
+
+        <span class="n">container</span><span class="p">.</span><span class="n">Register</span><span class="p">&lt;</span><span class="n">ICacheClient</span><span class="p">&gt;(</span><span class="k">new</span> <span class="nf">MemoryCacheClient</span><span class="p">());</span>
+        <span class="kt">var</span> <span class="n">userRep</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InMemoryAuthRepository</span><span class="p">();</span>
+        <span class="n">container</span><span class="p">.</span><span class="n">Register</span><span class="p">&lt;</span><span class="n">IUserAuthRepository</span><span class="p">&gt;(</span><span class="n">userRep</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>I’ve added a authentication functionality, which will be covered later in this post. The other thing I set up, is to return JSON-formatted data as default. The last thing to do in this file is creating an instance of the above class:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">protected</span> <span class="k">void</span> <span class="nf">Application_Start</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">appHost</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">HelloAppHost</span><span class="p">();</span>
+    <span class="n">appHost</span><span class="p">.</span><span class="nf">Init</span><span class="p">();</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="adding-routes">Adding Routes</h2>
+
+<p>After configuring the service, routes can be added. The general structure consists of three elements: RequestDTO, ResponseDTO and a Service. The following example shows how to set up a route following this approach:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="na">[Route("/hello/{name*}")]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Hello</span> <span class="p">:</span> <span class="n">IReturn</span><span class="p">&lt;</span><span class="n">HelloResponse</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">HelloResponse</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Result</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">HelloService</span> <span class="p">:</span> <span class="n">IService</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">object</span> <span class="nf">Get</span><span class="p">(</span><span class="n">Hello</span> <span class="n">request</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">name</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="n">Name</span> <span class="p">??</span> <span class="s">"World"</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">HelloResponse</span> <span class="p">{</span> <span class="n">Result</span> <span class="p">=</span> <span class="s">$"Hello, </span><span class="p">{</span><span class="n">name</span><span class="p">}</span><span class="s">!"</span> <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>This service responds to requests on <em>/hello/{name*}</em>. The curly brackets indicate a variable, the star is a wildcard to indicate, that this variable is optional. This way, the service will also respond if no name is submitted (it will use the default ‘<em>World’</em> for the response).</p>
+
+<p>While you can use the notation above to mark routes, you can also set these up in your configuration (<em>Global.asax.cs</em>). Just add the following contents after <em>container.register</em>…</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">Routes</span>
+    <span class="p">.</span><span class="n">Add</span><span class="p">&lt;</span><span class="n">Hello</span><span class="p">&gt;(</span><span class="s">"/hello"</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Add</span><span class="p">&lt;</span><span class="n">Hello</span><span class="p">&gt;(</span><span class="s">"/hello/{Name}"</span><span class="p">);</span></code></pre></figure>
+
+<h2 id="http-verbs">HTTP Verbs</h2>
+
+<p>As shown in the example above, HelloService only implements the method <em>Get()</em>. This can be supplemented or extended by any other HTTP verb or Any, which will then respond to all requests on this path. ServiceStack also has a nice <a href="http://docs.servicestack.net/design-rest-services">documentation</a> about the usage of each verb.</p>
+
+<h2 id="fallback-routes">Fallback Routes</h2>
+
+<p>You can use fallbacks to cover routes, that are not handled explicitly. In my case, I return information about the unhandled path and a timestamp. Again, wildcards are used.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="na">[FallbackRoute("/{Path*}")]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Fallback</span> <span class="p">:</span> <span class="n">IReturn</span><span class="p">&lt;</span><span class="n">FallbackResponse</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">String</span> <span class="n">Path</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">FallbackResponse</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Message</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="kt">string</span> <span class="n">Path</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span> <span class="n">String</span> <span class="n">Timestamp</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">FallbackService</span> <span class="p">:</span> <span class="n">IService</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">object</span> <span class="nf">Any</span><span class="p">(</span><span class="n">Fallback</span> <span class="n">request</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">FallbackResponse</span> <span class="p">{</span>
+            <span class="n">Message</span> <span class="p">=</span> <span class="s">"No matching path specified"</span><span class="p">,</span>
+            <span class="n">Path</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="n">Path</span> <span class="p">??</span> <span class="s">"/"</span><span class="p">,</span>
+            <span class="n">Timestamp</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">.</span><span class="nf">ToString</span><span class="p">()</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="authentication">Authentication</h2>
+
+<p>The last element I’d like to cover is the authentication of a user. ServiceStack offers the class <em>CredentialsAuthProvider</em>, from which custom providers can be derived. The following example covers two methods, TryAuthenticate, which tries to log in by checking username and password against custom logic, and OnAuthenticated, which will be used to assign session variables.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">class</span> <span class="nc">CustomCredentialsAuthProvider</span> <span class="p">:</span> <span class="n">CredentialsAuthProvider</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">TryAuthenticate</span><span class="p">(</span><span class="n">IServiceBase</span> <span class="n">authService</span><span class="p">,</span>
+    <span class="kt">string</span> <span class="n">userName</span><span class="p">,</span> <span class="kt">string</span> <span class="n">password</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Only checks if username equals password
+</span>
+        <span class="c1">// implement custom logic here
+</span>
+        <span class="k">return</span> <span class="n">userName</span><span class="p">.</span><span class="nf">Equals</span><span class="p">(</span><span class="n">password</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">override</span> <span class="n">IHttpResult</span> <span class="nf">OnAuthenticated</span><span class="p">(</span><span class="n">IServiceBase</span> <span class="n">authService</span><span class="p">,</span>
+        <span class="n">IAuthSession</span> <span class="n">session</span><span class="p">,</span> <span class="n">IAuthTokens</span> <span class="n">tokens</span><span class="p">,</span>
+        <span class="n">Dictionary</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">authInfo</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">session</span><span class="p">.</span><span class="n">customElement</span><span class="p">=</span> <span class="s">"Hello World"</span><span class="p">;</span>
+        <span class="k">return</span> <span class="k">base</span><span class="p">.</span><span class="nf">OnAuthenticated</span><span class="p">(</span><span class="n">authService</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">authInfo</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>After creating this functionality, you can try to log in using the <em>/auth</em> route via POST and adding a username and password parameter. If you want any of your routes to require authentication, just add the <em>[Authenticate]</em> attribute above its response (above the [Route…]). After doing so, requesting this route without earlier authentication will lead to an empty response.</p>
+
+<p>To log out, simply send a request (GET or POST) to <em>/auth/logout</em>.</p>
+
+<h2 id="further-information">Further Information</h2>
+
+<p>As I mentioned above, <a href="http://docs.servicestack.net/">ServiceStacks documentation</a> is really well written and maintained. I don’t think you’ll need any information besides what you can find there.</p>

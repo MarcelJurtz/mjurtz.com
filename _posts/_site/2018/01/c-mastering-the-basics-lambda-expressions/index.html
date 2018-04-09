@@ -1,0 +1,56 @@
+<p>Are you one of the people who are easily intimidated by complicated-looking things? I felt a little bit like that when I saw lambda expressions for the first time. But let me tell you this: they really only look scary on the very first look. This article covers the basics of using lambda expressions and should be seen as quick introduction rather than extensive documentation.</p>
+
+<h2 id="what-are-lambda-expressions">What are Lambda Expressions?</h2>
+
+<p>Lambda expressions somehow belong to the anonymous methods. However, they are not called <em>expression</em> instead of <em>method</em> for nothing. They are therefore only similar, not identical. Under a certain circumstance, i. e. the assignment of a delegate, they can be used identically.</p>
+
+<p>By the way, anonymous methods are methods that cannot be called simply because of a missing name.</p>
+
+<p>Lambda expressions are often used when working with LINQ, but they are also applied in asynchronous programming.</p>
+
+<h2 id="how-can-they-be-used">How can they be used?</h2>
+
+<p>A lambda expression consists of three elements: the parameters, the Lambda operator and the statements. Any number of input parameters can be used. The number of instructions is also theoretically up to you, but in practice a limitation of three statements is widely accepted. Otherwise the readability of your source code will suffer. Moreover, Lambda statements are also meant for short inserts anyway.</p>
+
+<p>Enough talk, here’s an example:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">concatShort</span> <span class="p">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">x</span> <span class="p">+</span> <span class="s">" "</span> <span class="p">+</span> <span class="n">y</span><span class="p">;</span>
+<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="nf">concatShort</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">,</span> <span class="s">"World"</span><span class="p">));</span></code></pre></figure>
+
+<p>This basic example shows you how to create a method using lambda expressions. The input consists of two variables (x and y, name them whatever you want) and the method will concatenate two strings and return them. The third <em>string</em> entry in the Func&lt;&gt; signature is reserved for the return type.</p>
+
+<p>And that’s the most basic usage. There are some important rules, which I will wrap up in the following:</p>
+
+<ul>
+  <li>If you have only one input parameter, you can omit the brackets</li>
+  <li>The typing of the parameters is optional</li>
+  <li>If only one statement is used, the brackets AND the <em>return</em> keyword can be omitted</li>
+</ul>
+
+<p>As you might be used to from LINQ, lambda expressions are only evaluated on execution. This means that variable values are interesting at the time of execution, not earlier. At this point it is equally important to say that it is possible to access variables which are available outside the lambda expression but within the method defining it. Let me demonstrate this:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="kt">int</span> <span class="n">variable</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+<span class="n">Action</span> <span class="n">print</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">outerValue</span><span class="p">);</span>
+<span class="n">variable</span> <span class="p">=</span> <span class="m">42</span><span class="p">;</span>
+<span class="nf">print</span><span class="p">();</span> <span class="c1">// Output will be 42</span></code></pre></figure>
+
+<h2 id="further-usage-and-examples">Further Usage and Examples</h2>
+
+<p>What exactly is the point of lambda expressions? Simply a shorter version of anonymous methods are no justification of a new construct in C#. And that’s the point. LINQ has given lambda expressions their right to exist in C#. Anonymous methods alone were no longer sufficient.</p>
+
+<p>If you simply assign a variable of the type System.Linq.Expression<TDelegate> to a lambda expression instead of a delegate, you get the ability to analyze and generate it at runtime.</TDelegate></p>
+
+<p>The result of this is called <em>“Expression Tree”</em>, which has the important restriction to consist of only one expression. But that goes beyond the scope of this article.</p>
+
+<p><span>Let’s get back to the point:</span> lambda expressions are used in many other areas. Let’s showcase some of them:</p>
+
+<p>The following example shows a method that accepts two integer arrays as parameter and returns their difference. So, the result is an integer array containing all items from a, that are not included in b. As you can see, there is only one input parameter and one statement, which allows me to omit the brackets.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span><span class="p">[]</span> <span class="nf">ArrayDiff</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span><span class="p">[]</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">a</span><span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">x</span><span class="p">=&gt;!</span><span class="n">b</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="n">x</span><span class="p">)).</span><span class="nf">ToArray</span><span class="p">();</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>My second example checks wether a string is a pangram and stores this information as a boolean variable. A pangram is a sentence that contains each letter from the alphabet.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="kt">bool</span> <span class="n">isPangram</span> <span class="p">=</span> <span class="n">str</span><span class="p">.</span><span class="nf">ToLower</span><span class="p">().</span><span class="nf">Where</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="n">Char</span><span class="p">.</span><span class="nf">IsLetter</span><span class="p">(</span><span class="n">c</span><span class="p">)).</span><span class="nf">GroupBy</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="n">c</span><span class="p">).</span><span class="nf">Count</span><span class="p">()</span> <span class="p">==</span> <span class="m">26</span><span class="p">;</span></code></pre></figure>

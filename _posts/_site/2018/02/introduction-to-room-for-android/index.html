@@ -1,0 +1,135 @@
+<p>In the context of I/O 2017, Google released the Room Persistence Library, an intermediate layer between application logic and Android’s SQLite database. Using Room, you no longer have to handle stuff like network connection errors or caching yourself. Today’s article will help you get started with the library and teach you all the skills you need to implement Room in your own applications.</p>
+
+<h2 id="background-of-my-sample-application">Background of my sample application</h2>
+
+<p>The following code snippets are part of one of my side projects. This application manages shopping lists, which in itself can have entries. Actually, this is a very simple application, but it illustrates the functionality of Room very well.</p>
+
+<h2 id="room-components">Room Components</h2>
+
+<p>The structure of Room is based on three elements, which I will explain in detail below. These elements are the entities, data access objects and the database itself. While the purpose of the database should be clear, I would like to comment briefly on that of the other two.</p>
+
+<h3 id="entities">Entities</h3>
+
+<p>Entities in general represent real things. Almost anything can be an entity. Think of a car, a house, yourself.</p>
+
+<p>I wanted to keep the application very minimalistic, which is why each shopping list only has a title and a timestamp. This allows the user to sort the list chronologically. The class for displaying entries has the same attributes, supplemented by a reference to a shopping list. This is already a bit strange, because this setup corresponds to that of a relational database. When working with object relational mappers, however, you would rather give each shopping list a list of entry elements directly. Room separates itself from this approach: Room doesn’t allow object references. Google covers this extensively in a <a href="https://developer.android.com/training/data-storage/room/referencing-data.html#understand-no-object-references">dedicated article</a>. Instead, you have to explicitly tell Room what parts you need.</p>
+
+<p>For this reason I will build my pojos according to a relational database schema. This results in the following schema:</p>
+
+<p><img src="room_db_introduction_erm.png" alt="Example ERM for Room demo" /></p>
+
+<p>In Android, this schema can be translated to regular POJO classes. Using Java annotations, you can tell your class what elements should be treated in which way. The class which represents a shopping list looks like this:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Entity</span><span class="o">(</span><span class="n">tableName</span> <span class="o">=</span> <span class="s">"shopping_list"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ShoppingList</span> <span class="o">{</span>
+
+    <span class="nd">@PrimaryKey</span><span class="o">(</span><span class="n">autoGenerate</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">description</span><span class="o">;</span>
+
+    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"timestamp_seconds"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">timestampSeconds</span><span class="o">;</span>
+
+    <span class="nd">@Ignore</span>
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ShoppingListItem</span><span class="o">&gt;</span> <span class="n">items</span><span class="o">;</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>As you can see, there are already multiple annotations. The first one is the <em>@Entity</em> annotation. It tells room that this class needs to be persisted to a database and what the name of the matching table will be. The next annotation is @PrimaryKey. You need to assign a primary key to each entity. Doing so, you specify a unique identifier to each of the tables entries. I added <em>autoGenerate = true</em>, so Room will be handling this matter for me.</p>
+
+<p>In general, I don’t recommend to use simple integers as primary keys, but that’s another topic. Also, for the sake of simplicity, I set the scope of all properties to public. When using <em>private</em>, Room requires appropriate accessor methods to these properties.</p>
+
+<p>Per default, room will use class and property names to specify the respective elements in the database. By using the <em>@ColumnInfo</em> annotation, you can customize these. The last annotation in this example is <em>@Ignore</em>, which tells room to ignore the property when loading or saving data.</p>
+
+<p>You can see another annotation when checking out the class representing an item inside a shopping list:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Entity</span><span class="o">(</span>
+        <span class="n">tableName</span> <span class="o">=</span> <span class="s">"shopping_list_item"</span><span class="o">,</span>
+        <span class="n">foreignKeys</span> <span class="o">=</span> <span class="nd">@ForeignKey</span><span class="o">(</span>
+                <span class="n">entity</span> <span class="o">=</span> <span class="n">ShoppingList</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
+                <span class="n">parentColumns</span> <span class="o">=</span> <span class="s">"id"</span><span class="o">,</span>
+                <span class="n">childColumns</span> <span class="o">=</span> <span class="s">"list_id"</span><span class="o">,</span>
+                <span class="n">onDelete</span><span class="o">=</span><span class="n">CASCADE</span><span class="o">))</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ShoppingListItem</span> <span class="o">{</span>
+
+    <span class="nd">@PrimaryKey</span><span class="o">(</span><span class="n">autoGenerate</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"id"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"list_id"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">listId</span><span class="o">;</span>
+
+    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"description"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">description</span><span class="o">;</span>
+
+    <span class="nd">@ColumnInfo</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"timestamp_seconds"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">timestampSeconds</span><span class="o">;</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>As mentioned earlier, I’ve added a reference to the shopping list to each item. Since the id we specified for these is an automatically generate integer, we can simply access it here and store it as integer as well. By adding a <em>@ForeignKey</em> annotation, you’ll firstly need to specify the referenced class, followed by the referenced row. Complete the statement by specifying the column of the current class with which the join is to be done. In my case, this is the <em>id</em> column of the ShoppingList class and the <em>list_id</em> column of the ShoppingListItem class. Note that the names must match those of the table and you may have overwritten them with <em>@ColumnInfo</em> annotation.</p>
+
+<p>You can also customize the OnDelete action. If CASCADE is specified as an OnDelete action, all items in a list are deleted if the list itself is deleted.</p>
+
+<h3 id="data-access-objects">Data Access Objects</h3>
+
+<p>The next part we will cover are the DAOs. Data Access Objects allow you to interact between the database and the entity. And here’s the best part: they are very easy to implement. I have created two DAOs, one for the lists and one for the entries. In order to keep the whole thing a little bit short here, I’m just going to go into the DAO of my list.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Dao</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ShoppingListDao</span> <span class="o">{</span>
+
+    <span class="nd">@Query</span><span class="o">(</span><span class="s">"SELECT * FROM shopping_list"</span><span class="o">)</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">ShoppingList</span><span class="o">&gt;</span> <span class="nf">getAll</span><span class="o">();</span>
+
+    <span class="nd">@Query</span><span class="o">(</span><span class="s">"DELETE FROM shopping_list WHERE id = :id"</span><span class="o">)</span>
+    <span class="kt">void</span> <span class="nf">deleteListById</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+
+    <span class="nd">@Insert</span><span class="o">()</span>
+    <span class="kt">void</span> <span class="nf">insertList</span><span class="o">(</span><span class="n">ShoppingList</span> <span class="n">shoppingList</span><span class="o">);</span>
+
+    <span class="nd">@Update</span><span class="o">()</span>
+    <span class="kt">void</span> <span class="nf">updateList</span><span class="o">(</span><span class="n">ShoppingList</span> <span class="n">shoppingList</span><span class="o">);</span>
+
+    <span class="nd">@Delete</span>
+    <span class="kt">void</span> <span class="nf">deleteList</span><span class="o">(</span><span class="n">ShoppingList</span> <span class="n">shoppingList</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>A DAO is basically an interface that describes the interaction possibilities with the database. How exactly these look depends of course on your specific application. By specifying a Java annotation you can control the type of operation. In addition to the regular operations for creating, updating, or deleting objects, Room offers you the option of implementing your own queries using the query statement.</p>
+
+<p>Of course, you can also use parameters in your custom queries. To do this, simply enter the name of the parameter with a preceding colon in the query.</p>
+
+<p>In my final section, the database itself, I will show you how to combine the components and how to persist your objects.</p>
+
+<h3 id="database">Database</h3>
+
+<p>To interact with the SQLite database, you need to create a separate class that inherits from <em>RoomDatabase</em> and passes the connection details via <em>@Database</em> annotation. Google recommends using a singleton pattern, which I have implemented in my application.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Database</span><span class="o">(</span><span class="n">entities</span> <span class="o">=</span> <span class="o">{</span><span class="n">ShoppingList</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">ShoppingListItem</span><span class="o">.</span><span class="na">class</span><span class="o">},</span> <span class="n">version</span> <span class="o">=</span> <span class="mi">1</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AppDatabase</span> <span class="kd">extends</span> <span class="n">RoomDatabase</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">AppDatabase</span> <span class="n">INSTANCE</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">ShoppingListDao</span> <span class="nf">shoppingListDao</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="n">ShoppingListItemDao</span> <span class="nf">shoppingListItemDao</span><span class="o">();</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">AppDatabase</span> <span class="nf">getAppDatabase</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">INSTANCE</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">INSTANCE</span> <span class="o">=</span>
+                    <span class="n">Room</span><span class="o">.</span><span class="na">databaseBuilder</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">getApplicationContext</span><span class="o">(),</span> <span class="n">AppDatabase</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="s">"shoppinglist-db"</span><span class="o">)</span>
+                            <span class="o">.</span><span class="na">allowMainThreadQueries</span><span class="o">()</span>
+                            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">INSTANCE</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">destroyInstance</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">INSTANCE</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>As you may have noticed, I explicitly allowed Room to perform database operations in the UI thread. Please note you should not release something like this in a production-ready application. Otherwise, longer running operations may block the user interface and have negative effects on the UX.</p>
+
+<p>The following example shows you how to retrieve data from the database.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">ShoppingList</span><span class="o">&gt;</span> <span class="n">shoppingLists</span> <span class="o">=</span> <span class="n">AppDatabase</span><span class="o">.</span><span class="na">getAppDatabase</span><span class="o">(</span><span class="n">getApplicationContext</span><span class="o">()).</span><span class="na">shoppingListDao</span><span class="o">().</span><span class="na">getAll</span><span class="o">();</span></code></pre></figure>
+
+<p>You can now perform all other operations in the same way. All information as well as advanced topics can be found directly on Google in the <a href="https://developer.android.com/topic/libraries/architecture/room.html">corresponding documentation</a>.</p>

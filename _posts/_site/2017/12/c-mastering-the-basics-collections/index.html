@@ -1,0 +1,116 @@
+<p>Altough the topic <em>“Collections”</em> matches programming in general, I’ve decided to add it to my series on mastering the basics of C#. For this reason, you will find some content here that is generally applicable, but I will also discuss different language-specific elements.</p>
+
+<p>Collections support several different use cases, e. g. searching through a set for objects with certain properties, or iterating through multiple elements by predefined sorting specifications.</p>
+
+<p>In the first part of this article, I will cover the two basic types of collections in C#, lists and dictionaries. Then, I will go over the groups of collections you might know from Java: lists, sets and maps. I’d like to describe and compare their characteristics and then implement their functionality in C#.</p>
+
+<h2 id="collections-in-c">Collections in C</h2>
+
+<p>The simplest form of collections in C# are arrays. An array allows you to store a group of objects of one specific type. The following example shows a string array, which contains three elements.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">String</span><span class="p">[]</span> <span class="n">movies</span> <span class="p">=</span> <span class="k">new</span> <span class="n">String</span><span class="p">[</span><span class="m">3</span><span class="p">];</span>
+
+<span class="n">movies</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="s">"The Matrix"</span><span class="p">;</span>
+<span class="n">movies</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">=</span> <span class="s">"The Dark Knight"</span><span class="p">;</span>
+<span class="n">movies</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">=</span> <span class="s">"#9"</span><span class="p">;</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="n">String</span> <span class="n">movie</span> <span class="k">in</span> <span class="n">movies</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">movie</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>In this simple example, you can see the problem with arrays: the size of it needs to be known before adding the elements. The “real” collections in C# can be utilized to handle this problem.</p>
+
+<p>The basis of C# collections are List<T> and Dictionary&lt;K,T&gt;, which will be covered in the following section.</T></p>
+
+<h3 id="list">List<T></T></h3>
+
+<p>Lists offer a way to organize objects in a similar way arrays do. Basically, you create a List of a specific type, which allows you to dynamically add and remove items from this list. Opposed to arrays, lists don’t need to specify the amount of objects they can contain, which allows you to dynamically change their size.</p>
+
+<p>The following snippet instaniates two new instances of the class “Person”, adds both to a list and outputs the value of Name-properties (the class consists only of this one property).</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">List</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">&gt;</span> <span class="n">persons</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">&gt;();</span>
+
+<span class="n">Person</span> <span class="n">alice</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">"Alice"</span> <span class="p">};</span>
+<span class="n">Person</span> <span class="n">bob</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">"Bob"</span> <span class="p">};</span>
+
+<span class="n">persons</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">alice</span><span class="p">);</span>
+<span class="n">persons</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">bob</span><span class="p">);</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="n">Person</span> <span class="n">person</span> <span class="k">in</span> <span class="n">persons</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Besides adding items, the List<T> class offers multiple useful properties and methods, such as Count to receive the amount of objects, Clear() to remove all items or Contains() to check if the list contains a specific object. Check out the [MSDN page](https://msdn.microsoft.com/en-us/library/6sh2ey19(v=vs.110).aspx) for full documentation.</T></p>
+
+<p>One last thing I’d like to mention is the option to access a specific item by its index, as you’re probably used to from using arrays.</p>
+
+<h3 id="dictionarykt">Dictionary&lt;K,T&gt;</h3>
+
+<p>The second main type of collections C# offers is the Dictionary&lt;K,T&gt;. As the name suggests, it allows you to keep track of multiple objects by a unique key. Both object and key can be of whatever type you’d want it to be.</p>
+
+<p>The following snippet shows you how to create a dictionary with a string as key and a person as object. I’ve also added an int property named <em>Age</em> to the class <em>Person</em>.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">Person</span><span class="p">&gt;</span> <span class="n">persons</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">Person</span><span class="p">&gt;();</span>
+
+<span class="n">Person</span> <span class="n">alice</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">"Alice"</span><span class="p">,</span> <span class="n">Age</span> <span class="p">=</span> <span class="m">30</span> <span class="p">};</span>
+<span class="n">Person</span> <span class="n">bob</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Person</span> <span class="p">{</span> <span class="n">Name</span> <span class="p">=</span> <span class="s">"Bob"</span><span class="p">,</span> <span class="n">Age</span> <span class="p">=</span> <span class="m">32</span> <span class="p">};</span>
+
+<span class="n">persons</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"alice"</span><span class="p">,</span> <span class="n">alice</span><span class="p">);</span>
+<span class="n">persons</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"bob"</span><span class="p">,</span> <span class="n">bob</span><span class="p">);</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"</span><span class="p">{</span><span class="n">persons</span><span class="p">[</span><span class="s">"bob"</span><span class="p">].</span><span class="n">Name</span><span class="p">}</span><span class="s"> is </span><span class="p">{</span><span class="n">persons</span><span class="p">[</span><span class="s">"bob"</span><span class="p">].</span><span class="n">Age</span><span class="p">}</span><span class="s"> years old"</span><span class="p">);</span>
+<span class="c1">// Output: Bob is 32 years old</span></code></pre></figure>
+
+<p>As you can see, access to a dictionary works like accessing an array by replacing the index with the key. However, you can still iterate over the contained items. At this point, you can choose wether you want to iterate over the dictionary items (key &amp; value) or just key or value.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="c1">// Iterate over dictionary entries
+</span>
+<span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">entry</span> <span class="k">in</span> <span class="n">persons</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Key: </span><span class="p">{</span><span class="n">entry</span><span class="p">.</span><span class="n">Key</span><span class="p">}</span><span class="s">, Name: </span><span class="p">{</span><span class="n">entry</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">Name</span><span class="p">}</span><span class="s">, Age: </span><span class="p">{</span><span class="n">entry</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">Age</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Iterate over dictionary values
+</span>
+<span class="k">foreach</span><span class="p">(</span><span class="n">Person</span> <span class="n">person</span> <span class="k">in</span> <span class="n">persons</span><span class="p">.</span><span class="n">Values</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Iterate over dictionary keys
+</span>
+<span class="k">foreach</span><span class="p">(</span><span class="n">String</span> <span class="n">key</span> <span class="k">in</span> <span class="n">persons</span><span class="p">.</span><span class="n">Keys</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="set">Set</h2>
+
+<p>In mathematics, a set is a collection of objects, which has two main criteria: there is no given order and each element of a set is unique.</p>
+
+<p>Of course, C# offers an implementation to cover such collections as well: [HashSet<T>](https://msdn.microsoft.com/en-us/library/bb359438.aspx) is your way to go. HashSets offer high performance set operations on collections that can&#8217;t hold duplicate elements nor use a specific order.</T></p>
+
+<p>The following snippet instantiates a new HashSet of type Person and adds alice and bob to it. While you can add an object multiple times, it will be added to the set only once, which is why the output of the snippet will only display bob only once.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">HashSet</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">&gt;</span> <span class="n">persons</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">&gt;();</span>
+
+<span class="n">persons</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">bob</span><span class="p">);</span>
+<span class="n">persons</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">alice</span><span class="p">);</span>
+<span class="n">persons</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="n">bob</span><span class="p">);</span>
+
+<span class="k">foreach</span><span class="p">(</span><span class="n">Person</span> <span class="n">person</span> <span class="k">in</span> <span class="n">persons</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">Name</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="list-1">List</h2>
+
+<p>Compared to sets, lists are very simple to describe. Lists contain a dynamic amount of objects, whereby an object can be contained multiple times. Also, the order of items in a list is important. The previously described List<T> class already offers predefined methods to sort lists.</T></p>
+
+<p>Besides the List<T> class, there are other variants of lists available, that serve different purposes. ArrayList<T> stores data like an array does, and List<T> basically is a wrapper for ArrayList<T>. It allows you to access the list by index and is optimized for random access.</T></T></T></T></p>
+
+<p>Another option is LinkedList<T>, which maintains pointers to the actual objects along with references to the next and previous item. This results in more work when adding or removing items from the list since each objects reference must be updated. Also, you can&#8217;t access a LinkedList via index. However, if you have heavy workload in the form of tail- or head-inserts, this might be your choice.</T></p>
+
+<h2 id="map">Map</h2>
+
+<p>The term map is used in Java for collections, which are known as Dictionary under C#. I’ve already covered this type of collection in the first chapter of the article, but the conclusions will be wrapped up here.</p>
+
+<p>Dictionaries (or Maps) are used to associate objects to a unique key, by which they can be accessed later. One possible use case for dictionaries could be the association of user session ids with the users properties.</p>
+
+<p>To conclude this, you may choose to use a dictionary when you need to look up a value by a key. If you have an object like <code class="EnlighterJSRAW" data-enlighter-language="csharp">{ key, value }</code> and you need to access both, key and value without knowing them, you might prefer list.</p>

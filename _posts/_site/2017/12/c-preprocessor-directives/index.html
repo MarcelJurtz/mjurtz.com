@@ -1,0 +1,50 @@
+<p>You can use preprocessor directives in csharp to provide straightforward instructions to the compiler. For example, these directives allow you to execute certain code elements only under predefined conditions. Another possible field of use is simply the structuring of your source code into blocks, which can be folded in and out of Visual Studio.</p>
+
+<p>In this article I will discuss some of these directives. Preprocessor directives are always started with a #-symbol.</p>
+
+<h2 id="define--undef">#define &amp; #undef</h2>
+
+<p>The first two directives I would like to mention are <em>#define</em> and <em>#undef</em>. They are used to define symbols and remove them. Imagine such a symbol as a simple variable, the next elements will help to illustrate it as well. Note, that <em>#define</em>-elements need to be at the very top of a file, even above the using-statements!</p>
+
+<h2 id="if-else-elif--else">#if, #else, #elif  &amp; #else</h2>
+
+<p>The next symbols are <em>#if</em>, <em>#else</em>, <em>#elif</em> and <em>#endif</em>. As you have probably already guessed, they are used to execute certain source code only under predefined conditions. And this is exactly where the symbols I defined in the previous section play a role. In the following source code I have defined a symbol, which is then checked for existence. According to this definition, the output <em>“Running in demomode!”</em> will be performed. You can also use the predefined symbol <em>“DEBUG”</em>, to check wether your application runs in debug or release mode.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="cp">#define DEMOMODE
+</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">CompilerDirectivesDemo</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="err">#</span><span class="k">if</span> <span class="n">DEMOMODE</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Running in demomode!"</span><span class="p">);</span>
+
+            <span class="err">#</span><span class="k">else</span>
+            
+            <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Not running in demomode!"</span><span class="p">);</span>
+            
+            <span class="err">#</span><span class="n">endif</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="nf">ReadLine</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>VisualStudio automatically adjusts the display when saving, so that you can see directly in the editor which part of the if-statement will be executed.</p>
+
+<p>As just mentioned, it is possible to use predefined symbols. You can edit these settings if you go to project settings and check the build tab.</p>
+
+<p><img src="/assets/2017/preprocessor_directives.png" alt="Preprocessor Directives" /></p>
+
+<h2 id="region--endregion">#region &amp; #endregion</h2>
+
+<p>The last directives I would like to mention are #region and #endregion. These are used to split source code into related blocks.</p>
+
+<p>The code within such a block can be expanded and collapsed by the plus and minus symbols in Visual Studio, which are displayed next to the row number bar. An optional name following the #region-remark allows you to assign a name to each block.</p>
+
+<p><img src="/assets/2017/preprocessor_directives_regions.png" alt="Preprocessor Directives - Regions" /></p>

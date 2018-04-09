@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Searching Blogposts in Jekyll</title>
-  <meta name="description" content="In one of my previous posts, I went over the details why I moved my blog from WordPress to Jekyll. So far, I really appreciate my new system, but I miss one ...">
+  <title>Sideproject - Sist!</title>
+  <meta name="description" content="It’s time to announce a new sideproject-launch!">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2018">
@@ -47,7 +47,7 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/2018/03/jekyll-search">
+  <link rel="canonical" href="http://localhost:4000/2018/03/sideproject-sist">
   <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
 </head>
 
@@ -307,6 +307,10 @@
           
         
           
+          <li class="nav-link"><a href="/category/windows/">Windows</a>
+          
+        
+          
         
           
         
@@ -349,7 +353,7 @@
 <div class="post-header-container " >
   <div class="scrim ">
     <header class="post-header">
-      <h1 class="title">Searching Blogposts in Jekyll</h1>
+      <h1 class="title">Sideproject - Sist!</h1>
       <p class="info">by <strong>Marcel Jurtz</strong></p>
     </header>
   </div>
@@ -364,39 +368,44 @@
  
 
 <section class="post-meta">
-  <div class="post-date">March 30, 2018</div>
+  <div class="post-date">March 28, 2018</div>
   <div class="post-categories">
   in 
     
-    <a href="/category/Blog">Blog</a>
+    <a href="/category/Android">Android</a>
     
   
   </div>
 </section>
 
 <article class="post-content">
-  <p>In one of my <a href="/2018/03/moving-to-jekyll">previous posts</a>, I went over the details why I moved my blog from WordPress to Jekyll. So far, I really appreciate my new system, but I miss one particular feature: searching through my posts.</p>
+  <p>It’s time to announce a new sideproject-launch!</p>
 
-<p>Since Jekyll is a static site generator and does not rely on a database for the posts, you can’t simply add a search functionality like WordPress does. So, I have to work with some frontend / clientside stuff.</p>
+<p>Some days ago, I’ve been looking for an app which allowed my to keep track of shopping lists in a simple and fast way. While there are lots of such apps available for Android, all I tested seemed to be overkill for what I really wanted. So I decided to create my own app for this purpose.</p>
 
-<p>After doing some research, I stumbled across <a href="https://lunrjs.com/">lunr.js</a>, a JavaScript-based text search library to use on the client side.</p>
+<p>Besides creating a simple app, my goal was to learn something new while developing the app. I decided to use Androids built in SQLite database to store lists. I’ve been using the database for previous projects, but I did not really care about the implementation. That being said, I wrote the queries all by hand which ended up being pretty messy.</p>
 
-<p>I decided to give lunr a try and went on to add a search box to my main page. You can now see this in the very bottom of the screen. The is constructed as follows:</p>
+<p>In my defense I would like to say that I was still at the beginning of my programming career and had no idea of the existence of things like object relational mappers.</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/search.html"</span> <span class="na">method=</span><span class="s">"get"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"search_box"</span><span class="nt">&gt;</span>Search Posts<span class="nt">&lt;/label&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"search_box"</span> <span class="na">name=</span><span class="s">"query"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"search"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/form&gt;</span></code></pre></figure>
+<p>So I took a look around and decided to try Google’s Room for Android. If you’re not familiar with this project, feel free to checkout my article on the topic: <a href="/2018/02/introduction-to-room-for-android/">Introduction to Room for Android</a>.</p>
 
-<p>When clicking the search-button, the user will be redirected to the <em>search.html</em> file. This site lists all matches and a search box containing the entered values. The search page consists of my regular header and footer. Also, of course, it contains a script which fetches all matching posts. It then lists all matches inside an unordered list. Of course, all scripts and pages are also located in this Blogs <a href="https://github.com/MarcelJurtz/blog.mjurtz.com">GitHub Repository</a>, feel free to check it out!</p>
+<p>The result of one weekend now meets my expectations: A simple Android app that fulfills the functionality I want. Multi-list management with individual entries and a focus on simplicity and speed. A small detail is for example the automatic expansion of the keyboard when adding new entries.</p>
+
+<p>In addition to testing Room, I was able to try other Android features I hadn’t used before. These include controls such as CardView or RecyclerView.</p>
+
+<p>I would be very happy if you would test the app and submit feedback to me. As always, the entire source code is also available on GitHub and I’m always available for criticism and suggestions for improvement.</p>
+
+<ul>
+  <li><a href="https://play.google.com/store/apps/details?id=com.jurtz.marcel.shoppinglist">Download from Google Play</a></li>
+  <li><a href="https://github.com/MarcelJurtz/ShoppingList">Sourcecode on GitHub</a></li>
+</ul>
 
 </article>
 
 
 
 <section class="tags">
-  <strong>Tags:</strong> <a href="/tag/blog">Blog</a>,&nbsp;<a href="/tag/web">Web</a>,&nbsp;<a href="/tag/ruby">Ruby</a>,&nbsp;<a href="/tag/javascript">JavaScript</a>,&nbsp;<a href="/tag/jekyll">Jekyll</a>
+  <strong>Tags:</strong> <a href="/tag/android">Android</a>,&nbsp;<a href="/tag/app">App</a>,&nbsp;<a href="/tag/development">Development</a>,&nbsp;<a href="/tag/programming">Programming</a>,&nbsp;<a href="/tag/sideproject">Sideproject</a>
 </section>
 
 
@@ -410,7 +419,7 @@
   
     
     
-      <a href="//twitter.com/share?text=Searching+Blogposts+in+Jekyll&url=http%3A%2F%2Flocalhost%3A4000%2F2018%2F03%2Fjekyll-search&via=MarcelJurtz"
+      <a href="//twitter.com/share?text=Sideproject+-+Sist%21&url=http%3A%2F%2Flocalhost%3A4000%2F2018%2F03%2Fsideproject-sist&via=MarcelJurtz"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
         <i class="fa fa-twitter-square fa-lg"></i>
       </a>
@@ -438,7 +447,7 @@
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2018/03/jekyll-search') + '&title=Searching Blogposts in Jekyll'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2018/03/sideproject-sist') + '&title=Sideproject - Sist!'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
@@ -700,6 +709,10 @@
         
         
           <li class="nav-link"><a href="/category/blog/">Blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/windows/">Windows</a>
         
         
         

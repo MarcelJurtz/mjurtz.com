@@ -1,0 +1,25 @@
+<p>Besides my series on how to get started with ServiceStack, I have already published a few articles that are related to the topic, but do not belong directly to the introductory series. In the <a href="https://blog.mjurtz.com/2017/12/query-coinmarketcap-api-using-servicestack/">last such article</a>, I used the example of <a href="https://coinmarketcap.com/">coinmarketcap.com</a> to show how to access third-party APIs using the C# client.</p>
+
+<p>Today, I’ll show you how to use ServiceStacks Logging API and link it to a slack channel. The prerequisites for this article are an existing Slack account and a simple ServiceStack service (<a href="https://blog.mjurtz.com/2017/11/servicestack-building-simple-service/">see my article on this topic</a>).</p>
+
+<h2 id="creating-the-service">Creating the Service</h2>
+
+<p>To be able to integrate your service to Slack, you need to login to your Slack account and create a <a href="https://my.slack.com/services/new/incoming-webhook/">new Incoming Webhook</a>. A default channel now needs to be specified. However, this will be overwritten by us later, so at this point the selection does not play an important role. After creating the webhook, Slack will provide an url that will be added to our logger in the next step.</p>
+
+<p>Slack logging requires the nuget package <em>ServiceStack.Logging.Slack.</em> Add this to your project in Visual Studio. As soon as the package is installed, the base of the project is done. Next, the service will be adapted. The following source code must be added to the <em>Configure()</em>-method of your AppHost class:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">LogManager</span><span class="p">.</span><span class="n">LogFactory</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">SlackLogFactory</span><span class="p">(</span><span class="s">"webhook-url"</span><span class="p">,</span> <span class="n">debugEnabled</span><span class="p">:</span> <span class="k">true</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">DefaultChannel</span> <span class="p">=</span> <span class="s">"logs"</span><span class="p">,</span>
+    <span class="n">ErrorChannel</span> <span class="p">=</span> <span class="s">"errorlogs"</span><span class="p">,</span>
+    <span class="n">BotUsername</span> <span class="p">=</span> <span class="s">"Sample ServiceStack Logger"</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>Replace the first parameter with the URL of the previously created webhook and adjust the logger to cover your personal preferences. I use the channel “logs”as default for all messages, and “errorlogs” for all error messages. Similarly, a separate channel can be created for each logging type (debug, info, warning, error, fatal).</p>
+
+<h2 id="generating-logs">Generating Logs</h2>
+
+<p>And that’s it! The logger can now be accessed from any part of the program. While each type of logging has its own method, in slack there is no automatic differentiation between them apart from the different channel distribution.</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">static</span> <span class="n">ILog</span> <span class="n">Log</span> <span class="p">=</span> <span class="n">LogManager</span><span class="p">.</span><span class="nf">GetLogger</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">MyService</span><span class="p">));</span>
+<span class="n">Log</span><span class="p">.</span><span class="nf">Info</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">);</span></code></pre></figure>

@@ -1,6 +1,6 @@
 ---
 id: 361
-title: 'Making Video Games &#8211; Concepts &#8211; Part 1'
+title: 'Making Video Games - Concepts - Part 1'
 date: 2017-09-09T10:19:34+00:00
 author: Marcel Jurtz
 layout: post

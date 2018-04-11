@@ -7,11 +7,11 @@ layout: post
 guid: https://blog.mjurtz.com/?p=758
 permalink: /2018/02/getting-stuff-done/
 categories:
-  - Productivity
+  - productivity
 tags:
-  - Efficiency
-  - Productivity
-  - Self
+  - efficiency
+  - productivity
+  - self
 ---
 While being fun, programming is not easy. To be able to dive into a flow state in which you&#8217;re completely focussed on the topic, you need to cut off all distractions. With this article I would like to introduce you to my methods of working in a more focused manner and give you some tips that might make your life much easier. My experiences mostly come from the programming area, but the following tips can be extended to various other topics.
 

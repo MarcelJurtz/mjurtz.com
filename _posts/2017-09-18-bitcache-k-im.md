@@ -7,11 +7,11 @@ layout: post
 guid: http://blog.mjurtz.com/?p=399
 permalink: /2017/09/bitcache-k-im/
 categories:
-  - Cryptocurrency
+  - cryptocurrency
 tags:
-  - Bitcache
-  - Bitcoin
-  - Cryptocurrency
+  - bitcache
+  - bitcoin
+  - cryptocurrency
 ---
 After Kim Dotcom announced his new service, I just had to sign up for an invitation. After receiving it an hour later, I tried it out. In this article, I&#8217;ll document my experience with [k.im](https://k.im/).
 

@@ -7,17 +7,17 @@ layout: post
 guid: https://blog.mjurtz.com/?p=715
 permalink: /2018/01/debugging-xamarin-apps-on-physical-device-over-wifi/
 categories:
-  - Android
+  - android
 tags:
-  - .NET
-  - Android
-  - App
-  - CSharp
-  - Development
-  - Programming
-  - Tools
-  - Windows
-  - Xamarin
+  - dotnet
+  - android
+  - app
+  - csharp
+  - development
+  - programming
+  - tools
+  - windows
+  - xamarin
 ---
 Xamarin utilizes the Android Debug Bridge (ADB) for debugging on physical devices, which are usually connected over usb. While this feature definitely is useful, it would sometimes be more practical if you could do this over WIFI instead.
 

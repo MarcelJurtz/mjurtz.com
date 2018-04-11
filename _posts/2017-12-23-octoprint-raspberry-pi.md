@@ -7,11 +7,11 @@ layout: post
 guid: https://blog.mjurtz.com/?p=690
 permalink: /2017/12/octoprint-raspberry-pi/
 categories:
-  - Hobby
+  - hobby
 tags:
-  - 3D-Printing
-  - Linux
-  - Raspberry Pi
+  - 3d-printing
+  - linux
+  - raspberry-pi
 ---
 Being tired of running back and forth to my 3D-printer to change stl files and starting / stopping prints, I decided to give [Octoprint](https://octoprint.org/) a shot. Octoprint basically provides a webinterface for 3D-printers, which allows you to send tasks over your local network to the printer and to monitor the prints. The software also provides a plugin functionality, so you can create your custom addons if required.
 

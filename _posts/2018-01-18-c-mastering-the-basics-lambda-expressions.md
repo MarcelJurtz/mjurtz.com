@@ -7,12 +7,12 @@ layout: post
 guid: https://blog.mjurtz.com/?p=724
 permalink: /2018/01/c-mastering-the-basics-lambda-expressions/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - CSharp
-  - Development
-  - Programming
+  - dotnet
+  - csharp
+  - development
+  - programming
 ---
 Are you one of the people who are easily intimidated by complicated-looking things? I felt a little bit like that when I saw lambda expressions for the first time. But let me tell you this: they really only look scary on the very first look. This article covers the basics of using lambda expressions and should be seen as quick introduction rather than extensive documentation.
 

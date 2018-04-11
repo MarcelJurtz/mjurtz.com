@@ -7,7 +7,7 @@ layout: post
 guid: http://blog.mjurtz.com/?p=450
 permalink: /2017/10/motivation-self-discipline/
 categories:
-  - Productivity
+  - productivity
 ---
 During my participation in various software development projects, I have noticed one thing they usually have in common. While it is often very easy to find the motivation to start a new project, many of them end up unfinished or not in a way you would like them to.
 

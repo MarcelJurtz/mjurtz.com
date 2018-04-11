@@ -7,17 +7,17 @@ layout: post
 guid: http://blog.mjurtz.com/?p=504
 permalink: /2017/11/touch-controls-unity-game-development/
 categories:
-  - Android
-  - Game development
+  - android
+  - game-development
 tags:
-  - .NET
-  - Android
-  - App
-  - CSharp
-  - Development
-  - GameDev
-  - Programming
-  - Unity
+  - dotnet
+  - android
+  - app
+  - csharp
+  - development
+  - gamedev
+  - programming
+  - unity
 ---
 Some time ago, I created [this game](https://github.com/MarcelJurtz/Escape) ([online playable version](https://marceljurtz.github.io/Escape-Web/)) in Unity, and I wanted to be able to play it on my Android phone. Since the input options on the smartphone are slightly different from those on the pc, a certain amount of adjustments were necessary. I won&#8217;t go over the specific details on the game mechanics, you can check out these on GitHub, they are described in the README file. However, the basic concept of the game is  the movement of a cube to one of the directions up, down, left or right. The information about which direction to use is displayed on the screen.
 

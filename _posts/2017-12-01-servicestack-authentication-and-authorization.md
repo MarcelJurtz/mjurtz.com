@@ -7,14 +7,14 @@ layout: post
 guid: https://blog.mjurtz.com/?p=589
 permalink: /2017/12/servicestack-authentication-and-authorization/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - CSharp
-  - Development
-  - Programming
-  - REST
-  - ServiceStack
+  - dotnet
+  - csharp
+  - development
+  - programming
+  - rest
+  - servicestack
 ---
 This is the fourth part on my series on how to get started using ServiceStack. Be sure to check out the earlier articles, if you haven&#8217;t read them already:
 

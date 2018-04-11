@@ -5,10 +5,10 @@ author: Marcel Jurtz
 layout: post
 permalink: /2018/04/bypass-windows-media-creation-tool/
 categories:
-  - Windows
+  - windows
 tags:
-  - Tools
-  - Windows
+  - tools
+  - windows
 ---
 
 Remember when you could simply download official Windows ISO images to burn on DVDs and install? 

@@ -9,12 +9,12 @@ permalink: /2017/09/building-android-app-scratch-using-mvp/
 vcv-be-editor:
   - classic
 categories:
-  - Android
+  - android
 tags:
-  - Android
-  - App
-  - Baseball
-  - Development
+  - android
+  - app
+  - baseball
+  - development
 ---
 In this article, I&#8217;ll document the process of building an android app from scratch by using the MVP approach of clean architecture. The app itself will represent a minimalistic umpire indicator for tracking baseball games. Please consider using this in the dugout only. Since this will be a longer post, you can use the following links to jump between sections.
 

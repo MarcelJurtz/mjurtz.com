@@ -7,13 +7,13 @@ layout: post
 guid: https://blog.mjurtz.com/?p=569
 permalink: /2017/11/servicestack-building-simple-service/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - CSharp
-  - Development
-  - Programming
-  - ServiceStack
+  - dotnet
+  - csharp
+  - development
+  - programming
+  - servicestack
 ---
 This is the second post in my series on building web services with ServiceStack. In [the first part](https://blog.mjurtz.com/2017/11/what-is-servicestack/), I covered the benefits of using ServiceStack, this article continues with the setup of a basic service and its several components.
 

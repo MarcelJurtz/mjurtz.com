@@ -7,11 +7,11 @@ layout: post
 guid: https://blog.mjurtz.com/?p=794
 permalink: /2018/02/introduction-to-i3/
 categories:
-  - Linux
+  - linux
 tags:
-  - Efficiency
-  - Linux
-  - Software
+  - efficiency
+  - linux
+  - software
 ---
 In today&#8217;s article I would like to give you an insight into the usage of a tiling window manager, which I will illustrate with the example of i3.
 

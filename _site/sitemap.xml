@@ -271,10 +271,10 @@
 <loc>http://localhost:4000/tag/cryptocurrency/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/tag/net/</loc>
+<loc>http://localhost:4000/tag/dotnet/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/tag/asp-net/</loc>
+<loc>http://localhost:4000/tag/asp-dotnet/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/tag/csharp/</loc>
@@ -322,7 +322,7 @@
 <loc>http://localhost:4000/tag/sideproject/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/tag/net-core/</loc>
+<loc>http://localhost:4000/tag/dotnet-core/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/tag/linux/</loc>
@@ -368,6 +368,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/category/cryptocurrency/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/category/csharp/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/category/csharp/</loc>

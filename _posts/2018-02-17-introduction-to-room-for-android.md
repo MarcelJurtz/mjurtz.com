@@ -7,12 +7,12 @@ layout: post
 guid: https://blog.mjurtz.com/?p=762
 permalink: /2018/02/introduction-to-room-for-android/
 categories:
-  - Android
+  - android
 tags:
-  - Android
-  - App
-  - Development
-  - Programming
+  - android
+  - app
+  - development
+  - programming
 ---
 In the context of I/O 2017, Google released the Room Persistence Library, an intermediate layer between application logic and Android&#8217;s SQLite database. Using Room, you no longer have to handle stuff like network connection errors or caching yourself. Today&#8217;s article will help you get started with the library and teach you all the skills you need to implement Room in your own applications.
 

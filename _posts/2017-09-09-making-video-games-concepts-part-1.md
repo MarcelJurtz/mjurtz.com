@@ -9,10 +9,10 @@ permalink: /2017/09/making-video-games-concepts-part-1/
 vcv-be-editor:
   - classic
 categories:
-  - Game development
+  - game-development
 tags:
-  - GameDev
-  - Unity
+  - gamedev
+  - unity
 ---
 In this series, I&#8217;ll be creating a videogame from scratch using unity. I hope that I&#8217;ll be able to keep everything understandable for beginners, but if something gets too complex, just contact me and I&#8217;ll update the specific post.
 

@@ -7,14 +7,14 @@ layout: post
 guid: http://blog.mjurtz.com/?p=507
 permalink: /2017/11/voxel-explosions-unity/
 categories:
-  - Game development
+  - game-development
 tags:
-  - .NET
-  - CSharp
-  - Development
-  - GameDev
-  - Programming
-  - Unity
+  - dotnet
+  - csharp
+  - development
+  - gamedev
+  - programming
+  - unity
 ---
 This article describes the process of creating voxel explosions in Unity by using particles. For our models, we use [MagicaVoxel](https://ephtracy.github.io/), but every other tool can be used as well. The final result will look similar to this:
 

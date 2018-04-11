@@ -5,11 +5,11 @@ author: Marcel Jurtz
 layout: post
 permalink: /2018/03/moving-to-jekyll/
 categories:
-  - Blog
+  - blog
 tags:
-  - Blog
-  - Web
-  - Ruby
+  - blog
+  - web
+  - ruby
 ---
 
 I decided that it is time for some changes. When I started this blog, I decided to use WordPress. My goal was to be able to write posts without having to focus on anything other than actual writing. Wordpress was the tool of my choice due to its simplicity.

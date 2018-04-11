@@ -7,13 +7,13 @@ layout: post
 guid: https://blog.mjurtz.com/?p=637
 permalink: /2017/12/c-mastering-the-basics-collections/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - .NET Core
-  - CSharp
-  - Development
-  - Programming
+  - dotnet
+  - dotnet-core
+  - csharp
+  - development
+  - programming
 ---
 Altough the topic _&#8220;Collections&#8221;_ matches programming in general, I&#8217;ve decided to add it to my series on mastering the basics of C#. For this reason, you will find some content here that is generally applicable, but I will also discuss different language-specific elements.
 

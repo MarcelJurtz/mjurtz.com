@@ -7,19 +7,19 @@ layout: post
 guid: https://blog.mjurtz.com/?p=639
 permalink: /2017/12/sideproject-cryptofolio/
 categories:
-  - Xamarin
+  - xamarin
 tags:
-  - .NET
-  - Android
-  - App
-  - Bitcoin
-  - Cryptocurrency
-  - CSharp
-  - Development
-  - Programming
-  - ServiceStack
-  - Sideproject
-  - Xamarin
+  - dotnet
+  - android
+  - app
+  - bitcoin
+  - cryptocurrency
+  - csharp
+  - development
+  - programming
+  - servicestack
+  - sideproject
+  - xamarin
 ---
 Today I would like to introduce my current side project. I&#8217;m currently developing [_CryptoFolio_](https://github.com/MarcelJurtz/CryptoFolio), an app that allows you to keep track of your investments in cryptocurrencies.
 

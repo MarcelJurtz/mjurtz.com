@@ -7,11 +7,11 @@ layout: post
 guid: http://blog.mjurtz.com/?p=392
 permalink: /2017/09/sublime-text-3-atom-users/
 categories:
-  - Tools
+  - tools
 tags:
-  - Development
-  - Editor
-  - Tools
+  - development
+  - editor
+  - tools
 ---
 Due to the release of Sublime Text 3, I thought I&#8217;ll give this editor a shot. Currently, I&#8217;m using both Notepad++ and Atom. Altough I really like atom and the several useful plugins, it has one huge problem: speed. The initial loading time is one thing, over 100 mb. of RAM in idle mode is another. For quickly editing stuff, this is not acceptable.
 

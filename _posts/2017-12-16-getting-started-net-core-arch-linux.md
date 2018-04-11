@@ -7,13 +7,13 @@ layout: post
 guid: https://blog.mjurtz.com/?p=669
 permalink: /2017/12/getting-started-net-core-arch-linux/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - .NET Core
-  - Development
-  - Linux
-  - Programming
+  - dotnet
+  - dotnet-core
+  - development
+  - linux
+  - programming
 ---
 Hello Internet! Today, we will try to develop and run .NET Core Apps on a Macbook running Arch Linux! Because what could go wrong!
 

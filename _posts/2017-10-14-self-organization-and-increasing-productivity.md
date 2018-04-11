@@ -7,11 +7,11 @@ layout: post
 guid: http://blog.mjurtz.com/?p=434
 permalink: /2017/10/self-organization-and-increasing-productivity/
 categories:
-  - Productivity
+  - productivity
 tags:
-  - Efficiency
-  - Productivity
-  - Tools
+  - efficiency
+  - productivity
+  - tools
 ---
 In order to get professional elements, side projects, sport and social contacts under one roof, I have recently been busy designing my daily schedule to maximize my productivity. this article presents the results of my reflections.
 

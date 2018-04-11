@@ -7,13 +7,13 @@ layout: post
 guid: https://blog.mjurtz.com/?p=806
 permalink: /2018/03/sideproject-perfeggt/
 categories:
-  - Android
+  - android
 tags:
-  - Android
-  - App
-  - Development
-  - Programming
-  - Sideproject
+  - android
+  - app
+  - development
+  - programming
+  - sideproject
 ---
 Once again, it&#8217;s time to announce one of my side projects: Pefeggt &#8211; A boiling time calculator for eggs. Actually, I&#8217;ve been sitting on this one for quite a while and I decided to complete a working release this weekend. The app is built for Android and it helps you to calculate the perfect time you need to boil eggs to your preferred consistency.
 

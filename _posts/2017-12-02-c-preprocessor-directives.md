@@ -7,13 +7,13 @@ layout: post
 guid: https://blog.mjurtz.com/?p=603
 permalink: /2017/12/c-preprocessor-directives/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - CSharp
-  - Development
-  - Efficiency
-  - Programming
+  - dotnet
+  - csharp
+  - development
+  - efficiency
+  - programming
 ---
 You can use preprocessor directives in csharp to provide straightforward instructions to the compiler. For example, these directives allow you to execute certain code elements only under predefined conditions. Another possible field of use is simply the structuring of your source code into blocks, which can be folded in and out of Visual Studio.
 

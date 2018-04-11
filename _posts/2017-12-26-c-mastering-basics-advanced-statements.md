@@ -7,12 +7,12 @@ layout: post
 guid: https://blog.mjurtz.com/?p=693
 permalink: /2017/12/c-mastering-basics-advanced-statements/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - CSharp
-  - Development
-  - Programming
+  - dotnet
+  - csharp
+  - development
+  - programming
 ---
 In todays episode, I&#8217;ll show you how to use three advanced statements in C#. I&#8217;ll go over the so-called [null-conditional operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operators), the [null-coalescing operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operator) and the [ternary operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/conditional-operator).
 

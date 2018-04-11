@@ -7,16 +7,16 @@ layout: post
 guid: https://blog.mjurtz.com/?p=615
 permalink: /2017/12/query-coinmarketcap-api-using-servicestack/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - Bitcoin
-  - Cryptocurrency
-  - CSharp
-  - Development
-  - Programming
-  - REST
-  - ServiceStack
+  - dotnet
+  - bitcoin
+  - cryptocurrency
+  - csharp
+  - development
+  - programming
+  - rest
+  - servicestack
 ---
 In the [first article of my series on using ServiceStack](https://blog.mjurtz.com/2017/11/what-is-servicestack/) I mentioned the feature of the framework that the individual components can be used independently of each other.
 

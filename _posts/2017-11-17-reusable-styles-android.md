@@ -7,11 +7,11 @@ layout: post
 guid: http://blog.mjurtz.com/?p=513
 permalink: /2017/11/reusable-styles-android/
 categories:
-  - Android
+  - android
 tags:
-  - Android
-  - Clean Code
-  - Development
+  - android
+  - clean-code
+  - development
 ---
 View definitions under android are often used for many different controls. However, there is an easy way to recycle defined styles and use them for other controls, often saving a lot of code. So, styles basically allow you to move your repeatedly used styles out of the layout file into a styles.xml file (which is located in the values-folder). This article covers the basics of using styles on Android.
 

@@ -7,12 +7,12 @@ layout: post
 guid: https://blog.mjurtz.com/?p=702
 permalink: /2018/01/advanced-git-git-reset/
 categories:
-  - Tools
+  - tools
 tags:
-  - Development
-  - Git
-  - Productivity
-  - Tools
+  - development
+  - git
+  - productivity
+  - tools
 ---
 In [one of my earliest posts](https://blog.mjurtz.com/2017/09/getting-started-git/), I wrote an introduction to version control, more specifically: git. The topic I will cover today extends this article by a topic which is actually not that complicated. However, people seem to find it hard to deal with it and use it as a highway to StackOverflow.
 

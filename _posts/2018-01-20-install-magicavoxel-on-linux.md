@@ -7,14 +7,14 @@ layout: post
 guid: https://blog.mjurtz.com/?p=729
 permalink: /2018/01/install-magicavoxel-on-linux/
 categories:
-  - Tools
+  - tools
 tags:
-  - Design
-  - GameDev
-  - Linux
-  - Software
-  - Tools
-  - Windows
+  - design
+  - gamedev
+  - linux
+  - software
+  - tools
+  - windows
 ---
 As a programmer with definite lack of visual skills, [MagicaVoxel](http://ephtracy.github.io/) is a gift from God to create usable 3D models. Unfortunately, there is no installation option for Linux on the official website. With the help of Wine it is possible to use MagicaVoxel under Linux. And it really works great!
 

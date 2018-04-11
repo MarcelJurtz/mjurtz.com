@@ -7,11 +7,11 @@ layout: post
 guid: https://blog.mjurtz.com/?p=550
 permalink: /2017/11/introduction-to-blockchains/
 categories:
-  - Cryptocurrency
+  - cryptocurrency
 tags:
-  - Bitcoin
-  - Cryptocurrency
-  - P2P
+  - bitcoin
+  - cryptocurrency
+  - p2p
 ---
 What if there was a technology that could entirely change the basic elements of our society and our understanding of economy? This technology already exists and it is called crypto currency. Many people think of bitcoin when this buzzword comes up, but if you take a closer look, you will find out that the monetary point of view of the technology behind is only the tip of the iceberg.
 

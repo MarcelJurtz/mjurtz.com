@@ -7,7 +7,7 @@ layout: post
 guid: http://blog.mjurtz.com/?p=454
 permalink: /2017/10/fix-project-file-not-loaded-visual-studio/
 categories:
-  - Tips
+  - tips
 ---
 I recently stumbled upon the problem that my solution in Visual Studio (2017) could not load all of my projects. Since the solution of the problem took a while, I decided to document my approach here.
 

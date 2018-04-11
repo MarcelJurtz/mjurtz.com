@@ -7,11 +7,11 @@ layout: post
 guid: http://blog.mjurtz.com/?p=372
 permalink: /2017/09/getting-started-git/
 categories:
-  - Tools
+  - tools
 tags:
-  - Git
-  - Programming
-  - Tools
+  - git
+  - programming
+  - tools
 ---
 This post represents an overview of version control with git. The mentioned commands and parameters are only a small part of what's possible. Git is a popular system for version control. Projects on git are called _Repositories_. Repositories can be used local or with a server. There are several free hosters, for example:
 

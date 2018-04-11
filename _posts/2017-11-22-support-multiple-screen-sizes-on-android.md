@@ -7,14 +7,14 @@ layout: post
 guid: https://blog.mjurtz.com/?p=521
 permalink: /2017/11/support-multiple-screen-sizes-on-android/
 categories:
-  - Android
+  - android
 tags:
-  - Android
-  - App
-  - Design
-  - Development
-  - Layout
-  - Programming
+  - android
+  - app
+  - design
+  - development
+  - layout
+  - programming
 ---
 Android runs on a variety of different devices. In order to improve the way your app looks on different phones, depending on their screen size and resolution, Android offers the possibility to use different layouts for different screen sizes. This is the topic I&#8217;ll discuss in this article.
 

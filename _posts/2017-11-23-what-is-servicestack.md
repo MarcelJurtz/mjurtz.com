@@ -7,16 +7,16 @@ layout: post
 guid: https://blog.mjurtz.com/?p=544
 permalink: /2017/11/what-is-servicestack/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - ASP.NET
-  - CSharp
-  - Development
-  - Programming
-  - REST
-  - ServiceStack
-  - Xamarin
+  - dotnet
+  - asp-dotnet
+  - csharp
+  - development
+  - programming
+  - rest
+  - servicestack
+  - xamarin
 ---
 This article is the beginning of a series of articles in which I want to discuss the basics of building web services and designing REST APIs using ServiceStack. This first article discusses the question of what ServiceStack is all about, the benefits of it, and why you should use (or at least try out) this framework. The following articles will then discuss the design of a simple service by using a simple example to illustrate the various possibilities it offers. Each chapter ends with a summary to provide a quick way to look up previous sections.
 

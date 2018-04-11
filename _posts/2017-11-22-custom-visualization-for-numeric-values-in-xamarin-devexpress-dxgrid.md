@@ -7,15 +7,15 @@ layout: post
 guid: https://blog.mjurtz.com/?p=532
 permalink: /2017/11/custom-visualization-for-numeric-values-in-xamarin-devexpress-dxgrid/
 categories:
-  - Xamarin
+  - xamarin
 tags:
-  - .NET
-  - App
-  - Design
-  - Development
-  - Layout
-  - Programming
-  - Xamarin
+  - dotnet
+  - app
+  - design
+  - development
+  - layout
+  - programming
+  - xamarin
 ---
 The dxGrid [grid control for Xamarin](https://components.xamarin.com/view/devexpress-grid), which DevExpress provides free of charge, is a powerful feature for mobile application development. However, many of the functions are a little bit hidden. In this article I will discuss how to customize the display of column values.
 

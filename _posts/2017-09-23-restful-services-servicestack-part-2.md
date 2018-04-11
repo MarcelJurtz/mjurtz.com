@@ -7,15 +7,15 @@ layout: post
 guid: http://blog.mjurtz.com/?p=418
 permalink: /2017/09/restful-services-servicestack-part-2/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - ASP.NET
-  - CSharp
-  - Development
-  - Programming
-  - REST
-  - ServiceStack
+  - dotnet
+  - asp-dotnet
+  - csharp
+  - development
+  - programming
+  - rest
+  - servicestack
 ---
 In my [last post](http://blog.mjurtz.com/2017/09/creating-restful-services-servicestack/), I&#8217;ve set up a basic RESTful service using ServiceStack. This article deals with the implementation of a corresponding functionality on the client side. The application will query the path provided by the server and apply the pre-defined authentication method, requiring the user to log in with username and password before the application delivers the desired content.
 

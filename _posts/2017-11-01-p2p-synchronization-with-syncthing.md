@@ -7,15 +7,15 @@ layout: post
 guid: http://blog.mjurtz.com/?p=461
 permalink: /2017/11/p2p-synchronization-with-syncthing/
 categories:
-  - Productivity
-  - Tools
+  - productivity
+  - tools
 tags:
-  - Android
-  - App
-  - Network
-  - P2P
-  - Syncthing
-  - Windows
+  - android
+  - app
+  - network
+  - p2p
+  - syncthing
+  - windows
 ---
 Everyone has different programs and tools that they particularly appreciate. One of these programs is syncthing for me, so I will briefly discuss how it works and how it is set up in this article. Syncthing is used to synchronize files between different devices and also supports versioning of these files. [Syncthing is available for Windows, Android and as cross-platform wrapper](https://syncthing.net/). I personally use it on Windows 10,  [Arch Linux](https://wiki.archlinux.org/index.php/Syncthing) and Android (via [Playstore](https://play.google.com/store/apps/details?id=com.nutomic.syncthingandroid) or [FDroid](https://f-droid.org/en/packages/com.nutomic.syncthingandroid/)). It is completely open source and available on [GitHub](https://github.com/syncthing). For general problems, I recommend reading [their FAQ](https://docs.syncthing.net/users/faq.html).
 

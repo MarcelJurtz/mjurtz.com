@@ -7,10 +7,10 @@ layout: post
 guid: http://blog.mjurtz.com/?p=378
 permalink: /2017/09/set-ssh-git/
 categories:
-  - Tools
+  - tools
 tags:
-  - Git
-  - Tools
+  - git
+  - tools
 ---
 When using github, you usually have to enter your login credentials each time you push. You could solve this problem by saving the credentials or by setting up ssh for your account. In this post, the process of adding and using ssh keys will be explained.
 

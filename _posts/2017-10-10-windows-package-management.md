@@ -7,11 +7,11 @@ layout: post
 guid: http://blog.mjurtz.com/?p=426
 permalink: /2017/10/windows-package-management/
 categories:
-  - Tools
+  - tools
 tags:
-  - Software
-  - Tools
-  - Windows
+  - software
+  - tools
+  - windows
 ---
 As a Windows user with Linux knowledge there are several things under Linux that I would like to have on for Windows. Since a complete switch from Windows to Linux is not feasible for me due to different requirements, I looked for alternatives. An important component of various Linux distributions is their package manager. This article discusses the implementation of such a feature under Windows and shows how it can be used.
 

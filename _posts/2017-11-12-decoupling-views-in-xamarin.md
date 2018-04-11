@@ -7,14 +7,14 @@ layout: post
 guid: http://blog.mjurtz.com/?p=473
 permalink: /2017/11/decoupling-views-in-xamarin/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - CSharp
-  - Development
-  - Programming
-  - Windows
-  - Xamarin
+  - dotnet
+  - csharp
+  - development
+  - programming
+  - windows
+  - xamarin
 ---
 As a software developer, you&#8217;ve probably stumbled across old source code you&#8217;ve written from time to time and you&#8217;ve just been thinking &#8216;how the hell can someone come up with such bullshit?&#8217;. I don&#8217;t see myself as an exception regarding this topic and just recently had such a case, which I would like to document in this article. More specifically, I want to discuss the decoupling of views under xamarin. The source I use in this article is available on my [GitHub profile](https://github.com/MarcelJurtz/XamarinDecouplingDemo).
 

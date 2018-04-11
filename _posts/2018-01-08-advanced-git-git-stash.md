@@ -7,11 +7,11 @@ layout: post
 guid: https://blog.mjurtz.com/?p=708
 permalink: /2018/01/advanced-git-git-stash/
 categories:
-  - Tools
+  - tools
 tags:
-  - Development
-  - Git
-  - Tools
+  - development
+  - git
+  - tools
 ---
 In my [introductory post on git](https://blog.mjurtz.com/2017/09/getting-started-git/), I told you that git uses three areas to track changes. Well, maybe I lied to you in this case. There are actually four areas available and I will cover this fourth area in todays post.
 

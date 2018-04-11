@@ -7,12 +7,12 @@ layout: post
 guid: https://blog.mjurtz.com/?p=753
 permalink: /2018/02/using-androids-recyclerview-with-kotlin/
 categories:
-  - Android
+  - android
 tags:
-  - Android
-  - App
-  - Development
-  - Programming
+  - android
+  - app
+  - development
+  - programming
 ---
 Traditionally, you were using a listview to display several homogeneous elements in you Android app. However, this view is now deprecated. Android now offers an alternative, which aims to increase performance by only loading those elements, that are currently rendered on-screen: the _RecyclerView_.
 

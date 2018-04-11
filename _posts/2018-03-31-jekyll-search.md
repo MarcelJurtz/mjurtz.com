@@ -5,13 +5,13 @@ author: Marcel Jurtz
 layout: post
 permalink: /2018/03/jekyll-search
 categories:
-  - Blog
+  - blog
 tags:
-  - Blog
-  - Web
-  - Ruby
-  - JavaScript
-  - Jekyll
+  - blog
+  - web
+  - ruby
+  - javascript
+  - jekyll
 ---
 
 In one of my [previous posts](/2018/03/moving-to-jekyll), I went over the details why I moved my blog from WordPress to Jekyll. So far, I really appreciate my new system, but I miss one particular feature: searching through my posts.

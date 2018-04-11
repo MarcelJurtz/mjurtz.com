@@ -7,13 +7,13 @@ layout: post
 guid: https://blog.mjurtz.com/?p=619
 permalink: /2017/12/servicestack-logging-with-slack-integration/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - CSharp
-  - Development
-  - Programming
-  - ServiceStack
+  - dotnet
+  - csharp
+  - development
+  - programming
+  - servicestack
 ---
 Besides my series on how to get started with ServiceStack, I have already published a few articles that are related to the topic, but do not belong directly to the introductory series. In the [last such article](https://blog.mjurtz.com/2017/12/query-coinmarketcap-api-using-servicestack/), I used the example of [coinmarketcap.com](https://coinmarketcap.com/) to show how to access third-party APIs using the C# client.
 

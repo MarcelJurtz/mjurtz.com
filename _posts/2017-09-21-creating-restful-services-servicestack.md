@@ -9,13 +9,13 @@ permalink: /2017/09/creating-restful-services-servicestack/
 categories:
   - CSharp
 tags:
-  - .NET
-  - ASP.NET
-  - CSharp
-  - Development
-  - Programming
-  - REST
-  - ServiceStack
+  - dotnet
+  - asp-dotnet
+  - csharp
+  - development
+  - programming
+  - rest
+  - servicestack
 ---
 This articles covers the basic usage of [ServiceStack](https://servicestack.net/), a .NET-framework for creating RESTful services. The framework has a really great [documentation](http://docs.servicestack.net/), where you can check out all the details.
 

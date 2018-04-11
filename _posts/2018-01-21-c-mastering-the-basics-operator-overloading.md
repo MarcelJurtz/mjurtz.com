@@ -7,12 +7,12 @@ layout: post
 guid: https://blog.mjurtz.com/?p=737
 permalink: /2018/01/c-mastering-the-basics-operator-overloading/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - CSharp
-  - Development
-  - Programming
+  - dotnet
+  - csharp
+  - development
+  - programming
 ---
 Most of the built-in operators that are available in C# can be redefined. In todays article, I&#8217;ll be showing you how you can redefine operators to match your custom classes. Additionally, I&#8217;ll cover which operators actually can be overwritten.
 

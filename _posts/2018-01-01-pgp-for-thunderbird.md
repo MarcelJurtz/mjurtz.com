@@ -7,11 +7,11 @@ layout: post
 guid: https://blog.mjurtz.com/?p=696
 permalink: /2018/01/pgp-for-thunderbird/
 categories:
-  - Security
+  - security
 tags:
   - email
-  - Encryption
-  - Tools
+  - encryption
+  - tools
 ---
 Today, I&#8217;ll talk about how you can set up PGP for Thunderbird. PGP (Pretty Good Privacy) allows you to encrypt and digitally sign your emails. I wanted to publish this post for quite some time now and thanks to some help from the 34C3, I finally managed to do it.
 

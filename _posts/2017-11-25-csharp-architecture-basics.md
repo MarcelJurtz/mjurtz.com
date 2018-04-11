@@ -7,12 +7,12 @@ layout: post
 guid: https://blog.mjurtz.com/?p=552
 permalink: /2017/11/csharp-architecture-basics/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - Clean Code
-  - CSharp
-  - Development
+  - dotnet
+  - clean-code
+  - csharp
+  - development
 ---
 In this series, I discuss the optimization of the basics of programming in C#. This article deals with the basic structure of an application and its different components.
 

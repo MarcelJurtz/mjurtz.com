@@ -5,13 +5,13 @@ author: Marcel Jurtz
 layout: post
 permalink: /2018/03/sideproject-sist
 categories:
-  - Android
+  - android
 tags:
-  - Android
-  - App
-  - Development
-  - Programming
-  - Sideproject
+  - android
+  - app
+  - development
+  - programming
+  - sideproject
 ---
 
 It's time to announce a new sideproject-launch!

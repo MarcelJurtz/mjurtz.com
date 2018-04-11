@@ -7,13 +7,13 @@ layout: post
 guid: https://blog.mjurtz.com/?p=682
 permalink: /2017/12/c-mastering-basics-extension-methods/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - .NET Core
-  - CSharp
-  - Development
-  - Programming
+  - dotnet
+  - dotnet-core
+  - csharp
+  - development
+  - programming
 ---
 In this series, I go over the very basics of the C# programming language. In todays guide, I will focus on writing custom extension methods for existing, prebuilt classes.
 

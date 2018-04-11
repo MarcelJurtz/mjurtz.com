@@ -7,12 +7,12 @@ layout: post
 guid: https://blog.mjurtz.com/?p=660
 permalink: /2017/12/c-mastering-the-basics-comments/
 categories:
-  - Tips
+  - tips
 tags:
-  - Clean Code
-  - Development
-  - Efficiency
-  - Programming
+  - clean-code
+  - development
+  - efficiency
+  - programming
 ---
 Comments are used in a lot of programming languages. While this concept is useful for a lot of purposes, beginners often start bad habits when commenting their code. In this article I will explain when comments are useful and on the other hand illustrate problems where commenting can be less meaningful or even disturbing.
 

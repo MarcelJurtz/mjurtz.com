@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 09 Apr 2018 21:54:30 +0200</pubDate>
-    <lastBuildDate>Mon, 09 Apr 2018 21:54:30 +0200</lastBuildDate>
+    <pubDate>Wed, 11 Apr 2018 17:58:35 +0200</pubDate>
+    <lastBuildDate>Wed, 11 Apr 2018 17:58:35 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       <item>
@@ -27,7 +27,7 @@ Microsoft now uses this thing called ‘Media Creation Tool’ to download ISOs,
   &lt;li&gt;&lt;a href=&quot;https://www.microsoft.com/de-de/software-download/windows10ISO&quot;&gt;https://www.microsoft.com/de-de/software-download/windows10ISO&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;However, when browsing this site on a windows machine, it automatically redirects you to the page I linked earlier.
+&lt;p&gt;However, when browsing this site on a windows machine, it automatically redirects you to the first of the pages I linked.
 If you’re not using Windows, you’ll be able to use the second url to download the ISO file directly.
 To be able to this on Windows as well, you’ll simply need to fake your browsers user agent header to make Microsoft think you’re using Linux (for example).&lt;/p&gt;
 
@@ -39,12 +39,12 @@ Just search “user agent switcher” in your addon repository and you’re good
         <link>http://localhost:4000/2018/04/bypass-windows-media-creation-tool/</link>
         <guid isPermaLink="true">http://localhost:4000/2018/04/bypass-windows-media-creation-tool/</guid>
         
-        <category>Tools</category>
+        <category>tools</category>
         
-        <category>Windows</category>
+        <category>windows</category>
         
         
-        <category>Windows</category>
+        <category>windows</category>
         
       </item>
     
@@ -70,18 +70,18 @@ Just search “user agent switcher” in your addon repository and you’re good
         <link>http://localhost:4000/2018/03/jekyll-search</link>
         <guid isPermaLink="true">http://localhost:4000/2018/03/jekyll-search</guid>
         
-        <category>Blog</category>
+        <category>blog</category>
         
-        <category>Web</category>
+        <category>web</category>
         
-        <category>Ruby</category>
+        <category>ruby</category>
         
-        <category>JavaScript</category>
+        <category>javascript</category>
         
-        <category>Jekyll</category>
+        <category>jekyll</category>
         
         
-        <category>Blog</category>
+        <category>blog</category>
         
       </item>
     
@@ -112,18 +112,18 @@ Just search “user agent switcher” in your addon repository and you’re good
         <link>http://localhost:4000/2018/03/sideproject-sist</link>
         <guid isPermaLink="true">http://localhost:4000/2018/03/sideproject-sist</guid>
         
-        <category>Android</category>
+        <category>android</category>
         
-        <category>App</category>
+        <category>app</category>
         
-        <category>Development</category>
+        <category>development</category>
         
-        <category>Programming</category>
+        <category>programming</category>
         
-        <category>Sideproject</category>
+        <category>sideproject</category>
         
         
-        <category>Android</category>
+        <category>android</category>
         
       </item>
     
@@ -149,14 +149,14 @@ Just search “user agent switcher” in your addon repository and you’re good
         <link>http://localhost:4000/2018/03/moving-to-jekyll/</link>
         <guid isPermaLink="true">http://localhost:4000/2018/03/moving-to-jekyll/</guid>
         
-        <category>Blog</category>
+        <category>blog</category>
         
-        <category>Web</category>
+        <category>web</category>
         
-        <category>Ruby</category>
+        <category>ruby</category>
         
         
-        <category>Blog</category>
+        <category>blog</category>
         
       </item>
     
@@ -182,18 +182,18 @@ Just search “user agent switcher” in your addon repository and you’re good
         <link>http://localhost:4000/2018/03/sideproject-perfeggt/</link>
         <guid isPermaLink="true">http://localhost:4000/2018/03/sideproject-perfeggt/</guid>
         
-        <category>Android</category>
+        <category>android</category>
         
-        <category>App</category>
+        <category>app</category>
         
-        <category>Development</category>
+        <category>development</category>
         
-        <category>Programming</category>
+        <category>programming</category>
         
-        <category>Sideproject</category>
+        <category>sideproject</category>
         
         
-        <category>Android</category>
+        <category>android</category>
         
       </item>
     
@@ -247,14 +247,14 @@ Just search “user agent switcher” in your addon repository and you’re good
         <link>http://localhost:4000/2018/02/introduction-to-i3/</link>
         <guid isPermaLink="true">http://localhost:4000/2018/02/introduction-to-i3/</guid>
         
-        <category>Efficiency</category>
+        <category>efficiency</category>
         
-        <category>Linux</category>
+        <category>linux</category>
         
-        <category>Software</category>
+        <category>software</category>
         
         
-        <category>Linux</category>
+        <category>linux</category>
         
       </item>
     
@@ -306,14 +306,14 @@ Just search “user agent switcher” in your addon repository and you’re good
         <link>http://localhost:4000/2018/02/getting-stuff-done/</link>
         <guid isPermaLink="true">http://localhost:4000/2018/02/getting-stuff-done/</guid>
         
-        <category>Efficiency</category>
+        <category>efficiency</category>
         
-        <category>Productivity</category>
+        <category>productivity</category>
         
-        <category>Self</category>
+        <category>self</category>
         
         
-        <category>Productivity</category>
+        <category>productivity</category>
         
       </item>
     
@@ -459,16 +459,16 @@ Just search “user agent switcher” in your addon repository and you’re good
         <link>http://localhost:4000/2018/02/introduction-to-room-for-android/</link>
         <guid isPermaLink="true">http://localhost:4000/2018/02/introduction-to-room-for-android/</guid>
         
-        <category>Android</category>
+        <category>android</category>
         
-        <category>App</category>
+        <category>app</category>
         
-        <category>Development</category>
+        <category>development</category>
         
-        <category>Programming</category>
+        <category>programming</category>
         
         
-        <category>Android</category>
+        <category>android</category>
         
       </item>
     
@@ -643,16 +643,16 @@ Just search “user agent switcher” in your addon repository and you’re good
         <link>http://localhost:4000/2018/02/using-androids-recyclerview-with-kotlin/</link>
         <guid isPermaLink="true">http://localhost:4000/2018/02/using-androids-recyclerview-with-kotlin/</guid>
         
-        <category>Android</category>
+        <category>android</category>
         
-        <category>App</category>
+        <category>app</category>
         
-        <category>Development</category>
+        <category>development</category>
         
-        <category>Programming</category>
+        <category>programming</category>
         
         
-        <category>Android</category>
+        <category>android</category>
         
       </item>
     
@@ -678,14 +678,14 @@ Just search “user agent switcher” in your addon repository and you’re good
         <link>http://localhost:4000/2018/01/how-to-use-github-over-ssh-on-public-wifi/</link>
         <guid isPermaLink="true">http://localhost:4000/2018/01/how-to-use-github-over-ssh-on-public-wifi/</guid>
         
-        <category>Git</category>
+        <category>git</category>
         
-        <category>Linux</category>
+        <category>linux</category>
         
-        <category>Tools</category>
+        <category>tools</category>
         
         
-        <category>Tools</category>
+        <category>tools</category>
         
       </item>
     

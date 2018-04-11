@@ -7,11 +7,11 @@ layout: post
 guid: https://blog.mjurtz.com/?p=743
 permalink: /2018/01/how-to-use-github-over-ssh-on-public-wifi/
 categories:
-  - Tools
+  - tools
 tags:
-  - Git
-  - Linux
-  - Tools
+  - git
+  - linux
+  - tools
 ---
 When using GitHub via SSH, port 22 will be used per default. However, often times you&#8217;ll see this port being blocked on public WIFI networks. On a Linux machine, there is a simple way to change the default port.
 

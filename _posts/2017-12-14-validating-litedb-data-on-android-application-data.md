@@ -7,12 +7,12 @@ layout: post
 guid: https://blog.mjurtz.com/?p=652
 permalink: /2017/12/validating-litedb-data-on-android-application-data/
 categories:
-  - Tips
+  - tips
 tags:
-  - Android
-  - App
-  - Development
-  - Tools
+  - android
+  - app
+  - development
+  - tools
 ---
 In my new sideproject CryptoFolio, which I announced in [this article](https://blog.mjurtz.com/2017/12/sideproject-cryptofolio/), I described that I&#8217;d like to use LiteDB to locally store data that I received from the coinmarketcap-API. LiteDB is basically a NoSQL database, in particular a document store. It functions on a serverless file basis and can be accessed via a simple API.
 

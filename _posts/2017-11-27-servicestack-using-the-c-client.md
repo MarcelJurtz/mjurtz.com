@@ -7,13 +7,13 @@ layout: post
 guid: https://blog.mjurtz.com/?p=579
 permalink: /2017/11/servicestack-using-the-c-client/
 categories:
-  - CSharp
+  - csharp
 tags:
-  - .NET
-  - CSharp
-  - Development
-  - Programming
-  - ServiceStack
+  - dotnet
+  - csharp
+  - development
+  - programming
+  - servicestack
 ---
 After we covered the basics of ServiceStack in part one and how to set up a service in part two of this series. Today we&#8217;ll go through how the C#-Client can be utilized to make communication between applications even easier. The sourcecode for todays article is available [GitHub](https://github.com/MarcelJurtz/BlogPosts_ServiceStack/tree/master/Part_3_CSharp_Client). If you missed one of the previous parts, feel free to check out [Part 1 &#8211; What is ServiceStack and why should I use it?](https://blog.mjurtz.com/2017/11/what-is-servicestack/) or [Part 2 &#8211; Building a Simple Service](https://blog.mjurtz.com/2017/11/servicestack-building-simple-service/).
 

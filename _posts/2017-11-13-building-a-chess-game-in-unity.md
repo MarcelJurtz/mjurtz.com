@@ -7,13 +7,13 @@ layout: post
 guid: http://blog.mjurtz.com/?p=485
 permalink: /2017/11/building-a-chess-game-in-unity/
 categories:
-  - CSharp
-  - Game development
+  - csharp
+  - game-development
 tags:
-  - Development
-  - GameDev
-  - Programming
-  - Unity
+  - development
+  - gamedev
+  - programming
+  - unity
 ---
 In this post, I&#8217;ll be covering the basics of building a simple chess game in Unity and C#.
 

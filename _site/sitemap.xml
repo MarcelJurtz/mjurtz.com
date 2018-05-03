@@ -221,6 +221,10 @@
 <lastmod>2018-04-26T12:00:00+02:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/2018/05/learning-to-learn</loc>
+<lastmod>2018-05-03T20:00:00+02:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/about/</loc>
 </url>
 <url>
@@ -432,5 +436,8 @@
 </url>
 <url>
 <loc>http://localhost:4000/page11/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/page12/</loc>
 </url>
 </urlset>

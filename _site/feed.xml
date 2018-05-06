@@ -4,10 +4,10 @@
     <title>Marcel Jurtz</title>
     <description>A software developers blog.
 </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 03 May 2018 21:23:33 +0200</pubDate>
-    <lastBuildDate>Thu, 03 May 2018 21:23:33 +0200</lastBuildDate>
+    <link>http://blog.mjurtz.com/</link>
+    <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 06 May 2018 14:56:30 +0200</pubDate>
+    <lastBuildDate>Sun, 06 May 2018 14:56:30 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       <item>
@@ -53,8 +53,8 @@ Most of the time you will find a Pareto distribution of the relevance of what yo
 &lt;p&gt;That’s all I’m using. How you divide up your time is of course left to you. However, the example of 30 minutes per day should make it clear that even short times can bring great progress, after all, this brings you to 30 hours per month.&lt;/p&gt;
 </description>
         <pubDate>Thu, 03 May 2018 20:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/05/learning-to-learn</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/05/learning-to-learn</guid>
+        <link>http://blog.mjurtz.com/2018/05/learning-to-learn</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/05/learning-to-learn</guid>
         
         <category>efficiency</category>
         
@@ -296,8 +296,8 @@ Most of the time you will find a Pareto distribution of the relevance of what yo
 &lt;p&gt;Delegates are references to methods. The compiler creates a class when a delete is generated, instances of the delegate are then created as usual with the new keyword. Like methods, delegates can have a return type. Utiliting multicasting, delegates can be chained together, the call order is based on the delegates invocation list. Events are used to encapsulate delegates. Events usually use two parameters, the first being a reference to the trigger and the second an instance of EventArgs or an inheriting class thereof.&lt;/p&gt;
 </description>
         <pubDate>Thu, 26 Apr 2018 12:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/04/c-mastering-the-basics-events-delegates</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/04/c-mastering-the-basics-events-delegates</guid>
+        <link>http://blog.mjurtz.com/2018/04/c-mastering-the-basics-events-delegates</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/04/c-mastering-the-basics-events-delegates</guid>
         
         <category>dotnet</category>
         
@@ -338,8 +338,8 @@ Just search “user agent switcher” in your addon repository and you’re good
 
 </description>
         <pubDate>Mon, 09 Apr 2018 20:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/04/bypass-windows-media-creation-tool/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/04/bypass-windows-media-creation-tool/</guid>
+        <link>http://blog.mjurtz.com/2018/04/bypass-windows-media-creation-tool/</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/04/bypass-windows-media-creation-tool/</guid>
         
         <category>tools</category>
         
@@ -369,8 +369,8 @@ Just search “user agent switcher” in your addon repository and you’re good
 &lt;p&gt;When clicking the search-button, the user will be redirected to the &lt;em&gt;search.html&lt;/em&gt; file. This site lists all matches and a search box containing the entered values. The search page consists of my regular header and footer. Also, of course, it contains a script which fetches all matching posts. It then lists all matches inside an unordered list. Of course, all scripts and pages are also located in this Blogs &lt;a href=&quot;https://github.com/MarcelJurtz/blog.mjurtz.com&quot;&gt;GitHub Repository&lt;/a&gt;, feel free to check it out!&lt;/p&gt;
 </description>
         <pubDate>Fri, 30 Mar 2018 14:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/03/jekyll-search</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/03/jekyll-search</guid>
+        <link>http://blog.mjurtz.com/2018/03/jekyll-search</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/03/jekyll-search</guid>
         
         <category>blog</category>
         
@@ -411,8 +411,8 @@ Just search “user agent switcher” in your addon repository and you’re good
 &lt;/ul&gt;
 </description>
         <pubDate>Wed, 28 Mar 2018 20:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/03/sideproject-sist</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/03/sideproject-sist</guid>
+        <link>http://blog.mjurtz.com/2018/03/sideproject-sist</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/03/sideproject-sist</guid>
         
         <category>android</category>
         
@@ -448,8 +448,8 @@ Just search “user agent switcher” in your addon repository and you’re good
 &lt;p&gt;These are my first movements using Jekyll and I have a lot to learn. However, I want to get this live as fast as possible, I appreciate any feedback. Jekyll looks really promising, I’ll keep you updated.&lt;/p&gt;
 </description>
         <pubDate>Sun, 04 Mar 2018 16:17:17 +0100</pubDate>
-        <link>http://localhost:4000/2018/03/moving-to-jekyll/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/03/moving-to-jekyll/</guid>
+        <link>http://blog.mjurtz.com/2018/03/moving-to-jekyll/</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/03/moving-to-jekyll/</guid>
         
         <category>blog</category>
         
@@ -481,8 +481,8 @@ Just search “user agent switcher” in your addon repository and you’re good
 &lt;p&gt;&lt;span&gt;I am looking forward to any feedback! The app is available in both &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.jurtz.android.pefectegg&quot;&gt;PlayStore&lt;/a&gt; and Open Source on &lt;a href=&quot;https://github.com/MarcelJurtz/Perfeggt&quot;&gt;GitHub&lt;/a&gt;.&lt;/span&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 04 Mar 2018 16:17:17 +0100</pubDate>
-        <link>http://localhost:4000/2018/03/sideproject-perfeggt/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/03/sideproject-perfeggt/</guid>
+        <link>http://blog.mjurtz.com/2018/03/sideproject-perfeggt/</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/03/sideproject-perfeggt/</guid>
         
         <category>android</category>
         
@@ -546,8 +546,8 @@ Just search “user agent switcher” in your addon repository and you’re good
 &lt;p&gt;While I think that these few commands will help you to get started with i3, there are far more available. I definitely recommend you to check out &lt;a href=&quot;https://i3wm.org/docs/&quot;&gt;i3s official documentation&lt;/a&gt;, it’s great. And as always, just try everything out and have fun!&lt;/p&gt;
 </description>
         <pubDate>Wed, 28 Feb 2018 07:00:57 +0100</pubDate>
-        <link>http://localhost:4000/2018/02/introduction-to-i3/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/02/introduction-to-i3/</guid>
+        <link>http://blog.mjurtz.com/2018/02/introduction-to-i3/</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/02/introduction-to-i3/</guid>
         
         <category>efficiency</category>
         
@@ -605,8 +605,8 @@ Just search “user agent switcher” in your addon repository and you’re good
 &lt;p&gt;This subject is very personal and although I hope that my opinion will help you, I recommend you to browse through &lt;a href=&quot;https://medium.com/search?q=productivity&quot;&gt;medium&lt;/a&gt;. You’ll find some great articles on this topic.&lt;/p&gt;
 </description>
         <pubDate>Wed, 21 Feb 2018 17:30:38 +0100</pubDate>
-        <link>http://localhost:4000/2018/02/getting-stuff-done/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/02/getting-stuff-done/</guid>
+        <link>http://blog.mjurtz.com/2018/02/getting-stuff-done/</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/02/getting-stuff-done/</guid>
         
         <category>efficiency</category>
         
@@ -758,8 +758,8 @@ Just search “user agent switcher” in your addon repository and you’re good
 &lt;p&gt;You can now perform all other operations in the same way. All information as well as advanced topics can be found directly on Google in the &lt;a href=&quot;https://developer.android.com/topic/libraries/architecture/room.html&quot;&gt;corresponding documentation&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Sat, 17 Feb 2018 09:00:46 +0100</pubDate>
-        <link>http://localhost:4000/2018/02/introduction-to-room-for-android/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/02/introduction-to-room-for-android/</guid>
+        <link>http://blog.mjurtz.com/2018/02/introduction-to-room-for-android/</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/02/introduction-to-room-for-android/</guid>
         
         <category>android</category>
         

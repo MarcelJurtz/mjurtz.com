@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Decoupling Views in Xamarin</title>
-  <meta name="description" content="As a software developer, you’ve probably stumbled across old source code you’ve written from time to time and you’ve just been thinking ‘how the hell can som...">
+  <title>Sideproject - Sist!</title>
+  <meta name="description" content="It’s time to announce a new sideproject-launch!">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2018">
@@ -47,7 +47,7 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://blog.mjurtz.com/2017/11/decoupling-views-in-xamarin/">
+  <link rel="canonical" href="http://blog.mjurtz.com/2018/03/sideproject-sist">
   <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
 </head>
 
@@ -359,7 +359,7 @@
 <div class="post-header-container " >
   <div class="scrim ">
     <header class="post-header">
-      <h1 class="title">Decoupling Views in Xamarin</h1>
+      <h1 class="title">Sideproject - Sist!</h1>
       <p class="info">by <strong>Marcel Jurtz</strong></p>
     </header>
   </div>
@@ -374,198 +374,44 @@
  
 
 <section class="post-meta">
-  <div class="post-date">November 12, 2017</div>
+  <div class="post-date">March 28, 2018</div>
   <div class="post-categories">
   in 
     
-    <a href="/category/csharp">Csharp</a>
+    <a href="/category/android">Android</a>
     
   
   </div>
 </section>
 
 <article class="post-content">
-  <p>As a software developer, you’ve probably stumbled across old source code you’ve written from time to time and you’ve just been thinking ‘how the hell can someone come up with such bullshit?’. I don’t see myself as an exception regarding this topic and just recently had such a case, which I would like to document in this article. More specifically, I want to discuss the decoupling of views under xamarin. The source I use in this article is available on my <a href="https://github.com/MarcelJurtz/XamarinDecouplingDemo">GitHub profile</a>.</p>
+  <p>It’s time to announce a new sideproject-launch!</p>
 
-<h2 id="xamarin-navigation">Xamarin Navigation</h2>
+<p>Some days ago, I’ve been looking for an app which allowed my to keep track of shopping lists in a simple and fast way. While there are lots of such apps available for Android, all I tested seemed to be overkill for what I really wanted. So I decided to create my own app for this purpose.</p>
 
-<p>Decoupling allows you to use multiple views without dependencies between them. Without decoupling, all relevant elements would have to be edited for individual changes. Xamarin relies on a simple page-based navigation structure that is managed in the form of a stack (see figure). A new page is added with Push(), the topmost page can be removed with Pop().</p>
+<p>Besides creating a simple app, my goal was to learn something new while developing the app. I decided to use Androids built in SQLite database to store lists. I’ve been using the database for previous projects, but I did not really care about the implementation. That being said, I wrote the queries all by hand which ended up being pretty messy.</p>
 
-<p><img src="/assets/2017/xamarin-view-decoupling.png" alt="Xamarin View Decoupling" /></p>
+<p>In my defense I would like to say that I was still at the beginning of my programming career and had no idea of the existence of things like object relational mappers.</p>
 
-<p>These pages are usually interdependent, for example, information is required on a page that is entered on the next page. After entering the required information, the user is taken back to the calling page and the information is transferred to this one. This is exactly the point I want to clarify with this article. The strict interaction of the sides is problematic in the case of subsequent changes.</p>
+<p>So I took a look around and decided to try Google’s Room for Android. If you’re not familiar with this project, feel free to checkout my article on the topic: <a href="/2018/02/introduction-to-room-for-android/">Introduction to Room for Android</a>.</p>
 
-<h2 id="building-the-demo-application">Building the demo application</h2>
+<p>The result of one weekend now meets my expectations: A simple Android app that fulfills the functionality I want. Multi-list management with individual entries and a focus on simplicity and speed. A small detail is for example the automatic expansion of the keyboard when adding new entries.</p>
 
-<p>Take a look at the following screenshots to see how the demo application works. The app consists of two pages, whereby the second view is opened by a button on the first one. The second view contains an input field whose value will then be accessed in the first view. There is an additional button to abort the process. If the “Confirm” button is pressed even though no text has been entered, the user will be informed.</p>
+<p>In addition to testing Room, I was able to try other Android features I hadn’t used before. These include controls such as CardView or RecyclerView.</p>
 
-<p><img src="/assets/2017/xamarin-view-decoupling-demo.png" alt="Xamarin View Decoupling Demo GUI" /></p>
-
-<p>The default configuration of Visual Studio already creates a default page for every new Xamarin project. I created an additional one next to it. For interaction I have created an interface which manages the possible handlers. The folder structure of my main project consists of the following files:</p>
+<p>I would be very happy if you would test the app and submit feedback to me. As always, the entire source code is also available on GitHub and I’m always available for criticism and suggestions for improvement.</p>
 
 <ul>
-  <li>App.xaml (+ code-behind)</li>
-  <li>MainPage.xaml (+ code-behind)</li>
-  <li>InputPage.xaml (+code-behind)</li>
-  <li>IRequireDialogInteraction</li>
+  <li><a href="https://play.google.com/store/apps/details?id=com.jurtz.marcel.shoppinglist">Download from Google Play</a></li>
+  <li><a href="https://github.com/MarcelJurtz/ShoppingList">Sourcecode on GitHub</a></li>
 </ul>
-
-<p>Since this project is used as showcase to demonstrate the decoupling of views, I don’t follow the MVVM-approach here. However, this is done only to minimize possible distractions, MVVM can of course still be used.</p>
-
-<p>The first thing you’ll want to do is to set up a navigation page. This is done in App.xaml.cs by adding: </p>
-<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">MainPage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">NavigationPage</span><span class="p">(</span><span class="k">new</span> <span class="nf">MainPage</span><span class="p">());</span></code></pre></figure>
-<p>After doing so, you can navigate between your views via:</p>
-
-<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="n">Navigation</span><span class="p">.</span><span class="nf">PushAsync</span><span class="p">(</span><span class="n">page</span><span class="p">);</span></code></pre></figure>
-
-<p>The next thing is setting up the simple GUI:</p>
-
-<p>MainPage.xaml</p>
-
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span>
-<span class="nt">&lt;ContentPage</span> <span class="na">xmlns=</span><span class="s">"http://xamarin.com/schemas/2014/forms"</span>
-             <span class="na">xmlns:x=</span><span class="s">"http://schemas.microsoft.com/winfx/2009/xaml"</span>
-             <span class="na">xmlns:local=</span><span class="s">"clr-namespace:XamarinDecouplingDemo"</span>
-             <span class="na">x:Class=</span><span class="s">"XamarinDecouplingDemo.MainPage"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;ContentPage.Content&gt;</span>
-        <span class="nt">&lt;StackLayout&gt;</span>
-            <span class="nt">&lt;Button</span>
-                <span class="na">Text=</span><span class="s">"Load second page"</span>
-                <span class="na">Clicked=</span><span class="s">"OnLoadButtonClick"</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;Label</span>
-                <span class="na">x:Name=</span><span class="s">"lblInputText"</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/StackLayout&gt;</span>
-    <span class="nt">&lt;/ContentPage.Content&gt;</span>
-<span class="nt">&lt;/ContentPage&gt;</span></code></pre></figure>
-
-<p>InputPage.xaml</p>
-
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span>
-<span class="nt">&lt;ContentPage</span> <span class="na">xmlns=</span><span class="s">"http://xamarin.com/schemas/2014/forms"</span>
-             <span class="na">xmlns:x=</span><span class="s">"http://schemas.microsoft.com/winfx/2009/xaml"</span>
-             <span class="na">x:Class=</span><span class="s">"XamarinDecouplingDemo.InputPage"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;ContentPage.Content&gt;</span>
-        <span class="nt">&lt;Grid</span>
-                <span class="na">Padding=</span><span class="s">"30"</span>
-                <span class="na">BackgroundColor=</span><span class="s">"White"</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;Grid.RowDefinitions&gt;</span>
-                <span class="nt">&lt;RowDefinition</span> <span class="na">Height=</span><span class="s">"Auto"</span> <span class="nt">/&gt;</span>
-                <span class="nt">&lt;RowDefinition</span> <span class="na">Height=</span><span class="s">"Auto"</span> <span class="nt">/&gt;</span>
-                <span class="nt">&lt;RowDefinition</span> <span class="na">Height=</span><span class="s">"Auto"</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;/Grid.RowDefinitions&gt;</span>
-            <span class="nt">&lt;Grid.ColumnDefinitions&gt;</span>
-                <span class="nt">&lt;ColumnDefinition</span> <span class="na">Width=</span><span class="s">"*"</span> <span class="nt">/&gt;</span>
-                <span class="nt">&lt;ColumnDefinition</span> <span class="na">Width=</span><span class="s">"*"</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;/Grid.ColumnDefinitions&gt;</span>
-
-            <span class="nt">&lt;Label</span>
-                    <span class="na">Grid.ColumnSpan=</span><span class="s">"2"</span>
-                    <span class="na">Grid.Row=</span><span class="s">"0"</span>
-                    <span class="na">HorizontalOptions=</span><span class="s">"Start"</span>
-                    <span class="na">Text=</span><span class="s">"Text to return"</span><span class="nt">/&gt;</span>
-
-            <span class="nt">&lt;Entry</span>
-                    <span class="na">Grid.ColumnSpan=</span><span class="s">"2"</span>
-                    <span class="na">Grid.Row=</span><span class="s">"1"</span>
-                    <span class="na">x:Name=</span><span class="s">"txtTextToReturn"</span><span class="nt">/&gt;</span>
-
-            <span class="nt">&lt;Button</span>
-                    <span class="na">Grid.Column=</span><span class="s">"0"</span>
-                    <span class="na">Grid.Row=</span><span class="s">"2"</span>
-                    <span class="na">x:Name=</span><span class="s">"cmdCancel"</span>
-                    <span class="na">Text=</span><span class="s">"Cancel"</span>
-                    <span class="na">Clicked=</span><span class="s">"OnCancel"</span><span class="nt">/&gt;</span>
-
-            <span class="nt">&lt;Button</span> 
-                    <span class="na">Grid.Column=</span><span class="s">"1"</span>
-                    <span class="na">Grid.Row=</span><span class="s">"2"</span>
-                    <span class="na">x:Name=</span><span class="s">"cmdConfirm"</span>
-                    <span class="na">Text=</span><span class="s">"Confirm"</span>
-                    <span class="na">Clicked=</span><span class="s">"OnConfirm"</span> <span class="nt">/&gt;</span>
-
-        <span class="nt">&lt;/Grid&gt;</span>
-    <span class="nt">&lt;/ContentPage.Content&gt;</span>
-<span class="nt">&lt;/ContentPage&gt;</span></code></pre></figure>
-
-<p>The second view can be left by clicking one of two buttons, cancel and confirm. These interactions will be required by the MainPage later, which is why methods for those will be added to <em>IRequireDialogInteraction</em>:</p>
-
-<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">interface</span> <span class="nc">IRequireDialogInteraction</span>
-<span class="p">{</span>
-    <span class="k">void</span> <span class="nf">OnDialogConfirmation</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">);</span>
-    <span class="k">void</span> <span class="nf">OnDialogCancellation</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">);</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>After the basic settings have been made, the actual magic will now happen in form of public EventHandler properties. MainPage needs a property of the type <em>InputPage</em>, which is used to interact with the second view. <em>InputPage</em> on the other hand will implement two event handlers, which can be accessed by <em>MainPage</em>. These will then be linked to the <em>Clicked</em>-property which is set in the xaml-file:</p>
-
-<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">InputPage</span> <span class="p">:</span> <span class="n">ContentPage</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="nf">InputPage</span> <span class="p">()</span>
-    <span class="p">{</span>
-      <span class="nf">InitializeComponent</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="n">EventHandler</span> <span class="n">Confirmed</span><span class="p">;</span>
-    <span class="k">public</span> <span class="n">EventHandler</span> <span class="n">Cancelled</span><span class="p">;</span>
-
-    <span class="k">public</span> <span class="n">String</span> <span class="n">enteredText</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">txtTextToReturn</span><span class="p">.</span><span class="n">Text</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">OnConfirm</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Confirmed</span><span class="p">?.</span><span class="nf">Invoke</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">EventArgs</span><span class="p">.</span><span class="n">Empty</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">OnCancel</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Cancelled</span><span class="p">?.</span><span class="nf">Invoke</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">EventArgs</span><span class="p">.</span><span class="n">Empty</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p><em>MainPage</em> now only needs to link the event handlers to the methods which are implemented by <em>IRequireDialogInteraction</em> and can then access the <em>enteredText</em>-property of the <em>InputPage</em>-object:</p>
-
-<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">MainPage</span> <span class="p">:</span> <span class="n">ContentPage</span><span class="p">,</span> <span class="n">IRequireDialogInteraction</span>
-<span class="p">{</span>
-    <span class="k">private</span> <span class="n">InputPage</span> <span class="n">_InputPage</span><span class="p">;</span>
-
-    <span class="k">public</span> <span class="nf">MainPage</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="nf">InitializeComponent</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">OnDialogCancellation</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Navigation</span><span class="p">.</span><span class="nf">PopAsync</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">OnDialogConfirmation</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Navigation</span><span class="p">.</span><span class="nf">PopAsync</span><span class="p">();</span>
-        <span class="n">lblInputText</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="n">_InputPage</span><span class="p">.</span><span class="n">enteredText</span> <span class="p">??</span> <span class="s">"No text entered."</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">void</span> <span class="nf">OnLoadButtonClick</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">lblInputText</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="s">""</span><span class="p">;</span>
-
-        <span class="n">_InputPage</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InputPage</span><span class="p">();</span>
-        <span class="n">_InputPage</span><span class="p">.</span><span class="n">Confirmed</span> <span class="p">+=</span> <span class="n">OnDialogConfirmation</span><span class="p">;</span>
-        <span class="n">_InputPage</span><span class="p">.</span><span class="n">Cancelled</span> <span class="p">+=</span> <span class="n">OnDialogCancellation</span><span class="p">;</span>
-
-        <span class="n">Navigation</span><span class="p">.</span><span class="nf">PushAsync</span><span class="p">(</span><span class="n">_InputPage</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>And that’s basically it! If you want to change the style in which user interaction happens, you’ll be able to simply swap out the specific part in the methods <em>OnDialogConfirmation</em> or <em>OnDialogCancellation</em>.</p>
-
-<h2 id="implementing-dialogs">Implementing Dialogs</h2>
-
-<p>Finally, I would like cover one specific detail which helped me a lot in my work with xamarin. <a href="https://github.com/rotorgames/Rg.Plugins.Popup">This plugin</a> (available on GitHub &amp; Nuget) allows you to show regular XAML-pages as dialogs. This is really helpful in combination with the decoupling shown above, since you can create custom dialogs, for example to display user prompts or general input fields to take off the load of some of the main pages. The usage looks exactly the same as that of the regular pages, except that the dialog-pages must inherit from <em>PopupPage</em> and are called with <em>PushPopupAsync()</em> instead of <em>PushAsync()</em>. The closing of the page takes place analogously with <em>PopPopupAsync()</em>.</p>
 
 </article>
 
 
 
 <section class="tags">
-  <strong>Tags:</strong> <a href="/tag/dotnet">dotnet</a>,&nbsp;<a href="/tag/csharp">csharp</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/programming">programming</a>,&nbsp;<a href="/tag/windows">windows</a>,&nbsp;<a href="/tag/xamarin">xamarin</a>
+  <strong>Tags:</strong> <a href="/tag/android">android</a>,&nbsp;<a href="/tag/app">app</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/programming">programming</a>,&nbsp;<a href="/tag/sideproject">sideproject</a>
 </section>
 
 
@@ -579,7 +425,7 @@
   
     
     
-      <a href="//twitter.com/share?text=Decoupling+Views+in+Xamarin&url=http%3A%2F%2Fblog.mjurtz.com%2F2017%2F11%2Fdecoupling-views-in-xamarin%2F&via=MarcelJurtz"
+      <a href="//twitter.com/share?text=Sideproject+-+Sist%21&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F03%2Fsideproject-sist&via=MarcelJurtz"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
         <i class="fa fa-twitter-square fa-lg"></i>
       </a>
@@ -607,7 +453,7 @@
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2017/11/decoupling-views-in-xamarin/') + '&title=Decoupling Views in Xamarin'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/03/sideproject-sist') + '&title=Sideproject - Sist!'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
@@ -999,8 +845,8 @@ $(document).ready(function() {
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-118762636-1', 'auto');
   ga('send', 'pageview', {
-    'page': '/2017/11/decoupling-views-in-xamarin/',
-    'title': 'Decoupling Views in Xamarin'
+    'page': '/2018/03/sideproject-sist',
+    'title': 'Sideproject - Sist!'
   });
 </script>
 

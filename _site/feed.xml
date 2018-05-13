@@ -6,9 +6,84 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 13 May 2018 09:25:00 +0200</pubDate>
-    <lastBuildDate>Sun, 13 May 2018 09:25:00 +0200</lastBuildDate>
+    <pubDate>Sun, 13 May 2018 09:32:43 +0200</pubDate>
+    <lastBuildDate>Sun, 13 May 2018 09:32:43 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>C# - Mastering the Basics - The Repository Pattern</title>
+        <description>&lt;p&gt;There’s a very large number of articles about the repository pattern out there.
+Nevertheless, most of them overlap in the description and cause confusion among developers.
+For this reason I decided to write my own article to document my opinion.&lt;/p&gt;
+
+&lt;p&gt;In this article I will first clarify the what and why of the repository pattern.
+Afterwards I will explain how the pattern can look like in C#.&lt;/p&gt;
+
+&lt;p&gt;In his book, Patterns of Enterprise Application Architecture, Martin Fowler describes the Repository Pattern as a “Mediate between the domain and data mapping layers, acting like an in-memory collection of domain objects”.&lt;/p&gt;
+
+&lt;p&gt;The following benefits of utilizing this pattern are usually listed when reading articles on the topic:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Minimize query logic&lt;/li&gt;
+  &lt;li&gt;Decoupling from persistence frameworks&lt;/li&gt;
+  &lt;li&gt;Easier testing&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The idea of reducing query logic refers to the reusability of code. Imagine you work directly on a collection. If you need a certain subset of the stored objects, you will query them via LINQ. But chances are, you won’t need this query logic in just one place. However, since the entire collection is available everywhere, you will implement this logic in each place, resulting in duplicated code. The alternative is to move this logic to the repository. All code elements involved then retrieve the subset from this.&lt;/p&gt;
+
+&lt;p&gt;The decoupling from persistence frameworks follows the same principle. The connection to data storage only takes place in the repository. The business logic only accesses the repository, the implementation details are irrelevant at this point. This means that the repository can be exchanged at any time, for example with another ORM or even to a new storage strategy.&lt;/p&gt;
+
+&lt;p&gt;The idea behind the simplification of testability is to make repositories easily exchangeable by using an interface and thus to be able to easily implement a mock repository. But this is not a peculiarity of the repository pattern, so I don’t really see this point as an advantage of the pattern.&lt;/p&gt;
+
+&lt;h2 id=&quot;in-a-nutshell&quot;&gt;In a Nutshell&lt;/h2&gt;
+
+&lt;p&gt;As mentioned above, the basic idea of the repository pattern is to design an intermediate layer so that the business logic can operate as if on an in-memory collection. In a very simple way, this interface can look like this:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Add(obj)&lt;/li&gt;
+  &lt;li&gt;Remove(obj)&lt;/li&gt;
+  &lt;li&gt;Get(id)&lt;/li&gt;
+  &lt;li&gt;GetAll()&lt;/li&gt;
+  &lt;li&gt;Find(predicate)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As you can see, there is no item for saving changes. And that’s exactly where the in-memory collection comes into play. Since the collections only contain object references, the entries can be edited directly.&lt;/p&gt;
+
+&lt;p&gt;Nevertheless, database entries must somehow be persisted. This is where the Unit-of-Work Pattern comes in. Again, from Martin Fowler: A unit of work maintains a list of objects affected by a business transaction and coordinates the writing out of changes.&lt;/p&gt;
+
+&lt;p&gt;So this means that we will combine one or more repositories with a single unit of work which will persist changes to the database. An interface for a basic unit of work could have the following methods and properties:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;IMyRepository MyRepository { get; }&lt;/li&gt;
+  &lt;li&gt;SaveChanges();&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Of course, in a real application, there would be some more repositories.&lt;/p&gt;
+
+&lt;p&gt;If you look at the whole thing now, you might get the idea that Entity Framework already implements these mechanisms. More precisely, a DbSet looks like a repository and a DbContext like a unit of work. Let’s take a closer look:&lt;/p&gt;
+
+&lt;p&gt;At a surface level, a DbSet looks like a repository. It provides access to a collection and allows you to edit, add and remove entries. Using the DbContext you can persist changes afterwards. However, this approach is problematic in view of the previously defined advantages of the repository pattern: One point was the reduction of duplicated source code by outsourcing functionalities with regard to special subsets. With this approach here the pure collection is published and worked with. The result is exactly what we want to avoid, namely the direct selection and projection of items from the collection.&lt;/p&gt;
+
+&lt;p&gt;The use of DbContext is also not suitable here. Another positive argument of the repository pattern was the decoupling of persistence frameworks. This contradicts the approach, since the business logic would be tied to Entity Framework.&lt;/p&gt;
+
+&lt;p&gt;So while DbSet and DbContext look like implementations of the repository and unit of work pattern, they don’t provide the architectural benefits, which is why you still have to provide your own implementation for this.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 13 May 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/05/c-mastering-the-basics-repository-pattern</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/05/c-mastering-the-basics-repository-pattern</guid>
+        
+        <category>dotnet</category>
+        
+        <category>csharp</category>
+        
+        <category>development</category>
+        
+        <category>programming</category>
+        
+        
+        <category>csharp</category>
+        
+      </item>
     
       <item>
         <title>Learning to Learn</title>
@@ -616,161 +691,6 @@ Just search “user agent switcher” in your addon repository and you’re good
         
         
         <category>productivity</category>
-        
-      </item>
-    
-      <item>
-        <title>Introduction to Room for Android</title>
-        <description>&lt;p&gt;In the context of I/O 2017, Google released the Room Persistence Library, an intermediate layer between application logic and Android’s SQLite database. Using Room, you no longer have to handle stuff like network connection errors or caching yourself. Today’s article will help you get started with the library and teach you all the skills you need to implement Room in your own applications.&lt;/p&gt;
-
-&lt;h2 id=&quot;background-of-my-sample-application&quot;&gt;Background of my sample application&lt;/h2&gt;
-
-&lt;p&gt;The following code snippets are part of one of my side projects. This application manages shopping lists, which in itself can have entries. Actually, this is a very simple application, but it illustrates the functionality of Room very well.&lt;/p&gt;
-
-&lt;h2 id=&quot;room-components&quot;&gt;Room Components&lt;/h2&gt;
-
-&lt;p&gt;The structure of Room is based on three elements, which I will explain in detail below. These elements are the entities, data access objects and the database itself. While the purpose of the database should be clear, I would like to comment briefly on that of the other two.&lt;/p&gt;
-
-&lt;h3 id=&quot;entities&quot;&gt;Entities&lt;/h3&gt;
-
-&lt;p&gt;Entities in general represent real things. Almost anything can be an entity. Think of a car, a house, yourself.&lt;/p&gt;
-
-&lt;p&gt;I wanted to keep the application very minimalistic, which is why each shopping list only has a title and a timestamp. This allows the user to sort the list chronologically. The class for displaying entries has the same attributes, supplemented by a reference to a shopping list. This is already a bit strange, because this setup corresponds to that of a relational database. When working with object relational mappers, however, you would rather give each shopping list a list of entry elements directly. Room separates itself from this approach: Room doesn’t allow object references. Google covers this extensively in a &lt;a href=&quot;https://developer.android.com/training/data-storage/room/referencing-data.html#understand-no-object-references&quot;&gt;dedicated article&lt;/a&gt;. Instead, you have to explicitly tell Room what parts you need.&lt;/p&gt;
-
-&lt;p&gt;For this reason I will build my pojos according to a relational database schema. This results in the following schema:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;room_db_introduction_erm.png&quot; alt=&quot;Example ERM for Room demo&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In Android, this schema can be translated to regular POJO classes. Using Java annotations, you can tell your class what elements should be treated in which way. The class which represents a shopping list looks like this:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tableName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;shopping_list&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ShoppingList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@PrimaryKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoGenerate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@ColumnInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;timestamp_seconds&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timestampSeconds&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Ignore&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingListItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;As you can see, there are already multiple annotations. The first one is the &lt;em&gt;@Entity&lt;/em&gt; annotation. It tells room that this class needs to be persisted to a database and what the name of the matching table will be. The next annotation is @PrimaryKey. You need to assign a primary key to each entity. Doing so, you specify a unique identifier to each of the tables entries. I added &lt;em&gt;autoGenerate = true&lt;/em&gt;, so Room will be handling this matter for me.&lt;/p&gt;
-
-&lt;p&gt;In general, I don’t recommend to use simple integers as primary keys, but that’s another topic. Also, for the sake of simplicity, I set the scope of all properties to public. When using &lt;em&gt;private&lt;/em&gt;, Room requires appropriate accessor methods to these properties.&lt;/p&gt;
-
-&lt;p&gt;Per default, room will use class and property names to specify the respective elements in the database. By using the &lt;em&gt;@ColumnInfo&lt;/em&gt; annotation, you can customize these. The last annotation in this example is &lt;em&gt;@Ignore&lt;/em&gt;, which tells room to ignore the property when loading or saving data.&lt;/p&gt;
-
-&lt;p&gt;You can see another annotation when checking out the class representing an item inside a shopping list:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;tableName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;shopping_list_item&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;foreignKeys&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@ForeignKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;entity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;parentColumns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;childColumns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;list_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;onDelete&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CASCADE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ShoppingListItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@PrimaryKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoGenerate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@ColumnInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@ColumnInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;list_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;listId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@ColumnInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@ColumnInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;timestamp_seconds&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;timestampSeconds&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;As mentioned earlier, I’ve added a reference to the shopping list to each item. Since the id we specified for these is an automatically generate integer, we can simply access it here and store it as integer as well. By adding a &lt;em&gt;@ForeignKey&lt;/em&gt; annotation, you’ll firstly need to specify the referenced class, followed by the referenced row. Complete the statement by specifying the column of the current class with which the join is to be done. In my case, this is the &lt;em&gt;id&lt;/em&gt; column of the ShoppingList class and the &lt;em&gt;list_id&lt;/em&gt; column of the ShoppingListItem class. Note that the names must match those of the table and you may have overwritten them with &lt;em&gt;@ColumnInfo&lt;/em&gt; annotation.&lt;/p&gt;
-
-&lt;p&gt;You can also customize the OnDelete action. If CASCADE is specified as an OnDelete action, all items in a list are deleted if the list itself is deleted.&lt;/p&gt;
-
-&lt;h3 id=&quot;data-access-objects&quot;&gt;Data Access Objects&lt;/h3&gt;
-
-&lt;p&gt;The next part we will cover are the DAOs. Data Access Objects allow you to interact between the database and the entity. And here’s the best part: they are very easy to implement. I have created two DAOs, one for the lists and one for the entries. In order to keep the whole thing a little bit short here, I’m just going to go into the DAO of my list.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Dao&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ShoppingListDao&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;SELECT * FROM shopping_list&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getAll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;DELETE FROM shopping_list WHERE id = :id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteListById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Insert&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;insertList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;updateList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Delete&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;deleteList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;A DAO is basically an interface that describes the interaction possibilities with the database. How exactly these look depends of course on your specific application. By specifying a Java annotation you can control the type of operation. In addition to the regular operations for creating, updating, or deleting objects, Room offers you the option of implementing your own queries using the query statement.&lt;/p&gt;
-
-&lt;p&gt;Of course, you can also use parameters in your custom queries. To do this, simply enter the name of the parameter with a preceding colon in the query.&lt;/p&gt;
-
-&lt;p&gt;In my final section, the database itself, I will show you how to combine the components and how to persist your objects.&lt;/p&gt;
-
-&lt;h3 id=&quot;database&quot;&gt;Database&lt;/h3&gt;
-
-&lt;p&gt;To interact with the SQLite database, you need to create a separate class that inherits from &lt;em&gt;RoomDatabase&lt;/em&gt; and passes the connection details via &lt;em&gt;@Database&lt;/em&gt; annotation. Google recommends using a singleton pattern, which I have implemented in my application.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nd&quot;&gt;@Database&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;entities&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingListItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AppDatabase&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RoomDatabase&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppDatabase&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INSTANCE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingListDao&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shoppingListDao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ShoppingListItemDao&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;shoppingListItemDao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppDatabase&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getAppDatabase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;INSTANCE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;INSTANCE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;Room&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;databaseBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppDatabase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;shoppinglist-db&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;allowMainThreadQueries&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-                            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;INSTANCE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;destroyInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;INSTANCE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;As you may have noticed, I explicitly allowed Room to perform database operations in the UI thread. Please note you should not release something like this in a production-ready application. Otherwise, longer running operations may block the user interface and have negative effects on the UX.&lt;/p&gt;
-
-&lt;p&gt;The following example shows you how to retrieve data from the database.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ShoppingList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shoppingLists&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AppDatabase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAppDatabase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getApplicationContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;shoppingListDao&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;You can now perform all other operations in the same way. All information as well as advanced topics can be found directly on Google in the &lt;a href=&quot;https://developer.android.com/topic/libraries/architecture/room.html&quot;&gt;corresponding documentation&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 17 Feb 2018 09:00:46 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/02/introduction-to-room-for-android/</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/02/introduction-to-room-for-android/</guid>
-        
-        <category>android</category>
-        
-        <category>app</category>
-        
-        <category>development</category>
-        
-        <category>programming</category>
-        
-        
-        <category>android</category>
         
       </item>
     

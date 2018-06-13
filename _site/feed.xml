@@ -6,9 +6,115 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 13 May 2018 09:32:43 +0200</pubDate>
-    <lastBuildDate>Sun, 13 May 2018 09:32:43 +0200</lastBuildDate>
+    <pubDate>Wed, 13 Jun 2018 18:22:53 +0200</pubDate>
+    <lastBuildDate>Wed, 13 Jun 2018 18:22:53 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Sideproject - ClubGrid</title>
+        <description>&lt;p&gt;It is finally time to announce my latest side project. ClubGrid was originally designed to make it easier for my coach to manage our baseball games. However, the result can be used for clubs of any kind and I hope that I can also help others with my software.&lt;/p&gt;
+
+&lt;p&gt;The problem we had was the organization of games and events. Some players posted their acceptance or rejection via Whatsapp, others via Facebook, some via email and others personally. This made it quite complicated for us to keep track of who is present where and when.&lt;/p&gt;
+
+&lt;p&gt;In addition, there was the assignment of duties. Players alone are not enough, additional umpires, scorers, coaches and people who take care of the sales are needed.&lt;/p&gt;
+
+&lt;p&gt;This finally gave me the idea to solve the problem via a portal, which can be integrated into the existing club website. Team members can register there for events and trainers can see at a glance who is participating and where they would like to help.&lt;/p&gt;
+
+&lt;p&gt;The plan was born. I have some knowledge of PHP and therefore decided to implement the platform with this technology. I started with ER modeling. Then I derived my individual pages from this model and created wireframes for the rough design of the website. And then things were ready to start!&lt;/p&gt;
+
+&lt;p&gt;As I said, I started to implement the website in PHP. That worked quite well, even though it seemed rather messy to me. For the time being, I accepted that and continued to work on my prototype. After some time (I had almost finished the features of the MVP), I nevertheless decided to change technology.&lt;/p&gt;
+
+&lt;p&gt;There were several reasons for my decision. The first obvious thing was the lack of transparency in my source code. But I also didn’t want to limit myself to my basic PHP knowledge. However, since I had no real interest in delving deeper into PHP and wanted to strengthen my knowledge in other areas instead, I decided to implement the application in C#. At that time I had heard of ASP.NET, but that was all. I never used it. So I read the basics and quickly switched to a Pluralsight course to get my hands dirty with a real example.&lt;/p&gt;
+
+&lt;p&gt;I don’t want to say much about ASP.NET (Core) here, but compared to my PHP version I’m thrilled. The code is much better structured, clearer and I was able to make much faster progress.&lt;/p&gt;
+
+&lt;p&gt;Another possibility I took during the development was the use of postgres as the underlying database. Besides the regular functions I haven’t played much with it yet, but so far I have a very positive impression.&lt;/p&gt;
+
+&lt;p&gt;But enough about that. Let’s look at the result:&lt;/p&gt;
+
+&lt;p&gt;ClubGrid is my first real web application. The tech stack of the software consists of ASP.NET Core and PostgreSQL, the connection is made using Entity Framework Core. The software offers clubs the possibility to manage their events internally and thus enables trainers to see the status of the promises at a glance. Originally, I only planned to release the software for my local baseball club, but the software can quickly be extended to support other sports or other clubs in general. &lt;a href=&quot;https://clubgrid.mjurtz.com&quot;&gt;I setup a website for showcasing the application&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the next days I will implement the last missing functionalities, so that we can put the first instance live. Then I’d like to make some surface improvements and add support for more sports.&lt;/p&gt;
+
+&lt;p&gt;As soon as all this has happened, I would like to include several options for notifications. I am very curious about what will follow and look forward to any feedback or suggestions for new features!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 13 Jun 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/06/sideproject-clubgrid</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/sideproject-clubgrid</guid>
+        
+        <category>csharp</category>
+        
+        <category>web</category>
+        
+        <category>development</category>
+        
+        <category>programming</category>
+        
+        <category>sideproject</category>
+        
+        <category>asp.net</category>
+        
+        
+        <category>csharp</category>
+        
+      </item>
+    
+      <item>
+        <title>Step Outside Your Comfort Zone!</title>
+        <description>&lt;p&gt;We humans tend to make ourselves comfortable. We take the easiest way we can find. But there are so many things we miss this way. In many cases it is the small things that make a big difference. Today I would like to show you how I have taken such a step and what has changed since then.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2018/comfort_zone_header.png&quot; alt=&quot;Step outside your comfort zone - Header&quot; /&gt;
+&lt;a href=&quot;https://unsplash.com/photos/mQVWb7kUoOE&quot;&gt;Photo by Jenny Hill on Unsplash&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;As a child I did athletics for several years. I did the standard disciplines and I really enjoyed it. But I never trained any endurance related disciplines besides the regular 3 laps to get warmed up.&lt;/p&gt;
+
+&lt;p&gt;Some day, at a regular tournament, my coach had me signed up for the 1000 meter runs. It was hell. That day, seven year old me decided to never participate in something like this again.&lt;br /&gt;
+I kept this promise for 14 years until I successfully finished my first 10K last week. By choice.&lt;/p&gt;
+
+&lt;h2 id=&quot;from-0-to-running&quot;&gt;From 0 To Running&lt;/h2&gt;
+
+&lt;p&gt;If you had asked me during my school days what I would have despised most about sports lessons, I would certainly have answered with “endurance runs”.&lt;/p&gt;
+
+&lt;p&gt;Last September, I decided that I needed change. I wanted to get in general better shape and I wanted to really challenge myself. I thought that the most difficult thing I could try to stick to would be running. Simply because I wanted to prove to myself that I can do it, no matter how much I hate it.&lt;/p&gt;
+
+&lt;p&gt;At first I tried just to run regularly. But I quickly realized that I lacked planning and motivation. On Reddit I came across the C25K (Couch to 5K) program, which seemed to be tailored to my plan. At this point, I’d like to give a big shoutout to the c25k subreddit, the community is amazing and they really support each other. Definitely check it out.&lt;/p&gt;
+
+&lt;p&gt;The idea of the program is simple. Install an app that will help you train within 8 weeks so that you can run a 5 km run in 30 minutes without taking a break.&lt;/p&gt;
+
+&lt;p&gt;The training is based on 3 runs per week, with the training schedule becoming more intensive every week. Training here means changing between walking and running, whereby the running intervals become longer and the walking intervals shorter as you progress.&lt;/p&gt;
+
+&lt;p&gt;And that really works. While the programme is not easy, I think it is feasible in any case. I never thought I’d actually do this, but it works. After 8 weeks I exceeded my target and was ready for further progress.&lt;/p&gt;
+
+&lt;p&gt;We had a pretty cold winter in southern germany and running was quite difficult. In January, I got the flu and had to stop training. It took arount one month until I got myself together and decided to continue. There’s a follow-up app C210K available and I decided to try it out. However, I didn’t really manage to stick to the program as I did with c25k.&lt;/p&gt;
+
+&lt;p&gt;One day later, I signed up for a 10K near my hometown which will take place in early may 2018. This way, I forced myself to train for that. Surrender was no option and my goal was to do the whole thing without walking.&lt;/p&gt;
+
+&lt;p&gt;Eventuall, may came around and I was a bit behind when looking at my goal. I managed to run 8 KM and figured, I could do 10 at the run.&lt;/p&gt;
+
+&lt;p&gt;While the first few kilometres where quite heavy, I really got into it and made the full distance without stopping. Also, I did it in less than an hour.&lt;/p&gt;
+
+&lt;h2 id=&quot;call-to-action&quot;&gt;Call to Action&lt;/h2&gt;
+
+&lt;p&gt;Training alone and going through the program alone is not easy. If you have the possibility to do the whole thing with a partner and you can push each other, this will definitely help you. But even on your own, with a little self-discipline the whole thing is quite feasible.&lt;/p&gt;
+
+&lt;p&gt;But I don’t want to limit this example to my experience, I would say that it can be applied to many different areas of life. Think about why you loathe something. And then try to see the whole thing from a different angle and fight against the laziness. And I’m sure the odds are good that you’ll actually enjoy it. After all, we are growing on challenges, not on dull activities.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 31 May 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/05/step-outside-your-comfort-zone</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/05/step-outside-your-comfort-zone</guid>
+        
+        <category>motivation</category>
+        
+        <category>discipline</category>
+        
+        <category>self</category>
+        
+        <category>fitness</category>
+        
+        
+        <category>life</category>
+        
+      </item>
     
       <item>
         <title>C# - Mastering the Basics - The Repository Pattern</title>
@@ -571,126 +677,6 @@ Just search “user agent switcher” in your addon repository and you’re good
         
         
         <category>android</category>
-        
-      </item>
-    
-      <item>
-        <title>Introduction to i3</title>
-        <description>&lt;p&gt;In today’s article I would like to give you an insight into the usage of a tiling window manager, which I will illustrate with the example of i3.&lt;/p&gt;
-
-&lt;p&gt;A tiling window manager divides the screen into non-overlapping areas. You are probably more used to a stack-based system where windows can overlap. However, the concept of avoiding overlapping offers a major advantage: Due to the pure operation of the computer via keyboard, it is possible to work at a faster pace after a short training period.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/2018/i3_screenshot.png&quot; alt=&quot;i3 Example Screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Of course, this is not everyone’s cup of tea, but I recommend you to give it a try. The Window Manager can be installed in parallel to your existing one and can be selected during the login process. Also, the installation doesn’t require much disk space (~2 MB).&lt;/p&gt;
-
-&lt;h2 id=&quot;installation--setup&quot;&gt;Installation &amp;amp; Setup&lt;/h2&gt;
-
-&lt;p&gt;I’m using Arch in combination with the MATE desktop environment. My current window manager is marco, MATEs default which is based on Metacity. On Arch Linux you can install i3 via the package &lt;em&gt;i3&lt;/em&gt; in the official package sources. This should be the same for most other package managers, but if necessary consult the search engine of your choice for your particular case.&lt;/p&gt;
-
-&lt;p&gt;After installing, you only need to log out and then log in again with the new Window Manager. You can usually define that using the small gear symbol. Of course, you can also set i3 directly as the default WM, but for testing purposes I prefer the temporary setup.&lt;/p&gt;
-
-&lt;h2 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h2&gt;
-
-&lt;p&gt;It’s time to get our hands dirty. After you have successfully logged in, you will be greeted by a simple screen with no content except for some status indicators at the bottom. On the first start you get to choose wether you want to create your own configuration or use the standard setup. I will work with the standard first.&lt;/p&gt;
-
-&lt;p&gt;i3 is based on the use of a so-called mod key. This provides the basis for a large number of keyboard combinations. By default, either the Windows or alt key is used for this purpose.&lt;/p&gt;
-
-&lt;p&gt;As promised, everything is now controlled by keyboard combinations. Let’s begin with the basic functions.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;To create a new window, use &lt;em&gt;Mod + Enter&lt;/em&gt;&lt;/li&gt;
-  &lt;li&gt;To close the current window, use &lt;em&gt;CTRL + d&lt;/em&gt;&lt;/li&gt;
-  &lt;li&gt;Per default, windows will be added horizontally. To switch to vertical mode, use &lt;em&gt;Mod + v&lt;/em&gt;&lt;/li&gt;
-  &lt;li&gt;Use &lt;em&gt;Mod + h&lt;/em&gt; to switch back to horizontal mode&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;To switch between open windows, you can use the following commands:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;Mod + j&lt;/em&gt; to move left,&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;Mod + ;&lt;/em&gt; to move right&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;Mod + l&lt;/em&gt; to move up&lt;/li&gt;
-  &lt;li&gt;And &lt;em&gt;Mod + k&lt;/em&gt; to move down&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The last shortcuts I’d like you to know are _Mod + &lt;number&gt;_, where you can replace &lt;number&gt; by any number you want to switch between multiple screens. By pressing _Shift_ additionally, you can move the current window to the specified screen.&lt;/number&gt;&lt;/number&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;conclusion--further-steps&quot;&gt;Conclusion &amp;amp; Further Steps&lt;/h2&gt;
-
-&lt;p&gt;While I think that these few commands will help you to get started with i3, there are far more available. I definitely recommend you to check out &lt;a href=&quot;https://i3wm.org/docs/&quot;&gt;i3s official documentation&lt;/a&gt;, it’s great. And as always, just try everything out and have fun!&lt;/p&gt;
-</description>
-        <pubDate>Wed, 28 Feb 2018 07:00:57 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/02/introduction-to-i3/</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/02/introduction-to-i3/</guid>
-        
-        <category>efficiency</category>
-        
-        <category>linux</category>
-        
-        <category>software</category>
-        
-        
-        <category>linux</category>
-        
-      </item>
-    
-      <item>
-        <title>Getting Stuff Done</title>
-        <description>&lt;p&gt;While being fun, programming is not easy. To be able to dive into a flow state in which you’re completely focussed on the topic, you need to cut off all distractions. With this article I would like to introduce you to my methods of working in a more focused manner and give you some tips that might make your life much easier. My experiences mostly come from the programming area, but the following tips can be extended to various other topics.&lt;/p&gt;
-
-&lt;h2 id=&quot;consistency-is-key&quot;&gt;Consistency is Key&lt;/h2&gt;
-
-&lt;p&gt;I have mentioned this point more often and I think it is the most important thing you should get used to.&lt;/p&gt;
-
-&lt;p&gt;Building a habit is the most effective way to achieve real long-term visible progress. We are all just human beings and short-term lows (peaks as well!) will always be present. But if you really force yourself to do something regularly at the beginning, you will feel progress quickly. Additionally, it won’t feel forced in the long run, I promise.&lt;/p&gt;
-
-&lt;h2 id=&quot;investing-time--being-productive&quot;&gt;Investing Time != Being Productive&lt;/h2&gt;
-
-&lt;p&gt;One thing I have been able to notice very much on myself lately is that the time brought in does not correlate with productivity. On the contrary, if I force myself to work long hours, I am often less productive than if I spend a comparatively short period of time working and filling the gap by doing sports before or after work.&lt;/p&gt;
-
-&lt;p&gt;I must also say that I enjoy my work. One might think that this approach only applies to cases where this is not the rule.&lt;/p&gt;
-
-&lt;p&gt;When working for longer periods of time, I will eventually lose my focus. Sport helps me to get fit again and allows me to think about my projects in parallel. Often times I had ideas for new apps or improvements of existing ones while jogging, which I probably wouldn’t have come up with when working stubbornly.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/2018/focus_running.png&quot; alt=&quot;Focus / Running - by Unsplash&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So if you can’t get on with a problem, give yourself a little bit of fresh air in between and sit down again later with a clear head. I have noticed for myself that physical exercise, even if only half an hour, significantly increases my ability to concentrate afterwards. And hey, you’re doing something for your health, by the way.&lt;/p&gt;
-
-&lt;h2 id=&quot;done-is-better-than-perfect&quot;&gt;Done is better than Perfect&lt;/h2&gt;
-
-&lt;p&gt;That was a point which I found extremely hard to apply. I have always regarded myself as a perfectionist, which has been very difficult for me when developing apps. I could never stick to an MVP. Whenever I thought of new features I wanted to have them implemented immediately. However, since I’ve really forced myself to first implement the basic functionality, to document ideas in parallel and then to implement them later in a sorted way, I don’t have 20 side projects that are not making any progress. Instead, each project has functioning interim results and I can fully focus one single thing.&lt;/p&gt;
-
-&lt;h2 id=&quot;dont-try-to-multitask&quot;&gt;Don’t try to Multitask&lt;/h2&gt;
-
-&lt;p&gt;Just don’t. It doesn’t work. Concentrate on one thing, do it and then move on to something else. It’s normal for the brain to wander and to come up with ideas. Write down these ideas and come back to them later, this will help you to get your mind free and to focus again.&lt;/p&gt;
-
-&lt;p&gt;See other tasks as distractions, just like your mobile phone or TV. Of course you can switch back and forth between several tasks, but you always need a certain amount of time to find your way back into a topic. And that’s exactly the time you can save.&lt;/p&gt;
-
-&lt;p&gt;For my part, I see the problem more when my own todo list is too full. The feeling of having to do a lot of things increases the temptation to do several things at the same time. To prevent this, it can be very helpful to plan the whole day in the morning. And not only in the style of a simple todo list, but with fixed start and end times. This can help you not to plan the day too fully and to calculate realistic time expenditure.&lt;/p&gt;
-
-&lt;h2 id=&quot;tldr--what-to-do-now&quot;&gt;TL;DR &amp;amp; What to do now&lt;/h2&gt;
-
-&lt;p&gt;There are various ways to increase your own productivity. In this article, I have dealt with those who are the most important to me personally.&lt;/p&gt;
-
-&lt;p&gt;First of all, I’m recommending you build a habit. Suppose you want to learn something, be it a new programming language or whatever: set yourself a fixed time period for it every day. Avoid any distractions during this period. Turn off your cell phone. Use addons like LeechBlock if you can’t resist the temptation to surf Reddit. And focus on the essentials, you can finish the final touches later.&lt;/p&gt;
-
-&lt;p&gt;But also take time out and move between your sessions. If running is too boring or unproductive for you, listen to podcasts while you’re running.&lt;/p&gt;
-
-&lt;p&gt;This subject is very personal and although I hope that my opinion will help you, I recommend you to browse through &lt;a href=&quot;https://medium.com/search?q=productivity&quot;&gt;medium&lt;/a&gt;. You’ll find some great articles on this topic.&lt;/p&gt;
-</description>
-        <pubDate>Wed, 21 Feb 2018 17:30:38 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/02/getting-stuff-done/</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/02/getting-stuff-done/</guid>
-        
-        <category>efficiency</category>
-        
-        <category>productivity</category>
-        
-        <category>self</category>
-        
-        
-        <category>productivity</category>
         
       </item>
     

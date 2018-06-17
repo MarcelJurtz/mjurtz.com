@@ -6,9 +6,109 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 13 Jun 2018 18:22:53 +0200</pubDate>
-    <lastBuildDate>Wed, 13 Jun 2018 18:22:53 +0200</lastBuildDate>
+    <pubDate>Sun, 17 Jun 2018 12:52:20 +0200</pubDate>
+    <lastBuildDate>Sun, 17 Jun 2018 12:52:20 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Simplify your CSS - LESS is more</title>
+        <description>&lt;p&gt;First things first: I am not a web developer and certainly not a designer. The following examples are not intended to represent good practices in terms of design or aesthetics.&lt;/p&gt;
+
+&lt;p&gt;But now to the topic: As a software developer you can hardly avoid acquiring basic knowledge in web development. Specifically, I mean the handling of HTML and CSS, also in JavaScript as far as I’m concerned. If you are like me, you basically have no problems with it, but CSS files will become quite confusing and difficult to revise over time. Let’s look at some problems I think CSS has, then I’ll show you how to solve them.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-problems-of-css&quot;&gt;The Problems of CSS&lt;/h2&gt;
+
+&lt;p&gt;The thing that probably bothers me the most is the lack of variables in CSS. Whether to define color codes or font sizes: the constant duplication of corresponding entries makes me crazy, especially if something needs to be changed. Oh, and how about calculating values based on variables? For example something like: format each h2 tag with a font size like h1, only 2 units smaller? Nope.&lt;/p&gt;
+
+&lt;p&gt;Another point is the transparency of nested statements. Long-winded listings of nestings in nestings lead to an almost endless number of CSS statements that no one will have an overview of later. Not to mention old entries that are no longer needed, but are simply overlooked.&lt;/p&gt;
+
+&lt;h2 id=&quot;less-is-more&quot;&gt;LESS is more&lt;/h2&gt;
+
+&lt;p&gt;Well, there are more problems than I have presented that we will solve now. However, I have only gone into what I think are really essential things that bother me about CSS.&lt;/p&gt;
+
+&lt;p&gt;LESS is an extension to CSS, which means that all CSS code is also valid LESS code. LESS, however, offers various ways of circumventing the problems described above. But before I go into these, I would like to show you how you can use LESS at all.&lt;/p&gt;
+
+&lt;p&gt;There are two ways to integrate LESS into your website. One possibility is the conversion from LESS to CSS and the integration of the resulting CSS file into your website (as usual). Alternatively, the LESS file can also be included directly, in combination with &lt;a href=&quot;http://lesscss.org/usage/&quot;&gt;LessJs&lt;/a&gt;, which only evaluates the stylesheets on the client side. I prefer the first option because I don’t have to rely on additional JS libraries.&lt;/p&gt;
+
+&lt;p&gt;If you also choose this approach, there are several ways to do the processing. There are special websites that work on a copy and paste basis, but I prefer to use something like the Gulp integration for ASP.NET Core in Visual Studio. Click &lt;a href=&quot;https://docs.microsoft.com/en-us/aspnet/core/client-side/less-sass-fa?view=aspnetcore-2.1&quot;&gt;here&lt;/a&gt; for more information.&lt;/p&gt;
+
+&lt;p&gt;Now that the basic structure is in place, we can start with the features themselves.&lt;/p&gt;
+
+&lt;p&gt;The first thing I mentioned was using variables that are missing in CSS. LESS offers this functionality, let’s look at an example.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;k&quot;&gt;@blue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#008FFF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;@defaultFontSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;15px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+
+&lt;span class=&quot;nt&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;blue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+    &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;defaultFontSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see, variables are declared with an @ character. Variables can be used for various elements, such as colors and sizes. Also, variables can be calculated by using regular arithmetic operators (this also works for colors).&lt;/p&gt;
+
+&lt;p&gt;My second point was the use of nested statements. LESS offers the possibility to style nested elements as follows:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt; 
+&lt;span class=&quot;nc&quot;&gt;.sidebar&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;nl&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+
+  &lt;span class=&quot;err&quot;&gt;ul&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+    &lt;span class=&quot;nl&quot;&gt;list-style-type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+
+    &lt;span class=&quot;err&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt; 
+      &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;link&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+      &lt;span class=&quot;nl&quot;&gt;text-decoration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+  &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I think the result of this example is quite easy to understand. The nested CSS statements apply to HTML elements nested in the same style. The statement for the a tag therefore only applies to those elements that lie within an unordered list, which in turn lies in an element of the’sidebar’ class.&lt;/p&gt;
+
+&lt;p&gt;Those were all the features I really missed. But as promised, there are more: LESS offers possibilities for calculating color values, mixins, imports for distributed CSS files and own functions. I will conclude todays post with a brief comment on the individual elements:&lt;/p&gt;
+
+&lt;p&gt;Another feature are the so-called mixins. These allow the usage of CSS classes within statements. Let’s look at an example:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt; 
+&lt;span class=&quot;nc&quot;&gt;.borderAll&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;nl&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;solid&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;black&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+&lt;span class=&quot;nc&quot;&gt;.sidebar&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+  &lt;span class=&quot;err&quot;&gt;.borderAll&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;LESS offers predefined functions with which (color) values can be manipulated. A complete overview of available functions can be found here, but their use is identical according to the following syntax:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt; 
+&lt;span class=&quot;nt&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;saturate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;@green&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;25%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Finally, I would like to show you how to use import statements. You may know the include function of PHP. It’s kind of the same thing. You can use it to include other CSS or LESS files and thus distribute your instructions. If you omit the file extension, a matching LESS file is automatically searched for.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt; 
+&lt;span class=&quot;k&quot;&gt;@import&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;base.css&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I am aware that this short summary is by no means a complete guide to working with LESS. But I hope that I could arouse a little interest and even make your work with CSS a little easier. As in most such topics, the same applies here: Just give it a try. By applying it you will learn the fastest. A full overview of the features can be found on the &lt;a href=&quot;http://lesscss.org/&quot;&gt;official website&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 17 Jun 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/06/less-css</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/less-css</guid>
+        
+        <category>css</category>
+        
+        <category>web</category>
+        
+        <category>development</category>
+        
+        <category>html</category>
+        
+        <category>asp.net</category>
+        
+        
+        <category>web</category>
+        
+      </item>
     
       <item>
         <title>Sideproject - ClubGrid</title>
@@ -640,43 +740,6 @@ Just search “user agent switcher” in your addon repository and you’re good
         
         
         <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>Sideproject: Perfeggt</title>
-        <description>&lt;p&gt;Once again, it’s time to announce one of my side projects: Pefeggt – A boiling time calculator for eggs. Actually, I’ve been sitting on this one for quite a while and I decided to complete a working release this weekend. The app is built for Android and it helps you to calculate the perfect time you need to boil eggs to your preferred consistency.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/2018/03-perfeggt-overview.png&quot; alt=&quot;Perfeggt Overview&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;functionality--usage&quot;&gt;Functionality &amp;amp; Usage&lt;/h1&gt;
-
-&lt;p&gt;To calculate the time, I’m using &lt;a href=&quot;http://newton.ex.ac.uk/teaching/CDHW/egg/&quot;&gt;Charles D. H. Williams formula from his paper “The Science of boiling an Egg”&lt;/a&gt;. &lt;span&gt;This calculation requires the weight and temperature of the egg, the height above sea level at the place where it is cooked and the desired internal temperature of the egg to determine its consistency.&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;To provide a better user experience, the user can provide the eggs weight in grams as well as &lt;span&gt;the measurement in the form of sizes S (50 g.), M (58 g.), L (68 g.) and XL (75 g.). Alternatively, you can enter the weight directly. To specify the desired internal temperature, I have specified three possible selections to achieve either a soft, medium or hard result.&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span&gt;Finally, it is necessary to state the current position regarding the altitude above sea level. This determines the boiling point of the water.&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span&gt;After you have entered all the values and pressed the “&lt;em&gt;Calculate&lt;/em&gt;” button, a second page will be loaded showing you the duration. Here you can now start a timer that exits the application. In the status bar you will now see a new entry indicating the time of completion. By clicking this entry, you can abort the countdown prematurely. As soon as the time has elapsed, the application will notify you with an alarm.&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;span&gt;I am looking forward to any feedback! The app is available in both &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.jurtz.android.pefectegg&quot;&gt;PlayStore&lt;/a&gt; and Open Source on &lt;a href=&quot;https://github.com/MarcelJurtz/Perfeggt&quot;&gt;GitHub&lt;/a&gt;.&lt;/span&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sun, 04 Mar 2018 16:17:17 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/03/sideproject-perfeggt/</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/03/sideproject-perfeggt/</guid>
-        
-        <category>android</category>
-        
-        <category>app</category>
-        
-        <category>development</category>
-        
-        <category>programming</category>
-        
-        <category>sideproject</category>
-        
-        
-        <category>android</category>
         
       </item>
     

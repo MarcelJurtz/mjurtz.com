@@ -237,6 +237,10 @@
 <lastmod>2018-06-13T08:00:00+02:00</lastmod>
 </url>
 <url>
+<loc>http://blog.mjurtz.com/2018/06/less-css</loc>
+<lastmod>2018-06-17T08:00:00+02:00</lastmod>
+</url>
+<url>
 <loc>http://blog.mjurtz.com/about/</loc>
 </url>
 <url>
@@ -390,6 +394,12 @@
 <loc>http://blog.mjurtz.com/tag/asp-net/</loc>
 </url>
 <url>
+<loc>http://blog.mjurtz.com/tag/css/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/tag/html/</loc>
+</url>
+<url>
 <loc>http://blog.mjurtz.com/category/game-development/</loc>
 </url>
 <url>
@@ -433,6 +443,9 @@
 </url>
 <url>
 <loc>http://blog.mjurtz.com/category/life/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/category/web/</loc>
 </url>
 <url>
 <loc>http://blog.mjurtz.com/page2/</loc>

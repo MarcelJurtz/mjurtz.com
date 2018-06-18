@@ -6,9 +6,90 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 17 Jun 2018 12:52:20 +0200</pubDate>
-    <lastBuildDate>Sun, 17 Jun 2018 12:52:20 +0200</lastBuildDate>
+    <pubDate>Mon, 18 Jun 2018 21:17:06 +0200</pubDate>
+    <lastBuildDate>Mon, 18 Jun 2018 21:17:06 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>C# - Getting Started with Attributes</title>
+        <description>&lt;p&gt;In todays post I want to show you how to use attributes in C#. I have to apologize in advance, though, as I’m going to focus only to a limited extent on why they make sense and what you can use them for, that’s a topic for one of the following articles. Nevertheless, I would like to give you a basic understanding so that you can incorporate this concept into your own applications.&lt;/p&gt;
+
+&lt;p&gt;So what are attributes? Well, attributes themselves are just classes. They can’t do much themselves, but they can still be very helpful, especially on a topic called Reflection, which I will be discussing in the next days.&lt;/p&gt;
+
+&lt;p&gt;Attributes are usually utilised to assign metadata to classes, properties and the like. Attributes inherit from the class &lt;em&gt;Attributes&lt;/em&gt;. According to the convention, their names are always appended with the extension &lt;em&gt;Attributes&lt;/em&gt;. They can be placed on various elements, one speaks of &lt;em&gt;decorating&lt;/em&gt; a class, for example. To restrict the use of a custom attribute, the attribute &lt;em&gt;AttributeUsage&lt;/em&gt; can be used.&lt;/p&gt;
+
+&lt;p&gt;That was a whole bunch of attributes, right? Let us test this with an example, so that it will be easier to understand.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;na&quot;&gt;[AttributeUsage(AttributeTargets.Class | AttributeTargets.Property)]&lt;/span&gt;  
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DemoAttribute&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Attribute&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Description&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I created my own attribute, DemoAttribute. I have designed the name according to the convention. I want only properties and classes to be decorated with the attribute, which is why I piped these two options together using the AttributeUsage attribute.&lt;/p&gt;
+
+&lt;p&gt;The attribute has a property called Description. With this I want to describe my classes and properties later. Let us also look at an example.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;na&quot;&gt;[Demo(Description = &quot;Test for class A&quot;)]&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ClassA&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Demo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Description&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Test for Property ClassA.Name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;[Demo(Description = &quot;This is class B&quot;)]&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ClassB&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ClassC&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I created three classes to test my attribute: ClassA, ClassB and ClassC. I know, very incredibly creative. I decorated classes A and B with my attribute, class C I deliberately ignored. In addition, class A has a property with the attribute.&lt;/p&gt;
+
+&lt;p&gt;Now I want to show you the real purpose of attributes, but for this I have to be a little ahead of schedule. If you are interested in the relevant topics, just search for the keyword &lt;em&gt;Reflection&lt;/em&gt; (oh, and LINQ, if you are new to this).&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classes&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Assembly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetExecutingAssembly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetTypes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GetCustomAttributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DemoAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+
+&lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;$&quot;Fount class: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;In this snippet I first obtain all classes in the current assembly that are decorated with the attribute &lt;em&gt;DemoAttribute&lt;/em&gt;. Then I iterate through the result set and simply output the names of the respective classes.&lt;/p&gt;
+
+&lt;p&gt;You can add the following to search the found classes for properties with the same attribute.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;props&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetProperties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;IsDefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DemoAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+
+&lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;$&quot;Fount property: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Of course, the concept can be extended as far as you like. For example, you can design method calls so that all elements within an assembly or across assemblies are called in this way, thus modularizing your application without creating references between projects. But more about this later. With this short introduction I have only shown the basic idea of attributes. As already mentioned, the use of attributes is a separate topic. Stay tuned!&lt;/p&gt;
+</description>
+        <pubDate>Mon, 18 Jun 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/06/csharp-attributes</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/csharp-attributes</guid>
+        
+        <category>csharp</category>
+        
+        <category>dotnet</category>
+        
+        <category>development</category>
+        
+        <category>programming</category>
+        
+        
+        <category>csharp</category>
+        
+      </item>
     
       <item>
         <title>Simplify your CSS - LESS is more</title>
@@ -707,39 +788,6 @@ Just search “user agent switcher” in your addon repository and you’re good
         
         
         <category>android</category>
-        
-      </item>
-    
-      <item>
-        <title>Moving to Jekyll</title>
-        <description>&lt;p&gt;I decided that it is time for some changes. When I started this blog, I decided to use WordPress. My goal was to be able to write posts without having to focus on anything other than actual writing. Wordpress was the tool of my choice due to its simplicity.&lt;/p&gt;
-
-&lt;p&gt;Nevertheless, I wasn’t always really happy with the CMS. Problems occurred again and again, mainly in connection with performance, loading times and general page speed. Not to mention incompatible plugins and various little things. I don’t want to discuss this here at all, I was simply looking for something faster.&lt;/p&gt;
-
-&lt;p&gt;I don’t really like content management systems very much, I feel more comfortable when I am completely free in the design of my content. I’m also a fan of lightweight systems, a database-driven system only for managing content that I maintain on my own anyway, doesn’t really reflect this idea. However, completely discarding the CMS approach was not a solution, so I looked for compromises.&lt;/p&gt;
-
-&lt;p&gt;I finally found the result of my search under the term “Static Site Generator”. The idea behind such generators is that you have the code of your page on your computer. You can add content in a simple and easy way, for example by writing markdown files. The generator than builds a full HTML page by combining predefined templates and actual content.&lt;/p&gt;
-
-&lt;p&gt;There are many of these generators available, but one of the better known ones is called Jekyll. Jekyll is the software which GitHub pages uses as well. And that’s already a great positive aspect for Jekyll: You can directly integrate your website with GitHub pages and use it to add posts and general changes.&lt;/p&gt;
-
-&lt;p&gt;Jekyll is based on ruby and I have to admit that I haven’t used ruby before. But it’s really easy to get started. I recommend getting started with a template, there are plenty on GitHub. After that, just check out the files and you’ll get an idea of how Jekyll works very quickly. This allows you to customize your template and make it look how you want it to.&lt;/p&gt;
-
-&lt;p&gt;You can also convert your WordPress posts to Markdown by using the Jekyll Export Plugin. Just make sure that you don’t fuck up your images as I did.&lt;/p&gt;
-
-&lt;p&gt;These are my first movements using Jekyll and I have a lot to learn. However, I want to get this live as fast as possible, I appreciate any feedback. Jekyll looks really promising, I’ll keep you updated.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 04 Mar 2018 16:17:17 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/03/moving-to-jekyll/</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/03/moving-to-jekyll/</guid>
-        
-        <category>blog</category>
-        
-        <category>web</category>
-        
-        <category>ruby</category>
-        
-        
-        <category>blog</category>
         
       </item>
     

@@ -6,9 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Marcel Jurtz</title>
-  <meta name="description" content="A software developers blog.
-">
+  <title>C# - Getting Started with Attributes</title>
+  <meta name="description" content="In todays post I want to show you how to use attributes in C#. I have to apologize in advance, though, as I’m going to focus only to a limited extent on why ...">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2018">
@@ -48,7 +47,7 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://blog.mjurtz.com/page11/">
+  <link rel="canonical" href="http://blog.mjurtz.com/2018/06/csharp-attributes">
   <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
 </head>
 
@@ -389,153 +388,156 @@
 
 
     <div class="page-content">
-        <div class="home">
+        <div class="post">
 
-<div class="site-header-container has-cover" style="background-image: url(/assets/header_image.jpg);">
-  <div class="scrim has-cover">
-    <header class="site-header">
-      <h1 class="title">Marcel Jurtz</h1>
-      <p class="subtitle">A software developers blog</p>
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">C# - Getting Started with Attributes</h1>
+      <p class="info">by <strong>Marcel Jurtz</strong></p>
     </header>
   </div>
 </div>
 
 <div class="wrapper">
-<ul class="post-list">
-  
-  <li>
-    <h2>
-      <a class="post-link" href="/2017/10/fix-project-file-not-loaded-visual-studio/">Fix &#8220;project file could not be loaded&#8221; in Visual Studio</a>
-    </h2>
-    <section class="post-excerpt" itemprop="description">
-      <p>I recently stumbled upon the problem that my solution in Visual Studio (2017) could not load all of my projects. Since the solution of the problem took a while, I decided to document my approach here. No configuration of the project has been changed, which is why I have no...</p>
-    </section>
-    <section class="post-meta">
-      <div class="post-date">October 23, 2017</div>
-      <div class="post-categories">
-      in 
-        
-        <a href="/category/tips">Tips</a>
-        
-      
-      </div>
-    </section>
-  </li>
-  
-  <hr>
-  
-  
-  <li>
-    <h2>
-      <a class="post-link" href="/2017/10/self-organization-and-increasing-productivity/">Self-Organization and Increasing Productivity</a>
-    </h2>
-    <section class="post-excerpt" itemprop="description">
-      <p>In order to get professional elements, side projects, sport and social contacts under one roof, I have recently been busy designing my daily schedule to maximize my productivity. this article presents the results of my reflections. As a software developer it is almost self-evident to work on various own side...</p>
-    </section>
-    <section class="post-meta">
-      <div class="post-date">October 14, 2017</div>
-      <div class="post-categories">
-      in 
-        
-        <a href="/category/productivity">Productivity</a>
-        
-      
-      </div>
-    </section>
-  </li>
-  
-  <hr>
-  
-  
-  <li>
-    <h2>
-      <a class="post-link" href="/2017/10/windows-package-management/">Windows Package Management</a>
-    </h2>
-    <section class="post-excerpt" itemprop="description">
-      <p>As a Windows user with Linux knowledge there are several things under Linux that I would like to have on for Windows. Since a complete switch from Windows to Linux is not feasible for me due to different requirements, I looked for alternatives. An important component of various Linux distributions...</p>
-    </section>
-    <section class="post-meta">
-      <div class="post-date">October 10, 2017</div>
-      <div class="post-categories">
-      in 
-        
-        <a href="/category/tools">Tools</a>
-        
-      
-      </div>
-    </section>
-  </li>
-  
-  <hr>
-  
-  
-  <li>
-    <h2>
-      <a class="post-link" href="/2017/09/restful-services-servicestack-part-2/">RESTful Services with ServiceStack &#8211; Part 2</a>
-    </h2>
-    <section class="post-excerpt" itemprop="description">
-      <p>In my last post, I’ve set up a basic RESTful service using ServiceStack. This article deals with the implementation of a corresponding functionality on the client side. The application will query the path provided by the server and apply the pre-defined authentication method, requiring the user to log in with username and...</p>
-    </section>
-    <section class="post-meta">
-      <div class="post-date">September 23, 2017</div>
-      <div class="post-categories">
-      in 
-        
-        <a href="/category/csharp">Csharp</a>
-        
-      
-      </div>
-    </section>
-  </li>
-  
-  <hr>
-  
-  
-  <li>
-    <h2>
-      <a class="post-link" href="/2017/09/creating-restful-services-servicestack/">Creating RESTful Services with ServiceStack</a>
-    </h2>
-    <section class="post-excerpt" itemprop="description">
-      <p>This articles covers the basic usage of ServiceStack, a .NET-framework for creating RESTful services. The framework has a really great documentation, where you can check out all the details. Configuration To get started, you’ll want to create a new ASP.NET project, and load the ServiceStack package via NuGet. Then, you’ll...</p>
-    </section>
-    <section class="post-meta">
-      <div class="post-date">September 21, 2017</div>
-      <div class="post-categories">
-      in 
-        
-        <a href="/category/CSharp">Csharp</a>
-        
-      
-      </div>
-    </section>
-  </li>
-  
-  
-</ul>
 
-<nav class="pagination" role="navigation">
-	<p>
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">June 18, 2018</div>
+  <div class="post-categories">
+  in 
     
-			
-			<a class="newer-posts" href="/page10">
-				<span class="fa-stack fa-lg">
-					<i class="fa fa-square fa-stack-2x"></i>
-					<i class="fa fa-angle-double-left fa-stack-1x fa-inverse"></i>
-				</span>
-			</a>
-			
-		
-		<span class="page-number">Page 11 of 13</span>
-		
-		<a class="newer-posts" href="/page12">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-square fa-stack-2x"></i>
-        <i class="fa fa-angle-double-right fa-stack-1x fa-inverse"></i>
-      </span>
-    </a>
-		
-	</p>
-</nav>
+    <a href="/category/csharp">Csharp</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>In todays post I want to show you how to use attributes in C#. I have to apologize in advance, though, as I’m going to focus only to a limited extent on why they make sense and what you can use them for, that’s a topic for one of the following articles. Nevertheless, I would like to give you a basic understanding so that you can incorporate this concept into your own applications.</p>
+
+<p>So what are attributes? Well, attributes themselves are just classes. They can’t do much themselves, but they can still be very helpful, especially on a topic called Reflection, which I will be discussing in the next days.</p>
+
+<p>Attributes are usually utilised to assign metadata to classes, properties and the like. Attributes inherit from the class <em>Attributes</em>. According to the convention, their names are always appended with the extension <em>Attributes</em>. They can be placed on various elements, one speaks of <em>decorating</em> a class, for example. To restrict the use of a custom attribute, the attribute <em>AttributeUsage</em> can be used.</p>
+
+<p>That was a whole bunch of attributes, right? Let us test this with an example, so that it will be easier to understand.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="na">[AttributeUsage(AttributeTargets.Class | AttributeTargets.Property)]</span>  
+<span class="k">class</span> <span class="nc">DemoAttribute</span> <span class="p">:</span> <span class="n">Attribute</span> 
+<span class="p">{</span> 
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">Description</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> 
+<span class="p">}</span> </code></pre></figure>
+
+<p>I created my own attribute, DemoAttribute. I have designed the name according to the convention. I want only properties and classes to be decorated with the attribute, which is why I piped these two options together using the AttributeUsage attribute.</p>
+
+<p>The attribute has a property called Description. With this I want to describe my classes and properties later. Let us also look at an example.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="na">[Demo(Description = "Test for class A")]</span> 
+<span class="k">class</span> <span class="nc">ClassA</span> 
+<span class="p">{</span> 
+  <span class="p">[</span><span class="nf">Demo</span><span class="p">(</span><span class="n">Description</span> <span class="p">=</span> <span class="s">"Test for Property ClassA.Name"</span><span class="p">)]</span>
+  <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> 
+<span class="p">}</span>
+
+<span class="na">[Demo(Description = "This is class B")]</span> 
+<span class="k">class</span> <span class="nc">ClassB</span> 
+<span class="p">{</span>
+<span class="p">}</span> 
+
+<span class="k">class</span> <span class="nc">ClassC</span> 
+<span class="p">{</span> 
+<span class="p">}</span> </code></pre></figure>
+
+<p>I created three classes to test my attribute: ClassA, ClassB and ClassC. I know, very incredibly creative. I decorated classes A and B with my attribute, class C I deliberately ignored. In addition, class A has a property with the attribute.</p>
+
+<p>Now I want to show you the real purpose of attributes, but for this I have to be a little ahead of schedule. If you are interested in the relevant topics, just search for the keyword <em>Reflection</em> (oh, and LINQ, if you are new to this).</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">classes</span> <span class="p">=</span> <span class="k">from</span> <span class="n">t</span> <span class="k">in</span> <span class="n">Assembly</span><span class="p">.</span><span class="nf">GetExecutingAssembly</span><span class="p">().</span><span class="nf">GetTypes</span><span class="p">()</span> 
+  <span class="k">where</span> <span class="n">t</span><span class="p">.</span><span class="n">GetCustomAttributes</span><span class="p">&lt;</span><span class="n">DemoAttribute</span><span class="p">&gt;().</span><span class="nf">Count</span><span class="p">()</span> <span class="p">&gt;</span> <span class="m">0</span> 
+  <span class="k">select</span> <span class="n">t</span><span class="p">;</span> 
+
+<span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">c</span> <span class="k">in</span> <span class="n">classes</span><span class="p">)</span> 
+<span class="p">{</span> 
+  <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Fount class: </span><span class="p">{</span><span class="n">c</span><span class="p">.</span><span class="n">Name</span><span class="p">}</span><span class="s">"</span><span class="p">);</span> 
+<span class="p">}</span> </code></pre></figure>
+
+<p>In this snippet I first obtain all classes in the current assembly that are decorated with the attribute <em>DemoAttribute</em>. Then I iterate through the result set and simply output the names of the respective classes.</p>
+
+<p>You can add the following to search the found classes for properties with the same attribute.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">props</span> <span class="p">=</span> <span class="k">from</span> <span class="n">p</span> <span class="k">in</span> <span class="n">c</span><span class="p">.</span><span class="nf">GetProperties</span><span class="p">()</span> 
+  <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="nf">IsDefined</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">DemoAttribute</span><span class="p">),</span> <span class="k">false</span><span class="p">)</span> 
+  <span class="k">select</span> <span class="n">p</span><span class="p">;</span> 
+
+<span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">props</span><span class="p">)</span> 
+<span class="p">{</span> 
+  <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Fount property: </span><span class="p">{</span><span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span> </code></pre></figure>
+
+<p>Of course, the concept can be extended as far as you like. For example, you can design method calls so that all elements within an assembly or across assemblies are called in this way, thus modularizing your application without creating references between projects. But more about this later. With this short introduction I have only shown the basic idea of attributes. As already mentioned, the use of attributes is a separate topic. Stay tuned!</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/csharp">csharp</a>,&nbsp;<a href="/tag/dotnet">dotnet</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/programming">programming</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=C%23+-+Getting+Started+with+Attributes&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F06%2Fcsharp-attributes&via=MarcelJurtz"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/06/csharp-attributes') + '&title=C# - Getting Started with Attributes'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+</section>
+
+
+
 
 </div>
 </div>
@@ -953,8 +955,8 @@ $(document).ready(function() {
   ga('create', 'UA-118762636-1', 'auto');
   ga('set','anonymizeIp',true);
   ga('send', 'pageview', {
-    'page': '/page11/',
-    'title': 'Marcel Jurtz'
+    'page': '/2018/06/csharp-attributes',
+    'title': 'C# - Getting Started with Attributes'
   });
 </script>
 

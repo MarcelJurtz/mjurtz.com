@@ -1,6 +1,6 @@
 ---
 id: 450
-title: 'Motivation &#038; Self-Discipline'
+title: 'Motivation & Self-Discipline'
 date: 2017-10-23T06:50:39+00:00
 author: marcelAdmin
 layout: post

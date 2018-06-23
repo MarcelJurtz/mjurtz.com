@@ -6,8 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Searching Blogposts in Jekyll</title>
-  <meta name="description" content="In one of my previous posts, I went over the details why I moved my blog from WordPress to Jekyll. So far, I really appreciate my new system, but I miss one ...">
+  <title>svn</title>
+  <meta name="description" content="A software developers blog.
+">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2018">
@@ -47,8 +48,8 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://blog.mjurtz.com/2018/03/jekyll-search">
-  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/tag/svn/">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
 </head>
 
 
@@ -283,6 +284,14 @@
           
         
           
+          <li class="nav-link"><a href="/tag/tfs/">tfs</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/svn/">svn</a>
+          
+        
+          
           <li class="nav-link"><a href="/category/game-development/">game-development</a>
           
         
@@ -347,6 +356,10 @@
           
         
           
+          <li class="nav-link"><a href="/category/programming/">programming</a>
+          
+        
+          
         
           
         
@@ -388,113 +401,30 @@
 
 
     <div class="page-content">
-        <div class="post">
+        <div class="wrapper">
+<div class="page">
 
-<div class="post-header-container " >
-  <div class="scrim ">
-    <header class="post-header">
-      <h1 class="title">Searching Blogposts in Jekyll</h1>
-      <p class="info">by <strong>Marcel Jurtz</strong></p>
-    </header>
-  </div>
-</div>
+  <header class="post-header">
+    <h1 class="post-title">Posts in "Svn"</h1>
+  </header>
 
-<div class="wrapper">
-
- <span class="page-divider">
+  <span class="page-divider">
   <span class="one"></span>
   <span class="two"></span>
 </span>
- 
-
-<section class="post-meta">
-  <div class="post-date">March 30, 2018</div>
-  <div class="post-categories">
-  in 
-    
-    <a href="/category/blog">Blog</a>
-    
-  
-  </div>
-</section>
-
-<article class="post-content">
-  <p>In one of my <a href="/2018/03/moving-to-jekyll">previous posts</a>, I went over the details why I moved my blog from WordPress to Jekyll. So far, I really appreciate my new system, but I miss one particular feature: searching through my posts.</p>
-
-<p>Since Jekyll is a static site generator and does not rely on a database for the posts, you can’t simply add a search functionality like WordPress does. So, I have to work with some frontend / clientside stuff.</p>
-
-<p>After doing some research, I stumbled across <a href="https://lunrjs.com/">lunr.js</a>, a JavaScript-based text search library to use on the client side.</p>
-
-<p>I decided to give lunr a try and went on to add a search box to my main page. You can now see this in the very bottom of the screen. The is constructed as follows:</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/search.html"</span> <span class="na">method=</span><span class="s">"get"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"search_box"</span><span class="nt">&gt;</span>Search Posts<span class="nt">&lt;/label&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"search_box"</span> <span class="na">name=</span><span class="s">"query"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"search"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/form&gt;</span></code></pre></figure>
-
-<p>When clicking the search-button, the user will be redirected to the <em>search.html</em> file. This site lists all matches and a search box containing the entered values. The search page consists of my regular header and footer. Also, of course, it contains a script which fetches all matching posts. It then lists all matches inside an unordered list. Of course, all scripts and pages are also located in this Blogs <a href="https://github.com/MarcelJurtz/blog.mjurtz.com">GitHub Repository</a>, feel free to check it out!</p>
-
-</article>
 
 
-
-<section class="tags">
-  <strong>Tags:</strong> <a href="/tag/blog">blog</a>,&nbsp;<a href="/tag/web">web</a>,&nbsp;<a href="/tag/ruby">ruby</a>,&nbsp;<a href="/tag/javascript">javascript</a>,&nbsp;<a href="/tag/jekyll">jekyll</a>
-</section>
-
-
-
-<section class="rss">
-  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
-</section>
-
-<section class="share">
-  <span>Share: </span>
-  
-    
-    
-      <a href="//twitter.com/share?text=Searching+Blogposts+in+Jekyll&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F03%2Fjekyll-search&via=MarcelJurtz"
-        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
-        <i class="fa fa-twitter-square fa-lg"></i>
-      </a>
-    
-    
-    
-    
-    
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/03/jekyll-search') + '&title=Searching Blogposts in Jekyll'; return false">
-        <i class="fa fa-reddit-square fa-lg"></i>
-      </a>
-    
-    
-  
-</section>
-
-
-
+  <article class="post-content">
+    <ul class="posts-list">
+      
+      <li><strong><a class="post-link" href="/2018/06/introduction-to-vcs">Introduction to VCS</a></strong><span class="post-date"> - June 23, 2018</span></li>
+      
+    </ul>
+  </article>
 
 </div>
 </div>
+<br>
 
     </div>
 
@@ -723,6 +653,14 @@
         
         
         
+          <li class="nav-link"><a href="/tag/tfs/">tfs</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/svn/">svn</a>
+        
+        
+        
           <li class="nav-link"><a href="/category/game-development/">game-development</a>
         
         
@@ -784,6 +722,10 @@
         
         
           <li class="nav-link"><a href="/category/web/">web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/programming/">programming</a>
         
         
         
@@ -909,8 +851,8 @@ $(document).ready(function() {
   ga('create', 'UA-118762636-1', 'auto');
   ga('set','anonymizeIp',true);
   ga('send', 'pageview', {
-    'page': '/2018/03/jekyll-search',
-    'title': 'Searching Blogposts in Jekyll'
+    'page': '/tag/svn/',
+    'title': 'svn'
   });
 </script>
 

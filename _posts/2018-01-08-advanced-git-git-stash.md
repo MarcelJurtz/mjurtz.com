@@ -1,6 +1,6 @@
 ---
 id: 708
-title: 'Advanced Git &#8211; Git Stash'
+title: 'Advanced Git - Git Stash'
 date: 2018-01-08T06:00:26+00:00
 author: Marcel Jurtz
 layout: post

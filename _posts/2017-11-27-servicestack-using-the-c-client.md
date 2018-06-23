@@ -1,6 +1,6 @@
 ---
 id: 579
-title: 'ServiceStack &#8211; Using the C#-Client'
+title: 'ServiceStack - Using the C#-Client'
 date: 2017-11-27T18:35:13+00:00
 author: Marcel Jurtz
 layout: post

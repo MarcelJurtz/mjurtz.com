@@ -1,6 +1,6 @@
 ---
 id: 569
-title: 'ServiceStack &#8211; Building a Simple Service'
+title: 'ServiceStack - Building a Simple Service'
 date: 2017-11-25T19:00:46+00:00
 author: Marcel Jurtz
 layout: post

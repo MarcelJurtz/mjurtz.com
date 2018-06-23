@@ -4,11 +4,66 @@
     <title>Marcel Jurtz</title>
     <description>A software developers blog.
 </description>
-    <link>http://blog.mjurtz.com/</link>
-    <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 18 Jun 2018 21:17:06 +0200</pubDate>
-    <lastBuildDate>Mon, 18 Jun 2018 21:17:06 +0200</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 23 Jun 2018 11:30:32 +0200</pubDate>
+    <lastBuildDate>Sat, 23 Jun 2018 11:30:32 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Introduction to VCS</title>
+        <description>&lt;p&gt;When you start learning to program, you rarely think about how you will be able to work on a project at the same time with other people. By the time your side projects take on larger dimensions or you work in a team, you will be confronted with the topic of version control.&lt;/p&gt;
+
+&lt;p&gt;Version control is basically the management of source code, so that several developers can work on the same files at the same time. The sense of a system for monitoring changes can be easily understood by an example:&lt;/p&gt;
+
+&lt;p&gt;Two developers, Bob and John, are working together on a project. They do not use version control and their workflow is as follows:&lt;/p&gt;
+
+&lt;p&gt;The source code is stored on a network drive to which both have access. Every morning they copy the contents of the drive to their local machines. They discuss who is working on which files on that day. Bob decides to work on the connection to the database, while John decides to revise parts of the business logic. At the end of the day, both copy their changed files to the network drive. Since both have worked on different files, this is possible without any problems.&lt;/p&gt;
+
+&lt;p&gt;John now remembers that he also made a small change to the user interface. Knowing that Bob was only working on the database, he simply copies the file to the server. However, Bob also made some changes to this file and he also assumes that John was only updating code in the business logic. He also copies his changes and thus overwrites John’s work.&lt;/p&gt;
+
+&lt;p&gt;When working in this way, precise communication is essential. As the example shows, this procedure is very error-prone, even though only two developers were involved. The coordination effort increases to an immeasurable extent as the number of developers increases.&lt;/p&gt;
+
+&lt;p&gt;I don’t intend to present a multitude of version control systems, but I would like to give you at least a short overview of what has changed as time passed by. I therefore divide the different systems into three generations: Generation 0 works with file locks, Generation 1 consists of CVCS, Centralized Version Control Systems and Generation 2 are the so-called Distributed Version Control Systems (DVCS).&lt;/p&gt;
+
+&lt;p&gt;The first software for version control of files was Source Code Control System (SCSS). The software classifies itself into generation 0 and locks files when they are processed. However, these systems have a significant disadvantage: assuming you want to work on a file that is currently being edited by someone else, you have to wait until they have finished making their changes. You could urge the respective developer to work faster, but he might be sick or on vacation. So it can take quite a while before you can access the file to make your changes. You could now create a local copy of the file and perform your changes right to the copy. As soon as the file itself can be accessed again, you perform a manual merge, i.e. you combine the two files and join the respective changes. However, this is again prone to errors and should be avoided.&lt;/p&gt;
+
+&lt;p&gt;The second generation describes the so-called centralized version control systems. Here you will find a server that manages the source code. To work on a file, a developer must check out this file, i.e. retrieve the latest version of it from the server. I would like to illustrate this again with an example of our already known developers:&lt;/p&gt;
+
+&lt;p&gt;At the moment John wants to make changes to the login.html file. He loads the latest version from the server and starts working. After he has made his modifications, he checks them in, so the file on the server is being updated. In the meantime, Bob has also fetched this file and made some changes. If he wants to check in his modifications again, the server will inform him that the file has been changed in meanwhile. Bob must now perform a merge, which is usually supported or even automated by the software. Once all conflicts (places affected by both changes) have been resolved, the file can be checked in.&lt;/p&gt;
+
+&lt;p&gt;There are many different systems in this category, the best known probably being Subversion (SVN) and Microsoft’s Team Foundation Server (TFS). While these systems are still used very often, a new category was formed around the middle of the 00s: The Distributed Version Control Systems.  First and foremost the best known representative, developed by Linux creator Linus Torvalds: Git. Git’s popularity is certainly also related to the launch of GitHub 2008, but DVCS generally offer advantages over its centralized counterparts.&lt;/p&gt;
+
+&lt;p&gt;The idea of distributed version control systems is that no server is needed to manage the source code. Instead, each copy of the repository contains a full history of all changes made to each file. So, without loading anything from a server, you can reconstruct any point in time of your software. You can also work offline and share your changes with your team members as soon as you can reconnect to them. You also have the advantage that any computer that has a copy of the repository can be used as a backup source. I assume, however, that if you use a CVCS, you also have a corresponding backup strategy, which is why I do not consider this advantage really relevant.&lt;/p&gt;
+
+&lt;p&gt;I hope I could give you a rough overview of the different categories of version control systems. I already wrote an article about Git, if you like, you can read it directly on &lt;a href=&quot;https://blog.mjurtz.com/2017/09/getting-started-git/&quot;&gt;my blog&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Basically, however, I would like to point out that the use of a version control system also has advantages, even if you work alone. Availability of file histories, branching or publishing to, for example, GitHub are just a few of them. But it’s definitely worth trying if you don’t use VCS yet.&lt;/p&gt;
+
+&lt;h2 id=&quot;call-to-action&quot;&gt;Call to action&lt;/h2&gt;
+
+&lt;p&gt;what system do you use? Do you use the same stuff in your personal life as at work? What for? And what do you recommend to new developers who may have just started using version control? And if you don’t use version control: Why not?&lt;/p&gt;
+</description>
+        <pubDate>Sat, 23 Jun 2018 08:00:00 +0200</pubDate>
+        <link>http://localhost:4000/2018/06/introduction-to-vcs</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/06/introduction-to-vcs</guid>
+        
+        <category>development</category>
+        
+        <category>software</category>
+        
+        <category>git</category>
+        
+        <category>tfs</category>
+        
+        <category>svn</category>
+        
+        <category>programming</category>
+        
+        
+        <category>programming</category>
+        
+      </item>
     
       <item>
         <title>C# - Getting Started with Attributes</title>
@@ -75,8 +130,8 @@
 &lt;p&gt;Of course, the concept can be extended as far as you like. For example, you can design method calls so that all elements within an assembly or across assemblies are called in this way, thus modularizing your application without creating references between projects. But more about this later. With this short introduction I have only shown the basic idea of attributes. As already mentioned, the use of attributes is a separate topic. Stay tuned!&lt;/p&gt;
 </description>
         <pubDate>Mon, 18 Jun 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/06/csharp-attributes</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/csharp-attributes</guid>
+        <link>http://localhost:4000/2018/06/csharp-attributes</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/06/csharp-attributes</guid>
         
         <category>csharp</category>
         
@@ -173,8 +228,8 @@
 &lt;p&gt;I am aware that this short summary is by no means a complete guide to working with LESS. But I hope that I could arouse a little interest and even make your work with CSS a little easier. As in most such topics, the same applies here: Just give it a try. By applying it you will learn the fastest. A full overview of the features can be found on the &lt;a href=&quot;http://lesscss.org/&quot;&gt;official website&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Sun, 17 Jun 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/06/less-css</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/less-css</guid>
+        <link>http://localhost:4000/2018/06/less-css</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/06/less-css</guid>
         
         <category>css</category>
         
@@ -220,8 +275,8 @@
 &lt;p&gt;As soon as all this has happened, I would like to include several options for notifications. I am very curious about what will follow and look forward to any feedback or suggestions for new features!&lt;/p&gt;
 </description>
         <pubDate>Wed, 13 Jun 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/06/sideproject-clubgrid</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/sideproject-clubgrid</guid>
+        <link>http://localhost:4000/2018/06/sideproject-clubgrid</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/06/sideproject-clubgrid</guid>
         
         <category>csharp</category>
         
@@ -281,8 +336,8 @@ I kept this promise for 14 years until I successfully finished my first 10K last
 &lt;p&gt;But I don’t want to limit this example to my experience, I would say that it can be applied to many different areas of life. Think about why you loathe something. And then try to see the whole thing from a different angle and fight against the laziness. And I’m sure the odds are good that you’ll actually enjoy it. After all, we are growing on challenges, not on dull activities.&lt;/p&gt;
 </description>
         <pubDate>Thu, 31 May 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/05/step-outside-your-comfort-zone</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/05/step-outside-your-comfort-zone</guid>
+        <link>http://localhost:4000/2018/05/step-outside-your-comfort-zone</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/step-outside-your-comfort-zone</guid>
         
         <category>motivation</category>
         
@@ -356,8 +411,8 @@ Afterwards I will explain how the pattern can look like in C#.&lt;/p&gt;
 &lt;p&gt;So while DbSet and DbContext look like implementations of the repository and unit of work pattern, they don’t provide the architectural benefits, which is why you still have to provide your own implementation for this.&lt;/p&gt;
 </description>
         <pubDate>Sun, 13 May 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/05/c-mastering-the-basics-repository-pattern</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/05/c-mastering-the-basics-repository-pattern</guid>
+        <link>http://localhost:4000/2018/05/c-mastering-the-basics-repository-pattern</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/c-mastering-the-basics-repository-pattern</guid>
         
         <category>dotnet</category>
         
@@ -415,8 +470,8 @@ Most of the time you will find a Pareto distribution of the relevance of what yo
 &lt;p&gt;That’s all I’m using. How you divide up your time is of course left to you. However, the example of 30 minutes per day should make it clear that even short times can bring great progress, after all, this brings you to 30 hours per month.&lt;/p&gt;
 </description>
         <pubDate>Thu, 03 May 2018 20:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/05/learning-to-learn</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/05/learning-to-learn</guid>
+        <link>http://localhost:4000/2018/05/learning-to-learn</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/learning-to-learn</guid>
         
         <category>efficiency</category>
         
@@ -658,8 +713,8 @@ Most of the time you will find a Pareto distribution of the relevance of what yo
 &lt;p&gt;Delegates are references to methods. The compiler creates a class when a delete is generated, instances of the delegate are then created as usual with the new keyword. Like methods, delegates can have a return type. Utiliting multicasting, delegates can be chained together, the call order is based on the delegates invocation list. Events are used to encapsulate delegates. Events usually use two parameters, the first being a reference to the trigger and the second an instance of EventArgs or an inheriting class thereof.&lt;/p&gt;
 </description>
         <pubDate>Thu, 26 Apr 2018 12:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/04/c-mastering-the-basics-events-delegates</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/04/c-mastering-the-basics-events-delegates</guid>
+        <link>http://localhost:4000/2018/04/c-mastering-the-basics-events-delegates</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/04/c-mastering-the-basics-events-delegates</guid>
         
         <category>dotnet</category>
         
@@ -700,8 +755,8 @@ Just search “user agent switcher” in your addon repository and you’re good
 
 </description>
         <pubDate>Mon, 09 Apr 2018 20:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/04/bypass-windows-media-creation-tool/</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/04/bypass-windows-media-creation-tool/</guid>
+        <link>http://localhost:4000/2018/04/bypass-windows-media-creation-tool/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/04/bypass-windows-media-creation-tool/</guid>
         
         <category>tools</category>
         
@@ -731,8 +786,8 @@ Just search “user agent switcher” in your addon repository and you’re good
 &lt;p&gt;When clicking the search-button, the user will be redirected to the &lt;em&gt;search.html&lt;/em&gt; file. This site lists all matches and a search box containing the entered values. The search page consists of my regular header and footer. Also, of course, it contains a script which fetches all matching posts. It then lists all matches inside an unordered list. Of course, all scripts and pages are also located in this Blogs &lt;a href=&quot;https://github.com/MarcelJurtz/blog.mjurtz.com&quot;&gt;GitHub Repository&lt;/a&gt;, feel free to check it out!&lt;/p&gt;
 </description>
         <pubDate>Fri, 30 Mar 2018 14:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/03/jekyll-search</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/03/jekyll-search</guid>
+        <link>http://localhost:4000/2018/03/jekyll-search</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/03/jekyll-search</guid>
         
         <category>blog</category>
         
@@ -746,48 +801,6 @@ Just search “user agent switcher” in your addon repository and you’re good
         
         
         <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>Sideproject - Sist!</title>
-        <description>&lt;p&gt;It’s time to announce a new sideproject-launch!&lt;/p&gt;
-
-&lt;p&gt;Some days ago, I’ve been looking for an app which allowed my to keep track of shopping lists in a simple and fast way. While there are lots of such apps available for Android, all I tested seemed to be overkill for what I really wanted. So I decided to create my own app for this purpose.&lt;/p&gt;
-
-&lt;p&gt;Besides creating a simple app, my goal was to learn something new while developing the app. I decided to use Androids built in SQLite database to store lists. I’ve been using the database for previous projects, but I did not really care about the implementation. That being said, I wrote the queries all by hand which ended up being pretty messy.&lt;/p&gt;
-
-&lt;p&gt;In my defense I would like to say that I was still at the beginning of my programming career and had no idea of the existence of things like object relational mappers.&lt;/p&gt;
-
-&lt;p&gt;So I took a look around and decided to try Google’s Room for Android. If you’re not familiar with this project, feel free to checkout my article on the topic: &lt;a href=&quot;/2018/02/introduction-to-room-for-android/&quot;&gt;Introduction to Room for Android&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The result of one weekend now meets my expectations: A simple Android app that fulfills the functionality I want. Multi-list management with individual entries and a focus on simplicity and speed. A small detail is for example the automatic expansion of the keyboard when adding new entries.&lt;/p&gt;
-
-&lt;p&gt;In addition to testing Room, I was able to try other Android features I hadn’t used before. These include controls such as CardView or RecyclerView.&lt;/p&gt;
-
-&lt;p&gt;I would be very happy if you would test the app and submit feedback to me. As always, the entire source code is also available on GitHub and I’m always available for criticism and suggestions for improvement.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.jurtz.marcel.shoppinglist&quot;&gt;Download from Google Play&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/MarcelJurtz/ShoppingList&quot;&gt;Sourcecode on GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Wed, 28 Mar 2018 20:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/03/sideproject-sist</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/03/sideproject-sist</guid>
-        
-        <category>android</category>
-        
-        <category>app</category>
-        
-        <category>development</category>
-        
-        <category>programming</category>
-        
-        <category>sideproject</category>
-        
-        
-        <category>android</category>
         
       </item>
     

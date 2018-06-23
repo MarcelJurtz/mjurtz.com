@@ -6,8 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>C# - Mastering the Basics - The Repository Pattern</title>
-  <meta name="description" content="There’s a very large number of articles about the repository pattern out there.Nevertheless, most of them overlap in the description and cause confusion amon...">
+  <title>programming</title>
+  <meta name="description" content="A software developers blog.
+">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2018">
@@ -47,8 +48,8 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://blog.mjurtz.com/2018/05/c-mastering-the-basics-repository-pattern">
-  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/category/programming/">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
 </head>
 
 
@@ -283,6 +284,14 @@
           
         
           
+          <li class="nav-link"><a href="/tag/tfs/">tfs</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/svn/">svn</a>
+          
+        
+          
           <li class="nav-link"><a href="/category/game-development/">game-development</a>
           
         
@@ -347,6 +356,10 @@
           
         
           
+          <li class="nav-link"><a href="/category/programming/">programming</a>
+          
+        
+          
         
           
         
@@ -388,153 +401,30 @@
 
 
     <div class="page-content">
-        <div class="post">
+        <div class="wrapper">
+<div class="page">
 
-<div class="post-header-container " >
-  <div class="scrim ">
-    <header class="post-header">
-      <h1 class="title">C# - Mastering the Basics - The Repository Pattern</h1>
-      <p class="info">by <strong>Marcel Jurtz</strong></p>
-    </header>
-  </div>
-</div>
+  <header class="post-header">
+    <h1 class="post-title">Posts in "Programming"</h1>
+  </header>
 
-<div class="wrapper">
-
- <span class="page-divider">
+  <span class="page-divider">
   <span class="one"></span>
   <span class="two"></span>
 </span>
- 
-
-<section class="post-meta">
-  <div class="post-date">May 13, 2018</div>
-  <div class="post-categories">
-  in 
-    
-    <a href="/category/csharp">Csharp</a>
-    
-  
-  </div>
-</section>
-
-<article class="post-content">
-  <p>There’s a very large number of articles about the repository pattern out there.
-Nevertheless, most of them overlap in the description and cause confusion among developers.
-For this reason I decided to write my own article to document my opinion.</p>
-
-<p>In this article I will first clarify the what and why of the repository pattern.
-Afterwards I will explain how the pattern can look like in C#.</p>
-
-<p>In his book, Patterns of Enterprise Application Architecture, Martin Fowler describes the Repository Pattern as a “Mediate between the domain and data mapping layers, acting like an in-memory collection of domain objects”.</p>
-
-<p>The following benefits of utilizing this pattern are usually listed when reading articles on the topic:</p>
-
-<ul>
-  <li>Minimize query logic</li>
-  <li>Decoupling from persistence frameworks</li>
-  <li>Easier testing</li>
-</ul>
-
-<p>The idea of reducing query logic refers to the reusability of code. Imagine you work directly on a collection. If you need a certain subset of the stored objects, you will query them via LINQ. But chances are, you won’t need this query logic in just one place. However, since the entire collection is available everywhere, you will implement this logic in each place, resulting in duplicated code. The alternative is to move this logic to the repository. All code elements involved then retrieve the subset from this.</p>
-
-<p>The decoupling from persistence frameworks follows the same principle. The connection to data storage only takes place in the repository. The business logic only accesses the repository, the implementation details are irrelevant at this point. This means that the repository can be exchanged at any time, for example with another ORM or even to a new storage strategy.</p>
-
-<p>The idea behind the simplification of testability is to make repositories easily exchangeable by using an interface and thus to be able to easily implement a mock repository. But this is not a peculiarity of the repository pattern, so I don’t really see this point as an advantage of the pattern.</p>
-
-<h2 id="in-a-nutshell">In a Nutshell</h2>
-
-<p>As mentioned above, the basic idea of the repository pattern is to design an intermediate layer so that the business logic can operate as if on an in-memory collection. In a very simple way, this interface can look like this:</p>
-
-<ul>
-  <li>Add(obj)</li>
-  <li>Remove(obj)</li>
-  <li>Get(id)</li>
-  <li>GetAll()</li>
-  <li>Find(predicate)</li>
-</ul>
-
-<p>As you can see, there is no item for saving changes. And that’s exactly where the in-memory collection comes into play. Since the collections only contain object references, the entries can be edited directly.</p>
-
-<p>Nevertheless, database entries must somehow be persisted. This is where the Unit-of-Work Pattern comes in. Again, from Martin Fowler: A unit of work maintains a list of objects affected by a business transaction and coordinates the writing out of changes.</p>
-
-<p>So this means that we will combine one or more repositories with a single unit of work which will persist changes to the database. An interface for a basic unit of work could have the following methods and properties:</p>
-
-<ul>
-  <li>IMyRepository MyRepository { get; }</li>
-  <li>SaveChanges();</li>
-</ul>
-
-<p>Of course, in a real application, there would be some more repositories.</p>
-
-<p>If you look at the whole thing now, you might get the idea that Entity Framework already implements these mechanisms. More precisely, a DbSet looks like a repository and a DbContext like a unit of work. Let’s take a closer look:</p>
-
-<p>At a surface level, a DbSet looks like a repository. It provides access to a collection and allows you to edit, add and remove entries. Using the DbContext you can persist changes afterwards. However, this approach is problematic in view of the previously defined advantages of the repository pattern: One point was the reduction of duplicated source code by outsourcing functionalities with regard to special subsets. With this approach here the pure collection is published and worked with. The result is exactly what we want to avoid, namely the direct selection and projection of items from the collection.</p>
-
-<p>The use of DbContext is also not suitable here. Another positive argument of the repository pattern was the decoupling of persistence frameworks. This contradicts the approach, since the business logic would be tied to Entity Framework.</p>
-
-<p>So while DbSet and DbContext look like implementations of the repository and unit of work pattern, they don’t provide the architectural benefits, which is why you still have to provide your own implementation for this.</p>
-
-</article>
 
 
-
-<section class="tags">
-  <strong>Tags:</strong> <a href="/tag/dotnet">dotnet</a>,&nbsp;<a href="/tag/csharp">csharp</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/programming">programming</a>
-</section>
-
-
-
-<section class="rss">
-  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
-</section>
-
-<section class="share">
-  <span>Share: </span>
-  
-    
-    
-      <a href="//twitter.com/share?text=C%23+-+Mastering+the+Basics+-+The+Repository+Pattern&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F05%2Fc-mastering-the-basics-repository-pattern&via=MarcelJurtz"
-        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
-        <i class="fa fa-twitter-square fa-lg"></i>
-      </a>
-    
-    
-    
-    
-    
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/05/c-mastering-the-basics-repository-pattern') + '&title=C# - Mastering the Basics - The Repository Pattern'; return false">
-        <i class="fa fa-reddit-square fa-lg"></i>
-      </a>
-    
-    
-  
-</section>
-
-
-
+  <article class="post-content">
+    <ul class="posts-list">
+      
+      <li><strong><a class="post-link" href="/2018/06/introduction-to-vcs">Introduction to VCS</a></strong><span class="post-date"> - June 23, 2018</span></li>
+      
+    </ul>
+  </article>
 
 </div>
 </div>
+<br>
 
     </div>
 
@@ -763,6 +653,14 @@ Afterwards I will explain how the pattern can look like in C#.</p>
         
         
         
+          <li class="nav-link"><a href="/tag/tfs/">tfs</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/svn/">svn</a>
+        
+        
+        
           <li class="nav-link"><a href="/category/game-development/">game-development</a>
         
         
@@ -824,6 +722,10 @@ Afterwards I will explain how the pattern can look like in C#.</p>
         
         
           <li class="nav-link"><a href="/category/web/">web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/programming/">programming</a>
         
         
         
@@ -949,8 +851,8 @@ $(document).ready(function() {
   ga('create', 'UA-118762636-1', 'auto');
   ga('set','anonymizeIp',true);
   ga('send', 'pageview', {
-    'page': '/2018/05/c-mastering-the-basics-repository-pattern',
-    'title': 'C# - Mastering the Basics - The Repository Pattern'
+    'page': '/category/programming/',
+    'title': 'programming'
   });
 </script>
 

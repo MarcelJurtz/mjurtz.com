@@ -4,10 +4,10 @@
     <title>Marcel Jurtz</title>
     <description>A software developers blog.
 </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 23 Jun 2018 11:30:32 +0200</pubDate>
-    <lastBuildDate>Sat, 23 Jun 2018 11:30:32 +0200</lastBuildDate>
+    <link>http://blog.mjurtz.com/</link>
+    <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 23 Jun 2018 11:32:58 +0200</pubDate>
+    <lastBuildDate>Sat, 23 Jun 2018 11:32:58 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       <item>
@@ -39,14 +39,10 @@
 &lt;p&gt;I hope I could give you a rough overview of the different categories of version control systems. I already wrote an article about Git, if you like, you can read it directly on &lt;a href=&quot;https://blog.mjurtz.com/2017/09/getting-started-git/&quot;&gt;my blog&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Basically, however, I would like to point out that the use of a version control system also has advantages, even if you work alone. Availability of file histories, branching or publishing to, for example, GitHub are just a few of them. But it’s definitely worth trying if you don’t use VCS yet.&lt;/p&gt;
-
-&lt;h2 id=&quot;call-to-action&quot;&gt;Call to action&lt;/h2&gt;
-
-&lt;p&gt;what system do you use? Do you use the same stuff in your personal life as at work? What for? And what do you recommend to new developers who may have just started using version control? And if you don’t use version control: Why not?&lt;/p&gt;
 </description>
         <pubDate>Sat, 23 Jun 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/06/introduction-to-vcs</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/06/introduction-to-vcs</guid>
+        <link>http://blog.mjurtz.com/2018/06/introduction-to-vcs</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/introduction-to-vcs</guid>
         
         <category>development</category>
         
@@ -130,8 +126,8 @@
 &lt;p&gt;Of course, the concept can be extended as far as you like. For example, you can design method calls so that all elements within an assembly or across assemblies are called in this way, thus modularizing your application without creating references between projects. But more about this later. With this short introduction I have only shown the basic idea of attributes. As already mentioned, the use of attributes is a separate topic. Stay tuned!&lt;/p&gt;
 </description>
         <pubDate>Mon, 18 Jun 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/06/csharp-attributes</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/06/csharp-attributes</guid>
+        <link>http://blog.mjurtz.com/2018/06/csharp-attributes</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/csharp-attributes</guid>
         
         <category>csharp</category>
         
@@ -228,8 +224,8 @@
 &lt;p&gt;I am aware that this short summary is by no means a complete guide to working with LESS. But I hope that I could arouse a little interest and even make your work with CSS a little easier. As in most such topics, the same applies here: Just give it a try. By applying it you will learn the fastest. A full overview of the features can be found on the &lt;a href=&quot;http://lesscss.org/&quot;&gt;official website&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Sun, 17 Jun 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/06/less-css</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/06/less-css</guid>
+        <link>http://blog.mjurtz.com/2018/06/less-css</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/less-css</guid>
         
         <category>css</category>
         
@@ -275,8 +271,8 @@
 &lt;p&gt;As soon as all this has happened, I would like to include several options for notifications. I am very curious about what will follow and look forward to any feedback or suggestions for new features!&lt;/p&gt;
 </description>
         <pubDate>Wed, 13 Jun 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/06/sideproject-clubgrid</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/06/sideproject-clubgrid</guid>
+        <link>http://blog.mjurtz.com/2018/06/sideproject-clubgrid</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/sideproject-clubgrid</guid>
         
         <category>csharp</category>
         
@@ -336,8 +332,8 @@ I kept this promise for 14 years until I successfully finished my first 10K last
 &lt;p&gt;But I don’t want to limit this example to my experience, I would say that it can be applied to many different areas of life. Think about why you loathe something. And then try to see the whole thing from a different angle and fight against the laziness. And I’m sure the odds are good that you’ll actually enjoy it. After all, we are growing on challenges, not on dull activities.&lt;/p&gt;
 </description>
         <pubDate>Thu, 31 May 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/05/step-outside-your-comfort-zone</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/05/step-outside-your-comfort-zone</guid>
+        <link>http://blog.mjurtz.com/2018/05/step-outside-your-comfort-zone</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/05/step-outside-your-comfort-zone</guid>
         
         <category>motivation</category>
         
@@ -411,8 +407,8 @@ Afterwards I will explain how the pattern can look like in C#.&lt;/p&gt;
 &lt;p&gt;So while DbSet and DbContext look like implementations of the repository and unit of work pattern, they don’t provide the architectural benefits, which is why you still have to provide your own implementation for this.&lt;/p&gt;
 </description>
         <pubDate>Sun, 13 May 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/05/c-mastering-the-basics-repository-pattern</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/05/c-mastering-the-basics-repository-pattern</guid>
+        <link>http://blog.mjurtz.com/2018/05/c-mastering-the-basics-repository-pattern</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/05/c-mastering-the-basics-repository-pattern</guid>
         
         <category>dotnet</category>
         
@@ -470,8 +466,8 @@ Most of the time you will find a Pareto distribution of the relevance of what yo
 &lt;p&gt;That’s all I’m using. How you divide up your time is of course left to you. However, the example of 30 minutes per day should make it clear that even short times can bring great progress, after all, this brings you to 30 hours per month.&lt;/p&gt;
 </description>
         <pubDate>Thu, 03 May 2018 20:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/05/learning-to-learn</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/05/learning-to-learn</guid>
+        <link>http://blog.mjurtz.com/2018/05/learning-to-learn</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/05/learning-to-learn</guid>
         
         <category>efficiency</category>
         
@@ -713,8 +709,8 @@ Most of the time you will find a Pareto distribution of the relevance of what yo
 &lt;p&gt;Delegates are references to methods. The compiler creates a class when a delete is generated, instances of the delegate are then created as usual with the new keyword. Like methods, delegates can have a return type. Utiliting multicasting, delegates can be chained together, the call order is based on the delegates invocation list. Events are used to encapsulate delegates. Events usually use two parameters, the first being a reference to the trigger and the second an instance of EventArgs or an inheriting class thereof.&lt;/p&gt;
 </description>
         <pubDate>Thu, 26 Apr 2018 12:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/04/c-mastering-the-basics-events-delegates</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/04/c-mastering-the-basics-events-delegates</guid>
+        <link>http://blog.mjurtz.com/2018/04/c-mastering-the-basics-events-delegates</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/04/c-mastering-the-basics-events-delegates</guid>
         
         <category>dotnet</category>
         
@@ -755,8 +751,8 @@ Just search “user agent switcher” in your addon repository and you’re good
 
 </description>
         <pubDate>Mon, 09 Apr 2018 20:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/04/bypass-windows-media-creation-tool/</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/04/bypass-windows-media-creation-tool/</guid>
+        <link>http://blog.mjurtz.com/2018/04/bypass-windows-media-creation-tool/</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/04/bypass-windows-media-creation-tool/</guid>
         
         <category>tools</category>
         
@@ -786,8 +782,8 @@ Just search “user agent switcher” in your addon repository and you’re good
 &lt;p&gt;When clicking the search-button, the user will be redirected to the &lt;em&gt;search.html&lt;/em&gt; file. This site lists all matches and a search box containing the entered values. The search page consists of my regular header and footer. Also, of course, it contains a script which fetches all matching posts. It then lists all matches inside an unordered list. Of course, all scripts and pages are also located in this Blogs &lt;a href=&quot;https://github.com/MarcelJurtz/blog.mjurtz.com&quot;&gt;GitHub Repository&lt;/a&gt;, feel free to check it out!&lt;/p&gt;
 </description>
         <pubDate>Fri, 30 Mar 2018 14:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/03/jekyll-search</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/03/jekyll-search</guid>
+        <link>http://blog.mjurtz.com/2018/03/jekyll-search</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/03/jekyll-search</guid>
         
         <category>blog</category>
         

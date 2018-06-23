@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Sideproject - ClubGrid</title>
-  <meta name="description" content="It is finally time to announce my latest side project. ClubGrid was originally designed to make it easier for my coach to manage our baseball games. However,...">
+  <title>Introduction to VCS</title>
+  <meta name="description" content="When you start learning to program, you rarely think about how you will be able to work on a project at the same time with other people. By the time your sid...">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2018">
@@ -47,8 +47,8 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/2018/06/sideproject-clubgrid">
-  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
+  <link rel="canonical" href="http://blog.mjurtz.com/2018/06/introduction-to-vcs">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
 </head>
 
 
@@ -405,7 +405,7 @@
 <div class="post-header-container " >
   <div class="scrim ">
     <header class="post-header">
-      <h1 class="title">Sideproject - ClubGrid</h1>
+      <h1 class="title">Introduction to VCS</h1>
       <p class="info">by <strong>Marcel Jurtz</strong></p>
     </header>
   </div>
@@ -420,49 +420,51 @@
  
 
 <section class="post-meta">
-  <div class="post-date">June 13, 2018</div>
+  <div class="post-date">June 23, 2018</div>
   <div class="post-categories">
   in 
     
-    <a href="/category/csharp">Csharp</a>
+    <a href="/category/programming">Programming</a>
     
   
   </div>
 </section>
 
 <article class="post-content">
-  <p>It is finally time to announce my latest side project. ClubGrid was originally designed to make it easier for my coach to manage our baseball games. However, the result can be used for clubs of any kind and I hope that I can also help others with my software.</p>
+  <p>When you start learning to program, you rarely think about how you will be able to work on a project at the same time with other people. By the time your side projects take on larger dimensions or you work in a team, you will be confronted with the topic of version control.</p>
 
-<p>The problem we had was the organization of games and events. Some players posted their acceptance or rejection via Whatsapp, others via Facebook, some via email and others personally. This made it quite complicated for us to keep track of who is present where and when.</p>
+<p>Version control is basically the management of source code, so that several developers can work on the same files at the same time. The sense of a system for monitoring changes can be easily understood by an example:</p>
 
-<p>In addition, there was the assignment of duties. Players alone are not enough, additional umpires, scorers, coaches and people who take care of the sales are needed.</p>
+<p>Two developers, Bob and John, are working together on a project. They do not use version control and their workflow is as follows:</p>
 
-<p>This finally gave me the idea to solve the problem via a portal, which can be integrated into the existing club website. Team members can register there for events and trainers can see at a glance who is participating and where they would like to help.</p>
+<p>The source code is stored on a network drive to which both have access. Every morning they copy the contents of the drive to their local machines. They discuss who is working on which files on that day. Bob decides to work on the connection to the database, while John decides to revise parts of the business logic. At the end of the day, both copy their changed files to the network drive. Since both have worked on different files, this is possible without any problems.</p>
 
-<p>The plan was born. I have some knowledge of PHP and therefore decided to implement the platform with this technology. I started with ER modeling. Then I derived my individual pages from this model and created wireframes for the rough design of the website. And then things were ready to start!</p>
+<p>John now remembers that he also made a small change to the user interface. Knowing that Bob was only working on the database, he simply copies the file to the server. However, Bob also made some changes to this file and he also assumes that John was only updating code in the business logic. He also copies his changes and thus overwrites John’s work.</p>
 
-<p>As I said, I started to implement the website in PHP. That worked quite well, even though it seemed rather messy to me. For the time being, I accepted that and continued to work on my prototype. After some time (I had almost finished the features of the MVP), I nevertheless decided to change technology.</p>
+<p>When working in this way, precise communication is essential. As the example shows, this procedure is very error-prone, even though only two developers were involved. The coordination effort increases to an immeasurable extent as the number of developers increases.</p>
 
-<p>There were several reasons for my decision. The first obvious thing was the lack of transparency in my source code. But I also didn’t want to limit myself to my basic PHP knowledge. However, since I had no real interest in delving deeper into PHP and wanted to strengthen my knowledge in other areas instead, I decided to implement the application in C#. At that time I had heard of ASP.NET, but that was all. I never used it. So I read the basics and quickly switched to a Pluralsight course to get my hands dirty with a real example.</p>
+<p>I don’t intend to present a multitude of version control systems, but I would like to give you at least a short overview of what has changed as time passed by. I therefore divide the different systems into three generations: Generation 0 works with file locks, Generation 1 consists of CVCS, Centralized Version Control Systems and Generation 2 are the so-called Distributed Version Control Systems (DVCS).</p>
 
-<p>I don’t want to say much about ASP.NET (Core) here, but compared to my PHP version I’m thrilled. The code is much better structured, clearer and I was able to make much faster progress.</p>
+<p>The first software for version control of files was Source Code Control System (SCSS). The software classifies itself into generation 0 and locks files when they are processed. However, these systems have a significant disadvantage: assuming you want to work on a file that is currently being edited by someone else, you have to wait until they have finished making their changes. You could urge the respective developer to work faster, but he might be sick or on vacation. So it can take quite a while before you can access the file to make your changes. You could now create a local copy of the file and perform your changes right to the copy. As soon as the file itself can be accessed again, you perform a manual merge, i.e. you combine the two files and join the respective changes. However, this is again prone to errors and should be avoided.</p>
 
-<p>Another possibility I took during the development was the use of postgres as the underlying database. Besides the regular functions I haven’t played much with it yet, but so far I have a very positive impression.</p>
+<p>The second generation describes the so-called centralized version control systems. Here you will find a server that manages the source code. To work on a file, a developer must check out this file, i.e. retrieve the latest version of it from the server. I would like to illustrate this again with an example of our already known developers:</p>
 
-<p>But enough about that. Let’s look at the result:</p>
+<p>At the moment John wants to make changes to the login.html file. He loads the latest version from the server and starts working. After he has made his modifications, he checks them in, so the file on the server is being updated. In the meantime, Bob has also fetched this file and made some changes. If he wants to check in his modifications again, the server will inform him that the file has been changed in meanwhile. Bob must now perform a merge, which is usually supported or even automated by the software. Once all conflicts (places affected by both changes) have been resolved, the file can be checked in.</p>
 
-<p>ClubGrid is my first real web application. The tech stack of the software consists of ASP.NET Core and PostgreSQL, the connection is made using Entity Framework Core. The software offers clubs the possibility to manage their events internally and thus enables trainers to see the status of the promises at a glance. Originally, I only planned to release the software for my local baseball club, but the software can quickly be extended to support other sports or other clubs in general. <a href="https://clubgrid.mjurtz.com">I setup a website for showcasing the application</a>.</p>
+<p>There are many different systems in this category, the best known probably being Subversion (SVN) and Microsoft’s Team Foundation Server (TFS). While these systems are still used very often, a new category was formed around the middle of the 00s: The Distributed Version Control Systems.  First and foremost the best known representative, developed by Linux creator Linus Torvalds: Git. Git’s popularity is certainly also related to the launch of GitHub 2008, but DVCS generally offer advantages over its centralized counterparts.</p>
 
-<p>In the next days I will implement the last missing functionalities, so that we can put the first instance live. Then I’d like to make some surface improvements and add support for more sports.</p>
+<p>The idea of distributed version control systems is that no server is needed to manage the source code. Instead, each copy of the repository contains a full history of all changes made to each file. So, without loading anything from a server, you can reconstruct any point in time of your software. You can also work offline and share your changes with your team members as soon as you can reconnect to them. You also have the advantage that any computer that has a copy of the repository can be used as a backup source. I assume, however, that if you use a CVCS, you also have a corresponding backup strategy, which is why I do not consider this advantage really relevant.</p>
 
-<p>As soon as all this has happened, I would like to include several options for notifications. I am very curious about what will follow and look forward to any feedback or suggestions for new features!</p>
+<p>I hope I could give you a rough overview of the different categories of version control systems. I already wrote an article about Git, if you like, you can read it directly on <a href="https://blog.mjurtz.com/2017/09/getting-started-git/">my blog</a>.</p>
+
+<p>Basically, however, I would like to point out that the use of a version control system also has advantages, even if you work alone. Availability of file histories, branching or publishing to, for example, GitHub are just a few of them. But it’s definitely worth trying if you don’t use VCS yet.</p>
 
 </article>
 
 
 
 <section class="tags">
-  <strong>Tags:</strong> <a href="/tag/csharp">csharp</a>,&nbsp;<a href="/tag/web">web</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/programming">programming</a>,&nbsp;<a href="/tag/sideproject">sideproject</a>,&nbsp;<a href="/tag/asp.net">asp.net</a>
+  <strong>Tags:</strong> <a href="/tag/development">development</a>,&nbsp;<a href="/tag/software">software</a>,&nbsp;<a href="/tag/git">git</a>,&nbsp;<a href="/tag/tfs">tfs</a>,&nbsp;<a href="/tag/svn">svn</a>,&nbsp;<a href="/tag/programming">programming</a>
 </section>
 
 
@@ -476,7 +478,7 @@
   
     
     
-      <a href="//twitter.com/share?text=Sideproject+-+ClubGrid&url=http%3A%2F%2Flocalhost%3A4000%2F2018%2F06%2Fsideproject-clubgrid&via=MarcelJurtz"
+      <a href="//twitter.com/share?text=Introduction+to+VCS&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F06%2Fintroduction-to-vcs&via=MarcelJurtz"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
         <i class="fa fa-twitter-square fa-lg"></i>
       </a>
@@ -504,7 +506,7 @@
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2018/06/sideproject-clubgrid') + '&title=Sideproject - ClubGrid'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/06/introduction-to-vcs') + '&title=Introduction to VCS'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
@@ -943,8 +945,8 @@ $(document).ready(function() {
   ga('create', 'UA-118762636-1', 'auto');
   ga('set','anonymizeIp',true);
   ga('send', 'pageview', {
-    'page': '/2018/06/sideproject-clubgrid',
-    'title': 'Sideproject - ClubGrid'
+    'page': '/2018/06/introduction-to-vcs',
+    'title': 'Introduction to VCS'
   });
 </script>
 

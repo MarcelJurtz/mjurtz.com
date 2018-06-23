@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>C# - Getting Started with Attributes</title>
-  <meta name="description" content="In todays post I want to show you how to use attributes in C#. I have to apologize in advance, though, as I’m going to focus only to a limited extent on why ...">
+  <title>Sideproject - ClubGrid</title>
+  <meta name="description" content="It is finally time to announce my latest side project. ClubGrid was originally designed to make it easier for my coach to manage our baseball games. However,...">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2018">
@@ -47,8 +47,8 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/2018/06/csharp-attributes">
-  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
+  <link rel="canonical" href="http://blog.mjurtz.com/2018/06/sideproject-clubgrid">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
 </head>
 
 
@@ -405,7 +405,7 @@
 <div class="post-header-container " >
   <div class="scrim ">
     <header class="post-header">
-      <h1 class="title">C# - Getting Started with Attributes</h1>
+      <h1 class="title">Sideproject - ClubGrid</h1>
       <p class="info">by <strong>Marcel Jurtz</strong></p>
     </header>
   </div>
@@ -420,7 +420,7 @@
  
 
 <section class="post-meta">
-  <div class="post-date">June 18, 2018</div>
+  <div class="post-date">June 13, 2018</div>
   <div class="post-categories">
   in 
     
@@ -431,74 +431,38 @@
 </section>
 
 <article class="post-content">
-  <p>In todays post I want to show you how to use attributes in C#. I have to apologize in advance, though, as I’m going to focus only to a limited extent on why they make sense and what you can use them for, that’s a topic for one of the following articles. Nevertheless, I would like to give you a basic understanding so that you can incorporate this concept into your own applications.</p>
+  <p>It is finally time to announce my latest side project. ClubGrid was originally designed to make it easier for my coach to manage our baseball games. However, the result can be used for clubs of any kind and I hope that I can also help others with my software.</p>
 
-<p>So what are attributes? Well, attributes themselves are just classes. They can’t do much themselves, but they can still be very helpful, especially on a topic called Reflection, which I will be discussing in the next days.</p>
+<p>The problem we had was the organization of games and events. Some players posted their acceptance or rejection via Whatsapp, others via Facebook, some via email and others personally. This made it quite complicated for us to keep track of who is present where and when.</p>
 
-<p>Attributes are usually utilised to assign metadata to classes, properties and the like. Attributes inherit from the class <em>Attributes</em>. According to the convention, their names are always appended with the extension <em>Attributes</em>. They can be placed on various elements, one speaks of <em>decorating</em> a class, for example. To restrict the use of a custom attribute, the attribute <em>AttributeUsage</em> can be used.</p>
+<p>In addition, there was the assignment of duties. Players alone are not enough, additional umpires, scorers, coaches and people who take care of the sales are needed.</p>
 
-<p>That was a whole bunch of attributes, right? Let us test this with an example, so that it will be easier to understand.</p>
+<p>This finally gave me the idea to solve the problem via a portal, which can be integrated into the existing club website. Team members can register there for events and trainers can see at a glance who is participating and where they would like to help.</p>
 
-<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="na">[AttributeUsage(AttributeTargets.Class | AttributeTargets.Property)]</span>  
-<span class="k">class</span> <span class="nc">DemoAttribute</span> <span class="p">:</span> <span class="n">Attribute</span> 
-<span class="p">{</span> 
-  <span class="k">public</span> <span class="kt">string</span> <span class="n">Description</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> 
-<span class="p">}</span> </code></pre></figure>
+<p>The plan was born. I have some knowledge of PHP and therefore decided to implement the platform with this technology. I started with ER modeling. Then I derived my individual pages from this model and created wireframes for the rough design of the website. And then things were ready to start!</p>
 
-<p>I created my own attribute, DemoAttribute. I have designed the name according to the convention. I want only properties and classes to be decorated with the attribute, which is why I piped these two options together using the AttributeUsage attribute.</p>
+<p>As I said, I started to implement the website in PHP. That worked quite well, even though it seemed rather messy to me. For the time being, I accepted that and continued to work on my prototype. After some time (I had almost finished the features of the MVP), I nevertheless decided to change technology.</p>
 
-<p>The attribute has a property called Description. With this I want to describe my classes and properties later. Let us also look at an example.</p>
+<p>There were several reasons for my decision. The first obvious thing was the lack of transparency in my source code. But I also didn’t want to limit myself to my basic PHP knowledge. However, since I had no real interest in delving deeper into PHP and wanted to strengthen my knowledge in other areas instead, I decided to implement the application in C#. At that time I had heard of ASP.NET, but that was all. I never used it. So I read the basics and quickly switched to a Pluralsight course to get my hands dirty with a real example.</p>
 
-<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="na">[Demo(Description = "Test for class A")]</span> 
-<span class="k">class</span> <span class="nc">ClassA</span> 
-<span class="p">{</span> 
-  <span class="p">[</span><span class="nf">Demo</span><span class="p">(</span><span class="n">Description</span> <span class="p">=</span> <span class="s">"Test for Property ClassA.Name"</span><span class="p">)]</span>
-  <span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span> 
-<span class="p">}</span>
+<p>I don’t want to say much about ASP.NET (Core) here, but compared to my PHP version I’m thrilled. The code is much better structured, clearer and I was able to make much faster progress.</p>
 
-<span class="na">[Demo(Description = "This is class B")]</span> 
-<span class="k">class</span> <span class="nc">ClassB</span> 
-<span class="p">{</span>
-<span class="p">}</span> 
+<p>Another possibility I took during the development was the use of postgres as the underlying database. Besides the regular functions I haven’t played much with it yet, but so far I have a very positive impression.</p>
 
-<span class="k">class</span> <span class="nc">ClassC</span> 
-<span class="p">{</span> 
-<span class="p">}</span> </code></pre></figure>
+<p>But enough about that. Let’s look at the result:</p>
 
-<p>I created three classes to test my attribute: ClassA, ClassB and ClassC. I know, very incredibly creative. I decorated classes A and B with my attribute, class C I deliberately ignored. In addition, class A has a property with the attribute.</p>
+<p>ClubGrid is my first real web application. The tech stack of the software consists of ASP.NET Core and PostgreSQL, the connection is made using Entity Framework Core. The software offers clubs the possibility to manage their events internally and thus enables trainers to see the status of the promises at a glance. Originally, I only planned to release the software for my local baseball club, but the software can quickly be extended to support other sports or other clubs in general. <a href="https://clubgrid.mjurtz.com">I setup a website for showcasing the application</a>.</p>
 
-<p>Now I want to show you the real purpose of attributes, but for this I have to be a little ahead of schedule. If you are interested in the relevant topics, just search for the keyword <em>Reflection</em> (oh, and LINQ, if you are new to this).</p>
+<p>In the next days I will implement the last missing functionalities, so that we can put the first instance live. Then I’d like to make some surface improvements and add support for more sports.</p>
 
-<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">classes</span> <span class="p">=</span> <span class="k">from</span> <span class="n">t</span> <span class="k">in</span> <span class="n">Assembly</span><span class="p">.</span><span class="nf">GetExecutingAssembly</span><span class="p">().</span><span class="nf">GetTypes</span><span class="p">()</span> 
-  <span class="k">where</span> <span class="n">t</span><span class="p">.</span><span class="n">GetCustomAttributes</span><span class="p">&lt;</span><span class="n">DemoAttribute</span><span class="p">&gt;().</span><span class="nf">Count</span><span class="p">()</span> <span class="p">&gt;</span> <span class="m">0</span> 
-  <span class="k">select</span> <span class="n">t</span><span class="p">;</span> 
-
-<span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">c</span> <span class="k">in</span> <span class="n">classes</span><span class="p">)</span> 
-<span class="p">{</span> 
-  <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Fount class: </span><span class="p">{</span><span class="n">c</span><span class="p">.</span><span class="n">Name</span><span class="p">}</span><span class="s">"</span><span class="p">);</span> 
-<span class="p">}</span> </code></pre></figure>
-
-<p>In this snippet I first obtain all classes in the current assembly that are decorated with the attribute <em>DemoAttribute</em>. Then I iterate through the result set and simply output the names of the respective classes.</p>
-
-<p>You can add the following to search the found classes for properties with the same attribute.</p>
-
-<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">props</span> <span class="p">=</span> <span class="k">from</span> <span class="n">p</span> <span class="k">in</span> <span class="n">c</span><span class="p">.</span><span class="nf">GetProperties</span><span class="p">()</span> 
-  <span class="k">where</span> <span class="n">p</span><span class="p">.</span><span class="nf">IsDefined</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">DemoAttribute</span><span class="p">),</span> <span class="k">false</span><span class="p">)</span> 
-  <span class="k">select</span> <span class="n">p</span><span class="p">;</span> 
-
-<span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">p</span> <span class="k">in</span> <span class="n">props</span><span class="p">)</span> 
-<span class="p">{</span> 
-  <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Fount property: </span><span class="p">{</span><span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
-<span class="p">}</span> </code></pre></figure>
-
-<p>Of course, the concept can be extended as far as you like. For example, you can design method calls so that all elements within an assembly or across assemblies are called in this way, thus modularizing your application without creating references between projects. But more about this later. With this short introduction I have only shown the basic idea of attributes. As already mentioned, the use of attributes is a separate topic. Stay tuned!</p>
+<p>As soon as all this has happened, I would like to include several options for notifications. I am very curious about what will follow and look forward to any feedback or suggestions for new features!</p>
 
 </article>
 
 
 
 <section class="tags">
-  <strong>Tags:</strong> <a href="/tag/csharp">csharp</a>,&nbsp;<a href="/tag/dotnet">dotnet</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/programming">programming</a>
+  <strong>Tags:</strong> <a href="/tag/csharp">csharp</a>,&nbsp;<a href="/tag/web">web</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/programming">programming</a>,&nbsp;<a href="/tag/sideproject">sideproject</a>,&nbsp;<a href="/tag/asp.net">asp.net</a>
 </section>
 
 
@@ -512,7 +476,7 @@
   
     
     
-      <a href="//twitter.com/share?text=C%23+-+Getting+Started+with+Attributes&url=http%3A%2F%2Flocalhost%3A4000%2F2018%2F06%2Fcsharp-attributes&via=MarcelJurtz"
+      <a href="//twitter.com/share?text=Sideproject+-+ClubGrid&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F06%2Fsideproject-clubgrid&via=MarcelJurtz"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
         <i class="fa fa-twitter-square fa-lg"></i>
       </a>
@@ -540,7 +504,7 @@
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2018/06/csharp-attributes') + '&title=C# - Getting Started with Attributes'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/06/sideproject-clubgrid') + '&title=Sideproject - ClubGrid'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
@@ -979,8 +943,8 @@ $(document).ready(function() {
   ga('create', 'UA-118762636-1', 'auto');
   ga('set','anonymizeIp',true);
   ga('send', 'pageview', {
-    'page': '/2018/06/csharp-attributes',
-    'title': 'C# - Getting Started with Attributes'
+    'page': '/2018/06/sideproject-clubgrid',
+    'title': 'Sideproject - ClubGrid'
   });
 </script>
 

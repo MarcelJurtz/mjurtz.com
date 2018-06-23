@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Step Outside Your Comfort Zone!</title>
-  <meta name="description" content="We humans tend to make ourselves comfortable. We take the easiest way we can find. But there are so many things we miss this way. In many cases it is the sma...">
+  <title>C# - Mastering the Basics - The Repository Pattern</title>
+  <meta name="description" content="There’s a very large number of articles about the repository pattern out there.Nevertheless, most of them overlap in the description and cause confusion amon...">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2018">
@@ -47,8 +47,8 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/2018/05/step-outside-your-comfort-zone">
-  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
+  <link rel="canonical" href="http://blog.mjurtz.com/2018/05/c-mastering-the-basics-repository-pattern">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
 </head>
 
 
@@ -405,7 +405,7 @@
 <div class="post-header-container " >
   <div class="scrim ">
     <header class="post-header">
-      <h1 class="title">Step Outside Your Comfort Zone!</h1>
+      <h1 class="title">C# - Mastering the Basics - The Repository Pattern</h1>
       <p class="info">by <strong>Marcel Jurtz</strong></p>
     </header>
   </div>
@@ -420,61 +420,79 @@
  
 
 <section class="post-meta">
-  <div class="post-date">May 31, 2018</div>
+  <div class="post-date">May 13, 2018</div>
   <div class="post-categories">
   in 
     
-    <a href="/category/life">Life</a>
+    <a href="/category/csharp">Csharp</a>
     
   
   </div>
 </section>
 
 <article class="post-content">
-  <p>We humans tend to make ourselves comfortable. We take the easiest way we can find. But there are so many things we miss this way. In many cases it is the small things that make a big difference. Today I would like to show you how I have taken such a step and what has changed since then.</p>
+  <p>There’s a very large number of articles about the repository pattern out there.
+Nevertheless, most of them overlap in the description and cause confusion among developers.
+For this reason I decided to write my own article to document my opinion.</p>
 
-<p><img src="/assets/2018/comfort_zone_header.png" alt="Step outside your comfort zone - Header" />
-<a href="https://unsplash.com/photos/mQVWb7kUoOE">Photo by Jenny Hill on Unsplash</a></p>
+<p>In this article I will first clarify the what and why of the repository pattern.
+Afterwards I will explain how the pattern can look like in C#.</p>
 
-<p>As a child I did athletics for several years. I did the standard disciplines and I really enjoyed it. But I never trained any endurance related disciplines besides the regular 3 laps to get warmed up.</p>
+<p>In his book, Patterns of Enterprise Application Architecture, Martin Fowler describes the Repository Pattern as a “Mediate between the domain and data mapping layers, acting like an in-memory collection of domain objects”.</p>
 
-<p>Some day, at a regular tournament, my coach had me signed up for the 1000 meter runs. It was hell. That day, seven year old me decided to never participate in something like this again.<br />
-I kept this promise for 14 years until I successfully finished my first 10K last week. By choice.</p>
+<p>The following benefits of utilizing this pattern are usually listed when reading articles on the topic:</p>
 
-<h2 id="from-0-to-running">From 0 To Running</h2>
+<ul>
+  <li>Minimize query logic</li>
+  <li>Decoupling from persistence frameworks</li>
+  <li>Easier testing</li>
+</ul>
 
-<p>If you had asked me during my school days what I would have despised most about sports lessons, I would certainly have answered with “endurance runs”.</p>
+<p>The idea of reducing query logic refers to the reusability of code. Imagine you work directly on a collection. If you need a certain subset of the stored objects, you will query them via LINQ. But chances are, you won’t need this query logic in just one place. However, since the entire collection is available everywhere, you will implement this logic in each place, resulting in duplicated code. The alternative is to move this logic to the repository. All code elements involved then retrieve the subset from this.</p>
 
-<p>Last September, I decided that I needed change. I wanted to get in general better shape and I wanted to really challenge myself. I thought that the most difficult thing I could try to stick to would be running. Simply because I wanted to prove to myself that I can do it, no matter how much I hate it.</p>
+<p>The decoupling from persistence frameworks follows the same principle. The connection to data storage only takes place in the repository. The business logic only accesses the repository, the implementation details are irrelevant at this point. This means that the repository can be exchanged at any time, for example with another ORM or even to a new storage strategy.</p>
 
-<p>At first I tried just to run regularly. But I quickly realized that I lacked planning and motivation. On Reddit I came across the C25K (Couch to 5K) program, which seemed to be tailored to my plan. At this point, I’d like to give a big shoutout to the c25k subreddit, the community is amazing and they really support each other. Definitely check it out.</p>
+<p>The idea behind the simplification of testability is to make repositories easily exchangeable by using an interface and thus to be able to easily implement a mock repository. But this is not a peculiarity of the repository pattern, so I don’t really see this point as an advantage of the pattern.</p>
 
-<p>The idea of the program is simple. Install an app that will help you train within 8 weeks so that you can run a 5 km run in 30 minutes without taking a break.</p>
+<h2 id="in-a-nutshell">In a Nutshell</h2>
 
-<p>The training is based on 3 runs per week, with the training schedule becoming more intensive every week. Training here means changing between walking and running, whereby the running intervals become longer and the walking intervals shorter as you progress.</p>
+<p>As mentioned above, the basic idea of the repository pattern is to design an intermediate layer so that the business logic can operate as if on an in-memory collection. In a very simple way, this interface can look like this:</p>
 
-<p>And that really works. While the programme is not easy, I think it is feasible in any case. I never thought I’d actually do this, but it works. After 8 weeks I exceeded my target and was ready for further progress.</p>
+<ul>
+  <li>Add(obj)</li>
+  <li>Remove(obj)</li>
+  <li>Get(id)</li>
+  <li>GetAll()</li>
+  <li>Find(predicate)</li>
+</ul>
 
-<p>We had a pretty cold winter in southern germany and running was quite difficult. In January, I got the flu and had to stop training. It took arount one month until I got myself together and decided to continue. There’s a follow-up app C210K available and I decided to try it out. However, I didn’t really manage to stick to the program as I did with c25k.</p>
+<p>As you can see, there is no item for saving changes. And that’s exactly where the in-memory collection comes into play. Since the collections only contain object references, the entries can be edited directly.</p>
 
-<p>One day later, I signed up for a 10K near my hometown which will take place in early may 2018. This way, I forced myself to train for that. Surrender was no option and my goal was to do the whole thing without walking.</p>
+<p>Nevertheless, database entries must somehow be persisted. This is where the Unit-of-Work Pattern comes in. Again, from Martin Fowler: A unit of work maintains a list of objects affected by a business transaction and coordinates the writing out of changes.</p>
 
-<p>Eventuall, may came around and I was a bit behind when looking at my goal. I managed to run 8 KM and figured, I could do 10 at the run.</p>
+<p>So this means that we will combine one or more repositories with a single unit of work which will persist changes to the database. An interface for a basic unit of work could have the following methods and properties:</p>
 
-<p>While the first few kilometres where quite heavy, I really got into it and made the full distance without stopping. Also, I did it in less than an hour.</p>
+<ul>
+  <li>IMyRepository MyRepository { get; }</li>
+  <li>SaveChanges();</li>
+</ul>
 
-<h2 id="call-to-action">Call to Action</h2>
+<p>Of course, in a real application, there would be some more repositories.</p>
 
-<p>Training alone and going through the program alone is not easy. If you have the possibility to do the whole thing with a partner and you can push each other, this will definitely help you. But even on your own, with a little self-discipline the whole thing is quite feasible.</p>
+<p>If you look at the whole thing now, you might get the idea that Entity Framework already implements these mechanisms. More precisely, a DbSet looks like a repository and a DbContext like a unit of work. Let’s take a closer look:</p>
 
-<p>But I don’t want to limit this example to my experience, I would say that it can be applied to many different areas of life. Think about why you loathe something. And then try to see the whole thing from a different angle and fight against the laziness. And I’m sure the odds are good that you’ll actually enjoy it. After all, we are growing on challenges, not on dull activities.</p>
+<p>At a surface level, a DbSet looks like a repository. It provides access to a collection and allows you to edit, add and remove entries. Using the DbContext you can persist changes afterwards. However, this approach is problematic in view of the previously defined advantages of the repository pattern: One point was the reduction of duplicated source code by outsourcing functionalities with regard to special subsets. With this approach here the pure collection is published and worked with. The result is exactly what we want to avoid, namely the direct selection and projection of items from the collection.</p>
+
+<p>The use of DbContext is also not suitable here. Another positive argument of the repository pattern was the decoupling of persistence frameworks. This contradicts the approach, since the business logic would be tied to Entity Framework.</p>
+
+<p>So while DbSet and DbContext look like implementations of the repository and unit of work pattern, they don’t provide the architectural benefits, which is why you still have to provide your own implementation for this.</p>
 
 </article>
 
 
 
 <section class="tags">
-  <strong>Tags:</strong> <a href="/tag/motivation">motivation</a>,&nbsp;<a href="/tag/discipline">discipline</a>,&nbsp;<a href="/tag/self">self</a>,&nbsp;<a href="/tag/fitness">fitness</a>
+  <strong>Tags:</strong> <a href="/tag/dotnet">dotnet</a>,&nbsp;<a href="/tag/csharp">csharp</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/programming">programming</a>
 </section>
 
 
@@ -488,7 +506,7 @@ I kept this promise for 14 years until I successfully finished my first 10K last
   
     
     
-      <a href="//twitter.com/share?text=Step+Outside+Your+Comfort+Zone%21&url=http%3A%2F%2Flocalhost%3A4000%2F2018%2F05%2Fstep-outside-your-comfort-zone&via=MarcelJurtz"
+      <a href="//twitter.com/share?text=C%23+-+Mastering+the+Basics+-+The+Repository+Pattern&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F05%2Fc-mastering-the-basics-repository-pattern&via=MarcelJurtz"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
         <i class="fa fa-twitter-square fa-lg"></i>
       </a>
@@ -516,7 +534,7 @@ I kept this promise for 14 years until I successfully finished my first 10K last
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2018/05/step-outside-your-comfort-zone') + '&title=Step Outside Your Comfort Zone!'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/05/c-mastering-the-basics-repository-pattern') + '&title=C# - Mastering the Basics - The Repository Pattern'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
@@ -955,8 +973,8 @@ $(document).ready(function() {
   ga('create', 'UA-118762636-1', 'auto');
   ga('set','anonymizeIp',true);
   ga('send', 'pageview', {
-    'page': '/2018/05/step-outside-your-comfort-zone',
-    'title': 'Step Outside Your Comfort Zone!'
+    'page': '/2018/05/c-mastering-the-basics-repository-pattern',
+    'title': 'C# - Mastering the Basics - The Repository Pattern'
   });
 </script>
 

@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Learning to Learn</title>
-  <meta name="description" content="How often did you tell yourself that you want to learn a specific skill and you either stopped while learning it or learned it but never managed to apply it ...">
+  <title>Sideproject - Sist!</title>
+  <meta name="description" content="It’s time to announce a new sideproject-launch!">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2018">
@@ -47,8 +47,8 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/2018/05/learning-to-learn">
-  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
+  <link rel="canonical" href="http://blog.mjurtz.com/2018/03/sideproject-sist">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
 </head>
 
 
@@ -405,7 +405,7 @@
 <div class="post-header-container " >
   <div class="scrim ">
     <header class="post-header">
-      <h1 class="title">Learning to Learn</h1>
+      <h1 class="title">Sideproject - Sist!</h1>
       <p class="info">by <strong>Marcel Jurtz</strong></p>
     </header>
   </div>
@@ -420,63 +420,44 @@
  
 
 <section class="post-meta">
-  <div class="post-date">May 3, 2018</div>
+  <div class="post-date">March 28, 2018</div>
   <div class="post-categories">
   in 
     
-    <a href="/category/productivity">Productivity</a>
+    <a href="/category/android">Android</a>
     
   
   </div>
 </section>
 
 <article class="post-content">
-  <p>How often did you tell yourself that you want to learn a specific skill and you either stopped while learning it or learned it but never managed to apply it in your workflow?</p>
+  <p>It’s time to announce a new sideproject-launch!</p>
 
-<p>I bet you encountered both situations more than once. In this article, I’ll cover my method on how I learn new skills efficiently and actually remember the stuff I read.</p>
+<p>Some days ago, I’ve been looking for an app which allowed my to keep track of shopping lists in a simple and fast way. While there are lots of such apps available for Android, all I tested seemed to be overkill for what I really wanted. So I decided to create my own app for this purpose.</p>
 
-<p>In this post, I’d like to share my thoughts and experiences in learning new skilly. While my examples are mostly centered around programming and software development, I’m sure that you can apply the most of the principles in other topics as well.</p>
+<p>Besides creating a simple app, my goal was to learn something new while developing the app. I decided to use Androids built in SQLite database to store lists. I’ve been using the database for previous projects, but I did not really care about the implementation. That being said, I wrote the queries all by hand which ended up being pretty messy.</p>
 
-<h2 id="learning-bydoing">Learning By Doing</h2>
+<p>In my defense I would like to say that I was still at the beginning of my programming career and had no idea of the existence of things like object relational mappers.</p>
 
-<p>You’ve never heard of that idea, have you? Of course you did. Like probably everyone else. Nevertheless, I find it difficult to derive a practical approach.</p>
+<p>So I took a look around and decided to try Google’s Room for Android. If you’re not familiar with this project, feel free to checkout my article on the topic: <a href="/2018/02/introduction-to-room-for-android/">Introduction to Room for Android</a>.</p>
 
-<p>One thing that helps me personally very well here is learning under the pressure to immediately apply what I have learned. As a result, I only learn what is absolutely necessary. This usually sticks very well through immediate application.</p>
+<p>The result of one weekend now meets my expectations: A simple Android app that fulfills the functionality I want. Multi-list management with individual entries and a focus on simplicity and speed. A small detail is for example the automatic expansion of the keyboard when adding new entries.</p>
 
-<p>Imagine learning to skydive right before jumping out of an airplane. I bet you’ve never been learning as efficient as in that particular situation.</p>
+<p>In addition to testing Room, I was able to try other Android features I hadn’t used before. These include controls such as CardView or RecyclerView.</p>
 
-<p>While this is a very efficient approach, it is certainly not what we would like to see in everyday life. Firstly due to the stress involved, but also due to the lack of an overall view.</p>
-
-<p>A great way to create a similar environment is to set goals for what you’re learning which requires to apply the newly learned skills. For example, let’s say you’d like to get a grasp on relational databases. Of course, you can dig through books or online courses, but I recommend to try and think of an idea where you can both implement the learned expertise.</p>
-
-<p>To stick to the database example: this could be a simple app to document your cd collection.
-By directly applying new skills, you’ll gain a deeper understanding of the topic and a good feeling of what’s important and what may not right away.</p>
-
-<h2 id="my-learningroutine">My Learning Routine</h2>
-
-<p>While the whole <em>learning by doing</em> approach makes a lot of sense, you’ll probably miss some important or interesting facts. To prevent overly complicated solutions, I created my own learning routine. The main thought of it is not to learn anything, but to learn how to look something up when it’s needed.</p>
-
-<p>When you’re reading non-fiction, let’s say a book about a new programming language, you probably won’t try out every part of the printed syntax. However, chances are that you might stumble across a situation while coding when you think “hey, I think I read about something that could really help me here”. And at this point, you’ll be able to look it up again and implement the code as you like. You don’t have to learn any detail of whatever you’re learning. 
-Most of the time you will find a Pareto distribution of the relevance of what you have learned and the effort involved. Assuming you learn one thing 100%, then you will have learned 80% of the knowledge with 20% of the effort. Details are often nice to have, but mostly not absolutely necessary. Use this to set your focus accordingly.</p>
-
-<p>I use the following steps for learning a new topic:</p>
+<p>I would be very happy if you would test the app and submit feedback to me. As always, the entire source code is also available on GitHub and I’m always available for criticism and suggestions for improvement.</p>
 
 <ul>
-  <li>Gather information. These can also be thicker books, but be sure to use a few different sources.</li>
-  <li>Go through the tables of contents of your sources and match them</li>
-  <li>Use your summarized tables of contents to define an overview of exactly what you want to learn.</li>
-  <li>If possible, think of an overall goal that you can use to track and monitor your learning progress. If necessary, you can also create a separate goal for each sub-topic.</li>
-  <li>Be consistent during learning. Try to learn a little something every day, instead of fewer larger blocks. Only half an hour a day is enough for this.</li>
+  <li><a href="https://play.google.com/store/apps/details?id=com.jurtz.marcel.shoppinglist">Download from Google Play</a></li>
+  <li><a href="https://github.com/MarcelJurtz/ShoppingList">Sourcecode on GitHub</a></li>
 </ul>
-
-<p>That’s all I’m using. How you divide up your time is of course left to you. However, the example of 30 minutes per day should make it clear that even short times can bring great progress, after all, this brings you to 30 hours per month.</p>
 
 </article>
 
 
 
 <section class="tags">
-  <strong>Tags:</strong> <a href="/tag/efficiency">efficiency</a>,&nbsp;<a href="/tag/productivity">productivity</a>,&nbsp;<a href="/tag/self">self</a>
+  <strong>Tags:</strong> <a href="/tag/android">android</a>,&nbsp;<a href="/tag/app">app</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/programming">programming</a>,&nbsp;<a href="/tag/sideproject">sideproject</a>
 </section>
 
 
@@ -490,7 +471,7 @@ Most of the time you will find a Pareto distribution of the relevance of what yo
   
     
     
-      <a href="//twitter.com/share?text=Learning+to+Learn&url=http%3A%2F%2Flocalhost%3A4000%2F2018%2F05%2Flearning-to-learn&via=MarcelJurtz"
+      <a href="//twitter.com/share?text=Sideproject+-+Sist%21&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F03%2Fsideproject-sist&via=MarcelJurtz"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
         <i class="fa fa-twitter-square fa-lg"></i>
       </a>
@@ -518,7 +499,7 @@ Most of the time you will find a Pareto distribution of the relevance of what yo
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2018/05/learning-to-learn') + '&title=Learning to Learn'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/03/sideproject-sist') + '&title=Sideproject - Sist!'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
@@ -957,8 +938,8 @@ $(document).ready(function() {
   ga('create', 'UA-118762636-1', 'auto');
   ga('set','anonymizeIp',true);
   ga('send', 'pageview', {
-    'page': '/2018/05/learning-to-learn',
-    'title': 'Learning to Learn'
+    'page': '/2018/03/sideproject-sist',
+    'title': 'Sideproject - Sist!'
   });
 </script>
 

@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Simplify your CSS - LESS is more</title>
-  <meta name="description" content="First things first: I am not a web developer and certainly not a designer. The following examples are not intended to represent good practices in terms of de...">
+  <title>Searching Blogposts in Jekyll</title>
+  <meta name="description" content="In one of my previous posts, I went over the details why I moved my blog from WordPress to Jekyll. So far, I really appreciate my new system, but I miss one ...">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2018">
@@ -47,8 +47,8 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/2018/06/less-css">
-  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
+  <link rel="canonical" href="http://blog.mjurtz.com/2018/03/jekyll-search">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
 </head>
 
 
@@ -405,7 +405,7 @@
 <div class="post-header-container " >
   <div class="scrim ">
     <header class="post-header">
-      <h1 class="title">Simplify your CSS - LESS is more</h1>
+      <h1 class="title">Searching Blogposts in Jekyll</h1>
       <p class="info">by <strong>Marcel Jurtz</strong></p>
     </header>
   </div>
@@ -420,102 +420,39 @@
  
 
 <section class="post-meta">
-  <div class="post-date">June 17, 2018</div>
+  <div class="post-date">March 30, 2018</div>
   <div class="post-categories">
   in 
     
-    <a href="/category/web">Web</a>
+    <a href="/category/blog">Blog</a>
     
   
   </div>
 </section>
 
 <article class="post-content">
-  <p>First things first: I am not a web developer and certainly not a designer. The following examples are not intended to represent good practices in terms of design or aesthetics.</p>
+  <p>In one of my <a href="/2018/03/moving-to-jekyll">previous posts</a>, I went over the details why I moved my blog from WordPress to Jekyll. So far, I really appreciate my new system, but I miss one particular feature: searching through my posts.</p>
 
-<p>But now to the topic: As a software developer you can hardly avoid acquiring basic knowledge in web development. Specifically, I mean the handling of HTML and CSS, also in JavaScript as far as I’m concerned. If you are like me, you basically have no problems with it, but CSS files will become quite confusing and difficult to revise over time. Let’s look at some problems I think CSS has, then I’ll show you how to solve them.</p>
+<p>Since Jekyll is a static site generator and does not rely on a database for the posts, you can’t simply add a search functionality like WordPress does. So, I have to work with some frontend / clientside stuff.</p>
 
-<h2 id="the-problems-of-css">The Problems of CSS</h2>
+<p>After doing some research, I stumbled across <a href="https://lunrjs.com/">lunr.js</a>, a JavaScript-based text search library to use on the client side.</p>
 
-<p>The thing that probably bothers me the most is the lack of variables in CSS. Whether to define color codes or font sizes: the constant duplication of corresponding entries makes me crazy, especially if something needs to be changed. Oh, and how about calculating values based on variables? For example something like: format each h2 tag with a font size like h1, only 2 units smaller? Nope.</p>
+<p>I decided to give lunr a try and went on to add a search box to my main page. You can now see this in the very bottom of the screen. The is constructed as follows:</p>
 
-<p>Another point is the transparency of nested statements. Long-winded listings of nestings in nestings lead to an almost endless number of CSS statements that no one will have an overview of later. Not to mention old entries that are no longer needed, but are simply overlooked.</p>
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/search.html"</span> <span class="na">method=</span><span class="s">"get"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"search_box"</span><span class="nt">&gt;</span>Search Posts<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"search_box"</span> <span class="na">name=</span><span class="s">"query"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"search"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span></code></pre></figure>
 
-<h2 id="less-is-more">LESS is more</h2>
-
-<p>Well, there are more problems than I have presented that we will solve now. However, I have only gone into what I think are really essential things that bother me about CSS.</p>
-
-<p>LESS is an extension to CSS, which means that all CSS code is also valid LESS code. LESS, however, offers various ways of circumventing the problems described above. But before I go into these, I would like to show you how you can use LESS at all.</p>
-
-<p>There are two ways to integrate LESS into your website. One possibility is the conversion from LESS to CSS and the integration of the resulting CSS file into your website (as usual). Alternatively, the LESS file can also be included directly, in combination with <a href="http://lesscss.org/usage/">LessJs</a>, which only evaluates the stylesheets on the client side. I prefer the first option because I don’t have to rely on additional JS libraries.</p>
-
-<p>If you also choose this approach, there are several ways to do the processing. There are special websites that work on a copy and paste basis, but I prefer to use something like the Gulp integration for ASP.NET Core in Visual Studio. Click <a href="https://docs.microsoft.com/en-us/aspnet/core/client-side/less-sass-fa?view=aspnetcore-2.1">here</a> for more information.</p>
-
-<p>Now that the basic structure is in place, we can start with the features themselves.</p>
-
-<p>The first thing I mentioned was using variables that are missing in CSS. LESS offers this functionality, let’s look at an example.</p>
-
-<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="k">@blue</span><span class="p">:</span> <span class="m">#008FFF</span><span class="p">;</span> 
-<span class="k">@defaultFontSize</span><span class="p">:</span> <span class="m">15px</span><span class="p">;</span> 
-
-<span class="nt">p</span> <span class="p">{</span> 
-    <span class="nl">color</span><span class="p">:</span> <span class="err">@</span><span class="no">blue</span><span class="p">;</span> 
-    <span class="nl">font-size</span><span class="p">:</span> <span class="err">@</span><span class="n">defaultFontSize</span><span class="p">;</span> 
-<span class="p">}</span> </code></pre></figure>
-
-<p>As you can see, variables are declared with an @ character. Variables can be used for various elements, such as colors and sizes. Also, variables can be calculated by using regular arithmetic operators (this also works for colors).</p>
-
-<p>My second point was the use of nested statements. LESS offers the possibility to style nested elements as follows:</p>
-
-<figure class="highlight"><pre><code class="language-css" data-lang="css"> 
-<span class="nc">.sidebar</span> <span class="p">{</span> 
-  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span> 
-
-  <span class="err">ul</span> <span class="err">{</span> 
-    <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span> 
-    <span class="nl">list-style-type</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> 
-
-    <span class="err">a</span> <span class="err">{</span> 
-      <span class="nl">color</span><span class="p">:</span> <span class="err">@</span><span class="n">link</span><span class="p">;</span> 
-      <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span> 
-    <span class="p">}</span> 
-  <span class="err">}</span> 
-<span class="err">}</span> </code></pre></figure>
-
-<p>I think the result of this example is quite easy to understand. The nested CSS statements apply to HTML elements nested in the same style. The statement for the a tag therefore only applies to those elements that lie within an unordered list, which in turn lies in an element of the’sidebar’ class.</p>
-
-<p>Those were all the features I really missed. But as promised, there are more: LESS offers possibilities for calculating color values, mixins, imports for distributed CSS files and own functions. I will conclude todays post with a brief comment on the individual elements:</p>
-
-<p>Another feature are the so-called mixins. These allow the usage of CSS classes within statements. Let’s look at an example:</p>
-
-<figure class="highlight"><pre><code class="language-css" data-lang="css"> 
-<span class="nc">.borderAll</span> <span class="p">{</span> 
-  <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="no">black</span><span class="p">;</span> 
-<span class="p">}</span> 
-
-<span class="nc">.sidebar</span> <span class="p">{</span> 
-  <span class="nl">background-color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span> 
-  <span class="err">.borderAll</span> 
-<span class="p">}</span> </code></pre></figure>
-
-<p>LESS offers predefined functions with which (color) values can be manipulated. A complete overview of available functions can be found here, but their use is identical according to the following syntax:</p>
-
-<figure class="highlight"><pre><code class="language-css" data-lang="css"> 
-<span class="nt">color</span><span class="o">:</span> <span class="nt">saturate</span><span class="o">(</span><span class="k">@green</span><span class="p">,</span> <span class="m">25%</span><span class="p">);</span> </code></pre></figure>
-
-<p>Finally, I would like to show you how to use import statements. You may know the include function of PHP. It’s kind of the same thing. You can use it to include other CSS or LESS files and thus distribute your instructions. If you omit the file extension, a matching LESS file is automatically searched for.</p>
-
-<figure class="highlight"><pre><code class="language-css" data-lang="css"> 
-<span class="k">@import</span> <span class="s1">"base.css"</span><span class="p">;</span> </code></pre></figure>
-
-<p>I am aware that this short summary is by no means a complete guide to working with LESS. But I hope that I could arouse a little interest and even make your work with CSS a little easier. As in most such topics, the same applies here: Just give it a try. By applying it you will learn the fastest. A full overview of the features can be found on the <a href="http://lesscss.org/">official website</a>.</p>
+<p>When clicking the search-button, the user will be redirected to the <em>search.html</em> file. This site lists all matches and a search box containing the entered values. The search page consists of my regular header and footer. Also, of course, it contains a script which fetches all matching posts. It then lists all matches inside an unordered list. Of course, all scripts and pages are also located in this Blogs <a href="https://github.com/MarcelJurtz/blog.mjurtz.com">GitHub Repository</a>, feel free to check it out!</p>
 
 </article>
 
 
 
 <section class="tags">
-  <strong>Tags:</strong> <a href="/tag/css">css</a>,&nbsp;<a href="/tag/web">web</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/html">html</a>,&nbsp;<a href="/tag/asp.net">asp.net</a>
+  <strong>Tags:</strong> <a href="/tag/blog">blog</a>,&nbsp;<a href="/tag/web">web</a>,&nbsp;<a href="/tag/ruby">ruby</a>,&nbsp;<a href="/tag/javascript">javascript</a>,&nbsp;<a href="/tag/jekyll">jekyll</a>
 </section>
 
 
@@ -529,7 +466,7 @@
   
     
     
-      <a href="//twitter.com/share?text=Simplify+your+CSS+-+LESS+is+more&url=http%3A%2F%2Flocalhost%3A4000%2F2018%2F06%2Fless-css&via=MarcelJurtz"
+      <a href="//twitter.com/share?text=Searching+Blogposts+in+Jekyll&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F03%2Fjekyll-search&via=MarcelJurtz"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
         <i class="fa fa-twitter-square fa-lg"></i>
       </a>
@@ -557,7 +494,7 @@
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2018/06/less-css') + '&title=Simplify your CSS - LESS is more'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/03/jekyll-search') + '&title=Searching Blogposts in Jekyll'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
@@ -996,8 +933,8 @@ $(document).ready(function() {
   ga('create', 'UA-118762636-1', 'auto');
   ga('set','anonymizeIp',true);
   ga('send', 'pageview', {
-    'page': '/2018/06/less-css',
-    'title': 'Simplify your CSS - LESS is more'
+    'page': '/2018/03/jekyll-search',
+    'title': 'Searching Blogposts in Jekyll'
   });
 </script>
 

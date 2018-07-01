@@ -249,6 +249,10 @@
 <lastmod>2018-06-23T08:00:00+02:00</lastmod>
 </url>
 <url>
+<loc>http://blog.mjurtz.com/2018/06/docker-getting-started</loc>
+<lastmod>2018-07-01T08:00:00+02:00</lastmod>
+</url>
+<url>
 <loc>http://blog.mjurtz.com/about/</loc>
 </url>
 <url>
@@ -414,6 +418,12 @@
 <loc>http://blog.mjurtz.com/tag/svn/</loc>
 </url>
 <url>
+<loc>http://blog.mjurtz.com/tag/docker/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/tag/containers/</loc>
+</url>
+<url>
 <loc>http://blog.mjurtz.com/category/game-development/</loc>
 </url>
 <url>
@@ -463,6 +473,9 @@
 </url>
 <url>
 <loc>http://blog.mjurtz.com/category/programming/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/category/development/</loc>
 </url>
 <url>
 <loc>http://blog.mjurtz.com/page2/</loc>

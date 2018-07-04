@@ -64,7 +64,7 @@ I do not remember how many times I have read this advice or passed it on myself.
 
 The same applies to you if you want to start your own business. You don't have to quit your job and jump right into your new business. This may work, of course, but it scares many people off. Instead, you can simply start to turn your ideas into reality in parallel and - as soon as it turns out that your concept works out - switch to a full-time model. 
 
-## Don't Shite Where You Eat
+## Don't Shit Where You Eat
 
 Try to have different places for different things. Don't work in your bedroom and vice versa. This should help to leave things where they belong and not think about work in bed. I found this really helpful for myself when using my bed to sleep and not to watch movies.
 

@@ -4,6 +4,7 @@ date: 2018-07-01T06:00:00+00:00
 author: Marcel Jurtz
 layout: post
 permalink: /2018/06/docker-getting-started
+cover: "/assets/2018/containers_header.jpg"
 categories:
   - development
 tags:

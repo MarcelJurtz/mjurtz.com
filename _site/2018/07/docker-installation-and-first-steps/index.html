@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Getting Started with Docker</title>
-  <meta name="description" content="As a software developer, you’ve probably heard about Docker and perhaps already used it. But if you’re like me, you’ve been observing the topic from a distan...">
+  <title>Docker - Installation and First Steps</title>
+  <meta name="description" content="After outlining the theory behind container management with Docker in last week’s article, I would like to continue the topic in a more hands-on way today.">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2018">
@@ -47,7 +47,7 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://blog.mjurtz.com/2018/06/docker-getting-started">
+  <link rel="canonical" href="http://blog.mjurtz.com/2018/07/docker-installation-and-first-steps">
   <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
 </head>
 
@@ -438,10 +438,10 @@
     <div class="page-content">
         <div class="post">
 
-<div class="post-header-container has-cover" style="background-image: url(/assets/2018/containers_header.jpg);">
+<div class="post-header-container has-cover" style="background-image: url(/assets/2018/docker_first_steps_header.jpg);">
   <div class="scrim has-cover">
     <header class="post-header">
-      <h1 class="title">Getting Started with Docker</h1>
+      <h1 class="title">Docker - Installation and First Steps</h1>
       <p class="info">by <strong>Marcel Jurtz</strong></p>
     </header>
   </div>
@@ -452,7 +452,7 @@
 
 
 <section class="post-meta">
-  <div class="post-date">July 1, 2018</div>
+  <div class="post-date">July 8, 2018</div>
   <div class="post-categories">
   in 
     
@@ -463,60 +463,80 @@
 </section>
 
 <article class="post-content">
-  <p>As a software developer, you’ve probably heard about Docker and perhaps already used it. But if you’re like me, you’ve been observing the topic from a distance with some interest, but you haven’t gotten into it yet.</p>
+  <p>After outlining the theory behind container management with Docker in last week’s article, I would like to continue the topic in a more hands-on way today.</p>
 
-<p>In this article I would like to introduce you to the concept of docker and the “big picture”. This post will not be a detailed tutorial, but will give you an overview of the technology and help you get started.</p>
+<p>I’ll show you the installation and the first steps in Docker. Let’s get started!</p>
 
-<p>Docker is software for isolating applications through container virtualization. Before we start with Docker as a practical example, I would therefore like to discuss containers in general and describe what distinguishes them from virtual machines.</p>
+<h2 id="installation">Installation</h2>
 
-<h2 id="what-are-containers">What are containers?</h2>
+<p>Docker is available for Windows, Linux and Mac OS. For the download you’ll need to sign up for a free account.</p>
 
-<p>Imagine a company wants to put a new application into operation. In the past, this was usually done in such a way that new hardware was purchased for this purpose; each physical server was responsible for one application. When a new application was added, however, it was often unclear how much power would be required for the new application, which is why it was often overdimensioned. This, of course, also results in unnecessary costs.</p>
+<p>I would like to point out that the Windows version is not intended for production use, only for development and testing. It runs (currently) on a Mobylinux Hypervisor VM, but a native Win10 application is under development. Nevertheless, you will hardly notice this, the usage feels native and you can work on Windows with a command line of your choice.</p>
 
-<p>The successor of this concept, which is often used today, are virtual machines. Physical hardware is distributed across multiple virtual machines on which the applications run. This means that an application is no longer managed per physical server, but per VM.</p>
+<p>The first command I want to show you is docker info. This will show you information about your installation. If you are using Windows, you can see here what I just mentioned: The client specifies Windows as OS, but the server indicates Linux.</p>
 
-<p>However, this concept is already problematic: Although the number of servers is reduced, each VM still requires its own OS installation, which in turn requires license fees (at least in most cases), as well as time for administration of the operating system, etc. This of course was also the case with the previous concept, but we’d like to circumvent that.</p>
+<h2 id="running-your-first-container">Running Your First Container</h2>
 
-<p>In addition, every operating system needs a whole bunch of storage space, which could otherwise be used elsewhere. This is best illustrated in the following graphic:</p>
+<p>Next we want to create and start our first container. We use the following command for this:</p>
 
-<p><img src="/assets/2018/20180701_Container_VM.jpg" alt="Hypervisor Architecture" /></p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">docker run hello-world </code></pre></figure>
 
-<p>The graphic shows a classic hypervisor architecture with three virtual machines. Okay, basically the points OS and VM belong together, but to compare the graphics better with the container counterpart, I have listed them separately here. In return, let’s look at the structure of a container-based architecture:</p>
+<p>Docker run is the command to start a container, followed by the name of the image, in this case hello-world (Tip: If you get a timeout under Windows, try to set the DNS server to fixed in Docker’s network settings, this helped me).</p>
 
-<p><img src="/assets/2018/20180701_Container.jpg" alt="Container Architecture" /></p>
+<p>You will often stumble across the term docker engine. The Docker Engine includes the Docker Client and the Docker Daemon. The client makes API calls to the daemon, which then processes the commands. In my example, the Docker Daemon now looks for an image named hello-world. If this is not found locally, the search is continued in the default registry, usually the docker hub. The image is downloaded (if one is found) from there and started. When a container is stopped, the local copy of the image is retained, so that a later call of it does not require a new download.</p>
 
-<p>As you can see, the layer of hypervisor and VMs disappeared. The containers in which the applications run share the operating system. This approach is much lighter, since no entire OS needs to be loaded to start a container. When you try Docker, you will notice that a Docker container usually takes less than a second to launch. In addition, much less storage space is generally required, as the various operating systems are no longer required.</p>
+<p>The container has now been started. You can view all active containers with the command</p>
 
-<p>The fundamental difference between hypervisor and container technology is therefore the common operating system basis of container-based architecture. Next, let’s look at Docker as a concrete example.</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">docker ps </code></pre></figure>
 
-<h2 id="what-is-docker">What is Docker?</h2>
+<p>With the flag -a you can specify that stopped containers should also be displayed.</p>
 
-<p>First of all: Docker is neither the first nor the only container technology. Docker has become the de facto standard thanks to its ease of use and other features and is used productively by a large number of organizations worldwide. One of these important feature of Docker is Docker Hub, which I will cover soon. The many additional applications and plugins are not only provided by Docker Inc., but also by 3rd party developers and companies.</p>
+<p>You can also download an image without starting a container immediately:</p>
 
-<p>The company behind Docker, Docker Inc. was founded in San Francisco in 2010 under the name dotCloud and was renamed in 2013.</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">docker pull hello-world </code></pre></figure>
 
-<p>Docker Inc. is not the same as Docker. The software itself is open source and released under the Apache 2.0 license. At the core of Docker is the Docker engine, which is used to create and run images. You can think of an image like a disabled container or a template for one.</p>
+<p>I generally recommend that you always specify the version of the image you want to load. You can enter the version number separated by a colon after the name of the image. Example:</p>
 
-<p>Docker Hub is a platform (a so-called image registry) on which images can be exchanged. For example, if you want to create a PHP application and your container needs an Apache web server and a PHP installation, you can search for pre-built images on Docker Hub and integrate them into your project. You will find a multitude of offers for various applications there, which means that you hardly have any effort in creating your own images. You can think of Docker Hub as a “PlayStore for enterprise applications”.</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">docker pull hello-world:1.2 </code></pre></figure>
 
-<p>DockerHub is not the only image registry. Besides this, there are many other cloudbased registries, but there are also ways to host one in your own network. This is especially useful for business applications with a no-cloud policy (however, you can also mark your Docker Hub images as private so that only you have access to them).</p>
+<p>To remove an image, use the command</p>
 
-<h2 id="for-what-kind-of-software-can-docker-be-used">For what kind of software can Docker be used?</h2>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">docker rmi hello-world </code></pre></figure>
 
-<p>Containers can be used for both stateless and statefull applications. Although many advantages of containers only become visible with stateless applications, there are a large number of images for database management systems, for example. Containers will keep your data when turned off, so you can easily run a PostgreSQL instance with Docker, for example. So-called “volumes” can also be used to hold this data even if a container is destroyed.</p>
+<p>The version number can also be specified here; this is done in the same style as for the pull.</p>
 
-<h2 id="container-orchestration">Container Orchestration</h2>
+<h2 id="creating-your-own-images">Creating Your Own Images</h2>
 
-<p>A buzzword you’re sure to stumble upon early on is container orchestration. But what’s it all about? It refers to the (automated) cooperation of many individual services within a complex application. Docker has its own tool for this: Docker Swarm allows you to orchestrate containers across multiple hosts, so you can manage containers across Microsoft Azure or Amazon AWS, for example. Of course, there are also alternatives in this area, for example Kubernetes, initiated by Google.</p>
+<p>Now I want to create my own image. I want to write a simple PHP hello world application. For this I need a so called dockerfile. These files describe images and serve as a kind of blueprint. For the realization of a PHP application PHP and a compatible web server is required. I will use Apache here, so I need an image with Apache, PHP and my own script. First I need a suitable docker file. Fortunately, I don’t have to write it myself, I can use templates from the Hub.</p>
 
-<h2 id="wrap-up">Wrap-Up</h2>
+<p>On the Docker Hub I can find it by searching for’PHP’ and using one of the entries that lists the keyword’Apache’. You will find here different entries, each with a highly specialized version on the left, to the right the versions become more and more general. I recommend that you use one of the more specialized versions to prevent unwanted updates.</p>
 
-<p>Docker offers developers a way to run applications in isolation without having to use a VM for each app. Additional tools such as the Docker Hub enable the exchange of images and thus speed up the creation of your own images.</p>
+<p>I decide to use the image with PHP 7.2 and Apache Stretch. The Hub page lists how to handle the template:</p>
 
-<p>I am aware that this short introduction can only give you a minimal insight into how containers work. I hope, however, that I have awakened your interest in getting more involved with this topic and that you now know what to look for. After all, the same applies here: If you want to learn the subject as a developer, you’re best served by getting your hands dirty.</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">FROM php:7.0-apache 
+COPY src/ /var/www/html/  </code></pre></figure>
 
-<p>You can download Docker<a href="https://www.docker.com/get-docker">here</a>, for which you need a free Docker ID (this is also valid for DockerHub). If you want to learn more about the topic, you can find several guides online, I recommend to have a look around at Medium.com, Pluralsight or YouTube.</p>
+<p>Since I want to use PHP 7.2, I update the version number accordingly. This script now corresponds to the content of my docker file. Brief summary: I now have a folder containing my docker file with the above content and another folder ‘src’ containing the index.php with a simple Hello-World script:</p>
 
+<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span> 
+<span class="k">echo</span> <span class="s1">'Hello Docker!'</span><span class="p">;</span> 
+<span class="cp">?&gt;</span> </code></pre></figure>
+
+<p>Docker images are ‘layered’. The PHP image is based on other images and so on. Our own image is based on php:7.2-apache. This allows us to keep our docker file short and concise and to include PHP and Apache with just a single line. So our docker file will download the PHP image from Docker Hub, and copy the files from the src folder to the /var/www/html/ directory within the container.</p>
+
+<p>Now the image must be built. To do this, I use the command</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">docker build <span class="nt">-t</span> hello-docker <span class="nb">.</span> </code></pre></figure>
+
+<p>Hello-docker is the name of my image, the -t flag is used to assign a name. At the end you have to specify the path to the docker file. The point references the current directory.</p>
+
+<p>After the image has been created, it can be started in the form of a new container.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">docker run <span class="nt">-p</span> 80:80 hello-docker </code></pre></figure>
+
+<p>The call looks almost like the one we’ve already met. The -p 80:80 addition merely defines that the traffic arriving at port 80 on the host is forwarded to port 80 of the container.</p>
+
+<p>After the start you can now reach the web server via localhost. Your first own container is now up and running!</p>
 
 </article>
 
@@ -537,7 +557,7 @@
   
     
     
-      <a href="//twitter.com/share?text=Getting+Started+with+Docker&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F06%2Fdocker-getting-started&via=MarcelJurtz"
+      <a href="//twitter.com/share?text=Docker+-+Installation+and+First+Steps&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F07%2Fdocker-installation-and-first-steps&via=MarcelJurtz"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
         <i class="fa fa-twitter-square fa-lg"></i>
       </a>
@@ -565,7 +585,7 @@
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/06/docker-getting-started') + '&title=Getting Started with Docker'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/07/docker-installation-and-first-steps') + '&title=Docker - Installation and First Steps'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
@@ -1040,8 +1060,8 @@ $(document).ready(function() {
   ga('create', 'UA-118762636-1', 'auto');
   ga('set','anonymizeIp',true);
   ga('send', 'pageview', {
-    'page': '/2018/06/docker-getting-started',
-    'title': 'Getting Started with Docker'
+    'page': '/2018/07/docker-installation-and-first-steps',
+    'title': 'Docker - Installation and First Steps'
   });
 </script>
 

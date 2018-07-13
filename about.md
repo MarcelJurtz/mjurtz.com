@@ -6,7 +6,7 @@ permalink: /about/
 
 <!--<img src="{{ site.baseurl }}/assets/profile-placeholder.gif" title="Profile Picture" class="profile">-->
 
-Hey, I’m Marcel. I’m glad that you found my blog, where I document my thoughts and write about everything that interested in.
+Hey, I’m Marcel. I’m glad that you found my blog, where I document my thoughts and write about everything that I'm interested in.
 
 At the moment that includes mainly topics like software development with a focus on Android, C# and Xamarin, but also general related areas like encrypted communication or secure browsing. Regarding my topics in the area of software development I write about all sorts of subjects. From the introduction of a side project to a detailed description to a specific problems solution, you will find everything here.
 

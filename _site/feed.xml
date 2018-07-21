@@ -6,9 +6,261 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 08 Jul 2018 15:38:25 +0200</pubDate>
-    <lastBuildDate>Sun, 08 Jul 2018 15:38:25 +0200</lastBuildDate>
+    <pubDate>Sat, 21 Jul 2018 23:20:57 +0200</pubDate>
+    <lastBuildDate>Sat, 21 Jul 2018 23:20:57 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Agile - Get Started with Kanban</title>
+        <description>&lt;p&gt;After I introduced Scrum in my last article, today will be about Kanban. 
+Like Scrum, Kanban is an agile software development methodology and I have to say that I apply the principles 
+I present today to most of my personal side projects.&lt;/p&gt;
+
+&lt;p&gt;Kanban is Japanese and can be translated as “billboard”. 
+Kanban was first introduced by Toyota in the automotive industry and is now mostly associated with just-in-time concepts. 
+But I don’t want to bore you with historical details, I want to show you the usage in software development.&lt;/p&gt;
+
+&lt;p&gt;Before we start, you will certainly want to know what advantages Kanban can offer you: 
+Kanban helps you to increase quality and speed up the realisation of tasks as well as to identify and eliminate bottlenecks. 
+This is done by minimizing the time that tasks spend in queues.&lt;/p&gt;
+
+&lt;p&gt;There are two basic concepts on which Kanban is based: On the one hand this is visualization, 
+on the other hand the limitation of parallel work (Work in Progress, WIP).&lt;/p&gt;
+
+&lt;p&gt;The visualization of the work offers various advantages. Tasks are not forgotten, 
+which can reduce stress and make it easier to make good decisions. 
+It also simplifies the estimation of how long a task will take to complete.&lt;/p&gt;
+
+&lt;p&gt;Limiting parallel work reduces the waiting time of tasks and thus increases the flow of the process. 
+At this point I would like to define two key indicators: Lead time and cycle time.&lt;/p&gt;
+
+&lt;p&gt;Lead time describes the period from receipt of a request to delivery of an associated feature. 
+It is therefore the time period that is visible to the user. 
+Cycle time describes the duration of a task, starting from the beginning of the work until its result is ready for delivery.&lt;/p&gt;
+
+&lt;p&gt;The goal of Kanban is to reduce the response time of a system. This can be achieved in two ways: 
+Increasing the throughput of the system or reducing parallel work and thus reducing the time of tasks in queues.&lt;/p&gt;
+
+&lt;p&gt;Let us illustrate this with an example. The workflow of a software company is as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;After a problem is reported (1), it remains in the ticket list until the next meeting (2).&lt;/li&gt;
+  &lt;li&gt;At this meeting the relevance of the problem is prioritized, in the following days the solution will be implemented by a developer (3)&lt;/li&gt;
+  &lt;li&gt;Next comes the test of the implementation (4), planning of the release (5) and finally the deployment (6)&lt;/li&gt;
+  &lt;li&gt;There are always periods of time between these individual stations that are not used to add value&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2018/20180722_kanban_valuestreammap.png&quot; alt=&quot;Value Stream Map in Kanban&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The following key figures result for this process:
+	• Total time (value adding): 6 h 15 min
+	• Total waiting time: 20 days
+	• Lead Time: 485.25 hours
+	• Efficiency: Time (value-adding) / Lead Time = 6.25 / 485.25 = 1.29
+	• WIP = Lead Time / Time (value-adding) = 485.25 / 6.25 = 77.64&lt;/p&gt;
+
+&lt;p&gt;As you can see, the efficiency is anything but great. According to Littles Law, there is a WIP of about 78 elements. 
+By reducing this to half, the time required could also be reduced to half.&lt;/p&gt;
+
+&lt;p&gt;But now really to software development: 
+The idea to use Kanban in software development is to establish a Kanban board to organize tasks. 
+Such boards are divided into different columns that define the corresponding stages of a task. 
+Typically these are things like “In planning”, “Development”, “Test”, “Deployment”. 
+You can see an example of such a board in the following screenshot:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2018/20180722_kanban_board.png&quot; alt=&quot;Kanban Board Example&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Different tasks are then moved into these columns, with each task going through the development process from left to right. 
+As already mentioned, an important principle of Kanban is the limitation of parallel work. 
+That is why each column may only contain a certain predefined maximum number of elements. 
+If a task spends too long in a certain column, problems with the specific task or bottlenecks in the process can be identified. 
+These are then solved as a team, keeping the stress of the people involved at the appropriate points as low as possible.&lt;/p&gt;
+
+&lt;p&gt;The conversion of a kanban board can be carried out both physically and by software. With a physical kanban board, 
+the tasks can be displayed with post-items. The advantage here is the ubiquity of the board, 
+each team member is always aware of the current status. 
+Alternatively, software solutions such as Trello or Jira offer themselves, which follow exactly the same principle, 
+whereby tasks can be provided here with task assignments, checklists, deadlines and comments.&lt;/p&gt;
+
+&lt;p&gt;When transferring tasks from one area to the next, it is important to establish a pull system. 
+Completed tasks should therefore not be pushed to the next level by the people who have completed them. 
+Instead, the employees there should pull the task to themselves.&lt;/p&gt;
+
+&lt;h2 id=&quot;kanban-and-scrum&quot;&gt;Kanban and Scrum&lt;/h2&gt;
+
+&lt;p&gt;Now that you have a rough idea what Kanban is, let’s compare the methodology briefly with Scrum.
+Both are concepts of agile software development, but what is the best solution for which purpose?&lt;/p&gt;
+
+&lt;p&gt;Both concepts are based on a pull system. 
+Kanban uses this to move tasks to the next area, Scrum using the agreement of user stories for the sprint backlog. 
+Both concepts are based on transparency and aim to reduce parallel work to a minimum. 
+Scrum implements this rather indirectly, since the requirements that are implemented within a single sprint are clearly defined.&lt;/p&gt;
+
+&lt;p&gt;The product is also constantly being updated and kept release-ready in both approaches. 
+The self-organization of the team also plays an important role in both Scrum and Kanban and both concepts require the division 
+of requirements into as small subtasks as possible.&lt;/p&gt;
+
+&lt;p&gt;But of course there are also various differences. Kanban does without the iterative model of Scrum, for example, 
+tasks run through the entire cycle individually. A Scrum team agrees before each sprint which tasks are to be implemented. 
+Kanban, on the other hand, makes these commitments optional.&lt;/p&gt;
+
+&lt;p&gt;Kanban does not prescribe roles like the division into Scrum Master, Product Owner and Team as known from Scrum.&lt;/p&gt;
+
+&lt;p&gt;It is difficult to define exactly when which methodology should be used. 
+As in the previous article, it is often the case that none of the methodologies is used in its pure form, 
+but a mixed version according to the team’ s requirements.&lt;/p&gt;
+
+&lt;p&gt;Kanban is suitable for various IT use cases. In my opinion, Kanban is a more flexible way of dealing with requirements than Scrum is.
+The concept makes sense here for applications where malfunctions and short-term maintenance are to be expected more frequently.
+Here, the interval cycles of Scrum are simply too long. 
+In addition, Kanban may be easier to implement in corporate structures that still work with the waterfall model, 
+since Kanban allows a slow changeover.&lt;/p&gt;
+
+&lt;h2 id=&quot;one-last-thing&quot;&gt;One last thing&lt;/h2&gt;
+
+&lt;p&gt;Finally, in my opinion, Scrum is also excellently suited for the realization of own projects, 
+in principle in the form of a function-enhanced TODO list. You can then combine the tasks for yourself with the Pomodoro technique, 
+for example, to really make efficient use of your private time.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 21 Jul 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/07/agile-get-started-with-kanban</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/07/agile-get-started-with-kanban</guid>
+        
+        <category>development</category>
+        
+        <category>software</category>
+        
+        <category>methodology</category>
+        
+        <category>kanban</category>
+        
+        <category>management</category>
+        
+        <category>agile</category>
+        
+        <category>project</category>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>Agile - Get Started with Scrum</title>
+        <description>&lt;p&gt;As a software developer you are certainly aware of Scrum. You may have already used Scrum or heard about it only marginally. 
+With this article I would like to give you an overview of what Scrum is and how you can apply this methodology. 
+Plus: You can also use many of the principles even for working on your side projects alone or in a small group.&lt;/p&gt;
+
+&lt;p&gt;Scrum is probably the best known process model of agile software development. 
+It is a collection of definitions and tools for managing projects. Scrum is not a rigid structure, but a flexible toolbox. 
+A scrum project team consists of three parties: the product owner, who determines what is to be developed in the next sprint, 
+i.e. the next iteration, the development team itself, who is responsible for the implementation and presentation of the results, 
+and the Scrum Master, who guarantees the smooth running of the project. Scrum is designed for small, self-organized teams.&lt;/p&gt;
+
+&lt;p&gt;As already mentioned, the project implementation according to Scrum consists of several iterations, so-called sprints. 
+A sprint typically lasts between one and four weeks and is used to prioritize selected user stories 
+(formulated system requirements formulated from the user’s perspective) from the product backlog 
+(all requirements for the project), transfer a selection of these into the sprint backlog 
+(collection of requirements for processing in the current sprint) and implement them.&lt;/p&gt;
+
+&lt;p&gt;This prioritization and selection of requirements is called Sprint Planning. 
+Although the requirements are set by the product owner, they are agreed with the team during the planning phase. 
+This should ensure that the planned requirements are also realistic and feasible.&lt;/p&gt;
+
+&lt;p&gt;During the sprint the Daily Scrum takes place daily, a short meeting to discuss the current status and to clarify possible problems.&lt;/p&gt;
+
+&lt;p&gt;After a sprint has been completed, the sprint review takes place in which the team, together with the product owner, 
+validates the various requirements and checks their fulfillment. This is followed by the Sprint Retrospective, 
+in which the Scrum team discusses the cooperation with the Scrum Master and defines suggestions for improvement. 
+The result of the sprint is delivered as an “increment” and the process starts again.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/2018/20180715_scrum_workflow.png&quot; alt=&quot;Basic Scrum Workflow&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To summarize the most important terms in a nutshell:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Scrum is a collection of agile software development methods for project planning and implementation&lt;/li&gt;
+  &lt;li&gt;The product owner defines the goals of the project and validates their achievement&lt;/li&gt;
+  &lt;li&gt;User Stories are the requirements described by the product owner, which are defined from the customer’s point of view&lt;/li&gt;
+  &lt;li&gt;The Scrum Master is a member of the team, which deals with the elimination of problems and thus enables the team to work with the best possible efficiency.&lt;/li&gt;
+  &lt;li&gt;The product backlog contains a collection of all project requirements&lt;/li&gt;
+  &lt;li&gt;The Sprint Backlog contains a selection of these requirements that are to be implemented in the current sprint. 
+Prioritization and selection is made by the product owner, the team agrees to the selection&lt;/li&gt;
+  &lt;li&gt;Daily Scrum is the daily briefing of the team to discuss possible problems and obstacles.&lt;/li&gt;
+  &lt;li&gt;Sprint planning is the planning of the sprint before its execution, which usually takes a complete day (so much for “Agile software development does without extensive planning”)&lt;/li&gt;
+  &lt;li&gt;Sprint Review is the final discussion and presentation of results after a sprint with the product owner&lt;/li&gt;
+  &lt;li&gt;The Sprint Retrospective takes place after the Sprint Review and serves as an agreement within the team regarding points for improvement&lt;/li&gt;
+  &lt;li&gt;An increment is the result of a sprint, which is part of the project result, i.e. the product&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So much for the rough plan. But what does Scrum have to offer? And why should I use Scrum and not another agile development methodology? 
+First of all: Most teams do not work strictly according to a specific agile methodology such as Scrum or Kanban, 
+but roughly follow one and adapt it to the individual needs. 
+So if you choose to use Scrum, that doesn’t mean you can’t make customizations or add your own tools.&lt;/p&gt;
+
+&lt;p&gt;In general, working according to agile principles does not always make sense. 
+The resulting self-responsible way of working does not suit every team and does not make sense for all tasks. 
+Nevertheless, there are also many scenarios where the application of the appropriate methodology can make sense.&lt;/p&gt;
+
+&lt;p&gt;There are some disadvantages of agile methodology, which I would now like to discuss. 
+Agile methods require a strong involvement of the customer. 
+The product owner is usually an employee of the customer who is very familiar with the project. 
+However, if the partner company is not or only little familiar with agile methods, 
+it is often not easy to convey to the customer why he should spend a not inconsiderable amount of his employee’s time on the project. 
+It is very important to give the customer an understanding of the procedure and to actively involve him.&lt;/p&gt;
+
+&lt;p&gt;It is also essential to understand the basics and use agile methods, not only the convenient ones, 
+but also those that may seem annoying in the beginning. Another point is the culture of intolerance to mistakes often found in larger, 
+older farms. Mistakes are important because you learn from them and thus improve. 
+These errors must be communicated in a team and possible solutions discussed. 
+If members are afraid to express their concerns and problems, a Scrum project will most likely fail.&lt;/p&gt;
+
+&lt;p&gt;Teams that are new to this approach may also be unsure about the flat hierarchies and the apparent lack of responsibilities. 
+Here it can help to integrate an experienced Scrum-Master into the team.&lt;/p&gt;
+
+&lt;p&gt;Scrum does not define any concrete recommendations for action, but only principles and methods that can be applied. 
+The exact selection and structure is then left to the team, 
+which is certainly also an obstacle in initial contacts with agile software developers.&lt;/p&gt;
+
+&lt;p&gt;Nevertheless, there are some advantages that Scrum offers compared to classical methods: The rules are quick and easy to learn. 
+To use Scrum in a team, no extensive training is required, the principles are easy to learn and can be introduced quickly. 
+The communication channels are short and flexible, 
+which means that changes can be reacted to quickly and problems can be contained quickly.&lt;/p&gt;
+
+&lt;p&gt;The high level of transparency due to the high degree of communication and the continuous improvement process ensures 
+that problems are dealt with quickly and thus enables the team to be highly efficient.&lt;/p&gt;
+
+&lt;h2 id=&quot;résumé&quot;&gt;Résumé&lt;/h2&gt;
+
+&lt;p&gt;Finally, the choice of methodology is not a general one, but depends on many different conditions, both for the team and the project. 
+And in terms of agile software development, there is not only Scrum. 
+Hopefully this article gave you a rough overview of the approach with Scrum. 
+In a follow-up post I will describe alternative concepts so that you can form your own picture and decide what is best for your project. 
+However, in my experience I prefer Scrum over for example Kanban when working with a larger team. For personal and smaller projects, 
+I usually use Kanban. But that’s the topic for the next post. Stay tuned!&lt;/p&gt;
+</description>
+        <pubDate>Sun, 15 Jul 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/07/agile-get-started-with-scrum</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/07/agile-get-started-with-scrum</guid>
+        
+        <category>development</category>
+        
+        <category>software</category>
+        
+        <category>methodology</category>
+        
+        <category>scrum</category>
+        
+        <category>management</category>
+        
+        <category>agile</category>
+        
+        <category>project</category>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>Docker - Installation and First Steps</title>
@@ -620,138 +872,6 @@ I kept this promise for 14 years until I successfully finished my first 10K last
         
         
         <category>life</category>
-        
-      </item>
-    
-      <item>
-        <title>C# - Mastering the Basics - The Repository Pattern</title>
-        <description>&lt;p&gt;There’s a very large number of articles about the repository pattern out there.
-Nevertheless, most of them overlap in the description and cause confusion among developers.
-For this reason I decided to write my own article to document my opinion.&lt;/p&gt;
-
-&lt;p&gt;In this article I will first clarify the what and why of the repository pattern.
-Afterwards I will explain how the pattern can look like in C#.&lt;/p&gt;
-
-&lt;p&gt;In his book, Patterns of Enterprise Application Architecture, Martin Fowler describes the Repository Pattern as a “Mediate between the domain and data mapping layers, acting like an in-memory collection of domain objects”.&lt;/p&gt;
-
-&lt;p&gt;The following benefits of utilizing this pattern are usually listed when reading articles on the topic:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Minimize query logic&lt;/li&gt;
-  &lt;li&gt;Decoupling from persistence frameworks&lt;/li&gt;
-  &lt;li&gt;Easier testing&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The idea of reducing query logic refers to the reusability of code. Imagine you work directly on a collection. If you need a certain subset of the stored objects, you will query them via LINQ. But chances are, you won’t need this query logic in just one place. However, since the entire collection is available everywhere, you will implement this logic in each place, resulting in duplicated code. The alternative is to move this logic to the repository. All code elements involved then retrieve the subset from this.&lt;/p&gt;
-
-&lt;p&gt;The decoupling from persistence frameworks follows the same principle. The connection to data storage only takes place in the repository. The business logic only accesses the repository, the implementation details are irrelevant at this point. This means that the repository can be exchanged at any time, for example with another ORM or even to a new storage strategy.&lt;/p&gt;
-
-&lt;p&gt;The idea behind the simplification of testability is to make repositories easily exchangeable by using an interface and thus to be able to easily implement a mock repository. But this is not a peculiarity of the repository pattern, so I don’t really see this point as an advantage of the pattern.&lt;/p&gt;
-
-&lt;h2 id=&quot;in-a-nutshell&quot;&gt;In a Nutshell&lt;/h2&gt;
-
-&lt;p&gt;As mentioned above, the basic idea of the repository pattern is to design an intermediate layer so that the business logic can operate as if on an in-memory collection. In a very simple way, this interface can look like this:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Add(obj)&lt;/li&gt;
-  &lt;li&gt;Remove(obj)&lt;/li&gt;
-  &lt;li&gt;Get(id)&lt;/li&gt;
-  &lt;li&gt;GetAll()&lt;/li&gt;
-  &lt;li&gt;Find(predicate)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;As you can see, there is no item for saving changes. And that’s exactly where the in-memory collection comes into play. Since the collections only contain object references, the entries can be edited directly.&lt;/p&gt;
-
-&lt;p&gt;Nevertheless, database entries must somehow be persisted. This is where the Unit-of-Work Pattern comes in. Again, from Martin Fowler: A unit of work maintains a list of objects affected by a business transaction and coordinates the writing out of changes.&lt;/p&gt;
-
-&lt;p&gt;So this means that we will combine one or more repositories with a single unit of work which will persist changes to the database. An interface for a basic unit of work could have the following methods and properties:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;IMyRepository MyRepository { get; }&lt;/li&gt;
-  &lt;li&gt;SaveChanges();&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Of course, in a real application, there would be some more repositories.&lt;/p&gt;
-
-&lt;p&gt;If you look at the whole thing now, you might get the idea that Entity Framework already implements these mechanisms. More precisely, a DbSet looks like a repository and a DbContext like a unit of work. Let’s take a closer look:&lt;/p&gt;
-
-&lt;p&gt;At a surface level, a DbSet looks like a repository. It provides access to a collection and allows you to edit, add and remove entries. Using the DbContext you can persist changes afterwards. However, this approach is problematic in view of the previously defined advantages of the repository pattern: One point was the reduction of duplicated source code by outsourcing functionalities with regard to special subsets. With this approach here the pure collection is published and worked with. The result is exactly what we want to avoid, namely the direct selection and projection of items from the collection.&lt;/p&gt;
-
-&lt;p&gt;The use of DbContext is also not suitable here. Another positive argument of the repository pattern was the decoupling of persistence frameworks. This contradicts the approach, since the business logic would be tied to Entity Framework.&lt;/p&gt;
-
-&lt;p&gt;So while DbSet and DbContext look like implementations of the repository and unit of work pattern, they don’t provide the architectural benefits, which is why you still have to provide your own implementation for this.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 13 May 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/05/c-mastering-the-basics-repository-pattern</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/05/c-mastering-the-basics-repository-pattern</guid>
-        
-        <category>dotnet</category>
-        
-        <category>csharp</category>
-        
-        <category>development</category>
-        
-        <category>programming</category>
-        
-        
-        <category>csharp</category>
-        
-      </item>
-    
-      <item>
-        <title>Learning to Learn</title>
-        <description>&lt;p&gt;How often did you tell yourself that you want to learn a specific skill and you either stopped while learning it or learned it but never managed to apply it in your workflow?&lt;/p&gt;
-
-&lt;p&gt;I bet you encountered both situations more than once. In this article, I’ll cover my method on how I learn new skills efficiently and actually remember the stuff I read.&lt;/p&gt;
-
-&lt;p&gt;In this post, I’d like to share my thoughts and experiences in learning new skilly. While my examples are mostly centered around programming and software development, I’m sure that you can apply the most of the principles in other topics as well.&lt;/p&gt;
-
-&lt;h2 id=&quot;learning-bydoing&quot;&gt;Learning By Doing&lt;/h2&gt;
-
-&lt;p&gt;You’ve never heard of that idea, have you? Of course you did. Like probably everyone else. Nevertheless, I find it difficult to derive a practical approach.&lt;/p&gt;
-
-&lt;p&gt;One thing that helps me personally very well here is learning under the pressure to immediately apply what I have learned. As a result, I only learn what is absolutely necessary. This usually sticks very well through immediate application.&lt;/p&gt;
-
-&lt;p&gt;Imagine learning to skydive right before jumping out of an airplane. I bet you’ve never been learning as efficient as in that particular situation.&lt;/p&gt;
-
-&lt;p&gt;While this is a very efficient approach, it is certainly not what we would like to see in everyday life. Firstly due to the stress involved, but also due to the lack of an overall view.&lt;/p&gt;
-
-&lt;p&gt;A great way to create a similar environment is to set goals for what you’re learning which requires to apply the newly learned skills. For example, let’s say you’d like to get a grasp on relational databases. Of course, you can dig through books or online courses, but I recommend to try and think of an idea where you can both implement the learned expertise.&lt;/p&gt;
-
-&lt;p&gt;To stick to the database example: this could be a simple app to document your cd collection.
-By directly applying new skills, you’ll gain a deeper understanding of the topic and a good feeling of what’s important and what may not right away.&lt;/p&gt;
-
-&lt;h2 id=&quot;my-learningroutine&quot;&gt;My Learning Routine&lt;/h2&gt;
-
-&lt;p&gt;While the whole &lt;em&gt;learning by doing&lt;/em&gt; approach makes a lot of sense, you’ll probably miss some important or interesting facts. To prevent overly complicated solutions, I created my own learning routine. The main thought of it is not to learn anything, but to learn how to look something up when it’s needed.&lt;/p&gt;
-
-&lt;p&gt;When you’re reading non-fiction, let’s say a book about a new programming language, you probably won’t try out every part of the printed syntax. However, chances are that you might stumble across a situation while coding when you think “hey, I think I read about something that could really help me here”. And at this point, you’ll be able to look it up again and implement the code as you like. You don’t have to learn any detail of whatever you’re learning. 
-Most of the time you will find a Pareto distribution of the relevance of what you have learned and the effort involved. Assuming you learn one thing 100%, then you will have learned 80% of the knowledge with 20% of the effort. Details are often nice to have, but mostly not absolutely necessary. Use this to set your focus accordingly.&lt;/p&gt;
-
-&lt;p&gt;I use the following steps for learning a new topic:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Gather information. These can also be thicker books, but be sure to use a few different sources.&lt;/li&gt;
-  &lt;li&gt;Go through the tables of contents of your sources and match them&lt;/li&gt;
-  &lt;li&gt;Use your summarized tables of contents to define an overview of exactly what you want to learn.&lt;/li&gt;
-  &lt;li&gt;If possible, think of an overall goal that you can use to track and monitor your learning progress. If necessary, you can also create a separate goal for each sub-topic.&lt;/li&gt;
-  &lt;li&gt;Be consistent during learning. Try to learn a little something every day, instead of fewer larger blocks. Only half an hour a day is enough for this.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;That’s all I’m using. How you divide up your time is of course left to you. However, the example of 30 minutes per day should make it clear that even short times can bring great progress, after all, this brings you to 30 hours per month.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 03 May 2018 20:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/05/learning-to-learn</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/05/learning-to-learn</guid>
-        
-        <category>efficiency</category>
-        
-        <category>productivity</category>
-        
-        <category>self</category>
-        
-        
-        <category>productivity</category>
         
       </item>
     

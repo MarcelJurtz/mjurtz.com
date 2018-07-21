@@ -1,6 +1,6 @@
 ---
 title: 'Agile - Get Started with Kanban'
-date: 2018-07-22T06:00:00+00:00
+date: 2018-07-21T06:00:00+00:00
 author: Marcel Jurtz
 layout: post
 permalink: /2018/07/agile-get-started-with-kanban

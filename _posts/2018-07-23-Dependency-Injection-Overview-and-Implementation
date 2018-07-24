@@ -88,7 +88,6 @@ public class User
 
 IContactOption contactOption = new EMailContact();
 User marcel = new User(contactOption);
-
 {% endhighlight %}
 
 The second category is the Setter Injection. No constructor parameter is used, but a property, which is set from the outside.

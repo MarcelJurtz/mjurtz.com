@@ -6,9 +6,283 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 21 Jul 2018 23:20:57 +0200</pubDate>
-    <lastBuildDate>Sat, 21 Jul 2018 23:20:57 +0200</lastBuildDate>
+    <pubDate>Tue, 24 Jul 2018 19:51:58 +0200</pubDate>
+    <lastBuildDate>Tue, 24 Jul 2018 19:51:58 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Dependency Injection - Overview and Implementation</title>
+        <description>&lt;p&gt;Especially when you are at the beginning of your career as a software developer, you probably know that: 
+You have already picked up the term “Dependency Injection”, but can’t do anything with it directly? 
+Then today’s post is for you!&lt;/p&gt;
+
+&lt;p&gt;I will introduce you to the principle, functionality and the types of dependency injection. 
+Finally, I’ll show you how to write a simple IoC container. And don’t worry if you are unfamiliar with the different terms, 
+I will explain everything, you don’t need any previous knowledge. 
+However, certain basic knowledge in software development is definitely an advantage today. 
+My code examples are written in C#, but you will have no problems understanding them if you are used to another programming language.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-dependency-injection&quot;&gt;What is Dependency Injection?&lt;/h2&gt;
+
+&lt;p&gt;Dependency Injection (DI) is a term from the topic area “Inversion of Control” (IoC). 
+IoC is a fundamental concept, DI is its implementation. An IoC container is a framework for dependency injection.&lt;/p&gt;
+
+&lt;p&gt;DI is the last point of Robert Martin’s SOLID principle. 
+Martin defines that high-level modules should not depend on low-level modules, instead an abstraction level should be used. 
+The easiest way to get a grasp on the concept is to look at an example: 
+Let’s think of a program which processes input from the keyboard and sends it to a printer. 
+This can be implemented by combining a class “printer” and “keyboard”. So far, so good. 
+However, this approach becomes problematic if the code should be extended, for example to support other input or output devices.&lt;/p&gt;
+
+&lt;p&gt;Martin’s solution is to use abstraction layers that could be implemented as follows: 
+Instead of the communication between the concrete classes “printer” and “keyboard”, 
+the abstractions “reader” and “writer” are used. These can be base classes, from which the concrete classes then inherit. 
+The program flow only requires access to the base class, the implementation details are irrelevant. 
+Changes and extensions are now possible without any problems.&lt;/p&gt;
+
+&lt;h2 id=&quot;and-what-is-inversion-of-control&quot;&gt;And what is Inversion of Control?&lt;/h2&gt;
+
+&lt;p&gt;IoC is the underlying concept behind DI. As the name suggests, there is a inversion of control flow in the program. 
+Different use cases are imaginable, for example inversion of control over the flow of the application, 
+but also inversion of control over instantiation and binding of dependencies.&lt;/p&gt;
+
+&lt;p&gt;The first of these cases can be thought of as a comparison between a typical console application and a GUI application. 
+The console application determines the process flow and waits for user interaction, 
+while the user determines the process flow for the GUI application.&lt;/p&gt;
+
+&lt;p&gt;The second case aims to create required elements before they are required. In concrete terms, 
+this means that objects are not created in the class in which they are needed, but before. 
+They are then bound using constructor parameters or property setters, for example.&lt;/p&gt;
+
+&lt;p&gt;Other techniques that follow this approach include the factory pattern or the service locator pattern.&lt;/p&gt;
+
+&lt;h2 id=&quot;di-in-action&quot;&gt;DI in Action&lt;/h2&gt;
+
+&lt;p&gt;Enough theory. The best way to understand the concept is to use examples. 
+There are three types of dependency injection that I want you to understand:&lt;/p&gt;
+
+&lt;p&gt;Constructor Injection is probably the most commonly used type. 
+A class is created and passed to the dependent class using constructor parameters 
+instead of being instantiated in the dependent class itself.&lt;/p&gt;
+
+&lt;p&gt;The following example illustrates this with the class User, 
+which accepts a constructor parameter of type IContactOption. 
+The instance of an implementation of the interface is not created in the class itself, 
+but is specified externally. The interface only has a SendMessage method.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_primaryContact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;_primaryContact&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// …&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;EMailContact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;marcel&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The second category is the Setter Injection. No constructor parameter is used, but a property, which is set from the outside.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PrimaryContact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// …&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;EMailContact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;marcel&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;marcel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PrimaryContact&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The last category is a little bit more complicated, you will find this form in the real world much rarer than the other two. 
+Interface injection is based on the dependent class implementing an interface for setting a variable.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IDependOnContactOption&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Inject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IDependOnContactOption&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_primaryContact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Inject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;_primaryContact&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// …&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;EMailContact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;marcel&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;marcel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Inject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Well, that’s actually it. The implementation of the concept is far less complicated than the theory. 
+However, we still lack the concrete application in our project, which will be discussed next. 
+But first, I would like to issue a warning:&lt;/p&gt;
+
+&lt;p&gt;DI has a lot of advantages, but you should be careful with its use. 
+DI leaks implementation details of your classes and thus contradicts the principle of encapsulation. 
+In addition, the corresponding objects are always created before they are even needed. 
+Here you should keep an eye on the performance of your application and decide when you really need the approach. 
+DI also partially obscures problems in the structure of your classes. 
+Testing your applications will be much easier because you can easily pass mocks, 
+but you may overlook indications that a class should be divided into two or more components.&lt;/p&gt;
+
+&lt;h2 id=&quot;structure-of-an-ioc-container&quot;&gt;Structure of an IoC Container&lt;/h2&gt;
+
+&lt;p&gt;An IoC container is a framework for implementing dependency injection. 
+The basic feature here is the automatic resolution of dependencies via an overall class, the so-called resolver. 
+Let’s look at the following implementation:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Resolver&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ResolveContactOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;EMailContact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This very simple example returns an EMailContact object for the IContactOption request. 
+In practice, of course, you will have several options here, but there is already a problem with this implementation: 
+it cannot be extended. Each interface I want to support requires its own method. 
+I would prefer an implementation that allows something like: IContactOption contactOption = resolver.Resolve&lt;IContactOption&gt;();&lt;/IContactOption&gt;&lt;/p&gt;
+
+&lt;p&gt;And that is exactly what we want to implement now. 
+This can be achieved by creating a Dictionary&amp;lt;Type, Type&amp;gt; to link the interfaces with the appropriate values. 
+The entries must be accessible from the outside. 
+Then, when requesting an implementation by calling resolve with its interface as argument, 
+I will receive an instance of the concrete class.&lt;/p&gt;
+
+&lt;p&gt;To be able to test this more easily, I have adapted my previous classes as follows:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IContactOption&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SendMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EMailContact&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SendMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;An email has been sent!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_primaryContact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;_primaryContact&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contactOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Contact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;_primaryContact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;SendMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The resolver is implemented as follows: I’ve created  a method for registering classes and interfaces. 
+The resolve-part is done by implementing a method that allows instances to be retrieved using the predefined matching rules. 
+The resolving process is as follows: The system first checks whether a suitable entry is stored in the dictionary. 
+If this is the case, the system checks whether the stored type has constructor parameters that must be instantiated. 
+In the case of a default constructor without parameters, the type is instantiated and this instance is returned. 
+Otherwise, the constructor parameters are collected and also instantiated. Here, too, the new instance is returned. 
+This way, I’m able to support nested objects.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Resolver&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dictionary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_registrations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Resolver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;_registrations&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Dictionary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;();&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;_registrations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;typeToResolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resolvedType&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;resolvedType&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_registrations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;typeToResolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KeyNotFoundException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constructor&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resolvedType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetConstructors&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;First&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constParams&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetParameters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;constParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Activator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;CreateInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;resolvedType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;IList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parameters&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parameter&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constParams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;parameters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parameter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ParameterType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Invoke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parameters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ToArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;To be able to use the container now, only the registration of the relevant types is necessary. This may look like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;resolver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;resolver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Register&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IContactOption&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;EMailContact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;();&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;marcel&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;resolver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;User&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;marcel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Contact&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The parameter IContactOption for User is automatically instantiated and assigned as EMailContact by the mapping. The call in the last line accordingly outputs the text “An email has been sent”.&lt;/p&gt;
+
+&lt;h2 id=&quot;résumé&quot;&gt;Résumé&lt;/h2&gt;
+
+&lt;p&gt;In a real application you will hardly implement your own IoC container, but use existing solutions. 
+Nevertheless, I found the own implementation very helpful in order to be able to better understand the actual concept.
+If you want to look at the available solutions, Unity (not the gaming engine), 
+Castle Windsor and Ninject are probably the most widely used products (for C#). 
+However, the way this works is all similar (though not quite as primitive) to our own implementation.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 23 Jul 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/07/dependency-injection-overview-and-implementation</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/07/dependency-injection-overview-and-implementation</guid>
+        
+        <category>development</category>
+        
+        <category>software</category>
+        
+        <category>pattern</category>
+        
+        <category>IoC</category>
+        
+        <category>DI</category>
+        
+        <category>CSharp</category>
+        
+        
+        <category>programming</category>
+        
+      </item>
     
       <item>
         <title>Agile - Get Started with Kanban</title>
@@ -815,63 +1089,6 @@ COPY src/ /var/www/html/  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
         
         
         <category>csharp</category>
-        
-      </item>
-    
-      <item>
-        <title>Step Outside Your Comfort Zone!</title>
-        <description>&lt;p&gt;We humans tend to make ourselves comfortable. We take the easiest way we can find. But there are so many things we miss this way. In many cases it is the small things that make a big difference. Today I would like to show you how I have taken such a step and what has changed since then.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/2018/comfort_zone_header.png&quot; alt=&quot;Step outside your comfort zone - Header&quot; /&gt;
-&lt;a href=&quot;https://unsplash.com/photos/mQVWb7kUoOE&quot;&gt;Photo by Jenny Hill on Unsplash&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;As a child I did athletics for several years. I did the standard disciplines and I really enjoyed it. But I never trained any endurance related disciplines besides the regular 3 laps to get warmed up.&lt;/p&gt;
-
-&lt;p&gt;Some day, at a regular tournament, my coach had me signed up for the 1000 meter runs. It was hell. That day, seven year old me decided to never participate in something like this again.&lt;br /&gt;
-I kept this promise for 14 years until I successfully finished my first 10K last week. By choice.&lt;/p&gt;
-
-&lt;h2 id=&quot;from-0-to-running&quot;&gt;From 0 To Running&lt;/h2&gt;
-
-&lt;p&gt;If you had asked me during my school days what I would have despised most about sports lessons, I would certainly have answered with “endurance runs”.&lt;/p&gt;
-
-&lt;p&gt;Last September, I decided that I needed change. I wanted to get in general better shape and I wanted to really challenge myself. I thought that the most difficult thing I could try to stick to would be running. Simply because I wanted to prove to myself that I can do it, no matter how much I hate it.&lt;/p&gt;
-
-&lt;p&gt;At first I tried just to run regularly. But I quickly realized that I lacked planning and motivation. On Reddit I came across the C25K (Couch to 5K) program, which seemed to be tailored to my plan. At this point, I’d like to give a big shoutout to the c25k subreddit, the community is amazing and they really support each other. Definitely check it out.&lt;/p&gt;
-
-&lt;p&gt;The idea of the program is simple. Install an app that will help you train within 8 weeks so that you can run a 5 km run in 30 minutes without taking a break.&lt;/p&gt;
-
-&lt;p&gt;The training is based on 3 runs per week, with the training schedule becoming more intensive every week. Training here means changing between walking and running, whereby the running intervals become longer and the walking intervals shorter as you progress.&lt;/p&gt;
-
-&lt;p&gt;And that really works. While the programme is not easy, I think it is feasible in any case. I never thought I’d actually do this, but it works. After 8 weeks I exceeded my target and was ready for further progress.&lt;/p&gt;
-
-&lt;p&gt;We had a pretty cold winter in southern germany and running was quite difficult. In January, I got the flu and had to stop training. It took arount one month until I got myself together and decided to continue. There’s a follow-up app C210K available and I decided to try it out. However, I didn’t really manage to stick to the program as I did with c25k.&lt;/p&gt;
-
-&lt;p&gt;One day later, I signed up for a 10K near my hometown which will take place in early may 2018. This way, I forced myself to train for that. Surrender was no option and my goal was to do the whole thing without walking.&lt;/p&gt;
-
-&lt;p&gt;Eventuall, may came around and I was a bit behind when looking at my goal. I managed to run 8 KM and figured, I could do 10 at the run.&lt;/p&gt;
-
-&lt;p&gt;While the first few kilometres where quite heavy, I really got into it and made the full distance without stopping. Also, I did it in less than an hour.&lt;/p&gt;
-
-&lt;h2 id=&quot;call-to-action&quot;&gt;Call to Action&lt;/h2&gt;
-
-&lt;p&gt;Training alone and going through the program alone is not easy. If you have the possibility to do the whole thing with a partner and you can push each other, this will definitely help you. But even on your own, with a little self-discipline the whole thing is quite feasible.&lt;/p&gt;
-
-&lt;p&gt;But I don’t want to limit this example to my experience, I would say that it can be applied to many different areas of life. Think about why you loathe something. And then try to see the whole thing from a different angle and fight against the laziness. And I’m sure the odds are good that you’ll actually enjoy it. After all, we are growing on challenges, not on dull activities.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 31 May 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/05/step-outside-your-comfort-zone</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/05/step-outside-your-comfort-zone</guid>
-        
-        <category>motivation</category>
-        
-        <category>discipline</category>
-        
-        <category>self</category>
-        
-        <category>fitness</category>
-        
-        
-        <category>life</category>
         
       </item>
     

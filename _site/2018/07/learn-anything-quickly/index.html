@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>How I Learn Anything Quickly</title>
+  <meta name="description" content="As a software developer, you are probably well aware of the feeling: You are overwhelmed by the amount of interesting stuff you want to test and learn. But I...">
+  
+  <meta name="author" content="Marcel Jurtz">
+  <meta name="copyright" content="&copy; Marcel Jurtz 2018">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://blog.mjurtz.com/2018/07/learn-anything-quickly">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <!--
+    <a href="/" class="logo">
+      
+      <span>Marcel Jurtz</span>
+      
+    </a>
+  -->
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <!--
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/typography/">Typography</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/gamedev/">gamedev</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/unity/">unity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/git/">git</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/programming/">programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tools/">tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/android/">android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/app/">app</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/baseball/">baseball</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/development/">development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/editor/">editor</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcache/">bitcache</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcoin/">bitcoin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cryptocurrency/">cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/dotnet/">dotnet</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-dotnet/">asp-dotnet</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">csharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/rest/">rest</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/servicestack/">servicestack</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/software/">software</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/windows/">windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/efficiency/">efficiency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/productivity/">productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/network/">network</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/p2p/">p2p</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/syncthing/">syncthing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/xamarin/">xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/clean-code/">clean-code</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/design/">design</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/layout/">layout</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/sideproject/">sideproject</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/dotnet-core/">dotnet-core</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/linux/">linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/3d-printing/">3d-printing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/raspberry-pi/">raspberry-pi</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/email/">email</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/encryption/">encryption</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/self/">self</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/blog/">blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/web/">web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ruby/">ruby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/javascript/">javascript</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/jekyll/">jekyll</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/motivation/">motivation</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/discipline/">discipline</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/fitness/">fitness</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-net/">asp.net</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/css/">css</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/html/">html</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tfs/">tfs</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/svn/">svn</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/docker/">docker</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/containers/">containers</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/book/">book</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/review/">review</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ferriss/">ferriss</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/life/">life</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/business/">business</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/methodology/">methodology</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/scrum/">scrum</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/management/">management</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/agile/">agile</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/project/">project</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/kanban/">kanban</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/pattern/">pattern</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ioc/">IoC</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/di/">DI</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/learn/">learn</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/game-development/">game-development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tools/">tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/android/">android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/cryptocurrency/">cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">csharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/productivity/">productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tips/">tips</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/xamarin/">xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/hobby/">hobby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/security/">security</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/linux/">linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/blog/">blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/windows/">windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/life/">life</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/web/">web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/programming/">programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/development/">development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/books/">books</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/learn/">learn</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    -->
+      <ul id="js-navigation-menu" class="navigation-menu-show">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="/feed.xml">RSS</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">How I Learn Anything Quickly</h1>
+      <p class="info">by <strong>Marcel Jurtz</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">July 29, 2018</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/learn">Learn</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>As a software developer, you are probably well aware of the feeling: 
+You are overwhelmed by the amount of interesting stuff you want to test and learn. 
+But I’m sure that this problem is also very common in other fields.</p>
+
+<p>If you feel like me, you may read and watch various books, blog articles or online courses, 
+but you won’t really keep much of their contents.</p>
+
+<p>In today’s article, I’d like to help you to learn more effectively about the topics that really interest you, wasting less time.</p>
+
+<p>I apologize in advance for all my personal examples coming from my projects as a software developer, 
+but I’m sure you can draw parallels and transfer my experience to your own even without the appropriate knowledge.</p>
+
+<p>Before we dive in, I would like to introduce you to a tool that has often helped me when I was looking for an initial idea of a topic: 
+learn-anything.xyz is a website that lists sources based on a keyword that offers you learning materials. 
+There are many different topics and it can’t hurt to drop by here.</p>
+
+<p>Before I restructured my learning flow, I used to google for “How to learn XY” and work through the first tutorial I could find. 
+You can certainly imagine that this is not really effective. Often the contents are outdated, incomplete or just incorrect. 
+Another problem I often had is watching video tutorials without trying out the acquired skills directly. 
+Based on the idea “That looks easy” I watched the whole video and didn’t even get a simple “Hello World” application to run afterwards.</p>
+
+<p>I have fundamentally revised my process of learning new things. My new concept can be described in a single sentence:</p>
+
+<p>Don’t learn without a reason</p>
+
+<p>Don’t learn anything just because it’s hip or because everyone else seems to use it. 
+Learn something because you are enthusiastic about it and, more importantly, because you have a real application for it. 
+Vice versa, of course, if you have an idea for something, you can also use this opportunity to learn something new, 
+i.e. to implement it with a different technology or something similar.</p>
+
+<p>For example, I had the idea to write a simple app to manage lists. The application should only be able to manage shopping lists, 
+for example, as efficiently and uncomplicatedly as possible. 
+The apps I found on this topic were simply too bulky and cumbersome for my application, which is why I decided to write my own.</p>
+
+<p>I took the opportunity to improve my knowledge in Android development. 
+I’ve hardly ever worked with the integrated SQLite database on Android, 
+and I’ve decided to try an OR mapper that I’ve only read a little about so far 
+(For everyone who’s interested: Room for Android, 
+I’ve got a post on the topic <a href="https://blog.mjurtz.com/2018/02/introduction-to-room-for-android/">here</a>. 
+For those who don’t know: an OR mapper is used to transfer data records between an application and a database).</p>
+
+<p>You can see the result <a href="https://blog.mjurtz.com/2018/03/sideproject-sist/">here</a>.</p>
+
+<p>So come up with an idea you need to learn what you’re interested in. 
+Then learn exactly what you need to get ahead with the implementation. 
+This gives you the best opportunity to apply what you have learned and to check immediately whether you have really understood it. 
+At the same time, you have a concrete goal in mind as you learn so that you are able to improve measureming your progress.</p>
+
+<h2 id="tldr">TL;DR</h2>
+
+<p>My concept of learning things quickly and effectively can be summed up in one sentence: Don’t study without a reason.</p>
+
+<ul>
+  <li>Set yourself a specific goal to work towards</li>
+  <li>Break down your goal into small work units</li>
+  <li>Start with the seemingly simple things</li>
+  <li>Learn something when you need it and can put it into practice right away</li>
+</ul>
+
+<p>If you can’t think of anything to take as your goal, you can also simply just recreate existing things.</p>
+
+<p>Finally, you don’t have to learn every facet of something. 
+The important thing - which you will also learn through this concept - is the ability to ask the right questions. 
+In most cases you will be able to find details within a very short time that you don’t have in mind.</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/learn">learn</a>,&nbsp;<a href="/tag/self">self</a>,&nbsp;<a href="/tag/methodology">methodology</a>,&nbsp;<a href="/tag/programming">programming</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=How+I+Learn+Anything+Quickly&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F07%2Flearn-anything-quickly&via=MarcelJurtz"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/07/learn-anything-quickly') + '&title=How I Learn Anything Quickly'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Marcel Jurtz</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <!--
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/typography/">Typography</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/gamedev/">gamedev</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/unity/">unity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/git/">git</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/programming/">programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tools/">tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/android/">android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/app/">app</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/baseball/">baseball</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/development/">development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/editor/">editor</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcache/">bitcache</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcoin/">bitcoin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cryptocurrency/">cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/dotnet/">dotnet</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-dotnet/">asp-dotnet</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">csharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/rest/">rest</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/servicestack/">servicestack</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/software/">software</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/windows/">windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/efficiency/">efficiency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/productivity/">productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/network/">network</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/p2p/">p2p</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/syncthing/">syncthing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/xamarin/">xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/clean-code/">clean-code</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/design/">design</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/layout/">layout</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/sideproject/">sideproject</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/dotnet-core/">dotnet-core</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/linux/">linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/3d-printing/">3d-printing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/raspberry-pi/">raspberry-pi</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/email/">email</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/encryption/">encryption</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/self/">self</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/blog/">blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/web/">web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ruby/">ruby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/javascript/">javascript</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/jekyll/">jekyll</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/motivation/">motivation</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/discipline/">discipline</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/fitness/">fitness</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-net/">asp.net</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/css/">css</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/html/">html</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tfs/">tfs</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/svn/">svn</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/docker/">docker</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/containers/">containers</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/book/">book</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/review/">review</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ferriss/">ferriss</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/life/">life</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/business/">business</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/methodology/">methodology</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/scrum/">scrum</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/management/">management</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/agile/">agile</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/project/">project</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/kanban/">kanban</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/pattern/">pattern</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ioc/">IoC</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/di/">DI</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/learn/">learn</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/game-development/">game-development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tools/">tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/android/">android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/cryptocurrency/">cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">csharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/productivity/">productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tips/">tips</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/xamarin/">xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/hobby/">hobby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/security/">security</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/linux/">linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/blog/">blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/windows/">windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/life/">life</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/web/">web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/programming/">programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/development/">development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/books/">books</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/learn/">learn</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    -->
+    <ul class="pages">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="https://mjurtz.com/Impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:marcel@mjurtz.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">marcel@mjurtz.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/MarcelJurtz" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/MarcelJurtz" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <form action="/search.html" method="get">
+        <label for="search_box">Search Posts</label>
+        <input type="text" id="search_box" name="query">
+        <input type="submit" value="search">
+      </form>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-118762636-1', 'auto');
+  ga('set','anonymizeIp',true);
+  ga('send', 'pageview', {
+    'page': '/2018/07/learn-anything-quickly',
+    'title': 'How I Learn Anything Quickly'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

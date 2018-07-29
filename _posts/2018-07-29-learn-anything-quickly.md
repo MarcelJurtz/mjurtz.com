@@ -1,5 +1,5 @@
 ---
-title: 'How To Learn Anything Quickly'
+title: 'How I Learn Anything Quickly'
 date: 2018-07-29T06:00:00+00:00
 author: Marcel Jurtz
 layout: post
@@ -51,10 +51,10 @@ I took the opportunity to improve my knowledge in Android development.
 I've hardly ever worked with the integrated SQLite database on Android, 
 and I've decided to try an OR mapper that I've only read a little about so far 
 (For everyone who's interested: Room for Android, 
-I've got a post on the topic ![here](https://blog.mjurtz.com/2018/02/introduction-to-room-for-android/). 
+I've got a post on the topic [here](https://blog.mjurtz.com/2018/02/introduction-to-room-for-android/). 
 For those who don't know: an OR mapper is used to transfer data records between an application and a database).
 
-You can see the result ![here](https://blog.mjurtz.com/2018/03/sideproject-sist/).
+You can see the result [here](https://blog.mjurtz.com/2018/03/sideproject-sist/).
 
 So come up with an idea you need to learn what you're interested in. 
 Then learn exactly what you need to get ahead with the implementation. 
@@ -65,10 +65,10 @@ At the same time, you have a concrete goal in mind as you learn so that you are 
 
 My concept of learning things quickly and effectively can be summed up in one sentence: Don't study without a reason.
 
-	- Set yourself a specific goal to work towards
-	- Break down your goal into small work units
-	- Start with the seemingly simple things
-	- Learn something when you need it and can put it into practice right away
+* Set yourself a specific goal to work towards
+* Break down your goal into small work units
+* Start with the seemingly simple things
+* Learn something when you need it and can put it into practice right away
 
 If you can't think of anything to take as your goal, you can also simply just recreate existing things.
 

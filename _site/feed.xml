@@ -6,9 +6,93 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 24 Jul 2018 19:51:58 +0200</pubDate>
-    <lastBuildDate>Tue, 24 Jul 2018 19:51:58 +0200</lastBuildDate>
+    <pubDate>Sun, 29 Jul 2018 08:09:38 +0200</pubDate>
+    <lastBuildDate>Sun, 29 Jul 2018 08:09:38 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>How I Learn Anything Quickly</title>
+        <description>&lt;p&gt;As a software developer, you are probably well aware of the feeling: 
+You are overwhelmed by the amount of interesting stuff you want to test and learn. 
+But I’m sure that this problem is also very common in other fields.&lt;/p&gt;
+
+&lt;p&gt;If you feel like me, you may read and watch various books, blog articles or online courses, 
+but you won’t really keep much of their contents.&lt;/p&gt;
+
+&lt;p&gt;In today’s article, I’d like to help you to learn more effectively about the topics that really interest you, wasting less time.&lt;/p&gt;
+
+&lt;p&gt;I apologize in advance for all my personal examples coming from my projects as a software developer, 
+but I’m sure you can draw parallels and transfer my experience to your own even without the appropriate knowledge.&lt;/p&gt;
+
+&lt;p&gt;Before we dive in, I would like to introduce you to a tool that has often helped me when I was looking for an initial idea of a topic: 
+learn-anything.xyz is a website that lists sources based on a keyword that offers you learning materials. 
+There are many different topics and it can’t hurt to drop by here.&lt;/p&gt;
+
+&lt;p&gt;Before I restructured my learning flow, I used to google for “How to learn XY” and work through the first tutorial I could find. 
+You can certainly imagine that this is not really effective. Often the contents are outdated, incomplete or just incorrect. 
+Another problem I often had is watching video tutorials without trying out the acquired skills directly. 
+Based on the idea “That looks easy” I watched the whole video and didn’t even get a simple “Hello World” application to run afterwards.&lt;/p&gt;
+
+&lt;p&gt;I have fundamentally revised my process of learning new things. My new concept can be described in a single sentence:&lt;/p&gt;
+
+&lt;p&gt;Don’t learn without a reason&lt;/p&gt;
+
+&lt;p&gt;Don’t learn anything just because it’s hip or because everyone else seems to use it. 
+Learn something because you are enthusiastic about it and, more importantly, because you have a real application for it. 
+Vice versa, of course, if you have an idea for something, you can also use this opportunity to learn something new, 
+i.e. to implement it with a different technology or something similar.&lt;/p&gt;
+
+&lt;p&gt;For example, I had the idea to write a simple app to manage lists. The application should only be able to manage shopping lists, 
+for example, as efficiently and uncomplicatedly as possible. 
+The apps I found on this topic were simply too bulky and cumbersome for my application, which is why I decided to write my own.&lt;/p&gt;
+
+&lt;p&gt;I took the opportunity to improve my knowledge in Android development. 
+I’ve hardly ever worked with the integrated SQLite database on Android, 
+and I’ve decided to try an OR mapper that I’ve only read a little about so far 
+(For everyone who’s interested: Room for Android, 
+I’ve got a post on the topic &lt;a href=&quot;https://blog.mjurtz.com/2018/02/introduction-to-room-for-android/&quot;&gt;here&lt;/a&gt;. 
+For those who don’t know: an OR mapper is used to transfer data records between an application and a database).&lt;/p&gt;
+
+&lt;p&gt;You can see the result &lt;a href=&quot;https://blog.mjurtz.com/2018/03/sideproject-sist/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;So come up with an idea you need to learn what you’re interested in. 
+Then learn exactly what you need to get ahead with the implementation. 
+This gives you the best opportunity to apply what you have learned and to check immediately whether you have really understood it. 
+At the same time, you have a concrete goal in mind as you learn so that you are able to improve measureming your progress.&lt;/p&gt;
+
+&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
+
+&lt;p&gt;My concept of learning things quickly and effectively can be summed up in one sentence: Don’t study without a reason.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Set yourself a specific goal to work towards&lt;/li&gt;
+  &lt;li&gt;Break down your goal into small work units&lt;/li&gt;
+  &lt;li&gt;Start with the seemingly simple things&lt;/li&gt;
+  &lt;li&gt;Learn something when you need it and can put it into practice right away&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you can’t think of anything to take as your goal, you can also simply just recreate existing things.&lt;/p&gt;
+
+&lt;p&gt;Finally, you don’t have to learn every facet of something. 
+The important thing - which you will also learn through this concept - is the ability to ask the right questions. 
+In most cases you will be able to find details within a very short time that you don’t have in mind.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 29 Jul 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/07/learn-anything-quickly</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/07/learn-anything-quickly</guid>
+        
+        <category>learn</category>
+        
+        <category>self</category>
+        
+        <category>methodology</category>
+        
+        <category>programming</category>
+        
+        
+        <category>learn</category>
+        
+      </item>
     
       <item>
         <title>Dependency Injection - Overview and Implementation</title>
@@ -1040,55 +1124,6 @@ COPY src/ /var/www/html/  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
         
         
         <category>web</category>
-        
-      </item>
-    
-      <item>
-        <title>Sideproject - ClubGrid</title>
-        <description>&lt;p&gt;It is finally time to announce my latest side project. ClubGrid was originally designed to make it easier for my coach to manage our baseball games. However, the result can be used for clubs of any kind and I hope that I can also help others with my software.&lt;/p&gt;
-
-&lt;p&gt;The problem we had was the organization of games and events. Some players posted their acceptance or rejection via Whatsapp, others via Facebook, some via email and others personally. This made it quite complicated for us to keep track of who is present where and when.&lt;/p&gt;
-
-&lt;p&gt;In addition, there was the assignment of duties. Players alone are not enough, additional umpires, scorers, coaches and people who take care of the sales are needed.&lt;/p&gt;
-
-&lt;p&gt;This finally gave me the idea to solve the problem via a portal, which can be integrated into the existing club website. Team members can register there for events and trainers can see at a glance who is participating and where they would like to help.&lt;/p&gt;
-
-&lt;p&gt;The plan was born. I have some knowledge of PHP and therefore decided to implement the platform with this technology. I started with ER modeling. Then I derived my individual pages from this model and created wireframes for the rough design of the website. And then things were ready to start!&lt;/p&gt;
-
-&lt;p&gt;As I said, I started to implement the website in PHP. That worked quite well, even though it seemed rather messy to me. For the time being, I accepted that and continued to work on my prototype. After some time (I had almost finished the features of the MVP), I nevertheless decided to change technology.&lt;/p&gt;
-
-&lt;p&gt;There were several reasons for my decision. The first obvious thing was the lack of transparency in my source code. But I also didn’t want to limit myself to my basic PHP knowledge. However, since I had no real interest in delving deeper into PHP and wanted to strengthen my knowledge in other areas instead, I decided to implement the application in C#. At that time I had heard of ASP.NET, but that was all. I never used it. So I read the basics and quickly switched to a Pluralsight course to get my hands dirty with a real example.&lt;/p&gt;
-
-&lt;p&gt;I don’t want to say much about ASP.NET (Core) here, but compared to my PHP version I’m thrilled. The code is much better structured, clearer and I was able to make much faster progress.&lt;/p&gt;
-
-&lt;p&gt;Another possibility I took during the development was the use of postgres as the underlying database. Besides the regular functions I haven’t played much with it yet, but so far I have a very positive impression.&lt;/p&gt;
-
-&lt;p&gt;But enough about that. Let’s look at the result:&lt;/p&gt;
-
-&lt;p&gt;ClubGrid is my first real web application. The tech stack of the software consists of ASP.NET Core and PostgreSQL, the connection is made using Entity Framework Core. The software offers clubs the possibility to manage their events internally and thus enables trainers to see the status of the promises at a glance. Originally, I only planned to release the software for my local baseball club, but the software can quickly be extended to support other sports or other clubs in general. &lt;a href=&quot;https://clubgrid.mjurtz.com&quot;&gt;I setup a website for showcasing the application&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;In the next days I will implement the last missing functionalities, so that we can put the first instance live. Then I’d like to make some surface improvements and add support for more sports.&lt;/p&gt;
-
-&lt;p&gt;As soon as all this has happened, I would like to include several options for notifications. I am very curious about what will follow and look forward to any feedback or suggestions for new features!&lt;/p&gt;
-</description>
-        <pubDate>Wed, 13 Jun 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/06/sideproject-clubgrid</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/sideproject-clubgrid</guid>
-        
-        <category>csharp</category>
-        
-        <category>web</category>
-        
-        <category>development</category>
-        
-        <category>programming</category>
-        
-        <category>sideproject</category>
-        
-        <category>asp.net</category>
-        
-        
-        <category>csharp</category>
         
       </item>
     

@@ -3,7 +3,7 @@ title: 'Automated Testing'
 date: 2018-08-05T06:00:00+00:00
 author: Marcel Jurtz
 layout: post
-permalink: /2018/07/automated-testing
+permalink: /2018/08/automated-testing
 categories:
   - programming
 tags:

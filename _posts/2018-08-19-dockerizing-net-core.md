@@ -46,7 +46,7 @@ So on Windows you can use the CMD, Powershell or a counterpart of a third party.
 Docker commands are initiated with the keyword docker. If only this is entered without a subsequent command, 
 a list of available commands is displayed.
 
-**Docker version** gives you information about the installed version of Docker. 
+*Docker version* gives you information about the installed version of Docker. 
 You see two entries here,a server and a client version. The server version will mention a Linux-OS. 
 During installation you could choose between Linux and Windows containers. 
 The Linux containers are selected by default, in this case the containers use the Linux kernel of the host operating system. 
@@ -57,9 +57,9 @@ You can also change your choice of container technology later by selecting the D
 The context menu that appears contains an entry for switching from Linux to Windows (and vice versa). 
 However, Linux containers are the usual variant and I recommend that you use them, unless you have a special reason for changing.
 
-The **docker info** command lists information about the installed images and instantiated containers. 
+The *docker info* command lists information about the installed images and instantiated containers. 
 This list is currently empty because Docker has just been installed. 
-The **docker run hello-world** command starts the image named hello-world. The procedure here is as follows: 
+The *docker run hello-world* command starts the image named hello-world. The procedure here is as follows: 
 	
 * The Docker Client first contacts the Docker Engine (also called Docker Daemon), which determines that the image is not locally available. 
 * It then searches the Docker Hub (a platform for exchanging Docker images) and downloads the appropriate image. 
@@ -67,9 +67,9 @@ The **docker run hello-world** command starts the image named hello-world. The p
 * This output is sent to the Docker Client, which outputs the text in the console.
 
 Downloaded images are kept locally. If you run it again, no new download takes place, the local image is reinstantiated. 
-Images can also be downloaded without being executed immediately. Use the command **docker pull imagename** to do so.
+Images can also be downloaded without being executed immediately. Use the command *docker pull imagename* to do so.
 
-With the command **docker ps** you can view the running containers. 
+With the command *docker ps* you can view the running containers. 
 Here, however, you must note that some containers are started, fulfill a task and are then ended again. 
 Other containers run passively in the background and are not terminated automatically. 
 Examples are web servers or database management systems.
@@ -87,12 +87,12 @@ To do that, simply add a colon, followed by the version after the name of the im
 I think that's enough for now with the basics. Now we will develop our own application with Docker support. 
 I am using Visual Studio Code, so the approach will work on all major operating systems.
 
-With the command **dotnet new console** I instantiate a new console application. 
-The template creates a Hello-World application, which can be started with the command **dotnet run**. 
+With the command *dotnet new console* I instantiate a new console application. 
+The template creates a Hello-World application, which can be started with the command *dotnet run*. 
 Next, we'll take care of linking to Docker.
 
 First, a dockerfile must be created. Dockerfiles describe the structure of an image and are usually based on other images. 
-My application is based on the **microsoft/dotnet:2.1-sdk** image. 
+My application is based on the *microsoft/dotnet:2.1-sdk* image. 
 The dockerfile is created without a file extension with the name dockerfile on csproj file level and it contains the following content:
 
 {% highlight generic %}
@@ -105,17 +105,17 @@ ENTRYPOINT ["dotnet","NET_CORE_Docker.dll"]
 {% endhighlight %}
 
 NET_CORE_Docker is the name of the project. Now an image must be built based on the docker file. 
-This can be done with the command **docker built -t net_core_docker .**.
+This can be done with the command *docker built -t net_core_docker .*.
 
 The dot at the end defines the current directory as the starting point. 
 Net_core_docker is the name of the image, only lowercase letters are allowed.
 
-The image can now be instantiated with **docker run net_core_docker** and the container will be started automatically. 
-As expected, the output is **Hello World!** Our first project is running!
+The image can now be instantiated with *docker run net_core_docker* and the container will be started automatically. 
+As expected, the output is *Hello World!* Our first project is running!
 
 Of course you can also work with Visual Studio instead of VS Code. 
 Docker support is already implemented here and you can add it to your project by simply right-clicking on the project 
-and selecting **Add Docker Support**. The docker file is then created automatically. 
+and selecting *Add Docker Support*. The docker file is then created automatically. 
 
 Our first.NET core application now runs with Docker. 
 Of course, this is not limited to console applications, 

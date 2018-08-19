@@ -6,9 +6,141 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 05 Aug 2018 11:30:13 +0200</pubDate>
-    <lastBuildDate>Sun, 05 Aug 2018 11:30:13 +0200</lastBuildDate>
+    <pubDate>Sun, 19 Aug 2018 15:06:50 +0200</pubDate>
+    <lastBuildDate>Sun, 19 Aug 2018 15:06:50 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Dockerizing .NET Core Apps</title>
+        <description>&lt;p&gt;I have already written two articles about the basics of Docker. 
+While these should provide a general overview of you technology, I would like to illustrate a concrete application example today. 
+I will show you the whole process, from writing a simple application to using it in the form of a Docker Container.&lt;/p&gt;
+
+&lt;p&gt;If you haven’t read my previous articles, you may not have the idea why you should use Docker at all. 
+For a full explanation, I refer to my other articles which you can check out 
+&lt;a href=&quot;/2018/07/docker-getting-started&quot;&gt;here&lt;/a&gt; and 
+&lt;a href=&quot;/2018/07/docker-installation-and-first-steps&quot;&gt;here&lt;/a&gt;. 
+However, I would still like to comment briefly on the idea. Imagine you are writing a.NET application. 
+To use your application you now need a special version of the.NET framework, 
+as well as possibly a suitable database and other dependencies.&lt;/p&gt;
+
+&lt;p&gt;For larger applications it may well be that just installing and setting up the environment is not a trivial task. 
+Over the years, this concept has become simpler, partly through the use of VMs and installation. 
+Nevertheless, according to this approach, an application requires a complete VM, which is not really resource-saving.&lt;/p&gt;
+
+&lt;p&gt;Docker allows you to map all dependencies in the form of a docker image. 
+This image can later be instantiated as a container, which forms a self-contained, isolated unit. 
+You can imagine a container like a VM, but the Docker container does not have its own operating system. 
+Starting and stopping a container does not require a complete startup and shutdown of an operating system, 
+which significantly reduces the loading times.&lt;/p&gt;
+
+&lt;p&gt;So far so good. Please install Docker first, if you haven’t already done so. You will find instructions on how to do this 
+&lt;a href=&quot;/2018/07/docker-installation-and-first-steps&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You have now successfully installed Docker and are ready to go. Before we write our own images, 
+I would like to go into the general usage. Docker is available from the command line. 
+So on Windows you can use the CMD, Powershell or a counterpart of a third party.&lt;/p&gt;
+
+&lt;p&gt;Docker commands are initiated with the keyword docker. If only this is entered without a subsequent command, 
+a list of available commands is displayed.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Docker version&lt;/em&gt; gives you information about the installed version of Docker. 
+You see two entries here,a server and a client version. The server version will mention a Linux-OS. 
+During installation you could choose between Linux and Windows containers. 
+The Linux containers are selected by default, in this case the containers use the Linux kernel of the host operating system. 
+If you are using Windows, Docker will create a minimal Linux VM to serve as host. 
+You can see this when you open the HyperV Manager, there you will see an entry with the name MobyLinuxVM.&lt;/p&gt;
+
+&lt;p&gt;You can also change your choice of container technology later by selecting the Docker icon in the system tray. 
+The context menu that appears contains an entry for switching from Linux to Windows (and vice versa). 
+However, Linux containers are the usual variant and I recommend that you use them, unless you have a special reason for changing.&lt;/p&gt;
+
+&lt;p&gt;The &lt;em&gt;docker info&lt;/em&gt; command lists information about the installed images and instantiated containers. 
+This list is currently empty because Docker has just been installed. 
+The &lt;em&gt;docker run hello-world&lt;/em&gt; command starts the image named hello-world. The procedure here is as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The Docker Client first contacts the Docker Engine (also called Docker Daemon), which determines that the image is not locally available.&lt;/li&gt;
+  &lt;li&gt;It then searches the Docker Hub (a platform for exchanging Docker images) and downloads the appropriate image.&lt;/li&gt;
+  &lt;li&gt;The engine then creates a container containing an application that outputs “Hello World”.&lt;/li&gt;
+  &lt;li&gt;This output is sent to the Docker Client, which outputs the text in the console.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Downloaded images are kept locally. If you run it again, no new download takes place, the local image is reinstantiated. 
+Images can also be downloaded without being executed immediately. Use the command &lt;em&gt;docker pull imagename&lt;/em&gt; to do so.&lt;/p&gt;
+
+&lt;p&gt;With the command &lt;em&gt;docker ps&lt;/em&gt; you can view the running containers. 
+Here, however, you must note that some containers are started, fulfill a task and are then ended again. 
+Other containers run passively in the background and are not terminated automatically. 
+Examples are web servers or database management systems.
+To also display paused and stopped containers, use the flag -a. 
+You can in general interact directly with specific containers. 
+The basis for this is always the container ID, an alphanumeric character string with which the container can be uniquely identified. 
+However, you do not have to enter the entire ID, the first digits are sufficient until no more mix-ups are possible.&lt;/p&gt;
+
+&lt;p&gt;Images are usually tagged. Tags are used to specify a version of an image. 
+If no tag is specified, the latest version is used by default. 
+However, this is not recommended, as it can lead to problems with later releases. 
+So always try to use a specify a version of images you use. 
+To do that, simply add a colon, followed by the version after the name of the image.&lt;/p&gt;
+
+&lt;p&gt;I think that’s enough for now with the basics. Now we will develop our own application with Docker support. 
+I am using Visual Studio Code, so the approach will work on all major operating systems.&lt;/p&gt;
+
+&lt;p&gt;With the command &lt;em&gt;dotnet new console&lt;/em&gt; I instantiate a new console application. 
+The template creates a Hello-World application, which can be started with the command &lt;em&gt;dotnet run&lt;/em&gt;. 
+Next, we’ll take care of linking to Docker.&lt;/p&gt;
+
+&lt;p&gt;First, a dockerfile must be created. Dockerfiles describe the structure of an image and are usually based on other images. 
+My application is based on the &lt;em&gt;microsoft/dotnet:2.1-sdk&lt;/em&gt; image. 
+The dockerfile is created without a file extension with the name dockerfile on csproj file level and it contains the following content:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-generic&quot; data-lang=&quot;generic&quot;&gt;FROM microsoft/dotnet:2.1-sdk
+
+WORKDIR /app
+COPY /bin/debug/netcoreapp2.1/ .
+
+ENTRYPOINT [&quot;dotnet&quot;,&quot;NET_CORE_Docker.dll&quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;NET_CORE_Docker is the name of the project. Now an image must be built based on the docker file. 
+This can be done with the command &lt;em&gt;docker built -t net_core_docker .&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The dot at the end defines the current directory as the starting point. 
+Net_core_docker is the name of the image, only lowercase letters are allowed.&lt;/p&gt;
+
+&lt;p&gt;The image can now be instantiated with &lt;em&gt;docker run net_core_docker&lt;/em&gt; and the container will be started automatically. 
+As expected, the output is &lt;em&gt;Hello World!&lt;/em&gt; Our first project is running!&lt;/p&gt;
+
+&lt;p&gt;Of course you can also work with Visual Studio instead of VS Code. 
+Docker support is already implemented here and you can add it to your project by simply right-clicking on the project 
+and selecting &lt;em&gt;Add Docker Support&lt;/em&gt;. The docker file is then created automatically.&lt;/p&gt;
+
+&lt;p&gt;Our first.NET core application now runs with Docker. 
+Of course, this is not limited to console applications, 
+you can also create an ASP.NET core application with Docker support, for example. However, 
+this article has shown you how to integrate Docker into the development of.NET Core. 
+In addition to deployment, Docker is ideal for test and development environments because you can set up other databases 
+or the like without complex installations and compatibility problems with software already installed. 
+Containers can be installed in parallel without any problems and thus have access to different options.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 19 Aug 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/08/dockerizing-net-core</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/08/dockerizing-net-core</guid>
+        
+        <category>development</category>
+        
+        <category>software</category>
+        
+        <category>docker</category>
+        
+        <category>containers</category>
+        
+        <category>programming</category>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>Automated Testing</title>
@@ -101,8 +233,8 @@ Mocks are representatives of components of an application that, for example,
 simulate a database connection and thus facilitate integration tests. Happy testing!&lt;/p&gt;
 </description>
         <pubDate>Sun, 05 Aug 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/07/automated-testing</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/07/automated-testing</guid>
+        <link>http://blog.mjurtz.com/2018/08/automated-testing</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/08/automated-testing</guid>
         
         <category>development</category>
         
@@ -1048,87 +1180,6 @@ COPY src/ /var/www/html/  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
         
         
         <category>programming</category>
-        
-      </item>
-    
-      <item>
-        <title>C# - Getting Started with Attributes</title>
-        <description>&lt;p&gt;In todays post I want to show you how to use attributes in C#. I have to apologize in advance, though, as I’m going to focus only to a limited extent on why they make sense and what you can use them for, that’s a topic for one of the following articles. Nevertheless, I would like to give you a basic understanding so that you can incorporate this concept into your own applications.&lt;/p&gt;
-
-&lt;p&gt;So what are attributes? Well, attributes themselves are just classes. They can’t do much themselves, but they can still be very helpful, especially on a topic called Reflection, which I will be discussing in the next days.&lt;/p&gt;
-
-&lt;p&gt;Attributes are usually utilised to assign metadata to classes, properties and the like. Attributes inherit from the class &lt;em&gt;Attributes&lt;/em&gt;. According to the convention, their names are always appended with the extension &lt;em&gt;Attributes&lt;/em&gt;. They can be placed on various elements, one speaks of &lt;em&gt;decorating&lt;/em&gt; a class, for example. To restrict the use of a custom attribute, the attribute &lt;em&gt;AttributeUsage&lt;/em&gt; can be used.&lt;/p&gt;
-
-&lt;p&gt;That was a whole bunch of attributes, right? Let us test this with an example, so that it will be easier to understand.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;na&quot;&gt;[AttributeUsage(AttributeTargets.Class | AttributeTargets.Property)]&lt;/span&gt;  
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DemoAttribute&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Attribute&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
-  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Description&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;I created my own attribute, DemoAttribute. I have designed the name according to the convention. I want only properties and classes to be decorated with the attribute, which is why I piped these two options together using the AttributeUsage attribute.&lt;/p&gt;
-
-&lt;p&gt;The attribute has a property called Description. With this I want to describe my classes and properties later. Let us also look at an example.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;na&quot;&gt;[Demo(Description = &quot;Test for class A&quot;)]&lt;/span&gt; 
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ClassA&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
-  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Demo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Description&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Test for Property ClassA.Name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;na&quot;&gt;[Demo(Description = &quot;This is class B&quot;)]&lt;/span&gt; 
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ClassB&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
-
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ClassC&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;I created three classes to test my attribute: ClassA, ClassB and ClassC. I know, very incredibly creative. I decorated classes A and B with my attribute, class C I deliberately ignored. In addition, class A has a property with the attribute.&lt;/p&gt;
-
-&lt;p&gt;Now I want to show you the real purpose of attributes, but for this I have to be a little ahead of schedule. If you are interested in the relevant topics, just search for the keyword &lt;em&gt;Reflection&lt;/em&gt; (oh, and LINQ, if you are new to this).&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classes&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Assembly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetExecutingAssembly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetTypes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
-  &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GetCustomAttributes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DemoAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; 
-  &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
-
-&lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;classes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
-  &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;$&quot;Fount class: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;In this snippet I first obtain all classes in the current assembly that are decorated with the attribute &lt;em&gt;DemoAttribute&lt;/em&gt;. Then I iterate through the result set and simply output the names of the respective classes.&lt;/p&gt;
-
-&lt;p&gt;You can add the following to search the found classes for properties with the same attribute.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;props&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetProperties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
-  &lt;span class=&quot;k&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;IsDefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DemoAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
-  &lt;span class=&quot;k&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
-
-&lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
-  &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;$&quot;Fount property: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Of course, the concept can be extended as far as you like. For example, you can design method calls so that all elements within an assembly or across assemblies are called in this way, thus modularizing your application without creating references between projects. But more about this later. With this short introduction I have only shown the basic idea of attributes. As already mentioned, the use of attributes is a separate topic. Stay tuned!&lt;/p&gt;
-</description>
-        <pubDate>Mon, 18 Jun 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/06/csharp-attributes</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/csharp-attributes</guid>
-        
-        <category>csharp</category>
-        
-        <category>dotnet</category>
-        
-        <category>development</category>
-        
-        <category>programming</category>
-        
-        
-        <category>csharp</category>
         
       </item>
     

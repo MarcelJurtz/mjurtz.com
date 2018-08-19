@@ -277,8 +277,12 @@
 <lastmod>2018-07-29T08:00:00+02:00</lastmod>
 </url>
 <url>
-<loc>http://blog.mjurtz.com/2018/07/automated-testing</loc>
+<loc>http://blog.mjurtz.com/2018/08/automated-testing</loc>
 <lastmod>2018-08-05T08:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/2018/08/dockerizing-net-core</loc>
+<lastmod>2018-08-19T08:00:00+02:00</lastmod>
 </url>
 <url>
 <loc>http://blog.mjurtz.com/about/</loc>
@@ -597,5 +601,8 @@
 </url>
 <url>
 <loc>http://blog.mjurtz.com/page14/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/page15/</loc>
 </url>
 </urlset>

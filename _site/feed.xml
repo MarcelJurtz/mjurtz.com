@@ -6,9 +6,58 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 19 Aug 2018 15:06:50 +0200</pubDate>
-    <lastBuildDate>Sun, 19 Aug 2018 15:06:50 +0200</lastBuildDate>
+    <pubDate>Sun, 26 Aug 2018 20:55:32 +0200</pubDate>
+    <lastBuildDate>Sun, 26 Aug 2018 20:55:32 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Building an MVP - You are doing it wrong</title>
+        <description>&lt;p&gt;The term MVP - Minimum Viable Product is no longer a new word. 
+The term was first coined by Frank Robinson in 2001 and is now used very frequently.&lt;/p&gt;
+
+&lt;p&gt;The basic idea of an MVP is to make a version of a product available to the customer as quickly as possible. 
+The goal is not to generate sales, but to learn. 
+Of course it’s not a bad idea and it’s also the intention to earn money with your product, 
+but the idea here is to put yourself in the customer’s shoes and better understand their needs and requirements. 
+This allows you to use early feedback and improve the quality of your product.&lt;/p&gt;
+
+&lt;p&gt;As you can see, the concept is very simple. But the problem arises during implementation. 
+When we develop a product, we usually already have a fairly clear idea of what the final result should look like. 
+To define how the associated MVP should look, we start cutting features at various points.&lt;/p&gt;
+
+&lt;p&gt;The result of this process is then certainly minimal, but is it also viable? 
+Many teams forget this point and develop a prototype with limited functionality, which is simply not usable. 
+As I mentioned in my article about &lt;a href=&quot;/2018/07/agile-get-started-with-scrum&quot;&gt;Scrum&lt;/a&gt;, the goal of every sprint is to add a working increment to the product. 
+After each iteration the user should have a basic version of his product, enhanced by features of the last sprint.&lt;/p&gt;
+
+&lt;p&gt;The easiest way to illustrate this is with an example: 
+If you want to sell a vehicle to someone, there are (in theory) different levels, each working standalone. 
+From a scooter, a bicycle and a motorcycle to a car, each level has its own functionality that offers the customer added value. 
+Also, each level adds features and functionality to the previous version.&lt;/p&gt;
+
+&lt;p&gt;The approach, which you might find in practice however, could look more like this: 
+The customer receives the tires first, then the mounted underbody, through the body to the fully assembled car. 
+So you can only really do something with the end product.&lt;/p&gt;
+
+&lt;p&gt;So when developing a prototype, keep the goal of adding value in mind. Updates should complement and improve the functionality, 
+but the original product should already be usable.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 26 Aug 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/08/mvp_youre_doing_it_wrong</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/08/mvp_youre_doing_it_wrong</guid>
+        
+        <category>development</category>
+        
+        <category>software</category>
+        
+        <category>management</category>
+        
+        <category>prototyping</category>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>Dockerizing .NET Core Apps</title>
@@ -1129,57 +1178,6 @@ COPY src/ /var/www/html/  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
         
         
         <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>Introduction to VCS</title>
-        <description>&lt;p&gt;When you start learning to program, you rarely think about how you will be able to work on a project at the same time with other people. By the time your side projects take on larger dimensions or you work in a team, you will be confronted with the topic of version control.&lt;/p&gt;
-
-&lt;p&gt;Version control is basically the management of source code, so that several developers can work on the same files at the same time. The sense of a system for monitoring changes can be easily understood by an example:&lt;/p&gt;
-
-&lt;p&gt;Two developers, Bob and John, are working together on a project. They do not use version control and their workflow is as follows:&lt;/p&gt;
-
-&lt;p&gt;The source code is stored on a network drive to which both have access. Every morning they copy the contents of the drive to their local machines. They discuss who is working on which files on that day. Bob decides to work on the connection to the database, while John decides to revise parts of the business logic. At the end of the day, both copy their changed files to the network drive. Since both have worked on different files, this is possible without any problems.&lt;/p&gt;
-
-&lt;p&gt;John now remembers that he also made a small change to the user interface. Knowing that Bob was only working on the database, he simply copies the file to the server. However, Bob also made some changes to this file and he also assumes that John was only updating code in the business logic. He also copies his changes and thus overwrites John’s work.&lt;/p&gt;
-
-&lt;p&gt;When working in this way, precise communication is essential. As the example shows, this procedure is very error-prone, even though only two developers were involved. The coordination effort increases to an immeasurable extent as the number of developers increases.&lt;/p&gt;
-
-&lt;p&gt;I don’t intend to present a multitude of version control systems, but I would like to give you at least a short overview of what has changed as time passed by. I therefore divide the different systems into three generations: Generation 0 works with file locks, Generation 1 consists of CVCS, Centralized Version Control Systems and Generation 2 are the so-called Distributed Version Control Systems (DVCS).&lt;/p&gt;
-
-&lt;p&gt;The first software for version control of files was Source Code Control System (SCSS). The software classifies itself into generation 0 and locks files when they are processed. However, these systems have a significant disadvantage: assuming you want to work on a file that is currently being edited by someone else, you have to wait until they have finished making their changes. You could urge the respective developer to work faster, but he might be sick or on vacation. So it can take quite a while before you can access the file to make your changes. You could now create a local copy of the file and perform your changes right to the copy. As soon as the file itself can be accessed again, you perform a manual merge, i.e. you combine the two files and join the respective changes. However, this is again prone to errors and should be avoided.&lt;/p&gt;
-
-&lt;p&gt;The second generation describes the so-called centralized version control systems. Here you will find a server that manages the source code. To work on a file, a developer must check out this file, i.e. retrieve the latest version of it from the server. I would like to illustrate this again with an example of our already known developers:&lt;/p&gt;
-
-&lt;p&gt;At the moment John wants to make changes to the login.html file. He loads the latest version from the server and starts working. After he has made his modifications, he checks them in, so the file on the server is being updated. In the meantime, Bob has also fetched this file and made some changes. If he wants to check in his modifications again, the server will inform him that the file has been changed in meanwhile. Bob must now perform a merge, which is usually supported or even automated by the software. Once all conflicts (places affected by both changes) have been resolved, the file can be checked in.&lt;/p&gt;
-
-&lt;p&gt;There are many different systems in this category, the best known probably being Subversion (SVN) and Microsoft’s Team Foundation Server (TFS). While these systems are still used very often, a new category was formed around the middle of the 00s: The Distributed Version Control Systems.  First and foremost the best known representative, developed by Linux creator Linus Torvalds: Git. Git’s popularity is certainly also related to the launch of GitHub 2008, but DVCS generally offer advantages over its centralized counterparts.&lt;/p&gt;
-
-&lt;p&gt;The idea of distributed version control systems is that no server is needed to manage the source code. Instead, each copy of the repository contains a full history of all changes made to each file. So, without loading anything from a server, you can reconstruct any point in time of your software. You can also work offline and share your changes with your team members as soon as you can reconnect to them. You also have the advantage that any computer that has a copy of the repository can be used as a backup source. I assume, however, that if you use a CVCS, you also have a corresponding backup strategy, which is why I do not consider this advantage really relevant.&lt;/p&gt;
-
-&lt;p&gt;I hope I could give you a rough overview of the different categories of version control systems. I already wrote an article about Git, if you like, you can read it directly on &lt;a href=&quot;https://blog.mjurtz.com/2017/09/getting-started-git/&quot;&gt;my blog&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Basically, however, I would like to point out that the use of a version control system also has advantages, even if you work alone. Availability of file histories, branching or publishing to, for example, GitHub are just a few of them. But it’s definitely worth trying if you don’t use VCS yet.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 23 Jun 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/06/introduction-to-vcs</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/06/introduction-to-vcs</guid>
-        
-        <category>development</category>
-        
-        <category>software</category>
-        
-        <category>git</category>
-        
-        <category>tfs</category>
-        
-        <category>svn</category>
-        
-        <category>programming</category>
-        
-        
-        <category>programming</category>
         
       </item>
     

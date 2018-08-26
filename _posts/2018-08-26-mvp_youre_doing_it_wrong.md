@@ -1,5 +1,5 @@
 ---
-title: 'Building an MVP - You're doing it wrong'
+title: 'Building an MVP - You are doing it wrong'
 date: 2018-08-26T06:00:00+00:00
 author: Marcel Jurtz
 layout: post
@@ -28,7 +28,7 @@ To define how the associated MVP should look, we start cutting features at vario
 
 The result of this process is then certainly minimal, but is it also viable? 
 Many teams forget this point and develop a prototype with limited functionality, which is simply not usable. 
-As I mentioned in my article about [Scrum]({{site.baseurl }}{% post_url 2018-07-agile-get-started-with-scrum %}), the goal of every sprint is to add a working increment to the product. 
+As I mentioned in my article about [Scrum]({{site.baseurl }}{% post_url 2018-07-15-agile-get-started-with-scrum %}), the goal of every sprint is to add a working increment to the product. 
 After each iteration the user should have a basic version of his product, enhanced by features of the last sprint.
 
 The easiest way to illustrate this is with an example: 

@@ -289,6 +289,10 @@
 <lastmod>2018-08-26T08:00:00+02:00</lastmod>
 </url>
 <url>
+<loc>http://blog.mjurtz.com/2018/09/typescript-up-and-running-in-10-minutes</loc>
+<lastmod>2018-09-02T08:00:00+02:00</lastmod>
+</url>
+<url>
 <loc>http://blog.mjurtz.com/about/</loc>
 </url>
 <url>
@@ -509,6 +513,9 @@
 </url>
 <url>
 <loc>http://blog.mjurtz.com/tag/prototyping/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/tag/typescript/</loc>
 </url>
 <url>
 <loc>http://blog.mjurtz.com/category/game-development/</loc>

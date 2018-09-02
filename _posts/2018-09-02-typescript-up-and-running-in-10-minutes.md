@@ -22,7 +22,7 @@ TypeScript is a SuperSet of JavaScript. SuperSet means that all functionalities 
 As the name suggests, the main feature of TypeScript are strongly typed variables. But more on this in a moment.
 
 TypeScript is developed by Microsoft and was initiated by MS employee Anders Hejlsberg, who had already designed C#. 
-TypeScript files typically end with the extension.ts and can be converted to JavaScript using the TypeScript Compiler (tsc). 
+TypeScript files typically end with the extension .ts and can be converted to JavaScript using the TypeScript Compiler (tsc). 
 Did I also mention that TypeScript is completely open source?
 
 ## Setup
@@ -57,7 +57,7 @@ Currently you should have a directory containing a single .ts file.
 To generate a JavaScript file from it, we call the TS compiler from a terminal and pass our script to it. 
 In my case it looks like this: tsc main.ts.
 
-If everything is ok, a new file will be created with the same name as our.ts file. 
+If everything is ok, a new file will be created with the same name as our .ts file. 
 Now, however, with the.js extension. The new file contains the following content:
 
 {% highlight javascript %}

@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Introduction to Blockchains</title>
-  <meta name="description" content="What if there was a technology that could entirely change the basic elements of our society and our understanding of economy? This technology already exists ...">
+  <title>Dialogs in Xamarin.Forms</title>
+  <meta name="description" content="If you already have a little experience in cross-platform development with Xamarin.Forms, you probably know the problem: Navigation between different pages w...">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2018">
@@ -47,7 +47,7 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://blog.mjurtz.com/2017/11/introduction-to-blockchains/">
+  <link rel="canonical" href="http://blog.mjurtz.com/2018/09/xamarin-forms-dialogs">
   <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
 </head>
 
@@ -505,7 +505,7 @@
 <div class="post-header-container " >
   <div class="scrim ">
     <header class="post-header">
-      <h1 class="title">Introduction to Blockchains</h1>
+      <h1 class="title">Dialogs in Xamarin.Forms</h1>
       <p class="info">by <strong>Marcel Jurtz</strong></p>
     </header>
   </div>
@@ -520,87 +520,198 @@
  
 
 <section class="post-meta">
-  <div class="post-date">November 26, 2017</div>
+  <div class="post-date">September 9, 2018</div>
   <div class="post-categories">
   in 
     
-    <a href="/category/cryptocurrency">Cryptocurrency</a>
+    <a href="/category/development">Development</a>
     
   
   </div>
 </section>
 
 <article class="post-content">
-  <p>What if there was a technology that could entirely change the basic elements of our society and our understanding of economy? This technology already exists and it is called crypto currency. Many people think of bitcoin when this buzzword comes up, but if you take a closer look, you will find out that the monetary point of view of the technology behind is only the tip of the iceberg.</p>
+  <p>If you already have a little experience in cross-platform development with Xamarin.Forms, 
+you probably know the problem: Navigation between different pages works very well, 
+but there is no easy solution to display dialog boxes overlaying an active page.</p>
 
-<p>Bitcoin and crypto currencies are currently a highly controversial issue. Prices are rising and rising and the hype seems to be unstoppable, but influential personalities of the global economy are warning against putting too much trust into this technology. Whether they’re right about that or whether these antiquated idiots just want to hide their fear of computers with these statements is a mystery, which I won’t try to unveil here.</p>
+<p>Today I want to show you how you can implement this feature in your Xamarin.Forms application. 
+I have created an example project for this purpose, which you can download from my 
+<a href="https://github.com/MarcelJurtz/XamarinDialogDemo">GitHub site</a>.</p>
 
-<p>What I would like to achieve with this article is the communication of the basic functioning of Blockchain technology and the associated possibilities and risks, so that you can see this technology not only as an investment, but also understand how it works.</p>
+<h2 id="setup">Setup</h2>
 
-<h2 id="state-of-the-art">State of the art</h2>
+<p>I first create a new Cross-Platform project in Visual Studio. 
+I start without a template (blank) and use .NET standard for the shared code base. 
+After the project is initialized, I add the plugin for the dialogs to all projects. 
+You can find it via <a href="https://www.nuget.org/packages/Rg.Plugins.Popup/">Nuget</a>. 
+The project is also open source on <a href="https://github.com/rotorgames/Rg.Plugins.Popup">GitHub</a>. 
+To add a Nuget package to your projects, mark the project (or solution) and select the entry 
+<em>Manage NuGet Packages</em>. Select all projects of your solution to install the package.</p>
 
-<p>Money exists for trading. In the last few centuries, trade has become complex – everybody trades with everyone, worldwide. In order to keep track of the transactions carried out, many different techniques of accounting. We use <em>trusted third parties</em> for this purpose, banks, for example.</p>
+<p>The first thing to do is to initialize the package. This takes place in the platform-specific projects. 
+For Android, open the MainActivity.cs file and add the following to your <em>OnCreate()</em> method:</p>
 
-<p>Bitcoin uses a network of computers for accounting. The transactions that have been made are not closed to the public, so the whole transaction history is publicly visible.</p>
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnCreate</span><span class="p">(</span><span class="n">Bundle</span> <span class="n">bundle</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">base</span><span class="p">.</span><span class="nf">OnCreate</span><span class="p">(</span><span class="n">bundle</span><span class="p">);</span>
 
-<p>As already mentioned, this article does not specifically refer to Bitcoin. However, since Bitcoin is a great example to explain the technology behind it, I will explain the functionality of a blockchain with this example in the following.</p>
+    <span class="n">Rg</span><span class="p">.</span><span class="n">Plugins</span><span class="p">.</span><span class="n">Popup</span><span class="p">.</span><span class="n">Popup</span><span class="p">.</span><span class="nf">Init</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">bundle</span><span class="p">);</span>
+        
+    <span class="n">Xamarin</span><span class="p">.</span><span class="n">Forms</span><span class="p">.</span><span class="n">Forms</span><span class="p">.</span><span class="nf">Init</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">bundle</span><span class="p">);</span>
+    <span class="nf">LoadApplication</span> <span class="p">(</span><span class="k">new</span> <span class="nf">App</span> <span class="p">());</span>
+<span class="p">}</span></code></pre></figure>
 
-<p>Transactions in the form of bank transfers are normally carried out via banks. This third instance regulates that the recipient actually receives the money and the sender owns what he wants to send. Banks act as arbitrators for potential disputes, which increases the transaction costs for the participants.</p>
+<p>The same goes for iOS: Add the following snippet to your <em>FinishedLaunching()</em>-Method inside the AppDelegate.cs file.</p>
 
-<p>Another approach to handle transactions is peer-to-peer networks, which relinquish this third instance. Users communicate directly with each other, which results into a distributed network of equal nodes.</p>
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">FinishedLaunching</span><span class="p">(</span><span class="n">UIApplication</span> <span class="n">app</span><span class="p">,</span> <span class="n">NSDictionary</span> <span class="n">options</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Rg</span><span class="p">.</span><span class="n">Plugins</span><span class="p">.</span><span class="n">Popup</span><span class="p">.</span><span class="n">Popup</span><span class="p">.</span><span class="nf">Init</span><span class="p">();</span>
+      
+    <span class="k">global</span><span class="p">::</span><span class="n">Xamarin</span><span class="p">.</span><span class="n">Forms</span><span class="p">.</span><span class="n">Forms</span><span class="p">.</span><span class="nf">Init</span> <span class="p">();</span>
+    <span class="nf">LoadApplication</span> <span class="p">(</span><span class="k">new</span> <span class="nf">App</span> <span class="p">());</span>
+    <span class="k">return</span> <span class="k">base</span><span class="p">.</span><span class="nf">FinishedLaunching</span> <span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">options</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
 
-<p>The problem of such networks arises from possible fraud attempts by one of the participants, as there is no control authority as it exists in centralized systems.</p>
+<p>If you want to support UWP, the relevant code goes inside the App-class:</p>
 
-<p>To conclude, you can say that the execution of a transaction in a peer-to-peer network is based on trust, which makes it easy to exploit.</p>
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">Rg</span><span class="p">.</span><span class="n">Plugins</span><span class="p">.</span><span class="n">Popup</span><span class="p">.</span><span class="n">Popup</span><span class="p">.</span><span class="nf">Init</span><span class="p">();</span>
+<span class="n">Xamarin</span><span class="p">.</span><span class="n">Forms</span><span class="p">.</span><span class="n">Forms</span><span class="p">.</span><span class="nf">Init</span> <span class="p">(</span><span class="n">e</span><span class="p">);</span>
 
-<h2 id="what-bitcoin-does-differently">What Bitcoin does differently</h2>
+<span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">PreviousExecutionState</span> <span class="p">==</span> <span class="n">ApplicationExecutionState</span><span class="p">.</span><span class="n">Terminated</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span></code></pre></figure>
 
-<p>Bitcoin is now trying to replace the requirement of trust with cryptographic proof. This combines the benefits of peer-to-peer networks (no/low transaction costs) with those of engaging a third party (non-fraud transactions).</p>
+<p>More detailed information about initializing the plugin can be found in the 
+<a href="https://github.com/rotorgames/Rg.Plugins.Popup/wiki/Getting-started">projects documentation</a>.</p>
 
-<p>Each user possesses a certain number of coins (which can be divided into smaller parts). The interesting thing about this system, however, is that the Bitcoins themselves do not exist, only records of completed transactions. In order to be able to carry out a transaction, a user needs to own a wallet which can be considered a digital banking account. When a wallet is created, a private as well as a public key is generated. An address represents a shortened notation of the public key (several addresses can be derived from one public key). In order to receive Bitcoins, other users must send them to such an address. To receive Bitcoins on the other hand, you need to be in possession of the matching private key. There are various wallet providers that also offer different types of wallets, the website <a href="https://bitcoin.org">bitcoin.org</a> offers a comprehensive overview regarding this topic.</p>
+<h2 id="integrating-dialogs">Integrating Dialogs</h2>
 
-<p>Once the user has set up a wallet, transfers can be sent and received. A transfer in the network works as follows: User A sends bitcoins to user B. A signs the transaction with his private key, allowing all network participants to verify the origin of the transaction using As public key. The transaction is executed publicly, so all nodes of the network are informed about them and can add them to their <em>unconfirmed transactions</em>.</p>
+<p>Now add a new Content Page to the .NET standard project. This is generated with predefined code, which must be adjusted as follows:</p>
 
-<p>At this point, I have to distinct between active and passive network nodes. Active participants collaborate in the administration of the blockchain, bundle confirmed transactions and try to publish them based on the calculation of cryptographic evidence. Passive participants simply use the network to send and receive bitcoins. To confirm a transaction, the senders account balance must be known, which is possible for any account by knowing the senders address. For example, the website <a href="https://blockchain.info/">blockchain.info</a> lists all transactions in real time, which can be filtered and searched. Also, this website can be used to check any wallets balance.</p>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;pages.PopUpPage</span> <span class="na">xmlns=</span><span class="s">"http://xamarin.com/schemas/2014/forms"</span> 
+             <span class="na">xmlns:x=</span><span class="s">"http://schemas.microsoft.com/winfx/2009/xaml"</span>
+             <span class="na">xmlns:pages=</span><span class="s">"clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"</span>
+             <span class="na">x:Class=</span><span class="s">"PopupDemo.Dialog"</span><span class="nt">&gt;</span>
+    
+<span class="nt">&lt;/pages.PopUpPage&gt;</span></code></pre></figure>
 
-<p>To commit a transaction, the sender must reference other transactions, in which he received at minimum the same amount of bitcoins he wants to send. The active network participants, the so-called <em>miners</em>, then validate the referenced transactions for whether they have not already been issued and either accept or reject them. This mechanism makes it possible to establish an exact history of where the money comes from and where it goes.</p>
+<p>This is the foundation of the dialog. I just removed the sample content and added the namespace for the plugin. 
+Finally I changed the root element of the page from ContentView to PopUpPage. 
+These changes are also required in the code-behind file. 
+All you have to do here is change the inheritance from ContentView to PopUpPage.</p>
 
-<p><img src="/assets/2017/blockchain_transaction_example.png" alt="Example of a blockchain transaction" /></p>
+<p>Next, I design the content of the dialog window. I want to show the user a simple login dialog, 
+so I need input fields for username and password, as well as a button to confirm the input.</p>
 
-<p>The example in the picture shows that a transaction can have several inputs. Inputs represent references to transactions the owner has received Bitcoins from, which he now wants to spend. However, transactions can also have multiple outputs. For example, if the output does not exactly match the input, the owner can transfer the difference to himself.</p>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;pages:PopupPage</span> <span class="na">xmlns=</span><span class="s">"http://xamarin.com/schemas/2014/forms"</span> 
+             <span class="na">xmlns:x=</span><span class="s">"http://schemas.microsoft.com/winfx/2009/xaml"</span>
+             <span class="na">xmlns:pages=</span><span class="s">"clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"</span>
+             <span class="na">xmlns:animations=</span><span class="s">"clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"</span>
+             <span class="na">x:Class=</span><span class="s">"PopupDemo.Dialog"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;pages:PopupPage.Animation&gt;</span>
+        <span class="nt">&lt;animations:ScaleAnimation</span> <span class="na">DurationIn=</span><span class="s">"200"</span>
+                                   <span class="na">DurationOut=</span><span class="s">"300"</span>
+                                   <span class="na">EasingIn=</span><span class="s">"SinIn"</span>
+                                   <span class="na">EasingOut=</span><span class="s">"SinInOut"</span>
+                                   <span class="na">HasBackgroundAnimation=</span><span class="s">"True"</span>
+                                   <span class="na">PositionIn=</span><span class="s">"Top"</span>
+                                   <span class="na">PositionOut=</span><span class="s">"Bottom"</span>
+                                   <span class="na">ScaleIn=</span><span class="s">"1.2"</span>
+                                   <span class="na">ScaleOut=</span><span class="s">"0.8"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/pages:PopupPage.Animation&gt;</span>
+    
+    <span class="nt">&lt;StackLayout</span>
+        <span class="na">Margin=</span><span class="s">"12"</span>
+        <span class="na">Padding=</span><span class="s">"24"</span>
+        <span class="na">Spacing=</span><span class="s">"24"</span>
+        <span class="na">BackgroundColor=</span><span class="s">"White"</span>
+        <span class="na">HorizontalOptions=</span><span class="s">"Center"</span>
+        <span class="na">VerticalOptions=</span><span class="s">"Center"</span><span class="nt">&gt;</span>
 
-<p>Based on this principle, transactions can already be transparently traced back. However, a temporal component is missing. Miners are used for this purpose, which combine transactions from the network into blocks. All transactions within a block are considered to be processed at the same time.</p>
+        <span class="nt">&lt;StackLayout&gt;</span>
+            <span class="nt">&lt;Label</span>
+                <span class="na">Text=</span><span class="s">"Username"</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;Entry</span>
+                <span class="na">FontSize=</span><span class="s">"Large"</span>
+                <span class="na">Text=</span><span class="s">"me@example.com"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/StackLayout&gt;</span>
 
-<p><img src="/assets/2017/blockchain_transactions.png" alt="Block bundled transactions" /></p>
+        <span class="nt">&lt;StackLayout&gt;</span>
+            <span class="nt">&lt;Label</span>
+                <span class="na">Text=</span><span class="s">"Password"</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;Entry</span>
+                <span class="na">FontSize=</span><span class="s">"Large"</span>
+                <span class="na">IsPassword=</span><span class="s">"True"</span>
+                <span class="na">Text=</span><span class="s">"1234"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/StackLayout&gt;</span>
 
-<p>However, once a block has been created, miners must solve a task before sharing it to the network, which prevents individual miners to flood the network. This task is based on the computation of cryptographic evidence, which must be difficult to solve but easy to verify. Published blocks are checked by the receiving nodes for validity of the task solution, and if correct, they are added to the nodes local blockchain. The node then starts creating the next block in the same way. I won’t go into the details on the algorithm which is responsible for the cryptographic evidence, but it is automatically updated in a way that a block takes about ten minutes to be discovered.</p>
+        <span class="nt">&lt;StackLayout&gt;</span>
+            <span class="nt">&lt;Button</span>
+                <span class="na">Clicked=</span><span class="s">"Button_Clicked"</span>
+                <span class="na">BackgroundColor=</span><span class="s">"Orange"</span>
+                <span class="na">FontSize=</span><span class="s">"Large"</span>
+                <span class="na">Text=</span><span class="s">"Submit"</span>
+                <span class="na">TextColor=</span><span class="s">"White"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/StackLayout&gt;</span>
+    <span class="nt">&lt;/StackLayout&gt;</span>
+<span class="nt">&lt;/pages:PopupPage&gt;</span></code></pre></figure>
 
-<p>Miners are allowed to add a transaction out of nowhere to themselves to their block, which motivates the miners and ensures that more bitcoins come into circulation. The amount of bitcoins in these transaction is halved every four years and currently amounts to 12.5 Bitcoin.</p>
+<p>Now there is missing only one possibility to display the dialog. 
+I added a simple button to my main page and linked it to an event handler that opens the dialog. 
+In real applications, you would do this by adding bindings to the ViewModel, 
+but I decided to use the quick and dirty variant to keep the example as simple as possible.</p>
 
-<h2 id="problems-and-drawbacks">Problems and Drawbacks</h2>
+<p>Calling the dialog probably reminds you syntactically of the normal navigation between the pages. 
+Closing the dialog works analogously, I wired this part with the EventHandler in the code-behind file of the dialog.</p>
 
-<p>Now that the basics of blockchain technology should be clear, it’s time to discuss the problems behind it. The basis of the network is the presence of many equal participants. The problem is, therefore, when a network subscriber has a large part of the total computing power of the network, which can cause fake transactions to circulate.</p>
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="c1">// Open Dialog</span>
+<span class="n">PopupNavigation</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="nf">PushAsync</span><span class="p">(</span><span class="k">new</span> <span class="nf">Dialog</span><span class="p">());</span>
 
-<p>The so-called double-spending attacks are the spending of money that one does not possess at all. These attacks fall into this sector. Imagine you want to buy a car for Bitcoin. You agree on a price and transfer Bitcoins in this amount to the car dealer. The transaction will initially land in the unconfirmed transactions and you will receive the car. Now you create a second transaction in which you transfer the Bitcoins you have just paid for the car to yourself. If you are in possession of a major part of the network’s overall computing power, you are quite likely to find the next block. Now make sure that your second transaction is first recorded in a block and accepted by the network. If the other transaction is then considered by a miner for bundling, it will be rejected because you have already issued the referenced inputs.</p>
+<span class="c1">// Close Dialog</span>
+<span class="n">PopupNavigation</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="nf">PopAsync</span><span class="p">();</span></code></pre></figure>
 
-<p>This problem has to be taken into account if the networks are rather small. However, there are also so-called mining pools in which miners join forces and try to find blocks together. In the event of success, the reward will be distributed to all participants. This may sound good, but depending on the size of the pool, it can also be used by its operators for double-spending attacks.</p>
+<h2 id="animations">Animations</h2>
 
-<p>A further problem, especially with Bitcoin, is the basis on computing power to confirm a block. Due to the high number of nodes, immense computing power is used for the generation of blocks, which does not achieve a direct result and is therefore often regarded as a waste of energy.</p>
+<p>If you now start the application on a device or emulator of your choice, everything should already work. 
+Besides the pure dialog functionality, the plugin offers the possibility to animate the dialogs. 
+The animation is defined in the XAML code of the dialog. 
+You can also find complete documentation for this on the 
+<a href="https://github.com/rotorgames/Rg.Plugins.Popup/wiki/Animations">projects website</a>. 
+Here it’s a good idea to just play around with the available possibilities, but finally you’ll find a small example:</p>
 
-<p>Bitcoin technology is also poorly scalable because blocks have a limitation on the size of the transactions they can contain. since a block is found every ten minutes, the amount of unconfirmed transactions accumulates if many network participants want to carry out transactions. By designing transactions with greater input than output, transaction fees are generated, which are treated preferentially by the Miners, as they are allowed to assign the difference to themselves. However, this contradicts the principle of lower transaction costs as explained above.</p>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;pages:PopupPage</span> <span class="na">xmlns=</span><span class="s">"http://xamarin.com/schemas/2014/forms"</span> 
+             <span class="na">xmlns:x=</span><span class="s">"http://schemas.microsoft.com/winfx/2009/xaml"</span>
+             <span class="na">xmlns:pages=</span><span class="s">"clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"</span>
+             <span class="na">xmlns:animations=</span><span class="s">"clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"</span>
+             <span class="na">x:Class=</span><span class="s">"PopupDemo.Dialog"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;pages:PopupPage.Animation&gt;</span>
+        <span class="nt">&lt;animations:ScaleAnimation</span> <span class="na">DurationIn=</span><span class="s">"200"</span>
+                                   <span class="na">DurationOut=</span><span class="s">"300"</span>
+                                   <span class="na">EasingIn=</span><span class="s">"SinIn"</span>
+                                   <span class="na">EasingOut=</span><span class="s">"SinInOut"</span>
+                                   <span class="na">HasBackgroundAnimation=</span><span class="s">"True"</span>
+                                   <span class="na">PositionIn=</span><span class="s">"Top"</span>
+                                   <span class="na">PositionOut=</span><span class="s">"Bottom"</span>
+                                   <span class="na">ScaleIn=</span><span class="s">"1.2"</span>
+                                   <span class="na">ScaleOut=</span><span class="s">"0.8"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/pages:PopupPage.Animation&gt;</span>
+    
+    <span class="nt">&lt;StackLayout</span>
+	<span class="err">…</span></code></pre></figure>
 
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Bitcoin is by far not the only blockchain technology, but certainly the best known. The solution to the problem of high energy demand has been taken up by various other technologies and is trying to attract attention with appropriate publications. The same goes for the other problems described above.</p>
-
-<p>A large number of crypto currencies are now in circulation, <a href="https://coinmarketcap.com/">coinmarketcap</a> provides an overview of market capitalization. In addition, there are various projects for different niche areas, with the idea of a currency rarely being its main objective. Each of these technologies has its own advantages and disadvantages, and each of them could easily fill the length of this article. If I have been able to arouse your interest with this article, I therefore advise you to take a look at the overview list and look for interesting entries yourself.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xgXXz-FT2I4?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
 
 </article>
 
 
 
 <section class="tags">
-  <strong>Tags:</strong> <a href="/tag/bitcoin">bitcoin</a>,&nbsp;<a href="/tag/cryptocurrency">cryptocurrency</a>,&nbsp;<a href="/tag/p2p">p2p</a>
+  <strong>Tags:</strong> <a href="/tag/development">development</a>,&nbsp;<a href="/tag/software">software</a>,&nbsp;<a href="/tag/programming">programming</a>,&nbsp;<a href="/tag/xamarin">xamarin</a>,&nbsp;<a href="/tag/cross-platform">cross-platform</a>
 </section>
 
 
@@ -614,7 +725,7 @@
   
     
     
-      <a href="//twitter.com/share?text=Introduction+to+Blockchains&url=http%3A%2F%2Fblog.mjurtz.com%2F2017%2F11%2Fintroduction-to-blockchains%2F&via=MarcelJurtz"
+      <a href="//twitter.com/share?text=Dialogs+in+Xamarin.Forms&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F09%2Fxamarin-forms-dialogs&via=MarcelJurtz"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
         <i class="fa fa-twitter-square fa-lg"></i>
       </a>
@@ -642,7 +753,7 @@
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2017/11/introduction-to-blockchains/') + '&title=Introduction to Blockchains'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/09/xamarin-forms-dialogs') + '&title=Dialogs in Xamarin.Forms'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
@@ -1181,8 +1292,8 @@ $(document).ready(function() {
   ga('create', 'UA-118762636-1', 'auto');
   ga('set','anonymizeIp',true);
   ga('send', 'pageview', {
-    'page': '/2017/11/introduction-to-blockchains/',
-    'title': 'Introduction to Blockchains'
+    'page': '/2018/09/xamarin-forms-dialogs',
+    'title': 'Dialogs in Xamarin.Forms'
   });
 </script>
 

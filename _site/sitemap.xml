@@ -293,6 +293,10 @@
 <lastmod>2018-09-02T08:00:00+02:00</lastmod>
 </url>
 <url>
+<loc>http://blog.mjurtz.com/2018/09/xamarin-forms-dialogs</loc>
+<lastmod>2018-09-09T08:00:00+02:00</lastmod>
+</url>
+<url>
 <loc>http://blog.mjurtz.com/about/</loc>
 </url>
 <url>
@@ -516,6 +520,9 @@
 </url>
 <url>
 <loc>http://blog.mjurtz.com/tag/typescript/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/tag/cross-platform/</loc>
 </url>
 <url>
 <loc>http://blog.mjurtz.com/category/game-development/</loc>

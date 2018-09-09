@@ -22,8 +22,6 @@ Today I want to show you how you can implement this feature in your Xamarin.Form
 I have created an example project for this purpose, which you can download from my 
 [GitHub site](https://github.com/MarcelJurtz/XamarinDialogDemo).
 
-![Xamarin.Forms Dialog Demo](/assets/2018/xamarin-forms-dialog.png)
-
 ## Setup
 
 I first create a new Cross-Platform project in Visual Studio. 

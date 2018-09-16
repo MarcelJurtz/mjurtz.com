@@ -6,9 +6,121 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 09 Sep 2018 16:31:26 +0200</pubDate>
-    <lastBuildDate>Sun, 09 Sep 2018 16:31:26 +0200</lastBuildDate>
+    <pubDate>Sun, 16 Sep 2018 21:12:03 +0200</pubDate>
+    <lastBuildDate>Sun, 16 Sep 2018 21:12:03 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Garbage Collection in .NET</title>
+        <description>&lt;p&gt;Today I would like to give you an overview of how the garbage collector of the .NET framework works. Knowledge of it makes a lot of sense to improve your programming skills regarding object creation and lifetime.&lt;/p&gt;
+
+&lt;h1 id=&quot;garbage-collection-in-general&quot;&gt;Garbage Collection in General&lt;/h1&gt;
+
+&lt;p&gt;I want to start with some general theory - what is garbage collection and what do I need it for? Garbage collection (GC) is basically a feature that relieves developers of the work of allocating and deallocating memory for their objects.&lt;/p&gt;
+
+&lt;p&gt;In low-level programming languages, you as the developer have to take care of this allocation and deallocation. If you want the computer to remember an object, you allocate memory for that object. When the object is no longer needed, you have to free up the memory.&lt;/p&gt;
+
+&lt;p&gt;Although this concept leads to very efficient programs, it is also error-prone. For example, if your program doesn’t free memory, but asks for more and more, this can lead to a memory leak, which in turn can lead to the consumption of your computer’s entire memory. Alternatively, the program simply no longer responds to user interaction. Another source of errors are bugs that cause your program to attempt to access a memory section that has not yet been allocated. In this case, the operating system will terminate your program immediately.&lt;/p&gt;
+
+&lt;p&gt;There are more fragile issues, but they are too many to list. The concept of higher-level programming languages in this respect is identical: when you need an object, you request an instance of the respective class. This instance is then used in your program, and as long as there is a reference to the instance, memory is reserved for it. As soon as nothing in your code refers to the instance anymore, the corresponding memory will be freed again.&lt;/p&gt;
+
+&lt;p&gt;Basically, you can memorize that programming languages with GC are usually less efficient than those without. This is due to the fact that the cleanup process is usually performed at regular intervals. For this reason, there is a potential for wasted memory between operations. For data-intensive applications, there is also the possibility that many (de)allocations may occur, which is why the program looks as if it is not responding.&lt;/p&gt;
+
+&lt;h1 id=&quot;garbage-collection-in-net&quot;&gt;Garbage Collection in .NET&lt;/h1&gt;
+
+&lt;p&gt;In general, garbage collection in .NET works as described above. However, I’d like to cover the topic in a bit more detail.&lt;/p&gt;
+
+&lt;h2 id=&quot;memory-allocation-in-net&quot;&gt;Memory Allocation in .NET&lt;/h2&gt;
+
+&lt;p&gt;In the .NET framework, each process has a virtual address space. As an application developer, you never access physical memory, but always an abstraction level of it. The garbage collector takes care of the allocation and deallocation of virtual memory on the managed heap.&lt;/p&gt;
+
+&lt;p&gt;Blocks of the virtual memory are always in one of three states:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Free: There are no references to this block, it is ready for referencing.&lt;/li&gt;
+  &lt;li&gt;Reserved: The memory block is free, but reserved for a request and cannot be used by other applications. Until the memory area is assured, no data can be stored.&lt;/li&gt;
+  &lt;li&gt;Assured: The memory block is directly assigned to a physical memory.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Gaps can occur in virtual memory. When memory is requested, a suitable space is searched in which the memory is completely available. For example, if you need 100 MB of memory in the working memory, the search will continue until a single free block of at least 100 MB memory is found. Smaller blocks will be skipped.&lt;/p&gt;
+
+&lt;p&gt;You may be familiar with the principle of swap files, especially when you are at home in the Linux world. If available memory becomes too small, it can be swapped out to disk, so called swap files are created. .NET uses this concept, but can also swap out under certain conditions, even if the memory is not full.&lt;/p&gt;
+
+&lt;h3 id=&quot;triggering-the-garbage-collection&quot;&gt;Triggering the Garbage Collection&lt;/h3&gt;
+
+&lt;p&gt;There are several different ways in which exactly the garbage collection can be triggered. Firstly, of course, if the system has little physical memory. This is usually recognized by a message from the operating system. Another possibility is to exceed a limit value of the memory used by objects in the heap. This limit depends on the program and is adjusted at runtime.&lt;/p&gt;
+
+&lt;p&gt;A third method is to manually call the &lt;a href=&quot;https://docs.microsoft.com/en-gb/dotnet/api/system.gc.collect?view=netframework-4.7.2&quot;&gt;GC.Collect() method&lt;/a&gt;. However, you will hardly need this case (except perhaps for testing the functionality of the garbage collector).&lt;/p&gt;
+
+&lt;h3 id=&quot;managed-heap&quot;&gt;Managed Heap&lt;/h3&gt;
+
+&lt;p&gt;I have already mentioned the managed heap several times, but have not explained it further. The Managed Heap describes a memory area of the physical memory, which was reserved by the garbage collector after its instantiation by the CLR for the administration of objects. The operating system manages a system heap in parallel.&lt;/p&gt;
+
+&lt;p&gt;The reservation and release of memory segments is done by the Win32 methods &lt;a href=&quot;https://msdn.microsoft.com/library/aa366887.aspx&quot;&gt;VirtualAlloc()&lt;/a&gt; and &lt;a href=&quot;https://msdn.microsoft.com/library/aa366892.aspx&quot;&gt;VirtualFree()&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The more objects there are on the heap, the more complex is the garbage collection process. When releasing memory, active objects are pushed together. This reduces the required memory space, but the objects retain their locality (jointly instantiated objects lie next to each other).&lt;/p&gt;
+
+&lt;p&gt;The size of the memory usage also determines the frequency and size of the individual GC operations.&lt;/p&gt;
+
+&lt;h3 id=&quot;generations&quot;&gt;Generations&lt;/h3&gt;
+
+&lt;p&gt;The heap is built in generations to describe the lifetime of objects. Garbage collection usually takes the form of releasing short-lived objects that occupy only a small part of the working memory. A distinction is made between three generations:&lt;/p&gt;
+
+&lt;p&gt;Generation 0 is the most recent generation. It contains short-lived objects such as local variables.&lt;/p&gt;
+
+&lt;p&gt;Generation 1 also contains short-lived objects, but serves as a buffer between short-lived and long-lived objects.&lt;/p&gt;
+
+&lt;p&gt;Generation 2 finally contains the long-lived objects. These are, for example, objects with static data that are retained throughout the entire application runtime.&lt;/p&gt;
+
+&lt;p&gt;A garbage collection always takes place for a particular generation, if the appropriate conditions are met. The collection within a generation always contains the younger generations. A collection in generation 2 is therefore also referred to as a complete collection because it cleanses all objects in the managed heap.&lt;/p&gt;
+
+&lt;p&gt;Objects that still exist after a garbage collection are moved up the generation hierarchy. If the garbage collector recognizes that this number is very high in a generation, the threshold value for memory allocations for this generation is increased. It is always weighed between two priorities: The size of the memory used by an application and the amount of garbage collection required.&lt;/p&gt;
+
+&lt;p&gt;GC more often takes place in younger generations. If more working memory is required, the older generations (including those below them) are cleaned.&lt;/p&gt;
+
+&lt;h3 id=&quot;garbage-collection-procedure&quot;&gt;Garbage collection procedure&lt;/h3&gt;
+
+&lt;p&gt;At the start of a GC, a list of active objects is created. The objects to be compressed (active objects moved together) are then reassigned. Storage space for inactive objects is released. Objects are now promoted in their generation.&lt;/p&gt;
+
+&lt;h2 id=&quot;gc-in-practice&quot;&gt;GC in practice&lt;/h2&gt;
+
+&lt;p&gt;You have probably already worked with unmanaged resources. In this case, the IDisposable interface can be used to share manually used memory of unmanaged resources. This is usually seen in the form of file access. The construction of a corresponding code snippet is usually based on the construction of a using block. After finishing the code of this block, the Dispose() method is called, which releases the resources again. IDisposable in itself has nothing directly to do with Garbage Collection. However, manual release is required when objects access unmanaged resources, as in the following example: If managed objects refer to unmanaged objects, these must first be released manually so that the managed objects can be cleaned up.&lt;/p&gt;
+
+&lt;p&gt;The following example creates and releases a StreamReader instance:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt; 
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;StreamReader&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;StreamReader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;file1.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;c1&quot;&gt;// … &lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The using block does not have to be used, alternatively Dispose() can be called within a finally block. Dispose itself does not belong to the garbage collection, so it is not called in a collection! This construct can be used for any class that implements IDisposable.&lt;/p&gt;
+
+&lt;p&gt;You should also not rely on the garbage collector. It’s good style to close database connections or the like by yourself, instead of leaving this task to the GC.&lt;/p&gt;
+
+&lt;p&gt;Also, you should have little reason to initiate the GC yourself. Exceptions occur when you have reason to believe that there is a large number of objects in generations 1 and 2 that are ready to be cleaned up. This may be the case, for example, if you have just closed a large form whose controls are all no longer needed.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;I hope that this article has given you a rough insight into how the Garbage Collection works in C#. But the topic itself gives enough theory for a whole book, so I recommend to the inclined reader to read more detailed articles. Microsoft’s own documentation](https://docs.microsoft.com/en-gb/dotnet/standard/garbage-collection/fundamentals) on the subject is certainly a good starting point, have fun with it!&lt;/p&gt;
+</description>
+        <pubDate>Sun, 16 Sep 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/09/dotnet-garbage-collection</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/dotnet-garbage-collection</guid>
+        
+        <category>development</category>
+        
+        <category>software</category>
+        
+        <category>programming</category>
+        
+        <category>csharp</category>
+        
+        <category>dotnet</category>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>Dialogs in Xamarin.Forms</title>
@@ -1188,102 +1300,6 @@ I usually use Kanban. But that’s the topic for the next post. Stay tuned!&lt;/
         <category>agile</category>
         
         <category>project</category>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>Docker - Installation and First Steps</title>
-        <description>&lt;p&gt;After outlining the theory behind container management with Docker in last week’s article, I would like to continue the topic in a more hands-on way today.&lt;/p&gt;
-
-&lt;p&gt;I’ll show you the installation and the first steps in Docker. Let’s get started!&lt;/p&gt;
-
-&lt;h2 id=&quot;installation&quot;&gt;Installation&lt;/h2&gt;
-
-&lt;p&gt;Docker is available for Windows, Linux and Mac OS. For the download you’ll need to sign up for a free account.&lt;/p&gt;
-
-&lt;p&gt;I would like to point out that the Windows version is not intended for production use, only for development and testing. It runs (currently) on a Mobylinux Hypervisor VM, but a native Win10 application is under development. Nevertheless, you will hardly notice this, the usage feels native and you can work on Windows with a command line of your choice.&lt;/p&gt;
-
-&lt;p&gt;The first command I want to show you is docker info. This will show you information about your installation. If you are using Windows, you can see here what I just mentioned: The client specifies Windows as OS, but the server indicates Linux.&lt;/p&gt;
-
-&lt;h2 id=&quot;running-your-first-container&quot;&gt;Running Your First Container&lt;/h2&gt;
-
-&lt;p&gt;Next we want to create and start our first container. We use the following command for this:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;docker run hello-world &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Docker run is the command to start a container, followed by the name of the image, in this case hello-world (Tip: If you get a timeout under Windows, try to set the DNS server to fixed in Docker’s network settings, this helped me).&lt;/p&gt;
-
-&lt;p&gt;You will often stumble across the term docker engine. The Docker Engine includes the Docker Client and the Docker Daemon. The client makes API calls to the daemon, which then processes the commands. In my example, the Docker Daemon now looks for an image named hello-world. If this is not found locally, the search is continued in the default registry, usually the docker hub. The image is downloaded (if one is found) from there and started. When a container is stopped, the local copy of the image is retained, so that a later call of it does not require a new download.&lt;/p&gt;
-
-&lt;p&gt;The container has now been started. You can view all active containers with the command&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;docker ps &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;With the flag -a you can specify that stopped containers should also be displayed.&lt;/p&gt;
-
-&lt;p&gt;You can also download an image without starting a container immediately:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;docker pull hello-world &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;I generally recommend that you always specify the version of the image you want to load. You can enter the version number separated by a colon after the name of the image. Example:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;docker pull hello-world:1.2 &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;To remove an image, use the command&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;docker rmi hello-world &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;The version number can also be specified here; this is done in the same style as for the pull.&lt;/p&gt;
-
-&lt;h2 id=&quot;creating-your-own-images&quot;&gt;Creating Your Own Images&lt;/h2&gt;
-
-&lt;p&gt;Now I want to create my own image. I want to write a simple PHP hello world application. For this I need a so called dockerfile. These files describe images and serve as a kind of blueprint. For the realization of a PHP application PHP and a compatible web server is required. I will use Apache here, so I need an image with Apache, PHP and my own script. First I need a suitable docker file. Fortunately, I don’t have to write it myself, I can use templates from the Hub.&lt;/p&gt;
-
-&lt;p&gt;On the Docker Hub I can find it by searching for’PHP’ and using one of the entries that lists the keyword’Apache’. You will find here different entries, each with a highly specialized version on the left, to the right the versions become more and more general. I recommend that you use one of the more specialized versions to prevent unwanted updates.&lt;/p&gt;
-
-&lt;p&gt;I decide to use the image with PHP 7.2 and Apache Stretch. The Hub page lists how to handle the template:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;FROM php:7.0-apache 
-COPY src/ /var/www/html/  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Since I want to use PHP 7.2, I update the version number accordingly. This script now corresponds to the content of my docker file. Brief summary: I now have a folder containing my docker file with the above content and another folder ‘src’ containing the index.php with a simple Hello-World script:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt; 
-&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Hello Docker!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
-&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Docker images are ‘layered’. The PHP image is based on other images and so on. Our own image is based on php:7.2-apache. This allows us to keep our docker file short and concise and to include PHP and Apache with just a single line. So our docker file will download the PHP image from Docker Hub, and copy the files from the src folder to the /var/www/html/ directory within the container.&lt;/p&gt;
-
-&lt;p&gt;Now the image must be built. To do this, I use the command&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;docker build &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; hello-docker &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Hello-docker is the name of my image, the -t flag is used to assign a name. At the end you have to specify the path to the docker file. The point references the current directory.&lt;/p&gt;
-
-&lt;p&gt;After the image has been created, it can be started in the form of a new container.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;docker run &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 80:80 hello-docker &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;The call looks almost like the one we’ve already met. The -p 80:80 addition merely defines that the traffic arriving at port 80 on the host is forwarded to port 80 of the container.&lt;/p&gt;
-
-&lt;p&gt;After the start you can now reach the web server via localhost. Your first own container is now up and running!&lt;/p&gt;
-</description>
-        <pubDate>Sun, 08 Jul 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/07/docker-installation-and-first-steps</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/07/docker-installation-and-first-steps</guid>
-        
-        <category>development</category>
-        
-        <category>software</category>
-        
-        <category>docker</category>
-        
-        <category>containers</category>
-        
-        <category>programming</category>
         
         
         <category>development</category>

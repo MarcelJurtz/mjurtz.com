@@ -102,4 +102,4 @@ Also, you should have little reason to initiate the GC yourself. Exceptions occu
 
 # Conclusion 
 
-I hope that this article has given you a rough insight into how the Garbage Collection works in C#. But the topic itself gives enough theory for a whole book, so I recommend to the inclined reader to read more detailed articles. Microsoft's own documentation](https://docs.microsoft.com/en-gb/dotnet/standard/garbage-collection/fundamentals) on the subject is certainly a good starting point, have fun with it! 
+I hope that this article has given you a rough insight into how the Garbage Collection works in C#. But the topic itself gives enough theory for a whole book, so I recommend to the inclined reader to read more detailed articles. [Microsoft's own documentation](https://docs.microsoft.com/en-gb/dotnet/standard/garbage-collection/fundamentals) on the subject is certainly a good starting point, have fun with it! 

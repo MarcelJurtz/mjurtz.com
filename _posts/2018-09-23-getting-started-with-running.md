@@ -1,13 +1,13 @@
 ---
 title: 'Getting Started With Running'
-date: 2018-09-13T06:00:00+00:00
+date: 2018-09-23T06:00:00+00:00
 author: Marcel Jurtz
 layout: post
 permalink: /2018/09/getting-started-with-running
 categories:
   - running
 tags:
-  - self-discipling
+  - self-disciplin
   - motivation
   - sports
   - running
@@ -47,7 +47,7 @@ The goal of the program after 8 weeks is to run a distance of 5 kilometers in 30
 The individual runs alternate between walking and running intervals, whereby the running intervals are constantly increased.
 
 With this concept I have completed the two months and finished the program in December 2017. 
-At this point I would also like to thank the C25K Subreddit. The community is very supportive and enthusiastic. 
+At this point I would also like to thank the [C25K Subreddit](https://www.reddit.com/r/c25k). The community is very supportive and enthusiastic. 
 If you lack motivation or have any other problem - they build up and motivate each other.
 
 There is a follow-up plan that continues the concept and has a target distance of 10 kilometers in 60 minutes. 
@@ -80,7 +80,7 @@ In July 2018 the time had come and I finished the Mudiator in Ulm together with 
 The run itself was great, but I was a little disappointed by the obstacles. For me these were simply not really challenging. 
 But it was fun anyway and we started looking for more runs.
 
-In the meantime I was able to convince a former fellow student to try the C25K program (check out his blogpost here!). 
+In the meantime I was able to convince a former fellow student to try the C25K program (check out his blogpost [here](https://dominik-spieler.com/2018/09/16/tough-mudder-2018-from-couch-potato-to-a-16-km-10-miles-obstacle-course-in-just-two-month/)!). 
 He started with the same attitude to running as I did and I needed some persuasion to get him to start. 
 At this point a lot changed again. I have decided to run together with him. 
 Although I had already completed the program, I found running together helpful for both of us. 

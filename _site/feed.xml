@@ -6,9 +6,87 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 23 Sep 2018 20:40:46 +0200</pubDate>
-    <lastBuildDate>Sun, 23 Sep 2018 20:40:46 +0200</lastBuildDate>
+    <pubDate>Sun, 30 Sep 2018 19:44:32 +0200</pubDate>
+    <lastBuildDate>Sun, 30 Sep 2018 19:44:32 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Git Workflows</title>
+        <description>&lt;p&gt;Almost all programming projects work with some kind of version control.
+When I started to work with Git, I used the tool also directly for my private projects. 
+But especially at the beginning I found it hard to structure my commits and branches in a practical way. 
+For this reason I would like to show you some common strategies today, the so-called Git Workflows.&lt;/p&gt;
+
+&lt;h1 id=&quot;simple-workflow&quot;&gt;Simple Workflow&lt;/h1&gt;
+
+&lt;p&gt;The simple workflow consists of a single master branch. 
+There is only this one branch to which changes are pushed. 
+This workflow is only suitable for very small projects, e.g. private ones, where only you work on yourself. 
+As the team grows, this workflow becomes very messy and you’ re going to have to deal with a lot of merge conflicts.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/2018/git_workflow_simple.png&quot; data-lightbox=&quot;git_workflow_simple&quot;&gt;&lt;img src=&quot;/assets/2018/git_workflow_simple.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;feature-branches&quot;&gt;Feature Branches&lt;/h1&gt;
+
+&lt;p&gt;This second level adds feature branches to the simple workflow. 
+These branches are used to develop new functionalities separately from the rest of the project. 
+After a feature is completed, the branch is merged. 
+Unlike the master branch, the feature branches are therefore short-lived and only exist until their merge. 
+Depending on their complexity, feature branches can often be further subdivided. 
+Just make sure you don’t exaggerate, which could again affect the overall structure.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/2018/git_workflow_feature.png&quot; data-lightbox=&quot;git_workflow_feature&quot;&gt;&lt;img src=&quot;/assets/2018/git_workflow_feature.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;developer-branch&quot;&gt;Developer Branch&lt;/h1&gt;
+
+&lt;p&gt;With the Developer Branch, a second, long-lived branch is created next to the Master Branch. 
+This is the only place where development takes place, so that the master branch always remains in a release-ready state. 
+Here, however, similar problems arise as with the simple workflow, which is why it should only be used for very small teams.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/2018/git_workflow_develop.png&quot; data-lightbox=&quot;git_workflow_develop&quot;&gt;&lt;img src=&quot;/assets/2018/git_workflow_develop.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;developer-and-feature-branches&quot;&gt;Developer and Feature Branches&lt;/h1&gt;
+
+&lt;p&gt;The previous two strategies can be combined very well. 
+Again, the master branch must always be ready for release, feature branches are only ever merged with the developer branch. 
+After successful testing of the functionalities on the developer branch, this branch is merged to master, which then can be released.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/2018/git_workflow_dev_feature.png&quot; data-lightbox=&quot;git_workflow_dev_feature&quot;&gt;&lt;img src=&quot;/assets/2018/git_workflow_dev_feature.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;release-branches&quot;&gt;Release Branches&lt;/h1&gt;
+
+&lt;p&gt;This extension of the developer and feature branch workflow is often used for large projects that are planning frequent releases. 
+For a new release, a new release branch is created from the developer branch. 
+This only is used for final bug fixes, no new features are developed here. 
+As soon as the release can be shipped, the branch will be merged into both the master and the developer branch. 
+The fixes in the release branches allow other teams to work on new features without disturbing the work on the release.&lt;/p&gt;
+
+&lt;p&gt;The model is often complemented by another branch: the hotfix branch which allows direct bug fixing from the master branch.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/2018/git_workflow_release.png&quot; data-lightbox=&quot;git_workflow_release&quot;&gt;&lt;img src=&quot;/assets/2018/git_workflow_release.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;but-which-concept-is-right-for-me&quot;&gt;But which concept is right for me?&lt;/h1&gt;
+
+&lt;p&gt;Basically, the more complex your project, the more complex the workflow should be. 
+But also for one-man projects it often makes sense not to use the simple workflow and to use a branching strategy already here. 
+For my own projects, for example, I currently use the Developer Branch concept.
+But whatever you decide to do: Make sure you have a consistent naming strategy for branches (and commits, of course) 
+and you’re very good to go.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 30 Sep 2018 08:00:00 +0200</pubDate>
+        <link>http://blog.mjurtz.com/2018/09/git-workflows</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/git-workflows</guid>
+        
+        <category>git</category>
+        
+        <category>vcs</category>
+        
+        <category>organization</category>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>Getting Started With Running</title>
@@ -1180,141 +1258,6 @@ However, the way this works is all similar (though not quite as primitive) to ou
         
         
         <category>programming</category>
-        
-      </item>
-    
-      <item>
-        <title>Agile - Get Started with Kanban</title>
-        <description>&lt;p&gt;After I introduced Scrum in my last article, today will be about Kanban. 
-Like Scrum, Kanban is an agile software development methodology and I have to say that I apply the principles 
-I present today to most of my personal side projects.&lt;/p&gt;
-
-&lt;p&gt;Kanban is Japanese and can be translated as “billboard”. 
-Kanban was first introduced by Toyota in the automotive industry and is now mostly associated with just-in-time concepts. 
-But I don’t want to bore you with historical details, I want to show you the usage in software development.&lt;/p&gt;
-
-&lt;p&gt;Before we start, you will certainly want to know what advantages Kanban can offer you: 
-Kanban helps you to increase quality and speed up the realisation of tasks as well as to identify and eliminate bottlenecks. 
-This is done by minimizing the time that tasks spend in queues.&lt;/p&gt;
-
-&lt;p&gt;There are two basic concepts on which Kanban is based: On the one hand this is visualization, 
-on the other hand the limitation of parallel work (Work in Progress, WIP).&lt;/p&gt;
-
-&lt;p&gt;The visualization of the work offers various advantages. Tasks are not forgotten, 
-which can reduce stress and make it easier to make good decisions. 
-It also simplifies the estimation of how long a task will take to complete.&lt;/p&gt;
-
-&lt;p&gt;Limiting parallel work reduces the waiting time of tasks and thus increases the flow of the process. 
-At this point I would like to define two key indicators: Lead time and cycle time.&lt;/p&gt;
-
-&lt;p&gt;Lead time describes the period from receipt of a request to delivery of an associated feature. 
-It is therefore the time period that is visible to the user. 
-Cycle time describes the duration of a task, starting from the beginning of the work until its result is ready for delivery.&lt;/p&gt;
-
-&lt;p&gt;The goal of Kanban is to reduce the response time of a system. This can be achieved in two ways: 
-Increasing the throughput of the system or reducing parallel work and thus reducing the time of tasks in queues.&lt;/p&gt;
-
-&lt;p&gt;Let us illustrate this with an example. The workflow of a software company is as follows:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;After a problem is reported (1), it remains in the ticket list until the next meeting (2).&lt;/li&gt;
-  &lt;li&gt;At this meeting the relevance of the problem is prioritized, in the following days the solution will be implemented by a developer (3)&lt;/li&gt;
-  &lt;li&gt;Next comes the test of the implementation (4), planning of the release (5) and finally the deployment (6)&lt;/li&gt;
-  &lt;li&gt;There are always periods of time between these individual stations that are not used to add value&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/2018/20180722_kanban_valuestreammap.png&quot; alt=&quot;Value Stream Map in Kanban&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The following key figures result for this process:
-	• Total time (value adding): 6 h 15 min
-	• Total waiting time: 20 days
-	• Lead Time: 485.25 hours
-	• Efficiency: Time (value-adding) / Lead Time = 6.25 / 485.25 = 1.29
-	• WIP = Lead Time / Time (value-adding) = 485.25 / 6.25 = 77.64&lt;/p&gt;
-
-&lt;p&gt;As you can see, the efficiency is anything but great. According to Littles Law, there is a WIP of about 78 elements. 
-By reducing this to half, the time required could also be reduced to half.&lt;/p&gt;
-
-&lt;p&gt;But now really to software development: 
-The idea to use Kanban in software development is to establish a Kanban board to organize tasks. 
-Such boards are divided into different columns that define the corresponding stages of a task. 
-Typically these are things like “In planning”, “Development”, “Test”, “Deployment”. 
-You can see an example of such a board in the following screenshot:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/2018/20180722_kanban_board.png&quot; alt=&quot;Kanban Board Example&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Different tasks are then moved into these columns, with each task going through the development process from left to right. 
-As already mentioned, an important principle of Kanban is the limitation of parallel work. 
-That is why each column may only contain a certain predefined maximum number of elements. 
-If a task spends too long in a certain column, problems with the specific task or bottlenecks in the process can be identified. 
-These are then solved as a team, keeping the stress of the people involved at the appropriate points as low as possible.&lt;/p&gt;
-
-&lt;p&gt;The conversion of a kanban board can be carried out both physically and by software. With a physical kanban board, 
-the tasks can be displayed with post-items. The advantage here is the ubiquity of the board, 
-each team member is always aware of the current status. 
-Alternatively, software solutions such as Trello or Jira offer themselves, which follow exactly the same principle, 
-whereby tasks can be provided here with task assignments, checklists, deadlines and comments.&lt;/p&gt;
-
-&lt;p&gt;When transferring tasks from one area to the next, it is important to establish a pull system. 
-Completed tasks should therefore not be pushed to the next level by the people who have completed them. 
-Instead, the employees there should pull the task to themselves.&lt;/p&gt;
-
-&lt;h2 id=&quot;kanban-and-scrum&quot;&gt;Kanban and Scrum&lt;/h2&gt;
-
-&lt;p&gt;Now that you have a rough idea what Kanban is, let’s compare the methodology briefly with Scrum.
-Both are concepts of agile software development, but what is the best solution for which purpose?&lt;/p&gt;
-
-&lt;p&gt;Both concepts are based on a pull system. 
-Kanban uses this to move tasks to the next area, Scrum using the agreement of user stories for the sprint backlog. 
-Both concepts are based on transparency and aim to reduce parallel work to a minimum. 
-Scrum implements this rather indirectly, since the requirements that are implemented within a single sprint are clearly defined.&lt;/p&gt;
-
-&lt;p&gt;The product is also constantly being updated and kept release-ready in both approaches. 
-The self-organization of the team also plays an important role in both Scrum and Kanban and both concepts require the division 
-of requirements into as small subtasks as possible.&lt;/p&gt;
-
-&lt;p&gt;But of course there are also various differences. Kanban does without the iterative model of Scrum, for example, 
-tasks run through the entire cycle individually. A Scrum team agrees before each sprint which tasks are to be implemented. 
-Kanban, on the other hand, makes these commitments optional.&lt;/p&gt;
-
-&lt;p&gt;Kanban does not prescribe roles like the division into Scrum Master, Product Owner and Team as known from Scrum.&lt;/p&gt;
-
-&lt;p&gt;It is difficult to define exactly when which methodology should be used. 
-As in the previous article, it is often the case that none of the methodologies is used in its pure form, 
-but a mixed version according to the team’ s requirements.&lt;/p&gt;
-
-&lt;p&gt;Kanban is suitable for various IT use cases. In my opinion, Kanban is a more flexible way of dealing with requirements than Scrum is.
-The concept makes sense here for applications where malfunctions and short-term maintenance are to be expected more frequently.
-Here, the interval cycles of Scrum are simply too long. 
-In addition, Kanban may be easier to implement in corporate structures that still work with the waterfall model, 
-since Kanban allows a slow changeover.&lt;/p&gt;
-
-&lt;h2 id=&quot;one-last-thing&quot;&gt;One last thing&lt;/h2&gt;
-
-&lt;p&gt;Finally, in my opinion, Scrum is also excellently suited for the realization of own projects, 
-in principle in the form of a function-enhanced TODO list. You can then combine the tasks for yourself with the Pomodoro technique, 
-for example, to really make efficient use of your private time.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 21 Jul 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/07/agile-get-started-with-kanban</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/07/agile-get-started-with-kanban</guid>
-        
-        <category>development</category>
-        
-        <category>software</category>
-        
-        <category>methodology</category>
-        
-        <category>kanban</category>
-        
-        <category>management</category>
-        
-        <category>agile</category>
-        
-        <category>project</category>
-        
-        
-        <category>development</category>
         
       </item>
     

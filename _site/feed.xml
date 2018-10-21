@@ -4,10 +4,10 @@
     <title>Marcel Jurtz</title>
     <description>A software developers blog.
 </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 21 Oct 2018 20:07:15 +0200</pubDate>
-    <lastBuildDate>Sun, 21 Oct 2018 20:07:15 +0200</lastBuildDate>
+    <link>http://blog.mjurtz.com/</link>
+    <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 21 Oct 2018 20:09:21 +0200</pubDate>
+    <lastBuildDate>Sun, 21 Oct 2018 20:09:21 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
     
       <item>
@@ -55,7 +55,6 @@
   &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
     &lt;span class=&quot;c1&quot;&gt;// This method gets called by the runtime. Use this method to add services to the container. &lt;/span&gt;
     &lt;span class=&quot;c1&quot;&gt;// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940 &lt;/span&gt;
-
     &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConfigureServices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IServiceCollection&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
     &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
       &lt;span class=&quot;n&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;AddMvc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;SetCompatibilityVersion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CompatibilityVersion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Version_2_1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -117,8 +116,8 @@
 &lt;p&gt;This article really only shows the information you need to get started with the topic. If I could arouse your interest, you can read on directly at &lt;a href=&quot;https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-2.1&quot;&gt;Microsoft&lt;/a&gt;. But of course there are also several other articles about the topic, let your creativity run free and just try a little bit around.&lt;/p&gt;
 </description>
         <pubDate>Sun, 21 Oct 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/10/your-first-api-net-core</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/10/your-first-api-net-core</guid>
+        <link>http://blog.mjurtz.com/2018/10/your-first-api-net-core</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/10/your-first-api-net-core</guid>
         
         <category>software</category>
         
@@ -148,8 +147,8 @@
 &lt;p&gt;Nevertheless, I would like to encourage you to participate and join in as well. So how exactly do you get started? First set goals for the 100 days. What do you want to achieve? Do you have an idea that has been on your mind forever? Or are you already sitting on a project that you haven’t touched in a long time? Or do you, like me, want to adapt the goal of the challenge a little and improve and deepen your skills in various areas? Whatever it is, take your time to plan and formulate your goals in concrete terms. That’s it, actually. As soon as you know what you want, start with the implementation — and tweet your progress daily under the Hashtag #100DaysOfCode. Good luck! And by the way: If you miss a day, it’s of course not dramatic. Just add the day at the end of the challenge and make sure you don’t miss two days in a row.&lt;/p&gt;
 </description>
         <pubDate>Sun, 14 Oct 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/10/100-days-of-code</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/10/100-days-of-code</guid>
+        <link>http://blog.mjurtz.com/2018/10/100-days-of-code</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/10/100-days-of-code</guid>
         
         <category>challenge</category>
         
@@ -201,8 +200,8 @@ X stands for the major version, Y for the minor version and Z for the patch vers
 &lt;p&gt;Do you or your company already use Semantic Versioning? If not, which system do you use instead? If you don’t use such a structure, I can definitely recommend the de facto standard. Not only does it help to keep your versioning clean and clear, it also helps those who use your software. And it’s really easy to set up.&lt;/p&gt;
 </description>
         <pubDate>Sun, 07 Oct 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/10/semantic-versioning</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/10/semantic-versioning</guid>
+        <link>http://blog.mjurtz.com/2018/10/semantic-versioning</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/10/semantic-versioning</guid>
         
         <category>versioning</category>
         
@@ -283,8 +282,8 @@ But whatever you decide to do: Make sure you have a consistent naming strategy f
 and you’re very good to go.&lt;/p&gt;
 </description>
         <pubDate>Sun, 30 Sep 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/09/git-workflows</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/git-workflows</guid>
+        <link>http://blog.mjurtz.com/2018/09/git-workflows</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/git-workflows</guid>
         
         <category>git</category>
         
@@ -408,8 +407,8 @@ My next milestone is a half marathon in December and hopefully a complete one in
 &lt;p&gt;All beginnings are difficult. If you decide to train with the C25K program, be prepared to have some self-discipline for the first two weeks. Nevertheless, it was the case with me afterwards that you integrated it into your daily routine in such a way that you want to continue on your own.&lt;/p&gt;
 </description>
         <pubDate>Sun, 23 Sep 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/09/getting-started-with-running</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/getting-started-with-running</guid>
+        <link>http://blog.mjurtz.com/2018/09/getting-started-with-running</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/getting-started-with-running</guid>
         
         <category>self-disciplin</category>
         
@@ -520,8 +519,8 @@ My next milestone is a half marathon in December and hopefully a complete one in
 &lt;p&gt;I hope that this article has given you a rough insight into how the Garbage Collection works in C#. But the topic itself gives enough theory for a whole book, so I recommend to the inclined reader to read more detailed articles. &lt;a href=&quot;https://docs.microsoft.com/en-gb/dotnet/standard/garbage-collection/fundamentals&quot;&gt;Microsoft’s own documentation&lt;/a&gt; on the subject is certainly a good starting point, have fun with it!&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Sep 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/09/dotnet-garbage-collection</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/dotnet-garbage-collection</guid>
+        <link>http://blog.mjurtz.com/2018/09/dotnet-garbage-collection</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/dotnet-garbage-collection</guid>
         
         <category>development</category>
         
@@ -716,8 +715,8 @@ Here it’s a good idea to just play around with the available possibilities, bu
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/xgXXz-FT2I4?rel=0&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 </description>
         <pubDate>Sun, 09 Sep 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/09/xamarin-forms-dialogs</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/xamarin-forms-dialogs</guid>
+        <link>http://blog.mjurtz.com/2018/09/xamarin-forms-dialogs</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/xamarin-forms-dialogs</guid>
         
         <category>development</category>
         
@@ -808,8 +807,8 @@ since learning the language should be much easier than using JavaScript directly
 I have also planned a follow-up article for the next steps.&lt;/p&gt;
 </description>
         <pubDate>Sun, 02 Sep 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/09/typescript-up-and-running-in-10-minutes</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/typescript-up-and-running-in-10-minutes</guid>
+        <link>http://blog.mjurtz.com/2018/09/typescript-up-and-running-in-10-minutes</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/typescript-up-and-running-in-10-minutes</guid>
         
         <category>development</category>
         
@@ -859,8 +858,8 @@ So you can only really do something with the end product.&lt;/p&gt;
 but the original product should already be usable.&lt;/p&gt;
 </description>
         <pubDate>Sun, 26 Aug 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/08/mvp_youre_doing_it_wrong</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/08/mvp_youre_doing_it_wrong</guid>
+        <link>http://blog.mjurtz.com/2018/08/mvp_youre_doing_it_wrong</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/08/mvp_youre_doing_it_wrong</guid>
         
         <category>development</category>
         
@@ -989,8 +988,8 @@ or the like without complex installations and compatibility problems with softwa
 Containers can be installed in parallel without any problems and thus have access to different options.&lt;/p&gt;
 </description>
         <pubDate>Sun, 19 Aug 2018 08:00:00 +0200</pubDate>
-        <link>http://localhost:4000/2018/08/dockerizing-net-core</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/08/dockerizing-net-core</guid>
+        <link>http://blog.mjurtz.com/2018/08/dockerizing-net-core</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/08/dockerizing-net-core</guid>
         
         <category>development</category>
         

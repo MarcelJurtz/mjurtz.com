@@ -4,11 +4,163 @@
     <title>Marcel Jurtz</title>
     <description>A software developers blog.
 </description>
-    <link>http://blog.mjurtz.com/</link>
-    <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 07 Oct 2018 20:20:32 +0200</pubDate>
-    <lastBuildDate>Sun, 07 Oct 2018 20:20:32 +0200</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 21 Oct 2018 20:07:15 +0200</pubDate>
+    <lastBuildDate>Sun, 21 Oct 2018 20:07:15 +0200</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Building your first API in .NET Core</title>
+        <description>&lt;p&gt;Today I want to show you how to develop your first API with .NET Core.&lt;/p&gt;
+
+&lt;p&gt;.NET Core is an alternative to the classic .NET Framework. In contrast to the .NET Framework, .NET Core offers a huge advantage: It is platform-independent and therefore compatible with MacOS, Linux and Windows.&lt;/p&gt;
+
+&lt;p&gt;The purpose of this article is to build a small REST-based API, which will respond to HTTP GET-requests. Of course you can extend the project according to your own ideas and experiment around.&lt;/p&gt;
+
+&lt;h1 id=&quot;setup-and-installation&quot;&gt;Setup and Installation&lt;/h1&gt;
+
+&lt;p&gt;First of all you need to install the .NET Core SDK. You can download it directly from &lt;a href=&quot;https://www.microsoft.com/net/download&quot;&gt;Microsoft&lt;/a&gt;, where you will find two different links. On the one hand you will find the Runtime Environment, as well as the SDK, which also contains the RE, but additionally tools for development. Download and install the SDK for the platform of your choice.&lt;/p&gt;
+
+&lt;p&gt;In addition, it is a good idea to use an IDE for development. You can use Visual Studio for this, or alternatively you can use Visual Studio Code or JetBrains Rider.&lt;/p&gt;
+
+&lt;p&gt;Since I’m currently working on Linux, I’ll use Visual Studio Code.&lt;/p&gt;
+
+&lt;h1 id=&quot;create-a-project&quot;&gt;Create a project&lt;/h1&gt;
+
+&lt;p&gt;When working with .NET Core, the command line is used a lot at the moment. One such point is the creation of a project. Basically you can use any command line interface here, be it the terminal integrated in VS Code or the Windows Power Shell.&lt;/p&gt;
+
+&lt;p&gt;The first command you need to know is dotnet new.  This command initializes a new project, appending the type of the project. For each dotnet command, you can display operating information by appending &lt;em&gt;help&lt;/em&gt;. In the case of &lt;em&gt;dotnet new help&lt;/em&gt; you will be shown among other things the possible project types.&lt;/p&gt;
+
+&lt;p&gt;We want to create a new ASP .NET Core MVC project. But I don’t want to have a preconfiguration, so I initialize my new project with &lt;em&gt;dotnet new web&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;adaptation-of-the-project--implementation-of-the-api&quot;&gt;Adaptation of the project &amp;amp; implementation of the API&lt;/h1&gt;
+
+&lt;p&gt;First the Startup.cs class needs to be reworked. I’ve made some minor changes, which you can find in the following snippet:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt; 
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System.Collections.Generic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System.Linq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;System.Threading.Tasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Microsoft.AspNetCore.Builder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Microsoft.AspNetCore.Hosting&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Microsoft.AspNetCore.Http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Microsoft.AspNetCore.Mvc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Microsoft.Extensions.DependencyInjection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+
+&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;ApiSample&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Startup&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;c1&quot;&gt;// This method gets called by the runtime. Use this method to add services to the container. &lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940 &lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConfigureServices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IServiceCollection&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;AddMvc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;SetCompatibilityVersion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CompatibilityVersion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Version_2_1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+    &lt;span class=&quot;c1&quot;&gt;// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Configure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IApplicationBuilder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;IHostingEnvironment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;IsDevelopment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; 
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+        &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;UseDeveloperExceptionPage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+      &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; 
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+        &lt;span class=&quot;c1&quot;&gt;// Enforce HTTPS for Requests &lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;UseHsts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+      &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;UseHttpsRedirection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
+      &lt;span class=&quot;n&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;UseMvc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Once everything is configured, the API can be implemented. I want to build a really simple implementation that returns the status of the service. An HTTP GET request should be answered with an info message telling the caller that the API is running.&lt;/p&gt;
+
+&lt;p&gt;First of all we need a model class, which I built as follows:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt; 
+&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;ApiSample.Models&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ApplicationState&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Information&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The heart of the API is the controller that handles the requests. So I add a new controller to my project that responds to GET requests via the &lt;em&gt;/api&lt;/em&gt; route. The implementation looks like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;ApiSample.Controllers&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Route&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;api/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ApiController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SampleController&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ControllerBase&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ActionResult&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ApplicationState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;GetApplicationState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ApplicationState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Information&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;API is running&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;If you have already worked with older versions of ASP .NET, you may have been using IActionResult as the return type. Now you can directly use the generic class ActionResult, where the type in braces is the type of the model which is stored in the response. On the one hand, this helps you with the readability of your methods, since the result is directly visible. This in turn is very helpful if you use things like automatic documentation based on method headers.&lt;/p&gt;
+
+&lt;p&gt;Basically the structure as you can see is kept very simple. And that’s it for now. Start your project with the command &lt;em&gt;dotnet run&lt;/em&gt;, you will get the address and port where the application is running. With a browser of your choice or a test tool like Postman you can now test the API. By calling the address with the attachment &lt;em&gt;/api&lt;/em&gt; you should finally get the expected status message.&lt;/p&gt;
+
+&lt;h1 id=&quot;further-information&quot;&gt;Further information&lt;/h1&gt;
+
+&lt;p&gt;This article really only shows the information you need to get started with the topic. If I could arouse your interest, you can read on directly at &lt;a href=&quot;https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-2.1&quot;&gt;Microsoft&lt;/a&gt;. But of course there are also several other articles about the topic, let your creativity run free and just try a little bit around.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 21 Oct 2018 08:00:00 +0200</pubDate>
+        <link>http://localhost:4000/2018/10/your-first-api-net-core</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/10/your-first-api-net-core</guid>
+        
+        <category>software</category>
+        
+        <category>net</category>
+        
+        <category>netcore</category>
+        
+        <category>development</category>
+        
+        
+        <category>programming</category>
+        
+      </item>
+    
+      <item>
+        <title>100 Days of Code</title>
+        <description>&lt;p&gt;You might be familiar with the following situation: You are in your first job as a software developer and spend less and less time with your own projects? Or the time you spend on them is generally getting less and less? I have the problem right now and I’ve been thinking about what’s causing it and how I can work on it. Well, the main problem, in my opinion, is that I no longer have the pressure from my studies to learn to take an exam, for example. Although I want to advance my own projects, I have to force myself not to use my time elsewhere. And, according to the motto “it requires pressure to create diamonds” not much works without pressure.&lt;/p&gt;
+
+&lt;p&gt;Personally, I like challenges. And for this reason I have decided to simply build this pressure by myself. On the Internet you can find various articles about the so-called &lt;a href=&quot;https://www.100daysofcode.com/&quot;&gt;100 Days of Code-Challenge&lt;/a&gt;, which is about working on your own projects for at least one hour a day, 100 days in a row. The Challenge defines some basic rules, which I have adapted for myself, but would like to introduce you to in this article.&lt;/p&gt;
+
+&lt;p&gt;The Challenge itself requires you to work on your own projects for one hour or more for 100 days. Tutorials or online courses are not included in this time, a point I have discarded in my case. I have set myself various goals that I want to achieve within these 100 days, which also include various things I want to learn. That’s why I combine the challenge for myself from learning and programming sessions.&lt;/p&gt;
+
+&lt;p&gt;The project defines the process and rules on the website linked above in detail, but the basic idea is regularity and public commitment. This means that if possible you should make your projects publicly available (e.g. via GitHub), tweet your progress, or similar.&lt;/p&gt;
+
+&lt;p&gt;I’ve decided for myself to do the challenge for myself for now. While I understand the idea behind the publication, which should make it easier to keep up with the progress by pushing each other within the community, but I also want to use the time primarily for learning and therefore find the approach less suitable.&lt;/p&gt;
+
+&lt;p&gt;Nevertheless, I would like to encourage you to participate and join in as well. So how exactly do you get started? First set goals for the 100 days. What do you want to achieve? Do you have an idea that has been on your mind forever? Or are you already sitting on a project that you haven’t touched in a long time? Or do you, like me, want to adapt the goal of the challenge a little and improve and deepen your skills in various areas? Whatever it is, take your time to plan and formulate your goals in concrete terms. That’s it, actually. As soon as you know what you want, start with the implementation — and tweet your progress daily under the Hashtag #100DaysOfCode. Good luck! And by the way: If you miss a day, it’s of course not dramatic. Just add the day at the end of the challenge and make sure you don’t miss two days in a row.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 14 Oct 2018 08:00:00 +0200</pubDate>
+        <link>http://localhost:4000/2018/10/100-days-of-code</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/10/100-days-of-code</guid>
+        
+        <category>challenge</category>
+        
+        <category>learn</category>
+        
+        <category>improvement</category>
+        
+        
+        <category>programming</category>
+        
+      </item>
     
       <item>
         <title>Semantic Versioning</title>
@@ -49,8 +201,8 @@ X stands for the major version, Y for the minor version and Z for the patch vers
 &lt;p&gt;Do you or your company already use Semantic Versioning? If not, which system do you use instead? If you don’t use such a structure, I can definitely recommend the de facto standard. Not only does it help to keep your versioning clean and clear, it also helps those who use your software. And it’s really easy to set up.&lt;/p&gt;
 </description>
         <pubDate>Sun, 07 Oct 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/10/semantic-versioning</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/10/semantic-versioning</guid>
+        <link>http://localhost:4000/2018/10/semantic-versioning</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/10/semantic-versioning</guid>
         
         <category>versioning</category>
         
@@ -131,8 +283,8 @@ But whatever you decide to do: Make sure you have a consistent naming strategy f
 and you’re very good to go.&lt;/p&gt;
 </description>
         <pubDate>Sun, 30 Sep 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/09/git-workflows</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/git-workflows</guid>
+        <link>http://localhost:4000/2018/09/git-workflows</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/git-workflows</guid>
         
         <category>git</category>
         
@@ -256,8 +408,8 @@ My next milestone is a half marathon in December and hopefully a complete one in
 &lt;p&gt;All beginnings are difficult. If you decide to train with the C25K program, be prepared to have some self-discipline for the first two weeks. Nevertheless, it was the case with me afterwards that you integrated it into your daily routine in such a way that you want to continue on your own.&lt;/p&gt;
 </description>
         <pubDate>Sun, 23 Sep 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/09/getting-started-with-running</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/getting-started-with-running</guid>
+        <link>http://localhost:4000/2018/09/getting-started-with-running</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/getting-started-with-running</guid>
         
         <category>self-disciplin</category>
         
@@ -368,8 +520,8 @@ My next milestone is a half marathon in December and hopefully a complete one in
 &lt;p&gt;I hope that this article has given you a rough insight into how the Garbage Collection works in C#. But the topic itself gives enough theory for a whole book, so I recommend to the inclined reader to read more detailed articles. &lt;a href=&quot;https://docs.microsoft.com/en-gb/dotnet/standard/garbage-collection/fundamentals&quot;&gt;Microsoft’s own documentation&lt;/a&gt; on the subject is certainly a good starting point, have fun with it!&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Sep 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/09/dotnet-garbage-collection</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/dotnet-garbage-collection</guid>
+        <link>http://localhost:4000/2018/09/dotnet-garbage-collection</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/dotnet-garbage-collection</guid>
         
         <category>development</category>
         
@@ -564,8 +716,8 @@ Here it’s a good idea to just play around with the available possibilities, bu
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/xgXXz-FT2I4?rel=0&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 </description>
         <pubDate>Sun, 09 Sep 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/09/xamarin-forms-dialogs</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/xamarin-forms-dialogs</guid>
+        <link>http://localhost:4000/2018/09/xamarin-forms-dialogs</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/xamarin-forms-dialogs</guid>
         
         <category>development</category>
         
@@ -656,8 +808,8 @@ since learning the language should be much easier than using JavaScript directly
 I have also planned a follow-up article for the next steps.&lt;/p&gt;
 </description>
         <pubDate>Sun, 02 Sep 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/09/typescript-up-and-running-in-10-minutes</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/typescript-up-and-running-in-10-minutes</guid>
+        <link>http://localhost:4000/2018/09/typescript-up-and-running-in-10-minutes</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/typescript-up-and-running-in-10-minutes</guid>
         
         <category>development</category>
         
@@ -707,8 +859,8 @@ So you can only really do something with the end product.&lt;/p&gt;
 but the original product should already be usable.&lt;/p&gt;
 </description>
         <pubDate>Sun, 26 Aug 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/08/mvp_youre_doing_it_wrong</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/08/mvp_youre_doing_it_wrong</guid>
+        <link>http://localhost:4000/2018/08/mvp_youre_doing_it_wrong</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/08/mvp_youre_doing_it_wrong</guid>
         
         <category>development</category>
         
@@ -837,8 +989,8 @@ or the like without complex installations and compatibility problems with softwa
 Containers can be installed in parallel without any problems and thus have access to different options.&lt;/p&gt;
 </description>
         <pubDate>Sun, 19 Aug 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/08/dockerizing-net-core</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/08/dockerizing-net-core</guid>
+        <link>http://localhost:4000/2018/08/dockerizing-net-core</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/08/dockerizing-net-core</guid>
         
         <category>development</category>
         
@@ -852,195 +1004,6 @@ Containers can be installed in parallel without any problems and thus have acces
         
         
         <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>Automated Testing</title>
-        <description>&lt;p&gt;Todays focus is on how you can test your applications automatically to detect bugs early and improve your code quality.&lt;/p&gt;
-
-&lt;p&gt;I want to introduce you to the concept of automated testing. 
-In order to make the content accessible to as many users as possible, 
-I will not use code examples and concentrate purely on the underlying idea instead. 
-Once you understand them, you will have no problems implementing the concept in the programming language of your choice.&lt;/p&gt;
-
-&lt;p&gt;First of all: What is automated testing and what advantages does it offer?&lt;/p&gt;
-
-&lt;p&gt;Automated testing describes writing code that tests your actual code. 
-Your source code consists of the production code and test code.&lt;/p&gt;
-
-&lt;p&gt;Think of how you may test the functionality of your software. 
-You start the application and log in with your user account if necessary. 
-You navigate to the feature you are working on and perform your tests. 
-You repeat that for different possibilities.&lt;/p&gt;
-
-&lt;p&gt;You can see from the short description that the whole process is quite time-consuming. 
-Each change requires a new run through the procedure and new functions increase the time exponentially. 
-And this is exactly where automation comes into play.&lt;/p&gt;
-
-&lt;p&gt;Automated tests can be performed at the push of a button and repeated as often as required. 
-In addition, they run much faster than manual tests. 
-The repeatability means that no more time is required to test existing functionality when adding new features. 
-Basically, bugs are better found because no test scenarios are forgotten, 
-this procedure strengthens confidence in deployment and allows calmer weekends when a release is to be rolled out on Fridays.&lt;/p&gt;
-
-&lt;p&gt;The repeatability of such tests brings another advantage that only becomes apparent at second glance: refactoring, 
-i.e. changing code without influencing its functionality, 
-is also easier to do. Possible effects of changes on other components of the application can thus be identified directly.&lt;/p&gt;
-
-&lt;p&gt;Finally, you automatically think more about the quality of your code as you write it, 
-for example, to handle invalid input.&lt;/p&gt;
-
-&lt;p&gt;In general, tests are divided into three different categories:&lt;/p&gt;
-
-&lt;p&gt;Unit tests test individual entities without external dependencies. 
-For example, a single function is tested, but things like database connections etc. are not considered. 
-It is only necessary to validate the correctness of the implementation. 
-Unit tests are cheap to write and quick to test, but do not provide complete confidence by ignoring dependencies.&lt;/p&gt;
-
-&lt;p&gt;Integration tests test an application under consideration of dependencies. 
-These tests are often slower because, external resources may have to be accessed, 
-but these tests also provide more confidence in the application.&lt;/p&gt;
-
-&lt;p&gt;The last category is end-to-end testing. These describe the direct execution of an application via its graphical interface. 
-By imitating human behavior, the tests are correspondingly slow and can already be broken by minor changes in the source code.&lt;/p&gt;
-
-&lt;p&gt;So much for that. But what exactly is to be tested now? To put it briefly - everything. 
-But you should be aware of the so-called test pyramid. From bottom to top you should focus on unit tests, 
-then integration tests and finally end-to-end tests. 
-The latter, for example, does not make sense for examining borderline cases, but only for core elements of the application. 
-Unit tests, on the other hand, are ideal for testing conditions and functional results. 
-At this point, however, there are often applications that contain little actual logic and, 
-for example, only serve as an intermediate layer between UI and database. 
-In this case, integration tests are preferred.&lt;/p&gt;
-
-&lt;p&gt;The basic rule is: deal with gaps in your unit tests with integration tests and use end-to-end tests sparingly. 
-However, the exact balance of the three categories always depends on the project.&lt;/p&gt;
-
-&lt;p&gt;The approach of implementing automated tests in software projects is usually similar. 
-First you are looking for a testing framework for the programming language of your choice. 
-For my part I mostly use C#, well-known representatives are MSTest, NUnit or XUnit. 
-But you better focus on the basics, not on a special tool.&lt;/p&gt;
-
-&lt;p&gt;Tests are usually written in their own functions, which are executed and evaluated by a Test Runner integrated in the test framework. 
-The functions are usually based on the Triple-A pattern (Arrange-Act-Assert) and are named according to a constant scheme. 
-This schema usually contains the method name of the function to be tested as well as input parameters or expected result values.&lt;/p&gt;
-
-&lt;p&gt;Detailed information on the design of tests can be found on the Internet in sufficient detail for the language relevant to you.&lt;/p&gt;
-
-&lt;p&gt;I would like to conclude, however, by referring to a concept based fundamentally on the use of automated tests: Test Drive Development (TDD).&lt;/p&gt;
-
-&lt;p&gt;TDD describes a programming concept according to which tests are written before the actual code. 
-The idea is to write a test that tests imaginary source code. Since this is not yet available, 
-the test will fail (or not compile at all, depending on the language). 
-Then the minimum code is written with which the test runs successfully. 
-If required, refactoring takes place afterwards. 
-The advantage of this concept is testable source code right from the start, 
-as well as full code coverage (proportion of code covered by tests). 
-Due to the concept of minimalism, TDD often results in a simpler implementation.&lt;/p&gt;
-
-&lt;p&gt;You now have a general overview of the idea behind automated tests in software development 
-and I hope I have given you enough motivation to try out the concept. 
-And if you’re working on the details, the keyword ‘mock’ might also help. 
-Mocks are representatives of components of an application that, for example, 
-simulate a database connection and thus facilitate integration tests. Happy testing!&lt;/p&gt;
-</description>
-        <pubDate>Sun, 05 Aug 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/08/automated-testing</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/08/automated-testing</guid>
-        
-        <category>development</category>
-        
-        <category>methodology</category>
-        
-        <category>programming</category>
-        
-        
-        <category>programming</category>
-        
-      </item>
-    
-      <item>
-        <title>How I Learn Anything Quickly</title>
-        <description>&lt;p&gt;As a software developer, you are probably well aware of the feeling: 
-You are overwhelmed by the amount of interesting stuff you want to test and learn. 
-But I’m sure that this problem is also very common in other fields.&lt;/p&gt;
-
-&lt;p&gt;If you feel like me, you may read and watch various books, blog articles or online courses, 
-but you won’t really keep much of their contents.&lt;/p&gt;
-
-&lt;p&gt;In today’s article, I’d like to help you to learn more effectively about the topics that really interest you, wasting less time.&lt;/p&gt;
-
-&lt;p&gt;I apologize in advance for all my personal examples coming from my projects as a software developer, 
-but I’m sure you can draw parallels and transfer my experience to your own even without the appropriate knowledge.&lt;/p&gt;
-
-&lt;p&gt;Before we dive in, I would like to introduce you to a tool that has often helped me when I was looking for an initial idea of a topic: 
-learn-anything.xyz is a website that lists sources based on a keyword that offers you learning materials. 
-There are many different topics and it can’t hurt to drop by here.&lt;/p&gt;
-
-&lt;p&gt;Before I restructured my learning flow, I used to google for “How to learn XY” and work through the first tutorial I could find. 
-You can certainly imagine that this is not really effective. Often the contents are outdated, incomplete or just incorrect. 
-Another problem I often had is watching video tutorials without trying out the acquired skills directly. 
-Based on the idea “That looks easy” I watched the whole video and didn’t even get a simple “Hello World” application to run afterwards.&lt;/p&gt;
-
-&lt;p&gt;I have fundamentally revised my process of learning new things. My new concept can be described in a single sentence:&lt;/p&gt;
-
-&lt;p&gt;Don’t learn without a reason&lt;/p&gt;
-
-&lt;p&gt;Don’t learn anything just because it’s hip or because everyone else seems to use it. 
-Learn something because you are enthusiastic about it and, more importantly, because you have a real application for it. 
-Vice versa, of course, if you have an idea for something, you can also use this opportunity to learn something new, 
-i.e. to implement it with a different technology or something similar.&lt;/p&gt;
-
-&lt;p&gt;For example, I had the idea to write a simple app to manage lists. The application should only be able to manage shopping lists, 
-for example, as efficiently and uncomplicatedly as possible. 
-The apps I found on this topic were simply too bulky and cumbersome for my application, which is why I decided to write my own.&lt;/p&gt;
-
-&lt;p&gt;I took the opportunity to improve my knowledge in Android development. 
-I’ve hardly ever worked with the integrated SQLite database on Android, 
-and I’ve decided to try an OR mapper that I’ve only read a little about so far 
-(For everyone who’s interested: Room for Android, 
-I’ve got a post on the topic &lt;a href=&quot;https://blog.mjurtz.com/2018/02/introduction-to-room-for-android/&quot;&gt;here&lt;/a&gt;. 
-For those who don’t know: an OR mapper is used to transfer data records between an application and a database).&lt;/p&gt;
-
-&lt;p&gt;You can see the result &lt;a href=&quot;https://blog.mjurtz.com/2018/03/sideproject-sist/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;So come up with an idea you need to learn what you’re interested in. 
-Then learn exactly what you need to get ahead with the implementation. 
-This gives you the best opportunity to apply what you have learned and to check immediately whether you have really understood it. 
-At the same time, you have a concrete goal in mind as you learn so that you are able to improve measureming your progress.&lt;/p&gt;
-
-&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
-
-&lt;p&gt;My concept of learning things quickly and effectively can be summed up in one sentence: Don’t study without a reason.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Set yourself a specific goal to work towards&lt;/li&gt;
-  &lt;li&gt;Break down your goal into small work units&lt;/li&gt;
-  &lt;li&gt;Start with the seemingly simple things&lt;/li&gt;
-  &lt;li&gt;Learn something when you need it and can put it into practice right away&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you can’t think of anything to take as your goal, you can also simply just recreate existing things.&lt;/p&gt;
-
-&lt;p&gt;Finally, you don’t have to learn every facet of something. 
-The important thing - which you will also learn through this concept - is the ability to ask the right questions. 
-In most cases you will be able to find details within a very short time that you don’t have in mind.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 29 Jul 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/07/learn-anything-quickly</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/07/learn-anything-quickly</guid>
-        
-        <category>learn</category>
-        
-        <category>self</category>
-        
-        <category>methodology</category>
-        
-        <category>programming</category>
-        
-        
-        <category>learn</category>
         
       </item>
     

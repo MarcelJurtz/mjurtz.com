@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>C# - Mastering the Basics - Events and Delegates</title>
+  <meta name="description" content="Delegates and Events are powerful tools in C#, but they can definitely be confusing in the beginning. Todays article covers the basics of this topic and help...">
+  
+  <meta name="author" content="Marcel Jurtz">
+  <meta name="copyright" content="&copy; Marcel Jurtz 2018">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/2018/04/c-mastering-the-basics-events-delegates">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <!--
+    <a href="/" class="logo">
+      
+      <span>Marcel Jurtz</span>
+      
+    </a>
+  -->
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <!--
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/typography/">Typography</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/gamedev/">gamedev</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/unity/">unity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/git/">git</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/programming/">programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tools/">tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/android/">android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/app/">app</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/baseball/">baseball</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/development/">development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/editor/">editor</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcache/">bitcache</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcoin/">bitcoin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cryptocurrency/">cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/dotnet/">dotnet</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-dotnet/">asp-dotnet</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">csharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/rest/">rest</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/servicestack/">servicestack</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/software/">software</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/windows/">windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/efficiency/">efficiency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/productivity/">productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/network/">network</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/p2p/">p2p</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/syncthing/">syncthing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/xamarin/">xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/clean-code/">clean-code</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/design/">design</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/layout/">layout</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/sideproject/">sideproject</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/dotnet-core/">dotnet-core</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/linux/">linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/3d-printing/">3d-printing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/raspberry-pi/">raspberry-pi</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/email/">email</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/encryption/">encryption</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/self/">self</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/blog/">blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/web/">web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ruby/">ruby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/javascript/">javascript</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/jekyll/">jekyll</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/motivation/">motivation</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/discipline/">discipline</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/fitness/">fitness</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-net/">asp.net</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/css/">css</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/html/">html</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tfs/">tfs</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/svn/">svn</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/docker/">docker</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/containers/">containers</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/book/">book</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/review/">review</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ferriss/">ferriss</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/life/">life</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/business/">business</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/methodology/">methodology</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/scrum/">scrum</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/management/">management</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/agile/">agile</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/project/">project</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/kanban/">kanban</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/pattern/">pattern</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ioc/">IoC</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/di/">DI</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/learn/">learn</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/prototyping/">prototyping</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/typescript/">typescript</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cross-platform/">cross-platform</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/self-disciplin/">self-disciplin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/sports/">sports</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/running/">running</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/challenge/">challenge</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/vcs/">vcs</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/organization/">organization</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/versioning/">versioning</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/documentation/">documentation</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/release/">release</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/improvement/">improvement</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net/">net</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/netcore/">netcore</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/game-development/">game-development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tools/">tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/android/">android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/cryptocurrency/">cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">csharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/productivity/">productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tips/">tips</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/xamarin/">xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/hobby/">hobby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/security/">security</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/linux/">linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/blog/">blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/windows/">windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/life/">life</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/web/">web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/programming/">programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/development/">development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/books/">books</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/learn/">learn</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/running/">running</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    -->
+      <ul id="js-navigation-menu" class="navigation-menu-show">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="/feed.xml">RSS</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">C# - Mastering the Basics - Events and Delegates</h1>
+      <p class="info">by <strong>Marcel Jurtz</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">April 26, 2018</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/csharp">Csharp</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>Delegates and Events are powerful tools in C#, but they can definitely be confusing in the beginning. Todays article covers the basics of this topic and helps you to get comfortable implementing this approach in your own applications.</p>
+
+<h2 id="delegates">Delegates</h2>
+
+<p>I think, the main problem is that delegates are often explained unnecessarily complicated. For this reason, I want to give you an easily understandable introduction. Let’s look at a basic delegate declaration:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">private</span> <span class="k">delegate</span> <span class="k">void</span> <span class="nf">myDelegate</span><span class="p">(</span><span class="kt">string</span> <span class="n">a</span><span class="p">,</span> <span class="kt">string</span> <span class="n">b</span><span class="p">);</span></code></pre></figure>
+
+<p>The declaration of a delegate looks very similar to a method declaration. In this case, the delegate looks like a method without a return value, but with two parameters, each of type string. The only difference is the keyword ‘delegate’ and the missing method body. Imagine delegates not as methods, but as references to methods.</p>
+
+<p>Let’s look at the following two methods:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">SayHello</span><span class="p">(</span><span class="kt">string</span> <span class="n">yourName</span><span class="p">,</span> <span class="kt">string</span> <span class="n">myName</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Hello </span><span class="p">{</span><span class="n">yourName</span><span class="p">}</span><span class="s">, I am </span><span class="p">{</span><span class="n">myName</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">AppendStrings</span><span class="p">(</span><span class="kt">string</span> <span class="n">a</span><span class="p">,</span> <span class="kt">string</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+ 	<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">a</span> <span class="p">+</span> <span class="n">b</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>It is not difficult to understand what these two methods do. Note, however, the signature of both methods: it is identical to that of the previously defined delegate. This means that the delegate can be used as a reference for the methods. The only decisive factor here is the type of the respective parameter, not the name.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">myDelegate</span> <span class="n">del1</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">myDelegate</span><span class="p">(</span><span class="n">SayHello</span><span class="p">);</span>
+<span class="n">myDelegate</span> <span class="n">del2</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">myDelegate</span><span class="p">(</span><span class="n">AppendStrings</span><span class="p">);</span>
+
+<span class="nf">del1</span><span class="p">(</span><span class="s">"Internet"</span><span class="p">,</span> <span class="s">"Marcel"</span><span class="p">);</span>
+<span class="nf">del2</span><span class="p">(</span><span class="s">"Some"</span><span class="p">,</span> <span class="s">"Text"</span><span class="p">);</span></code></pre></figure>
+
+<p>To create this reference, a new instance of the delegate is created. The compiler creates a fully-fledged class from the delegate, which is why instantiation can be done as usual using the <em>new</em> keyword. As an argument, the delegate receives the name of the desired method. The referenced method can now be called via the instantiated delegate.</p>
+
+<h3 id="multicast-delegates">Multicast Delegates</h3>
+
+<p>A strong feature of delegates, the so-called multicasting, enables the chaining of method calls. Let us illustrate this with an example:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">myDelegate</span> <span class="n">del1</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">myDelegate</span><span class="p">(</span><span class="n">SayHello</span><span class="p">);</span>
+<span class="n">myDelegate</span> <span class="n">del2</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">myDelegate</span><span class="p">(</span><span class="n">AppendStrings</span><span class="p">);</span>
+
+<span class="n">del1</span> <span class="p">+=</span> <span class="n">del2</span><span class="p">;</span>
+<span class="nf">del1</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">,</span> <span class="s">"World"</span><span class="p">);</span></code></pre></figure>
+
+<p>This will execute the stored methods for <em>del1</em> and <em>del2</em> using the arguments “Hello” and “World” for both methods. That is based on the so-called invocation list. Each delegate has such a list which holds references to all specified methods, which then are called when invoking the delegate.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">Delegate</span><span class="p">[]</span> <span class="n">invocationList</span> <span class="p">=</span> <span class="n">del1</span><span class="p">.</span><span class="nf">GetInvocationList</span><span class="p">();</span></code></pre></figure>
+
+<p>You can access a delegate’s invocation list using the <em>GetInvocationList</em> method. In this example, you will see that <em>del1</em> has two entries here. The entries in the InvocationList are always made in the stored sequence.</p>
+
+<p>To conclude this chapter, I’d like to show you a way to change arguments as you work through the invocation list. Delegates can also have return values, but this is not helpful during the processing steps. When using chained delegates with return types, the result of the last item from the invocation list will be returned.</p>
+
+<p>The key is to use reference types instead of value types. Doing so, a reference, not a copy of the variable, is passed to the method. To achieve this, the parameters must be marked with the ref keyword. I adjusted the content of my <em>SayHello()</em> method to demonstrate the whole thing. After the text is printed to the console, the method removes all vowels from the <em>yourName</em> variable.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">private</span> <span class="k">delegate</span> <span class="k">void</span> <span class="nf">myDelegate</span><span class="p">(</span><span class="k">ref</span> <span class="kt">string</span> <span class="n">a</span><span class="p">,</span> <span class="k">ref</span> <span class="kt">string</span> <span class="n">b</span><span class="p">);</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">myDelegate</span> <span class="n">del1</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">myDelegate</span><span class="p">(</span><span class="n">SayHello</span><span class="p">);</span>
+  <span class="n">myDelegate</span> <span class="n">del2</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">myDelegate</span><span class="p">(</span><span class="n">AppendStrings</span><span class="p">);</span>
+
+  <span class="kt">string</span> <span class="n">hello</span> <span class="p">=</span> <span class="s">"Hello"</span><span class="p">;</span>
+  <span class="kt">string</span> <span class="n">world</span> <span class="p">=</span> <span class="s">"World!"</span><span class="p">;</span>
+        
+  <span class="n">del1</span> <span class="p">+=</span> <span class="n">del2</span><span class="p">;</span>
+  <span class="nf">del1</span><span class="p">(</span><span class="k">ref</span> <span class="n">hello</span><span class="p">,</span> <span class="k">ref</span> <span class="n">world</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">SayHello</span><span class="p">(</span><span class="k">ref</span> <span class="kt">string</span> <span class="n">yourName</span><span class="p">,</span> <span class="k">ref</span> <span class="kt">string</span> <span class="n">myName</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">$"Hello </span><span class="p">{</span><span class="n">yourName</span><span class="p">}</span><span class="s">, I am </span><span class="p">{</span><span class="n">myName</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+  <span class="n">yourName</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">string</span><span class="p">(</span><span class="n">yourName</span><span class="p">.</span><span class="nf">Where</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span> <span class="p">!</span><span class="s">"aeiou"</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="n">c</span><span class="p">)).</span><span class="nf">ToArray</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">AppendStrings</span><span class="p">(</span><span class="k">ref</span> <span class="kt">string</span> <span class="n">a</span><span class="p">,</span> <span class="k">ref</span> <span class="kt">string</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">a</span> <span class="p">+</span> <span class="n">b</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="events">Events</h2>
+
+<p>Events indicate the occurrence of an action. Imagine an event as a notification to all interested parties. The trick here is that the raiser of the event does not have to know about the parties that are interested in that (subscibers). When an event occurs, data can optionally be sent. In C# this is done using the EventArgs class or a derivation of that class.</p>
+
+<p>Events basically just encapsulate delegates. This is probably the point that took me the longest to embrace. I’m going to illustrate the whole thing with an example. With our current knowledge we can build the following application:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">Form1</span> <span class="p">:</span> <span class="n">Form</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="nf">Form1</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="nf">InitializeComponent</span><span class="p">();</span>
+
+    <span class="n">Worker</span> <span class="n">w</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Worker</span><span class="p">();</span>
+    <span class="n">w</span><span class="p">.</span><span class="n">WorkCompleted</span> <span class="p">+=</span> <span class="k">new</span> <span class="nf">WorkCompletedHandler</span><span class="p">(</span><span class="n">OnWorkerWorkCompleted</span><span class="p">);</span>
+    <span class="n">w</span><span class="p">.</span><span class="nf">Work</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">private</span> <span class="k">void</span> <span class="nf">OnWorkerWorkCompleted</span><span class="p">(</span><span class="kt">int</span> <span class="n">hoursWorked</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">MessageBox</span><span class="p">.</span><span class="nf">Show</span><span class="p">(</span><span class="s">$"Worker has been completed: </span><span class="p">{</span><span class="n">hoursWorked</span><span class="p">}</span><span class="s"> hours worked."</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="nf">WorkCompletedHandler</span><span class="p">(</span><span class="kt">int</span> <span class="n">hoursWorked</span><span class="p">);</span>
+
+<span class="k">class</span> <span class="nc">Worker</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="n">WorkCompletedHandler</span> <span class="n">WorkCompleted</span><span class="p">;</span>
+
+  <span class="k">private</span> <span class="k">void</span> <span class="nf">OnWorkCompleted</span><span class="p">(</span><span class="kt">int</span> <span class="n">hoursWorked</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Work Completed - Inside Worker"</span><span class="p">);</span>
+    <span class="n">WorkCompleted</span><span class="p">?.</span><span class="nf">Invoke</span><span class="p">(</span><span class="n">hoursWorked</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Work</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">3</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+    <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Working..."</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nf">OnWorkCompleted</span><span class="p">(</span><span class="m">3</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>I think you’ll quickly grasp what’s happening here, as well. The application launches and instantiates a worker object. The work method is called, which waits three time for one second and then outputs some information. Finally, the Delegate WorkCompletedHandler is called, to which the worked time is passed. The application now displays a message box and notifies the user that the work method has been completed. The only thing to remember here is the linkage of the OnWorkerCompleted method to the delegate’s invocation list.</p>
+
+<p>Let’s take a look at how that looks when using an event:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">Form1</span> <span class="p">:</span> <span class="n">Form</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="nf">Form1</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="nf">InitializeComponent</span><span class="p">();</span>
+
+    <span class="n">w</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Worker</span><span class="p">();</span>
+    <span class="n">w</span><span class="p">.</span><span class="n">WorkCompleted</span> <span class="p">+=</span> <span class="k">new</span> <span class="nf">WorkCompletedHandler</span><span class="p">(</span><span class="n">OnWorkerWorkCompleted</span><span class="p">);</span>
+    <span class="n">w</span><span class="p">.</span><span class="nf">Work</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">private</span> <span class="k">void</span> <span class="nf">OnWorkerWorkCompleted</span><span class="p">(</span><span class="kt">int</span> <span class="n">hoursWorked</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">MessageBox</span><span class="p">.</span><span class="nf">Show</span><span class="p">(</span><span class="s">$"Worker has been completed: </span><span class="p">{</span><span class="n">hoursWorked</span><span class="p">}</span><span class="s"> hours worked."</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="nf">WorkCompletedHandler</span><span class="p">(</span><span class="kt">int</span> <span class="n">hoursWorked</span><span class="p">);</span>
+
+<span class="k">class</span> <span class="nc">Worker</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">event</span> <span class="n">WorkCompletedHandler</span> <span class="n">WorkCompleted</span><span class="p">;</span>
+
+  <span class="k">private</span> <span class="k">void</span> <span class="nf">OnWorkCompleted</span><span class="p">(</span><span class="kt">int</span> <span class="n">hoursWorked</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Work Completed - Inside Worker"</span><span class="p">);</span>
+    <span class="n">WorkCompleted</span><span class="p">?.</span><span class="nf">Invoke</span><span class="p">(</span><span class="n">hoursWorked</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Work</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">3</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+    <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Working..."</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nf">OnWorkCompleted</span><span class="p">(</span><span class="m">3</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>Looks almost the same, right? As I said before, events are just wrappers for delegates. So theoretically you can use both versions I have presented. However, events are used for the same reason as properties are used: It is considered bad practice to expose fields directly. According to the principle of encapsulation, these are thus isolated from the outside. That is exactly the case here as well. Events are used to encapsulate access to delegates.</p>
+
+<p>The final thing I want to share with you in this article is the use of custom EventArgs. The.NET framework has a convention whereby a delegate type used for an event always takes two parameters. The first one is a reference to the object that triggers the event. The other one is an object of the class EventArgs or one that inherits from it. We want to create our own EventArgs inheritance that contains the hours worked. The following code does that for us:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">Form1</span> <span class="p">:</span> <span class="n">Form</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="nf">Form1</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="nf">InitializeComponent</span><span class="p">();</span>
+
+    <span class="n">Worker</span> <span class="n">w</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Worker</span><span class="p">();</span>
+    <span class="n">w</span><span class="p">.</span><span class="n">WorkCompleted</span> <span class="p">+=</span> <span class="k">new</span> <span class="nf">WorkCompletedHandler</span><span class="p">(</span><span class="n">OnWorkerWorkCompleted</span><span class="p">);</span>
+    <span class="n">w</span><span class="p">.</span><span class="nf">Work</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">private</span> <span class="k">void</span> <span class="nf">OnWorkerWorkCompleted</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">WorkerEventArgs</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">MessageBox</span><span class="p">.</span><span class="nf">Show</span><span class="p">(</span><span class="s">$"Worker has been completed: </span><span class="p">{</span><span class="n">e</span><span class="p">.</span><span class="n">HoursWorked</span><span class="p">}</span><span class="s"> hours worked."</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">delegate</span> <span class="k">void</span> <span class="nf">WorkCompletedHandler</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">WorkerEventArgs</span> <span class="n">e</span><span class="p">);</span>
+
+<span class="k">class</span> <span class="nc">Worker</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">event</span> <span class="n">WorkCompletedHandler</span> <span class="n">WorkCompleted</span><span class="p">;</span>
+
+  <span class="k">private</span> <span class="k">void</span> <span class="nf">OnWorkCompleted</span><span class="p">(</span><span class="kt">int</span> <span class="n">hoursWorked</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Work Completed - Inside Worker"</span><span class="p">);</span>
+    <span class="n">WorkCompleted</span><span class="p">?.</span><span class="nf">Invoke</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">new</span> <span class="nf">WorkerEventArgs</span><span class="p">(</span><span class="m">3</span><span class="p">));</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Work</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">3</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+    <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+      <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Working..."</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nf">OnWorkCompleted</span><span class="p">(</span><span class="m">3</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">WorkerEventArgs</span> <span class="p">:</span> <span class="n">EventArgs</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="nf">WorkerEventArgs</span><span class="p">(</span><span class="kt">int</span> <span class="n">hoursWorked</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">_hoursWorked</span> <span class="p">=</span> <span class="n">hoursWorked</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">private</span> <span class="kt">int</span> <span class="n">_hoursWorked</span><span class="p">;</span>
+  <span class="k">public</span> <span class="kt">int</span> <span class="n">HoursWorked</span> <span class="p">{</span> <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_hoursWorked</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<h2 id="wrap-up">Wrap-Up</h2>
+
+<p>Delegates are references to methods. The compiler creates a class when a delete is generated, instances of the delegate are then created as usual with the new keyword. Like methods, delegates can have a return type. Utiliting multicasting, delegates can be chained together, the call order is based on the delegates invocation list. Events are used to encapsulate delegates. Events usually use two parameters, the first being a reference to the trigger and the second an instance of EventArgs or an inheriting class thereof.</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/dotnet">dotnet</a>,&nbsp;<a href="/tag/csharp">csharp</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/programming">programming</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=C%23+-+Mastering+the+Basics+-+Events+and+Delegates&url=http%3A%2F%2Flocalhost%3A4000%2F2018%2F04%2Fc-mastering-the-basics-events-delegates&via=MarcelJurtz"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2018/04/c-mastering-the-basics-events-delegates') + '&title=C# - Mastering the Basics - Events and Delegates'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Marcel Jurtz</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <!--
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/typography/">Typography</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/gamedev/">gamedev</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/unity/">unity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/git/">git</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/programming/">programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tools/">tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/android/">android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/app/">app</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/baseball/">baseball</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/development/">development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/editor/">editor</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcache/">bitcache</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcoin/">bitcoin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cryptocurrency/">cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/dotnet/">dotnet</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-dotnet/">asp-dotnet</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">csharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/rest/">rest</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/servicestack/">servicestack</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/software/">software</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/windows/">windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/efficiency/">efficiency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/productivity/">productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/network/">network</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/p2p/">p2p</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/syncthing/">syncthing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/xamarin/">xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/clean-code/">clean-code</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/design/">design</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/layout/">layout</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/sideproject/">sideproject</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/dotnet-core/">dotnet-core</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/linux/">linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/3d-printing/">3d-printing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/raspberry-pi/">raspberry-pi</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/email/">email</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/encryption/">encryption</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/self/">self</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/blog/">blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/web/">web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ruby/">ruby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/javascript/">javascript</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/jekyll/">jekyll</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/motivation/">motivation</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/discipline/">discipline</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/fitness/">fitness</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-net/">asp.net</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/css/">css</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/html/">html</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tfs/">tfs</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/svn/">svn</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/docker/">docker</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/containers/">containers</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/book/">book</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/review/">review</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ferriss/">ferriss</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/life/">life</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/business/">business</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/methodology/">methodology</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/scrum/">scrum</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/management/">management</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/agile/">agile</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/project/">project</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/kanban/">kanban</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/pattern/">pattern</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ioc/">IoC</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/di/">DI</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/learn/">learn</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/prototyping/">prototyping</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/typescript/">typescript</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cross-platform/">cross-platform</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/self-disciplin/">self-disciplin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/sports/">sports</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/running/">running</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/challenge/">challenge</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/vcs/">vcs</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/organization/">organization</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/versioning/">versioning</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/documentation/">documentation</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/release/">release</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/improvement/">improvement</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net/">net</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/netcore/">netcore</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/game-development/">game-development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tools/">tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/android/">android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/cryptocurrency/">cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">csharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/productivity/">productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tips/">tips</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/xamarin/">xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/hobby/">hobby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/security/">security</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/linux/">linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/blog/">blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/windows/">windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/life/">life</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/web/">web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/programming/">programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/development/">development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/books/">books</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/learn/">learn</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/running/">running</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    -->
+    <ul class="pages">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="https://mjurtz.com/Impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:marcel@mjurtz.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">marcel@mjurtz.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/MarcelJurtz" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/MarcelJurtz" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <form action="/search.html" method="get">
+        <label for="search_box">Search Posts</label>
+        <input type="text" id="search_box" name="query">
+        <input type="submit" value="search">
+      </form>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-118762636-1', 'auto');
+  ga('set','anonymizeIp',true);
+  ga('send', 'pageview', {
+    'page': '/2018/04/c-mastering-the-basics-events-delegates',
+    'title': 'C# - Mastering the Basics - Events and Delegates'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

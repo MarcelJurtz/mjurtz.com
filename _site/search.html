@@ -48,8 +48,8 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://blog.mjurtz.com/search.html">
-  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/search.html">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
 </head>
 
 
@@ -412,6 +412,18 @@
           
         
           
+          <li class="nav-link"><a href="/tag/improvement/">improvement</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net/">net</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/netcore/">netcore</a>
+          
+        
+          
           <li class="nav-link"><a href="/category/game-development/">game-development</a>
           
         
@@ -568,6 +580,24 @@
 
 <script>
   window.store = {
+    
+      "2018-10-your-first-api-net-core": {
+        "title": "Building your first API in .NET Core",
+        "author": "Marcel Jurtz",
+        "category": "",
+        "content": "Today I want to show you how to develop your first API with .NET Core..NET Core is an alternative to the classic .NET Framework. In contrast to the .NET Framework, .NET Core offers a huge advantage: It is platform-independent and therefore compatible with MacOS, Linux and Windows.The purpose of this article is to build a small REST-based API, which will respond to HTTP GET-requests. Of course you can extend the project according to your own ideas and experiment around.Setup and InstallationFirst of all you need to install the .NET Core SDK. You can download it directly from Microsoft, where you will find two different links. On the one hand you will find the Runtime Environment, as well as the SDK, which also contains the RE, but additionally tools for development. Download and install the SDK for the platform of your choice.In addition, it is a good idea to use an IDE for development. You can use Visual Studio for this, or alternatively you can use Visual Studio Code or JetBrains Rider.Since I’m currently working on Linux, I’ll use Visual Studio Code.Create a projectWhen working with .NET Core, the command line is used a lot at the moment. One such point is the creation of a project. Basically you can use any command line interface here, be it the terminal integrated in VS Code or the Windows Power Shell.The first command you need to know is dotnet new.  This command initializes a new project, appending the type of the project. For each dotnet command, you can display operating information by appending help. In the case of dotnet new help you will be shown among other things the possible project types.We want to create a new ASP .NET Core MVC project. But I don’t want to have a preconfiguration, so I initialize my new project with dotnet new web.Adaptation of the project &amp; implementation of the APIFirst the Startup.cs class needs to be reworked. I’ve made some minor changes, which you can find in the following snippet: using System; using System.Collections.Generic; using System.Linq; using System.Threading.Tasks; using Microsoft.AspNetCore.Builder; using Microsoft.AspNetCore.Hosting; using Microsoft.AspNetCore.Http; using Microsoft.AspNetCore.Mvc; using Microsoft.Extensions.DependencyInjection; namespace ApiSample {   public class Startup   {     // This method gets called by the runtime. Use this method to add services to the container.     // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940     public void ConfigureServices(IServiceCollection services)     {      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);    }     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.    public void Configure(IApplicationBuilder app, IHostingEnvironment env)     {      if (env.IsDevelopment())       {         app.UseDeveloperExceptionPage();       }       else       {         // Enforce HTTPS for Requests         app.UseHsts();       }       app.UseHttpsRedirection();       app.UseMvc();     }   } }Once everything is configured, the API can be implemented. I want to build a really simple implementation that returns the status of the service. An HTTP GET request should be answered with an info message telling the caller that the API is running.First of all we need a model class, which I built as follows: namespace ApiSample.Models {   public class ApplicationState   {     public string Information { get; set; }   } } The heart of the API is the controller that handles the requests. So I add a new controller to my project that responds to GET requests via the /api route. The implementation looks like this:namespace ApiSample.Controllers {   [Route(\"api/\")]   [ApiController]   public class SampleController : ControllerBase   {     public ActionResult&lt;ApplicationState&gt; GetApplicationState()     {       return new ApplicationState() { Information = \"API is running\" };     }   } } If you have already worked with older versions of ASP .NET, you may have been using IActionResult as the return type. Now you can directly use the generic class ActionResult, where the type in braces is the type of the model which is stored in the response. On the one hand, this helps you with the readability of your methods, since the result is directly visible. This in turn is very helpful if you use things like automatic documentation based on method headers.Basically the structure as you can see is kept very simple. And that’s it for now. Start your project with the command dotnet run, you will get the address and port where the application is running. With a browser of your choice or a test tool like Postman you can now test the API. By calling the address with the attachment /api you should finally get the expected status message.Further informationThis article really only shows the information you need to get started with the topic. If I could arouse your interest, you can read on directly at Microsoft. But of course there are also several other articles about the topic, let your creativity run free and just try a little bit around.",
+        "url": "/2018/10/your-first-api-net-core"
+      }
+      ,
+    
+      "2018-10-100-days-of-code": {
+        "title": "100 Days of Code",
+        "author": "Marcel Jurtz",
+        "category": "",
+        "content": "You might be familiar with the following situation: You are in your first job as a software developer and spend less and less time with your own projects? Or the time you spend on them is generally getting less and less? I have the problem right now and I’ve been thinking about what’s causing it and how I can work on it. Well, the main problem, in my opinion, is that I no longer have the pressure from my studies to learn to take an exam, for example. Although I want to advance my own projects, I have to force myself not to use my time elsewhere. And, according to the motto “it requires pressure to create diamonds” not much works without pressure.Personally, I like challenges. And for this reason I have decided to simply build this pressure by myself. On the Internet you can find various articles about the so-called 100 Days of Code-Challenge, which is about working on your own projects for at least one hour a day, 100 days in a row. The Challenge defines some basic rules, which I have adapted for myself, but would like to introduce you to in this article.The Challenge itself requires you to work on your own projects for one hour or more for 100 days. Tutorials or online courses are not included in this time, a point I have discarded in my case. I have set myself various goals that I want to achieve within these 100 days, which also include various things I want to learn. That’s why I combine the challenge for myself from learning and programming sessions.The project defines the process and rules on the website linked above in detail, but the basic idea is regularity and public commitment. This means that if possible you should make your projects publicly available (e.g. via GitHub), tweet your progress, or similar.I’ve decided for myself to do the challenge for myself for now. While I understand the idea behind the publication, which should make it easier to keep up with the progress by pushing each other within the community, but I also want to use the time primarily for learning and therefore find the approach less suitable.Nevertheless, I would like to encourage you to participate and join in as well. So how exactly do you get started? First set goals for the 100 days. What do you want to achieve? Do you have an idea that has been on your mind forever? Or are you already sitting on a project that you haven’t touched in a long time? Or do you, like me, want to adapt the goal of the challenge a little and improve and deepen your skills in various areas? Whatever it is, take your time to plan and formulate your goals in concrete terms. That’s it, actually. As soon as you know what you want, start with the implementation — and tweet your progress daily under the Hashtag #100DaysOfCode. Good luck! And by the way: If you miss a day, it’s of course not dramatic. Just add the day at the end of the challenge and make sure you don’t miss two days in a row.",
+        "url": "/2018/10/100-days-of-code"
+      }
+      ,
     
       "2018-10-semantic-versioning": {
         "title": "Semantic Versioning",
@@ -1628,6 +1658,18 @@
         
         
           <li class="nav-link"><a href="/tag/release/">release</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/improvement/">improvement</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net/">net</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/netcore/">netcore</a>
         
         
         

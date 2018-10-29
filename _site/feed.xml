@@ -6,9 +6,52 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 21 Oct 2018 20:09:21 +0200</pubDate>
-    <lastBuildDate>Sun, 21 Oct 2018 20:09:21 +0200</lastBuildDate>
+    <pubDate>Mon, 29 Oct 2018 17:00:57 +0100</pubDate>
+    <lastBuildDate>Mon, 29 Oct 2018 17:00:57 +0100</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Maximize your Productivity</title>
+        <description>&lt;p&gt;When you’re at the beginning of your career as a software developer, like me, you probably know the feeling that you’re being overwhelmed by everything you want to learn. Especially at the beginning it is often not easy to work productively and to learn why I want to show you which methodologies I have developed for myself. Even though I use my own experience, my approach is of course not limited to the industry.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-pomodoro-technique&quot;&gt;The Pomodoro Technique&lt;/h2&gt;
+
+&lt;p&gt;In the beginning I focused very much on creating as much as possible and hardly allowing myself any breaks. But this is not feasible in the long run, your brain needs variety and chances for recovery. One of the first tools I discovered for myself to tackle exactly this point is the Pomodoro technique.&lt;/p&gt;
+
+&lt;p&gt;This method is based on alternating work intervals with regular pauses, but working between these pauses in a really focused and distraction-free way. By default, one interval lasts 25 minutes, followed by a break of five minutes. After you have completed four intervals, a longer break of 15 minutes follows.&lt;/p&gt;
+
+&lt;p&gt;The Pomodoro technique helped me on several levels. But the focus was not on the breaks, but on the focused work on a predefined task. I no longer jumped back and forth between different tasks, but divided my TODO list directly into intervals and could then stay with the current task.&lt;/p&gt;
+
+&lt;p&gt;Of course this technique is not a silver bullet. Especially in programming people often talk about the so-called flow state. This is the state when one is isolated from the environment and immersed in a task and can concentrate completely on it. It takes some time to get into this state, and 25 minutes is certainly not enough to work effectively in it. The Pomodoro technique is therefore less suitable for such tasks.&lt;/p&gt;
+
+&lt;p&gt;There are a number of tools that you can use to make this technique work. On the one hand, you can use a smartphone app (which automatically switches to flight mode during an interval if you wish), but there are also browser plug-ins or other desktop tools.&lt;/p&gt;
+
+&lt;h2 id=&quot;schedule-your-tasks&quot;&gt;Schedule Your Tasks&lt;/h2&gt;
+
+&lt;p&gt;Another point I’ve built up in recent years is working according to a methodology. Do you come to the office in the morning and check your mails or the chat of your team to know what to do today? Take 15 minutes daily to plan your day and prioritize your tasks. It helps me enormously to plan my tasks instead of just doing what falls into my lap. I often combine this planning directly with the Pomodoro technique and define how many intervals I want to spend on a task. This helps me to make the planning more realistic and not to do too much.&lt;/p&gt;
+
+&lt;p&gt;I use Trello for task planning and misuse the Kanban board a little by splitting the columns into weekdays, using cards for tasks and assigning units to them by tags.&lt;/p&gt;
+
+&lt;h2 id=&quot;eliminate-distractions&quot;&gt;Eliminate Distractions&lt;/h2&gt;
+
+&lt;p&gt;My final point is devoted to the distractions already mentioned. Do you know the feeling when you just had an idea how to fix a bug and then your phone rings? Such moments are, in my opinion, the biggest productivity killer. It’s best not only to set your phone to silent, but also to disable notifications on the lock screen. I’ve often caught myself checking to see if there’s anything new. If your lock screen stays tidy, the temptation to check messages or the like is significantly reduced.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 28 Oct 2018 07:00:00 +0100</pubDate>
+        <link>http://blog.mjurtz.com/2018/10/maximize-your-productivity</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/10/maximize-your-productivity</guid>
+        
+        <category>learn</category>
+        
+        <category>methodology</category>
+        
+        <category>netcore</category>
+        
+        <category>development</category>
+        
+        
+        <category>productivity</category>
+        
+      </item>
     
       <item>
         <title>Building your first API in .NET Core</title>
@@ -868,138 +911,6 @@ but the original product should already be usable.&lt;/p&gt;
         <category>management</category>
         
         <category>prototyping</category>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>Dockerizing .NET Core Apps</title>
-        <description>&lt;p&gt;I have already written two articles about the basics of Docker. 
-While these should provide a general overview of you technology, I would like to illustrate a concrete application example today. 
-I will show you the whole process, from writing a simple application to using it in the form of a Docker Container.&lt;/p&gt;
-
-&lt;p&gt;If you haven’t read my previous articles, you may not have the idea why you should use Docker at all. 
-For a full explanation, I refer to my other articles which you can check out 
-&lt;a href=&quot;/2018/07/docker-getting-started&quot;&gt;here&lt;/a&gt; and 
-&lt;a href=&quot;/2018/07/docker-installation-and-first-steps&quot;&gt;here&lt;/a&gt;. 
-However, I would still like to comment briefly on the idea. Imagine you are writing a.NET application. 
-To use your application you now need a special version of the.NET framework, 
-as well as possibly a suitable database and other dependencies.&lt;/p&gt;
-
-&lt;p&gt;For larger applications it may well be that just installing and setting up the environment is not a trivial task. 
-Over the years, this concept has become simpler, partly through the use of VMs and installation. 
-Nevertheless, according to this approach, an application requires a complete VM, which is not really resource-saving.&lt;/p&gt;
-
-&lt;p&gt;Docker allows you to map all dependencies in the form of a docker image. 
-This image can later be instantiated as a container, which forms a self-contained, isolated unit. 
-You can imagine a container like a VM, but the Docker container does not have its own operating system. 
-Starting and stopping a container does not require a complete startup and shutdown of an operating system, 
-which significantly reduces the loading times.&lt;/p&gt;
-
-&lt;p&gt;So far so good. Please install Docker first, if you haven’t already done so. You will find instructions on how to do this 
-&lt;a href=&quot;/2018/07/docker-installation-and-first-steps&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;You have now successfully installed Docker and are ready to go. Before we write our own images, 
-I would like to go into the general usage. Docker is available from the command line. 
-So on Windows you can use the CMD, Powershell or a counterpart of a third party.&lt;/p&gt;
-
-&lt;p&gt;Docker commands are initiated with the keyword docker. If only this is entered without a subsequent command, 
-a list of available commands is displayed.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Docker version&lt;/em&gt; gives you information about the installed version of Docker. 
-You see two entries here,a server and a client version. The server version will mention a Linux-OS. 
-During installation you could choose between Linux and Windows containers. 
-The Linux containers are selected by default, in this case the containers use the Linux kernel of the host operating system. 
-If you are using Windows, Docker will create a minimal Linux VM to serve as host. 
-You can see this when you open the HyperV Manager, there you will see an entry with the name MobyLinuxVM.&lt;/p&gt;
-
-&lt;p&gt;You can also change your choice of container technology later by selecting the Docker icon in the system tray. 
-The context menu that appears contains an entry for switching from Linux to Windows (and vice versa). 
-However, Linux containers are the usual variant and I recommend that you use them, unless you have a special reason for changing.&lt;/p&gt;
-
-&lt;p&gt;The &lt;em&gt;docker info&lt;/em&gt; command lists information about the installed images and instantiated containers. 
-This list is currently empty because Docker has just been installed. 
-The &lt;em&gt;docker run hello-world&lt;/em&gt; command starts the image named hello-world. The procedure here is as follows:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;The Docker Client first contacts the Docker Engine (also called Docker Daemon), which determines that the image is not locally available.&lt;/li&gt;
-  &lt;li&gt;It then searches the Docker Hub (a platform for exchanging Docker images) and downloads the appropriate image.&lt;/li&gt;
-  &lt;li&gt;The engine then creates a container containing an application that outputs “Hello World”.&lt;/li&gt;
-  &lt;li&gt;This output is sent to the Docker Client, which outputs the text in the console.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Downloaded images are kept locally. If you run it again, no new download takes place, the local image is reinstantiated. 
-Images can also be downloaded without being executed immediately. Use the command &lt;em&gt;docker pull imagename&lt;/em&gt; to do so.&lt;/p&gt;
-
-&lt;p&gt;With the command &lt;em&gt;docker ps&lt;/em&gt; you can view the running containers. 
-Here, however, you must note that some containers are started, fulfill a task and are then ended again. 
-Other containers run passively in the background and are not terminated automatically. 
-Examples are web servers or database management systems.
-To also display paused and stopped containers, use the flag -a. 
-You can in general interact directly with specific containers. 
-The basis for this is always the container ID, an alphanumeric character string with which the container can be uniquely identified. 
-However, you do not have to enter the entire ID, the first digits are sufficient until no more mix-ups are possible.&lt;/p&gt;
-
-&lt;p&gt;Images are usually tagged. Tags are used to specify a version of an image. 
-If no tag is specified, the latest version is used by default. 
-However, this is not recommended, as it can lead to problems with later releases. 
-So always try to use a specify a version of images you use. 
-To do that, simply add a colon, followed by the version after the name of the image.&lt;/p&gt;
-
-&lt;p&gt;I think that’s enough for now with the basics. Now we will develop our own application with Docker support. 
-I am using Visual Studio Code, so the approach will work on all major operating systems.&lt;/p&gt;
-
-&lt;p&gt;With the command &lt;em&gt;dotnet new console&lt;/em&gt; I instantiate a new console application. 
-The template creates a Hello-World application, which can be started with the command &lt;em&gt;dotnet run&lt;/em&gt;. 
-Next, we’ll take care of linking to Docker.&lt;/p&gt;
-
-&lt;p&gt;First, a dockerfile must be created. Dockerfiles describe the structure of an image and are usually based on other images. 
-My application is based on the &lt;em&gt;microsoft/dotnet:2.1-sdk&lt;/em&gt; image. 
-The dockerfile is created without a file extension with the name dockerfile on csproj file level and it contains the following content:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-generic&quot; data-lang=&quot;generic&quot;&gt;FROM microsoft/dotnet:2.1-sdk
-
-WORKDIR /app
-COPY /bin/debug/netcoreapp2.1/ .
-
-ENTRYPOINT [&quot;dotnet&quot;,&quot;NET_CORE_Docker.dll&quot;]&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;NET_CORE_Docker is the name of the project. Now an image must be built based on the docker file. 
-This can be done with the command &lt;em&gt;docker built -t net_core_docker .&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;The dot at the end defines the current directory as the starting point. 
-Net_core_docker is the name of the image, only lowercase letters are allowed.&lt;/p&gt;
-
-&lt;p&gt;The image can now be instantiated with &lt;em&gt;docker run net_core_docker&lt;/em&gt; and the container will be started automatically. 
-As expected, the output is &lt;em&gt;Hello World!&lt;/em&gt; Our first project is running!&lt;/p&gt;
-
-&lt;p&gt;Of course you can also work with Visual Studio instead of VS Code. 
-Docker support is already implemented here and you can add it to your project by simply right-clicking on the project 
-and selecting &lt;em&gt;Add Docker Support&lt;/em&gt;. The docker file is then created automatically.&lt;/p&gt;
-
-&lt;p&gt;Our first.NET core application now runs with Docker. 
-Of course, this is not limited to console applications, 
-you can also create an ASP.NET core application with Docker support, for example. However, 
-this article has shown you how to integrate Docker into the development of.NET Core. 
-In addition to deployment, Docker is ideal for test and development environments because you can set up other databases 
-or the like without complex installations and compatibility problems with software already installed. 
-Containers can be installed in parallel without any problems and thus have access to different options.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 19 Aug 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/08/dockerizing-net-core</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/08/dockerizing-net-core</guid>
-        
-        <category>development</category>
-        
-        <category>software</category>
-        
-        <category>docker</category>
-        
-        <category>containers</category>
-        
-        <category>programming</category>
         
         
         <category>development</category>

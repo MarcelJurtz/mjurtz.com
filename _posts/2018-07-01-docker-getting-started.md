@@ -55,7 +55,7 @@ DockerHub is not the only image registry. Besides this, there are many other clo
 
 ## For what kind of software can Docker be used?
 
-Containers can be used for both stateless and statefull applications. Although many advantages of containers only become visible with stateless applications, there are a large number of images for database management systems, for example. Containers will keep your data when turned off, so you can easily run a PostgreSQL instance with Docker, for example. So-called "volumes" can also be used to hold this data even if a container is destroyed. 
+Containers can be used for both stateless and stateful applications. Although many advantages of containers only become visible with stateless applications, there are a large number of images for database management systems, for example. Containers will keep your data when turned off, so you can easily run a PostgreSQL instance with Docker, for example. So-called "volumes" can also be used to hold this data even if a container is destroyed. 
 
 ## Container Orchestration
 

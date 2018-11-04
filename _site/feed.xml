@@ -6,9 +6,36 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 29 Oct 2018 17:00:57 +0100</pubDate>
-    <lastBuildDate>Mon, 29 Oct 2018 17:00:57 +0100</lastBuildDate>
+    <pubDate>Sun, 04 Nov 2018 19:14:26 +0100</pubDate>
+    <lastBuildDate>Sun, 04 Nov 2018 19:14:26 +0100</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Create Unity Skyboxes From 360° Images</title>
+        <description>&lt;p&gt;Today I want to show you how to use a 360° panorama picture as a skybox for Unity. As you may know, skyboxes are usually created from 6 images (cubemaps), with each image representing one of the sides. However, 360° photos usually use a so-called “Equirectangular” format, which looks something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/2018/equirectangular.png&quot; data-lightbox=&quot;Equirectangular 360° Photo&quot;&gt;&lt;img src=&quot;/assets/2018/equirectangular.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;So in order to be able to use such an image in Unity, the idea of creating a cubemap from a 360° photo is obvious. But there is an easier way, which I would like to show you now: Cubemap: I start with my image, which I import into Unity. Then I select it and change the &lt;em&gt;Texture Shape&lt;/em&gt; property from 2D to Cube. I then save the changes by hitting Apply and then create a new material. I change the shader from default to Skybox - Cubemap and specify the image I want to use.&lt;/p&gt;
+
+&lt;p&gt;That’s almost it, now you only have to set the Skybox via &lt;em&gt;Window - Lighting Settings&lt;/em&gt; and already you have your image and can integrate it into your projects.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 04 Nov 2018 07:00:00 +0100</pubDate>
+        <link>http://blog.mjurtz.com/2018/11/unity-skybox-from-360-photo</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/11/unity-skybox-from-360-photo</guid>
+        
+        <category>game</category>
+        
+        <category>vr</category>
+        
+        <category>unity</category>
+        
+        <category>programming</category>
+        
+        
+        <category>unity</category>
+        
+      </item>
     
       <item>
         <title>Maximize your Productivity</title>
@@ -862,55 +889,6 @@ I have also planned a follow-up article for the next steps.&lt;/p&gt;
         <category>typescript</category>
         
         <category>javascript</category>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>Building an MVP - You are doing it wrong</title>
-        <description>&lt;p&gt;The term MVP - Minimum Viable Product is no longer a new word. 
-The term was first coined by Frank Robinson in 2001 and is now used very frequently.&lt;/p&gt;
-
-&lt;p&gt;The basic idea of an MVP is to make a version of a product available to the customer as quickly as possible. 
-The goal is not to generate sales, but to learn. 
-Of course it’s not a bad idea and it’s also the intention to earn money with your product, 
-but the idea here is to put yourself in the customer’s shoes and better understand their needs and requirements. 
-This allows you to use early feedback and improve the quality of your product.&lt;/p&gt;
-
-&lt;p&gt;As you can see, the concept is very simple. But the problem arises during implementation. 
-When we develop a product, we usually already have a fairly clear idea of what the final result should look like. 
-To define how the associated MVP should look, we start cutting features at various points.&lt;/p&gt;
-
-&lt;p&gt;The result of this process is then certainly minimal, but is it also viable? 
-Many teams forget this point and develop a prototype with limited functionality, which is simply not usable. 
-As I mentioned in my article about &lt;a href=&quot;/2018/07/agile-get-started-with-scrum&quot;&gt;Scrum&lt;/a&gt;, the goal of every sprint is to add a working increment to the product. 
-After each iteration the user should have a basic version of his product, enhanced by features of the last sprint.&lt;/p&gt;
-
-&lt;p&gt;The easiest way to illustrate this is with an example: 
-If you want to sell a vehicle to someone, there are (in theory) different levels, each working standalone. 
-From a scooter, a bicycle and a motorcycle to a car, each level has its own functionality that offers the customer added value. 
-Also, each level adds features and functionality to the previous version.&lt;/p&gt;
-
-&lt;p&gt;The approach, which you might find in practice however, could look more like this: 
-The customer receives the tires first, then the mounted underbody, through the body to the fully assembled car. 
-So you can only really do something with the end product.&lt;/p&gt;
-
-&lt;p&gt;So when developing a prototype, keep the goal of adding value in mind. Updates should complement and improve the functionality, 
-but the original product should already be usable.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 26 Aug 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/08/mvp_youre_doing_it_wrong</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/08/mvp_youre_doing_it_wrong</guid>
-        
-        <category>development</category>
-        
-        <category>software</category>
-        
-        <category>management</category>
-        
-        <category>prototyping</category>
         
         
         <category>development</category>

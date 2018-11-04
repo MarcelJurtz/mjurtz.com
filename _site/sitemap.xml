@@ -325,6 +325,10 @@
 <lastmod>2018-10-28T07:00:00+01:00</lastmod>
 </url>
 <url>
+<loc>http://blog.mjurtz.com/2018/11/unity-skybox-from-360-photo</loc>
+<lastmod>2018-11-04T07:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>http://blog.mjurtz.com/about/</loc>
 </url>
 <url>
@@ -589,6 +593,12 @@
 <loc>http://blog.mjurtz.com/tag/netcore/</loc>
 </url>
 <url>
+<loc>http://blog.mjurtz.com/tag/game/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/tag/vr/</loc>
+</url>
+<url>
 <loc>http://blog.mjurtz.com/category/game-development/</loc>
 </url>
 <url>
@@ -650,6 +660,9 @@
 </url>
 <url>
 <loc>http://blog.mjurtz.com/category/running/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/category/unity/</loc>
 </url>
 <url>
 <loc>http://blog.mjurtz.com/page2/</loc>

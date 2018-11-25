@@ -18,6 +18,9 @@ With my LifeCounter app for Magic The Gathering, I released my first Android app
 
 Today I announce the release of version 2.0, providing major improvements and enhancements. If the player only had the possibility to manage health points in a 2-player game so far, now up to four players can be served in parallel. In addition there are other features like a dice function for a 20-sided dice, a counter manager to organize counters on individual cards and the adjustment of various values such as the standard colors of the game areas.
 
+<a href="/assets/2018/lifecounter_v2.png" data-lightbox="MTG LifeCounter V2"><img src="/assets/2018/lifecounter_v2.png"/></a>
+
+
 I have decided to offer a paid Pro version in addition to the standard version. Quite simply for the reason that in the meantime a lot of work went into the creation of the app and I would like to compensate at least parts of my expenses with it again. V2 will be released in the PlayStore in the course of the next week.
 
 ## 4 Player Mode

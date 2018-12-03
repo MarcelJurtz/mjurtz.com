@@ -6,9 +6,42 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 25 Nov 2018 19:50:55 +0100</pubDate>
-    <lastBuildDate>Sun, 25 Nov 2018 19:50:55 +0100</lastBuildDate>
+    <pubDate>Mon, 03 Dec 2018 20:58:28 +0100</pubDate>
+    <lastBuildDate>Mon, 03 Dec 2018 20:58:28 +0100</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Learning to program does not have to be easy</title>
+        <description>&lt;p&gt;I have been asked all too often which programming language to learn first. And I’ve heard almost the same number of different opinions. Java or C++? Python or C#? Or maybe C?&lt;/p&gt;
+
+&lt;p&gt;High-level programming languages like Java offer the big advantage that the entry hurdle is very low. You can quickly put together a functional application that does what it’s supposed to do. The extensive ecosystem allows you to make rapid progress and concentrate on the functionality of your software. But that’s exactly the point that advocates of programming languages like C or C++ criticize. These are generally referred to as “ more difficult “, which is due to the lack of abstraction of different system concepts. The most common example is probably memory management. While in C the developer himself is responsible for the allocation and release of memory, in Java this task is abstracted from the developer. Although this is an enormous convenience for the developer in later working life, there is a lack of knowledge about what is actually happening in the background for many developers who have only worked with such languages so far.&lt;/p&gt;
+
+&lt;p&gt;One often hears the argument that the processes in the background are not so important and that people should concentrate on the functionality of the software. But that’s the critical point: Once the basic concepts have been understood, the developer will be more careful with objects and will think twice about whether instantiation is necessary or whether access is also possible via already existing objects. In the end, this way of thinking has a direct effect on the performance of the application. Even if current computers are more and more difficult to bring to the limits of their load, this does not mean that this is a goal to achieve.&lt;/p&gt;
+
+&lt;p&gt;At this point I would like to point out again that this article is specifically about learning programming. The later application is on a different page. With regard to the learning process, however, it makes sense to start from scratch and thus understand the most basic principles. Who should be familiar with the details of a programming language and the internal mechanisms, if not a computer scientist?&lt;/p&gt;
+
+&lt;p&gt;During my studies I also started with high-level programming languages (and didn’t touch any of them during my studies), so after my studies I had to invest some time to really understand the different concepts. Since you might feel the same way, I’d like to show you what I think is the best way to get started in programming.&lt;/p&gt;
+
+&lt;p&gt;I don’t think you should start with Java or C# directly, but also not with C. The reason is quite simple: With C as the first programming language you make slow progress and possibly lose the desire to learn quickly. But Java, C# or the like hide essential concepts and are therefore also not suitable for beginners. I think the best solution is the combination: Start with a simple programming language, with which you can make fast progress and see early what you can achieve. But don’t stay too long at this level and then switch to a challenging language like C or C++. Here you will learn the different concepts like variables, memory allocation, collections and so on. Once you understand this, you can eventually switch to higher level abstraction languages.&lt;/p&gt;
+
+&lt;p&gt;If you find this concept interesting, I recommend &lt;a href=&quot;https://www.edx.org/course/cs50s-introduction-computer-science-harvardx-cs50x&quot;&gt;CS50&lt;/a&gt;, Harvard University’s computer science course, which you can take online for free.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 02 Dec 2018 07:00:00 +0100</pubDate>
+        <link>http://blog.mjurtz.com/2018/12/learning-to-program-does-not-have-to-be-easy</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/12/learning-to-program-does-not-have-to-be-easy</guid>
+        
+        <category>learning</category>
+        
+        <category>development</category>
+        
+        <category>programming</category>
+        
+        <category>course</category>
+        
+        
+        <category>programming</category>
+        
+      </item>
     
       <item>
         <title>Announcing MTG LifeCounter V2</title>
@@ -504,135 +537,6 @@ and you’re very good to go.&lt;/p&gt;
         
         
         <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>Getting Started With Running</title>
-        <description>&lt;p&gt;If you had told me a year ago that I would run an entire Tough Mudder in a year, I probably would have made fun of you. 
-Well, to be honest, I didn’t even know about the existence of obstacle course races (OCR) of this kind at the time. 
-If that were the case, I would certainly have been able to motivate myself quickly.&lt;/p&gt;
-
-&lt;p&gt;Briefly to my prehistory: I am in my early 20s and have tried various sports since my childhood. 
-Athletics, rowing, climbing, mountain biking, snowboarding, baseball, squash - 
-again and again I tried different things that seemed interesting. 
-Some of them I still do today, but in October 2017 I decided to take up a new challenge.&lt;/p&gt;
-
-&lt;p&gt;During my school time I had to face - like all my friends - long distance races. 
-However, long distance is actually already exaggerated. We could choose between a 12-minute and a 30-minute variant, 
-the distance reached was graded. I always liked sports, but I hated endurance running. And until the end of last year, 
-nothing changed in this regard.&lt;/p&gt;
-
-&lt;p&gt;Last year I was then looking for a challenge. So what could be more obvious than to face the enemy of my youth? 
-I came across a video of the NYC marathon on YouTube and decided for myself: I want to run this race for once. 
-And the goal was set. Thanks Casey.&lt;/p&gt;
-
-&lt;p&gt;In my article today I show you my way last year, how I pursue my goal and what has happened since then. 
-And who knows, maybe the article will help you with your goals.&lt;/p&gt;
-
-&lt;h1 id=&quot;the-first-two-months---c25k&quot;&gt;The First Two Months - C25K&lt;/h1&gt;
-
-&lt;p&gt;I repeatedly tried to enjoy running. And yes, I always failed miserably. 
-My problems were consistency on the one hand, but on the other hand the lack of an overall goal.&lt;/p&gt;
-
-&lt;p&gt;So I started by looking for introductions and guides on how best to start. 
-At some point I came across the C25K training plan. 
-The idea behind it is to build stamina over an eight-week program, which is intended for absolute beginners. 
-The goal of the program after 8 weeks is to run a distance of 5 kilometers in 30 minutes completely (without walking). 
-The individual runs alternate between walking and running intervals, whereby the running intervals are constantly increased.&lt;/p&gt;
-
-&lt;p&gt;With this concept I have completed the two months and finished the program in December 2017. 
-At this point I would also like to thank the &lt;a href=&quot;https://www.reddit.com/r/c25k&quot;&gt;C25K Subreddit&lt;/a&gt;. The community is very supportive and enthusiastic. 
-If you lack motivation or have any other problem - they build up and motivate each other.&lt;/p&gt;
-
-&lt;p&gt;There is a follow-up plan that continues the concept and has a target distance of 10 kilometers in 60 minutes. 
-I started this plan, but I stopped it quite early. 
-I noticed that my second big problem - the lack of consistency - solved itself and I decided to continue running without any help.&lt;/p&gt;
-
-&lt;p&gt;After the two months I was at a point where running was fun for me. So I didn’t have to torture myself out of the house anymore, 
-but looked forward to the training sessions. The first milestone was thus reached.&lt;/p&gt;
-
-&lt;h1 id=&quot;my-first-10k--discovering-ocr&quot;&gt;My first 10K &amp;amp; Discovering OCR&lt;/h1&gt;
-
-&lt;p&gt;January and February 2018 didn’t go as planned, to be honest. 
-Due to a quite intense cold I had to take a longer break and had a hard time getting back into my routine. 
-However, I had already told my uncle, who also runs, about my goal, who now wanted to run with me. 
-In order to put pressure on myself, I registered for my first 10 KM run in the neighbouring town at the beginning of March. 
-And I quickly regretted the registration.&lt;/p&gt;
-
-&lt;p&gt;But giving up is not an option, so I started training again. 
-There was enough time until the run in May, but I rarely managed to really train longer than 5 KM. 
-When the run was just around the corner, 
-my personal record was a distance of 8 KM at a time and I really thought that the registration was a terrible idea. 
-But with the large group of runners I was able to get myself to run through the two laps of 5 KM each without a break 
-and finish my first competition with a time of 56:22.&lt;/p&gt;
-
-&lt;p&gt;By chance I came across the obstacle courses at some point and saw that there was one in the surrounding area. 
-I decided to sign up for it and have been highly motivated ever since. 
-The additional challenge felt just right and the short distance of 8 KM seemed quite feasible. 
-In July 2018 the time had come and I finished the Mudiator in Ulm together with my cousin with a time of 1:01:41.&lt;/p&gt;
-
-&lt;p&gt;The run itself was great, but I was a little disappointed by the obstacles. For me these were simply not really challenging. 
-But it was fun anyway and we started looking for more runs.&lt;/p&gt;
-
-&lt;p&gt;In the meantime I was able to convince a former fellow student to try the C25K program (check out his blogpost &lt;a href=&quot;https://dominik-spieler.com/2018/09/16/tough-mudder-2018-from-couch-potato-to-a-16-km-10-miles-obstacle-course-in-just-two-month/&quot;&gt;here&lt;/a&gt;!). 
-He started with the same attitude to running as I did and I needed some persuasion to get him to start. 
-At this point a lot changed again. I have decided to run together with him. 
-Although I had already completed the program, I found running together helpful for both of us.&lt;/p&gt;
-
-&lt;p&gt;And the difference was immense: Until then (apart from the competitions) I always ran alone. 
-But now I had a training partner and had to really keep to the training sessions. 
-Excuses not to run on an agreed day were unacceptable. 
-We got each other to keep on running and running longer and further than the training plan provided. 
-It was certainly helpful here to have a goal in mind: 
-At the beginning of the program we signed up for the Tough Mudder Half - from now on my buddy had two months to prepare 
-for the 8 km course.&lt;/p&gt;
-
-&lt;p&gt;The 8 weeks flew by and one week before the race the track was published. 
-We originally assumed that the Tough Mudder Full (16 KM) would simply consist of two laps. 
-But now we saw that many of the obstacles we were looking forward to wouldn’t be on the short track at all.
-This is especially the case for Funky Monkey and Arctic Enema. 
-I spontaneously suggested to update our tickets to the full distance. 
-However, the idea was rejected, as 16 kilometres seemed to be far too long.&lt;/p&gt;
-
-&lt;p&gt;On the day of the race we then threw all rationally made decisions regarding the track overboard and decided on the full distance. 
-At this point, for those of you who don’t know the Tough Mudder, I’d like to briefly mention that the event is not a classic race. 
-There is no time keeping and the focus is on teamwork and the collective mastering of the course. 
-Accordingly, it was no problem to wait at some obstacles for a short time, because time doesn’t really play a role. 
-Due to the resulting breaks, the 16 KM were really doable. 
-And in retrospect I would have been really disappointed if we had only run the short distance.&lt;/p&gt;
-
-&lt;p&gt;Beside the Tough Mudder there is meanwhile a large selection of similar events, and the run was certainly not our last. 
-My next milestone is a half marathon in December and hopefully a complete one in May 2019.&lt;/p&gt;
-
-&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;If you plan to go running after school or work, put your clothes aside in the morning and start running as soon as you get home. Don’t give yourself a break when you get home, that makes it a lot harder to get your ass up again.&lt;/li&gt;
-  &lt;li&gt;Go running after work and you will have new energy for the rest of the day. Search for routes in nature and enjoy the time to clear your head.&lt;/li&gt;
-  &lt;li&gt;Find yourself a running partner. It certainly makes sense to start alone to find your own pace. Nevertheless, it is so much easier to motivate yourself to run when you know that others rely on you.&lt;/li&gt;
-  &lt;li&gt;Screw your pace. Try to run as long as possible and increase this distance. Your speed will improve all by itself.&lt;/li&gt;
-  &lt;li&gt;If running seems too boring to you, look around for obstacle course races in your area.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;All beginnings are difficult. If you decide to train with the C25K program, be prepared to have some self-discipline for the first two weeks. Nevertheless, it was the case with me afterwards that you integrated it into your daily routine in such a way that you want to continue on your own.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 23 Sep 2018 08:00:00 +0200</pubDate>
-        <link>http://blog.mjurtz.com/2018/09/getting-started-with-running</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/09/getting-started-with-running</guid>
-        
-        <category>self-disciplin</category>
-        
-        <category>motivation</category>
-        
-        <category>sports</category>
-        
-        <category>running</category>
-        
-        <category>challenge</category>
-        
-        
-        <category>running</category>
         
       </item>
     

@@ -341,6 +341,10 @@
 <lastmod>2018-11-25T07:00:00+01:00</lastmod>
 </url>
 <url>
+<loc>http://blog.mjurtz.com/2018/12/learning-to-program-does-not-have-to-be-easy</loc>
+<lastmod>2018-12-02T07:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>http://blog.mjurtz.com/about/</loc>
 </url>
 <url>
@@ -617,6 +621,12 @@
 <loc>http://blog.mjurtz.com/tag/triathlon/</loc>
 </url>
 <url>
+<loc>http://blog.mjurtz.com/tag/learning/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/tag/course/</loc>
+</url>
+<url>
 <loc>http://blog.mjurtz.com/category/game-development/</loc>
 </url>
 <url>
@@ -729,5 +739,8 @@
 </url>
 <url>
 <loc>http://blog.mjurtz.com/page17/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/page18/</loc>
 </url>
 </urlset>

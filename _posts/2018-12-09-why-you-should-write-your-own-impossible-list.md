@@ -12,7 +12,6 @@ tags:
   - challenge
 ---
 
-
 Writing down your goals is extremely helpful for really achieving them. With fixed, terminable goals with fixed intermediate steps, 
 you make it much easier for yourself to really achieve your self-imposed goals.
 
@@ -24,7 +23,7 @@ The Impossible List goes a different way: It is not a list of entries waiting to
 
 What is probably the most common answer from students to the question, what are their goals in life? Often you will hear something like "My goal is a good college degree, a well paid job and my own house". But what happens when these goals are achieved? You are in the middle of life and suddenly have no goal to work towards. And off you go with the midlife crisis.
 
-This is where the Impossible List comes in. Joel Runyon set up his Impossible List after graduating from college and it helped him run ultra marathons and much more. The Impossible List is not only set up, but also made publicly available online and can therefore be viewed by everyone. If you look at my list, you will also see that many targets follow similar ones, but with more difficult characteristics. This allows you to track your progress. This is the already mentioned developing character of the Impossible List.
+This is where the Impossible List comes in. Joel Runyon set up his Impossible List after graduating from college and it helped him run ultra marathons and much more. The Impossible List is not only set up, but also made publicly available online and can therefore be viewed by everyone. If you look at [my list](/impossible/), you will also see that many targets follow similar ones, but with more difficult characteristics. This allows you to track your progress. This is the already mentioned developing character of the Impossible List.
 
 As someone who wants to do many things, it is often difficult to set the focus. That's why I use a status for my goals, where you can directly see if I'm working on this entry or not.
 

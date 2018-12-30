@@ -6,9 +6,176 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 24 Dec 2018 12:20:42 +0100</pubDate>
-    <lastBuildDate>Mon, 24 Dec 2018 12:20:42 +0100</lastBuildDate>
+    <pubDate>Sun, 30 Dec 2018 15:25:58 +0100</pubDate>
+    <lastBuildDate>Sun, 30 Dec 2018 15:25:58 +0100</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>C# Attributes</title>
+        <description>&lt;p&gt;During the development with C# you have certainly already encountered attributes, whether consciously or unaware. Today I want to go a little deeper into what attributes are, what kind of them are already present in the .NET framework, and how you can define your own attributes.&lt;/p&gt;
+
+&lt;p&gt;Microsoft defines attributes as a powerful way to associate metadata or descriptive information with code. But what exactly does that mean?&lt;/p&gt;
+
+&lt;p&gt;Classes have, among other characteristics, fields, methods, properties, but also a state and behavior. You can “decorate” code elements with attributes to further describe them. Doing so, however, has no effect on their state.&lt;/p&gt;
+
+&lt;p&gt;You can imagine this a bit like tags or post-its attached to code and providing additional information.&lt;/p&gt;
+
+&lt;p&gt;Attributes are applicable at different times. While writing code, for example, debugging can be controlled, or additional instructions can be added to the compiler. A widespread use of attributes in this category is, for example, marking code elements as obsolete to indicate to developers that something should no longer be used.&lt;/p&gt;
+
+&lt;p&gt;At design time it is conceivable to control positioning etc. via attributes.&lt;/p&gt;
+
+&lt;p&gt;Finally, it is possible to use attributes at runtime. This is done for example for the validation of data in ASP.NET applications. At runtime, attributes can be evaluated using Reflection. Code execution can then be controlled by the presence or absence of attributes or based on their property values. I don’t want to go into the validation using attributes separately in the course of this article, but you can find a detailed overview of the available attributes &lt;a href=&quot;https://docs.microsoft.com/de-de/dotnet/api/system.componentmodel.dataannotations?view=netframework-4.7.2&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are some other use cases, some of which you have probably already used yourself. In the course of the article you will surely notice a few of them.&lt;/p&gt;
+
+&lt;p&gt;Attributes are enclosed in square brackets: &lt;code class=&quot;highlighter-rouge&quot;&gt;[MyCustomAttribute]&lt;/code&gt;. By convention, the name of all attributes ends with “Attributes”, which can be omitted. So it comes out the same whether you write &lt;code class=&quot;highlighter-rouge&quot;&gt;[ObsoleteAttribute]&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;[Obsolete]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Attributes can be used at different levels of code elements. On one hand this is directly on assembly level, when defining classes or structures, as well as interfaces and enumerations. But also methods, fields, properties or structures, events, delegates and single parameters can be decorated with attributes. In addition, an attribute can also be defined to the return value of a method.&lt;/p&gt;
+
+&lt;p&gt;It should be noted that not every attribute can be used for every code element. The author of the attribute specifies what it is valid for and where the invalid use throws a compile-time error.&lt;/p&gt;
+
+&lt;h2 id=&quot;inheritance-of-attributes&quot;&gt;Inheritance of Attributes&lt;/h2&gt;
+
+&lt;p&gt;Attributes on classes are inherited, that is, if class A is decorated with an attribute, class B, which inherits from class A, also has this attribute. You no longer have to specify this explicitly. However, this behavior can be deactivated at attribute level if required.&lt;/p&gt;
+
+&lt;h2 id=&quot;using-attributes&quot;&gt;Using Attributes&lt;/h2&gt;
+
+&lt;p&gt;As mentioned above, attributes are used by using square brackets. An attribute itself is a normal class which inherits from System.Attribute. If you add an attribute to a code element, you can specify constructor parameters of the underlying class using regular parentheses. Nothing new, so far.&lt;/p&gt;
+
+&lt;p&gt;There are different types of constructor parameters: required and optional parameters, and additional properties. As with normal methods, optional parameters are just parameters with default values. You can specify parameters comma separated as usual, and you can also use named arguments. If you want to use properties that cannot be filled by a constructor, this is also possible within the brackets. The syntax, however, is as follows: first the name of the property, followed by an equal sign and the corresponding value. As with regular classes, you can also use constructor-overloads for attributes, which are a bit clearer than the representation with properties.&lt;/p&gt;
+
+&lt;p&gt;Let’s first take a look at some of the predefined attributes in C#. First, I’d like to briefly look at attributes that will help you when developing. I’ll start with the DebuggerDisplay attribute: This is used to change the text that is displayed during debugging when you move the mouse over an object. To use it, all you have to do is specify a string to be used as text. You can also use curly braces to include property values.&lt;/p&gt;
+
+&lt;p&gt;Another helpful attribute in this area is the DebuggerBrowsable attribute. This is defined at property level and indicates how you can inspect the element during debugging. The attribute has a required DebuggerBrowsableState constructor parameter, an enumeration that can take one of the values Collapsed, Never, and RootHidden. Never hides the property completely from the inspector, Collapsed collapses the nested elements and RootHidden is used for collections. The latter ensures that the elements of the collection itself are displayed in the inspector, but the main element is hidden.&lt;/p&gt;
+
+&lt;p&gt;Another attribute for adjusting the display in the debugger window is the DebuggerTypeProxy attribute. This attribute specifies a proxy class that is used instead of the original class to display the details in the debugger. For example, you can define a helper class here that displays various details of the actual class in a simplified way to save you cumbersome navigation in the debugging window. This is often useful for nested properties or combinations of multiple properties. At this point it should be noted that you can still view the properties of the underlying class, you’ll find them at the bottom at the “Raw View” item when you hover the mouse over the object you want to inspect.&lt;/p&gt;
+
+&lt;p&gt;A widespread attribute, which I mentioned in the introduction and which I’m sure you’ve already seen when using external libraries in your applications, is the Obsolete attribute. This is used to mark code as deprecated and to tell the developer not to use this element anymore. If you want to use the attribute itself, you will notice that you can configure it in two ways: First, only a warning is generated, but you can still use the code element. The second variant is that the use throws a compilation error.&lt;/p&gt;
+
+&lt;p&gt;You can use the attribute with default constructor, so no arguments are required. In this case only a warning will be displayed, as well as when you move the mouse over the corresponding code element. But you can use it to adjust the behavior. There are two constructor overloads for this: In both cases you can specify a message here, which will be displayed as a hint, optionally you can also use boolean-flag to specify whether a compilation error should be generated.&lt;/p&gt;
+
+&lt;p&gt;An example of the attribute might look like this:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Student&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FirstName&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;LastName&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Obsolete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Use Property 'FormattedName' instead&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;GetFormattedName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirstName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LastName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FormattedName&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirstName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LastName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Accessing the GetFormattedName-Method displays the following warning: “Student.GetFormattedName()” is obsolete: Use Property ‘FormattedName’ instead.&lt;/p&gt;
+
+&lt;p&gt;I already mentioned that you can use attributes at the assembly level as well. To do this, you have to prefix the keyword “assembly:”.&lt;/p&gt;
+
+&lt;p&gt;If you are working on a .NET Framework project, you can check out the “AssemblyInfo” class, which you can find in the “properties” folder. This class already contains some metadata declarations on your project like title, description or copyright. Of course, you can also define custom attributes here as well, just think of the “assembly:” prefix. If you’re using .NET Core, you won’t find such a file, since the metadata is generated automatically. However, you can override the values by adding assembly level attributes by yourself, which you can do at any position in your project.&lt;/p&gt;
+
+&lt;p&gt;An attribute that is great if you are working on a project for which you want to write tests, but don’t want to change it (for now), is InternalsVisibleTo. Suppose you are writing a test project for the very other project and want to test a class or method but can’t access it due to its protection level, you can use this attribute to allow access by specifying the project name of your test project. This attribute is defined at assembly level and therefore does not have to be assigned to each class / method individually.&lt;/p&gt;
+
+&lt;p&gt;A less common feature of attributes is their use in conjunction with method return values. The attribute is specified above the method signature, including the prefix “return:”.&lt;/p&gt;
+
+&lt;p&gt;Finally, attributes can be used for serialization. Use the “NonSerialized” attribute for properties that are not to be serialized.&lt;/p&gt;
+
+&lt;p&gt;As you can see, you can already do a lot with the predefined attributes. Nevertheless, it is sometimes necessary to define your own attributes. This is what I want to show you now.&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-and-using-your-own-attributes&quot;&gt;Creating and using your own attributes&lt;/h2&gt;
+
+&lt;p&gt;To restrict the usage of the attribute, the class is assigned another attribute: AttributeUsage. The constructor of this attribute requires an argument of type &lt;a href=&quot;https://docs.microsoft.com/de-de/dotnet/api/system.attributetargets?view=netframework-4.7.2&quot;&gt;AttributeTargets&lt;/a&gt;, which is an enumeration from which you can select one or more code elements. If you want to support multiple code elements, you can do that by utilizing the bitwise-or operator like this: &lt;code class=&quot;highlighter-rouge&quot;&gt;[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can add another property to the constructor if you want to allow multiple use on a single code element. This is done with the AllowMultiple flag, the default value is false.&lt;/p&gt;
+
+&lt;p&gt;The last option to customize at this point is to control inheritance. By default, attributes are inherited with the inheritance of a class. This can be deactivated by setting the property “Inherited” to false.&lt;/p&gt;
+
+&lt;p&gt;So, enough for theory. Let’s illustrate this with an example:&lt;/p&gt;
+
+&lt;p&gt;I define a simple attribute that I want to use later to control the output on the console. I inherit my custom attribute from System.attribute and end the name of the class with “attributes” according to the convention. The attribute has two properties, one of which is required and the other has a default value. In the case of a null value for the required parameter, an ArgumentException is thrown.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;na&quot;&gt;[AttributeUsage(AttributeTargets.Property)]&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DisplayAttribute&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Attribute&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;DisplayAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ConsoleColor&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textColor&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ConsoleColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;White&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;n&quot;&gt;Tag&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;??&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ArgumentException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;nameof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; 
+    &lt;span class=&quot;n&quot;&gt;TextColor&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;textColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Tag&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ConsoleColor&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TextColor&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Then I want to evaluate the attribute at runtime. To do this, I use Reflection, where I first evaluate a property for the presence of the attribute, and then I get the value. After that, I want to output the contents of the tag property, followed by the value of the actual property decorated with the attribute. The entire output should be in the color that is stored for the attribute.&lt;/p&gt;
+
+&lt;p&gt;I continue to use my student class from earlier, and create a new writer class to control the output:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Writer&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;readonly&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Student&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_student&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+  &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ConsoleColor&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Writer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Student&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;student&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;n&quot;&gt;_student&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;student&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+  &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;n&quot;&gt;PropertyInfo&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;firstNameProp&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Student&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetProperty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;nameof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Student&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirstName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; 
+
+    &lt;span class=&quot;n&quot;&gt;DisplayAttribute&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;firstNameDisplayAttr&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DisplayAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Attribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetCustomAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firstNameProp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DisplayAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; 
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firstNameDisplayAttr&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+      &lt;span class=&quot;nf&quot;&gt;SaveDefaultForegroundColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
+      &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ForegroundColor&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;firstNameDisplayAttr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TextColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+      &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;firstNameDisplayAttr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_student&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirstName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+      &lt;span class=&quot;nf&quot;&gt;RestoreDefaultForegroundColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+      &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_student&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirstName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+  &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SaveDefaultForegroundColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;n&quot;&gt;_color&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ForegroundColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+
+  &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;RestoreDefaultForegroundColor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ForegroundColor&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;As you can see, if the attribute is present, I save the current text color of the console to be able to reset it after the output. Then the output takes place. If the attribute does not exist, only the value of the property is printed to the console.&lt;/p&gt;
+
+&lt;p&gt;The section of reflection shown here is only a minimal part of the available options. For example, you could search an assembly for classes that have a specific attribute, and then use it to control the functionality of your application. You can also set or remove attributes at runtime. But I’ll cover that with a separate article about Reflection.&lt;/p&gt;
+
+&lt;p&gt;I hope I was able to give you a general overview of attributes in C#. If you need more information, I recommend checking out MSDNs &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/&quot;&gt;full documentation on the topic&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 23 Dec 2018 07:00:00 +0100</pubDate>
+        <link>http://blog.mjurtz.com/2018/12/csharp-attributes</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/12/csharp-attributes</guid>
+        
+        <category>programming</category>
+        
+        <category>software</category>
+        
+        <category>development</category>
+        
+        <category>csharp</category>
+        
+        <category>microsoft</category>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>Using LESS with ASP.NET Core</title>
@@ -359,49 +526,6 @@ So the goals are written down, but never reached or at least actively pursued.&l
         
         
         <category>unity</category>
-        
-      </item>
-    
-      <item>
-        <title>Maximize your Productivity</title>
-        <description>&lt;p&gt;When you’re at the beginning of your career as a software developer, like me, you probably know the feeling that you’re being overwhelmed by everything you want to learn. Especially at the beginning it is often not easy to work productively and to learn why I want to show you which methodologies I have developed for myself. Even though I use my own experience, my approach is of course not limited to the industry.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-pomodoro-technique&quot;&gt;The Pomodoro Technique&lt;/h2&gt;
-
-&lt;p&gt;In the beginning I focused very much on creating as much as possible and hardly allowing myself any breaks. But this is not feasible in the long run, your brain needs variety and chances for recovery. One of the first tools I discovered for myself to tackle exactly this point is the Pomodoro technique.&lt;/p&gt;
-
-&lt;p&gt;This method is based on alternating work intervals with regular pauses, but working between these pauses in a really focused and distraction-free way. By default, one interval lasts 25 minutes, followed by a break of five minutes. After you have completed four intervals, a longer break of 15 minutes follows.&lt;/p&gt;
-
-&lt;p&gt;The Pomodoro technique helped me on several levels. But the focus was not on the breaks, but on the focused work on a predefined task. I no longer jumped back and forth between different tasks, but divided my TODO list directly into intervals and could then stay with the current task.&lt;/p&gt;
-
-&lt;p&gt;Of course this technique is not a silver bullet. Especially in programming people often talk about the so-called flow state. This is the state when one is isolated from the environment and immersed in a task and can concentrate completely on it. It takes some time to get into this state, and 25 minutes is certainly not enough to work effectively in it. The Pomodoro technique is therefore less suitable for such tasks.&lt;/p&gt;
-
-&lt;p&gt;There are a number of tools that you can use to make this technique work. On the one hand, you can use a smartphone app (which automatically switches to flight mode during an interval if you wish), but there are also browser plug-ins or other desktop tools.&lt;/p&gt;
-
-&lt;h2 id=&quot;schedule-your-tasks&quot;&gt;Schedule Your Tasks&lt;/h2&gt;
-
-&lt;p&gt;Another point I’ve built up in recent years is working according to a methodology. Do you come to the office in the morning and check your mails or the chat of your team to know what to do today? Take 15 minutes daily to plan your day and prioritize your tasks. It helps me enormously to plan my tasks instead of just doing what falls into my lap. I often combine this planning directly with the Pomodoro technique and define how many intervals I want to spend on a task. This helps me to make the planning more realistic and not to do too much.&lt;/p&gt;
-
-&lt;p&gt;I use Trello for task planning and misuse the Kanban board a little by splitting the columns into weekdays, using cards for tasks and assigning units to them by tags.&lt;/p&gt;
-
-&lt;h2 id=&quot;eliminate-distractions&quot;&gt;Eliminate Distractions&lt;/h2&gt;
-
-&lt;p&gt;My final point is devoted to the distractions already mentioned. Do you know the feeling when you just had an idea how to fix a bug and then your phone rings? Such moments are, in my opinion, the biggest productivity killer. It’s best not only to set your phone to silent, but also to disable notifications on the lock screen. I’ve often caught myself checking to see if there’s anything new. If your lock screen stays tidy, the temptation to check messages or the like is significantly reduced.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 28 Oct 2018 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/10/maximize-your-productivity</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/10/maximize-your-productivity</guid>
-        
-        <category>learn</category>
-        
-        <category>methodology</category>
-        
-        <category>netcore</category>
-        
-        <category>development</category>
-        
-        
-        <category>productivity</category>
         
       </item>
     

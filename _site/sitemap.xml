@@ -373,6 +373,10 @@
 <lastmod>2019-01-13T07:00:00+01:00</lastmod>
 </url>
 <url>
+<loc>http://blog.mjurtz.com/2018/12/dotnet-core-raspberry-pi</loc>
+<lastmod>2019-01-20T07:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>http://blog.mjurtz.com/about/</loc>
 </url>
 <url>
@@ -662,6 +666,9 @@
 </url>
 <url>
 <loc>http://blog.mjurtz.com/tag/microsoft/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/tag/raspberrypi/</loc>
 </url>
 <url>
 <loc>http://blog.mjurtz.com/category/game-development/</loc>

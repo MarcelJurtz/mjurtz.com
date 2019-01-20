@@ -6,9 +6,53 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 13 Jan 2019 10:13:18 +0100</pubDate>
-    <lastBuildDate>Sun, 13 Jan 2019 10:13:18 +0100</lastBuildDate>
+    <pubDate>Sun, 20 Jan 2019 18:23:23 +0100</pubDate>
+    <lastBuildDate>Sun, 20 Jan 2019 18:23:23 +0100</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>.NET Core on a Raspberry Pi</title>
+        <description>&lt;p&gt;The Raspberry Pi is one of my favorite toys when it comes to hosting local applications or services like relational databases for testing purposes. At the moment I am trying to test an ASP.NET core application with this setup. However, getting .NET Core to run on the Raspberry Pi is not as easy as I thought, so I’d like to briefly outline the necessary steps.&lt;/p&gt;
+
+&lt;p&gt;On &lt;a href=&quot;https://github.com/dotnet/core/tree/master/release-notes/download-archives&quot;&gt;GitHub&lt;/a&gt; you will find the download links we need. In my example I am using version 2.1.1. By following the link to the required version, you’ll see a table with different download links.&lt;/p&gt;
+
+&lt;p&gt;Important for the Raspberry Pi are now the downloads for ARM architecture, I need the SDK and the ASP.NET Core Runtime. So I copy the two links and download the archives with wget:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;wget https://download.microsoft.com/download/D/0/4/D04C5489-278D-4C11-9BD3-6128472A7626/dotnet-sdk-2.1.301-linux-arm.tar.gz 
+wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-0330111B38E8/aspnetcore-runtime-2.1.1-linux-arm.tar.gz &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;I then create a new directory for .NET Core and extract both of the archives to this new directory:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; /opt/dotnet 
+&lt;span class=&quot;nb&quot;&gt;sudo tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xvf&lt;/span&gt; dotnet-sdk-2.1.301-linux-arm.tar.gz &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; /opt/dotnet/ 
+&lt;span class=&quot;nb&quot;&gt;sudo tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xvf&lt;/span&gt; aspnetcore-runtime-2.1.1-linux-arm.tar.gz &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; /opt/dotnet/ &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;All that’s left to do now is to create a symbolic link to the folder and you’re good to go:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;sudo ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /opt/dotnet/dotnet /usr/local/bin &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;And that’s it! Now you have access to the familiar .NET commands like dotnet build or run, and your ASP.NET core application is ready to run.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 20 Jan 2019 07:00:00 +0100</pubDate>
+        <link>http://blog.mjurtz.com/2018/12/dotnet-core-raspberry-pi</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/12/dotnet-core-raspberry-pi</guid>
+        
+        <category>programming</category>
+        
+        <category>software</category>
+        
+        <category>development</category>
+        
+        <category>microsoft</category>
+        
+        <category>dotnet</category>
+        
+        <category>raspberrypi</category>
+        
+        
+        <category>linux</category>
+        
+      </item>
     
       <item>
         <title>Partial Classes and Methods in C#</title>
@@ -544,45 +588,6 @@ So the goals are written down, but never reached or at least actively pursued.&l
         
         
         <category>android</category>
-        
-      </item>
-    
-      <item>
-        <title>Jan Frodeno - Winning Matters</title>
-        <description>&lt;p&gt;Gold medal at the Olympics, world record holder at the 70.3 World Championships in Roth and a world champion title at the Ironman in Kona - Jan Frodeno is a name that certainly does not only ring a bell for triathlon enthusiasts. Frodeno is celebrated by the fans like no other. But who is the athlete? Today I’m reviewing his book “Winning Matters - Success through courage and passion” and try to find an answer to this question.&lt;/p&gt;
-
-&lt;p&gt;Frodeno starts the first chapters with a big portion of self-irony and calls himself “loser” or “linnet”. That in endurance sports and especially in professional sports a lot depends on attitude is nothing new, but who would have thought that Frodeno himself uses mind games to influence his opponents? Again, he makes it clear that (unlike many other triathletes) he doesn’t do this maliciously, but for fun and with a lot of humor.&lt;/p&gt;
-
-&lt;p&gt;All in all, the book is written in a very personal and humorous way, whereby Frodeno especially in the last chapters deals very strongly with his mentors, and knows how to appreciate his family and his team accordingly.&lt;/p&gt;
-
-&lt;p&gt;In the chapters Frodeno alternately describes the course of the Ironman World Championship in Kona 2015, which he won with a time of 08:14:39, as well as his curriculum vitae and how he became the person he is now. Already in the first chapters different character traits of the author become visible, started with absolute unwillingness to compromise. Frodeno is a man who cannot lose. Well, you probably guessed that already from reading the title of the book. I don’t mean to say that he can’t handle defeats in a sporting way, definitely not. But he does everything in his power to win. To achieve that, Frodeno always focuses on exactly one thing. Rather do one thing right than several things badly.&lt;/p&gt;
-
-&lt;p&gt;Another point that is essential to achieve your goals is to surround yourself with the right people.  Show me your friends and I’ll tell you who you are. Frodeno trains with two training partners who constantly push each other. This casual competition creates small battles in training, and you automatically give that extra bit.&lt;/p&gt;
-
-&lt;p&gt;Finally, Frodeno describes a persons psychology as the crucial characteristic of a pro-level triathlete. At this level, the physical characteristics of the athletes are almost identical. However, a race is decided in the mind, which Frodeno describes in the course of Olympia 2008, where he finally wins gold after loosening a mental block.&lt;/p&gt;
-
-&lt;p&gt;During the Ironman Hawaii 2017 he finally has to struggle with severe pain and is overtaken by Sebastian Lange, who wins the title this year. Frodeno still fights his way through the marathon and inspires the masses. In the book he describes how after this competition he received messages from many athletes and fans who motivated themselves and brought new top performances through this mental strength.&lt;/p&gt;
-
-&lt;p&gt;The whole book is peppered with anecdotes from Frodeno’s childhood, but also with many details, especially about the mental training of the triathlete. But Frodeno also makes some statements, which he fully supports. One example is his attitude towards doping, which he categorically rejects. But even with topics like unsportsmanlike behaviour like overtaking and direct rearsing, which forces the overtaken to slow down in order not to be punished for slipstream driving, he does not mince his words and says what he thinks.&lt;/p&gt;
-
-&lt;p&gt;All in all, the book is written very entertainingly and the almost 200 pages (+ about 30 pages with photos) are quickly devoured. Frodeno offers many insights and valuable details into the life of a top triathlete and if you are interested in triathlon or want to take part in an Ironman, you are guaranteed to benefit from the shared information.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 18 Nov 2018 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/11/jan-frodeno-winning-matters</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/11/jan-frodeno-winning-matters</guid>
-        
-        <category>review</category>
-        
-        <category>book</category>
-        
-        <category>reading</category>
-        
-        <category>sports</category>
-        
-        <category>triathlon</category>
-        
-        
-        <category>books</category>
         
       </item>
     

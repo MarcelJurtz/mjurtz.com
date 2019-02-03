@@ -6,9 +6,52 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 20 Jan 2019 18:23:23 +0100</pubDate>
-    <lastBuildDate>Sun, 20 Jan 2019 18:23:23 +0100</lastBuildDate>
+    <pubDate>Sun, 03 Feb 2019 20:22:24 +0100</pubDate>
+    <lastBuildDate>Sun, 03 Feb 2019 20:22:24 +0100</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Efficient Learning with the Feynman Technique</title>
+        <description>&lt;p&gt;Today’s post is about learning new things more efficiently, i.e. wasting as little time as possible on learning. I use the Feynman technique, named after the physicist Richard Feynman. Feynman was known for his ability to break down complex facts into their core message and to convey them very easily.&lt;/p&gt;
+
+&lt;p&gt;You certainly know the concept of being able to explain things to others in order to better understand them yourself. That’s exactly what I’m doing with my blog and that’s also the goal of the Feynman technique. Feynman’s focus is on not tricking yourself, after all, you don’t fool anyone as easily as you do yourself, but to really dig into a topic.&lt;/p&gt;
+
+&lt;p&gt;With the Feynman technique you can not only learn, you can also check how well you really understand a topic and how well you can apply it in practice.&lt;/p&gt;
+
+&lt;p&gt;The Feynman technique can be broken down into four different iterative points.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-take-a-piece-of-paper-and-write-the-name-of-the-topic-at-the-top&quot;&gt;1. Take a piece of paper and write the name of the topic at the top.&lt;/h3&gt;
+
+&lt;p&gt;I think this step is quite simple. After the four steps have been completed, you will end up with a page on which the idea is documented in its main features and in a way that is easy to understand. So a heading makes sense.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-explain-the-concept-in-as-simple-sentences-as-possible&quot;&gt;2. Explain the concept in as simple sentences as possible&lt;/h3&gt;
+
+&lt;p&gt;Be sure to keep the description brief and choose your wording so that someone without technical knowledge could follow your instructions. Include examples in your description and try to understand them. Don’t be satisfied with just the definitions!&lt;/p&gt;
+
+&lt;h3 id=&quot;3-identify-vulnerabilities&quot;&gt;3. Identify vulnerabilities&lt;/h3&gt;
+
+&lt;p&gt;Then go back to step two and go into these passages until you have mastered them as well as the rest of the concept.&lt;/p&gt;
+
+&lt;h3 id=&quot;4-focus-on-complicated-technical-terms-and-try-to-simplify-them&quot;&gt;4. Focus on complicated technical terms and try to simplify them&lt;/h3&gt;
+
+&lt;p&gt;Explain the thoughts behind technical terminology. Imagine telling a child something and questioning everything with a “why”.&lt;/p&gt;
+
+&lt;p&gt;With these four steps you should be able to break down complex facts to an easily understandable level and keep them in your head for a long time.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 03 Feb 2019 07:00:00 +0100</pubDate>
+        <link>http://blog.mjurtz.com/2018/12/learning-with-the-feynman-technique</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2018/12/learning-with-the-feynman-technique</guid>
+        
+        <category>self</category>
+        
+        <category>productivity</category>
+        
+        <category>efficiency</category>
+        
+        
+        <category>learning</category>
+        
+      </item>
     
       <item>
         <title>.NET Core on a Raspberry Pi</title>
@@ -533,61 +576,6 @@ So the goals are written down, but never reached or at least actively pursued.&l
         
         
         <category>programming</category>
-        
-      </item>
-    
-      <item>
-        <title>Announcing MTG LifeCounter V2</title>
-        <description>&lt;p&gt;With my LifeCounter app for Magic The Gathering, I released my first Android app on the Google PlayStore over two years ago. Besides my first release, this was also another milestone for me: My first real app. Over two years later, I am proud to announce a completely revamped version of the app. Several complete revisions have taken place in the meantime and I’m already planning the next one, as I admittedly tried to learn the MVP pattern with the app and now, a few months later, I’m completely dissatisfied and want to switch to MVVM. But that doesn’t really matter at the moment.&lt;/p&gt;
-
-&lt;p&gt;Today I announce the release of version 2.0, providing major improvements and enhancements. If the player only had the possibility to manage health points in a 2-player game so far, now up to four players can be served in parallel. In addition there are other features like a dice function for a 20-sided dice, a counter manager to organize counters on individual cards and the adjustment of various values such as the standard colors of the game areas.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/2018/lifecounter_v2.png&quot; data-lightbox=&quot;MTG LifeCounter V2&quot;&gt;&lt;img src=&quot;/assets/2018/lifecounter_v2.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;I have decided to offer a paid Pro version in addition to the standard version. Quite simply for the reason that in the meantime a lot of work went into the creation of the app and I would like to compensate at least parts of my expenses with it again. V2 will be released in the PlayStore in the course of the next week.&lt;/p&gt;
-
-&lt;h2 id=&quot;4-player-mode&quot;&gt;4 Player Mode&lt;/h2&gt;
-
-&lt;p&gt;Probably the biggest innovation of the app is the 4-player mode. The mode can be started via the menu which can be dragged sideways into the app. The view adapts to the screen size. By default, for example, the color selection is displayed above the life points. If the screen of the device is too small, the points are hidden during the customization, so that a certain clarity remains ensured.&lt;/p&gt;
-
-&lt;p&gt;Game scores are saved in both game modes, so opening and closing the app, as well as switching between 2 and 4 player modes, will not result in any loss of scores. The 4-player mode is only available in the Pro version.&lt;/p&gt;
-
-&lt;h2 id=&quot;counter-manager&quot;&gt;Counter Manager&lt;/h2&gt;
-
-&lt;p&gt;Another major innovation is the Counter Manager. You are probably familiar with the problem that tokens to change the attack and defense values of your cards are documented in a complicated manner using a tally sheet. This new feature allows you to manage the values of your cards in a simple and intuitive way. These values will also be saved when you exit the application, so you won’t accidentally delete any entries. This feature is also only available in the pro version.&lt;/p&gt;
-
-&lt;h2 id=&quot;dice&quot;&gt;Dice&lt;/h2&gt;
-
-&lt;p&gt;A rather small innovation is the dice function. Touching the screen displays a random number between one and 20, simulating a 20-sided dice.&lt;/p&gt;
-
-&lt;h2 id=&quot;energy-saving-mode&quot;&gt;Energy Saving Mode&lt;/h2&gt;
-
-&lt;p&gt;Already implemented in earlier app versions, the power-saving mode provides a way for devices with AMOLED technology to darken the large areas during the game. This means the device consumes less power because black pixels do not consume energy.&lt;/p&gt;
-
-&lt;h2 id=&quot;introductory-screen&quot;&gt;Introductory Screen&lt;/h2&gt;
-
-&lt;p&gt;Finally, I’d like to briefly discuss another feature that I can provide thanks to Paolo Rotolo’s AppIntro library. The first time you start the application, you will see an introduction that demonstrates how to use the app and introduces you to the various features. Optionally, this introduction can be recalled from the Preferences pane.&lt;/p&gt;
-
-&lt;h2 id=&quot;questions-answers&quot;&gt;Questions? Answers!&lt;/h2&gt;
-
-&lt;p&gt;You have found suggestions for improvements, ideas, or perhaps an error in the application? I’m always happy to hear from you, preferably by sending an email to feedback@mjurtz.com or via Twitter: @MarcelJurtz. And of course I’m always happy about every review in the PlayStore!&lt;/p&gt;
-</description>
-        <pubDate>Sun, 25 Nov 2018 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/11/announcing-lifecounter-v2</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/11/announcing-lifecounter-v2</guid>
-        
-        <category>android</category>
-        
-        <category>app</category>
-        
-        <category>development</category>
-        
-        <category>programming</category>
-        
-        <category>sideproject</category>
-        
-        
-        <category>android</category>
         
       </item>
     

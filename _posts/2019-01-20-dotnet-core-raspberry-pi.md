@@ -3,7 +3,7 @@ title: '.NET Core on a Raspberry Pi'
 date: 2019-01-20T06:00:00+00:00
 author: Marcel Jurtz
 layout: post
-permalink: /2018/12/dotnet-core-raspberry-pi
+permalink: /2019/01/dotnet-core-raspberry-pi
 categories:
   - linux
 tags:

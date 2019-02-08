@@ -3,7 +3,7 @@ title: 'Partial Classes and Methods in C#'
 date: 2019-01-13T06:00:00+00:00
 author: Marcel Jurtz
 layout: post
-permalink: /2018/12/c-partial-classes-and-methods
+permalink: /2019/01/c-partial-classes-and-methods
 categories:
   - development
 tags:

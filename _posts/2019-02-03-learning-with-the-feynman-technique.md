@@ -3,7 +3,7 @@ title: 'Efficient Learning with the Feynman Technique'
 date: 2019-02-03T06:00:00+00:00
 author: Marcel Jurtz
 layout: post
-permalink: /2018/12/learning-with-the-feynman-technique
+permalink: /2019/02/learning-with-the-feynman-technique
 categories:
   - learning
 tags:

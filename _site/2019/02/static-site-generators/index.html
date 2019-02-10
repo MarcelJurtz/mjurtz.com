@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>.NET Core on a Raspberry Pi</title>
-  <meta name="description" content="The Raspberry Pi is one of my favorite toys when it comes to hosting local applications or services like relational databases for testing purposes. At the mo...">
+  <title>Static Site Generators</title>
+  <meta name="description" content="Some time ago I moved this website from WordPress to Jekyll, but I never really explained the reasons. That’s why I want to discuss in today’s post the optio...">
   
   <meta name="author" content="Marcel Jurtz">
   <meta name="copyright" content="&copy; Marcel Jurtz 2019">
@@ -47,7 +47,7 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://blog.mjurtz.com/2018/12/dotnet-core-raspberry-pi">
+  <link rel="canonical" href="http://blog.mjurtz.com/2019/02/static-site-generators">
   <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
 </head>
 
@@ -463,6 +463,14 @@
           
         
           
+          <li class="nav-link"><a href="/tag/blogging/">blogging</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cms/">cms</a>
+          
+        
+          
           <li class="nav-link"><a href="/category/game-development/">game-development</a>
           
         
@@ -602,6 +610,8 @@
         
           
         
+          
+        
       </ul>
     -->
       <ul id="js-navigation-menu" class="navigation-menu-show">
@@ -621,7 +631,7 @@
 <div class="post-header-container " >
   <div class="scrim ">
     <header class="post-header">
-      <h1 class="title">.NET Core on a Raspberry Pi</h1>
+      <h1 class="title">Static Site Generators</h1>
       <p class="info">by <strong>Marcel Jurtz</strong></p>
     </header>
   </div>
@@ -636,44 +646,78 @@
  
 
 <section class="post-meta">
-  <div class="post-date">January 20, 2019</div>
+  <div class="post-date">February 10, 2019</div>
   <div class="post-categories">
   in 
     
-    <a href="/category/linux">Linux</a>
+    <a href="/category/web">Web</a>
     
   
   </div>
 </section>
 
 <article class="post-content">
-  <p>The Raspberry Pi is one of my favorite toys when it comes to hosting local applications or services like relational databases for testing purposes. At the moment I am trying to test an ASP.NET core application with this setup. However, getting .NET Core to run on the Raspberry Pi is not as easy as I thought, so I’d like to briefly outline the necessary steps.</p>
+  <p>Some time ago I moved this website from WordPress to Jekyll, but I never really explained the reasons. 
+That’s why I want to discuss in today’s post the option of managing websites using an offline CMS or Static Site Generator.</p>
 
-<p>On <a href="https://github.com/dotnet/core/tree/master/release-notes/download-archives">GitHub</a> you will find the download links we need. In my example I am using version 2.1.1. By following the link to the required version, you’ll see a table with different download links.</p>
+<p>CMS like WordPress are often ridiculed and devalued by their complexity or their overall structure. 
+In the meantime, there is a variety of similar content management systems available, but they usually share the core functionalities and structure. 
+Usually, these systems consist of a backend, via which the website is managed. Articles are stored via a relational database. 
+The websites can be adapted visually to one’s own preferences via templates and with the help of plug-ins a wide variety of additional functions can be implemented without major effort.</p>
 
-<p>Important for the Raspberry Pi are now the downloads for ARM architecture, I need the SDK and the ASP.NET Core Runtime. So I copy the two links and download the archives with wget:</p>
+<p>This comfort sounds very tempting, but the setup also has its disadvantages. 
+Compared to a simple HTML website, considerably more resources are needed, for example a database. Plugins often load client-side scripts, 
+which can significantly increase loading times. 
+At first glance, CMS-based websites seem very convenient to manage and maintain, but things like system and plugin updates should not be forgotten. Ask a search engine of your choice for example “WordPress hack” and you’ll see how many people don’t seem to be able to do this on their own. 
+Anyone without programming knowledge can set up a WordPress page, but as soon as it comes to making modifications to templates or the like, 
+it becomes difficult. I don’t mean to say that these systems don’t have any rights to exist. 
+However, the effort to set up and maintain such a system is not as trivial as you might think.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">wget https://download.microsoft.com/download/D/0/4/D04C5489-278D-4C11-9BD3-6128472A7626/dotnet-sdk-2.1.301-linux-arm.tar.gz 
-wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-0330111B38E8/aspnetcore-runtime-2.1.1-linux-arm.tar.gz </code></pre></figure>
+<p>Static Site Generators, as the name suggests, rely on a different principle. 
+The user usually creates his content offline and with the help of predefined routines an HTML website is created. 
+This is typically done by defining templates for different elements such as posts, and then linking them to the actual content, resulting in a ready-to-use website. 
+There are many systems in this area as well, one of the better known is probably Jekyll, the system I am currently using.</p>
 
-<p>I then create a new directory for .NET Core and extract both of the archives to this new directory:</p>
+<p>Jekyll is based on Ruby. I don’t have any knowledge in this programming language, 
+which is why I would like to briefly go through my procedure when I set up a new website with Jekyll.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo mkdir</span> /opt/dotnet 
-<span class="nb">sudo tar</span> <span class="nt">-xvf</span> dotnet-sdk-2.1.301-linux-arm.tar.gz <span class="nt">-C</span> /opt/dotnet/ 
-<span class="nb">sudo tar</span> <span class="nt">-xvf</span> aspnetcore-runtime-2.1.1-linux-arm.tar.gz <span class="nt">-C</span> /opt/dotnet/ </code></pre></figure>
+<p>First I look for an appropriate template. With GitHub you will usually find what you’re looking for very quickly, 
+but when you make your selection you should pay attention to the license model of the project you want to use. 
+Afterwards I download the project and make adjustments according to my requirements. 
+As soon as the template meets my expectations, I can start writing articles. Jekyll uses a directory called _posts, 
+which contains the articles in Markdown format. With a single command I can then create my entire website and upload it to my webspace. 
+I don’t need a database connection and since the articles are directly available as HTML pages, I get the best possible loading times.</p>
 
-<p>All that’s left to do now is to create a symbolic link to the folder and you’re good to go:</p>
+<p>Enough about my personal workflow - let’s discuss the advantages of systems like Jekyll. Well, it’s partly obvious. 
+I am independent of classic CMS solutions and need less resources on my web server. 
+But especially as a software developer, the advantages of Jekyll, for example, are just beginning to take effect. 
+By writing articles via Markdown, I can easily achieve a consistent style across my entire website. 
+The website itself can be easily managed via a version control system like Git and a connected platform (GitHub etc.). 
+The latter allows easy sharing among multiple authors. 
+Features like pull requests replace the tedious administration of user profiles and authorization concepts. 
+And via <a href="https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/">GitHub Pages</a> you can even host your Jekyll website directly via GitHub. 
+The text-based article management allows easy versioning and makes it much easier for you to convert your articles if you want to switch to another system.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo ln</span> <span class="nt">-s</span> /opt/dotnet/dotnet /usr/local/bin </code></pre></figure>
+<p>Static websites are in general very easy to deploy and changes can be submitted almost instantly. 
+Since no underlying databases are required, the website can be scaled very well (e.g. via AWS or Netlify). 
+Due to the minimal requirements, the webspace can of course also be managed more cost-effectively. 
+As soon as the website is online, there is virtually no need for server-side maintenance. 
+And of course you can simply write your own tools that implement various features of your website before it is being published. 
+For example, automated checking for links that are no longer available, etc.</p>
 
-<p>And that’s it! Now you have access to the familiar .NET commands like dotnet build or run, and your ASP.NET core application is ready to run.</p>
+<p>As always, no general choice can be made between classic CMS and Offline-CMS / Static Site Generator. 
+It is important to weigh up the needs of the users and derive the criteria for the software from this. 
+Especially in the area of blogging I can at least recommend Jekyll to you personally. 
+You’ll have to invest some time to get used to it, but you’ll find your way around quickly.</p>
+
+<p>If you decide to switch - most CMS have export plugins for your articles, so you can easily convert them to the new format. Good luck!</p>
 
 </article>
 
 
 
 <section class="tags">
-  <strong>Tags:</strong> <a href="/tag/programming">programming</a>,&nbsp;<a href="/tag/software">software</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/microsoft">microsoft</a>,&nbsp;<a href="/tag/dotnet">dotnet</a>,&nbsp;<a href="/tag/raspberrypi">raspberrypi</a>
+  <strong>Tags:</strong> <a href="/tag/blogging">blogging</a>,&nbsp;<a href="/tag/website">website</a>,&nbsp;<a href="/tag/cms">cms</a>,&nbsp;<a href="/tag/programming">programming</a>
 </section>
 
 
@@ -687,7 +731,7 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
   
     
     
-      <a href="//twitter.com/share?text=.NET+Core+on+a+Raspberry+Pi&url=http%3A%2F%2Fblog.mjurtz.com%2F2018%2F12%2Fdotnet-core-raspberry-pi&via=MarcelJurtz"
+      <a href="//twitter.com/share?text=Static+Site+Generators&url=http%3A%2F%2Fblog.mjurtz.com%2F2019%2F02%2Fstatic-site-generators&via=MarcelJurtz"
         onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
         <i class="fa fa-twitter-square fa-lg"></i>
       </a>
@@ -715,7 +759,7 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
     
     
     
-      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2018/12/dotnet-core-raspberry-pi') + '&title=.NET Core on a Raspberry Pi'; return false">
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2019/02/static-site-generators') + '&title=Static Site Generators'; return false">
         <i class="fa fa-reddit-square fa-lg"></i>
       </a>
     
@@ -1136,6 +1180,14 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
         
         
         
+          <li class="nav-link"><a href="/tag/blogging/">blogging</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cms/">cms</a>
+        
+        
+        
           <li class="nav-link"><a href="/category/game-development/">game-development</a>
         
         
@@ -1275,6 +1327,8 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
         
         
         
+        
+        
       </ul>
     -->
     <ul class="pages">
@@ -1370,8 +1424,8 @@ $(document).ready(function() {
   ga('create', 'UA-118762636-1', 'auto');
   ga('set','anonymizeIp',true);
   ga('send', 'pageview', {
-    'page': '/2018/12/dotnet-core-raspberry-pi',
-    'title': '.NET Core on a Raspberry Pi'
+    'page': '/2019/02/static-site-generators',
+    'title': 'Static Site Generators'
   });
 </script>
 

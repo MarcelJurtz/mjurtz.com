@@ -4,11 +4,56 @@
     <title>Marcel Jurtz</title>
     <description>A software developers blog.
 </description>
-    <link>http://blog.mjurtz.com/</link>
-    <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 10 Feb 2019 19:51:42 +0100</pubDate>
-    <lastBuildDate>Sun, 10 Feb 2019 19:51:42 +0100</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 17 Feb 2019 20:41:51 +0100</pubDate>
+    <lastBuildDate>Sun, 17 Feb 2019 20:41:51 +0100</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>MacOS Package Management</title>
+        <description>&lt;p&gt;The ability to work with the terminal under MacOS and use my familiar Linux workflow is awesome, but I have always missed a crucial component: a package manager.&lt;/p&gt;
+
+&lt;p&gt;Homebrew is a package manager for MacOS, according to the developers “The missing package Manager for macOS (or Linux)”. Today I would like to explain how you install and use Homebrew productively.&lt;/p&gt;
+
+&lt;p&gt;First of all: You can find the project’s website &lt;a href=&quot;https://brew.sh&quot;&gt;here&lt;/a&gt;, there you will find all the information and documentation you could wish for.&lt;/p&gt;
+
+&lt;p&gt;You might have to install the command line tools first. This can be done with the command xcode-select –install. If you already have Xcode or other software that needs the tools installed, you can skip this step. You can use xcode-select -p to check if the Command Line Tools are already installed.&lt;/p&gt;
+
+&lt;p&gt;To initialize the installation, use the command&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;/usr/bin/ruby &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;curl &lt;span class=&quot;nt&quot;&gt;-fsSL&lt;/span&gt; https://raw.githubusercontent.com/Homebrew/install/master/install&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Homebrew is based on Ruby, the version included in MacOS is sufficient for use, you don’t need to install anything additional at this point.&lt;/p&gt;
+
+&lt;p&gt;Note: If you want to uninstall Homebrew, you can use the same command and replace the install at the end of the URL with uninstall.&lt;/p&gt;
+
+&lt;p&gt;You can use the &lt;em&gt;brew search&lt;/em&gt; command to search for available packages. Without any additional parameters, all packages will be listed. This overview can also be found on the &lt;a href=&quot;https://formulae.brew.sh/formula/&quot;&gt;website&lt;/a&gt;. If you want to search for a specific package, you can simply append your search term to the above command. Once you have found a package, you can retrieve information about it using &lt;em&gt;brew info [packagename]&lt;/em&gt;. Alternatively, you can use &lt;em&gt;brew list&lt;/em&gt; to display only the packages you have installed.&lt;/p&gt;
+
+&lt;p&gt;Packages can now be installed using &lt;em&gt;brew install [packagename]&lt;/em&gt; and uninstalled using &lt;em&gt;brew uninstall [packagename]&lt;/em&gt;. You can also uninstall packages using rm or remove besides uninstall.&lt;/p&gt;
+
+&lt;p&gt;You can already work with this state, but there are still no possibilities to update brew yourself, update package lists and update installed software.&lt;/p&gt;
+
+&lt;p&gt;The first is done with the &lt;em&gt;brew update&lt;/em&gt; command. The command &lt;em&gt;brew upgrade&lt;/em&gt; is then used to update the packages. This command updates all available packages. Alternatively, you can upgrade a single package using the &lt;em&gt;brew upgrade [packagename]&lt;/em&gt; command. And by the way: &lt;em&gt;brew outdated&lt;/em&gt; lists all obsolete packages. To exclude packages from the upgrade process, you can use the &lt;em&gt;brew pin [packagename]&lt;/em&gt; command, or &lt;em&gt;brew unpin [packagename]&lt;/em&gt; to undo this. Pinned packages are not updated automatically.&lt;/p&gt;
+
+&lt;p&gt;This should give you a good introduction to homebrew and make managing your software easier. You can also find a complete overview of the commands on the &lt;a href=&quot;https://docs.brew.sh/Manpage&quot;&gt;project website&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 17 Feb 2019 07:00:00 +0100</pubDate>
+        <link>http://localhost:4000/2019/02/macos-package-management</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/02/macos-package-management</guid>
+        
+        <category>tools</category>
+        
+        <category>apple</category>
+        
+        <category>mac</category>
+        
+        <category>software</category>
+        
+        
+        <category>macos</category>
+        
+      </item>
     
       <item>
         <title>Static Site Generators</title>
@@ -68,8 +113,8 @@ You’ll have to invest some time to get used to it, but you’ll find your way 
 &lt;p&gt;If you decide to switch - most CMS have export plugins for your articles, so you can easily convert them to the new format. Good luck!&lt;/p&gt;
 </description>
         <pubDate>Sun, 10 Feb 2019 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2019/02/static-site-generators</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2019/02/static-site-generators</guid>
+        <link>http://localhost:4000/2019/02/static-site-generators</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/02/static-site-generators</guid>
         
         <category>blogging</category>
         
@@ -113,8 +158,8 @@ You’ll have to invest some time to get used to it, but you’ll find your way 
 &lt;p&gt;With these four steps you should be able to break down complex facts to an easily understandable level and keep them in your head for a long time.&lt;/p&gt;
 </description>
         <pubDate>Sun, 03 Feb 2019 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2019/02/learning-with-the-feynman-technique</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2019/02/learning-with-the-feynman-technique</guid>
+        <link>http://localhost:4000/2019/02/learning-with-the-feynman-technique</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/02/learning-with-the-feynman-technique</guid>
         
         <category>self</category>
         
@@ -151,8 +196,8 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
 &lt;p&gt;And that’s it! Now you have access to the familiar .NET commands like dotnet build or run, and your ASP.NET core application is ready to run.&lt;/p&gt;
 </description>
         <pubDate>Sun, 20 Jan 2019 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2019/01/dotnet-core-raspberry-pi</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2019/01/dotnet-core-raspberry-pi</guid>
+        <link>http://localhost:4000/2019/01/dotnet-core-raspberry-pi</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/01/dotnet-core-raspberry-pi</guid>
         
         <category>programming</category>
         
@@ -186,8 +231,8 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
 &lt;p&gt;If you stumble across partial methods in a project, you will usually find the definition of the method and its implementation in different files, as this is the only way to get the idea behind the concept. This code element is also usually found in generated code. If a partial method is called and an implementation of it is found, it is called and executed normally. However, if no implementation is found, the method (or more precisely the method header) and the calls to it are not compiled at all. Partial methods thus indicate optional additions to the source code.&lt;/p&gt;
 </description>
         <pubDate>Sun, 13 Jan 2019 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2019/01/c-partial-classes-and-methods</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2019/01/c-partial-classes-and-methods</guid>
+        <link>http://localhost:4000/2019/01/c-partial-classes-and-methods</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/01/c-partial-classes-and-methods</guid>
         
         <category>programming</category>
         
@@ -284,8 +329,8 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
 &lt;p&gt;I don’t want to go into much application development at this point, but you can see how quickly you can package an ASP.NET core application in Electron. But there is one important detail missing for developing real applications: Deployment. In fact, two applications are created when the Electron.NET app is being built. On the one hand, the ASP.NET core application is built including .NET Core runtime. This application is then packaged by Electron Packer like a regular Electron application. You can specify the target operating system by adding the relevant target flag to the build command: Use the command electronize build /target win. Use the flag osx for macOS, or linux for Linux. After execution, you have your application packaged and ready for use.&lt;/p&gt;
 </description>
         <pubDate>Sun, 06 Jan 2019 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2019/01/dotnet-core-ui-with-electron</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2019/01/dotnet-core-ui-with-electron</guid>
+        <link>http://localhost:4000/2019/01/dotnet-core-ui-with-electron</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/01/dotnet-core-ui-with-electron</guid>
         
         <category>programming</category>
         
@@ -451,8 +496,8 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
 &lt;p&gt;I hope I was able to give you a general overview of attributes in C#. If you need more information, I recommend checking out MSDNs &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/&quot;&gt;full documentation on the topic&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Sun, 30 Dec 2018 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/12/csharp-attributes</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/12/csharp-attributes</guid>
+        <link>http://localhost:4000/2018/12/csharp-attributes</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/12/csharp-attributes</guid>
         
         <category>programming</category>
         
@@ -510,8 +555,8 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
 &lt;p&gt;That’s it. That’s it. The conversion process is now fully automated and you can define and use your LESS files without worrying about the conversion.&lt;/p&gt;
 </description>
         <pubDate>Sun, 23 Dec 2018 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/12/using-less-with-asp-net-core</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/12/using-less-with-asp-net-core</guid>
+        <link>http://localhost:4000/2018/12/using-less-with-asp-net-core</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/12/using-less-with-asp-net-core</guid>
         
         <category>programming</category>
         
@@ -549,8 +594,8 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
 &lt;p&gt;Practice, practice, practice. This list is not complete, not at all. But it is certainly a good start. To write clean code, it’s all about practice. Look at other people’s source code. Ask developers to look at your code and give you feedback. You will notice if your code is good and internalize the important characteristics all by yourself.&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Dec 2018 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/12/writing-clean-code</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/12/writing-clean-code</guid>
+        <link>http://localhost:4000/2018/12/writing-clean-code</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/12/writing-clean-code</guid>
         
         <category>programming</category>
         
@@ -574,8 +619,8 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
 &lt;p&gt;Thanks for your attention, regular posts will follow!&lt;/p&gt;
 </description>
         <pubDate>Sun, 16 Dec 2018 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/12/website-update</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/12/website-update</guid>
+        <link>http://localhost:4000/2018/12/website-update</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/12/website-update</guid>
         
         <category>website</category>
         
@@ -583,40 +628,6 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
         
         
         <category>update</category>
-        
-      </item>
-    
-      <item>
-        <title>Why you should write your own Impossible List</title>
-        <description>&lt;p&gt;Writing down your goals is extremely helpful for really achieving them. With fixed, terminable goals with fixed intermediate steps, 
-you make it much easier for yourself to really achieve your self-imposed goals.&lt;/p&gt;
-
-&lt;p&gt;Today I would like to show you a way to define your goals with the help of the so-called “Impossible List”. 
-At first glance this list looks like an Impossible List, but it is definitely not: Joel Runyon, the author of the first &lt;a href=&quot;https://impossiblehq.com/the-impossible-list-is-not-a-bucket-list/&quot;&gt;Impossible List&lt;/a&gt; describes the classic Bucket List as a static list that was written at some point in life and usually none of the points written down really affect the life of the creator. 
-So the goals are written down, but never reached or at least actively pursued.&lt;/p&gt;
-
-&lt;p&gt;The Impossible List goes a different way: It is not a list of entries waiting to be ticked off. The Impossible List continues to evolve. It describes things you’ve done, you should be constantly checking off entries. But you should also add new items. With the list you broaden your horizons and reach goals you didn’t think possible before. The bucket list describes the things you want done before you die. But the Impossible List describes your life. The Bucket List describes dreams, while the Impossible List requires you to take action now.&lt;/p&gt;
-
-&lt;p&gt;What is probably the most common answer from students to the question, what are their goals in life? Often you will hear something like “My goal is a good college degree, a well paid job and my own house”. But what happens when these goals are achieved? You are in the middle of life and suddenly have no goal to work towards. And off you go with the midlife crisis.&lt;/p&gt;
-
-&lt;p&gt;This is where the Impossible List comes in. Joel Runyon set up his Impossible List after graduating from college and it helped him run ultra marathons and much more. The Impossible List is not only set up, but also made publicly available online and can therefore be viewed by everyone. If you look at &lt;a href=&quot;/impossible/&quot;&gt;my list&lt;/a&gt;, you will also see that many targets follow similar ones, but with more difficult characteristics. This allows you to track your progress. This is the already mentioned developing character of the Impossible List.&lt;/p&gt;
-
-&lt;p&gt;As someone who wants to do many things, it is often difficult to set the focus. That’s why I use a status for my goals, where you can directly see if I’m working on this entry or not.&lt;/p&gt;
-
-&lt;p&gt;I hope I have sparked your interest in the concept. If you want to build your own Impossible List, I suggest you leave room for iterations. Of course, you can also make your work easier by doing the whole thing digitally. I decided to use AirTable, the tool Joel Runyon also uses. Of course, you can also use any other table editing software.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 09 Dec 2018 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/12/why-you-should-write-your-own-impossible-list</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/12/why-you-should-write-your-own-impossible-list</guid>
-        
-        <category>self-disciplin</category>
-        
-        <category>motivation</category>
-        
-        <category>challenge</category>
-        
-        
-        <category>goals</category>
         
       </item>
     

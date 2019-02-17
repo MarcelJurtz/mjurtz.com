@@ -48,8 +48,8 @@
 
   <!-- Site styles -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://blog.mjurtz.com/search.html">
-  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
+  <link rel="canonical" href="http://localhost:4000/search.html">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
 </head>
 
 
@@ -472,6 +472,14 @@
           
         
           
+          <li class="nav-link"><a href="/tag/apple/">apple</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/mac/">mac</a>
+          
+        
+          
           <li class="nav-link"><a href="/category/game-development/">game-development</a>
           
         
@@ -572,6 +580,10 @@
           
         
           
+          <li class="nav-link"><a href="/category/macos/">macos</a>
+          
+        
+          
         
           
         
@@ -652,6 +664,15 @@
 
 <script>
   window.store = {
+    
+      "2019-02-macos-package-management": {
+        "title": "MacOS Package Management",
+        "author": "Marcel Jurtz",
+        "category": "",
+        "content": "The ability to work with the terminal under MacOS and use my familiar Linux workflow is awesome, but I have always missed a crucial component: a package manager.Homebrew is a package manager for MacOS, according to the developers “The missing package Manager for macOS (or Linux)”. Today I would like to explain how you install and use Homebrew productively.First of all: You can find the project’s website here, there you will find all the information and documentation you could wish for.You might have to install the command line tools first. This can be done with the command xcode-select –install. If you already have Xcode or other software that needs the tools installed, you can skip this step. You can use xcode-select -p to check if the Command Line Tools are already installed.To initialize the installation, use the command/usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"Homebrew is based on Ruby, the version included in MacOS is sufficient for use, you don’t need to install anything additional at this point.Note: If you want to uninstall Homebrew, you can use the same command and replace the install at the end of the URL with uninstall.You can use the brew search command to search for available packages. Without any additional parameters, all packages will be listed. This overview can also be found on the website. If you want to search for a specific package, you can simply append your search term to the above command. Once you have found a package, you can retrieve information about it using brew info [packagename]. Alternatively, you can use brew list to display only the packages you have installed.Packages can now be installed using brew install [packagename] and uninstalled using brew uninstall [packagename]. You can also uninstall packages using rm or remove besides uninstall.You can already work with this state, but there are still no possibilities to update brew yourself, update package lists and update installed software.The first is done with the brew update command. The command brew upgrade is then used to update the packages. This command updates all available packages. Alternatively, you can upgrade a single package using the brew upgrade [packagename] command. And by the way: brew outdated lists all obsolete packages. To exclude packages from the upgrade process, you can use the brew pin [packagename] command, or brew unpin [packagename] to undo this. Pinned packages are not updated automatically.This should give you a good introduction to homebrew and make managing your software easier. You can also find a complete overview of the commands on the project website.",
+        "url": "/2019/02/macos-package-management"
+      }
+      ,
     
       "2019-02-static-site-generators": {
         "title": "Static Site Generators",
@@ -1937,6 +1958,14 @@
         
         
         
+          <li class="nav-link"><a href="/tag/apple/">apple</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/mac/">mac</a>
+        
+        
+        
           <li class="nav-link"><a href="/category/game-development/">game-development</a>
         
         
@@ -2034,6 +2063,10 @@
         
         
           <li class="nav-link"><a href="/category/learning/">learning</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/macos/">macos</a>
         
         
         

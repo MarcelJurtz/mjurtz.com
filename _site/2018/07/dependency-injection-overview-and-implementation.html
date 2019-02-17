@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dependency Injection - Overview and Implementation</title>
+  <meta name="description" content="Especially when you are at the beginning of your career as a software developer, you probably know that: You have already picked up the term “Dependency Inje...">
+  
+  <meta name="author" content="Marcel Jurtz">
+  <meta name="copyright" content="&copy; Marcel Jurtz 2019">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/2018/07/dependency-injection-overview-and-implementation">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://localhost:4000/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <!--
+    <a href="/" class="logo">
+      
+      <span>Marcel Jurtz</span>
+      
+    </a>
+  -->
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <!--
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/impossible/">Impossible List</a>
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/typography/">Typography</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/gamedev/">gamedev</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/unity/">unity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/git/">git</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/programming/">programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tools/">tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/android/">android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/app/">app</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/baseball/">baseball</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/development/">development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/editor/">editor</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcache/">bitcache</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcoin/">bitcoin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cryptocurrency/">cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/dotnet/">dotnet</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-dotnet/">asp-dotnet</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">csharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/rest/">rest</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/servicestack/">servicestack</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/software/">software</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/windows/">windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/efficiency/">efficiency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/productivity/">productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/network/">network</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/p2p/">p2p</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/syncthing/">syncthing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/xamarin/">xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/clean-code/">clean-code</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/design/">design</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/layout/">layout</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/sideproject/">sideproject</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/dotnet-core/">dotnet-core</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/linux/">linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/3d-printing/">3d-printing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/raspberry-pi/">raspberry-pi</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/email/">email</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/encryption/">encryption</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/self/">self</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/blog/">blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/web/">web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ruby/">ruby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/javascript/">javascript</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/jekyll/">jekyll</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/motivation/">motivation</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/discipline/">discipline</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/fitness/">fitness</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-net/">asp.net</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/css/">css</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/html/">html</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tfs/">tfs</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/svn/">svn</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/docker/">docker</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/containers/">containers</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/book/">book</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/review/">review</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ferriss/">ferriss</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/life/">life</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/business/">business</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/methodology/">methodology</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/scrum/">scrum</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/management/">management</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/agile/">agile</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/project/">project</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/kanban/">kanban</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/pattern/">pattern</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ioc/">IoC</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/di/">DI</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/learn/">learn</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/prototyping/">prototyping</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/typescript/">typescript</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cross-platform/">cross-platform</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/self-disciplin/">self-disciplin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/sports/">sports</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/running/">running</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/challenge/">challenge</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/vcs/">vcs</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/organization/">organization</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/versioning/">versioning</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/documentation/">documentation</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/release/">release</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/improvement/">improvement</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net/">net</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/netcore/">netcore</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/game/">game</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/vr/">vr</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/reading/">reading</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/triathlon/">triathlon</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/learning/">learning</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/course/">course</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/website/">website</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/microsoft/">microsoft</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/raspberrypi/">raspberrypi</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/blogging/">blogging</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cms/">cms</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/apple/">apple</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/mac/">mac</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/game-development/">game-development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tools/">tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/android/">android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/cryptocurrency/">cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">csharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/productivity/">productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tips/">tips</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/xamarin/">xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/hobby/">hobby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/security/">security</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/linux/">linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/blog/">blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/windows/">windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/life/">life</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/web/">web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/programming/">programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/development/">development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/books/">books</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/learn/">learn</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/running/">running</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/unity/">unity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/goals/">goals</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/update/">update</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/learning/">learning</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/macos/">macos</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    -->
+      <ul id="js-navigation-menu" class="navigation-menu-show">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="/feed.xml">RSS</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">Dependency Injection - Overview and Implementation</h1>
+      <p class="info">by <strong>Marcel Jurtz</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">July 23, 2018</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/programming">Programming</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>Especially when you are at the beginning of your career as a software developer, you probably know that: 
+You have already picked up the term “Dependency Injection”, but can’t do anything with it directly? 
+Then today’s post is for you!</p>
+
+<p>I will introduce you to the principle, functionality and the types of dependency injection. 
+Finally, I’ll show you how to write a simple IoC container. And don’t worry if you are unfamiliar with the different terms, 
+I will explain everything, you don’t need any previous knowledge. 
+However, certain basic knowledge in software development is definitely an advantage today. 
+My code examples are written in C#, but you will have no problems understanding them if you are used to another programming language.</p>
+
+<h2 id="what-is-dependency-injection">What is Dependency Injection?</h2>
+
+<p>Dependency Injection (DI) is a term from the topic area “Inversion of Control” (IoC). 
+IoC is a fundamental concept, DI is its implementation. An IoC container is a framework for dependency injection.</p>
+
+<p>DI is the last point of Robert Martin’s SOLID principle. 
+Martin defines that high-level modules should not depend on low-level modules, instead an abstraction level should be used. 
+The easiest way to get a grasp on the concept is to look at an example: 
+Let’s think of a program which processes input from the keyboard and sends it to a printer. 
+This can be implemented by combining a class “printer” and “keyboard”. So far, so good. 
+However, this approach becomes problematic if the code should be extended, for example to support other input or output devices.</p>
+
+<p>Martin’s solution is to use abstraction layers that could be implemented as follows: 
+Instead of the communication between the concrete classes “printer” and “keyboard”, 
+the abstractions “reader” and “writer” are used. These can be base classes, from which the concrete classes then inherit. 
+The program flow only requires access to the base class, the implementation details are irrelevant. 
+Changes and extensions are now possible without any problems.</p>
+
+<h2 id="and-what-is-inversion-of-control">And what is Inversion of Control?</h2>
+
+<p>IoC is the underlying concept behind DI. As the name suggests, there is a inversion of control flow in the program. 
+Different use cases are imaginable, for example inversion of control over the flow of the application, 
+but also inversion of control over instantiation and binding of dependencies.</p>
+
+<p>The first of these cases can be thought of as a comparison between a typical console application and a GUI application. 
+The console application determines the process flow and waits for user interaction, 
+while the user determines the process flow for the GUI application.</p>
+
+<p>The second case aims to create required elements before they are required. In concrete terms, 
+this means that objects are not created in the class in which they are needed, but before. 
+They are then bound using constructor parameters or property setters, for example.</p>
+
+<p>Other techniques that follow this approach include the factory pattern or the service locator pattern.</p>
+
+<h2 id="di-in-action">DI in Action</h2>
+
+<p>Enough theory. The best way to understand the concept is to use examples. 
+There are three types of dependency injection that I want you to understand:</p>
+
+<p>Constructor Injection is probably the most commonly used type. 
+A class is created and passed to the dependent class using constructor parameters 
+instead of being instantiated in the dependent class itself.</p>
+
+<p>The following example illustrates this with the class User, 
+which accepts a constructor parameter of type IContactOption. 
+The instance of an implementation of the interface is not created in the class itself, 
+but is specified externally. The interface only has a SendMessage method.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">class</span> <span class="nc">User</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="n">IContactOption</span> <span class="n">_primaryContact</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">User</span><span class="p">(</span><span class="n">IContactOption</span> <span class="n">contactOption</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_primaryContact</span> <span class="p">=</span> <span class="n">contactOption</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// …</span>
+
+<span class="n">IContactOption</span> <span class="n">contactOption</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EMailContact</span><span class="p">();</span>
+<span class="n">User</span> <span class="n">marcel</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">User</span><span class="p">(</span><span class="n">contactOption</span><span class="p">);</span></code></pre></figure>
+
+<p>The second category is the Setter Injection. No constructor parameter is used, but a property, which is set from the outside.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">class</span> <span class="nc">User</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">IContactOption</span> <span class="n">PrimaryContact</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// …</span>
+
+<span class="n">IContactOption</span> <span class="n">contactOption</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EMailContact</span><span class="p">();</span>
+<span class="n">User</span> <span class="n">marcel</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">User</span><span class="p">();</span>
+<span class="n">marcel</span><span class="p">.</span><span class="n">PrimaryContact</span> <span class="p">=</span> <span class="n">contactOption</span><span class="p">;</span></code></pre></figure>
+
+<p>The last category is a little bit more complicated, you will find this form in the real world much rarer than the other two. 
+Interface injection is based on the dependent class implementing an interface for setting a variable.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">interface</span> <span class="nc">IDependOnContactOption</span>
+<span class="p">{</span>
+  <span class="k">void</span> <span class="nf">Inject</span><span class="p">(</span><span class="n">IContactOption</span> <span class="n">contactOption</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">User</span> <span class="p">:</span> <span class="n">IDependOnContactOption</span>
+<span class="p">{</span>
+  <span class="k">private</span> <span class="n">IContactOption</span> <span class="n">_primaryContact</span><span class="p">;</span>
+
+  <span class="k">public</span> <span class="k">void</span> <span class="nf">Inject</span><span class="p">(</span><span class="n">IContactOption</span> <span class="n">contactOption</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">_primaryContact</span> <span class="p">=</span> <span class="n">contactOption</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// …</span>
+
+<span class="n">IContactOption</span> <span class="n">contactOption</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">EMailContact</span><span class="p">();</span>
+<span class="n">User</span> <span class="n">marcel</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">User</span><span class="p">();</span>
+<span class="n">marcel</span><span class="p">.</span><span class="nf">Inject</span><span class="p">(</span><span class="n">contactOption</span><span class="p">);</span></code></pre></figure>
+
+<p>Well, that’s actually it. The implementation of the concept is far less complicated than the theory. 
+However, we still lack the concrete application in our project, which will be discussed next. 
+But first, I would like to issue a warning:</p>
+
+<p>DI has a lot of advantages, but you should be careful with its use. 
+DI leaks implementation details of your classes and thus contradicts the principle of encapsulation. 
+In addition, the corresponding objects are always created before they are even needed. 
+Here you should keep an eye on the performance of your application and decide when you really need the approach. 
+DI also partially obscures problems in the structure of your classes. 
+Testing your applications will be much easier because you can easily pass mocks, 
+but you may overlook indications that a class should be divided into two or more components.</p>
+
+<h2 id="structure-of-an-ioc-container">Structure of an IoC Container</h2>
+
+<p>An IoC container is a framework for implementing dependency injection. 
+The basic feature here is the automatic resolution of dependencies via an overall class, the so-called resolver. 
+Let’s look at the following implementation:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">class</span> <span class="nc">Resolver</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="n">IContactOption</span> <span class="nf">ResolveContactOption</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">EMailContact</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>This very simple example returns an EMailContact object for the IContactOption request. 
+In practice, of course, you will have several options here, but there is already a problem with this implementation: 
+it cannot be extended. Each interface I want to support requires its own method. 
+I would prefer an implementation that allows something like: IContactOption contactOption = resolver.Resolve<IContactOption>();</IContactOption></p>
+
+<p>And that is exactly what we want to implement now. 
+This can be achieved by creating a Dictionary&lt;Type, Type&gt; to link the interfaces with the appropriate values. 
+The entries must be accessible from the outside. 
+Then, when requesting an implementation by calling resolve with its interface as argument, 
+I will receive an instance of the concrete class.</p>
+
+<p>To be able to test this more easily, I have adapted my previous classes as follows:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">interface</span> <span class="nc">IContactOption</span>
+<span class="p">{</span>
+    <span class="k">void</span> <span class="nf">SendMessage</span><span class="p">(</span><span class="n">String</span> <span class="n">message</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">EMailContact</span> <span class="p">:</span> <span class="n">IContactOption</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SendMessage</span><span class="p">(</span><span class="n">String</span> <span class="n">message</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"An email has been sent!"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">User</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="n">IContactOption</span> <span class="n">_primaryContact</span><span class="p">;</span>
+   
+    <span class="k">public</span> <span class="nf">User</span><span class="p">(</span><span class="n">IContactOption</span> <span class="n">contactOption</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_primaryContact</span> <span class="p">=</span> <span class="n">contactOption</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Contact</span><span class="p">(</span><span class="n">String</span> <span class="n">message</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_primaryContact</span><span class="p">.</span><span class="nf">SendMessage</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>The resolver is implemented as follows: I’ve created  a method for registering classes and interfaces. 
+The resolve-part is done by implementing a method that allows instances to be retrieved using the predefined matching rules. 
+The resolving process is as follows: The system first checks whether a suitable entry is stored in the dictionary. 
+If this is the case, the system checks whether the stored type has constructor parameters that must be instantiated. 
+In the case of a default constructor without parameters, the type is instantiated and this instance is returned. 
+Otherwise, the constructor parameters are collected and also instantiated. Here, too, the new instance is returned. 
+This way, I’m able to support nested objects.</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">class</span> <span class="nc">Resolver</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">Type</span><span class="p">,</span> <span class="n">Type</span><span class="p">&gt;</span> <span class="n">_registrations</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="nf">Resolver</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">_registrations</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Dictionary</span><span class="p">&lt;</span><span class="n">Type</span><span class="p">,</span> <span class="n">Type</span><span class="p">&gt;();</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">void</span> <span class="n">Register</span><span class="p">&lt;</span><span class="n">TKey</span><span class="p">,</span> <span class="n">TValue</span><span class="p">&gt;()</span>
+    <span class="p">{</span>
+        <span class="n">_registrations</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">TKey</span><span class="p">),</span> <span class="k">typeof</span><span class="p">(</span><span class="n">TValue</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">T</span> <span class="n">Resolve</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="nf">Resolve</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">T</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="kt">object</span> <span class="nf">Resolve</span><span class="p">(</span><span class="n">Type</span> <span class="n">typeToResolve</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Type</span> <span class="n">resolvedType</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+
+        <span class="k">try</span>
+        <span class="p">{</span>
+            <span class="n">resolvedType</span> <span class="p">=</span> <span class="n">_registrations</span><span class="p">[</span><span class="n">typeToResolve</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">catch</span><span class="p">(</span><span class="n">KeyNotFoundException</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">throw</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kt">var</span> <span class="n">constructor</span> <span class="p">=</span> <span class="n">resolvedType</span><span class="p">.</span><span class="nf">GetConstructors</span><span class="p">().</span><span class="nf">First</span><span class="p">();</span>
+        <span class="kt">var</span> <span class="n">constParams</span> <span class="p">=</span> <span class="n">constructor</span><span class="p">.</span><span class="nf">GetParameters</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">constParams</span><span class="p">.</span><span class="nf">Count</span><span class="p">()</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Activator</span><span class="p">.</span><span class="nf">CreateInstance</span><span class="p">(</span><span class="n">resolvedType</span><span class="p">);</span>
+
+        <span class="n">IList</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;</span> <span class="n">parameters</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">object</span><span class="p">&gt;();</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">parameter</span> <span class="k">in</span> <span class="n">constParams</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">parameters</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="nf">Resolve</span><span class="p">(</span><span class="n">parameter</span><span class="p">.</span><span class="n">ParameterType</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">constructor</span><span class="p">.</span><span class="nf">Invoke</span><span class="p">(</span><span class="n">parameters</span><span class="p">.</span><span class="nf">ToArray</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>To be able to use the container now, only the registration of the relevant types is necessary. This may look like this:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">resolver</span><span class="p">.</span><span class="n">Register</span><span class="p">&lt;</span><span class="n">User</span><span class="p">,</span> <span class="n">User</span><span class="p">&gt;();</span>
+<span class="n">resolver</span><span class="p">.</span><span class="n">Register</span><span class="p">&lt;</span><span class="n">IContactOption</span><span class="p">,</span> <span class="n">EMailContact</span><span class="p">&gt;();</span>
+
+<span class="n">User</span> <span class="n">marcel</span> <span class="p">=</span> <span class="n">resolver</span><span class="p">.</span><span class="n">Resolve</span><span class="p">&lt;</span><span class="n">User</span><span class="p">&gt;();</span>
+<span class="n">marcel</span><span class="p">.</span><span class="nf">Contact</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">);</span></code></pre></figure>
+
+<p>The parameter IContactOption for User is automatically instantiated and assigned as EMailContact by the mapping. The call in the last line accordingly outputs the text “An email has been sent”.</p>
+
+<h2 id="résumé">Résumé</h2>
+
+<p>In a real application you will hardly implement your own IoC container, but use existing solutions. 
+Nevertheless, I found the own implementation very helpful in order to be able to better understand the actual concept.
+If you want to look at the available solutions, Unity (not the gaming engine), 
+Castle Windsor and Ninject are probably the most widely used products (for C#). 
+However, the way this works is all similar (though not quite as primitive) to our own implementation.</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/development">development</a>,&nbsp;<a href="/tag/software">software</a>,&nbsp;<a href="/tag/pattern">pattern</a>,&nbsp;<a href="/tag/ioc">IoC</a>,&nbsp;<a href="/tag/di">DI</a>,&nbsp;<a href="/tag/csharp">CSharp</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=Dependency+Injection+-+Overview+and+Implementation&url=http%3A%2F%2Flocalhost%3A4000%2F2018%2F07%2Fdependency-injection-overview-and-implementation&via=MarcelJurtz"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://localhost:4000/2018/07/dependency-injection-overview-and-implementation') + '&title=Dependency Injection - Overview and Implementation'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Marcel Jurtz</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <!--
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/impossible/">Impossible List</a>
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/typography/">Typography</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/gamedev/">gamedev</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/unity/">unity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/git/">git</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/programming/">programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tools/">tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/android/">android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/app/">app</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/baseball/">baseball</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/development/">development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/editor/">editor</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcache/">bitcache</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcoin/">bitcoin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cryptocurrency/">cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/dotnet/">dotnet</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-dotnet/">asp-dotnet</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">csharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/rest/">rest</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/servicestack/">servicestack</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/software/">software</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/windows/">windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/efficiency/">efficiency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/productivity/">productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/network/">network</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/p2p/">p2p</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/syncthing/">syncthing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/xamarin/">xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/clean-code/">clean-code</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/design/">design</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/layout/">layout</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/sideproject/">sideproject</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/dotnet-core/">dotnet-core</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/linux/">linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/3d-printing/">3d-printing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/raspberry-pi/">raspberry-pi</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/email/">email</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/encryption/">encryption</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/self/">self</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/blog/">blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/web/">web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ruby/">ruby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/javascript/">javascript</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/jekyll/">jekyll</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/motivation/">motivation</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/discipline/">discipline</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/fitness/">fitness</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-net/">asp.net</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/css/">css</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/html/">html</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tfs/">tfs</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/svn/">svn</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/docker/">docker</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/containers/">containers</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/book/">book</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/review/">review</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ferriss/">ferriss</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/life/">life</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/business/">business</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/methodology/">methodology</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/scrum/">scrum</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/management/">management</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/agile/">agile</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/project/">project</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/kanban/">kanban</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/pattern/">pattern</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ioc/">IoC</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/di/">DI</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/learn/">learn</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/prototyping/">prototyping</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/typescript/">typescript</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cross-platform/">cross-platform</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/self-disciplin/">self-disciplin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/sports/">sports</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/running/">running</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/challenge/">challenge</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/vcs/">vcs</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/organization/">organization</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/versioning/">versioning</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/documentation/">documentation</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/release/">release</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/improvement/">improvement</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net/">net</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/netcore/">netcore</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/game/">game</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/vr/">vr</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/reading/">reading</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/triathlon/">triathlon</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/learning/">learning</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/course/">course</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/website/">website</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/microsoft/">microsoft</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/raspberrypi/">raspberrypi</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/blogging/">blogging</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cms/">cms</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/apple/">apple</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/mac/">mac</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/game-development/">game-development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tools/">tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/android/">android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/cryptocurrency/">cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">csharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/productivity/">productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tips/">tips</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/xamarin/">xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/hobby/">hobby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/security/">security</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/linux/">linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/blog/">blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/windows/">windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/life/">life</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/web/">web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/programming/">programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/development/">development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/books/">books</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/learn/">learn</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/running/">running</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/unity/">unity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/goals/">goals</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/update/">update</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/learning/">learning</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/macos/">macos</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    -->
+    <ul class="pages">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="https://mjurtz.com/Impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:marcel@mjurtz.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">marcel@mjurtz.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/MarcelJurtz" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/MarcelJurtz" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <form action="/search.html" method="get">
+        <label for="search_box">Search Posts</label>
+        <input type="text" id="search_box" name="query">
+        <input type="submit" value="search">
+      </form>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-118762636-1', 'auto');
+  ga('set','anonymizeIp',true);
+  ga('send', 'pageview', {
+    'page': '/2018/07/dependency-injection-overview-and-implementation',
+    'title': 'Dependency Injection - Overview and Implementation'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

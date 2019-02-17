@@ -30,12 +30,12 @@ Homebrew is based on Ruby, the version included in MacOS is sufficient for use, 
 
 Note: If you want to uninstall Homebrew, you can use the same command and replace the install at the end of the URL with uninstall.
 
-You can use the _brew search_ command to search for available packages. Without any additional parameters, all packages will be listed. This overview can also be found on the [website](https://formulae.brew.sh/formula/). If you want to search for a specific package, you can simply append your search term to the above command. Once you have found a package, you can retrieve information about it using _brew info <packagename>_. Alternatively, you can use _brew list_ to display only the packages you have installed.
+You can use the _brew search_ command to search for available packages. Without any additional parameters, all packages will be listed. This overview can also be found on the [website](https://formulae.brew.sh/formula/). If you want to search for a specific package, you can simply append your search term to the above command. Once you have found a package, you can retrieve information about it using _brew info [packagename]_. Alternatively, you can use _brew list_ to display only the packages you have installed.
 
-Packages can now be installed using _brew install <packagename>_ and uninstalled using _brew uninstall <packagename>_. You can also uninstall packages using rm or remove besides uninstall.
+Packages can now be installed using _brew install [packagename]_ and uninstalled using _brew uninstall [packagename]_. You can also uninstall packages using rm or remove besides uninstall.
 
 You can already work with this state, but there are still no possibilities to update brew yourself, update package lists and update installed software.
 
-The first is done with the _brew update_ command. The command _brew upgrade_ is then used to update the packages. This command updates all available packages. Alternatively, you can upgrade a single package using the _brew upgrade <packagename>_ command. And by the way: _brew outdated_ lists all obsolete packages. To exclude packages from the upgrade process, you can use the _brew pin <packagename>_ command, or _brew unpin <packagename>_ to undo this. Pinned packages are not updated automatically.
+The first is done with the _brew update_ command. The command _brew upgrade_ is then used to update the packages. This command updates all available packages. Alternatively, you can upgrade a single package using the _brew upgrade [packagename]_ command. And by the way: _brew outdated_ lists all obsolete packages. To exclude packages from the upgrade process, you can use the _brew pin [packagename]_ command, or _brew unpin [packagename]_ to undo this. Pinned packages are not updated automatically.
 
-This should give you a good introduction to homebrew and make managing your software easier. You can also find a complete overview of the commands on the [project website] (https://docs.brew.sh/Manpage).
+This should give you a good introduction to homebrew and make managing your software easier. You can also find a complete overview of the commands on the [project website](https://docs.brew.sh/Manpage).

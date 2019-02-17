@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Writing .NET Core Desktop Apps with Electron.NET</title>
+  <meta name="description" content="The team behind GitHub has created its own interesting open source projects in addition to the web platform. One of them is Electron, a cross-platform deskto...">
+  
+  <meta name="author" content="Marcel Jurtz">
+  <meta name="copyright" content="&copy; Marcel Jurtz 2019">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/monokai-sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://blog.mjurtz.com/2019/01/dotnet-core-ui-with-electron">
+  <link rel="alternate" type="application/rss+xml" title="Marcel Jurtz" href="http://blog.mjurtz.com/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <!--
+    <a href="/" class="logo">
+      
+      <span>Marcel Jurtz</span>
+      
+    </a>
+  -->
+    <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <!--
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+          
+          <li class="nav-link"><a href="/about/">About</a>
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/impossible/">Impossible List</a>
+          
+        
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/posts/">Posts</a>
+          
+        
+          
+        
+          
+          <li class="nav-link"><a href="/typography/">Typography</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/gamedev/">gamedev</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/unity/">unity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/git/">git</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/programming/">programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tools/">tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/android/">android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/app/">app</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/baseball/">baseball</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/development/">development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/editor/">editor</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcache/">bitcache</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/bitcoin/">bitcoin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cryptocurrency/">cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/dotnet/">dotnet</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-dotnet/">asp-dotnet</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">csharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/rest/">rest</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/servicestack/">servicestack</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/software/">software</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/windows/">windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/efficiency/">efficiency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/productivity/">productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/network/">network</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/p2p/">p2p</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/syncthing/">syncthing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/xamarin/">xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/clean-code/">clean-code</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/design/">design</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/layout/">layout</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/sideproject/">sideproject</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/dotnet-core/">dotnet-core</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/linux/">linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/3d-printing/">3d-printing</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/raspberry-pi/">raspberry-pi</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/email/">email</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/encryption/">encryption</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/self/">self</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/blog/">blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/web/">web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ruby/">ruby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/javascript/">javascript</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/jekyll/">jekyll</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/motivation/">motivation</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/discipline/">discipline</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/fitness/">fitness</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/asp-net/">asp.net</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/css/">css</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/html/">html</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/tfs/">tfs</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/svn/">svn</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/docker/">docker</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/containers/">containers</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/book/">book</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/review/">review</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ferriss/">ferriss</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/life/">life</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/business/">business</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/methodology/">methodology</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/scrum/">scrum</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/management/">management</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/agile/">agile</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/project/">project</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/kanban/">kanban</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/pattern/">pattern</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/ioc/">IoC</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/di/">DI</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/learn/">learn</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/prototyping/">prototyping</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/typescript/">typescript</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cross-platform/">cross-platform</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/self-disciplin/">self-disciplin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/sports/">sports</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/running/">running</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/challenge/">challenge</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/vcs/">vcs</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/organization/">organization</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/versioning/">versioning</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/documentation/">documentation</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/release/">release</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/improvement/">improvement</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/net/">net</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/netcore/">netcore</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/game/">game</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/vr/">vr</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/reading/">reading</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/triathlon/">triathlon</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/learning/">learning</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/course/">course</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/website/">website</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/microsoft/">microsoft</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/raspberrypi/">raspberrypi</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/blogging/">blogging</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/cms/">cms</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/apple/">apple</a>
+          
+        
+          
+          <li class="nav-link"><a href="/tag/mac/">mac</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/game-development/">game-development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tools/">tools</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/android/">android</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/cryptocurrency/">cryptocurrency</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/csharp/">csharp</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/productivity/">productivity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/tips/">tips</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/xamarin/">xamarin</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/hobby/">hobby</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/security/">security</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/linux/">linux</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/blog/">blog</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/windows/">windows</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/life/">life</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/web/">web</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/programming/">programming</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/development/">development</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/books/">books</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/learn/">learn</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/running/">running</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/unity/">unity</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/goals/">goals</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/update/">update</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/learning/">learning</a>
+          
+        
+          
+          <li class="nav-link"><a href="/category/macos/">macos</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    -->
+      <ul id="js-navigation-menu" class="navigation-menu-show">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="/feed.xml">RSS</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container " >
+  <div class="scrim ">
+    <header class="post-header">
+      <h1 class="title">Writing .NET Core Desktop Apps with Electron.NET</h1>
+      <p class="info">by <strong>Marcel Jurtz</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+ <span class="page-divider">
+  <span class="one"></span>
+  <span class="two"></span>
+</span>
+ 
+
+<section class="post-meta">
+  <div class="post-date">January 6, 2019</div>
+  <div class="post-categories">
+  in 
+    
+    <a href="/category/development">Development</a>
+    
+  
+  </div>
+</section>
+
+<article class="post-content">
+  <p>The team behind GitHub has created its own interesting open source projects in addition to the web platform. One of them is Electron, a cross-platform desktop solution used for the Atom editor. Microsoft also uses Electron for Visual Studio Code.</p>
+
+<p>Electron runs with NodeJS, so applications for it are usually written in JavaScript. For .NET developers there is now <a href="https://github.com/ElectronNET/Electron.NET">Electron.NET</a> available, an Electron wrapper for ASP.NET Core applications.</p>
+
+<p>An Electron.NET application hosts the ASP.NET Core project. Electron.NET then provides access to Electron via API. This enables platform-specific functionalities such as push notifications or clipboard access. And the best thing about it is that you don’t notice anything about the underlying JavaScript.</p>
+
+<p>Let’s start right away and develop a simple application with Electron.NET. You need first the .NET Core 2 SDK, as well as NodeJS, at least in version 8.6.0. I use Visual Studio 2017 as development environment.  I start by creating an empty ASP.NET Core project. In the following dialog I choose the MVC template. And I’m ready to go.</p>
+
+<p>First I install Electron.NET using <a href="https://www.nuget.org/packages/ElectronNET.API/">NuGet</a>. After that the WebHostBuilder in Program.cs has to be adjusted as follows:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span> 
+  <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> 
+  <span class="p">{</span> 
+    <span class="nf">CreateWebHostBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">).</span><span class="nf">Build</span><span class="p">().</span><span class="nf">Run</span><span class="p">();</span> 
+  <span class="p">}</span> 
+
+  <span class="k">public</span> <span class="k">static</span> <span class="n">IWebHostBuilder</span> <span class="nf">CreateWebHostBuilder</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">=&gt;</span> 
+    <span class="n">WebHost</span><span class="p">.</span><span class="nf">CreateDefaultBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> 
+    <span class="p">.</span><span class="nf">UseElectron</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> 
+    <span class="p">.</span><span class="n">UseStartup</span><span class="p">&lt;</span><span class="n">Startup</span><span class="p">&gt;();</span> 
+<span class="p">}</span> </code></pre></figure>
+
+<p>The application has now been extended with Electron, but so far you don’t see anything of it. If you start the project now, it will be started in the browser as usual. However, I would like the application to be started in the familiar Electron window as it would be displayed in the browser. To achieve this, I add the following line at the end of the Configure() method:</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">Task</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">await</span> <span class="n">Electron</span><span class="p">.</span><span class="n">WindowManager</span><span class="p">.</span><span class="nf">CreateWindowAsync</span><span class="p">());</span> </code></pre></figure>
+
+<p>If you want to be able to start your application as a classic web application, you have to put this statement in an if statement with the condition <em>HybridSupport.IsElectronActive</em>.</p>
+
+<p>Now another Nuget package is needed, which is not installed for the project itself, but as a global toolset. Use the following command in the Nuget console:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">dotnet tool install ElectronNET.CLI -g </code></pre></figure>
+
+<p>This package provides several tools that you can use, among other things, to initialize and start your project. Then navigate to the project directory and execute the command “electronize init”. The command creates a configuration file called electron.manifest.json. Now you can start your application from here with the command “electronize start”. The first start takes a while, but this does not apply to the following starts. At this point you should be able to see your ASP.NET Core application in the normal Electron interface. So let’s try some of the features now.</p>
+
+<p>A quick tip at this point: To debug the application you can simply select the menu item “Debugging” in Visual Studio and then select the application in the “Attach to Process” area. You can also use the shortcut CTRL + SHIFT + I to access the Chrome Developer Tools. This functionality is provided via Electron.NET CLI, however, if you want to implement such functionality for later use, you can do it yourself: Electron.WindowManager.BrowserWindows.First().WebContents.OpenDevTools().</p>
+
+<p>Electron creates multiple processes. The main process called Main contains the code of Startup.cs and Program.cs. A separate renderer process is created for each desktop window, which prevents the entire application from crashing when a renderer process crashes. The communication between these processes is based on Inter-Process Communication (IPC).</p>
+
+<p>The classic workflow for ASP.NET Core MVC is as follows: The user makes an input and an action command is sent to a controller. The controller returns a result in the form of a view instance, which has a disadvantage: The page is reloaded, which doesn’t provide great user experience. With the help of IPC, however, it is easy to remedy the situation:</p>
+
+<p>I add code to my Index.cshtml file that uses JS to access the API of the renderer process. The ipcRenderer allows message-based communication, optional arguments can be passed.</p>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;h3</span> <span class="na">id=</span><span class="s">"header"</span><span class="nt">&gt;&lt;/h3&gt;</span> 
+<span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"cmdShowData"</span><span class="nt">&gt;</span>Show Data<span class="nt">&lt;/button&gt;</span> 
+
+<span class="nt">&lt;script&gt;</span> 
+  <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> 
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">ipcRenderer</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"electron"</span><span class="p">);</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"cmdShowData"</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span> 
+      <span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"getData"</span><span class="p">,</span> <span class="s1">'args'</span><span class="p">);</span> 
+    <span class="p">});</span> 
+
+    <span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'sendData'</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">msg</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> 
+      <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"header"</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">;</span> 
+    <span class="p">});</span>
+  <span class="p">}());</span> 
+<span class="nt">&lt;/script&gt;</span> </code></pre></figure>
+
+<p>I also need a possibility to listen to incoming messages. This is implemented inside the controller (HomeController.cs):</p>
+
+<figure class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="n">IActionResult</span> <span class="nf">Index</span><span class="p">()</span>
+<span class="p">{</span> 
+  <span class="n">Electron</span><span class="p">.</span><span class="n">IpcMain</span><span class="p">.</span><span class="nf">On</span><span class="p">(</span><span class="s">"getData"</span><span class="p">,</span> <span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="p">=&gt;</span> 
+  <span class="p">{</span> 
+    <span class="kt">var</span> <span class="n">mainWindow</span> <span class="p">=</span> <span class="n">Electron</span><span class="p">.</span><span class="n">WindowManager</span><span class="p">.</span><span class="n">BrowserWindows</span><span class="p">.</span><span class="nf">First</span><span class="p">();</span> 
+    <span class="n">Electron</span><span class="p">.</span><span class="n">IpcMain</span><span class="p">.</span><span class="nf">Send</span><span class="p">(</span><span class="n">mainWindow</span><span class="p">,</span> <span class="s">"sendData"</span><span class="p">,</span> <span class="s">"Hello IPC World!"</span><span class="p">);</span> 
+  <span class="p">});</span> 
+
+  <span class="k">return</span> <span class="nf">View</span><span class="p">();</span> 
+<span class="p">}</span> </code></pre></figure>
+
+<p>As you can see, I am only returning a simple message, but of course you can extend this or implement advanced functionality like repeated execution and update of the message by loops.</p>
+
+<p>I don’t want to go into much application development at this point, but you can see how quickly you can package an ASP.NET core application in Electron. But there is one important detail missing for developing real applications: Deployment. In fact, two applications are created when the Electron.NET app is being built. On the one hand, the ASP.NET core application is built including .NET Core runtime. This application is then packaged by Electron Packer like a regular Electron application. You can specify the target operating system by adding the relevant target flag to the build command: Use the command electronize build /target win. Use the flag osx for macOS, or linux for Linux. After execution, you have your application packaged and ready for use.</p>
+
+</article>
+
+
+
+<section class="tags">
+  <strong>Tags:</strong> <a href="/tag/programming">programming</a>,&nbsp;<a href="/tag/software">software</a>,&nbsp;<a href="/tag/development">development</a>,&nbsp;<a href="/tag/csharp">csharp</a>,&nbsp;<a href="/tag/microsoft">microsoft</a>
+</section>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=Writing+.NET+Core+Desktop+Apps+with+Electron.NET&url=http%3A%2F%2Fblog.mjurtz.com%2F2019%2F01%2Fdotnet-core-ui-with-electron&via=MarcelJurtz"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+      <a href="//www.reddit.com/submit" onclick="window.location = '//www.reddit.com/submit?url=' + encodeURIComponent('http://blog.mjurtz.com/2019/01/dotnet-core-ui-with-electron') + '&title=Writing .NET Core Desktop Apps with Electron.NET'; return false">
+        <i class="fa fa-reddit-square fa-lg"></i>
+      </a>
+    
+    
+  
+</section>
+
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">Marcel Jurtz</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <!--
+      <ul class="pages">
+        
+        
+          <li class="nav-link"><a href="/about/">About</a>
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/impossible/">Impossible List</a>
+        
+        
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/posts/">Posts</a>
+        
+        
+        
+        
+        
+          <li class="nav-link"><a href="/typography/">Typography</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/gamedev/">gamedev</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/unity/">unity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/git/">git</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/programming/">programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tools/">tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/android/">android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/app/">app</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/baseball/">baseball</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/development/">development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/editor/">editor</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcache/">bitcache</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/bitcoin/">bitcoin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cryptocurrency/">cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/dotnet/">dotnet</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-dotnet/">asp-dotnet</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">csharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/rest/">rest</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/servicestack/">servicestack</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/software/">software</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/windows/">windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/efficiency/">efficiency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/productivity/">productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/network/">network</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/p2p/">p2p</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/syncthing/">syncthing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/xamarin/">xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/clean-code/">clean-code</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/design/">design</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/layout/">layout</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/sideproject/">sideproject</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/dotnet-core/">dotnet-core</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/linux/">linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/3d-printing/">3d-printing</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/raspberry-pi/">raspberry-pi</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/email/">email</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/encryption/">encryption</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/self/">self</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/blog/">blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/web/">web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ruby/">ruby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/javascript/">javascript</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/jekyll/">jekyll</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/motivation/">motivation</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/discipline/">discipline</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/fitness/">fitness</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/asp-net/">asp.net</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/css/">css</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/html/">html</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/tfs/">tfs</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/svn/">svn</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/docker/">docker</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/containers/">containers</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/book/">book</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/review/">review</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ferriss/">ferriss</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/life/">life</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/business/">business</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/methodology/">methodology</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/scrum/">scrum</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/management/">management</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/agile/">agile</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/project/">project</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/kanban/">kanban</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/pattern/">pattern</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/ioc/">IoC</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/di/">DI</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/learn/">learn</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/prototyping/">prototyping</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/typescript/">typescript</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cross-platform/">cross-platform</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/self-disciplin/">self-disciplin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/sports/">sports</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/running/">running</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/challenge/">challenge</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/vcs/">vcs</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/organization/">organization</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/versioning/">versioning</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/documentation/">documentation</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/release/">release</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/improvement/">improvement</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/net/">net</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/netcore/">netcore</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/game/">game</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/vr/">vr</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/reading/">reading</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/triathlon/">triathlon</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/learning/">learning</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/course/">course</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/website/">website</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/microsoft/">microsoft</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/raspberrypi/">raspberrypi</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/blogging/">blogging</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/cms/">cms</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/apple/">apple</a>
+        
+        
+        
+          <li class="nav-link"><a href="/tag/mac/">mac</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/game-development/">game-development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tools/">tools</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/android/">android</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/cryptocurrency/">cryptocurrency</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">CSharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/csharp/">csharp</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/productivity/">productivity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/tips/">tips</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/xamarin/">xamarin</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/hobby/">hobby</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/security/">security</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/linux/">linux</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/blog/">blog</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/windows/">windows</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/life/">life</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/web/">web</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/programming/">programming</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/development/">development</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/books/">books</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/learn/">learn</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/running/">running</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/unity/">unity</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/goals/">goals</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/update/">update</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/learning/">learning</a>
+        
+        
+        
+          <li class="nav-link"><a href="/category/macos/">macos</a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+    -->
+    <ul class="pages">
+        <li class="nav-link"><a href="/">Home</a></li>
+        <li class="nav-link"><a href="/about/">About</a></li>
+        <li class="nav-link"><a href="/posts/">Posts</a></li>
+        <li class="nav-link"><a href="https://mjurtz.com/Impressum.html">Impressum</a></li>
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:marcel@mjurtz.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">marcel@mjurtz.com</span>
+          </a>
+        </li>
+
+        
+          
+          <li>
+            <a href="https://twitter.com/MarcelJurtz" title="Follow me on Twitter">
+              <i class="fa fa-twitter"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+          <li>
+            <a href="https://github.com/MarcelJurtz" title="Fork me on GitHub">
+              <i class="fa fa-github"></i>
+              <span class="username">MarcelJurtz</span>
+            </a>
+          </li>
+          
+        
+          
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <form action="/search.html" method="get">
+        <label for="search_box">Search Posts</label>
+        <input type="text" id="search_box" name="query">
+        <input type="submit" value="search">
+      </form>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  // Default syntax highlighting
+  hljs.initHighlightingOnLoad();
+
+  // Header
+  var menuToggle = $('#js-mobile-menu').unbind();
+  $('#js-navigation-menu').removeClass("show");
+  menuToggle.on('click', function(e) {
+    e.preventDefault();
+    $('#js-navigation-menu').slideToggle(function(){
+      if($('#js-navigation-menu').is(':hidden')) {
+        $('#js-navigation-menu').removeAttr('style');
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-118762636-1', 'auto');
+  ga('set','anonymizeIp',true);
+  ga('send', 'pageview', {
+    'page': '/2019/01/dotnet-core-ui-with-electron',
+    'title': 'Writing .NET Core Desktop Apps with Electron.NET'
+  });
+</script>
+
+
+
+  </body>
+
+</html>

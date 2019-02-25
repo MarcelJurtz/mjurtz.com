@@ -48,8 +48,8 @@ As you can see, the curly bracket always refers to only one sign. For example, i
 
 With quantifiers you can limit the number of possible occurrences. There are the following possibilities:
 
-* * Zero or more
-* + One or more
+* \* Zero or more
+* \+ One or more
 * ? Zero or one
 * {} Explicit quantity
 
@@ -95,11 +95,20 @@ However, you will also come across other topics during the search, but in my opi
 
 ## Practical examples
 
-Finally, here are a few examples that cover the most common requirements:
+Finally, here are a few examples that cover the most common requirements. Of course, you can find almost anything, like formatting credit card or phone numbers by a quick google search. But now you should be able to write something like that up all by your self.
 
-* Alphabetical (Upper- and Lowercase): ^[a-zA-Z]*$
-* E-Mails: ^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$
-* URLs: ^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$
-* Dates (MM/DD/YYYY, 20. und 21. Jh.): ^((0?[1-9]|1[012])[/](0?[1-9]|[12][0-9]|3[01])[/](19|20)?[0-9]{2})*$ 
+#### Alphabetical (Upper- and Lowercase):
 
-Of course, you can find almost anything, like formatting credit card or phone numbers by a quick google search. But now you should be able to write something like that up all by your self.
+`^[a-zA-Z]*$`
+
+#### E-Mails:
+
+`^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$`
+
+#### URLs: 
+
+`^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$`
+
+#### Dates (MM/DD/YYYY, 20. and 21. century): 
+
+`^((0?[1-9]|1[012])[/](0?[1-9]|[12][0-9]|3[01])[/](19|20)?[0-9]{2})*$`

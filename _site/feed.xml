@@ -6,9 +6,142 @@
 </description>
     <link>http://blog.mjurtz.com/</link>
     <atom:link href="http://blog.mjurtz.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 17 Feb 2019 20:42:56 +0100</pubDate>
-    <lastBuildDate>Sun, 17 Feb 2019 20:42:56 +0100</lastBuildDate>
+    <pubDate>Mon, 25 Feb 2019 20:01:39 +0100</pubDate>
+    <lastBuildDate>Mon, 25 Feb 2019 20:01:39 +0100</lastBuildDate>
     <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>Introduction to RegEx</title>
+        <description>&lt;p&gt;As a developer you have probably already worked with Regular Expressions. If you’re like me and didn’t need them too often, you probably googled them up more than you wrote them yourself.&lt;/p&gt;
+
+&lt;p&gt;So today I’d like to go through the basics of Regex and show you how to build regular expressions and how to write them yourself.&lt;/p&gt;
+
+&lt;p&gt;If you haven’t had anything to do with this topic before, this post is still for you, of course. Regular Expressions are a way to check strings against a certain pattern, for example if it is alphanumeric or contains only uppercase letters. Regular expressions are supported by many different programming languages, so you don’t have to learn that again with different syntax.&lt;/p&gt;
+
+&lt;p&gt;I’d like to recommend the website &lt;a href=&quot;https://regex101.com/&quot;&gt;regex101.com&lt;/a&gt;, where you can test your Regular Expressions and see the individual components in detail.&lt;/p&gt;
+
+&lt;h2 id=&quot;anchor&quot;&gt;Anchor&lt;/h2&gt;
+
+&lt;p&gt;Regex offers two symbols to mark the start (^) and the end ($) of a string. This makes the following patterns possible:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;^Hello - Matches any string starting with “Hello”&lt;/li&gt;
+  &lt;li&gt;World$ - Matches any string ending with “World”&lt;/li&gt;
+  &lt;li&gt;Hello World - Matches any string containing “Hello World”&lt;/li&gt;
+  &lt;li&gt;^Hello World$ - Matches exactly the string “Hello World”&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Upper and lower case letters must always be respected!&lt;/p&gt;
+
+&lt;h2 id=&quot;or-operator&quot;&gt;OR operator&lt;/h2&gt;
+
+&lt;p&gt;Next, you can specify more precisely what characters you want to consider valid. Use the square brackets and place all of the allowed characters within them.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A[BC] - match for any string containing an A followed by a B or C&lt;/li&gt;
+  &lt;li&gt;^[AEIOU]$ - match for each string that consists only of one capitalized vowel&lt;/li&gt;
+  &lt;li&gt;[A-Z] - match for each string containing an uppercase letter&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As you can see, the curly bracket always refers to only one sign. For example, if you want to check a string with exactly 5 characters to see if it is alphanumeric, the following spelling is a bit cumbersome:&lt;/p&gt;
+
+&lt;p&gt;^[A-Za-z0-9][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9]$&lt;/p&gt;
+
+&lt;h2 id=&quot;quantifier&quot;&gt;Quantifier&lt;/h2&gt;
+
+&lt;p&gt;With quantifiers you can limit the number of possible occurrences. There are the following possibilities:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;* Zero or more&lt;/li&gt;
+  &lt;li&gt;+ One or more&lt;/li&gt;
+  &lt;li&gt;? Zero or one&lt;/li&gt;
+  &lt;li&gt;{} Explicit quantity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Applied concretely, the whole thing can look like this:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ABC* - match for each string containing AB, followed by none or more C&lt;/li&gt;
+  &lt;li&gt;ABC+ - match for each string containing AB, followed by at least one C&lt;/li&gt;
+  &lt;li&gt;ABC? - Match for any string that contains AB and follows a C or no C&lt;/li&gt;
+  &lt;li&gt;ABC{3} - match for each string containing AB followed by “CCC”&lt;/li&gt;
+  &lt;li&gt;ABC{3,} - Match for each string containing AB followed by 3 or more C&lt;/li&gt;
+  &lt;li&gt;ABC{3,6} - match for each string containing AB followed by 3,4, 5 or 6 C&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you want to apply the quantifier to more than one character, you can parenthesize the respective ones, the quantifier will then refer to their contents: AB(CD){3} - Match for each string containing AB and following CD 3 times thereafter. If you want to use a character that has a special meaning in Regex (for example *), you can mark it in your expression with an escape character (backslash, ).&lt;/p&gt;
+
+&lt;h2 id=&quot;classes&quot;&gt;Classes&lt;/h2&gt;
+
+&lt;p&gt;In my example above, I already used “A-Za-z0-9” to check if a text is alphanumeric. Classes provide a way to check groups of characters more easily. The following classifications are available:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;\d - Matches a digit&lt;/li&gt;
+  &lt;li&gt;\w - Matches alphanumeric characters and underscores&lt;/li&gt;
+  &lt;li&gt;\s - Matches Whitespace (incl. Tabs &amp;amp; Linebreaks)&lt;/li&gt;
+  &lt;li&gt;. -  Matches any character&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can capitalize any of the classes to negate their meaning.&lt;/p&gt;
+
+&lt;h2 id=&quot;flags&quot;&gt;Flags&lt;/h2&gt;
+
+&lt;p&gt;RegEx expressions are usually found within two slashes. After the closing slash, the scope of the pattern is defined, whereby the following options are available:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;g - (Global) No return after the first match. The search for the pattern continues after the find&lt;/li&gt;
+  &lt;li&gt;i - (Insensitive) Not case-sensitive when testing according to a sample&lt;/li&gt;
+  &lt;li&gt;m - (Multiline) ^ and $ denote start and end of a line instead of the whole text&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;advanced-functions&quot;&gt;Advanced functions&lt;/h2&gt;
+
+&lt;p&gt;To put it briefly: There are several additional options for defining regular expressions. Since I would like to limit this article to the basics, I will not go into the topic in detail here, but will show some practical examples. But if you are interested in the topic, I have some keywords for your own research:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;grouping, named groups &amp;amp; capturing&lt;/li&gt;
+  &lt;li&gt;bracket expressions&lt;/li&gt;
+  &lt;li&gt;lazy matching&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;However, you will also come across other topics during the search, but in my opinion the basics are sufficient for the time being. You can go into depth as soon as you really need it, otherwise it is very likely that you forget the theory before you get an opportunity to apply it.&lt;/p&gt;
+
+&lt;h2 id=&quot;practical-examples&quot;&gt;Practical examples&lt;/h2&gt;
+
+&lt;p&gt;Finally, here are a few examples that cover the most common requirements. Of course, you can find almost anything, like formatting credit card or phone numbers by a quick google search. But now you should be able to write something like that up all by your self.&lt;/p&gt;
+
+&lt;h4 id=&quot;alphabetical-upper--and-lowercase&quot;&gt;Alphabetical (Upper- and Lowercase):&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;^[a-zA-Z]*$&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;e-mails&quot;&gt;E-Mails:&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;urls&quot;&gt;URLs:&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;dates-mmddyyyy-20-and-21-century&quot;&gt;Dates (MM/DD/YYYY, 20. and 21. century):&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;^((0?[1-9]|1[012])[/](0?[1-9]|[12][0-9]|3[01])[/](19|20)?[0-9]{2})*$&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 24 Feb 2019 07:00:00 +0100</pubDate>
+        <link>http://blog.mjurtz.com/2019/02/introduction-to-regex</link>
+        <guid isPermaLink="true">http://blog.mjurtz.com/2019/02/introduction-to-regex</guid>
+        
+        <category>tools</category>
+        
+        <category>development</category>
+        
+        <category>programming</category>
+        
+        <category>regex</category>
+        
+        
+        <category>programming</category>
+        
+      </item>
     
       <item>
         <title>MacOS Package Management</title>
@@ -607,27 +740,6 @@ wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-03301
         
         
         <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>Some Updates about this Website</title>
-        <description>&lt;p&gt;Hey, today just a short note on a few changes to my website.&lt;/p&gt;
-
-&lt;p&gt;Basically I planned to take up various topics in the area of software development and to capture my thoughts on this blog. However, as you may have noticed, I have published a lot about other subjects lately. I want to return to my roots on this site, so I decided to set up a separate blog. From now on you will only find posts on software development and related topics on this blog. Sports-related posts will now be posted to mjurtz.com/triblog or triblog.mjurtz.com as soon as I get the subdomain set up correctly.&lt;/p&gt;
-
-&lt;p&gt;Thanks for your attention, regular posts will follow!&lt;/p&gt;
-</description>
-        <pubDate>Sun, 16 Dec 2018 07:00:00 +0100</pubDate>
-        <link>http://blog.mjurtz.com/2018/12/website-update</link>
-        <guid isPermaLink="true">http://blog.mjurtz.com/2018/12/website-update</guid>
-        
-        <category>website</category>
-        
-        <category>blog</category>
-        
-        
-        <category>update</category>
         
       </item>
     

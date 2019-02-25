@@ -389,6 +389,10 @@
 <lastmod>2019-02-17T07:00:00+01:00</lastmod>
 </url>
 <url>
+<loc>http://blog.mjurtz.com/2019/02/introduction-to-regex</loc>
+<lastmod>2019-02-24T07:00:00+01:00</lastmod>
+</url>
+<url>
 <loc>http://blog.mjurtz.com/about/</loc>
 </url>
 <url>
@@ -693,6 +697,9 @@
 </url>
 <url>
 <loc>http://blog.mjurtz.com/tag/mac/</loc>
+</url>
+<url>
+<loc>http://blog.mjurtz.com/tag/regex/</loc>
 </url>
 <url>
 <loc>http://blog.mjurtz.com/category/game-development/</loc>

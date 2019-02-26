@@ -109,6 +109,6 @@ Finally, here are a few examples that cover the most common requirements. Of cou
 
 `^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$`
 
-#### Dates (MM/DD/YYYY, 20. and 21. century): 
+#### Dates (MM/DD/YYYY, 20th and 21st century):
 
 `^((0?[1-9]|1[012])[/](0?[1-9]|[12][0-9]|3[01])[/](19|20)?[0-9]{2})*$`

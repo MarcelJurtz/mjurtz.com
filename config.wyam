@@ -1,0 +1,9 @@
+#recipe Blog
+
+// Customize your settings and add new ones here
+Settings[Keys.Host] = "blog.mjurtz.com";
+Settings[BlogKeys.Title] = "Marcel Jurtz";
+Settings[BlogKeys.Description] = "A Software Developers Blog";
+
+// Add any pipeline customizations here
+Settings[BlogKeys.IncludeDateInPostPath] = true;

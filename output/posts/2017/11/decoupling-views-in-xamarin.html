@@ -1,0 +1,332 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+        <title>Marcel Jurtz - Decoupling Views in Xamarin</title>
+        <meta name="description" content="A Software Developers Blog" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+
+        <link type="application/rss+xml" rel="alternate" title="Marcel Jurtz" href="/feed.rss" />
+                <link type="application/atom+xml" rel="alternate" title="Marcel Jurtz" href="/feed.atom" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/clean-blog.css" rel="stylesheet" />
+        <link href="/assets/css/master.css" rel="stylesheet" />
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/override.css" rel="stylesheet" />
+
+
+        <meta name="application-name" content="Marcel Jurtz" />
+        <meta name="msapplication-tooltip" content="Marcel Jurtz" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Marcel Jurtz - Decoupling Views in Xamarin" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://blog.mjurtz.com/posts/2017/11/decoupling-views-in-xamarin" />
+        <!-- TODO: More social graph meta tags -->
+
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>     
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/clean-blog.js"></script>
+        <script src="/assets/js/d3.v3.min.js"></script>
+        <script src="/assets/js/trianglify.min.js"></script>
+        <script src="/assets/js/Please-compressed.js"></script>
+        <script src="/assets/js/background-check.min.js"></script>
+                
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+                <script src="/assets/js/html5shiv.js"></script>
+                <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->
+        
+        
+
+
+        </head>
+        <body>
+                
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+                        <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header page-scroll">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="/">Marcel Jurtz</a>
+                                </div>
+                        
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse">
+                                        <ul class="nav navbar-nav navbar-right">
+                                                        <li><a href="/posts">Archive</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/about">About Me</a></li>
+ 
+                                        </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                        </div>
+                        <!-- /.container -->
+                </nav>
+                
+                <!-- Page Header -->
+                <header class="intro-header" id="intro-header">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+
+    
+<div class="post-heading">
+    <h1>Decoupling Views in Xamarin</h1>
+    <div class="meta">        
+Published on 12 November 2017<br>    </div>
+        <div class="tags">
+                    <a role="button" href="/tags/csharp" class="btn btn-default btn-xs">csharp</a>
+                    <a role="button" href="/tags/development" class="btn btn-default btn-xs">development</a>
+                    <a role="button" href="/tags/dotnet" class="btn btn-default btn-xs">dotnet</a>
+                    <a role="button" href="/tags/programming" class="btn btn-default btn-xs">programming</a>
+                    <a role="button" href="/tags/windows" class="btn btn-default btn-xs">windows</a>
+                    <a role="button" href="/tags/xamarin" class="btn btn-default btn-xs">xamarin</a>
+        </div>     
+</div>
+                                        </div>
+                                </div>
+                        </div>
+                </header>
+                
+                <!-- Main Content -->
+                <div class="container">
+                        <div class="row">
+                                <div id="content" class="col-md-12">
+                                        
+
+<p>As a software developer, you've probably stumbled across old source code you've written from time to time and you've just been thinking 'how the hell can someone come up with such bullshit?'. I don't see myself as an exception regarding this topic and just recently had such a case, which I would like to document in this article. More specifically, I want to discuss the decoupling of views under xamarin. The source I use in this article is available on my <a href="https://github.com/MarcelJurtz/XamarinDecouplingDemo">GitHub profile</a>.</p>
+<h2 id="xamarin-navigation">Xamarin Navigation</h2>
+<p>Decoupling allows you to use multiple views without dependencies between them. Without decoupling, all relevant elements would have to be edited for individual changes. Xamarin relies on a simple page-based navigation structure that is managed in the form of a stack (see figure). A new page is added with Push(), the topmost page can be removed with Pop().</p>
+<p><img src="/assets/2017/xamarin-view-decoupling.png" class="img-fluid" alt="Xamarin View Decoupling" /></p>
+<p>These pages are usually interdependent, for example, information is required on a page that is entered on the next page. After entering the required information, the user is taken back to the calling page and the information is transferred to this one. This is exactly the point I want to clarify with this article. The strict interaction of the sides is problematic in the case of subsequent changes.</p>
+<h2 id="building-the-demo-application">Building the demo application</h2>
+<p>Take a look at the following screenshots to see how the demo application works. The app consists of two pages, whereby the second view is opened by a button on the first one. The second view contains an input field whose value will then be accessed in the first view. There is an additional button to abort the process. If the &quot;Confirm&quot; button is pressed even though no text has been entered, the user will be informed.</p>
+<p><img src="/assets/2017/xamarin-view-decoupling-demo.png" class="img-fluid" alt="Xamarin View Decoupling Demo GUI" /></p>
+<p>The default configuration of Visual Studio already creates a default page for every new Xamarin project. I created an additional one next to it. For interaction I have created an interface which manages the possible handlers. The folder structure of my main project consists of the following files:</p>
+<ul>
+<li>App.xaml (+ code-behind)</li>
+<li>MainPage.xaml (+ code-behind)</li>
+<li>InputPage.xaml (+code-behind)</li>
+<li>IRequireDialogInteraction</li>
+</ul>
+<p>Since this project is used as showcase to demonstrate the decoupling of views, I don't follow the MVVM-approach here. However, this is done only to minimize possible distractions, MVVM can of course still be used.</p>
+<p>The first thing you'll want to do is to set up a navigation page. This is done in App.xaml.cs by adding: <code>csharpMainPage = new NavigationPage(new MainPage());</code> After doing so, you can navigate between your views via:
+<code>csharpNavigation.PushAsync(page);</code></p>
+<p>The next thing is setting up the simple GUI:</p>
+<p>MainPage.xaml</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+&lt;ContentPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             xmlns:local=&quot;clr-namespace:XamarinDecouplingDemo&quot;
+             x:Class=&quot;XamarinDecouplingDemo.MainPage&quot;&gt;
+    &lt;ContentPage.Content&gt;
+        &lt;StackLayout&gt;
+            &lt;Button
+                Text=&quot;Load second page&quot;
+                Clicked=&quot;OnLoadButtonClick&quot;/&gt;
+            &lt;Label
+                x:Name=&quot;lblInputText&quot; /&gt;
+        &lt;/StackLayout&gt;
+    &lt;/ContentPage.Content&gt;
+&lt;/ContentPage&gt;```
+
+InputPage.xaml
+
+```xml
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+&lt;ContentPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             x:Class=&quot;XamarinDecouplingDemo.InputPage&quot;&gt;
+    &lt;ContentPage.Content&gt;
+        &lt;Grid
+                Padding=&quot;30&quot;
+                BackgroundColor=&quot;White&quot;&gt;
+            &lt;Grid.RowDefinitions&gt;
+                &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+                &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+                &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+            &lt;/Grid.RowDefinitions&gt;
+            &lt;Grid.ColumnDefinitions&gt;
+                &lt;ColumnDefinition Width=&quot;*&quot; /&gt;
+                &lt;ColumnDefinition Width=&quot;*&quot; /&gt;
+            &lt;/Grid.ColumnDefinitions&gt;
+
+            &lt;Label
+                    Grid.ColumnSpan=&quot;2&quot;
+                    Grid.Row=&quot;0&quot;
+                    HorizontalOptions=&quot;Start&quot;
+                    Text=&quot;Text to return&quot;/&gt;
+
+            &lt;Entry
+                    Grid.ColumnSpan=&quot;2&quot;
+                    Grid.Row=&quot;1&quot;
+                    x:Name=&quot;txtTextToReturn&quot;/&gt;
+
+            &lt;Button
+                    Grid.Column=&quot;0&quot;
+                    Grid.Row=&quot;2&quot;
+                    x:Name=&quot;cmdCancel&quot;
+                    Text=&quot;Cancel&quot;
+                    Clicked=&quot;OnCancel&quot;/&gt;
+
+            &lt;Button 
+                    Grid.Column=&quot;1&quot;
+                    Grid.Row=&quot;2&quot;
+                    x:Name=&quot;cmdConfirm&quot;
+                    Text=&quot;Confirm&quot;
+                    Clicked=&quot;OnConfirm&quot; /&gt;
+
+        &lt;/Grid&gt;
+    &lt;/ContentPage.Content&gt;
+&lt;/ContentPage&gt;```
+
+The second view can be left by clicking one of two buttons, cancel and confirm. These interactions will be required by the MainPage later, which is why methods for those will be added to _IRequireDialogInteraction_:
+
+```csharp
+interface IRequireDialogInteraction
+{
+    void OnDialogConfirmation(object sender, EventArgs e);
+    void OnDialogCancellation(object sender, EventArgs e);
+}
+</code></pre>
+<p>After the basic settings have been made, the actual magic will now happen in form of public EventHandler properties. MainPage needs a property of the type <em>InputPage</em>, which is used to interact with the second view. <em>InputPage</em> on the other hand will implement two event handlers, which can be accessed by <em>MainPage</em>. These will then be linked to the <em>Clicked</em>-property which is set in the xaml-file:</p>
+<pre><code class="language-csharp">public partial class InputPage : ContentPage
+{
+    public InputPage ()
+    {
+      InitializeComponent();
+    }
+
+    public EventHandler Confirmed;
+    public EventHandler Cancelled;
+
+    public String enteredText { get { return txtTextToReturn.Text; } }
+
+    public void OnConfirm(object sender, EventArgs e)
+    {
+        Confirmed?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void OnCancel(object sender, EventArgs e)
+    {
+        Cancelled?.Invoke(this, EventArgs.Empty);
+    }
+}```
+
+_MainPage_ now only needs to link the event handlers to the methods which are implemented by _IRequireDialogInteraction_ and can then access the _enteredText_-property of the _InputPage_-object:
+
+```csharp
+public partial class MainPage : ContentPage, IRequireDialogInteraction
+{
+    private InputPage _InputPage;
+
+    public MainPage()
+    {
+        InitializeComponent();
+    }
+
+    public void OnDialogCancellation(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
+
+    public void OnDialogConfirmation(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+        lblInputText.Text = _InputPage.enteredText ?? &quot;No text entered.&quot;;
+    }
+
+    public void OnLoadButtonClick(object sender, EventArgs e)
+    {
+        lblInputText.Text = &quot;&quot;;
+
+        _InputPage = new InputPage();
+        _InputPage.Confirmed += OnDialogConfirmation;
+        _InputPage.Cancelled += OnDialogCancellation;
+
+        Navigation.PushAsync(_InputPage);
+    }
+}```
+
+And that's basically it! If you want to change the style in which user interaction happens, you'll be able to simply swap out the specific part in the methods _OnDialogConfirmation_ or _OnDialogCancellation_.
+
+## Implementing Dialogs
+
+Finally, I would like cover one specific detail which helped me a lot in my work with xamarin. [This plugin](https://github.com/rotorgames/Rg.Plugins.Popup) (available on GitHub &amp; Nuget) allows you to show regular XAML-pages as dialogs. This is really helpful in combination with the decoupling shown above, since you can create custom dialogs, for example to display user prompts or general input fields to take off the load of some of the main pages. The usage looks exactly the same as that of the regular pages, except that the dialog-pages must inherit from _PopupPage_ and are called with _PushPopupAsync()_ instead of _PushAsync()_. The closing of the page takes place analogously with _PopPopupAsync()_.
+</code></pre>
+
+
+
+                                </div>
+                        </div>
+                </div>
+                
+                <hr>
+                
+                <!-- Footer -->
+                <footer>
+                        <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted">
+                        Copyright © 2019
+                        <br />
+                            <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                        |
+                            <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                        <br />
+                        <strong><a href="https://wyam.io">Generated by Wyam</a></strong>
+                    </p>
+                </div>
+        </div>
+</div>
+
+                </footer> 
+
+                
+                <script>hljs.initHighlightingOnLoad();</script>
+
+                        <script type="text/javascript">                
+                                // Header background                        
+                                var colors = Please.make_color({
+                                        colors_returned: 3,
+                                        saturation: .6
+                                });
+                                var t = new Trianglify({
+                                        x_gradient: colors,
+                                        y_gradient: ["#FFFFFF"]
+                                });
+                                var header = document.getElementById("intro-header");
+                                var pattern = t.generate(header.clientWidth, header.clientHeight);
+                                header.setAttribute('style', 'background-image: ' + pattern.dataUrl);                        
+                        </script>
+
+                <script>
+                        BackgroundCheck.init({
+                                targets: '.intro-header,.navbar',
+                                images: '.intro-header'
+                        });
+                </script>
+        </body>
+</html>
+

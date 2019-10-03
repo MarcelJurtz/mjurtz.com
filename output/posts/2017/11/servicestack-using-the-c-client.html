@@ -1,0 +1,269 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+        <title>Marcel Jurtz - ServiceStack - Using the C#-Client</title>
+        <meta name="description" content="A Software Developers Blog" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+
+        <link type="application/rss+xml" rel="alternate" title="Marcel Jurtz" href="/feed.rss" />
+                <link type="application/atom+xml" rel="alternate" title="Marcel Jurtz" href="/feed.atom" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/clean-blog.css" rel="stylesheet" />
+        <link href="/assets/css/master.css" rel="stylesheet" />
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/override.css" rel="stylesheet" />
+
+
+        <meta name="application-name" content="Marcel Jurtz" />
+        <meta name="msapplication-tooltip" content="Marcel Jurtz" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Marcel Jurtz - ServiceStack - Using the C#-Client" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://blog.mjurtz.com/posts/2017/11/servicestack-using-the-c-client" />
+        <!-- TODO: More social graph meta tags -->
+
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>     
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/clean-blog.js"></script>
+        <script src="/assets/js/d3.v3.min.js"></script>
+        <script src="/assets/js/trianglify.min.js"></script>
+        <script src="/assets/js/Please-compressed.js"></script>
+        <script src="/assets/js/background-check.min.js"></script>
+                
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+                <script src="/assets/js/html5shiv.js"></script>
+                <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->
+        
+        
+
+
+        </head>
+        <body>
+                
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+                        <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header page-scroll">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="/">Marcel Jurtz</a>
+                                </div>
+                        
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse">
+                                        <ul class="nav navbar-nav navbar-right">
+                                                        <li><a href="/posts">Archive</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/about">About Me</a></li>
+ 
+                                        </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                        </div>
+                        <!-- /.container -->
+                </nav>
+                
+                <!-- Page Header -->
+                <header class="intro-header" id="intro-header">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+
+    
+<div class="post-heading">
+    <h1>ServiceStack - Using the C#-Client</h1>
+    <div class="meta">        
+Published on 27 November 2017<br>    </div>
+        <div class="tags">
+                    <a role="button" href="/tags/csharp" class="btn btn-default btn-xs">csharp</a>
+                    <a role="button" href="/tags/development" class="btn btn-default btn-xs">development</a>
+                    <a role="button" href="/tags/dotnet" class="btn btn-default btn-xs">dotnet</a>
+                    <a role="button" href="/tags/programming" class="btn btn-default btn-xs">programming</a>
+                    <a role="button" href="/tags/servicestack" class="btn btn-default btn-xs">servicestack</a>
+        </div>     
+</div>
+                                        </div>
+                                </div>
+                        </div>
+                </header>
+                
+                <!-- Main Content -->
+                <div class="container">
+                        <div class="row">
+                                <div id="content" class="col-md-12">
+                                        
+
+<p>After we covered the basics of ServiceStack in part one and how to set up a service in part two of this series. Today we'll go through how the C#-Client can be utilized to make communication between applications even easier. The sourcecode for todays article is available <a href="https://github.com/MarcelJurtz/BlogPosts_ServiceStack/tree/master/Part_3_CSharp_Client">GitHub</a>. If you missed one of the previous parts, feel free to check out <a href="https://blog.mjurtz.com/2017/11/what-is-servicestack/">Part 1 - What is ServiceStack and why should I use it?</a> or <a href="https://blog.mjurtz.com/2017/11/servicestack-building-simple-service/">Part 2 - Building a Simple Service</a>.</p>
+<h2 id="implementation-of-the-client">Implementation of the Client</h2>
+<p>First, we will need to add a new project to our solution. This will function as the client-side application. For the sake of simplicity, I decided to create a console application. After the new project has been created, we have to install the ServiceStack nuget-package. Another required step is to add a reference to our base project. This allows gives us access to the request and response DTOs.</p>
+<p>After the project has been set up, the C#-Client can easily be utilized. The following snippet is all that it takes to send a request to the service and save its response. Don't forget to update the clients URL to match the address of your service.</p>
+<pre><code class="language-csharpJsonServiceClient">var response = jsonServiceClient.Post&lt;ExpenseResponse&gt;(new Expense { Amount = 500 });```
+
+In order to make the example a little more valuable, we will improve the service from the last part a little bit.
+
+## Service Improvements: Using Sessions
+
+As you can see in the following snippet, I have installed a session mechanism that manages the current requests. I specified a general total of 1000, whereby each request reduces this amount by the requested withdrawals. Also, each request increments the request counter. I limit the amount of withdrawals to the total amount available. If more money is withdrawn, the service will not execute the request and the user will be informed. To keep track of the session data, I created another class called _TrackingData_, which is shown below the Post-method of our service.
+
+```csharp
+public object Post(Expense request)
+{
+    var Session = base.SessionBag;
+
+    var trackingData = (TrackingData)Session[&quot;Expenses&quot;];
+    if (trackingData == null)
+        trackingData = new TrackingData { TotalBalance = 1000, WithdrawalsAmount = 0 };
+
+    if(trackingData.TotalBalance &gt;= request.Amount)
+    {
+        trackingData.Withdrawals += request.Amount;
+        trackingData.TotalBalance -= request.Amount;
+        trackingData.WithdrawalsAmount++;
+
+        Session[&quot;Expenses&quot;] = trackingData;
+
+        return new ExpenseResponse
+        {
+            Amount = request.Amount,
+            Total = trackingData.TotalBalance,
+            WithdrawalsAmount = trackingData.WithdrawalsAmount,
+            Status = &quot;OK&quot;
+        };
+    }
+    else
+    {
+        return new ExpenseResponse
+        {
+            Amount = request.Amount,
+            Total = trackingData.TotalBalance,
+            WithdrawalsAmount = trackingData.WithdrawalsAmount,
+            Status = &quot;Balance too low&quot;
+        };
+    }
+}
+</code></pre>
+<p>Let's add some further modification to be able to increase our withdrawals. These modification reads a users input as long as he enters valid integers. When entering anything else, the loop will exit and the program stops.</p>
+<pre><code class="language-csharp">public class TrackingData
+{
+    public double Withdrawals { get; set; }
+    public double TotalBalance { get; set; }
+    public int WithdrawalsAmount { get; set;
+}
+</code></pre>
+<p>With these adjustments it is possible to generate successive requests. After several requests, postman delivers a result similar to the following.</p>
+<pre><code class="language-json">{
+    &quot;Amount&quot;: 200,
+    &quot;Total&quot;: 600,
+    &quot;Status&quot;: &quot;OK&quot;,
+    &quot;WithdrawalsAmount&quot;: 3
+}
+</code></pre>
+<h2 id="further-shortcuts">Further Shortcuts</h2>
+<p>Another small change I would like to make concerns the DTOs themselves. By specifying a return value using the IReturn interface, you do not need to specify the response type on the client side.</p>
+<pre><code class="language-csharp[Route(&quot;/Expense&quot;)]">[Route(&quot;/Expense/{Amount}&quot;)]
+public class Expense : IReturn&lt;ExpenseResponse&gt;
+{
+    public double Amount { get; set;
+}
+    
+public class ExpenseResponse
+{
+    public double Amount { get; set; }
+    public double Total { get; set; }
+    public String Status { get; set; }
+    public int WithdrawalsAmount { get; set; }
+}```
+
+This change allows the usage of the client by following notation:
+
+```csharpvar response = jsonServiceClient.Post(new Expense { Amount = 500 });```
+
+## Final Updates for the Client
+
+The last change I want to make is to loop the user input, so that we can test the session mechanism in our console application. The following snippet waits for user input, as long as this input is a valid integer. If not, it breaks and the program terminates.
+
+```csharpJsonServiceClient jsonServiceClient = new JsonServiceClient(&quot;http://localhost:61401&quot;);
+int userInput;
+while(Int32.TryParse(Console.ReadLine(), out userInput)) {
+    var response = jsonServiceClient.Post(new Expense { Amount = userInput });
+    Console.WriteLine(String.Format(&quot;Status: {0} - Withdrawals: {1} (Total: {2}, {3} Withdrawals)&quot;, response.Status, response.Amount, response.Total, response.WithdrawalsAmount));
+}```
+
+The program does not contain any logic yet, so you can mess with it in different places. However, this basic example shows how easy it is to set up the C#-Client for ServiceStack and how to use it. In the next part, we will cover the basics of authentication and authorization, which allows us to increase our services security.
+</code></pre>
+
+
+
+                                </div>
+                        </div>
+                </div>
+                
+                <hr>
+                
+                <!-- Footer -->
+                <footer>
+                        <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted">
+                        Copyright © 2019
+                        <br />
+                            <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                        |
+                            <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                        <br />
+                        <strong><a href="https://wyam.io">Generated by Wyam</a></strong>
+                    </p>
+                </div>
+        </div>
+</div>
+
+                </footer> 
+
+                
+                <script>hljs.initHighlightingOnLoad();</script>
+
+                        <script type="text/javascript">                
+                                // Header background                        
+                                var colors = Please.make_color({
+                                        colors_returned: 3,
+                                        saturation: .6
+                                });
+                                var t = new Trianglify({
+                                        x_gradient: colors,
+                                        y_gradient: ["#FFFFFF"]
+                                });
+                                var header = document.getElementById("intro-header");
+                                var pattern = t.generate(header.clientWidth, header.clientHeight);
+                                header.setAttribute('style', 'background-image: ' + pattern.dataUrl);                        
+                        </script>
+
+                <script>
+                        BackgroundCheck.init({
+                                targets: '.intro-header,.navbar',
+                                images: '.intro-header'
+                        });
+                </script>
+        </body>
+</html>
+

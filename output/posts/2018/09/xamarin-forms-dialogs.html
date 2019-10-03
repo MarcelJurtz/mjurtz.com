@@ -1,0 +1,329 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+        <title>Marcel Jurtz - Dialogs in Xamarin.Forms</title>
+        <meta name="description" content="A Software Developers Blog" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+
+        <link type="application/rss+xml" rel="alternate" title="Marcel Jurtz" href="/feed.rss" />
+                <link type="application/atom+xml" rel="alternate" title="Marcel Jurtz" href="/feed.atom" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/clean-blog.css" rel="stylesheet" />
+        <link href="/assets/css/master.css" rel="stylesheet" />
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/override.css" rel="stylesheet" />
+
+
+        <meta name="application-name" content="Marcel Jurtz" />
+        <meta name="msapplication-tooltip" content="Marcel Jurtz" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Marcel Jurtz - Dialogs in Xamarin.Forms" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://blog.mjurtz.com/posts/2018/09/xamarin-forms-dialogs" />
+        <!-- TODO: More social graph meta tags -->
+
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>     
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/clean-blog.js"></script>
+        <script src="/assets/js/d3.v3.min.js"></script>
+        <script src="/assets/js/trianglify.min.js"></script>
+        <script src="/assets/js/Please-compressed.js"></script>
+        <script src="/assets/js/background-check.min.js"></script>
+                
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+                <script src="/assets/js/html5shiv.js"></script>
+                <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->
+        
+        
+
+
+        </head>
+        <body>
+                
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+                        <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header page-scroll">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="/">Marcel Jurtz</a>
+                                </div>
+                        
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse">
+                                        <ul class="nav navbar-nav navbar-right">
+                                                        <li><a href="/posts">Archive</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/about">About Me</a></li>
+ 
+                                        </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                        </div>
+                        <!-- /.container -->
+                </nav>
+                
+                <!-- Page Header -->
+                <header class="intro-header" id="intro-header">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+
+    
+<div class="post-heading">
+    <h1>Dialogs in Xamarin.Forms</h1>
+    <div class="meta">        
+Published on 09 September 2018<br>    </div>
+        <div class="tags">
+                    <a role="button" href="/tags/cross-platform" class="btn btn-default btn-xs">cross-platform</a>
+                    <a role="button" href="/tags/development" class="btn btn-default btn-xs">development</a>
+                    <a role="button" href="/tags/programming" class="btn btn-default btn-xs">programming</a>
+                    <a role="button" href="/tags/software" class="btn btn-default btn-xs">software</a>
+                    <a role="button" href="/tags/xamarin" class="btn btn-default btn-xs">xamarin</a>
+        </div>     
+</div>
+                                        </div>
+                                </div>
+                        </div>
+                </header>
+                
+                <!-- Main Content -->
+                <div class="container">
+                        <div class="row">
+                                <div id="content" class="col-md-12">
+                                        
+
+<p>If you already have a little experience in cross-platform development with Xamarin.Forms,
+you probably know the problem: Navigation between different pages works very well,
+but there is no easy solution to display dialog boxes overlaying an active page.</p>
+<p>Today I want to show you how you can implement this feature in your Xamarin.Forms application.
+I have created an example project for this purpose, which you can download from my
+<a href="https://github.com/MarcelJurtz/XamarinDialogDemo">GitHub site</a>.</p>
+<h2 id="setup">Setup</h2>
+<p>I first create a new Cross-Platform project in Visual Studio.
+I start without a template (blank) and use .NET standard for the shared code base.
+After the project is initialized, I add the plugin for the dialogs to all projects.
+You can find it via <a href="https://www.nuget.org/packages/Rg.Plugins.Popup/">Nuget</a>.
+The project is also open source on <a href="https://github.com/rotorgames/Rg.Plugins.Popup">GitHub</a>.
+To add a Nuget package to your projects, mark the project (or solution) and select the entry
+<em>Manage NuGet Packages</em>. Select all projects of your solution to install the package.</p>
+<p>The first thing to do is to initialize the package. This takes place in the platform-specific projects.
+For Android, open the MainActivity.cs file and add the following to your <em>OnCreate()</em> method:</p>
+<pre><code class="language-csharp">protected override void OnCreate(Bundle bundle)
+{
+    base.OnCreate(bundle);
+
+    Rg.Plugins.Popup.Popup.Init(this, bundle);
+        
+    Xamarin.Forms.Forms.Init(this, bundle);
+    LoadApplication (new App ());
+}
+</code></pre>
+<p>The same goes for iOS: Add the following snippet to your <em>FinishedLaunching()</em>-Method inside the AppDelegate.cs file.</p>
+<pre><code class="language-csharp">public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+{
+    Rg.Plugins.Popup.Popup.Init();
+      
+    global::Xamarin.Forms.Forms.Init ();
+    LoadApplication (new App ());
+    return base.FinishedLaunching (app, options);
+}
+</code></pre>
+<p>If you want to support UWP, the relevant code goes inside the App-class:</p>
+<pre><code class="language-csharp">Rg.Plugins.Popup.Popup.Init();
+Xamarin.Forms.Forms.Init (e);
+
+if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+{
+  // ...
+}
+</code></pre>
+<p>More detailed information about initializing the plugin can be found in the
+<a href="https://github.com/rotorgames/Rg.Plugins.Popup/wiki/Getting-started">projects documentation</a>.</p>
+<h2 id="integrating-dialogs">Integrating Dialogs</h2>
+<p>Now add a new Content Page to the .NET standard project. This is generated with predefined code, which must be adjusted as follows:</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;pages.PopUpPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot; 
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             xmlns:pages=&quot;clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup&quot;
+             x:Class=&quot;PopupDemo.Dialog&quot;&gt;
+    
+&lt;/pages.PopUpPage&gt;
+</code></pre>
+<p>This is the foundation of the dialog. I just removed the sample content and added the namespace for the plugin.
+Finally I changed the root element of the page from ContentView to PopUpPage.
+These changes are also required in the code-behind file.
+All you have to do here is change the inheritance from ContentView to PopUpPage.</p>
+<p>Next, I design the content of the dialog window. I want to show the user a simple login dialog,
+so I need input fields for username and password, as well as a button to confirm the input.</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;pages:PopupPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot; 
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             xmlns:pages=&quot;clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup&quot;
+             xmlns:animations=&quot;clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup&quot;
+             x:Class=&quot;PopupDemo.Dialog&quot;&gt;
+    &lt;pages:PopupPage.Animation&gt;
+        &lt;animations:ScaleAnimation DurationIn=&quot;200&quot;
+                                   DurationOut=&quot;300&quot;
+                                   EasingIn=&quot;SinIn&quot;
+                                   EasingOut=&quot;SinInOut&quot;
+                                   HasBackgroundAnimation=&quot;True&quot;
+                                   PositionIn=&quot;Top&quot;
+                                   PositionOut=&quot;Bottom&quot;
+                                   ScaleIn=&quot;1.2&quot;
+                                   ScaleOut=&quot;0.8&quot;/&gt;
+    &lt;/pages:PopupPage.Animation&gt;
+    
+    &lt;StackLayout
+        Margin=&quot;12&quot;
+        Padding=&quot;24&quot;
+        Spacing=&quot;24&quot;
+        BackgroundColor=&quot;White&quot;
+        HorizontalOptions=&quot;Center&quot;
+        VerticalOptions=&quot;Center&quot;&gt;
+
+        &lt;StackLayout&gt;
+            &lt;Label
+                Text=&quot;Username&quot;/&gt;
+            &lt;Entry
+                FontSize=&quot;Large&quot;
+                Text=&quot;me&#64;example.com&quot; /&gt;
+        &lt;/StackLayout&gt;
+
+        &lt;StackLayout&gt;
+            &lt;Label
+                Text=&quot;Password&quot;/&gt;
+            &lt;Entry
+                FontSize=&quot;Large&quot;
+                IsPassword=&quot;True&quot;
+                Text=&quot;1234&quot; /&gt;
+        &lt;/StackLayout&gt;
+
+        &lt;StackLayout&gt;
+            &lt;Button
+                Clicked=&quot;Button_Clicked&quot;
+                BackgroundColor=&quot;Orange&quot;
+                FontSize=&quot;Large&quot;
+                Text=&quot;Submit&quot;
+                TextColor=&quot;White&quot;/&gt;
+        &lt;/StackLayout&gt;
+    &lt;/StackLayout&gt;
+&lt;/pages:PopupPage&gt;
+</code></pre>
+<p>Now there is missing only one possibility to display the dialog.
+I added a simple button to my main page and linked it to an event handler that opens the dialog.
+In real applications, you would do this by adding bindings to the ViewModel,
+but I decided to use the quick and dirty variant to keep the example as simple as possible.</p>
+<p>Calling the dialog probably reminds you syntactically of the normal navigation between the pages.
+Closing the dialog works analogously, I wired this part with the EventHandler in the code-behind file of the dialog.</p>
+<pre><code class="language-csharp">// Open Dialog
+PopupNavigation.Instance.PushAsync(new Dialog());
+
+// Close Dialog
+PopupNavigation.Instance.PopAsync();
+</code></pre>
+<h2 id="animations">Animations</h2>
+<p>If you now start the application on a device or emulator of your choice, everything should already work.
+Besides the pure dialog functionality, the plugin offers the possibility to animate the dialogs.
+The animation is defined in the XAML code of the dialog.
+You can also find complete documentation for this on the
+<a href="https://github.com/rotorgames/Rg.Plugins.Popup/wiki/Animations">projects website</a>.
+Here it's a good idea to just play around with the available possibilities, but finally you'll find a small example:</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;pages:PopupPage xmlns=&quot;http://xamarin.com/schemas/2014/forms&quot; 
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;
+             xmlns:pages=&quot;clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup&quot;
+             xmlns:animations=&quot;clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup&quot;
+             x:Class=&quot;PopupDemo.Dialog&quot;&gt;
+    &lt;pages:PopupPage.Animation&gt;
+        &lt;animations:ScaleAnimation DurationIn=&quot;200&quot;
+                                   DurationOut=&quot;300&quot;
+                                   EasingIn=&quot;SinIn&quot;
+                                   EasingOut=&quot;SinInOut&quot;
+                                   HasBackgroundAnimation=&quot;True&quot;
+                                   PositionIn=&quot;Top&quot;
+                                   PositionOut=&quot;Bottom&quot;
+                                   ScaleIn=&quot;1.2&quot;
+                                   ScaleOut=&quot;0.8&quot;/&gt;
+    &lt;/pages:PopupPage.Animation&gt;
+    
+    &lt;StackLayout
+	…
+</code></pre>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xgXXz-FT2I4?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+
+                                </div>
+                        </div>
+                </div>
+                
+                <hr>
+                
+                <!-- Footer -->
+                <footer>
+                        <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted">
+                        Copyright © 2019
+                        <br />
+                            <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                        |
+                            <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                        <br />
+                        <strong><a href="https://wyam.io">Generated by Wyam</a></strong>
+                    </p>
+                </div>
+        </div>
+</div>
+
+                </footer> 
+
+                
+                <script>hljs.initHighlightingOnLoad();</script>
+
+                        <script type="text/javascript">                
+                                // Header background                        
+                                var colors = Please.make_color({
+                                        colors_returned: 3,
+                                        saturation: .6
+                                });
+                                var t = new Trianglify({
+                                        x_gradient: colors,
+                                        y_gradient: ["#FFFFFF"]
+                                });
+                                var header = document.getElementById("intro-header");
+                                var pattern = t.generate(header.clientWidth, header.clientHeight);
+                                header.setAttribute('style', 'background-image: ' + pattern.dataUrl);                        
+                        </script>
+
+                <script>
+                        BackgroundCheck.init({
+                                targets: '.intro-header,.navbar',
+                                images: '.intro-header'
+                        });
+                </script>
+        </body>
+</html>
+

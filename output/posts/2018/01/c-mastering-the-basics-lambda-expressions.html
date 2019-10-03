@@ -1,0 +1,216 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+        <title>Marcel Jurtz - C# &#x2013; Mastering the Basics &#x2013; Lambda Expressions</title>
+        <meta name="description" content="A Software Developers Blog" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+
+        <link type="application/rss+xml" rel="alternate" title="Marcel Jurtz" href="/feed.rss" />
+                <link type="application/atom+xml" rel="alternate" title="Marcel Jurtz" href="/feed.atom" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/clean-blog.css" rel="stylesheet" />
+        <link href="/assets/css/master.css" rel="stylesheet" />
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/override.css" rel="stylesheet" />
+
+
+        <meta name="application-name" content="Marcel Jurtz" />
+        <meta name="msapplication-tooltip" content="Marcel Jurtz" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Marcel Jurtz - C# &#x2013; Mastering the Basics &#x2013; Lambda Expressions" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://blog.mjurtz.com/posts/2018/01/c-mastering-the-basics-lambda-expressions" />
+        <!-- TODO: More social graph meta tags -->
+
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>     
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/clean-blog.js"></script>
+        <script src="/assets/js/d3.v3.min.js"></script>
+        <script src="/assets/js/trianglify.min.js"></script>
+        <script src="/assets/js/Please-compressed.js"></script>
+        <script src="/assets/js/background-check.min.js"></script>
+                
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+                <script src="/assets/js/html5shiv.js"></script>
+                <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->
+        
+        
+
+
+        </head>
+        <body>
+                
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+                        <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header page-scroll">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="/">Marcel Jurtz</a>
+                                </div>
+                        
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse">
+                                        <ul class="nav navbar-nav navbar-right">
+                                                        <li><a href="/posts">Archive</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/about">About Me</a></li>
+ 
+                                        </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                        </div>
+                        <!-- /.container -->
+                </nav>
+                
+                <!-- Page Header -->
+                <header class="intro-header" id="intro-header">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+
+    
+<div class="post-heading">
+    <h1>C# &#x2013; Mastering the Basics &#x2013; Lambda Expressions</h1>
+    <div class="meta">        
+Published on 18 January 2018<br>    </div>
+        <div class="tags">
+                    <a role="button" href="/tags/csharp" class="btn btn-default btn-xs">csharp</a>
+                    <a role="button" href="/tags/development" class="btn btn-default btn-xs">development</a>
+                    <a role="button" href="/tags/dotnet" class="btn btn-default btn-xs">dotnet</a>
+                    <a role="button" href="/tags/programming" class="btn btn-default btn-xs">programming</a>
+        </div>     
+</div>
+                                        </div>
+                                </div>
+                        </div>
+                </header>
+                
+                <!-- Main Content -->
+                <div class="container">
+                        <div class="row">
+                                <div id="content" class="col-md-12">
+                                        
+
+<p>Are you one of the people who are easily intimidated by complicated-looking things? I felt a little bit like that when I saw lambda expressions for the first time. But let me tell you this: they really only look scary on the very first look. This article covers the basics of using lambda expressions and should be seen as quick introduction rather than extensive documentation.</p>
+<h2 id="what-are-lambda-expressions">What are Lambda Expressions?</h2>
+<p>Lambda expressions somehow belong to the anonymous methods. However, they are not called <em>expression</em> instead of <em>method</em> for nothing. They are therefore only similar, not identical. Under a certain circumstance, i. e. the assignment of a delegate, they can be used identically.</p>
+<p>By the way, anonymous methods are methods that cannot be called simply because of a missing name.</p>
+<p>Lambda expressions are often used when working with LINQ, but they are also applied in asynchronous programming.</p>
+<h2 id="how-can-they-be-used">How can they be used?</h2>
+<p>A lambda expression consists of three elements: the parameters, the Lambda operator and the statements. Any number of input parameters can be used. The number of instructions is also theoretically up to you, but in practice a limitation of three statements is widely accepted. Otherwise the readability of your source code will suffer. Moreover, Lambda statements are also meant for short inserts anyway.</p>
+<p>Enough talk, here's an example:</p>
+<pre><code class="language-csharpFunc&lt;string,">Console.WriteLine(concatShort(&quot;Hello&quot;, &quot;World&quot;));```
+
+This basic example shows you how to create a method using lambda expressions. The input consists of two variables (x and y, name them whatever you want) and the method will concatenate two strings and return them. The third _string_ entry in the Func&lt;&gt; signature is reserved for the return type.
+
+And that's the most basic usage. There are some important rules, which I will wrap up in the following:
+
+  * If you have only one input parameter, you can omit the brackets
+  * The typing of the parameters is optional
+  * If only one statement is used, the brackets AND the _return_ keyword can be omitted
+
+As you might be used to from LINQ, lambda expressions are only evaluated on execution. This means that variable values are interesting at the time of execution, not earlier. At this point it is equally important to say that it is possible to access variables which are available outside the lambda expression but within the method defining it. Let me demonstrate this:
+
+```csharpint variable = 0;
+Action print = () =&gt; Console.WriteLine(outerValue);
+variable = 42;
+print(); // Output will be 42```
+
+## Further Usage and Examples
+
+What exactly is the point of lambda expressions? Simply a shorter version of anonymous methods are no justification of a new construct in C#. And that's the point. LINQ has given lambda expressions their right to exist in C#. Anonymous methods alone were no longer sufficient.
+
+If you simply assign a variable of the type System.Linq.Expression&lt;TDelegate&gt; to a lambda expression instead of a delegate, you get the ability to analyze and generate it at runtime.
+  
+The result of this is called _&quot;Expression Tree&quot;_, which has the important restriction to consist of only one expression. But that goes beyond the scope of this article.
+
+&lt;span&gt;Let's get back to the point:&lt;/span&gt; lambda expressions are used in many other areas. Let's showcase some of them:
+
+The following example shows a method that accepts two integer arrays as parameter and returns their difference. So, the result is an integer array containing all items from a, that are not included in b. As you can see, there is only one input parameter and one statement, which allows me to omit the brackets.
+
+```csharppublic static int[] ArrayDiff(int[] a, int[] b)
+{
+  return a.Where(x=&gt;!b.Contains(x)).ToArray();
+}```
+
+My second example checks wether a string is a pangram and stores this information as a boolean variable. A pangram is a sentence that contains each letter from the alphabet.
+
+```csharpbool isPangram = str.ToLower().Where(c =&gt; Char.IsLetter(c)).GroupBy(c =&gt; c).Count() == 26;```
+</code></pre>
+
+
+
+                                </div>
+                        </div>
+                </div>
+                
+                <hr>
+                
+                <!-- Footer -->
+                <footer>
+                        <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted">
+                        Copyright © 2019
+                        <br />
+                            <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                        |
+                            <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                        <br />
+                        <strong><a href="https://wyam.io">Generated by Wyam</a></strong>
+                    </p>
+                </div>
+        </div>
+</div>
+
+                </footer> 
+
+                
+                <script>hljs.initHighlightingOnLoad();</script>
+
+                        <script type="text/javascript">                
+                                // Header background                        
+                                var colors = Please.make_color({
+                                        colors_returned: 3,
+                                        saturation: .6
+                                });
+                                var t = new Trianglify({
+                                        x_gradient: colors,
+                                        y_gradient: ["#FFFFFF"]
+                                });
+                                var header = document.getElementById("intro-header");
+                                var pattern = t.generate(header.clientWidth, header.clientHeight);
+                                header.setAttribute('style', 'background-image: ' + pattern.dataUrl);                        
+                        </script>
+
+                <script>
+                        BackgroundCheck.init({
+                                targets: '.intro-header,.navbar',
+                                images: '.intro-header'
+                        });
+                </script>
+        </body>
+</html>
+

@@ -1,0 +1,191 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+        <title>Marcel Jurtz - Semantic Versioning</title>
+        <meta name="description" content="A Software Developers Blog" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+
+        <link type="application/rss+xml" rel="alternate" title="Marcel Jurtz" href="/feed.rss" />
+                <link type="application/atom+xml" rel="alternate" title="Marcel Jurtz" href="/feed.atom" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/clean-blog.css" rel="stylesheet" />
+        <link href="/assets/css/master.css" rel="stylesheet" />
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/override.css" rel="stylesheet" />
+
+
+        <meta name="application-name" content="Marcel Jurtz" />
+        <meta name="msapplication-tooltip" content="Marcel Jurtz" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Marcel Jurtz - Semantic Versioning" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://blog.mjurtz.com/posts/2018/10/semantic-versioning" />
+        <!-- TODO: More social graph meta tags -->
+
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>     
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/clean-blog.js"></script>
+        <script src="/assets/js/d3.v3.min.js"></script>
+        <script src="/assets/js/trianglify.min.js"></script>
+        <script src="/assets/js/Please-compressed.js"></script>
+        <script src="/assets/js/background-check.min.js"></script>
+                
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+                <script src="/assets/js/html5shiv.js"></script>
+                <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->
+        
+        
+
+
+        </head>
+        <body>
+                
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+                        <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header page-scroll">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="/">Marcel Jurtz</a>
+                                </div>
+                        
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse">
+                                        <ul class="nav navbar-nav navbar-right">
+                                                        <li><a href="/posts">Archive</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/about">About Me</a></li>
+ 
+                                        </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                        </div>
+                        <!-- /.container -->
+                </nav>
+                
+                <!-- Page Header -->
+                <header class="intro-header" id="intro-header">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+
+    
+<div class="post-heading">
+    <h1>Semantic Versioning</h1>
+    <div class="meta">        
+Published on 07 October 2018<br>    </div>
+        <div class="tags">
+                    <a role="button" href="/tags/documentation" class="btn btn-default btn-xs">documentation</a>
+                    <a role="button" href="/tags/management" class="btn btn-default btn-xs">management</a>
+                    <a role="button" href="/tags/organization" class="btn btn-default btn-xs">organization</a>
+                    <a role="button" href="/tags/release" class="btn btn-default btn-xs">release</a>
+                    <a role="button" href="/tags/versioning" class="btn btn-default btn-xs">versioning</a>
+        </div>     
+</div>
+                                        </div>
+                                </div>
+                        </div>
+                </header>
+                
+                <!-- Main Content -->
+                <div class="container">
+                        <div class="row">
+                                <div id="content" class="col-md-12">
+                                        
+
+<p>Have you ever wondered what kind of methodology you should use to label the releases of your software?
+Many projects use a structure with three numbers, each separated by a dot.
+I have good news for you: This structure is very common and well documented.
+It's called Semantic Versioning and you'll find all the details about it <a href="https://semver.org/">here</a>.</p>
+<h1 id="building-version-identifiers-with-semver">Building Version Identifiers with SemVer</h1>
+<p>Version numbers are structured according to the X.Y.Z. structure.
+X stands for the major version, Y for the minor version and Z for the patch version.</p>
+<p>Changes to the major version indicate incompatible changes to the API, so that software that depends on your software will not necessarily work after an upgrade. Changes to the minor version signal added backward compatible features, while changes to the patch area point out backward compatible bugfixes.</p>
+<p>As you can see, the setup is very simple, but it definitely makes sense.</p>
+<h1 id="why-semver">Why SemVer?</h1>
+<p>As I said before: Because it makes sense. Basically, it is essential to mark the versions of software according to a predefined style. By strictly specifying when which part of the version number is increased, you don't have to think about how to label the release.</p>
+<p>The system also helps to make your project easier to use for other people. For example, the 1.4.42 version identifier tells you directly that this is the first major release and the fourth minor release. You can also see that 42 patches have already been applied, which suggests a not inconsiderable amount of bug fixes.</p>
+<p>In the case of integrated libraries, it is easy to prevent a package from being upgraded that would break the application. If the major version changes, some testing is required before upgrading.</p>
+<h1 id="how-do-i-use-the-system">How Do I Use The System?</h1>
+<p>A common question is how to start versioning. Contrary to what you might have thought, the first version is not marked 0.0.1, but 0.1.0. This makes sense because you usually start with a rough draft of your project, not a bugfix.</p>
+<p>Another frequent question is when to release the first major version. Once your application is able to be used in production, you can set the version to 1.0.0. Before that time, there are usually big changes and upheavals in the software, so you shouldn't be afraid of introducing breaking changes there. This is really only relevant after the go-live.</p>
+<h1 id="pre-releases">Pre-Releases</h1>
+<p>Before you release a new major version, you probably want to publish pre-releases. This is done by appending a usually alphanumeric identifier to the normal version code, separated by a hyphen. You can use this to identify alpha or beta versions, for example.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Do you or your company already use Semantic Versioning? If not, which system do you use instead? If you don't use such a structure, I can definitely recommend the de facto standard. Not only does it help to keep your versioning clean and clear, it also helps those who use your software. And it's really easy to set up.</p>
+
+
+
+                                </div>
+                        </div>
+                </div>
+                
+                <hr>
+                
+                <!-- Footer -->
+                <footer>
+                        <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted">
+                        Copyright © 2019
+                        <br />
+                            <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                        |
+                            <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                        <br />
+                        <strong><a href="https://wyam.io">Generated by Wyam</a></strong>
+                    </p>
+                </div>
+        </div>
+</div>
+
+                </footer> 
+
+                
+                <script>hljs.initHighlightingOnLoad();</script>
+
+                        <script type="text/javascript">                
+                                // Header background                        
+                                var colors = Please.make_color({
+                                        colors_returned: 3,
+                                        saturation: .6
+                                });
+                                var t = new Trianglify({
+                                        x_gradient: colors,
+                                        y_gradient: ["#FFFFFF"]
+                                });
+                                var header = document.getElementById("intro-header");
+                                var pattern = t.generate(header.clientWidth, header.clientHeight);
+                                header.setAttribute('style', 'background-image: ' + pattern.dataUrl);                        
+                        </script>
+
+                <script>
+                        BackgroundCheck.init({
+                                targets: '.intro-header,.navbar',
+                                images: '.intro-header'
+                        });
+                </script>
+        </body>
+</html>
+

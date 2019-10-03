@@ -1,0 +1,236 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+        <title>Marcel Jurtz - Reusable Styles for Android</title>
+        <meta name="description" content="A Software Developers Blog" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+
+        <link type="application/rss+xml" rel="alternate" title="Marcel Jurtz" href="/feed.rss" />
+                <link type="application/atom+xml" rel="alternate" title="Marcel Jurtz" href="/feed.atom" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/clean-blog.css" rel="stylesheet" />
+        <link href="/assets/css/master.css" rel="stylesheet" />
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/override.css" rel="stylesheet" />
+
+
+        <meta name="application-name" content="Marcel Jurtz" />
+        <meta name="msapplication-tooltip" content="Marcel Jurtz" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Marcel Jurtz - Reusable Styles for Android" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://blog.mjurtz.com/posts/2017/11/reusable-styles-android" />
+        <!-- TODO: More social graph meta tags -->
+
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>     
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/clean-blog.js"></script>
+        <script src="/assets/js/d3.v3.min.js"></script>
+        <script src="/assets/js/trianglify.min.js"></script>
+        <script src="/assets/js/Please-compressed.js"></script>
+        <script src="/assets/js/background-check.min.js"></script>
+                
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+                <script src="/assets/js/html5shiv.js"></script>
+                <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->
+        
+        
+
+
+        </head>
+        <body>
+                
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+                        <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header page-scroll">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="/">Marcel Jurtz</a>
+                                </div>
+                        
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse">
+                                        <ul class="nav navbar-nav navbar-right">
+                                                        <li><a href="/posts">Archive</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/about">About Me</a></li>
+ 
+                                        </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                        </div>
+                        <!-- /.container -->
+                </nav>
+                
+                <!-- Page Header -->
+                <header class="intro-header" id="intro-header">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+
+    
+<div class="post-heading">
+    <h1>Reusable Styles for Android</h1>
+    <div class="meta">        
+Published on 17 November 2017<br>    </div>
+        <div class="tags">
+                    <a role="button" href="/tags/android" class="btn btn-default btn-xs">android</a>
+                    <a role="button" href="/tags/clean-code" class="btn btn-default btn-xs">clean-code</a>
+                    <a role="button" href="/tags/development" class="btn btn-default btn-xs">development</a>
+        </div>     
+</div>
+                                        </div>
+                                </div>
+                        </div>
+                </header>
+                
+                <!-- Main Content -->
+                <div class="container">
+                        <div class="row">
+                                <div id="content" class="col-md-12">
+                                        
+
+<p>View definitions under android are often used for many different controls. However, there is an easy way to recycle defined styles and use them for other controls, often saving a lot of code. So, styles basically allow you to move your repeatedly used styles out of the layout file into a styles.xml file (which is located in the values-folder). This article covers the basics of using styles on Android.</p>
+<p>Think of the following layout, which represents two simple buttons inside a LinearLayout:</p>
+<pre><code class="language-xml">        android:orientation=&quot;horizontal&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_weight=&quot;0&quot;&gt;
+
+        &lt;Button
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:layout_weight=&quot;1&quot;
+            android:text=&quot;&#64;string/cmdPrevPage&quot;
+            android:id=&quot;&#64;+id/cmdPrevPage&quot; /&gt;
+
+        &lt;Button
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:layout_weight=&quot;1&quot;
+            android:text=&quot;&#64;string/cmdNextPage&quot;
+            android:id=&quot;&#64;+id/cmdNextPage&quot; /&gt;
+
+&lt;/LinearLayout&gt;```
+
+The buttons look nearly identical, which leads us to creating a new entry in styles.xml looking like this:
+
+```xml &lt;style name=&quot;button&quot;&gt;
+        &lt;item name=&quot;android:layout_width&quot;&gt;match_parent&lt;/item&gt;
+        &lt;item name=&quot;android:layout_height&quot;&gt;wrap_content&lt;/item&gt;
+        &lt;item name=&quot;android:weight&quot;&gt;1&lt;/item&gt;
+&lt;/style&gt;```
+
+The style contains all the elements, that both buttons have in common. Of course, this does not include its ID and text properties. To apply this to the buttons, simply change the first snippet to the following:
+
+```xml &lt;LinearLayout
+        android:orientation=&quot;horizontal&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_weight=&quot;0&quot;&gt;
+
+        &lt;Button
+            style=&quot;&#64;style/button&quot;
+            android:text=&quot;&#64;string/cmdPrevPage&quot;
+            android:id=&quot;&#64;+id/cmdPrevPage&quot; /&gt;
+
+        &lt;Button
+            style=&quot;&#64;style/button&quot;
+            android:text=&quot;&#64;string/cmdNextPage&quot;
+            android:id=&quot;&#64;+id/cmdNextPage&quot; /&gt;
+
+&lt;/LinearLayout&gt;```
+
+This small example already shows the advantage of using styles: your layout becomes clearer and if you want to change some layouts, you only have to do this in one place.
+
+However, this approach is not the end of the story. Often only small details of controls are different, for example the positioning of a button on the left or right. In order to be able to handle such minimal changes in case of multiple use, we can use inheritance. Let us go back to the previous example to demonstrate this principle.
+
+One of the buttons is used to mark &quot;Next&quot;, the other one for &quot;Back&quot;. Let's say the code is developed for an app that represents a blog. With these two buttons you can switch back and forth between the available pages. It is realistic, however, that such a navigation is implemented for the articles themselves, but also for categories or tags, which is why a simple possibility for multiple use is required. With the following two styles this can be realized very easily:
+
+```xml &lt;style name=&quot;button_prev&quot; parent=&quot;&#64;android:style/button&quot;&gt;
+    &lt;item name=&quot;android:text&quot;&gt;&#64;string/cmdPrevPage&lt;/item&gt;
+&lt;/style&gt;
+
+&lt;style name=&quot;button_next&quot; parent=&quot;&#64;android:style/button&quot;&gt;
+    &lt;item name=&quot;android:text&quot;&gt;&#64;string/cmdNextPage&lt;/item&gt;
+&lt;/style&gt;```
+
+Further information on this topic is available in the [Android developer documentation](https://developer.android.com/guide/topics/ui/look-and-feel/themes.html).
+</code></pre>
+
+
+
+                                </div>
+                        </div>
+                </div>
+                
+                <hr>
+                
+                <!-- Footer -->
+                <footer>
+                        <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted">
+                        Copyright © 2019
+                        <br />
+                            <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                        |
+                            <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                        <br />
+                        <strong><a href="https://wyam.io">Generated by Wyam</a></strong>
+                    </p>
+                </div>
+        </div>
+</div>
+
+                </footer> 
+
+                
+                <script>hljs.initHighlightingOnLoad();</script>
+
+                        <script type="text/javascript">                
+                                // Header background                        
+                                var colors = Please.make_color({
+                                        colors_returned: 3,
+                                        saturation: .6
+                                });
+                                var t = new Trianglify({
+                                        x_gradient: colors,
+                                        y_gradient: ["#FFFFFF"]
+                                });
+                                var header = document.getElementById("intro-header");
+                                var pattern = t.generate(header.clientWidth, header.clientHeight);
+                                header.setAttribute('style', 'background-image: ' + pattern.dataUrl);                        
+                        </script>
+
+                <script>
+                        BackgroundCheck.init({
+                                targets: '.intro-header,.navbar',
+                                images: '.intro-header'
+                        });
+                </script>
+        </body>
+</html>
+

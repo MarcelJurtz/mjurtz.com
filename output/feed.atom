@@ -1,0 +1,742 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<id>http://blog.mjurtz.com/</id>
+	<title>Marcel Jurtz</title>
+	<link rel="self" href="http://blog.mjurtz.com/" />
+	<rights>2019</rights>
+	<updated>2019-10-03T08:31:56Z</updated>
+	<subtitle>A Software Developers Blog</subtitle>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2019/03/database-modeling-with-dbdiagram-io</id>
+		<title>Database Modeling with dbdiagram.io</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2019/03/database-modeling-with-dbdiagram-io" />
+		<updated>2019-03-31T00:00:00Z</updated>
+		<content>&lt;p&gt;Today I would like to briefly introduce you to a Web application, which I have been stumpled across.
+I've tried several tools for db modeling, some more and some less appealing.&lt;/p&gt;
+&lt;p&gt;Well, the tool doesn't offer explicit ER modeling,
+but a SQL-like structure and allows you to import and export directly to SQL and other formats.&lt;/p&gt;
+&lt;p&gt;You can find the app I'm talking about on &lt;a href="dbdiagram.io"&gt;dbdiagram.io&lt;/a&gt;.
+The website offers a simple graphical interface, which includes a code editor and a graphical representation of the table structure.
+You can edit your table structure directly in the code editor.
+You can then create relations between the tables using the drag-and-drop function.
+These are represented in the editor by the schema &lt;em&gt;ref &amp;quot;table_a&amp;quot;. &amp;quot;column_a&amp;quot; &amp;gt; &amp;quot;table_b&amp;quot;. &amp;quot;column_b&amp;quot;&lt;/em&gt;.
+Cardinalities are represented by &amp;gt; (n:1) , &amp;lt; (1:n) and - (1:1).&lt;/p&gt;
+&lt;p&gt;&lt;img src="/assets/2019/dbdiagram_gui.png" class="img-fluid" alt="dbdiagram.io GUI" /&gt;&lt;/p&gt;
+&lt;p&gt;The syntax is quite simple, just follow the schema&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;Table tablename as t {
+  columnname datatype [constraints]
+  .....
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="language-sql"&gt;Table tablename as t {
+  columnname datatype [constraints]
+  .....
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can use the constraints &lt;em&gt;primary key&lt;/em&gt;, &lt;em&gt;not null&lt;/em&gt; and &lt;em&gt;unique&lt;/em&gt;.
+Multiple constraints can be used comma-separated.
+You can add aliases for tablenames by using &lt;em&gt;as aliasname&lt;/em&gt;, but this is entirely optional.
+And that's basically it! For more information, you can check out the projects &lt;a href="https://hackernoon.com/dbdiagram-io-a-database-diagram-designer-built-for-developers-and-analysts-975f310d4f13"&gt;introductory article&lt;/a&gt; or just try it out yourself - it's free!&lt;/p&gt;
+&lt;p&gt;All in all, the tool is very self-explanatory and clear,
+but in my opinion offers a simple way to provide a quick overview of your database and can be easily used for your own projects
+due to the import and export functionality.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;Today I would like to briefly introduce you to a Web application, which I have been stumpled across.
+I've tried several tools for db modeling, some more and some less appealing.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2019/03/getting-started-with-unity-probuilder</id>
+		<title>Getting Started with Unity ProBuilder</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2019/03/getting-started-with-unity-probuilder" />
+		<updated>2019-03-03T00:00:00Z</updated>
+		<content>&lt;p&gt;ProBuilder allows you to bring more complex objects into your Unity scene without requiring in-depth knowledge of modeling programs
+such as Blender or Cinema4D. By now ProBuilder is integrated into Unity and can also be used free of charge in the Community Edition.
+In todays article I want to show you how you can integrate ProBuilder into your project and start modeling.&lt;/p&gt;
+&lt;p&gt;ProBuilder is not installed on your project by default, but you can add it via Window - Packages - All.
+After that you will find a new menu entry under Tools - ProBuilder, from where you have access to the different functional areas.
+The ProBuilder Window can also be opened and integrated into your workspace from there.&lt;/p&gt;
+&lt;p&gt;So much for setup, let's get started with the practical part: CTRL + K creates a simple cube and places it inside your scene.
+With CTRL + SHIFT + K you can open a menu for creating more complex objects.
+This includes stairs, doors, pipes or arches with various configurable options.
+Of course you can also do all this from the ProBuilder window.&lt;/p&gt;
+&lt;p&gt;After you have brought an object, in my case a cube, into the scene and focused it, a selection menu (green marker) appears
+at the top of the Sceneview. You can use this menu to specify a selection mode, which includes object selection,
+vertex selection, edge selection and face selection. This allows you to manipulate the model in the selected way.
+Simply choose the appropriate criterion and then click for example a surface or a single vector to select it.
+You can also press and hold the SHIFT key to make multiple selections.&lt;/p&gt;
+&lt;p&gt;&lt;img src="/assets/2019/probuilder_cube.png" class="img-fluid" alt="Simple ProBuilder Cube" /&gt;&lt;/p&gt;
+&lt;p&gt;You can now manipulate the selected element. Therefore, you can use the regular editing tools you're already familiar with:
+rotate, move and scale. Using these, you can modify the object as you like.&lt;/p&gt;
+&lt;p&gt;Of course, you can also define materials to your object. However, besides setting the materials for the whole object,
+you cann specify separate materials for each surface of the object. This is done via the usual drag and drop mechanism.&lt;/p&gt;
+&lt;p&gt;Another interesting feature is the movement of a selection in- or outside of an object by scaling it while holding the
+SHIFT-key pressed. Doing so, you can create structures like this one:&lt;/p&gt;
+&lt;p&gt;&lt;img src="/assets/2019/probuilder_cube_modified.png" class="img-fluid" alt="Modified ProBuilder Cube" /&gt;&lt;/p&gt;
+&lt;p&gt;By now, you should have a basic idea of what can be done using ProBuilder. However, that's by no means all the tool has to offer.
+ProBuilder adds a whole lot more of features that make modelling in Unity even easier and allow rapid prototyping directly
+inside the editor. For example, ProGrid is another feature that allows you to snap models into position right on the Unity grid.&lt;/p&gt;
+&lt;p&gt;If you're interested in learning more about ProBuilder, I highly recommend checking out the teams documentation.
+Also, I found &lt;a href="https://www.youtube.com/watch?v=PUSOg5YEflM"&gt;this Brackeys video&lt;/a&gt; very helpful to get started in that topic.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;ProBuilder allows you to bring more complex objects into your Unity scene without requiring in-depth knowledge of modeling programs
+such as Blender or Cinema4D. By now ProBuilder is integrated into Unity and can also be used free of charge in the Community Edition.
+In todays article I want to show you how you can integrate ProBuilder into your project and start modeling.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2019/02/introduction-to-regex</id>
+		<title>Introduction to RegEx</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2019/02/introduction-to-regex" />
+		<updated>2019-02-24T00:00:00Z</updated>
+		<content>&lt;p&gt;As a developer you have probably already worked with Regular Expressions. If you're like me and didn't need them too often, you probably googled them up more than you wrote them yourself.&lt;/p&gt;
+&lt;p&gt;So today I'd like to go through the basics of Regex and show you how to build regular expressions and how to write them yourself.&lt;/p&gt;
+&lt;p&gt;If you haven't had anything to do with this topic before, this post is still for you, of course. Regular Expressions are a way to check strings against a certain pattern, for example if it is alphanumeric or contains only uppercase letters. Regular expressions are supported by many different programming languages, so you don't have to learn that again with different syntax.&lt;/p&gt;
+&lt;p&gt;I'd like to recommend the website &lt;a href="https://regex101.com/"&gt;regex101.com&lt;/a&gt;, where you can test your Regular Expressions and see the individual components in detail.&lt;/p&gt;
+&lt;h2 id="anchor"&gt;Anchor&lt;/h2&gt;
+&lt;p&gt;Regex offers two symbols to mark the start (^) and the end ($) of a string. This makes the following patterns possible:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;^Hello - Matches any string starting with &amp;quot;Hello&amp;quot;&lt;/li&gt;
+&lt;li&gt;World$ - Matches any string ending with &amp;quot;World&amp;quot;&lt;/li&gt;
+&lt;li&gt;Hello World - Matches any string containing &amp;quot;Hello World&amp;quot;&lt;/li&gt;
+&lt;li&gt;^Hello World$ - Matches exactly the string &amp;quot;Hello World&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Upper and lower case letters must always be respected!&lt;/p&gt;
+&lt;h2 id="or-operator"&gt;OR operator&lt;/h2&gt;
+&lt;p&gt;Next, you can specify more precisely what characters you want to consider valid. Use the square brackets and place all of the allowed characters within them.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A[BC] - match for any string containing an A followed by a B or C&lt;/li&gt;
+&lt;li&gt;^[AEIOU]$ - match for each string that consists only of one capitalized vowel&lt;/li&gt;
+&lt;li&gt;[A-Z] - match for each string containing an uppercase letter&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As you can see, the curly bracket always refers to only one sign. For example, if you want to check a string with exactly 5 characters to see if it is alphanumeric, the following spelling is a bit cumbersome:&lt;/p&gt;
+&lt;p&gt;^[A-Za-z0-9][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9][A-Za-z0-9]$&lt;/p&gt;
+&lt;h2 id="quantifier"&gt;Quantifier&lt;/h2&gt;
+&lt;p&gt;With quantifiers you can limit the number of possible occurrences. There are the following possibilities:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;* Zero or more&lt;/li&gt;
+&lt;li&gt;+ One or more&lt;/li&gt;
+&lt;li&gt;? Zero or one&lt;/li&gt;
+&lt;li&gt; Explicit quantity&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Applied concretely, the whole thing can look like this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ABC* - match for each string containing AB, followed by none or more C&lt;/li&gt;
+&lt;li&gt;ABC+ - match for each string containing AB, followed by at least one C&lt;/li&gt;
+&lt;li&gt;ABC? - Match for any string that contains AB and follows a C or no C&lt;/li&gt;
+&lt;li&gt;ABC{3} - match for each string containing AB followed by &amp;quot;CCC&amp;quot;&lt;/li&gt;
+&lt;li&gt;ABC{3,} - Match for each string containing AB followed by 3 or more C&lt;/li&gt;
+&lt;li&gt;ABC{3,6} - match for each string containing AB followed by 3,4, 5 or 6 C&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you want to apply the quantifier to more than one character, you can parenthesize the respective ones, the quantifier will then refer to their contents: AB(CD){3} - Match for each string containing AB and following CD 3 times thereafter. If you want to use a character that has a special meaning in Regex (for example *), you can mark it in your expression with an escape character (backslash, ).&lt;/p&gt;
+&lt;h2 id="classes"&gt;Classes&lt;/h2&gt;
+&lt;p&gt;In my example above, I already used &amp;quot;A-Za-z0-9&amp;quot; to check if a text is alphanumeric. Classes provide a way to check groups of characters more easily. The following classifications are available:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;\d - Matches a digit&lt;/li&gt;
+&lt;li&gt;\w - Matches alphanumeric characters and underscores&lt;/li&gt;
+&lt;li&gt;\s - Matches Whitespace (incl. Tabs &amp;amp; Linebreaks)&lt;/li&gt;
+&lt;li&gt;. -  Matches any character&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can capitalize any of the classes to negate their meaning.&lt;/p&gt;
+&lt;h2 id="flags"&gt;Flags&lt;/h2&gt;
+&lt;p&gt;RegEx expressions are usually found within two slashes. After the closing slash, the scope of the pattern is defined, whereby the following options are available:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;g - (Global) No return after the first match. The search for the pattern continues after the find&lt;/li&gt;
+&lt;li&gt;i - (Insensitive) Not case-sensitive when testing according to a sample&lt;/li&gt;
+&lt;li&gt;m - (Multiline) ^ and $ denote start and end of a line instead of the whole text&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="advanced-functions"&gt;Advanced functions&lt;/h2&gt;
+&lt;p&gt;To put it briefly: There are several additional options for defining regular expressions. Since I would like to limit this article to the basics, I will not go into the topic in detail here, but will show some practical examples. But if you are interested in the topic, I have some keywords for your own research:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;grouping, named groups &amp;amp; capturing&lt;/li&gt;
+&lt;li&gt;bracket expressions&lt;/li&gt;
+&lt;li&gt;lazy matching&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;However, you will also come across other topics during the search, but in my opinion the basics are sufficient for the time being. You can go into depth as soon as you really need it, otherwise it is very likely that you forget the theory before you get an opportunity to apply it.&lt;/p&gt;
+&lt;h2 id="practical-examples"&gt;Practical examples&lt;/h2&gt;
+&lt;p&gt;Finally, here are a few examples that cover the most common requirements. Of course, you can find almost anything, like formatting credit card or phone numbers by a quick google search. But now you should be able to write something like that up all by your self.&lt;/p&gt;
+&lt;h4 id="alphabetical-upper-and-lowercase"&gt;Alphabetical (Upper- and Lowercase):&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;^[a-zA-Z]*$&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id="e-mails"&gt;E-Mails:&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;^([a-zA-Z0-9._%-]+&amp;#64;[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id="urls"&gt;URLs:&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id="dates-mmddyyyy-20th-and-21st-century"&gt;Dates (MM/DD/YYYY, 20th and 21st century):&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;^((0?[1-9]|1[012])[/](0?[1-9]|[12][0-9]|3[01])[/](19|20)?[0-9]{2})*$&lt;/code&gt;&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;As a developer you have probably already worked with Regular Expressions. If you're like me and didn't need them too often, you probably googled them up more than you wrote them yourself.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2019/02/macos-package-management</id>
+		<title>MacOS Package Management</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2019/02/macos-package-management" />
+		<updated>2019-02-17T00:00:00Z</updated>
+		<content>&lt;p&gt;The ability to work with the terminal under MacOS and use my familiar Linux workflow is awesome, but I have always missed a crucial component: a package manager.&lt;/p&gt;
+&lt;p&gt;Homebrew is a package manager for MacOS, according to the developers &amp;quot;The missing package Manager for macOS (or Linux)&amp;quot;. Today I would like to explain how you install and use Homebrew productively.&lt;/p&gt;
+&lt;p&gt;First of all: You can find the project's website &lt;a href="https://brew.sh"&gt;here&lt;/a&gt;, there you will find all the information and documentation you could wish for.&lt;/p&gt;
+&lt;p&gt;You might have to install the command line tools first. This can be done with the command xcode-select --install. If you already have Xcode or other software that needs the tools installed, you can skip this step. You can use xcode-select -p to check if the Command Line Tools are already installed.&lt;/p&gt;
+&lt;p&gt;To initialize the installation, use the command&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Homebrew is based on Ruby, the version included in MacOS is sufficient for use, you don't need to install anything additional at this point.&lt;/p&gt;
+&lt;p&gt;Note: If you want to uninstall Homebrew, you can use the same command and replace the install at the end of the URL with uninstall.&lt;/p&gt;
+&lt;p&gt;You can use the &lt;em&gt;brew search&lt;/em&gt; command to search for available packages. Without any additional parameters, all packages will be listed. This overview can also be found on the &lt;a href="https://formulae.brew.sh/formula/"&gt;website&lt;/a&gt;. If you want to search for a specific package, you can simply append your search term to the above command. Once you have found a package, you can retrieve information about it using &lt;em&gt;brew info [packagename]&lt;/em&gt;. Alternatively, you can use &lt;em&gt;brew list&lt;/em&gt; to display only the packages you have installed.&lt;/p&gt;
+&lt;p&gt;Packages can now be installed using &lt;em&gt;brew install [packagename]&lt;/em&gt; and uninstalled using &lt;em&gt;brew uninstall [packagename]&lt;/em&gt;. You can also uninstall packages using rm or remove besides uninstall.&lt;/p&gt;
+&lt;p&gt;You can already work with this state, but there are still no possibilities to update brew yourself, update package lists and update installed software.&lt;/p&gt;
+&lt;p&gt;The first is done with the &lt;em&gt;brew update&lt;/em&gt; command. The command &lt;em&gt;brew upgrade&lt;/em&gt; is then used to update the packages. This command updates all available packages. Alternatively, you can upgrade a single package using the &lt;em&gt;brew upgrade [packagename]&lt;/em&gt; command. And by the way: &lt;em&gt;brew outdated&lt;/em&gt; lists all obsolete packages. To exclude packages from the upgrade process, you can use the &lt;em&gt;brew pin [packagename]&lt;/em&gt; command, or &lt;em&gt;brew unpin [packagename]&lt;/em&gt; to undo this. Pinned packages are not updated automatically.&lt;/p&gt;
+&lt;p&gt;This should give you a good introduction to homebrew and make managing your software easier. You can also find a complete overview of the commands on the &lt;a href="https://docs.brew.sh/Manpage"&gt;project website&lt;/a&gt;.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;The ability to work with the terminal under MacOS and use my familiar Linux workflow is awesome, but I have always missed a crucial component: a package manager.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2019/02/static-site-generators</id>
+		<title>Static Site Generators</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2019/02/static-site-generators" />
+		<updated>2019-02-10T00:00:00Z</updated>
+		<content>&lt;p&gt;Some time ago I moved this website from WordPress to Jekyll, but I never really explained the reasons.
+That's why I want to discuss in today's post the option of managing websites using an offline CMS or Static Site Generator.&lt;/p&gt;
+&lt;p&gt;CMS like WordPress are often ridiculed and devalued by their complexity or their overall structure.
+In the meantime, there is a variety of similar content management systems available, but they usually share the core functionalities and structure.
+Usually, these systems consist of a backend, via which the website is managed. Articles are stored via a relational database.
+The websites can be adapted visually to one's own preferences via templates and with the help of plug-ins a wide variety of additional functions can be implemented without major effort.&lt;/p&gt;
+&lt;p&gt;This comfort sounds very tempting, but the setup also has its disadvantages.
+Compared to a simple HTML website, considerably more resources are needed, for example a database. Plugins often load client-side scripts,
+which can significantly increase loading times.
+At first glance, CMS-based websites seem very convenient to manage and maintain, but things like system and plugin updates should not be forgotten. Ask a search engine of your choice for example &amp;quot;WordPress hack&amp;quot; and you'll see how many people don't seem to be able to do this on their own.
+Anyone without programming knowledge can set up a WordPress page, but as soon as it comes to making modifications to templates or the like,
+it becomes difficult. I don't mean to say that these systems don't have any rights to exist.
+However, the effort to set up and maintain such a system is not as trivial as you might think.&lt;/p&gt;
+&lt;p&gt;Static Site Generators, as the name suggests, rely on a different principle.
+The user usually creates his content offline and with the help of predefined routines an HTML website is created.
+This is typically done by defining templates for different elements such as posts, and then linking them to the actual content, resulting in a ready-to-use website.
+There are many systems in this area as well, one of the better known is probably Jekyll, the system I am currently using.&lt;/p&gt;
+&lt;p&gt;Jekyll is based on Ruby. I don't have any knowledge in this programming language,
+which is why I would like to briefly go through my procedure when I set up a new website with Jekyll.&lt;/p&gt;
+&lt;p&gt;First I look for an appropriate template. With GitHub you will usually find what you're looking for very quickly,
+but when you make your selection you should pay attention to the license model of the project you want to use.
+Afterwards I download the project and make adjustments according to my requirements.
+As soon as the template meets my expectations, I can start writing articles. Jekyll uses a directory called _posts,
+which contains the articles in Markdown format. With a single command I can then create my entire website and upload it to my webspace.
+I don't need a database connection and since the articles are directly available as HTML pages, I get the best possible loading times.&lt;/p&gt;
+&lt;p&gt;Enough about my personal workflow - let's discuss the advantages of systems like Jekyll. Well, it's partly obvious.
+I am independent of classic CMS solutions and need less resources on my web server.
+But especially as a software developer, the advantages of Jekyll, for example, are just beginning to take effect.
+By writing articles via Markdown, I can easily achieve a consistent style across my entire website.
+The website itself can be easily managed via a version control system like Git and a connected platform (GitHub etc.).
+The latter allows easy sharing among multiple authors.
+Features like pull requests replace the tedious administration of user profiles and authorization concepts.
+And via &lt;a href="https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/"&gt;GitHub Pages&lt;/a&gt; you can even host your Jekyll website directly via GitHub.
+The text-based article management allows easy versioning and makes it much easier for you to convert your articles if you want to switch to another system.&lt;/p&gt;
+&lt;p&gt;Static websites are in general very easy to deploy and changes can be submitted almost instantly.
+Since no underlying databases are required, the website can be scaled very well (e.g. via AWS or Netlify).
+Due to the minimal requirements, the webspace can of course also be managed more cost-effectively.
+As soon as the website is online, there is virtually no need for server-side maintenance.
+And of course you can simply write your own tools that implement various features of your website before it is being published.
+For example, automated checking for links that are no longer available, etc.&lt;/p&gt;
+&lt;p&gt;As always, no general choice can be made between classic CMS and Offline-CMS / Static Site Generator.
+It is important to weigh up the needs of the users and derive the criteria for the software from this.
+Especially in the area of blogging I can at least recommend Jekyll to you personally.
+You'll have to invest some time to get used to it, but you'll find your way around quickly.&lt;/p&gt;
+&lt;p&gt;If you decide to switch - most CMS have export plugins for your articles, so you can easily convert them to the new format. Good luck!&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;Some time ago I moved this website from WordPress to Jekyll, but I never really explained the reasons.
+That's why I want to discuss in today's post the option of managing websites using an offline CMS or Static Site Generator.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2019/02/learning-with-the-feynman-technique</id>
+		<title>Efficient Learning with the Feynman Technique</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2019/02/learning-with-the-feynman-technique" />
+		<updated>2019-02-03T00:00:00Z</updated>
+		<content>&lt;p&gt;Today's post is about learning new things more efficiently, i.e. wasting as little time as possible on learning. I use the Feynman technique, named after the physicist Richard Feynman. Feynman was known for his ability to break down complex facts into their core message and to convey them very easily.&lt;/p&gt;
+&lt;p&gt;You certainly know the concept of being able to explain things to others in order to better understand them yourself. That's exactly what I'm doing with my blog and that's also the goal of the Feynman technique. Feynman's focus is on not tricking yourself, after all, you don't fool anyone as easily as you do yourself, but to really dig into a topic.&lt;/p&gt;
+&lt;p&gt;With the Feynman technique you can not only learn, you can also check how well you really understand a topic and how well you can apply it in practice.&lt;/p&gt;
+&lt;p&gt;The Feynman technique can be broken down into four different iterative points.&lt;/p&gt;
+&lt;h3 id="take-a-piece-of-paper-and-write-the-name-of-the-topic-at-the-top"&gt;1. Take a piece of paper and write the name of the topic at the top.&lt;/h3&gt;
+&lt;p&gt;I think this step is quite simple. After the four steps have been completed, you will end up with a page on which the idea is documented in its main features and in a way that is easy to understand. So a heading makes sense.&lt;/p&gt;
+&lt;h3 id="explain-the-concept-in-as-simple-sentences-as-possible"&gt;2. Explain the concept in as simple sentences as possible&lt;/h3&gt;
+&lt;p&gt;Be sure to keep the description brief and choose your wording so that someone without technical knowledge could follow your instructions. Include examples in your description and try to understand them. Don't be satisfied with just the definitions!&lt;/p&gt;
+&lt;h3 id="identify-vulnerabilities"&gt;3. Identify vulnerabilities&lt;/h3&gt;
+&lt;p&gt;Then go back to step two and go into these passages until you have mastered them as well as the rest of the concept.&lt;/p&gt;
+&lt;h3 id="focus-on-complicated-technical-terms-and-try-to-simplify-them"&gt;4. Focus on complicated technical terms and try to simplify them&lt;/h3&gt;
+&lt;p&gt;Explain the thoughts behind technical terminology. Imagine telling a child something and questioning everything with a &amp;quot;why&amp;quot;.&lt;/p&gt;
+&lt;p&gt;With these four steps you should be able to break down complex facts to an easily understandable level and keep them in your head for a long time.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;Today's post is about learning new things more efficiently, i.e. wasting as little time as possible on learning. I use the Feynman technique, named after the physicist Richard Feynman. Feynman was known for his ability to break down complex facts into their core message and to convey them very easily.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2019/01/dotnet-core-raspberry-pi</id>
+		<title>.NET Core on a Raspberry Pi</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2019/01/dotnet-core-raspberry-pi" />
+		<updated>2019-01-20T00:00:00Z</updated>
+		<content>&lt;p&gt;The Raspberry Pi is one of my favorite toys when it comes to hosting local applications or services like relational databases for testing purposes. At the moment I am trying to test an ASP.NET core application with this setup. However, getting .NET Core to run on the Raspberry Pi is not as easy as I thought, so I'd like to briefly outline the necessary steps.&lt;/p&gt;
+&lt;p&gt;On &lt;a href="https://github.com/dotnet/core/tree/master/release-notes/download-archives"&gt;GitHub&lt;/a&gt; you will find the download links we need. In my example I am using version 2.1.1. By following the link to the required version, you'll see a table with different download links.&lt;/p&gt;
+&lt;p&gt;Important for the Raspberry Pi are now the downloads for ARM architecture, I need the SDK and the ASP.NET Core Runtime. So I copy the two links and download the archives with wget:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;wget https://download.microsoft.com/download/D/0/4/D04C5489-278D-4C11-9BD3-6128472A7626/dotnet-sdk-2.1.301-linux-arm.tar.gz 
+wget https://download.microsoft.com/download/9/3/E/93ED35C8-57B9-4D50-AE32-0330111B38E8/aspnetcore-runtime-2.1.1-linux-arm.tar.gz 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I then create a new directory for .NET Core and extract both of the archives to this new directory:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo mkdir /opt/dotnet 
+sudo tar -xvf dotnet-sdk-2.1.301-linux-arm.tar.gz -C /opt/dotnet/ 
+sudo tar -xvf aspnetcore-runtime-2.1.1-linux-arm.tar.gz -C /opt/dotnet/ 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;All that's left to do now is to create a symbolic link to the folder and you're good to go:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo ln -s /opt/dotnet/dotnet /usr/local/bin 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And that's it! Now you have access to the familiar .NET commands like dotnet build or run, and your ASP.NET core application is ready to run.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;The Raspberry Pi is one of my favorite toys when it comes to hosting local applications or services like relational databases for testing purposes. At the moment I am trying to test an ASP.NET core application with this setup. However, getting .NET Core to run on the Raspberry Pi is not as easy as I thought, so I'd like to briefly outline the necessary steps.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2019/01/c-partial-classes-and-methods</id>
+		<title>Partial Classes and Methods in C#</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2019/01/c-partial-classes-and-methods" />
+		<updated>2019-01-13T00:00:00Z</updated>
+		<content>&lt;p&gt;The &lt;em&gt;partial&lt;/em&gt; keyword in C# allows you to spread a class definition across multiple files. You've probably seen this before when you created a WinForms application and viewed the MyForm.Designer.cs file, which contains the properties you define in the Designer. So the Visual Designer stores the entire definition of your user interface in this separate file. The class of your form itself is always marked &lt;em&gt;partial&lt;/em&gt;. Files of partial methods must not be in different assemblies and will be merged during compilation. The IL code therefore looks exactly the same as if the class were a single file.&lt;/p&gt;
+&lt;p&gt;This example also shows you the main purpose of partial classes: Code generation, without accidentally changing existing code of the programmer or complicated evaluations, which code now belongs to the designer.&lt;/p&gt;
+&lt;p&gt;Basically, this feature is a good way to split class components and thus make the file content clearer. However, it is often discouraged from overusing partial classes, as the goal of clarity can easily result in  the opposite. In short - When used prudently, partial classes offer a great feature to split code files thematically and provide more clarity. It would be conceivable, for example, to implement interfaces in your own files, so that the corresponding members can be found more quickly.&lt;/p&gt;
+&lt;p&gt;But now to the probably less known feature in this matter: partial methods. Partial methods can only be defined in partial classes and generally have the return type &lt;em&gt;void&lt;/em&gt;.  It is also not possible to bypass this condition using out parameters. Also not allowed are access modifiers and keywords like &lt;em&gt;virtual&lt;/em&gt;, &lt;em&gt;sealed&lt;/em&gt;, &lt;em&gt;override&lt;/em&gt;, &lt;em&gt;new&lt;/em&gt; or &lt;em&gt;abstract&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;On the one hand, partial methods are always defined with the method header only (quasi as in abstract classes), the implementation then takes place elsewhere. It is possible to define several method headers with different overloads. The implementation itself always takes place in one piece, so at this point nothing is distributed to several places in the code.&lt;/p&gt;
+&lt;p&gt;If you stumble across partial methods in a project, you will usually find the definition of the method and its implementation in different files, as this is the only way to get the idea behind the concept. This code element is also usually found in generated code. If a partial method is called and an implementation of it is found, it is called and executed normally. However, if no implementation is found, the method (or more precisely the method header) and the calls to it are not compiled at all. Partial methods thus indicate optional additions to the source code.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;The &lt;em&gt;partial&lt;/em&gt; keyword in C# allows you to spread a class definition across multiple files. You've probably seen this before when you created a WinForms application and viewed the MyForm.Designer.cs file, which contains the properties you define in the Designer. So the Visual Designer stores the entire definition of your user interface in this separate file. The class of your form itself is always marked &lt;em&gt;partial&lt;/em&gt;. Files of partial methods must not be in different assemblies and will be merged during compilation. The IL code therefore looks exactly the same as if the class were a single file.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2019/01/dotnet-core-ui-with-electron</id>
+		<title>Writing .NET Core Desktop Apps with Electron.NET</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2019/01/dotnet-core-ui-with-electron" />
+		<updated>2019-01-06T00:00:00Z</updated>
+		<content>&lt;p&gt;The team behind GitHub has created its own interesting open source projects in addition to the web platform. One of them is Electron, a cross-platform desktop solution used for the Atom editor. Microsoft also uses Electron for Visual Studio Code.&lt;/p&gt;
+&lt;p&gt;Electron runs with NodeJS, so applications for it are usually written in JavaScript. For .NET developers there is now &lt;a href="https://github.com/ElectronNET/Electron.NET"&gt;Electron.NET&lt;/a&gt; available, an Electron wrapper for ASP.NET Core applications.&lt;/p&gt;
+&lt;p&gt;An Electron.NET application hosts the ASP.NET Core project. Electron.NET then provides access to Electron via API. This enables platform-specific functionalities such as push notifications or clipboard access. And the best thing about it is that you don't notice anything about the underlying JavaScript.&lt;/p&gt;
+&lt;p&gt;Let's start right away and develop a simple application with Electron.NET. You need first the .NET Core 2 SDK, as well as NodeJS, at least in version 8.6.0. I use Visual Studio 2017 as development environment.  I start by creating an empty ASP.NET Core project. In the following dialog I choose the MVC template. And I'm ready to go.&lt;/p&gt;
+&lt;p&gt;First I install Electron.NET using &lt;a href="https://www.nuget.org/packages/ElectronNET.API/"&gt;NuGet&lt;/a&gt;. After that the WebHostBuilder in Program.cs has to be adjusted as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class Program
+{ 
+  public static void Main(string[] args) 
+  { 
+    CreateWebHostBuilder(args).Build().Run(); 
+  } 
+
+  public static IWebHostBuilder CreateWebHostBuilder(string[] args) =&amp;gt; 
+    WebHost.CreateDefaultBuilder(args) 
+    .UseElectron(args) 
+    .UseStartup&amp;lt;Startup&amp;gt;(); 
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The application has now been extended with Electron, but so far you don't see anything of it. If you start the project now, it will be started in the browser as usual. However, I would like the application to be started in the familiar Electron window as it would be displayed in the browser. To achieve this, I add the following line at the end of the Configure() method:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;Task.Run(async () =&amp;gt; await Electron.WindowManager.CreateWindowAsync()); 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you want to be able to start your application as a classic web application, you have to put this statement in an if statement with the condition &lt;em&gt;HybridSupport.IsElectronActive&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Now another Nuget package is needed, which is not installed for the project itself, but as a global toolset. Use the following command in the Nuget console:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;dotnet tool install ElectronNET.CLI -g 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This package provides several tools that you can use, among other things, to initialize and start your project. Then navigate to the project directory and execute the command &amp;quot;electronize init&amp;quot;. The command creates a configuration file called electron.manifest.json. Now you can start your application from here with the command &amp;quot;electronize start&amp;quot;. The first start takes a while, but this does not apply to the following starts. At this point you should be able to see your ASP.NET Core application in the normal Electron interface. So let's try some of the features now.&lt;/p&gt;
+&lt;p&gt;A quick tip at this point: To debug the application you can simply select the menu item &amp;quot;Debugging&amp;quot; in Visual Studio and then select the application in the &amp;quot;Attach to Process&amp;quot; area. You can also use the shortcut CTRL + SHIFT + I to access the Chrome Developer Tools. This functionality is provided via Electron.NET CLI, however, if you want to implement such functionality for later use, you can do it yourself: Electron.WindowManager.BrowserWindows.First().WebContents.OpenDevTools().&lt;/p&gt;
+&lt;p&gt;Electron creates multiple processes. The main process called Main contains the code of Startup.cs and Program.cs. A separate renderer process is created for each desktop window, which prevents the entire application from crashing when a renderer process crashes. The communication between these processes is based on Inter-Process Communication (IPC).&lt;/p&gt;
+&lt;p&gt;The classic workflow for ASP.NET Core MVC is as follows: The user makes an input and an action command is sent to a controller. The controller returns a result in the form of a view instance, which has a disadvantage: The page is reloaded, which doesn't provide great user experience. With the help of IPC, however, it is easy to remedy the situation:&lt;/p&gt;
+&lt;p&gt;I add code to my Index.cshtml file that uses JS to access the API of the renderer process. The ipcRenderer allows message-based communication, optional arguments can be passed.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-html"&gt;&amp;lt;h3 id=&amp;quot;header&amp;quot;&amp;gt;&amp;lt;/h3&amp;gt; 
+&amp;lt;button id=&amp;quot;cmdShowData&amp;quot;&amp;gt;Show Data&amp;lt;/button&amp;gt; 
+
+&amp;lt;script&amp;gt; 
+  (function () { 
+    const { ipcRenderer } = require(&amp;quot;electron&amp;quot;);
+
+    document.getElementById(&amp;quot;cmdShowData&amp;quot;).addEventListener(&amp;quot;click&amp;quot;, () =&amp;gt; { 
+      ipcRenderer.send(&amp;quot;getData&amp;quot;, 'args'); 
+    }); 
+
+    ipcRenderer.on('sendData', (event, msg) =&amp;gt; { 
+      document.getElementById(&amp;quot;header&amp;quot;).innerHTML = msg; 
+    });
+  }()); 
+&amp;lt;/script&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I also need a possibility to listen to incoming messages. This is implemented inside the controller (HomeController.cs):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public IActionResult Index()
+{ 
+  Electron.IpcMain.On(&amp;quot;getData&amp;quot;, (args) =&amp;gt; 
+  { 
+    var mainWindow = Electron.WindowManager.BrowserWindows.First(); 
+    Electron.IpcMain.Send(mainWindow, &amp;quot;sendData&amp;quot;, &amp;quot;Hello IPC World!&amp;quot;); 
+  }); 
+
+  return View(); 
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see, I am only returning a simple message, but of course you can extend this or implement advanced functionality like repeated execution and update of the message by loops.&lt;/p&gt;
+&lt;p&gt;I don't want to go into much application development at this point, but you can see how quickly you can package an ASP.NET core application in Electron. But there is one important detail missing for developing real applications: Deployment. In fact, two applications are created when the Electron.NET app is being built. On the one hand, the ASP.NET core application is built including .NET Core runtime. This application is then packaged by Electron Packer like a regular Electron application. You can specify the target operating system by adding the relevant target flag to the build command: Use the command electronize build /target win. Use the flag osx for macOS, or linux for Linux. After execution, you have your application packaged and ready for use.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;The team behind GitHub has created its own interesting open source projects in addition to the web platform. One of them is Electron, a cross-platform desktop solution used for the Atom editor. Microsoft also uses Electron for Visual Studio Code.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2018/12/csharp-attributes</id>
+		<title>C# Attributes</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2018/12/csharp-attributes" />
+		<updated>2018-12-30T00:00:00Z</updated>
+		<content>&lt;p&gt;During the development with C# you have certainly already encountered attributes, whether consciously or unaware. Today I want to go a little deeper into what attributes are, what kind of them are already present in the .NET framework, and how you can define your own attributes.&lt;/p&gt;
+&lt;p&gt;Microsoft defines attributes as a powerful way to associate metadata or descriptive information with code. But what exactly does that mean?&lt;/p&gt;
+&lt;p&gt;Classes have, among other characteristics, fields, methods, properties, but also a state and behavior. You can &amp;quot;decorate&amp;quot; code elements with attributes to further describe them. Doing so, however, has no effect on their state.&lt;/p&gt;
+&lt;p&gt;You can imagine this a bit like tags or post-its attached to code and providing additional information.&lt;/p&gt;
+&lt;p&gt;Attributes are applicable at different times. While writing code, for example, debugging can be controlled, or additional instructions can be added to the compiler. A widespread use of attributes in this category is, for example, marking code elements as obsolete to indicate to developers that something should no longer be used.&lt;/p&gt;
+&lt;p&gt;At design time it is conceivable to control positioning etc. via attributes.&lt;/p&gt;
+&lt;p&gt;Finally, it is possible to use attributes at runtime. This is done for example for the validation of data in ASP.NET applications. At runtime, attributes can be evaluated using Reflection. Code execution can then be controlled by the presence or absence of attributes or based on their property values. I don't want to go into the validation using attributes separately in the course of this article, but you can find a detailed overview of the available attributes &lt;a href="https://docs.microsoft.com/de-de/dotnet/api/system.componentmodel.dataannotations?view=netframework-4.7.2"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There are some other use cases, some of which you have probably already used yourself. In the course of the article you will surely notice a few of them.&lt;/p&gt;
+&lt;p&gt;Attributes are enclosed in square brackets: &lt;code&gt;[MyCustomAttribute]&lt;/code&gt;. By convention, the name of all attributes ends with &amp;quot;Attributes&amp;quot;, which can be omitted. So it comes out the same whether you write &lt;code&gt;[ObsoleteAttribute]&lt;/code&gt; or &lt;code&gt;[Obsolete]&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Attributes can be used at different levels of code elements. On one hand this is directly on assembly level, when defining classes or structures, as well as interfaces and enumerations. But also methods, fields, properties or structures, events, delegates and single parameters can be decorated with attributes. In addition, an attribute can also be defined to the return value of a method.&lt;/p&gt;
+&lt;p&gt;It should be noted that not every attribute can be used for every code element. The author of the attribute specifies what it is valid for and where the invalid use throws a compile-time error.&lt;/p&gt;
+&lt;h2 id="inheritance-of-attributes"&gt;Inheritance of Attributes&lt;/h2&gt;
+&lt;p&gt;Attributes on classes are inherited, that is, if class A is decorated with an attribute, class B, which inherits from class A, also has this attribute. You no longer have to specify this explicitly. However, this behavior can be deactivated at attribute level if required.&lt;/p&gt;
+&lt;h2 id="using-attributes"&gt;Using Attributes&lt;/h2&gt;
+&lt;p&gt;As mentioned above, attributes are used by using square brackets. An attribute itself is a normal class which inherits from System.Attribute. If you add an attribute to a code element, you can specify constructor parameters of the underlying class using regular parentheses. Nothing new, so far.&lt;/p&gt;
+&lt;p&gt;There are different types of constructor parameters: required and optional parameters, and additional properties. As with normal methods, optional parameters are just parameters with default values. You can specify parameters comma separated as usual, and you can also use named arguments. If you want to use properties that cannot be filled by a constructor, this is also possible within the brackets. The syntax, however, is as follows: first the name of the property, followed by an equal sign and the corresponding value. As with regular classes, you can also use constructor-overloads for attributes, which are a bit clearer than the representation with properties.&lt;/p&gt;
+&lt;p&gt;Let's first take a look at some of the predefined attributes in C#. First, I'd like to briefly look at attributes that will help you when developing. I'll start with the DebuggerDisplay attribute: This is used to change the text that is displayed during debugging when you move the mouse over an object. To use it, all you have to do is specify a string to be used as text. You can also use curly braces to include property values.&lt;/p&gt;
+&lt;p&gt;Another helpful attribute in this area is the DebuggerBrowsable attribute. This is defined at property level and indicates how you can inspect the element during debugging. The attribute has a required DebuggerBrowsableState constructor parameter, an enumeration that can take one of the values Collapsed, Never, and RootHidden. Never hides the property completely from the inspector, Collapsed collapses the nested elements and RootHidden is used for collections. The latter ensures that the elements of the collection itself are displayed in the inspector, but the main element is hidden.&lt;/p&gt;
+&lt;p&gt;Another attribute for adjusting the display in the debugger window is the DebuggerTypeProxy attribute. This attribute specifies a proxy class that is used instead of the original class to display the details in the debugger. For example, you can define a helper class here that displays various details of the actual class in a simplified way to save you cumbersome navigation in the debugging window. This is often useful for nested properties or combinations of multiple properties. At this point it should be noted that you can still view the properties of the underlying class, you'll find them at the bottom at the &amp;quot;Raw View&amp;quot; item when you hover the mouse over the object you want to inspect.&lt;/p&gt;
+&lt;p&gt;A widespread attribute, which I mentioned in the introduction and which I'm sure you've already seen when using external libraries in your applications, is the Obsolete attribute. This is used to mark code as deprecated and to tell the developer not to use this element anymore. If you want to use the attribute itself, you will notice that you can configure it in two ways: First, only a warning is generated, but you can still use the code element. The second variant is that the use throws a compilation error.&lt;/p&gt;
+&lt;p&gt;You can use the attribute with default constructor, so no arguments are required. In this case only a warning will be displayed, as well as when you move the mouse over the corresponding code element. But you can use it to adjust the behavior. There are two constructor overloads for this: In both cases you can specify a message here, which will be displayed as a hint, optionally you can also use boolean-flag to specify whether a compilation error should be generated.&lt;/p&gt;
+&lt;p&gt;An example of the attribute might look like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class Student
+{ 
+  public string FirstName { get; set; } 
+
+  public string LastName { get; set; } 
+
+  [Obsolete(&amp;quot;Use Property 'FormattedName' instead&amp;quot;)] 
+  public string GetFormattedName() { return $&amp;quot;{FirstName} {LastName}&amp;quot;; }
+
+  public string FormattedName { get { return $&amp;quot;{FirstName} {LastName}&amp;quot;; } } 
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Accessing the GetFormattedName-Method displays the following warning: &amp;quot;Student.GetFormattedName()&amp;quot; is obsolete: Use Property 'FormattedName' instead.&lt;/p&gt;
+&lt;p&gt;I already mentioned that you can use attributes at the assembly level as well. To do this, you have to prefix the keyword &amp;quot;assembly:&amp;quot;.&lt;/p&gt;
+&lt;p&gt;If you are working on a .NET Framework project, you can check out the &amp;quot;AssemblyInfo&amp;quot; class, which you can find in the &amp;quot;properties&amp;quot; folder. This class already contains some metadata declarations on your project like title, description or copyright. Of course, you can also define custom attributes here as well, just think of the &amp;quot;assembly:&amp;quot; prefix. If you're using .NET Core, you won't find such a file, since the metadata is generated automatically. However, you can override the values by adding assembly level attributes by yourself, which you can do at any position in your project.&lt;/p&gt;
+&lt;p&gt;An attribute that is great if you are working on a project for which you want to write tests, but don't want to change it (for now), is InternalsVisibleTo. Suppose you are writing a test project for the very other project and want to test a class or method but can't access it due to its protection level, you can use this attribute to allow access by specifying the project name of your test project. This attribute is defined at assembly level and therefore does not have to be assigned to each class / method individually.&lt;/p&gt;
+&lt;p&gt;A less common feature of attributes is their use in conjunction with method return values. The attribute is specified above the method signature, including the prefix &amp;quot;return:&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Finally, attributes can be used for serialization. Use the &amp;quot;NonSerialized&amp;quot; attribute for properties that are not to be serialized.&lt;/p&gt;
+&lt;p&gt;As you can see, you can already do a lot with the predefined attributes. Nevertheless, it is sometimes necessary to define your own attributes. This is what I want to show you now.&lt;/p&gt;
+&lt;h2 id="creating-and-using-your-own-attributes"&gt;Creating and using your own attributes&lt;/h2&gt;
+&lt;p&gt;To restrict the usage of the attribute, the class is assigned another attribute: AttributeUsage. The constructor of this attribute requires an argument of type &lt;a href="https://docs.microsoft.com/de-de/dotnet/api/system.attributetargets?view=netframework-4.7.2"&gt;AttributeTargets&lt;/a&gt;, which is an enumeration from which you can select one or more code elements. If you want to support multiple code elements, you can do that by utilizing the bitwise-or operator like this: &lt;code&gt;[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can add another property to the constructor if you want to allow multiple use on a single code element. This is done with the AllowMultiple flag, the default value is false.&lt;/p&gt;
+&lt;p&gt;The last option to customize at this point is to control inheritance. By default, attributes are inherited with the inheritance of a class. This can be deactivated by setting the property &amp;quot;Inherited&amp;quot; to false.&lt;/p&gt;
+&lt;p&gt;So, enough for theory. Let's illustrate this with an example:&lt;/p&gt;
+&lt;p&gt;I define a simple attribute that I want to use later to control the output on the console. I inherit my custom attribute from System.attribute and end the name of the class with &amp;quot;attributes&amp;quot; according to the convention. The attribute has two properties, one of which is required and the other has a default value. In the case of a null value for the required parameter, an ArgumentException is thrown.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;[AttributeUsage(AttributeTargets.Property)] 
+public class DisplayAttribute : Attribute 
+{ 
+  public DisplayAttribute(string tag, ConsoleColor textColor = ConsoleColor.White) 
+  { 
+    Tag = tag ?? throw new ArgumentException(nameof(tag)); 
+    TextColor = textColor; 
+  } 
+
+  public string Tag { get; } 
+
+  public ConsoleColor TextColor { get; } 
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then I want to evaluate the attribute at runtime. To do this, I use Reflection, where I first evaluate a property for the presence of the attribute, and then I get the value. After that, I want to output the contents of the tag property, followed by the value of the actual property decorated with the attribute. The entire output should be in the color that is stored for the attribute.&lt;/p&gt;
+&lt;p&gt;I continue to use my student class from earlier, and create a new writer class to control the output:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-csharp"&gt;public class Writer
+{ 
+  private readonly Student _student; 
+  private ConsoleColor _color; 
+
+  public Writer(Student student) 
+  { 
+    _student = student; 
+  } 
+
+  public void Write() 
+  { 
+    PropertyInfo firstNameProp = typeof(Student).GetProperty(nameof(Student.FirstName)); 
+
+    DisplayAttribute firstNameDisplayAttr = (DisplayAttribute)Attribute.GetCustomAttribute(firstNameProp, typeof(DisplayAttribute)); 
+
+    if (firstNameDisplayAttr != null) 
+    { 
+      SaveDefaultForegroundColor(); 
+      Console.ForegroundColor = firstNameDisplayAttr.TextColor; 
+      Console.WriteLine($&amp;quot;{firstNameDisplayAttr.Tag} {_student.FirstName}&amp;quot;); 
+      RestoreDefaultForegroundColor(); 
+    } 
+    else 
+    { 
+      Console.WriteLine(_student.FirstName); 
+    } 
+  } 
+
+  private void SaveDefaultForegroundColor() 
+  { 
+    _color = Console.ForegroundColor; 
+  } 
+
+  private void RestoreDefaultForegroundColor() 
+  { 
+    Console.ForegroundColor = _color; 
+  } 
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see, if the attribute is present, I save the current text color of the console to be able to reset it after the output. Then the output takes place. If the attribute does not exist, only the value of the property is printed to the console.&lt;/p&gt;
+&lt;p&gt;The section of reflection shown here is only a minimal part of the available options. For example, you could search an assembly for classes that have a specific attribute, and then use it to control the functionality of your application. You can also set or remove attributes at runtime. But I'll cover that with a separate article about Reflection.&lt;/p&gt;
+&lt;p&gt;I hope I was able to give you a general overview of attributes in C#. If you need more information, I recommend checking out MSDNs &lt;a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/"&gt;full documentation on the topic&lt;/a&gt;.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;During the development with C# you have certainly already encountered attributes, whether consciously or unaware. Today I want to go a little deeper into what attributes are, what kind of them are already present in the .NET framework, and how you can define your own attributes.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2018/12/using-less-with-asp-net-core</id>
+		<title>Using LESS with ASP.NET Core</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2018/12/using-less-with-asp-net-core" />
+		<updated>2018-12-23T00:00:00Z</updated>
+		<content>&lt;p&gt;I have already written about the advantages of a CSS preprocessor like LESS in this post. Today I want to show you how you can easily implement support for such a preprocessor in your ASP.NET Core project. I will use Gulp to create the ability to write LESS files and convert them to CSS files so that they can be integrated into the ASP.NET Core application. Finally, I will automate the whole thing so that the LESS file is converted without manual interaction on every build.&lt;/p&gt;
+&lt;p&gt;To convert from LESS to CSS I use Gulp. Gulp is a workflow automation tool for JavaScript. This allows me to implement the whole thing per npm into my ASP.NET core project. I don't have any node packages in use yet, so I need a new package.json file first. I don't create it with Visual Studio because I didn't get it to work correctly. You are welcome to try it, but if it doesn't work either, try the following:&lt;/p&gt;
+&lt;p&gt;Start the setup wizard using npm init, and fill in the configuration as needed. Then I need the following dependencies, which will be added to the dev-dependencies section. After adding them. the area will look something like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-json"&gt;&amp;quot;devDependencies&amp;quot;: { 
+  &amp;quot;gulp&amp;quot;: &amp;quot;3.9.1&amp;quot;, 
+  &amp;quot;gulp-less&amp;quot;: &amp;quot;3.3.2&amp;quot;, 
+  &amp;quot;gulp-clean-css&amp;quot;: &amp;quot;3.9.0&amp;quot; 
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now I need to setup gulp using a new file called gulpfile.js:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-javascript"&gt;var gulp = require(&amp;quot;gulp&amp;quot;), 
+    cleanCss = require(&amp;quot;gulp-clean-css&amp;quot;), 
+    less = require(&amp;quot;gulp-less&amp;quot;); 
+ 
+
+gulp.task(&amp;quot;default&amp;quot;, function () { 
+    return gulp.src('Styles/*.less') 
+        .pipe(less()) 
+        .pipe(cleanCss({ compatibility:  'ie8' })) 
+        .pipe(gulp.dest('wwwroot/css')); 
+}); 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And that's about it, actually. If your LESS files are in a directory other than &amp;quot;Styles&amp;quot;, you have to change the configuration accordingly. You can now start the conversion with the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;node_modules\.bin\gulp 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now I would like to automate this, because I do not want to manually execute the conversion everytime I changed something. To achieve that, I edit the .csproj file of my project by hand and add the following command:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&amp;lt;Target Name=&amp;quot;MyPreCompileTarget&amp;quot; BeforeTargets=&amp;quot;Build&amp;quot;&amp;gt; 
+  &amp;lt;Exec WorkingDirectory=&amp;quot;$(ProjectDir)&amp;quot; Command=&amp;quot;node_modules\.bin\gulp&amp;quot; /&amp;gt; 
+&amp;lt;/Target&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That's it. That's it. The conversion process is now fully automated and you can define and use your LESS files without worrying about the conversion.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;I have already written about the advantages of a CSS preprocessor like LESS in this post. Today I want to show you how you can easily implement support for such a preprocessor in your ASP.NET Core project. I will use Gulp to create the ability to write LESS files and convert them to CSS files so that they can be integrated into the ASP.NET Core application. Finally, I will automate the whole thing so that the LESS file is converted without manual interaction on every build.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2018/12/website-update</id>
+		<title>Some Updates about this Website</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2018/12/website-update" />
+		<updated>2018-12-16T00:00:00Z</updated>
+		<content>&lt;p&gt;Hey, today just a short note on a few changes to my website.&lt;/p&gt;
+&lt;p&gt;Basically I planned to take up various topics in the area of software development and to capture my thoughts on this blog. However, as you may have noticed, I have published a lot about other subjects lately. I want to return to my roots on this site, so I decided to set up a separate blog. From now on you will only find posts on software development and related topics on this blog. Sports-related posts will now be posted to mjurtz.com/triblog or triblog.mjurtz.com as soon as I get the subdomain set up correctly.&lt;/p&gt;
+&lt;p&gt;Thanks for your attention, regular posts will follow!&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;Hey, today just a short note on a few changes to my website.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2018/12/writing-clean-code</id>
+		<title>Writing Clean Code</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2018/12/writing-clean-code" />
+		<updated>2018-12-16T00:00:00Z</updated>
+		<content>&lt;p&gt;There are lots of articles and even books about the art of writing clean code. But when exactly is code actually to be considered clean? Today I'd like to give you a brief overview of how you can assess and improve your code quality. I should perhaps note that writing good code, and therefore this article, is independent of the programming language used and is rather methodical in nature. However, for more detailed information, I recommend that you really get a book on the subject. The standard advice on this is certainly &amp;quot;Clean Code&amp;quot; by Robert C. Martin.&lt;/p&gt;
+&lt;p&gt;First of all: What is clean code? Everyone probably has their own definition here, but there are a lot of overlaps. A key characteristic of clean code, for example, is good readability and maintainability. Why should the readability of your code be good? If you think about how much time you spend writing code and how much you spend reading it, you will probably get a ratio of 1:10. So if you make your code readable, you'll make future work easier.&lt;/p&gt;
+&lt;p&gt;Everyone probably knows the following scenario: You are pressurized by deadlines and tend to write &amp;quot;Quick and Dirty&amp;quot; code. Although the problem is solved quickly, in the long run this is the more costly approach. If this code has to be extended later, it will be much more difficult than if somebody thought about a suitable strategy before implementing it in the first place.&lt;/p&gt;
+&lt;p&gt;You alone are responsible for your code. Imagine another profession: For example, in the food industry or as a doctor or nurse. If someone else told you not to wash your hands from now on to save time - would you do that? Probably not. And that's exactly what makes your business professional. But what can you do to actually make your code more readable?&lt;/p&gt;
+&lt;p&gt;Use self-explanatory names. Variables, classes or methods have to directly expose what they do. Name methods and variables so that a class does exactly what you expect it to do after reading the source code. Also, avoid using abbreviations in your naming to make reading easier. Oh, and even if it feels tempting to name all variables, classes, methods, and the like after different Pokémon, don't. Clarity is unfortunately more important here than being funny. Also, make sure you name similar concepts the same way. Suppose you write an API that receives data and performs simple CRUD operations - name all functions that perform similar tasks identically. For example, choose Insert, Add, or Append for creating new objects, but don't mix these names.&lt;/p&gt;
+&lt;p&gt;Your code should speak for itself. This does not mean that you have to avoid comments completely. However, comments are often used when the purpose of the code is not clear. The problem here is very often that the code is changed, but the corresponding comment remains, and thus provides wrong information. So if you are in the process of writing a comment, think about whether it really makes sense or whether you should revise the code.&lt;/p&gt;
+&lt;p&gt;There is another point regarding naming, especially for methods and functions: The single-responsibility principle. A method should do exactly one thing, and it should be done well. If you have a method that creates and returns an instance of a class with default values, that method should not add the object to a collection of objects of that class as well. Each method has exactly one task. If your method takes 5 arguments, it might probably do more than one thing.&lt;/p&gt;
+&lt;p&gt;Write tests. I confess myself guilty of doing too little of this, but write automated tests. Not just to sleep better before releases. Write unit tests to validate individual parts of your application and combine them using integration tests. Of course, you can also add other test categories like UI testing, but I think you should start small: Anything is better than nothing.&lt;/p&gt;
+&lt;p&gt;Practice, practice, practice. This list is not complete, not at all. But it is certainly a good start. To write clean code, it's all about practice. Look at other people's source code. Ask developers to look at your code and give you feedback. You will notice if your code is good and internalize the important characteristics all by yourself.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;There are lots of articles and even books about the art of writing clean code. But when exactly is code actually to be considered clean? Today I'd like to give you a brief overview of how you can assess and improve your code quality. I should perhaps note that writing good code, and therefore this article, is independent of the programming language used and is rather methodical in nature. However, for more detailed information, I recommend that you really get a book on the subject. The standard advice on this is certainly "Clean Code" by Robert C. Martin.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2018/12/why-you-should-write-your-own-impossible-list</id>
+		<title>Why you should write your own Impossible List</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2018/12/why-you-should-write-your-own-impossible-list" />
+		<updated>2018-12-09T00:00:00Z</updated>
+		<content>&lt;p&gt;Writing down your goals is extremely helpful for really achieving them. With fixed, terminable goals with fixed intermediate steps,
+you make it much easier for yourself to really achieve your self-imposed goals.&lt;/p&gt;
+&lt;p&gt;Today I would like to show you a way to define your goals with the help of the so-called &amp;quot;Impossible List&amp;quot;.
+At first glance this list looks like an Impossible List, but it is definitely not: Joel Runyon, the author of the first &lt;a href="https://impossiblehq.com/the-impossible-list-is-not-a-bucket-list/"&gt;Impossible List&lt;/a&gt; describes the classic Bucket List as a static list that was written at some point in life and usually none of the points written down really affect the life of the creator.
+So the goals are written down, but never reached or at least actively pursued.&lt;/p&gt;
+&lt;p&gt;The Impossible List goes a different way: It is not a list of entries waiting to be ticked off. The Impossible List continues to evolve. It describes things you've done, you should be constantly checking off entries. But you should also add new items. With the list you broaden your horizons and reach goals you didn't think possible before. The bucket list describes the things you want done before you die. But the Impossible List describes your life. The Bucket List describes dreams, while the Impossible List requires you to take action now.&lt;/p&gt;
+&lt;p&gt;What is probably the most common answer from students to the question, what are their goals in life? Often you will hear something like &amp;quot;My goal is a good college degree, a well paid job and my own house&amp;quot;. But what happens when these goals are achieved? You are in the middle of life and suddenly have no goal to work towards. And off you go with the midlife crisis.&lt;/p&gt;
+&lt;p&gt;This is where the Impossible List comes in. Joel Runyon set up his Impossible List after graduating from college and it helped him run ultra marathons and much more. The Impossible List is not only set up, but also made publicly available online and can therefore be viewed by everyone. If you look at &lt;a href="/impossible/"&gt;my list&lt;/a&gt;, you will also see that many targets follow similar ones, but with more difficult characteristics. This allows you to track your progress. This is the already mentioned developing character of the Impossible List.&lt;/p&gt;
+&lt;p&gt;As someone who wants to do many things, it is often difficult to set the focus. That's why I use a status for my goals, where you can directly see if I'm working on this entry or not.&lt;/p&gt;
+&lt;p&gt;I hope I have sparked your interest in the concept. If you want to build your own Impossible List, I suggest you leave room for iterations. Of course, you can also make your work easier by doing the whole thing digitally. I decided to use AirTable, the tool Joel Runyon also uses. Of course, you can also use any other table editing software.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;Writing down your goals is extremely helpful for really achieving them. With fixed, terminable goals with fixed intermediate steps,
+you make it much easier for yourself to really achieve your self-imposed goals.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2018/12/learning-to-program-doesnt-have-to-be-easy</id>
+		<title>Learning to program does not have to be easy</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2018/12/learning-to-program-doesnt-have-to-be-easy" />
+		<updated>2018-12-02T00:00:00Z</updated>
+		<content>&lt;p&gt;I have been asked all too often which programming language to learn first. And I've heard almost the same number of different opinions. Java or C++? Python or C#? Or maybe C?&lt;/p&gt;
+&lt;p&gt;High-level programming languages like Java offer the big advantage that the entry hurdle is very low. You can quickly put together a functional application that does what it's supposed to do. The extensive ecosystem allows you to make rapid progress and concentrate on the functionality of your software. But that's exactly the point that advocates of programming languages like C or C++ criticize. These are generally referred to as &amp;quot; more difficult &amp;quot;, which is due to the lack of abstraction of different system concepts. The most common example is probably memory management. While in C the developer himself is responsible for the allocation and release of memory, in Java this task is abstracted from the developer. Although this is an enormous convenience for the developer in later working life, there is a lack of knowledge about what is actually happening in the background for many developers who have only worked with such languages so far.&lt;/p&gt;
+&lt;p&gt;One often hears the argument that the processes in the background are not so important and that people should concentrate on the functionality of the software. But that's the critical point: Once the basic concepts have been understood, the developer will be more careful with objects and will think twice about whether instantiation is necessary or whether access is also possible via already existing objects. In the end, this way of thinking has a direct effect on the performance of the application. Even if current computers are more and more difficult to bring to the limits of their load, this does not mean that this is a goal to achieve.&lt;/p&gt;
+&lt;p&gt;At this point I would like to point out again that this article is specifically about learning programming. The later application is on a different page. With regard to the learning process, however, it makes sense to start from scratch and thus understand the most basic principles. Who should be familiar with the details of a programming language and the internal mechanisms, if not a computer scientist?&lt;/p&gt;
+&lt;p&gt;During my studies I also started with high-level programming languages (and didn't touch any of them during my studies), so after my studies I had to invest some time to really understand the different concepts. Since you might feel the same way, I'd like to show you what I think is the best way to get started in programming.&lt;/p&gt;
+&lt;p&gt;I don't think you should start with Java or C# directly, but also not with C. The reason is quite simple: With C as the first programming language you make slow progress and possibly lose the desire to learn quickly. But Java, C# or the like hide essential concepts and are therefore also not suitable for beginners. I think the best solution is the combination: Start with a simple programming language, with which you can make fast progress and see early what you can achieve. But don't stay too long at this level and then switch to a challenging language like C or C++. Here you will learn the different concepts like variables, memory allocation, collections and so on. Once you understand this, you can eventually switch to higher level abstraction languages.&lt;/p&gt;
+&lt;p&gt;If you find this concept interesting, I recommend &lt;a href="https://www.edx.org/course/cs50s-introduction-computer-science-harvardx-cs50x"&gt;CS50&lt;/a&gt;, Harvard University's computer science course, which you can take online for free.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;I have been asked all too often which programming language to learn first. And I've heard almost the same number of different opinions. Java or C++? Python or C#? Or maybe C?&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2018/11/announcing-lifecounter-v2</id>
+		<title>Announcing MTG LifeCounter V2</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2018/11/announcing-lifecounter-v2" />
+		<updated>2018-11-25T00:00:00Z</updated>
+		<content>&lt;p&gt;With my LifeCounter app for Magic The Gathering, I released my first Android app on the Google PlayStore over two years ago. Besides my first release, this was also another milestone for me: My first real app. Over two years later, I am proud to announce a completely revamped version of the app. Several complete revisions have taken place in the meantime and I'm already planning the next one, as I admittedly tried to learn the MVP pattern with the app and now, a few months later, I'm completely dissatisfied and want to switch to MVVM. But that doesn't really matter at the moment.&lt;/p&gt;
+&lt;p&gt;Today I announce the release of version 2.0, providing major improvements and enhancements. If the player only had the possibility to manage health points in a 2-player game so far, now up to four players can be served in parallel. In addition there are other features like a dice function for a 20-sided dice, a counter manager to organize counters on individual cards and the adjustment of various values such as the standard colors of the game areas.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/assets/2018/lifecounter_v2.png" data-lightbox="MTG LifeCounter V2"&gt;&lt;img src="/assets/2018/lifecounter_v2.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I have decided to offer a paid Pro version in addition to the standard version. Quite simply for the reason that in the meantime a lot of work went into the creation of the app and I would like to compensate at least parts of my expenses with it again. V2 will be released in the PlayStore in the course of the next week.&lt;/p&gt;
+&lt;h2 id="player-mode"&gt;4 Player Mode&lt;/h2&gt;
+&lt;p&gt;Probably the biggest innovation of the app is the 4-player mode. The mode can be started via the menu which can be dragged sideways into the app. The view adapts to the screen size. By default, for example, the color selection is displayed above the life points. If the screen of the device is too small, the points are hidden during the customization, so that a certain clarity remains ensured.&lt;/p&gt;
+&lt;p&gt;Game scores are saved in both game modes, so opening and closing the app, as well as switching between 2 and 4 player modes, will not result in any loss of scores. The 4-player mode is only available in the Pro version.&lt;/p&gt;
+&lt;h2 id="counter-manager"&gt;Counter Manager&lt;/h2&gt;
+&lt;p&gt;Another major innovation is the Counter Manager. You are probably familiar with the problem that tokens to change the attack and defense values of your cards are documented in a complicated manner using a tally sheet. This new feature allows you to manage the values of your cards in a simple and intuitive way. These values will also be saved when you exit the application, so you won't accidentally delete any entries. This feature is also only available in the pro version.&lt;/p&gt;
+&lt;h2 id="dice"&gt;Dice&lt;/h2&gt;
+&lt;p&gt;A rather small innovation is the dice function. Touching the screen displays a random number between one and 20, simulating a 20-sided dice.&lt;/p&gt;
+&lt;h2 id="energy-saving-mode"&gt;Energy Saving Mode&lt;/h2&gt;
+&lt;p&gt;Already implemented in earlier app versions, the power-saving mode provides a way for devices with AMOLED technology to darken the large areas during the game. This means the device consumes less power because black pixels do not consume energy.&lt;/p&gt;
+&lt;h2 id="introductory-screen"&gt;Introductory Screen&lt;/h2&gt;
+&lt;p&gt;Finally, I'd like to briefly discuss another feature that I can provide thanks to Paolo Rotolo's AppIntro library. The first time you start the application, you will see an introduction that demonstrates how to use the app and introduces you to the various features. Optionally, this introduction can be recalled from the Preferences pane.&lt;/p&gt;
+&lt;h2 id="questions-answers"&gt;Questions? Answers!&lt;/h2&gt;
+&lt;p&gt;You have found suggestions for improvements, ideas, or perhaps an error in the application? I'm always happy to hear from you, preferably by sending an email to feedback&amp;#64;mjurtz.com or via Twitter: &amp;#64;MarcelJurtz. And of course I'm always happy about every review in the PlayStore!&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;With my LifeCounter app for Magic The Gathering, I released my first Android app on the Google PlayStore over two years ago. Besides my first release, this was also another milestone for me: My first real app. Over two years later, I am proud to announce a completely revamped version of the app. Several complete revisions have taken place in the meantime and I'm already planning the next one, as I admittedly tried to learn the MVP pattern with the app and now, a few months later, I'm completely dissatisfied and want to switch to MVVM. But that doesn't really matter at the moment.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2018/11/jan-frodeno-winning-matters</id>
+		<title>Jan Frodeno - Winning Matters</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2018/11/jan-frodeno-winning-matters" />
+		<updated>2018-11-18T00:00:00Z</updated>
+		<content>&lt;p&gt;Gold medal at the Olympics, world record holder at the 70.3 World Championships in Roth and a world champion title at the Ironman in Kona - Jan Frodeno is a name that certainly does not only ring a bell for triathlon enthusiasts. Frodeno is celebrated by the fans like no other. But who is the athlete? Today I'm reviewing his book &amp;quot;Winning Matters - Success through courage and passion&amp;quot; and try to find an answer to this question.&lt;/p&gt;
+&lt;p&gt;Frodeno starts the first chapters with a big portion of self-irony and calls himself &amp;quot;loser&amp;quot; or &amp;quot;linnet&amp;quot;. That in endurance sports and especially in professional sports a lot depends on attitude is nothing new, but who would have thought that Frodeno himself uses mind games to influence his opponents? Again, he makes it clear that (unlike many other triathletes) he doesn't do this maliciously, but for fun and with a lot of humor.&lt;/p&gt;
+&lt;p&gt;All in all, the book is written in a very personal and humorous way, whereby Frodeno especially in the last chapters deals very strongly with his mentors, and knows how to appreciate his family and his team accordingly.&lt;/p&gt;
+&lt;p&gt;In the chapters Frodeno alternately describes the course of the Ironman World Championship in Kona 2015, which he won with a time of 08:14:39, as well as his curriculum vitae and how he became the person he is now. Already in the first chapters different character traits of the author become visible, started with absolute unwillingness to compromise. Frodeno is a man who cannot lose. Well, you probably guessed that already from reading the title of the book. I don't mean to say that he can't handle defeats in a sporting way, definitely not. But he does everything in his power to win. To achieve that, Frodeno always focuses on exactly one thing. Rather do one thing right than several things badly.&lt;/p&gt;
+&lt;p&gt;Another point that is essential to achieve your goals is to surround yourself with the right people.  Show me your friends and I'll tell you who you are. Frodeno trains with two training partners who constantly push each other. This casual competition creates small battles in training, and you automatically give that extra bit.&lt;/p&gt;
+&lt;p&gt;Finally, Frodeno describes a persons psychology as the crucial characteristic of a pro-level triathlete. At this level, the physical characteristics of the athletes are almost identical. However, a race is decided in the mind, which Frodeno describes in the course of Olympia 2008, where he finally wins gold after loosening a mental block.&lt;/p&gt;
+&lt;p&gt;During the Ironman Hawaii 2017 he finally has to struggle with severe pain and is overtaken by Sebastian Lange, who wins the title this year. Frodeno still fights his way through the marathon and inspires the masses. In the book he describes how after this competition he received messages from many athletes and fans who motivated themselves and brought new top performances through this mental strength.&lt;/p&gt;
+&lt;p&gt;The whole book is peppered with anecdotes from Frodeno's childhood, but also with many details, especially about the mental training of the triathlete. But Frodeno also makes some statements, which he fully supports. One example is his attitude towards doping, which he categorically rejects. But even with topics like unsportsmanlike behaviour like overtaking and direct rearsing, which forces the overtaken to slow down in order not to be punished for slipstream driving, he does not mince his words and says what he thinks.&lt;/p&gt;
+&lt;p&gt;All in all, the book is written very entertainingly and the almost 200 pages (+ about 30 pages with photos) are quickly devoured. Frodeno offers many insights and valuable details into the life of a top triathlete and if you are interested in triathlon or want to take part in an Ironman, you are guaranteed to benefit from the shared information.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;Gold medal at the Olympics, world record holder at the 70.3 World Championships in Roth and a world champion title at the Ironman in Kona - Jan Frodeno is a name that certainly does not only ring a bell for triathlon enthusiasts. Frodeno is celebrated by the fans like no other. But who is the athlete? Today I'm reviewing his book "Winning Matters - Success through courage and passion" and try to find an answer to this question.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2018/11/frank-thelen-startup-dna</id>
+		<title>Frank Thelen - Startup DNA</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2018/11/frank-thelen-startup-dna" />
+		<updated>2018-11-11T00:00:00Z</updated>
+		<content>&lt;p&gt;In his biography Frank Thelen describes the various aspects of his life. From childhood, skating, the first company foundation and private debts in the millions to successful exits, everything is included. In this article you will find a summary of some important points of the book, but for more details I suggest you take a look at the book, it's definitely worth the time.&lt;/p&gt;
+&lt;p&gt;In Germany, Thelen is certainly best known for the TV show &amp;quot;The Lion's Cave&amp;quot;, but from an entrepreneurial point of view, he's already done a lot. In his childhood he didn't like the monotonous, uninteresting lessons at high school and stumbled over his grandfather into the world of computers. One day he brings home a computer whose hard drive little Frank accidentally formats one night.&lt;/p&gt;
+&lt;p&gt;In order to correct the error, he reads the entire 400-page MS-DOS manual and finally gets everything running again. From then on the enthusiasm for computer science was unstoppable, and Thelen founded his first startup. Unfortunately, this goes into insolvency, whereby Thelen is liable with his private assets and is now in debt with one million euros. He agrees with the bank under threat of a private insolvency on a significantly smaller sum and continues to pursue his dreams to change the world with software.&lt;/p&gt;
+&lt;p&gt;I don't want to go into all the startups he founded or invested in, you can find a detailed overview here on his website, &lt;a href="https://frank.io/de/"&gt;frank.io&lt;/a&gt;. Instead, I'd like to address some of the issues that have been particularly attached to me and that, in my opinion, offer immense added value.&lt;/p&gt;
+&lt;h2 id="never-give-up"&gt;Never Give Up&lt;/h2&gt;
+&lt;p&gt;After the insolvency of his first start-up, Thelen developed Do. The application was designed to fundamentally change the way people manage documents and, instead of manual, directory-based sorting on an AI basis, to independently recognize the context of documents and make them filterable and searchable accordingly.&lt;/p&gt;
+&lt;p&gt;The application has been highly praised by critics and downloaded countless times. But while the download numbers looked great, most people didn't use the app on a regular basis. The change was too big, old habits are simply too strongly anchored in the users.&lt;/p&gt;
+&lt;p&gt;When the rapid success stagnated, Thelen was forced to lay off 80% of his staff. But instead of squandering the product, he focused on the essentials: Do included a document scanning function that automatically recognized and cut the edges of documents. From then on, the team focused on this one part, which is now marketed under the name ScanBot. The technology behind it is licensed by the way and also used by several other providers (here you can get the &lt;a href="https://scanbot.io/en/sdk.html"&gt;SDK&lt;/a&gt;).&lt;/p&gt;
+&lt;h2 id="out-of-your-comfort-zone"&gt;Out Of Your Comfort Zone&lt;/h2&gt;
+&lt;p&gt;New heights can only be reached outside the comfort zone. Thelen makes this clear using the example of the television show &amp;quot;The Lion's Cave&amp;quot;, where he was unsure whether he was doing the right thing until the start of the first season. In addition, it is essential for entrepreneurs to constantly question their own business model. So to speak, to be prepared to disrupt oneself. And of course this works much better with start-ups than with long-established companies.&lt;/p&gt;
+&lt;h2 id="ideas-for-the-future"&gt;Ideas For The Future&lt;/h2&gt;
+&lt;p&gt;Thelen concludes his book with various ideas for the future of technology companies in Germany. And he doesn't mince his words. It's a good thing that Germany offers hardly any support for start-ups and that German politicians in general have as much knowledge of technology and information topics as a piece of bread, is not exactly a world sensation here (of course there are some exceptions). However, it is clear that we cannot rely on politics for technological development in Germany. Thelen mentions various arguments for dealing with new technologies. For example, he mentions tax madness and legal framework conditions such as the Basic Data Protection Regulation as an absolute problem for tech start-ups and fears that Germany will miss the boat in the coming big IT issues. Instead, he recommends that new technologies be seen primarily as opportunities. Of course, there must be an easy way to object to data collection and processing by companies in a simple way, but must this option really be deactivated by default?&lt;/p&gt;
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Thelen says in his book bluntly what he thinks. But he does so in such a personal way that the reader builds a personal bridge to him and, unlike in many other books, sees the author on a wavelength rather than on a pedestal. The many problems in his career make it clear that it's not necessarily the one million dollar idea that makes you successful, but the ability to stand up again and again.&lt;/p&gt;
+&lt;p&gt;Anyone who does something can lose. But if you don't start at all, you've already lost. If you want to achieve something - just do it. And if you also want to be successful in this industry, but have no idea for your own product: Start solving your own problems. The chances are good that you won't be alone with it.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;In his biography Frank Thelen describes the various aspects of his life. From childhood, skating, the first company foundation and private debts in the millions to successful exits, everything is included. In this article you will find a summary of some important points of the book, but for more details I suggest you take a look at the book, it's definitely worth the time.&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2018/11/unity-skybox-from-360-photo</id>
+		<title>Create Unity Skyboxes From 360° Images</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2018/11/unity-skybox-from-360-photo" />
+		<updated>2018-11-04T00:00:00Z</updated>
+		<content>&lt;p&gt;Today I want to show you how to use a 360° panorama picture as a skybox for Unity. As you may know, skyboxes are usually created from 6 images (cubemaps), with each image representing one of the sides. However, 360° photos usually use a so-called &amp;quot;Equirectangular&amp;quot; format, which looks something like this:&lt;/p&gt;
+&lt;p&gt;&lt;a href="/assets/2018/equirectangular.png" data-lightbox="Equirectangular 360° Photo"&gt;&lt;img src="/assets/2018/equirectangular.png"/&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So in order to be able to use such an image in Unity, the idea of creating a cubemap from a 360° photo is obvious. But there is an easier way, which I would like to show you now: Cubemap: I start with my image, which I import into Unity. Then I select it and change the &lt;em&gt;Texture Shape&lt;/em&gt; property from 2D to Cube. I then save the changes by hitting Apply and then create a new material. I change the shader from default to Skybox - Cubemap and specify the image I want to use.&lt;/p&gt;
+&lt;p&gt;That's almost it, now you only have to set the Skybox via &lt;em&gt;Window - Lighting Settings&lt;/em&gt; and already you have your image and can integrate it into your projects.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;Today I want to show you how to use a 360° panorama picture as a skybox for Unity. As you may know, skyboxes are usually created from 6 images (cubemaps), with each image representing one of the sides. However, 360° photos usually use a so-called "Equirectangular" format, which looks something like this:&lt;/p&gt;</summary>
+	</entry>
+	<entry>
+		<id>http://blog.mjurtz.com/posts/2018/10/maximize-your-productivity</id>
+		<title>Maximize your Productivity</title>
+		<author>
+			<name>Marcel Jurtz</name>
+		</author>
+		<link href="http://blog.mjurtz.com/posts/2018/10/maximize-your-productivity" />
+		<updated>2018-10-28T00:00:00Z</updated>
+		<content>&lt;p&gt;When you're at the beginning of your career as a software developer, like me, you probably know the feeling that you're being overwhelmed by everything you want to learn. Especially at the beginning it is often not easy to work productively and to learn why I want to show you which methodologies I have developed for myself. Even though I use my own experience, my approach is of course not limited to the industry.&lt;/p&gt;
+&lt;h2 id="the-pomodoro-technique"&gt;The Pomodoro Technique&lt;/h2&gt;
+&lt;p&gt;In the beginning I focused very much on creating as much as possible and hardly allowing myself any breaks. But this is not feasible in the long run, your brain needs variety and chances for recovery. One of the first tools I discovered for myself to tackle exactly this point is the Pomodoro technique.&lt;/p&gt;
+&lt;p&gt;This method is based on alternating work intervals with regular pauses, but working between these pauses in a really focused and distraction-free way. By default, one interval lasts 25 minutes, followed by a break of five minutes. After you have completed four intervals, a longer break of 15 minutes follows.&lt;/p&gt;
+&lt;p&gt;The Pomodoro technique helped me on several levels. But the focus was not on the breaks, but on the focused work on a predefined task. I no longer jumped back and forth between different tasks, but divided my TODO list directly into intervals and could then stay with the current task.&lt;/p&gt;
+&lt;p&gt;Of course this technique is not a silver bullet. Especially in programming people often talk about the so-called flow state. This is the state when one is isolated from the environment and immersed in a task and can concentrate completely on it. It takes some time to get into this state, and 25 minutes is certainly not enough to work effectively in it. The Pomodoro technique is therefore less suitable for such tasks.&lt;/p&gt;
+&lt;p&gt;There are a number of tools that you can use to make this technique work. On the one hand, you can use a smartphone app (which automatically switches to flight mode during an interval if you wish), but there are also browser plug-ins or other desktop tools.&lt;/p&gt;
+&lt;h2 id="schedule-your-tasks"&gt;Schedule Your Tasks&lt;/h2&gt;
+&lt;p&gt;Another point I've built up in recent years is working according to a methodology. Do you come to the office in the morning and check your mails or the chat of your team to know what to do today? Take 15 minutes daily to plan your day and prioritize your tasks. It helps me enormously to plan my tasks instead of just doing what falls into my lap. I often combine this planning directly with the Pomodoro technique and define how many intervals I want to spend on a task. This helps me to make the planning more realistic and not to do too much.&lt;/p&gt;
+&lt;p&gt;I use Trello for task planning and misuse the Kanban board a little by splitting the columns into weekdays, using cards for tasks and assigning units to them by tags.&lt;/p&gt;
+&lt;h2 id="eliminate-distractions"&gt;Eliminate Distractions&lt;/h2&gt;
+&lt;p&gt;My final point is devoted to the distractions already mentioned. Do you know the feeling when you just had an idea how to fix a bug and then your phone rings? Such moments are, in my opinion, the biggest productivity killer. It's best not only to set your phone to silent, but also to disable notifications on the lock screen. I've often caught myself checking to see if there's anything new. If your lock screen stays tidy, the temptation to check messages or the like is significantly reduced.&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;When you're at the beginning of your career as a software developer, like me, you probably know the feeling that you're being overwhelmed by everything you want to learn. Especially at the beginning it is often not easy to work productively and to learn why I want to show you which methodologies I have developed for myself. Even though I use my own experience, my approach is of course not limited to the industry.&lt;/p&gt;</summary>
+	</entry>
+</feed>

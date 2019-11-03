@@ -3,10 +3,23 @@
 	<channel>
 		<title>Marcel Jurtz</title>
 		<link>http://blog.mjurtz.com/</link>
-		<description>A Software Developers Blog</description>
+		<description>A Developers Blog</description>
 		<copyright>2019</copyright>
-		<pubDate>Thu, 03 Oct 2019 08:31:56 GMT</pubDate>
-		<lastBuildDate>Thu, 03 Oct 2019 08:31:56 GMT</lastBuildDate>
+		<pubDate>Sun, 03 Nov 2019 16:07:47 GMT</pubDate>
+		<lastBuildDate>Sun, 03 Nov 2019 16:07:47 GMT</lastBuildDate>
+		<item>
+			<title>Moving to Wyam</title>
+			<link>http://blog.mjurtz.com/posts/2019/11/moving-to-wyam</link>
+			<description>&lt;p&gt;It's been quiet for way too long here. I don't really have an excuse for my absence but I've been kind of busy, both personally and professionally. But I'm planning to post on here more frequently from now on.&lt;/p&gt;</description>
+			<author>Marcel Jurtz</author>
+			<guid>http://blog.mjurtz.com/posts/2019/11/moving-to-wyam</guid>
+			<pubDate>Sat, 02 Nov 2019 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;It's been quiet for way too long here. I don't really have an excuse for my absence but I've been kind of busy, both personally and professionally. But I'm planning to post on here more frequently from now on.&lt;/p&gt;
+&lt;p&gt;As always, trying something new in software development helps to become motivated and excited. In the last months, I've been using Jekyll as a static site generator to build this site. Though I enjoyed using Jekyll, I never really got into the Ruby environment and have been looking for something more familiar.&lt;/p&gt;
+&lt;p&gt;A few weeks ago, I then stumbled upon &lt;a href="https://wyam.io/"&gt;Wyam&lt;/a&gt;, a configurable static site generator, which is based on .NET Core. I gave it a try and loved the simplicity, and now I migrated my blog to using it. I know it's not perfect yet, my search functionality for example is still missing, but that will also come back in a few days.&lt;/p&gt;
+&lt;p&gt;So, stay tuned for new content!&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>Database Modeling with dbdiagram.io</title>
 			<link>http://blog.mjurtz.com/posts/2019/03/database-modeling-with-dbdiagram-io</link>
@@ -533,18 +546,6 @@ gulp.task(&amp;quot;default&amp;quot;, function () {
 </content:encoded>
 		</item>
 		<item>
-			<title>Some Updates about this Website</title>
-			<link>http://blog.mjurtz.com/posts/2018/12/website-update</link>
-			<description>&lt;p&gt;Hey, today just a short note on a few changes to my website.&lt;/p&gt;</description>
-			<author>Marcel Jurtz</author>
-			<guid>http://blog.mjurtz.com/posts/2018/12/website-update</guid>
-			<pubDate>Sun, 16 Dec 2018 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;Hey, today just a short note on a few changes to my website.&lt;/p&gt;
-&lt;p&gt;Basically I planned to take up various topics in the area of software development and to capture my thoughts on this blog. However, as you may have noticed, I have published a lot about other subjects lately. I want to return to my roots on this site, so I decided to set up a separate blog. From now on you will only find posts on software development and related topics on this blog. Sports-related posts will now be posted to mjurtz.com/triblog or triblog.mjurtz.com as soon as I get the subdomain set up correctly.&lt;/p&gt;
-&lt;p&gt;Thanks for your attention, regular posts will follow!&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
 			<title>Writing Clean Code</title>
 			<link>http://blog.mjurtz.com/posts/2018/12/writing-clean-code</link>
 			<description>&lt;p&gt;There are lots of articles and even books about the art of writing clean code. But when exactly is code actually to be considered clean? Today I'd like to give you a brief overview of how you can assess and improve your code quality. I should perhaps note that writing good code, and therefore this article, is independent of the programming language used and is rather methodical in nature. However, for more detailed information, I recommend that you really get a book on the subject. The standard advice on this is certainly "Clean Code" by Robert C. Martin.&lt;/p&gt;</description>
@@ -560,6 +561,18 @@ gulp.task(&amp;quot;default&amp;quot;, function () {
 &lt;p&gt;There is another point regarding naming, especially for methods and functions: The single-responsibility principle. A method should do exactly one thing, and it should be done well. If you have a method that creates and returns an instance of a class with default values, that method should not add the object to a collection of objects of that class as well. Each method has exactly one task. If your method takes 5 arguments, it might probably do more than one thing.&lt;/p&gt;
 &lt;p&gt;Write tests. I confess myself guilty of doing too little of this, but write automated tests. Not just to sleep better before releases. Write unit tests to validate individual parts of your application and combine them using integration tests. Of course, you can also add other test categories like UI testing, but I think you should start small: Anything is better than nothing.&lt;/p&gt;
 &lt;p&gt;Practice, practice, practice. This list is not complete, not at all. But it is certainly a good start. To write clean code, it's all about practice. Look at other people's source code. Ask developers to look at your code and give you feedback. You will notice if your code is good and internalize the important characteristics all by yourself.&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Some Updates about this Website</title>
+			<link>http://blog.mjurtz.com/posts/2018/12/website-update</link>
+			<description>&lt;p&gt;Hey, today just a short note on a few changes to my website.&lt;/p&gt;</description>
+			<author>Marcel Jurtz</author>
+			<guid>http://blog.mjurtz.com/posts/2018/12/website-update</guid>
+			<pubDate>Sun, 16 Dec 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;Hey, today just a short note on a few changes to my website.&lt;/p&gt;
+&lt;p&gt;Basically I planned to take up various topics in the area of software development and to capture my thoughts on this blog. However, as you may have noticed, I have published a lot about other subjects lately. I want to return to my roots on this site, so I decided to set up a separate blog. From now on you will only find posts on software development and related topics on this blog. Sports-related posts will now be posted to mjurtz.com/triblog or triblog.mjurtz.com as soon as I get the subdomain set up correctly.&lt;/p&gt;
+&lt;p&gt;Thanks for your attention, regular posts will follow!&lt;/p&gt;
 </content:encoded>
 		</item>
 		<item>
@@ -677,27 +690,6 @@ So the goals are written down, but never reached or at least actively pursued.&l
 &lt;p&gt;&lt;a href="/assets/2018/equirectangular.png" data-lightbox="Equirectangular 360° Photo"&gt;&lt;img src="/assets/2018/equirectangular.png"/&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;So in order to be able to use such an image in Unity, the idea of creating a cubemap from a 360° photo is obvious. But there is an easier way, which I would like to show you now: Cubemap: I start with my image, which I import into Unity. Then I select it and change the &lt;em&gt;Texture Shape&lt;/em&gt; property from 2D to Cube. I then save the changes by hitting Apply and then create a new material. I change the shader from default to Skybox - Cubemap and specify the image I want to use.&lt;/p&gt;
 &lt;p&gt;That's almost it, now you only have to set the Skybox via &lt;em&gt;Window - Lighting Settings&lt;/em&gt; and already you have your image and can integrate it into your projects.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Maximize your Productivity</title>
-			<link>http://blog.mjurtz.com/posts/2018/10/maximize-your-productivity</link>
-			<description>&lt;p&gt;When you're at the beginning of your career as a software developer, like me, you probably know the feeling that you're being overwhelmed by everything you want to learn. Especially at the beginning it is often not easy to work productively and to learn why I want to show you which methodologies I have developed for myself. Even though I use my own experience, my approach is of course not limited to the industry.&lt;/p&gt;</description>
-			<author>Marcel Jurtz</author>
-			<guid>http://blog.mjurtz.com/posts/2018/10/maximize-your-productivity</guid>
-			<pubDate>Sun, 28 Oct 2018 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;When you're at the beginning of your career as a software developer, like me, you probably know the feeling that you're being overwhelmed by everything you want to learn. Especially at the beginning it is often not easy to work productively and to learn why I want to show you which methodologies I have developed for myself. Even though I use my own experience, my approach is of course not limited to the industry.&lt;/p&gt;
-&lt;h2 id="the-pomodoro-technique"&gt;The Pomodoro Technique&lt;/h2&gt;
-&lt;p&gt;In the beginning I focused very much on creating as much as possible and hardly allowing myself any breaks. But this is not feasible in the long run, your brain needs variety and chances for recovery. One of the first tools I discovered for myself to tackle exactly this point is the Pomodoro technique.&lt;/p&gt;
-&lt;p&gt;This method is based on alternating work intervals with regular pauses, but working between these pauses in a really focused and distraction-free way. By default, one interval lasts 25 minutes, followed by a break of five minutes. After you have completed four intervals, a longer break of 15 minutes follows.&lt;/p&gt;
-&lt;p&gt;The Pomodoro technique helped me on several levels. But the focus was not on the breaks, but on the focused work on a predefined task. I no longer jumped back and forth between different tasks, but divided my TODO list directly into intervals and could then stay with the current task.&lt;/p&gt;
-&lt;p&gt;Of course this technique is not a silver bullet. Especially in programming people often talk about the so-called flow state. This is the state when one is isolated from the environment and immersed in a task and can concentrate completely on it. It takes some time to get into this state, and 25 minutes is certainly not enough to work effectively in it. The Pomodoro technique is therefore less suitable for such tasks.&lt;/p&gt;
-&lt;p&gt;There are a number of tools that you can use to make this technique work. On the one hand, you can use a smartphone app (which automatically switches to flight mode during an interval if you wish), but there are also browser plug-ins or other desktop tools.&lt;/p&gt;
-&lt;h2 id="schedule-your-tasks"&gt;Schedule Your Tasks&lt;/h2&gt;
-&lt;p&gt;Another point I've built up in recent years is working according to a methodology. Do you come to the office in the morning and check your mails or the chat of your team to know what to do today? Take 15 minutes daily to plan your day and prioritize your tasks. It helps me enormously to plan my tasks instead of just doing what falls into my lap. I often combine this planning directly with the Pomodoro technique and define how many intervals I want to spend on a task. This helps me to make the planning more realistic and not to do too much.&lt;/p&gt;
-&lt;p&gt;I use Trello for task planning and misuse the Kanban board a little by splitting the columns into weekdays, using cards for tasks and assigning units to them by tags.&lt;/p&gt;
-&lt;h2 id="eliminate-distractions"&gt;Eliminate Distractions&lt;/h2&gt;
-&lt;p&gt;My final point is devoted to the distractions already mentioned. Do you know the feeling when you just had an idea how to fix a bug and then your phone rings? Such moments are, in my opinion, the biggest productivity killer. It's best not only to set your phone to silent, but also to disable notifications on the lock screen. I've often caught myself checking to see if there's anything new. If your lock screen stays tidy, the temptation to check messages or the like is significantly reduced.&lt;/p&gt;
 </content:encoded>
 		</item>
 	</channel>

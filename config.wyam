@@ -7,3 +7,4 @@ Settings[BlogKeys.Description] = "A Developers Blog";
 
 // Add any pipeline customizations here
 Settings[BlogKeys.IncludeDateInPostPath] = true;
+Settings[Keys.LinkHideExtensions] = false;

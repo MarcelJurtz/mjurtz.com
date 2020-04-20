@@ -6,6 +6,9 @@ layout: post
 permalink: /2019/11/moving-to-wyam
 categories:
   - blog
+ tags:
+  - blog
+  - cms
 ---
 
 It's been quiet for way too long here. I don't really have an excuse for my absence but I've been kind of busy, both personally and professionally. But I'm planning to post on here more frequently from now on.

@@ -6,7 +6,11 @@ layout: post
 permalink: /2020/04/editing-zwift-workouts-in-csharp
 categories:
   - csharp
+tags:
   - zwift
+  - csharp
+  - development
+  - xml
 ---
 
 I've been using [Zwift](https://zwift.com/eu-de) pretty extensively for the last few months. For anyone unfamiliar: Zwift is a VR Biking platform. That means, you can put your bike on a smarttrainer, connect it to your pc (directly via ant+ / ble or by bridging with your phone), and then you can ride virtual worlds without having to go outside. Sounds not too bad, right?

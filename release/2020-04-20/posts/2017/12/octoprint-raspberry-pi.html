@@ -1,0 +1,226 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+        <title>Marcel Jurtz - Octoprint on a Raspberry Pi</title>
+        <meta name="description" content="A Developers Blog" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+
+        <link type="application/rss+xml" rel="alternate" title="Marcel Jurtz" href="/feed.rss" />
+                <link type="application/atom+xml" rel="alternate" title="Marcel Jurtz" href="/feed.atom" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/clean-blog.css" rel="stylesheet" />
+        <link href="/assets/css/master.css" rel="stylesheet" />
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/override.css" rel="stylesheet" />
+
+
+        <meta name="application-name" content="Marcel Jurtz" />
+        <meta name="msapplication-tooltip" content="Marcel Jurtz" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Marcel Jurtz - Octoprint on a Raspberry Pi" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://blog.mjurtz.com/posts/2017/12/octoprint-raspberry-pi.html" />
+        <!-- TODO: More social graph meta tags -->
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118762636-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118762636-2');
+</script>
+
+
+        </head>
+        <body>
+                
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+                        <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header page-scroll">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="/">Marcel Jurtz</a>
+                                </div>
+                        
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse">
+                                        <ul class="nav navbar-nav navbar-right">
+                                                        <li><a href="/posts">Archive</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/about.html">About Me</a></li>
+ 
+                                        </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                        </div>
+                        <!-- /.container -->
+                </nav>
+                
+                <!-- Page Header -->
+                <header class="intro-header" id="intro-header">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+
+    
+<div class="post-heading">
+    <h1>Octoprint on a Raspberry Pi</h1>
+    <div class="meta">        
+Published on 23 December 2017<br>    </div>
+        <div class="tags">
+                    <a role="button" href="/tags/3d-printing.html" class="btn btn-default btn-xs">3d-printing</a>
+                    <a role="button" href="/tags/linux.html" class="btn btn-default btn-xs">linux</a>
+                    <a role="button" href="/tags/raspberry-pi.html" class="btn btn-default btn-xs">raspberry-pi</a>
+        </div>     
+</div>
+                                        </div>
+                                </div>
+                        </div>
+                </header>
+                
+                <!-- Main Content -->
+                <div class="container">
+                        <div class="row">
+                                <div id="content" class="col-md-12">
+                                        
+
+<p>Being tired of running back and forth to my 3D-printer to change stl files and starting / stopping prints, I decided to give <a href="https://octoprint.org/">Octoprint</a> a shot. Octoprint basically provides a webinterface for 3D-printers, which allows you to send tasks over your local network to the printer and to monitor the prints. The software also provides a plugin functionality, so you can create your custom addons if required.</p>
+<p>Note that you can use Octoprint for slicing, but in my case I will be starting of with only sending pre sliced stl files to print.</p>
+<h2 id="hardware-installation">Hardware &amp; Installation</h2>
+<p>In this article, I cover the usage in combination with a Raspberry Pi. If you have a spare Raspberry Pi 3, I recommend using it, since it has built in WIFI. However, you can of course also use older versions with wired connection or by adding a WIFI adapter.</p>
+<p>If you don't have anything installed on your pi, you can use <a href="https://github.com/guysoft/OctoPi">OctoPi</a>, which is a preconfigured image which includes Octoprint. However, since I already have raspbian installed, I'll install Octoprint manually.</p>
+<p>As you can see in the <a href="https://github.com/foosel/OctoPrint/wiki/Setup-on-a-Raspberry-Pi-running-Raspbian#basic-setup">installation guide</a>, you'll first need to install several packages for python. Of course, update your system first.</p>
+<p><code>bash sudo apt-get install python-pip python-dev python-setuptools python-virtualenv git libyaml-dev build-essential</code></p>
+<p>As soon as this is done, clone the repository from GitHub and run the installation script.</p>
+<pre><code class="language-bash">cd OctoPrint
+virtualenv venv
+./venv/bin/pip install pip --upgrade
+./venv/bin/python setup.py install
+mkdir ~/.octoprint```
+
+After installing, you might have to update user configuration:
+
+```bash sudo usermod -a -G tty pi
+sudo usermod -a -G dialout pi```
+
+Now, you should be able to start the service:
+
+```bash ~/OctoPrint/venv/bin/octoprint serve```
+
+You should be able to connect to the web interface by using the pi's IP on port 5000. After your first connect, you'll face an installation page. These steps are useful if you want to setup custom slicing for octoprint. Since I slice my models in cura and send stl files to the printer, I'll skip these steps.
+
+## Customization
+
+I currently don't have a webcam for my pi, so I won't install webcam support. However, you can check out the instructions [here](https://github.com/foosel/OctoPrint/wiki/Setup-on-a-Raspberry-Pi-running-Raspbian#webcam) if you'd like to do this.
+
+I'd like to set up my installation to automatically start when the pi boots up. These steps are also covered in the [installation guide](https://github.com/foosel/OctoPrint/wiki/Setup-on-a-Raspberry-Pi-running-Raspbian#automatic-start-up), but I'll wrap them up. Start by copying the init script and adjusting its privileges to be executable:
+
+```bash sudo cp ~/OctoPrint/scripts/octoprint.init /etc/init.d/octoprint
+sudo chmod +x /etc/init.d/octoprint
+sudo cp ~/OctoPrint/scripts/octoprint.default /etc/default/octoprint```
+
+Remove the comment-symbol (#) from the DAEMON-line in your ```bash /etc/default/octoprint``` file and add the script to your autostart with ```bash sudo update-rc.d octoprint defaults```.
+
+Besides having automatic startup enabled, you can now start, stop and monitor the octoprint service with ```bash sudo service octoprint [start / stop / restart / status]```.
+
+## Connecting to a 3D-Printer
+
+Well, that last step is quite simple. In my case, my Anet A8 came with a USB type B cable which can be direcly plugged into the Raspberry Pi. And that's it. After connecting to the printer, you can't just only upload files and print them, you're also able to see the files available on the printers sd card and restart older jobs.
+
+## Closing Thoughts
+
+While that first introduction gave me some insights on what octoprint is capable of, but I've definitely barely scratched the surface. One cool thing for example is the built in API, which allows you to connect for example Android apps to monitor temperatures or to upload files.
+
+All in all, I've had a great start with Octoprint and really recommend trying it out. Stay tuned for future updates!
+</code></pre>
+
+
+
+                                </div>
+                        </div>
+                </div>
+                
+                <hr>
+                
+                <!-- Footer -->
+                <footer>
+                        <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted">
+                        Copyright © 2020
+                        <br />
+                            <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                        |
+                            <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                        <br />
+                        <strong><a href="https://wyam.io">Generated by Wyam</a></strong>
+                    </p>
+                </div>
+        </div>
+</div>
+
+                </footer> 
+
+                <script src="/assets/js/jquery.min.js"></script>
+                <script src="/assets/js/bootstrap.min.js"></script>     
+                <script src="/assets/js/highlight.pack.js"></script>   
+                <script src="/assets/js/clean-blog.js"></script>
+                <script src="/assets/js/d3.v3.min.js"></script>
+                <script src="/assets/js/trianglify.min.js"></script>
+                <script src="/assets/js/Please-compressed.js"></script>
+                <script src="/assets/js/background-check.min.js"></script>
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+                        <script src="/assets/js/html5shiv.js"></script>
+                        <script src="/assets/js/respond.min.js"></script>
+                <![endif]-->
+                
+                
+                <script>hljs.initHighlightingOnLoad();</script>
+
+                        <script type="text/javascript">                
+                                // Header background                        
+                                var colors = Please.make_color({
+                                        colors_returned: 3,
+                                        saturation: .6
+                                });
+                                var t = new Trianglify({
+                                        x_gradient: colors,
+                                        y_gradient: ["#FFFFFF"]
+                                });
+                                var header = document.getElementById("intro-header");
+                                var pattern = t.generate(header.clientWidth, header.clientHeight);
+                                header.setAttribute('style', 'background-image: ' + pattern.dataUrl);                        
+                        </script>
+
+                <script>
+                        BackgroundCheck.init({
+                                targets: '.intro-header,.navbar',
+                                images: '.intro-header'
+                        });
+                </script>
+        </body>
+</html>
+

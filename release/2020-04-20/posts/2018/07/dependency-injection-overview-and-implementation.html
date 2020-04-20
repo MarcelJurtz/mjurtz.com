@@ -1,0 +1,402 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+        <title>Marcel Jurtz - Dependency Injection - Overview and Implementation</title>
+        <meta name="description" content="A Developers Blog" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+
+        <link type="application/rss+xml" rel="alternate" title="Marcel Jurtz" href="/feed.rss" />
+                <link type="application/atom+xml" rel="alternate" title="Marcel Jurtz" href="/feed.atom" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/clean-blog.css" rel="stylesheet" />
+        <link href="/assets/css/master.css" rel="stylesheet" />
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/override.css" rel="stylesheet" />
+
+
+        <meta name="application-name" content="Marcel Jurtz" />
+        <meta name="msapplication-tooltip" content="Marcel Jurtz" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Marcel Jurtz - Dependency Injection - Overview and Implementation" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://blog.mjurtz.com/posts/2018/07/dependency-injection-overview-and-implementation.html" />
+        <!-- TODO: More social graph meta tags -->
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118762636-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118762636-2');
+</script>
+
+
+        </head>
+        <body>
+                
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+                        <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header page-scroll">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="/">Marcel Jurtz</a>
+                                </div>
+                        
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse">
+                                        <ul class="nav navbar-nav navbar-right">
+                                                        <li><a href="/posts">Archive</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/about.html">About Me</a></li>
+ 
+                                        </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                        </div>
+                        <!-- /.container -->
+                </nav>
+                
+                <!-- Page Header -->
+                <header class="intro-header" id="intro-header">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+
+    
+<div class="post-heading">
+    <h1>Dependency Injection - Overview and Implementation</h1>
+    <div class="meta">        
+Published on 23 July 2018<br>    </div>
+        <div class="tags">
+                    <a role="button" href="/tags/CSharp.html" class="btn btn-default btn-xs">CSharp</a>
+                    <a role="button" href="/tags/development.html" class="btn btn-default btn-xs">development</a>
+                    <a role="button" href="/tags/DI.html" class="btn btn-default btn-xs">DI</a>
+                    <a role="button" href="/tags/IoC.html" class="btn btn-default btn-xs">IoC</a>
+                    <a role="button" href="/tags/pattern.html" class="btn btn-default btn-xs">pattern</a>
+                    <a role="button" href="/tags/software.html" class="btn btn-default btn-xs">software</a>
+        </div>     
+</div>
+                                        </div>
+                                </div>
+                        </div>
+                </header>
+                
+                <!-- Main Content -->
+                <div class="container">
+                        <div class="row">
+                                <div id="content" class="col-md-12">
+                                        
+
+<p>Especially when you are at the beginning of your career as a software developer, you probably know that:
+You have already picked up the term &quot;Dependency Injection&quot;, but can't do anything with it directly?
+Then today's post is for you!</p>
+<p>I will introduce you to the principle, functionality and the types of dependency injection.
+Finally, I'll show you how to write a simple IoC container. And don't worry if you are unfamiliar with the different terms,
+I will explain everything, you don't need any previous knowledge.
+However, certain basic knowledge in software development is definitely an advantage today.
+My code examples are written in C#, but you will have no problems understanding them if you are used to another programming language.</p>
+<h2 id="what-is-dependency-injection">What is Dependency Injection?</h2>
+<p>Dependency Injection (DI) is a term from the topic area &quot;Inversion of Control&quot; (IoC).
+IoC is a fundamental concept, DI is its implementation. An IoC container is a framework for dependency injection.</p>
+<p>DI is the last point of Robert Martin's SOLID principle.
+Martin defines that high-level modules should not depend on low-level modules, instead an abstraction level should be used.
+The easiest way to get a grasp on the concept is to look at an example:
+Let's think of a program which processes input from the keyboard and sends it to a printer.
+This can be implemented by combining a class &quot;printer&quot; and &quot;keyboard&quot;. So far, so good.
+However, this approach becomes problematic if the code should be extended, for example to support other input or output devices.</p>
+<p>Martin's solution is to use abstraction layers that could be implemented as follows:
+Instead of the communication between the concrete classes &quot;printer&quot; and &quot;keyboard&quot;,
+the abstractions &quot;reader&quot; and &quot;writer&quot; are used. These can be base classes, from which the concrete classes then inherit.
+The program flow only requires access to the base class, the implementation details are irrelevant.
+Changes and extensions are now possible without any problems.</p>
+<h2 id="and-what-is-inversion-of-control">And what is Inversion of Control?</h2>
+<p>IoC is the underlying concept behind DI. As the name suggests, there is a inversion of control flow in the program.
+Different use cases are imaginable, for example inversion of control over the flow of the application,
+but also inversion of control over instantiation and binding of dependencies.</p>
+<p>The first of these cases can be thought of as a comparison between a typical console application and a GUI application.
+The console application determines the process flow and waits for user interaction,
+while the user determines the process flow for the GUI application.</p>
+<p>The second case aims to create required elements before they are required. In concrete terms,
+this means that objects are not created in the class in which they are needed, but before.
+They are then bound using constructor parameters or property setters, for example.</p>
+<p>Other techniques that follow this approach include the factory pattern or the service locator pattern.</p>
+<h2 id="di-in-action">DI in Action</h2>
+<p>Enough theory. The best way to understand the concept is to use examples.
+There are three types of dependency injection that I want you to understand:</p>
+<p>Constructor Injection is probably the most commonly used type.
+A class is created and passed to the dependent class using constructor parameters
+instead of being instantiated in the dependent class itself.</p>
+<p>The following example illustrates this with the class User,
+which accepts a constructor parameter of type IContactOption.
+The instance of an implementation of the interface is not created in the class itself,
+but is specified externally. The interface only has a SendMessage method.</p>
+<pre><code class="language-csharp">public class User
+{
+    private IContactOption _primaryContact;
+
+    public User(IContactOption contactOption)
+    {
+        _primaryContact = contactOption;
+    }
+}
+
+// …
+
+IContactOption contactOption = new EMailContact();
+User marcel = new User(contactOption);
+</code></pre>
+<p>The second category is the Setter Injection. No constructor parameter is used, but a property, which is set from the outside.</p>
+<pre><code class="language-csharp">public class User
+{
+    public IContactOption PrimaryContact;
+}
+
+// …
+
+IContactOption contactOption = new EMailContact();
+User marcel = new User();
+marcel.PrimaryContact = contactOption;
+</code></pre>
+<p>The last category is a little bit more complicated, you will find this form in the real world much rarer than the other two.
+Interface injection is based on the dependent class implementing an interface for setting a variable.</p>
+<pre><code class="language-csharp">public interface IDependOnContactOption
+{
+  void Inject(IContactOption contactOption);
+}
+
+public class User : IDependOnContactOption
+{
+  private IContactOption _primaryContact;
+
+  public void Inject(IContactOption contactOption)
+  {
+    _primaryContact = contactOption;
+  }
+}
+
+// …
+
+IContactOption contactOption = new EMailContact();
+User marcel = new User();
+marcel.Inject(contactOption);
+</code></pre>
+<p>Well, that's actually it. The implementation of the concept is far less complicated than the theory.
+However, we still lack the concrete application in our project, which will be discussed next.
+But first, I would like to issue a warning:</p>
+<p>DI has a lot of advantages, but you should be careful with its use.
+DI leaks implementation details of your classes and thus contradicts the principle of encapsulation.
+In addition, the corresponding objects are always created before they are even needed.
+Here you should keep an eye on the performance of your application and decide when you really need the approach.
+DI also partially obscures problems in the structure of your classes.
+Testing your applications will be much easier because you can easily pass mocks,
+but you may overlook indications that a class should be divided into two or more components.</p>
+<h2 id="structure-of-an-ioc-container">Structure of an IoC Container</h2>
+<p>An IoC container is a framework for implementing dependency injection.
+The basic feature here is the automatic resolution of dependencies via an overall class, the so-called resolver.
+Let's look at the following implementation:</p>
+<pre><code class="language-csharp">public class Resolver
+{
+    public IContactOption ResolveContactOption()
+    {
+        return new EMailContact();
+    }
+}
+</code></pre>
+<p>This very simple example returns an EMailContact object for the IContactOption request.
+In practice, of course, you will have several options here, but there is already a problem with this implementation:
+it cannot be extended. Each interface I want to support requires its own method.
+I would prefer an implementation that allows something like: IContactOption contactOption = resolver.Resolve<IContactOption>();</p>
+<p>And that is exactly what we want to implement now.
+This can be achieved by creating a Dictionary&lt;Type, Type&gt; to link the interfaces with the appropriate values.
+The entries must be accessible from the outside.
+Then, when requesting an implementation by calling resolve with its interface as argument,
+I will receive an instance of the concrete class.</p>
+<p>To be able to test this more easily, I have adapted my previous classes as follows:</p>
+<pre><code class="language-csharp">public interface IContactOption
+{
+    void SendMessage(String message);
+}
+
+public class EMailContact : IContactOption
+{
+    public void SendMessage(String message)
+    {
+        Console.WriteLine(&quot;An email has been sent!&quot;);
+    }
+}
+
+public class User
+{
+    private IContactOption _primaryContact;
+   
+    public User(IContactOption contactOption)
+    {
+        _primaryContact = contactOption;
+    }
+
+    public void Contact(String message)
+    {
+        _primaryContact.SendMessage(message);
+    }
+}
+</code></pre>
+<p>The resolver is implemented as follows: I've created  a method for registering classes and interfaces.
+The resolve-part is done by implementing a method that allows instances to be retrieved using the predefined matching rules.
+The resolving process is as follows: The system first checks whether a suitable entry is stored in the dictionary.
+If this is the case, the system checks whether the stored type has constructor parameters that must be instantiated.
+In the case of a default constructor without parameters, the type is instantiated and this instance is returned.
+Otherwise, the constructor parameters are collected and also instantiated. Here, too, the new instance is returned.
+This way, I'm able to support nested objects.</p>
+<pre><code class="language-csharp">public class Resolver
+{
+    private Dictionary&lt;Type, Type&gt; _registrations;
+
+    public Resolver()
+    {
+        _registrations = new Dictionary&lt;Type, Type&gt;();
+    }
+
+    public void Register&lt;TKey, TValue&gt;()
+    {
+        _registrations.Add(typeof(TKey), typeof(TValue));
+    }
+
+    public T Resolve&lt;T&gt;()
+    {
+        return (T)Resolve(typeof(T));
+    }
+
+    private object Resolve(Type typeToResolve)
+    {
+        Type resolvedType = null;
+
+        try
+        {
+            resolvedType = _registrations[typeToResolve];
+        }
+        catch(KeyNotFoundException)
+        {
+            throw;
+        }
+
+        var constructor = resolvedType.GetConstructors().First();
+        var constParams = constructor.GetParameters();
+
+        if (constParams.Count() == 0)
+            return Activator.CreateInstance(resolvedType);
+
+        IList&lt;object&gt; parameters = new List&lt;object&gt;();
+        foreach(var parameter in constParams)
+        {
+            parameters.Add(Resolve(parameter.ParameterType));
+        }
+
+        return constructor.Invoke(parameters.ToArray());
+    }
+}
+</code></pre>
+<p>To be able to use the container now, only the registration of the relevant types is necessary. This may look like this:</p>
+<pre><code class="language-csharp">resolver.Register&lt;User, User&gt;();
+resolver.Register&lt;IContactOption, EMailContact&gt;();
+
+User marcel = resolver.Resolve&lt;User&gt;();
+marcel.Contact(&quot;Hello World!&quot;);
+</code></pre>
+<p>The parameter IContactOption for User is automatically instantiated and assigned as EMailContact by the mapping. The call in the last line accordingly outputs the text &quot;An email has been sent&quot;.</p>
+<h2 id="resume">Résumé</h2>
+<p>In a real application you will hardly implement your own IoC container, but use existing solutions.
+Nevertheless, I found the own implementation very helpful in order to be able to better understand the actual concept.
+If you want to look at the available solutions, Unity (not the gaming engine),
+Castle Windsor and Ninject are probably the most widely used products (for C#).
+However, the way this works is all similar (though not quite as primitive) to our own implementation.</p>
+
+
+
+                                </div>
+                        </div>
+                </div>
+                
+                <hr>
+                
+                <!-- Footer -->
+                <footer>
+                        <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted">
+                        Copyright © 2020
+                        <br />
+                            <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                        |
+                            <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                        <br />
+                        <strong><a href="https://wyam.io">Generated by Wyam</a></strong>
+                    </p>
+                </div>
+        </div>
+</div>
+
+                </footer> 
+
+                <script src="/assets/js/jquery.min.js"></script>
+                <script src="/assets/js/bootstrap.min.js"></script>     
+                <script src="/assets/js/highlight.pack.js"></script>   
+                <script src="/assets/js/clean-blog.js"></script>
+                <script src="/assets/js/d3.v3.min.js"></script>
+                <script src="/assets/js/trianglify.min.js"></script>
+                <script src="/assets/js/Please-compressed.js"></script>
+                <script src="/assets/js/background-check.min.js"></script>
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+                        <script src="/assets/js/html5shiv.js"></script>
+                        <script src="/assets/js/respond.min.js"></script>
+                <![endif]-->
+                
+                
+                <script>hljs.initHighlightingOnLoad();</script>
+
+                        <script type="text/javascript">                
+                                // Header background                        
+                                var colors = Please.make_color({
+                                        colors_returned: 3,
+                                        saturation: .6
+                                });
+                                var t = new Trianglify({
+                                        x_gradient: colors,
+                                        y_gradient: ["#FFFFFF"]
+                                });
+                                var header = document.getElementById("intro-header");
+                                var pattern = t.generate(header.clientWidth, header.clientHeight);
+                                header.setAttribute('style', 'background-image: ' + pattern.dataUrl);                        
+                        </script>
+
+                <script>
+                        BackgroundCheck.init({
+                                targets: '.intro-header,.navbar',
+                                images: '.intro-header'
+                        });
+                </script>
+        </body>
+</html>
+

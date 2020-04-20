@@ -1,0 +1,235 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+        <title>Marcel Jurtz - Simplify your CSS - LESS is more</title>
+        <meta name="description" content="A Developers Blog" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+
+        <link type="application/rss+xml" rel="alternate" title="Marcel Jurtz" href="/feed.rss" />
+                <link type="application/atom+xml" rel="alternate" title="Marcel Jurtz" href="/feed.atom" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/clean-blog.css" rel="stylesheet" />
+        <link href="/assets/css/master.css" rel="stylesheet" />
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/override.css" rel="stylesheet" />
+
+
+        <meta name="application-name" content="Marcel Jurtz" />
+        <meta name="msapplication-tooltip" content="Marcel Jurtz" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Marcel Jurtz - Simplify your CSS - LESS is more" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://blog.mjurtz.com/posts/2018/06/less-css.html" />
+        <!-- TODO: More social graph meta tags -->
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118762636-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118762636-2');
+</script>
+
+
+        </head>
+        <body>
+                
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+                        <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header page-scroll">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="/">Marcel Jurtz</a>
+                                </div>
+                        
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse">
+                                        <ul class="nav navbar-nav navbar-right">
+                                                        <li><a href="/posts">Archive</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/about.html">About Me</a></li>
+ 
+                                        </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                        </div>
+                        <!-- /.container -->
+                </nav>
+                
+                <!-- Page Header -->
+                <header class="intro-header" id="intro-header">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+
+    
+<div class="post-heading">
+    <h1>Simplify your CSS - LESS is more</h1>
+    <div class="meta">        
+Published on 17 June 2018<br>    </div>
+        <div class="tags">
+                    <a role="button" href="/tags/aspnet.html" class="btn btn-default btn-xs">asp.net</a>
+                    <a role="button" href="/tags/css.html" class="btn btn-default btn-xs">css</a>
+                    <a role="button" href="/tags/development.html" class="btn btn-default btn-xs">development</a>
+                    <a role="button" href="/tags/html.html" class="btn btn-default btn-xs">html</a>
+                    <a role="button" href="/tags/web.html" class="btn btn-default btn-xs">web</a>
+        </div>     
+</div>
+                                        </div>
+                                </div>
+                        </div>
+                </header>
+                
+                <!-- Main Content -->
+                <div class="container">
+                        <div class="row">
+                                <div id="content" class="col-md-12">
+                                        
+
+<p>First things first: I am not a web developer and certainly not a designer. The following examples are not intended to represent good practices in terms of design or aesthetics.</p>
+<p>But now to the topic: As a software developer you can hardly avoid acquiring basic knowledge in web development. Specifically, I mean the handling of HTML and CSS, also in JavaScript as far as I'm concerned. If you are like me, you basically have no problems with it, but CSS files will become quite confusing and difficult to revise over time. Let's look at some problems I think CSS has, then I'll show you how to solve them.</p>
+<h2 id="the-problems-of-css">The Problems of CSS</h2>
+<p>The thing that probably bothers me the most is the lack of variables in CSS. Whether to define color codes or font sizes: the constant duplication of corresponding entries makes me crazy, especially if something needs to be changed. Oh, and how about calculating values based on variables? For example something like: format each h2 tag with a font size like h1, only 2 units smaller? Nope.</p>
+<p>Another point is the transparency of nested statements. Long-winded listings of nestings in nestings lead to an almost endless number of CSS statements that no one will have an overview of later. Not to mention old entries that are no longer needed, but are simply overlooked.</p>
+<h2 id="less-is-more">LESS is more</h2>
+<p>Well, there are more problems than I have presented that we will solve now. However, I have only gone into what I think are really essential things that bother me about CSS.</p>
+<p>LESS is an extension to CSS, which means that all CSS code is also valid LESS code. LESS, however, offers various ways of circumventing the problems described above. But before I go into these, I would like to show you how you can use LESS at all.</p>
+<p>There are two ways to integrate LESS into your website. One possibility is the conversion from LESS to CSS and the integration of the resulting CSS file into your website (as usual). Alternatively, the LESS file can also be included directly, in combination with <a href="http://lesscss.org/usage/">LessJs</a>, which only evaluates the stylesheets on the client side. I prefer the first option because I don't have to rely on additional JS libraries.</p>
+<p>If you also choose this approach, there are several ways to do the processing. There are special websites that work on a copy and paste basis, but I prefer to use something like the Gulp integration for ASP.NET Core in Visual Studio. Click <a href="https://docs.microsoft.com/en-us/aspnet/core/client-side/less-sass-fa?view=aspnetcore-2.1">here</a> for more information.</p>
+<p>Now that the basic structure is in place, we can start with the features themselves.</p>
+<p>The first thing I mentioned was using variables that are missing in CSS. LESS offers this functionality, let's look at an example.</p>
+<pre><code class="language-css">&#64;blue: #008FFF; 
+&#64;defaultFontSize: 15px; 
+
+p { 
+    color: &#64;blue; 
+    font-size: &#64;defaultFontSize; 
+} 
+</code></pre>
+<p>As you can see, variables are declared with an &#64; character. Variables can be used for various elements, such as colors and sizes. Also, variables can be calculated by using regular arithmetic operators (this also works for colors).</p>
+<p>My second point was the use of nested statements. LESS offers the possibility to style nested elements as follows:</p>
+<pre><code class="language-css">.sidebar { 
+  float: left; 
+
+  ul { 
+    padding: 10px; 
+    list-style-type: none; 
+
+    a { 
+      color: &#64;link; 
+      text-decoration: none; 
+    } 
+  } 
+} 
+</code></pre>
+<p>I think the result of this example is quite easy to understand. The nested CSS statements apply to HTML elements nested in the same style. The statement for the a tag therefore only applies to those elements that lie within an unordered list, which in turn lies in an element of the'sidebar' class.</p>
+<p>Those were all the features I really missed. But as promised, there are more: LESS offers possibilities for calculating color values, mixins, imports for distributed CSS files and own functions. I will conclude todays post with a brief comment on the individual elements:</p>
+<p>Another feature are the so-called mixins. These allow the usage of CSS classes within statements. Let's look at an example:</p>
+<pre><code class="language-css">.borderAll { 
+  border: 1px solid black; 
+} 
+
+.sidebar { 
+  background-color: red; 
+  .borderAll 
+} 
+
+</code></pre>
+<p>LESS offers predefined functions with which (color) values can be manipulated. A complete overview of available functions can be found here, but their use is identical according to the following syntax:</p>
+<pre><code class="language-css">color: saturate(&#64;green, 25%); 
+</code></pre>
+<p>Finally, I would like to show you how to use import statements. You may know the include function of PHP. It's kind of the same thing. You can use it to include other CSS or LESS files and thus distribute your instructions. If you omit the file extension, a matching LESS file is automatically searched for.</p>
+<pre><code class="language-css">&#64;import &quot;base.css&quot;; 
+</code></pre>
+<p>I am aware that this short summary is by no means a complete guide to working with LESS. But I hope that I could arouse a little interest and even make your work with CSS a little easier. As in most such topics, the same applies here: Just give it a try. By applying it you will learn the fastest. A full overview of the features can be found on the <a href="http://lesscss.org/">official website</a>.</p>
+
+
+
+                                </div>
+                        </div>
+                </div>
+                
+                <hr>
+                
+                <!-- Footer -->
+                <footer>
+                        <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted">
+                        Copyright © 2020
+                        <br />
+                            <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                        |
+                            <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                        <br />
+                        <strong><a href="https://wyam.io">Generated by Wyam</a></strong>
+                    </p>
+                </div>
+        </div>
+</div>
+
+                </footer> 
+
+                <script src="/assets/js/jquery.min.js"></script>
+                <script src="/assets/js/bootstrap.min.js"></script>     
+                <script src="/assets/js/highlight.pack.js"></script>   
+                <script src="/assets/js/clean-blog.js"></script>
+                <script src="/assets/js/d3.v3.min.js"></script>
+                <script src="/assets/js/trianglify.min.js"></script>
+                <script src="/assets/js/Please-compressed.js"></script>
+                <script src="/assets/js/background-check.min.js"></script>
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+                        <script src="/assets/js/html5shiv.js"></script>
+                        <script src="/assets/js/respond.min.js"></script>
+                <![endif]-->
+                
+                
+                <script>hljs.initHighlightingOnLoad();</script>
+
+                        <script type="text/javascript">                
+                                // Header background                        
+                                var colors = Please.make_color({
+                                        colors_returned: 3,
+                                        saturation: .6
+                                });
+                                var t = new Trianglify({
+                                        x_gradient: colors,
+                                        y_gradient: ["#FFFFFF"]
+                                });
+                                var header = document.getElementById("intro-header");
+                                var pattern = t.generate(header.clientWidth, header.clientHeight);
+                                header.setAttribute('style', 'background-image: ' + pattern.dataUrl);                        
+                        </script>
+
+                <script>
+                        BackgroundCheck.init({
+                                targets: '.intro-header,.navbar',
+                                images: '.intro-header'
+                        });
+                </script>
+        </body>
+</html>
+

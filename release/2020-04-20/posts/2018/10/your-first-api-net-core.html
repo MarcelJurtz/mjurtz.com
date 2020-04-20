@@ -1,0 +1,259 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+        <title>Marcel Jurtz - Building your first API in .NET Core</title>
+        <meta name="description" content="A Developers Blog" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+
+        <link type="application/rss+xml" rel="alternate" title="Marcel Jurtz" href="/feed.rss" />
+                <link type="application/atom+xml" rel="alternate" title="Marcel Jurtz" href="/feed.atom" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/clean-blog.css" rel="stylesheet" />
+        <link href="/assets/css/master.css" rel="stylesheet" />
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/override.css" rel="stylesheet" />
+
+
+        <meta name="application-name" content="Marcel Jurtz" />
+        <meta name="msapplication-tooltip" content="Marcel Jurtz" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Marcel Jurtz - Building your first API in .NET Core" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://blog.mjurtz.com/posts/2018/10/your-first-api-net-core.html" />
+        <!-- TODO: More social graph meta tags -->
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118762636-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118762636-2');
+</script>
+
+
+        </head>
+        <body>
+                
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+                        <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header page-scroll">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="/">Marcel Jurtz</a>
+                                </div>
+                        
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse">
+                                        <ul class="nav navbar-nav navbar-right">
+                                                        <li><a href="/posts">Archive</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/about.html">About Me</a></li>
+ 
+                                        </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                        </div>
+                        <!-- /.container -->
+                </nav>
+                
+                <!-- Page Header -->
+                <header class="intro-header" id="intro-header">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+
+    
+<div class="post-heading">
+    <h1>Building your first API in .NET Core</h1>
+    <div class="meta">        
+Published on 21 October 2018<br>    </div>
+        <div class="tags">
+                    <a role="button" href="/tags/development.html" class="btn btn-default btn-xs">development</a>
+                    <a role="button" href="/tags/net.html" class="btn btn-default btn-xs">net</a>
+                    <a role="button" href="/tags/netcore.html" class="btn btn-default btn-xs">netcore</a>
+                    <a role="button" href="/tags/software.html" class="btn btn-default btn-xs">software</a>
+        </div>     
+</div>
+                                        </div>
+                                </div>
+                        </div>
+                </header>
+                
+                <!-- Main Content -->
+                <div class="container">
+                        <div class="row">
+                                <div id="content" class="col-md-12">
+                                        
+
+<p>Today I want to show you how to develop your first API with .NET Core.</p>
+<p>.NET Core is an alternative to the classic .NET Framework. In contrast to the .NET Framework, .NET Core offers a huge advantage: It is platform-independent and therefore compatible with MacOS, Linux and Windows.</p>
+<p>The purpose of this article is to build a small REST-based API, which will respond to HTTP GET-requests. Of course you can extend the project according to your own ideas and experiment around.</p>
+<h1 id="setup-and-installation">Setup and Installation</h1>
+<p>First of all you need to install the .NET Core SDK. You can download it directly from <a href="https://www.microsoft.com/net/download">Microsoft</a>, where you will find two different links. On the one hand you will find the Runtime Environment, as well as the SDK, which also contains the RE, but additionally tools for development. Download and install the SDK for the platform of your choice.</p>
+<p>In addition, it is a good idea to use an IDE for development. You can use Visual Studio for this, or alternatively you can use Visual Studio Code or JetBrains Rider.</p>
+<p>Since I'm currently working on Linux, I'll use Visual Studio Code.</p>
+<h1 id="create-a-project">Create a project</h1>
+<p>When working with .NET Core, the command line is used a lot at the moment. One such point is the creation of a project. Basically you can use any command line interface here, be it the terminal integrated in VS Code or the Windows Power Shell.</p>
+<p>The first command you need to know is dotnet new.  This command initializes a new project, appending the type of the project. For each dotnet command, you can display operating information by appending <em>help</em>. In the case of <em>dotnet new help</em> you will be shown among other things the possible project types.</p>
+<p>We want to create a new ASP .NET Core MVC project. But I don't want to have a preconfiguration, so I initialize my new project with <em>dotnet new web</em>.</p>
+<h1 id="adaptation-of-the-project-implementation-of-the-api">Adaptation of the project &amp; implementation of the API</h1>
+<p>First the Startup.cs class needs to be reworked. I've made some minor changes, which you can find in the following snippet:</p>
+<pre><code class="language-csharp">using System; 
+using System.Collections.Generic; 
+using System.Linq; 
+using System.Threading.Tasks; 
+using Microsoft.AspNetCore.Builder; 
+using Microsoft.AspNetCore.Hosting; 
+using Microsoft.AspNetCore.Http; 
+using Microsoft.AspNetCore.Mvc; 
+using Microsoft.Extensions.DependencyInjection; 
+
+namespace ApiSample 
+{ 
+  public class Startup 
+  { 
+    // This method gets called by the runtime. Use this method to add services to the container. 
+    // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940 
+    public void ConfigureServices(IServiceCollection services) 
+    {
+      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+    } 
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env) 
+    {
+      if (env.IsDevelopment()) 
+      { 
+        app.UseDeveloperExceptionPage(); 
+      } 
+      else 
+      { 
+        // Enforce HTTPS for Requests 
+        app.UseHsts(); 
+      } 
+
+      app.UseHttpsRedirection(); 
+      app.UseMvc(); 
+    } 
+  } 
+}
+</code></pre>
+<p>Once everything is configured, the API can be implemented. I want to build a really simple implementation that returns the status of the service. An HTTP GET request should be answered with an info message telling the caller that the API is running.</p>
+<p>First of all we need a model class, which I built as follows:</p>
+<pre><code class="language-csharp">namespace ApiSample.Models 
+{ 
+  public class ApplicationState 
+  { 
+    public string Information { get; set; } 
+  } 
+} 
+</code></pre>
+<p>The heart of the API is the controller that handles the requests. So I add a new controller to my project that responds to GET requests via the <em>/api</em> route. The implementation looks like this:</p>
+<pre><code class="language-csharp">namespace ApiSample.Controllers 
+{ 
+  [Route(&quot;api/&quot;)] 
+  [ApiController] 
+  public class SampleController : ControllerBase 
+  { 
+    public ActionResult&lt;ApplicationState&gt; GetApplicationState() 
+    { 
+      return new ApplicationState() { Information = &quot;API is running&quot; }; 
+    } 
+  } 
+} 
+</code></pre>
+<p>If you have already worked with older versions of ASP .NET, you may have been using IActionResult as the return type. Now you can directly use the generic class ActionResult, where the type in braces is the type of the model which is stored in the response. On the one hand, this helps you with the readability of your methods, since the result is directly visible. This in turn is very helpful if you use things like automatic documentation based on method headers.</p>
+<p>Basically the structure as you can see is kept very simple. And that's it for now. Start your project with the command <em>dotnet run</em>, you will get the address and port where the application is running. With a browser of your choice or a test tool like Postman you can now test the API. By calling the address with the attachment <em>/api</em> you should finally get the expected status message.</p>
+<h1 id="further-information">Further information</h1>
+<p>This article really only shows the information you need to get started with the topic. If I could arouse your interest, you can read on directly at <a href="https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-2.1">Microsoft</a>. But of course there are also several other articles about the topic, let your creativity run free and just try a little bit around.</p>
+
+
+
+                                </div>
+                        </div>
+                </div>
+                
+                <hr>
+                
+                <!-- Footer -->
+                <footer>
+                        <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted">
+                        Copyright © 2020
+                        <br />
+                            <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                        |
+                            <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                        <br />
+                        <strong><a href="https://wyam.io">Generated by Wyam</a></strong>
+                    </p>
+                </div>
+        </div>
+</div>
+
+                </footer> 
+
+                <script src="/assets/js/jquery.min.js"></script>
+                <script src="/assets/js/bootstrap.min.js"></script>     
+                <script src="/assets/js/highlight.pack.js"></script>   
+                <script src="/assets/js/clean-blog.js"></script>
+                <script src="/assets/js/d3.v3.min.js"></script>
+                <script src="/assets/js/trianglify.min.js"></script>
+                <script src="/assets/js/Please-compressed.js"></script>
+                <script src="/assets/js/background-check.min.js"></script>
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+                        <script src="/assets/js/html5shiv.js"></script>
+                        <script src="/assets/js/respond.min.js"></script>
+                <![endif]-->
+                
+                
+                <script>hljs.initHighlightingOnLoad();</script>
+
+                        <script type="text/javascript">                
+                                // Header background                        
+                                var colors = Please.make_color({
+                                        colors_returned: 3,
+                                        saturation: .6
+                                });
+                                var t = new Trianglify({
+                                        x_gradient: colors,
+                                        y_gradient: ["#FFFFFF"]
+                                });
+                                var header = document.getElementById("intro-header");
+                                var pattern = t.generate(header.clientWidth, header.clientHeight);
+                                header.setAttribute('style', 'background-image: ' + pattern.dataUrl);                        
+                        </script>
+
+                <script>
+                        BackgroundCheck.init({
+                                targets: '.intro-header,.navbar',
+                                images: '.intro-header'
+                        });
+                </script>
+        </body>
+</html>
+

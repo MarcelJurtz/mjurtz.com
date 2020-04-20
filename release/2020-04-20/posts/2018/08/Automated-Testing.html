@@ -1,0 +1,244 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+
+        <title>Marcel Jurtz - Automated Testing</title>
+        <meta name="description" content="A Developers Blog" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
+
+        <link type="application/rss+xml" rel="alternate" title="Marcel Jurtz" href="/feed.rss" />
+                <link type="application/atom+xml" rel="alternate" title="Marcel Jurtz" href="/feed.atom" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/clean-blog.css" rel="stylesheet" />
+        <link href="/assets/css/master.css" rel="stylesheet" />
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/override.css" rel="stylesheet" />
+
+
+        <meta name="application-name" content="Marcel Jurtz" />
+        <meta name="msapplication-tooltip" content="Marcel Jurtz" />
+        <meta name="msapplication-starturl" content="/" />
+
+        <meta property="og:title" content="Marcel Jurtz - Automated Testing" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://blog.mjurtz.com/posts/2018/08/Automated-Testing.html" />
+        <!-- TODO: More social graph meta tags -->
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118762636-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-118762636-2');
+</script>
+
+
+        </head>
+        <body>
+                
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+                        <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header page-scroll">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand" href="/">Marcel Jurtz</a>
+                                </div>
+                        
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="navbar-collapse">
+                                        <ul class="nav navbar-nav navbar-right">
+                                                        <li><a href="/posts">Archive</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><a href="/about.html">About Me</a></li>
+ 
+                                        </ul>
+                                </div>
+                                <!-- /.navbar-collapse -->
+                        </div>
+                        <!-- /.container -->
+                </nav>
+                
+                <!-- Page Header -->
+                <header class="intro-header" id="intro-header">
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-md-12">
+
+    
+<div class="post-heading">
+    <h1>Automated Testing</h1>
+    <div class="meta">        
+Published on 05 August 2018<br>    </div>
+        <div class="tags">
+                    <a role="button" href="/tags/development.html" class="btn btn-default btn-xs">development</a>
+                    <a role="button" href="/tags/methodology.html" class="btn btn-default btn-xs">methodology</a>
+                    <a role="button" href="/tags/programming.html" class="btn btn-default btn-xs">programming</a>
+        </div>     
+</div>
+                                        </div>
+                                </div>
+                        </div>
+                </header>
+                
+                <!-- Main Content -->
+                <div class="container">
+                        <div class="row">
+                                <div id="content" class="col-md-12">
+                                        
+
+<p>Todays focus is on how you can test your applications automatically to detect bugs early and improve your code quality.</p>
+<p>I want to introduce you to the concept of automated testing.
+In order to make the content accessible to as many users as possible,
+I will not use code examples and concentrate purely on the underlying idea instead.
+Once you understand them, you will have no problems implementing the concept in the programming language of your choice.</p>
+<p>First of all: What is automated testing and what advantages does it offer?</p>
+<p>Automated testing describes writing code that tests your actual code.
+Your source code consists of the production code and test code.</p>
+<p>Think of how you may test the functionality of your software.
+You start the application and log in with your user account if necessary.
+You navigate to the feature you are working on and perform your tests.
+You repeat that for different possibilities.</p>
+<p>You can see from the short description that the whole process is quite time-consuming.
+Each change requires a new run through the procedure and new functions increase the time exponentially.
+And this is exactly where automation comes into play.</p>
+<p>Automated tests can be performed at the push of a button and repeated as often as required.
+In addition, they run much faster than manual tests.
+The repeatability means that no more time is required to test existing functionality when adding new features.
+Basically, bugs are better found because no test scenarios are forgotten,
+this procedure strengthens confidence in deployment and allows calmer weekends when a release is to be rolled out on Fridays.</p>
+<p>The repeatability of such tests brings another advantage that only becomes apparent at second glance: refactoring,
+i.e. changing code without influencing its functionality,
+is also easier to do. Possible effects of changes on other components of the application can thus be identified directly.</p>
+<p>Finally, you automatically think more about the quality of your code as you write it,
+for example, to handle invalid input.</p>
+<p>In general, tests are divided into three different categories:</p>
+<p>Unit tests test individual entities without external dependencies.
+For example, a single function is tested, but things like database connections etc. are not considered.
+It is only necessary to validate the correctness of the implementation.
+Unit tests are cheap to write and quick to test, but do not provide complete confidence by ignoring dependencies.</p>
+<p>Integration tests test an application under consideration of dependencies.
+These tests are often slower because, external resources may have to be accessed,
+but these tests also provide more confidence in the application.</p>
+<p>The last category is end-to-end testing. These describe the direct execution of an application via its graphical interface.
+By imitating human behavior, the tests are correspondingly slow and can already be broken by minor changes in the source code.</p>
+<p>So much for that. But what exactly is to be tested now? To put it briefly - everything.
+But you should be aware of the so-called test pyramid. From bottom to top you should focus on unit tests,
+then integration tests and finally end-to-end tests.
+The latter, for example, does not make sense for examining borderline cases, but only for core elements of the application.
+Unit tests, on the other hand, are ideal for testing conditions and functional results.
+At this point, however, there are often applications that contain little actual logic and,
+for example, only serve as an intermediate layer between UI and database.
+In this case, integration tests are preferred.</p>
+<p>The basic rule is: deal with gaps in your unit tests with integration tests and use end-to-end tests sparingly.
+However, the exact balance of the three categories always depends on the project.</p>
+<p>The approach of implementing automated tests in software projects is usually similar.
+First you are looking for a testing framework for the programming language of your choice.
+For my part I mostly use C#, well-known representatives are MSTest, NUnit or XUnit.
+But you better focus on the basics, not on a special tool.</p>
+<p>Tests are usually written in their own functions, which are executed and evaluated by a Test Runner integrated in the test framework.
+The functions are usually based on the Triple-A pattern (Arrange-Act-Assert) and are named according to a constant scheme.
+This schema usually contains the method name of the function to be tested as well as input parameters or expected result values.</p>
+<p>Detailed information on the design of tests can be found on the Internet in sufficient detail for the language relevant to you.</p>
+<p>I would like to conclude, however, by referring to a concept based fundamentally on the use of automated tests: Test Drive Development (TDD).</p>
+<p>TDD describes a programming concept according to which tests are written before the actual code.
+The idea is to write a test that tests imaginary source code. Since this is not yet available,
+the test will fail (or not compile at all, depending on the language).
+Then the minimum code is written with which the test runs successfully.
+If required, refactoring takes place afterwards.
+The advantage of this concept is testable source code right from the start,
+as well as full code coverage (proportion of code covered by tests).
+Due to the concept of minimalism, TDD often results in a simpler implementation.</p>
+<p>You now have a general overview of the idea behind automated tests in software development
+and I hope I have given you enough motivation to try out the concept.
+And if you're working on the details, the keyword 'mock' might also help.
+Mocks are representatives of components of an application that, for example,
+simulate a database connection and thus facilitate integration tests. Happy testing!</p>
+
+
+
+                                </div>
+                        </div>
+                </div>
+                
+                <hr>
+                
+                <!-- Footer -->
+                <footer>
+                        <div class="container">
+        <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="copyright text-muted">
+                        Copyright © 2020
+                        <br />
+                            <a href="/feed.rss"><i class="fa fa-rss"></i> RSS Feed</a>
+                        |
+                            <a href="/feed.atom"><i class="fa fa-rss"></i> Atom Feed</a>
+                        <br />
+                        <strong><a href="https://wyam.io">Generated by Wyam</a></strong>
+                    </p>
+                </div>
+        </div>
+</div>
+
+                </footer> 
+
+                <script src="/assets/js/jquery.min.js"></script>
+                <script src="/assets/js/bootstrap.min.js"></script>     
+                <script src="/assets/js/highlight.pack.js"></script>   
+                <script src="/assets/js/clean-blog.js"></script>
+                <script src="/assets/js/d3.v3.min.js"></script>
+                <script src="/assets/js/trianglify.min.js"></script>
+                <script src="/assets/js/Please-compressed.js"></script>
+                <script src="/assets/js/background-check.min.js"></script>
+
+                <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                <!--[if lt IE 9]>
+                        <script src="/assets/js/html5shiv.js"></script>
+                        <script src="/assets/js/respond.min.js"></script>
+                <![endif]-->
+                
+                
+                <script>hljs.initHighlightingOnLoad();</script>
+
+                        <script type="text/javascript">                
+                                // Header background                        
+                                var colors = Please.make_color({
+                                        colors_returned: 3,
+                                        saturation: .6
+                                });
+                                var t = new Trianglify({
+                                        x_gradient: colors,
+                                        y_gradient: ["#FFFFFF"]
+                                });
+                                var header = document.getElementById("intro-header");
+                                var pattern = t.generate(header.clientWidth, header.clientHeight);
+                                header.setAttribute('style', 'background-image: ' + pattern.dataUrl);                        
+                        </script>
+
+                <script>
+                        BackgroundCheck.init({
+                                targets: '.intro-header,.navbar',
+                                images: '.intro-header'
+                        });
+                </script>
+        </body>
+</html>
+

@@ -6,7 +6,7 @@ layout: post
 permalink: /2019/11/moving-to-wyam
 categories:
   - blog
- tags:
+tags:
   - blog
   - cms
 ---

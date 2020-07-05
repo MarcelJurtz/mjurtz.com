@@ -1,14 +1,10 @@
 Title: About Me
 ---
 
-Hey, I’m Marcel. I’m glad that you found my blog, where I document my thoughts and write about everything that I'm interested in.
+Hey, glad you found my blog! I use this site to document everything that goes through my mind while working on my software projects. Some of the topics might be very special, but maybe that might be exactly why something's helping you.
 
-At the moment that includes mainly topics like software development with a focus on Android, C# and Xamarin, but also general related areas like encrypted communication or secure browsing. Regarding my topics in the area of software development I write about all sorts of subjects. From the introduction of a side project to a detailed description to a specific problems solution, you will find everything here.
+My current tech-stack consists mostly of ASP.NET MVC (& ASP.NET MVC Core), JS (mostly vanilla, combined with nodejs and gulp / webpack) and SQLServer / PostGres, but I'm very happy to throw myself into any kind of new technology. Besides these, I'm also posting about Xamarin and Android, as well as general IT topics. But I guess you already know that from looking at the landing page.
 
-In addition to these software-heavy topics, I am doing 3D printing as a hobby and I’m currently trying to build and consolidate CAD skills.
+Besides coding, I spend most of my free time preparing for my first iron-distance triathlon, so this topic will surely find its way into some of my posts.
 
-I’m quite easy to inspire which is why you will see several posts on here that are a little out of the ordinary.
-
-Of course, I use different platforms to document and exchange the results of my work. I therefore refer to my GitHub profile, where I manage all my software projects, and my Thingiverse account, which I use to share 3D models.
-
-I am looking forward to any feedback, please feel free to contact me via mail to marcel@mjurtz.com or Twitter: [@MarcelJurtz](https://twitter.com/MarcelJurtz). If you have any question or idea on how to improve this site, please also simply drop a message.
+But enough about me. You can find all my projects on my [GitHub profile](https://github.com/MarcelJurtz), if you're looking for something very special, you can also look there directly. Lastly, I'm always happy about any questions and feedback, so feel free to drop a message at marcel@mjurtz.com.

@@ -170,7 +170,7 @@ a {
   background-color: transparent;
 }
 a:hover {
-  color: #824027;
+  color: #1c6129;
   text-decoration: underline;
 }
 
@@ -4612,7 +4612,7 @@ input[type=button].btn-block {
 }
 .page-link:hover {
   z-index: 2;
-  color: #824027;
+  color: #1c6129;
   text-decoration: none;
   background-color: #e9ecef;
   border-color: #dee2e6;
@@ -9809,7 +9809,7 @@ button.bg-dark:focus {
 }
 
 a.text-primary:hover, a.text-primary:focus {
-  color: #824027 !important;
+  color: #1c6129 !important;
 }
 
 .text-secondary {
@@ -10014,7 +10014,7 @@ body {
 @media (min-width: 992px) {
   body {
     padding-top: 0;
-    padding-left: 17rem;
+    padding-left: 20rem;
   }
 }
 h1,
@@ -10059,7 +10059,7 @@ p.lead {
     left: 0;
     display: flex;
     flex-direction: column;
-    width: 17rem;
+    width: 20rem;
     height: 100vh;
   }
   #sideNav .navbar-brand {

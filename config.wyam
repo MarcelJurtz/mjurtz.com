@@ -1,7 +1,7 @@
 #recipe Blog
 
 // Customize your settings and add new ones here
-Settings[Keys.Host] = "blog.mjurtz.com";
+Settings[Keys.Host] = "coding.mjurtz.com";
 Settings[BlogKeys.Title] = "Marcel Jurtz";
 Settings[BlogKeys.Description] = "A Developers Blog";
 Settings[BlogKeys.IndexPageSize] = 10;

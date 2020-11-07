@@ -1,6 +1,6 @@
 ---
 title: 'FluentValidation in ASP.NET Core'
-date: 2019-10-05T06:00:00+00:00
+date: 2020-10-05T06:00:00+00:00
 author: Marcel Jurtz
 layout: post
 permalink: /2020/10/fluentvalidation-in-asp-net-core

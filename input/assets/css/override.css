@@ -13,3 +13,9 @@
 img {
     max-width: 100%;
 }
+
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}

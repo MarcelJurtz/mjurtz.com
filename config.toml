@@ -5,9 +5,13 @@ theme = "hyde"
 
 [Menus]
   main = [
-      {Name = "Github", URL = "https://github.com/MarcelJurtz/"},
-      {Name = "LinkedIn", URL = "https://www.linkedin.com/in/marcel-jurtz-302b881b1/"}
+      
   ]
   
 [params]
   description = "Notes and thoughts on software development"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

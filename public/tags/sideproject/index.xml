@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sideproject on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/sideproject/</link>
+    <description>Recent content in sideproject on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 25 Nov 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/sideproject/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Announcing MTG LifeCounter V2</title>
+      <link>https://www.mjurtz.com/posts/2018-11-25-announcing-lifecounter-v2/</link>
+      <pubDate>Sun, 25 Nov 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-11-25-announcing-lifecounter-v2/</guid>
+      <description>With my LifeCounter app for Magic The Gathering, I released my first Android app on the Google PlayStore over two years ago. Besides my first release, this was also another milestone for me: My first real app. Over two years later, I am proud to announce a completely revamped version of the app. Several complete revisions have taken place in the meantime and I&amp;rsquo;m already planning the next one, as I admittedly tried to learn the MVP pattern with the app and now, a few months later, I&amp;rsquo;m completely dissatisfied and want to switch to MVVM.</description>
+    </item>
+    
+    <item>
+      <title>Sideproject - ClubGrid</title>
+      <link>https://www.mjurtz.com/posts/2018-06-13-sideproject-clubgrid/</link>
+      <pubDate>Wed, 13 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-13-sideproject-clubgrid/</guid>
+      <description>It is finally time to announce my latest side project. ClubGrid was originally designed to make it easier for my coach to manage our baseball games. However, the result can be used for clubs of any kind and I hope that I can also help others with my software.
+The problem we had was the organization of games and events. Some players posted their acceptance or rejection via Whatsapp, others via Facebook, some via email and others personally.</description>
+    </item>
+    
+    <item>
+      <title>Sideproject - Sist!</title>
+      <link>https://www.mjurtz.com/posts/2018-03-28-sideproject-sist/</link>
+      <pubDate>Wed, 28 Mar 2018 18:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-03-28-sideproject-sist/</guid>
+      <description>It&amp;rsquo;s time to announce a new sideproject-launch!
+Some days ago, I&amp;rsquo;ve been looking for an app which allowed my to keep track of shopping lists in a simple and fast way. While there are lots of such apps available for Android, all I tested seemed to be overkill for what I really wanted. So I decided to create my own app for this purpose.
+Besides creating a simple app, my goal was to learn something new while developing the app.</description>
+    </item>
+    
+    <item>
+      <title>Sideproject: Perfeggt</title>
+      <link>https://www.mjurtz.com/posts/2018-03-04-sideproject-perfeggt/</link>
+      <pubDate>Sun, 04 Mar 2018 15:17:17 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-03-04-sideproject-perfeggt/</guid>
+      <description>Once again, it&amp;rsquo;s time to announce one of my side projects: Pefeggt - A boiling time calculator for eggs. Actually, I&amp;rsquo;ve been sitting on this one for quite a while and I decided to complete a working release this weekend. The app is built for Android and it helps you to calculate the perfect time you need to boil eggs to your preferred consistency.
+Functionality &amp;amp; Usage To calculate the time, I&amp;rsquo;m using Charles D.</description>
+    </item>
+    
+    <item>
+      <title>Sideproject: CryptoFolio</title>
+      <link>https://www.mjurtz.com/posts/2017-12-10-sideproject-cryptofolio/</link>
+      <pubDate>Sun, 10 Dec 2017 14:24:38 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-10-sideproject-cryptofolio/</guid>
+      <description>Today I would like to introduce my current side project. I&amp;rsquo;m currently developing CryptoFolio, an app that allows you to keep track of your investments in cryptocurrencies.
+Functionality &amp;amp; MVP The first release of the application will allow you to view the current rates of the top 100 cryptocurrencies with the highest market capitalization. You can then add investments, where input, output and the date of the transaction is recorded.</description>
+    </item>
+    
+  </channel>
+</rss>

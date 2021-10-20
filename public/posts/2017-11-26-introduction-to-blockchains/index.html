@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Introduction to Blockchains &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>Introduction to Blockchains</h1>
+  <time datetime=2017-11-26T07:00:43Z class="post-date">Sun, Nov 26, 2017</time>
+  <p>What if there was a technology that could entirely change the basic elements of our society and our understanding of economy? This technology already exists and it is called crypto currency. Many people think of bitcoin when this buzzword comes up, but if you take a closer look, you will find out that the monetary point of view of the technology behind is only the tip of the iceberg.</p>
+<p>Bitcoin and crypto currencies are currently a highly controversial issue. Prices are rising and rising and the hype seems to be unstoppable, but influential personalities of the global economy are warning against putting too much trust into this technology. Whether they&rsquo;re right about that or whether these antiquated idiots just want to hide their fear of computers with these statements is a mystery, which I won&rsquo;t try to unveil here.</p>
+<p>What I would like to achieve with this article is the communication of the basic functioning of Blockchain technology and the associated possibilities and risks, so that you can see this technology not only as an investment, but also understand how it works.</p>
+<h2 id="state-of-the-art">State of the art</h2>
+<p>Money exists for trading. In the last few centuries, trade has become complex - everybody trades with everyone, worldwide. In order to keep track of the transactions carried out, many different techniques of accounting. We use <em>trusted third parties</em> for this purpose, banks, for example.</p>
+<p>Bitcoin uses a network of computers for accounting. The transactions that have been made are not closed to the public, so the whole transaction history is publicly visible.</p>
+<p>As already mentioned, this article does not specifically refer to Bitcoin. However, since Bitcoin is a great example to explain the technology behind it, I will explain the functionality of a blockchain with this example in the following.</p>
+<p>Transactions in the form of bank transfers are normally carried out via banks. This third instance regulates that the recipient actually receives the money and the sender owns what he wants to send. Banks act as arbitrators for potential disputes, which increases the transaction costs for the participants.</p>
+<p>Another approach to handle transactions is peer-to-peer networks, which relinquish this third instance. Users communicate directly with each other, which results into a distributed network of equal nodes.</p>
+<p>The problem of such networks arises from possible fraud attempts by one of the participants, as there is no control authority as it exists in centralized systems.</p>
+<p>To conclude, you can say that the execution of a transaction in a peer-to-peer network is based on trust, which makes it easy to exploit.</p>
+<h2 id="what-bitcoin-does-differently">What Bitcoin does differently</h2>
+<p>Bitcoin is now trying to replace the requirement of trust with cryptographic proof. This combines the benefits of peer-to-peer networks (no/low transaction costs) with those of engaging a third party (non-fraud transactions).</p>
+<p>Each user possesses a certain number of coins (which can be divided into smaller parts). The interesting thing about this system, however, is that the Bitcoins themselves do not exist, only records of completed transactions. In order to be able to carry out a transaction, a user needs to own a wallet which can be considered a digital banking account. When a wallet is created, a private as well as a public key is generated. An address represents a shortened notation of the public key (several addresses can be derived from one public key). In order to receive Bitcoins, other users must send them to such an address. To receive Bitcoins on the other hand, you need to be in possession of the matching private key. There are various wallet providers that also offer different types of wallets, the website <a href="https://bitcoin.org">bitcoin.org</a> offers a comprehensive overview regarding this topic.</p>
+<p>Once the user has set up a wallet, transfers can be sent and received. A transfer in the network works as follows: User A sends bitcoins to user B. A signs the transaction with his private key, allowing all network participants to verify the origin of the transaction using As public key. The transaction is executed publicly, so all nodes of the network are informed about them and can add them to their <em>unconfirmed transactions</em>.</p>
+<p>At this point, I have to distinct between active and passive network nodes. Active participants collaborate in the administration of the blockchain, bundle confirmed transactions and try to publish them based on the calculation of cryptographic evidence. Passive participants simply use the network to send and receive bitcoins. To confirm a transaction, the senders account balance must be known, which is possible for any account by knowing the senders address. For example, the website <a href="https://blockchain.info/">blockchain.info</a> lists all transactions in real time, which can be filtered and searched. Also, this website can be used to check any wallets balance.</p>
+<p>To commit a transaction, the sender must reference other transactions, in which he received at minimum the same amount of bitcoins he wants to send. The active network participants, the so-called <em>miners</em>, then validate the referenced transactions for whether they have not already been issued and either accept or reject them. This mechanism makes it possible to establish an exact history of where the money comes from and where it goes.</p>
+<p><img src="/assets/2017/blockchain_transaction_example.png" alt="Example of a blockchain transaction"></p>
+<p>The example in the picture shows that a transaction can have several inputs. Inputs represent references to transactions the owner has received Bitcoins from, which he now wants to spend. However, transactions can also have multiple outputs. For example, if the output does not exactly match the input, the owner can transfer the difference to himself.</p>
+<p>Based on this principle, transactions can already be transparently traced back. However, a temporal component is missing. Miners are used for this purpose, which combine transactions from the network into blocks. All transactions within a block are considered to be processed at the same time.</p>
+<p><img src="/assets/2017/blockchain_transactions.png" alt="Block bundled transactions"></p>
+<p>However, once a block has been created, miners must solve a task before sharing it to the network, which prevents individual miners to flood the network. This task is based on the computation of cryptographic evidence, which must be difficult to solve but easy to verify. Published blocks are checked by the receiving nodes for validity of the task solution, and if correct, they are added to the nodes local blockchain. The node then starts creating the next block in the same way. I won&rsquo;t go into the details on the algorithm which is responsible for the cryptographic evidence, but it is automatically updated in a way that a block takes about ten minutes to be discovered.</p>
+<p>Miners are allowed to add a transaction out of nowhere to themselves to their block, which motivates the miners and ensures that more bitcoins come into circulation. The amount of bitcoins in these transaction is halved every four years and currently amounts to 12.5 Bitcoin.</p>
+<h2 id="problems-and-drawbacks">Problems and Drawbacks</h2>
+<p>Now that the basics of blockchain technology should be clear, it&rsquo;s time to discuss the problems behind it. The basis of the network is the presence of many equal participants. The problem is, therefore, when a network subscriber has a large part of the total computing power of the network, which can cause fake transactions to circulate.</p>
+<p>The so-called double-spending attacks are the spending of money that one does not possess at all. These attacks fall into this sector. Imagine you want to buy a car for Bitcoin. You agree on a price and transfer Bitcoins in this amount to the car dealer. The transaction will initially land in the unconfirmed transactions and you will receive the car. Now you create a second transaction in which you transfer the Bitcoins you have just paid for the car to yourself. If you are in possession of a major part of the network&rsquo;s overall computing power, you are quite likely to find the next block. Now make sure that your second transaction is first recorded in a block and accepted by the network. If the other transaction is then considered by a miner for bundling, it will be rejected because you have already issued the referenced inputs.</p>
+<p>This problem has to be taken into account if the networks are rather small. However, there are also so-called mining pools in which miners join forces and try to find blocks together. In the event of success, the reward will be distributed to all participants. This may sound good, but depending on the size of the pool, it can also be used by its operators for double-spending attacks.</p>
+<p>A further problem, especially with Bitcoin, is the basis on computing power to confirm a block. Due to the high number of nodes, immense computing power is used for the generation of blocks, which does not achieve a direct result and is therefore often regarded as a waste of energy.</p>
+<p>Bitcoin technology is also poorly scalable because blocks have a limitation on the size of the transactions they can contain. since a block is found every ten minutes, the amount of unconfirmed transactions accumulates if many network participants want to carry out transactions. By designing transactions with greater input than output, transaction fees are generated, which are treated preferentially by the Miners, as they are allowed to assign the difference to themselves. However, this contradicts the principle of lower transaction costs as explained above.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Bitcoin is by far not the only blockchain technology, but certainly the best known. The solution to the problem of high energy demand has been taken up by various other technologies and is trying to attract attention with appropriate publications. The same goes for the other problems described above.</p>
+<p>A large number of crypto currencies are now in circulation, <a href="https://coinmarketcap.com/">coinmarketcap</a> provides an overview of market capitalization. In addition, there are various projects for different niche areas, with the idea of a currency rarely being its main objective. Each of these technologies has its own advantages and disadvantages, and each of them could easily fill the length of this article. If I have been able to arouse your interest with this article, I therefore advise you to take a look at the overview list and look for interesting entries yourself.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

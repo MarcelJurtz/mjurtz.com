@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>github on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/github/</link>
+    <description>Recent content in github on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 22 Aug 2020 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to create a profile README for GitHub</title>
+      <link>https://www.mjurtz.com/posts/2020-08-22-github-profile-readme/</link>
+      <pubDate>Sat, 22 Aug 2020 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2020-08-22-github-profile-readme/</guid>
+      <description>GitHub has been secretly pushing out a new feature in early july, that allows you to create a profile-level README-file. In todays post, I&amp;rsquo;ll be showing you, how you can create your own profile README to customize your own profile page according to your preferences.
+First of all, you won&amp;rsquo;t find this feature in your settings. To get started, you have to create a new repository with the same name as your username.</description>
+    </item>
+    
+  </channel>
+</rss>

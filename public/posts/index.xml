@@ -1,0 +1,1062 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/posts/</link>
+    <description>Recent content in Posts on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 07 Nov 2020 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Domain Redirection with .htaccess and PHP</title>
+      <link>https://www.mjurtz.com/posts/2020-11-07-redirection-with-htaccess-and-php/</link>
+      <pubDate>Sat, 07 Nov 2020 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2020-11-07-redirection-with-htaccess-and-php/</guid>
+      <description>I&amp;rsquo;ve been starting a new blog on my domain, for which I wanted to use the &amp;lsquo;blog&amp;rsquo; subdomain. However, this subdomain was already in use for all my coding-related stuff. So, I decided to move my current blog from /blog to /coding and upload my new blog to /blog. So far, so good. Now I have both of my blogs up and running. There&amp;rsquo;s just one problem: Any incoming traffic to existing posts on my blog would resolve to 404s.</description>
+    </item>
+    
+    <item>
+      <title>FluentValidation in ASP.NET Core</title>
+      <link>https://www.mjurtz.com/posts/2020-10-05-fluentvalidation-in-asp-net-core/</link>
+      <pubDate>Mon, 05 Oct 2020 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2020-10-05-fluentvalidation-in-asp-net-core/</guid>
+      <description>Have you been implementing the validation of your ViewModels in ASP.NET (Core) using DataAttributes so far? If so, chances are you&amp;rsquo;ve always been dissatisfied because your classes became messy and full of unnecessarily replicated code. Yes? Then today&amp;rsquo;s post is for you.
+FluentValidation FluentValidation is a way to define strongly typed validation for classes in the form of a Fluent API. The term fluent in this case refers to a code structure where a function always return the modified object.</description>
+    </item>
+    
+    <item>
+      <title>How to create a profile README for GitHub</title>
+      <link>https://www.mjurtz.com/posts/2020-08-22-github-profile-readme/</link>
+      <pubDate>Sat, 22 Aug 2020 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2020-08-22-github-profile-readme/</guid>
+      <description>GitHub has been secretly pushing out a new feature in early july, that allows you to create a profile-level README-file. In todays post, I&amp;rsquo;ll be showing you, how you can create your own profile README to customize your own profile page according to your preferences.
+First of all, you won&amp;rsquo;t find this feature in your settings. To get started, you have to create a new repository with the same name as your username.</description>
+    </item>
+    
+    <item>
+      <title>Editing Zwift Workouts in C#</title>
+      <link>https://www.mjurtz.com/posts/2020-04-19-editing-zwift-workouts-in-csharp/</link>
+      <pubDate>Sun, 19 Apr 2020 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2020-04-19-editing-zwift-workouts-in-csharp/</guid>
+      <description>I&amp;rsquo;ve been using Zwift pretty extensively for the last few months. For anyone unfamiliar: Zwift is a VR Biking platform. That means, you can put your bike on a smarttrainer, connect it to your pc (directly via ant+ / ble or by bridging with your phone), and then you can ride virtual worlds without having to go outside. Sounds not too bad, right?
+After a few sessions, just riding became kind of tedious, so I&amp;rsquo;ve tried to do some of the preconfigured workouts.</description>
+    </item>
+    
+    <item>
+      <title>Moving to Wyam</title>
+      <link>https://www.mjurtz.com/posts/2019-11-02-moving-to-wyam/</link>
+      <pubDate>Sat, 02 Nov 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-11-02-moving-to-wyam/</guid>
+      <description>It&amp;rsquo;s been quiet for way too long here. I don&amp;rsquo;t really have an excuse for my absence but I&amp;rsquo;ve been kind of busy, both personally and professionally. But I&amp;rsquo;m planning to post on here more frequently from now on.
+As always, trying something new in software development helps to become motivated and excited. In the last months, I&amp;rsquo;ve been using Jekyll as a static site generator to build this site. Though I enjoyed using Jekyll, I never really got into the Ruby environment and have been looking for something more familiar.</description>
+    </item>
+    
+    <item>
+      <title>Database Modeling with dbdiagram.io</title>
+      <link>https://www.mjurtz.com/posts/2019-03-31-database-modeling-with-dbdiagram-io/</link>
+      <pubDate>Sun, 31 Mar 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-03-31-database-modeling-with-dbdiagram-io/</guid>
+      <description>Today I would like to briefly introduce you to a Web application, which I have been stumpled across. I&amp;rsquo;ve tried several tools for db modeling, some more and some less appealing.
+Well, the tool doesn&amp;rsquo;t offer explicit ER modeling, but a SQL-like structure and allows you to import and export directly to SQL and other formats.
+You can find the app I&amp;rsquo;m talking about on dbdiagram.io. The website offers a simple graphical interface, which includes a code editor and a graphical representation of the table structure.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started with Unity ProBuilder</title>
+      <link>https://www.mjurtz.com/posts/2019-03-03-getting-started-with-unity-probuilder/</link>
+      <pubDate>Sun, 03 Mar 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-03-03-getting-started-with-unity-probuilder/</guid>
+      <description>ProBuilder allows you to bring more complex objects into your Unity scene without requiring in-depth knowledge of modeling programs such as Blender or Cinema4D. By now ProBuilder is integrated into Unity and can also be used free of charge in the Community Edition. In todays article I want to show you how you can integrate ProBuilder into your project and start modeling.
+ProBuilder is not installed on your project by default, but you can add it via Window - Packages - All.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to RegEx</title>
+      <link>https://www.mjurtz.com/posts/2019-02-24-introduction-to-regex/</link>
+      <pubDate>Sun, 24 Feb 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-02-24-introduction-to-regex/</guid>
+      <description>As a developer you have probably already worked with Regular Expressions. If you&amp;rsquo;re like me and didn&amp;rsquo;t need them too often, you probably googled them up more than you wrote them yourself.
+So today I&amp;rsquo;d like to go through the basics of Regex and show you how to build regular expressions and how to write them yourself.
+If you haven&amp;rsquo;t had anything to do with this topic before, this post is still for you, of course.</description>
+    </item>
+    
+    <item>
+      <title>MacOS Package Management</title>
+      <link>https://www.mjurtz.com/posts/2019-02-17-macos-package-management/</link>
+      <pubDate>Sun, 17 Feb 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-02-17-macos-package-management/</guid>
+      <description>The ability to work with the terminal under MacOS and use my familiar Linux workflow is awesome, but I have always missed a crucial component: a package manager.
+Homebrew is a package manager for MacOS, according to the developers &amp;ldquo;The missing package Manager for macOS (or Linux)&amp;rdquo;. Today I would like to explain how you install and use Homebrew productively.
+First of all: You can find the project&amp;rsquo;s website here, there you will find all the information and documentation you could wish for.</description>
+    </item>
+    
+    <item>
+      <title>Static Site Generators</title>
+      <link>https://www.mjurtz.com/posts/2019-02-10-static-site-generators/</link>
+      <pubDate>Sun, 10 Feb 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-02-10-static-site-generators/</guid>
+      <description>Some time ago I moved this website from WordPress to Jekyll, but I never really explained the reasons. That&amp;rsquo;s why I want to discuss in today&amp;rsquo;s post the option of managing websites using an offline CMS or Static Site Generator.
+CMS like WordPress are often ridiculed and devalued by their complexity or their overall structure. In the meantime, there is a variety of similar content management systems available, but they usually share the core functionalities and structure.</description>
+    </item>
+    
+    <item>
+      <title>Efficient Learning with the Feynman Technique</title>
+      <link>https://www.mjurtz.com/posts/2019-02-03-learning-with-the-feynman-technique/</link>
+      <pubDate>Sun, 03 Feb 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-02-03-learning-with-the-feynman-technique/</guid>
+      <description>Today&amp;rsquo;s post is about learning new things more efficiently, i.e. wasting as little time as possible on learning. I use the Feynman technique, named after the physicist Richard Feynman. Feynman was known for his ability to break down complex facts into their core message and to convey them very easily.
+You certainly know the concept of being able to explain things to others in order to better understand them yourself. That&amp;rsquo;s exactly what I&amp;rsquo;m doing with my blog and that&amp;rsquo;s also the goal of the Feynman technique.</description>
+    </item>
+    
+    <item>
+      <title>.NET Core on a Raspberry Pi</title>
+      <link>https://www.mjurtz.com/posts/2019-01-20-dotnet-core-raspberry-pi/</link>
+      <pubDate>Sun, 20 Jan 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-01-20-dotnet-core-raspberry-pi/</guid>
+      <description>The Raspberry Pi is one of my favorite toys when it comes to hosting local applications or services like relational databases for testing purposes. At the moment I am trying to test an ASP.NET core application with this setup. However, getting .NET Core to run on the Raspberry Pi is not as easy as I thought, so I&amp;rsquo;d like to briefly outline the necessary steps.
+On GitHub you will find the download links we need.</description>
+    </item>
+    
+    <item>
+      <title>Partial Classes and Methods in C#</title>
+      <link>https://www.mjurtz.com/posts/2019-01-13-c-partial-classes-and-methods/</link>
+      <pubDate>Sun, 13 Jan 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-01-13-c-partial-classes-and-methods/</guid>
+      <description>The partial keyword in C# allows you to spread a class definition across multiple files. You&amp;rsquo;ve probably seen this before when you created a WinForms application and viewed the MyForm.Designer.cs file, which contains the properties you define in the Designer. So the Visual Designer stores the entire definition of your user interface in this separate file. The class of your form itself is always marked partial. Files of partial methods must not be in different assemblies and will be merged during compilation.</description>
+    </item>
+    
+    <item>
+      <title>Writing .NET Core Desktop Apps with Electron.NET</title>
+      <link>https://www.mjurtz.com/posts/2019-01-06-dotnet-core-ui-with-electron/</link>
+      <pubDate>Sun, 06 Jan 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-01-06-dotnet-core-ui-with-electron/</guid>
+      <description>The team behind GitHub has created its own interesting open source projects in addition to the web platform. One of them is Electron, a cross-platform desktop solution used for the Atom editor. Microsoft also uses Electron for Visual Studio Code.
+Electron runs with NodeJS, so applications for it are usually written in JavaScript. For .NET developers there is now Electron.NET available, an Electron wrapper for ASP.NET Core applications.
+An Electron.NET application hosts the ASP.</description>
+    </item>
+    
+    <item>
+      <title>C# Attributes</title>
+      <link>https://www.mjurtz.com/posts/2018-12-30-csharp-attributes/</link>
+      <pubDate>Sun, 30 Dec 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-12-30-csharp-attributes/</guid>
+      <description>During the development with C# you have certainly already encountered attributes, whether consciously or unaware. Today I want to go a little deeper into what attributes are, what kind of them are already present in the .NET framework, and how you can define your own attributes.
+Microsoft defines attributes as a powerful way to associate metadata or descriptive information with code. But what exactly does that mean?
+Classes have, among other characteristics, fields, methods, properties, but also a state and behavior.</description>
+    </item>
+    
+    <item>
+      <title>Using LESS with ASP.NET Core</title>
+      <link>https://www.mjurtz.com/posts/2018-12-23-using-less-with-asp-net-core/</link>
+      <pubDate>Sun, 23 Dec 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-12-23-using-less-with-asp-net-core/</guid>
+      <description>I have already written about the advantages of a CSS preprocessor like LESS in this post. Today I want to show you how you can easily implement support for such a preprocessor in your ASP.NET Core project. I will use Gulp to create the ability to write LESS files and convert them to CSS files so that they can be integrated into the ASP.NET Core application. Finally, I will automate the whole thing so that the LESS file is converted without manual interaction on every build.</description>
+    </item>
+    
+    <item>
+      <title>Some Updates about this Website</title>
+      <link>https://www.mjurtz.com/posts/2018-12-16-website-update/</link>
+      <pubDate>Sun, 16 Dec 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-12-16-website-update/</guid>
+      <description>Hey, today just a short note on a few changes to my website.
+Basically I planned to take up various topics in the area of software development and to capture my thoughts on this blog. However, as you may have noticed, I have published a lot about other subjects lately. I want to return to my roots on this site, so I decided to set up a separate blog. From now on you will only find posts on software development and related topics on this blog.</description>
+    </item>
+    
+    <item>
+      <title>Writing Clean Code</title>
+      <link>https://www.mjurtz.com/posts/2018-12-16-writing-clean-code/</link>
+      <pubDate>Sun, 16 Dec 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-12-16-writing-clean-code/</guid>
+      <description>There are lots of articles and even books about the art of writing clean code. But when exactly is code actually to be considered clean? Today I&amp;rsquo;d like to give you a brief overview of how you can assess and improve your code quality. I should perhaps note that writing good code, and therefore this article, is independent of the programming language used and is rather methodical in nature. However, for more detailed information, I recommend that you really get a book on the subject.</description>
+    </item>
+    
+    <item>
+      <title>Why you should write your own Impossible List</title>
+      <link>https://www.mjurtz.com/posts/2018-12-09-why-you-should-write-your-own-impossible-list/</link>
+      <pubDate>Sun, 09 Dec 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-12-09-why-you-should-write-your-own-impossible-list/</guid>
+      <description>Writing down your goals is extremely helpful for really achieving them. With fixed, terminable goals with fixed intermediate steps, you make it much easier for yourself to really achieve your self-imposed goals.
+Today I would like to show you a way to define your goals with the help of the so-called &amp;ldquo;Impossible List&amp;rdquo;. At first glance this list looks like an Impossible List, but it is definitely not: Joel Runyon, the author of the first Impossible List describes the classic Bucket List as a static list that was written at some point in life and usually none of the points written down really affect the life of the creator.</description>
+    </item>
+    
+    <item>
+      <title>Learning to program does not have to be easy</title>
+      <link>https://www.mjurtz.com/posts/2018-12-02-learning-to-program-doesnt-have-to-be-easy/</link>
+      <pubDate>Sun, 02 Dec 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-12-02-learning-to-program-doesnt-have-to-be-easy/</guid>
+      <description>I have been asked all too often which programming language to learn first. And I&amp;rsquo;ve heard almost the same number of different opinions. Java or C++? Python or C#? Or maybe C?
+High-level programming languages like Java offer the big advantage that the entry hurdle is very low. You can quickly put together a functional application that does what it&amp;rsquo;s supposed to do. The extensive ecosystem allows you to make rapid progress and concentrate on the functionality of your software.</description>
+    </item>
+    
+    <item>
+      <title>Announcing MTG LifeCounter V2</title>
+      <link>https://www.mjurtz.com/posts/2018-11-25-announcing-lifecounter-v2/</link>
+      <pubDate>Sun, 25 Nov 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-11-25-announcing-lifecounter-v2/</guid>
+      <description>With my LifeCounter app for Magic The Gathering, I released my first Android app on the Google PlayStore over two years ago. Besides my first release, this was also another milestone for me: My first real app. Over two years later, I am proud to announce a completely revamped version of the app. Several complete revisions have taken place in the meantime and I&amp;rsquo;m already planning the next one, as I admittedly tried to learn the MVP pattern with the app and now, a few months later, I&amp;rsquo;m completely dissatisfied and want to switch to MVVM.</description>
+    </item>
+    
+    <item>
+      <title>Jan Frodeno - Winning Matters</title>
+      <link>https://www.mjurtz.com/posts/2018-11-18-jan-frodeno-winning-matters/</link>
+      <pubDate>Sun, 18 Nov 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-11-18-jan-frodeno-winning-matters/</guid>
+      <description>Gold medal at the Olympics, world record holder at the 70.3 World Championships in Roth and a world champion title at the Ironman in Kona - Jan Frodeno is a name that certainly does not only ring a bell for triathlon enthusiasts. Frodeno is celebrated by the fans like no other. But who is the athlete? Today I&amp;rsquo;m reviewing his book &amp;ldquo;Winning Matters - Success through courage and passion&amp;rdquo; and try to find an answer to this question.</description>
+    </item>
+    
+    <item>
+      <title>Frank Thelen - Startup DNA</title>
+      <link>https://www.mjurtz.com/posts/2018-11-11-frank-thelen-startup-dna/</link>
+      <pubDate>Sun, 11 Nov 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-11-11-frank-thelen-startup-dna/</guid>
+      <description>In his biography Frank Thelen describes the various aspects of his life. From childhood, skating, the first company foundation and private debts in the millions to successful exits, everything is included. In this article you will find a summary of some important points of the book, but for more details I suggest you take a look at the book, it&amp;rsquo;s definitely worth the time.
+In Germany, Thelen is certainly best known for the TV show &amp;ldquo;The Lion&amp;rsquo;s Cave&amp;rdquo;, but from an entrepreneurial point of view, he&amp;rsquo;s already done a lot.</description>
+    </item>
+    
+    <item>
+      <title>Create Unity Skyboxes From 360° Images</title>
+      <link>https://www.mjurtz.com/posts/2018-11-04-unity-skybox-from-360-photo/</link>
+      <pubDate>Sun, 04 Nov 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-11-04-unity-skybox-from-360-photo/</guid>
+      <description>Today I want to show you how to use a 360° panorama picture as a skybox for Unity. As you may know, skyboxes are usually created from 6 images (cubemaps), with each image representing one of the sides. However, 360° photos usually use a so-called &amp;ldquo;Equirectangular&amp;rdquo; format, which looks something like this:
+
+So in order to be able to use such an image in Unity, the idea of creating a cubemap from a 360° photo is obvious.</description>
+    </item>
+    
+    <item>
+      <title>Maximize your Productivity</title>
+      <link>https://www.mjurtz.com/posts/2018-10-28-maximize-your-productivity/</link>
+      <pubDate>Sun, 28 Oct 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-10-28-maximize-your-productivity/</guid>
+      <description>When you&amp;rsquo;re at the beginning of your career as a software developer, like me, you probably know the feeling that you&amp;rsquo;re being overwhelmed by everything you want to learn. Especially at the beginning it is often not easy to work productively and to learn why I want to show you which methodologies I have developed for myself. Even though I use my own experience, my approach is of course not limited to the industry.</description>
+    </item>
+    
+    <item>
+      <title>Building your first API in .NET Core</title>
+      <link>https://www.mjurtz.com/posts/2018-10-21-your-first-api-net-core/</link>
+      <pubDate>Sun, 21 Oct 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-10-21-your-first-api-net-core/</guid>
+      <description>Today I want to show you how to develop your first API with .NET Core.
+.NET Core is an alternative to the classic .NET Framework. In contrast to the .NET Framework, .NET Core offers a huge advantage: It is platform-independent and therefore compatible with MacOS, Linux and Windows.
+The purpose of this article is to build a small REST-based API, which will respond to HTTP GET-requests. Of course you can extend the project according to your own ideas and experiment around.</description>
+    </item>
+    
+    <item>
+      <title>100 Days of Code</title>
+      <link>https://www.mjurtz.com/posts/2018-10-14-100-days-of-code/</link>
+      <pubDate>Sun, 14 Oct 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-10-14-100-days-of-code/</guid>
+      <description>You might be familiar with the following situation: You are in your first job as a software developer and spend less and less time with your own projects? Or the time you spend on them is generally getting less and less? I have the problem right now and I’ve been thinking about what’s causing it and how I can work on it. Well, the main problem, in my opinion, is that I no longer have the pressure from my studies to learn to take an exam, for example.</description>
+    </item>
+    
+    <item>
+      <title>Semantic Versioning</title>
+      <link>https://www.mjurtz.com/posts/2018-10-07-semantic-versioning/</link>
+      <pubDate>Sun, 07 Oct 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-10-07-semantic-versioning/</guid>
+      <description>Have you ever wondered what kind of methodology you should use to label the releases of your software? Many projects use a structure with three numbers, each separated by a dot. I have good news for you: This structure is very common and well documented. It&amp;rsquo;s called Semantic Versioning and you&amp;rsquo;ll find all the details about it here.
+Building Version Identifiers with SemVer Version numbers are structured according to the X.</description>
+    </item>
+    
+    <item>
+      <title>Git Workflows</title>
+      <link>https://www.mjurtz.com/posts/2018-09-30-git-workflows/</link>
+      <pubDate>Sun, 30 Sep 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-09-30-git-workflows/</guid>
+      <description>Almost all programming projects work with some kind of version control. When I started to work with Git, I used the tool also directly for my private projects. But especially at the beginning I found it hard to structure my commits and branches in a practical way. For this reason I would like to show you some common strategies today, the so-called Git Workflows.
+Simple Workflow The simple workflow consists of a single master branch.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started With Running</title>
+      <link>https://www.mjurtz.com/posts/2018-09-23-getting-started-with-running/</link>
+      <pubDate>Sun, 23 Sep 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-09-23-getting-started-with-running/</guid>
+      <description>If you had told me a year ago that I would run an entire Tough Mudder in a year, I probably would have made fun of you. Well, to be honest, I didn&amp;rsquo;t even know about the existence of obstacle course races (OCR) of this kind at the time. If that were the case, I would certainly have been able to motivate myself quickly.
+Briefly to my prehistory: I am in my early 20s and have tried various sports since my childhood.</description>
+    </item>
+    
+    <item>
+      <title>Garbage Collection in .NET</title>
+      <link>https://www.mjurtz.com/posts/2018-09-16-dotnet-garbage-collecion/</link>
+      <pubDate>Sun, 16 Sep 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-09-16-dotnet-garbage-collecion/</guid>
+      <description>Today I would like to give you an overview of how the garbage collector of the .NET framework works. Knowledge of it makes a lot of sense to improve your programming skills regarding object creation and lifetime.
+Garbage Collection in General I want to start with some general theory - what is garbage collection and what do I need it for? Garbage collection (GC) is basically a feature that relieves developers of the work of allocating and deallocating memory for their objects.</description>
+    </item>
+    
+    <item>
+      <title>Dialogs in Xamarin.Forms</title>
+      <link>https://www.mjurtz.com/posts/2018-09-09-xamarin-forms-dialogs/</link>
+      <pubDate>Sun, 09 Sep 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-09-09-xamarin-forms-dialogs/</guid>
+      <description>If you already have a little experience in cross-platform development with Xamarin.Forms, you probably know the problem: Navigation between different pages works very well, but there is no easy solution to display dialog boxes overlaying an active page.
+Today I want to show you how you can implement this feature in your Xamarin.Forms application. I have created an example project for this purpose, which you can download from my GitHub site.</description>
+    </item>
+    
+    <item>
+      <title>TypeScript - Up and Running in 10 Minutes</title>
+      <link>https://www.mjurtz.com/posts/2018-09-02-typescript-up-and-running-in-10-minutes/</link>
+      <pubDate>Sun, 02 Sep 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-09-02-typescript-up-and-running-in-10-minutes/</guid>
+      <description>You are aware of JavaScript, but have never really made friends with the language? Today I would like to show you a first insight into the JS-SuperSet TypeScript, so perhaps you can give JavaScript a second chance.
+TypeScript is a SuperSet of JavaScript. SuperSet means that all functionalities of JS are both supported and extended. As the name suggests, the main feature of TypeScript are strongly typed variables. But more on this in a moment.</description>
+    </item>
+    
+    <item>
+      <title>Building an MVP - You are doing it wrong</title>
+      <link>https://www.mjurtz.com/posts/2018-08-26-mvp_youre_doing_it_wrong/</link>
+      <pubDate>Sun, 26 Aug 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-08-26-mvp_youre_doing_it_wrong/</guid>
+      <description>The term MVP - Minimum Viable Product is no longer a new word. The term was first coined by Frank Robinson in 2001 and is now used very frequently.
+The basic idea of an MVP is to make a version of a product available to the customer as quickly as possible. The goal is not to generate sales, but to learn. Of course it&amp;rsquo;s not a bad idea and it&amp;rsquo;s also the intention to earn money with your product, but the idea here is to put yourself in the customer&amp;rsquo;s shoes and better understand their needs and requirements.</description>
+    </item>
+    
+    <item>
+      <title>Dockerizing .NET Core Apps</title>
+      <link>https://www.mjurtz.com/posts/2018-08-19-dockerizing-net-core/</link>
+      <pubDate>Sun, 19 Aug 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-08-19-dockerizing-net-core/</guid>
+      <description>I have already written two articles about the basics of Docker. While these should provide a general overview of you technology, I would like to illustrate a concrete application example today. I will show you the whole process, from writing a simple application to using it in the form of a Docker Container.
+If you haven&amp;rsquo;t read my previous articles, you may not have the idea why you should use Docker at all.</description>
+    </item>
+    
+    <item>
+      <title>Automated Testing</title>
+      <link>https://www.mjurtz.com/posts/2018-08-05-automated-testing/</link>
+      <pubDate>Sun, 05 Aug 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-08-05-automated-testing/</guid>
+      <description>Todays focus is on how you can test your applications automatically to detect bugs early and improve your code quality.
+I want to introduce you to the concept of automated testing. In order to make the content accessible to as many users as possible, I will not use code examples and concentrate purely on the underlying idea instead. Once you understand them, you will have no problems implementing the concept in the programming language of your choice.</description>
+    </item>
+    
+    <item>
+      <title>How I Learn Anything Quickly</title>
+      <link>https://www.mjurtz.com/posts/2018-07-29-learn-anything-quickly/</link>
+      <pubDate>Sun, 29 Jul 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-07-29-learn-anything-quickly/</guid>
+      <description>As a software developer, you are probably well aware of the feeling: You are overwhelmed by the amount of interesting stuff you want to test and learn. But I&amp;rsquo;m sure that this problem is also very common in other fields.
+If you feel like me, you may read and watch various books, blog articles or online courses, but you won&amp;rsquo;t really keep much of their contents.
+In today&amp;rsquo;s article, I&amp;rsquo;d like to help you to learn more effectively about the topics that really interest you, wasting less time.</description>
+    </item>
+    
+    <item>
+      <title>Dependency Injection - Overview and Implementation</title>
+      <link>https://www.mjurtz.com/posts/2018-07-23-dependency-injection-overview-and-implementation/</link>
+      <pubDate>Mon, 23 Jul 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-07-23-dependency-injection-overview-and-implementation/</guid>
+      <description>Especially when you are at the beginning of your career as a software developer, you probably know that: You have already picked up the term &amp;ldquo;Dependency Injection&amp;rdquo;, but can&amp;rsquo;t do anything with it directly? Then today&amp;rsquo;s post is for you!
+I will introduce you to the principle, functionality and the types of dependency injection. Finally, I&amp;rsquo;ll show you how to write a simple IoC container. And don&amp;rsquo;t worry if you are unfamiliar with the different terms, I will explain everything, you don&amp;rsquo;t need any previous knowledge.</description>
+    </item>
+    
+    <item>
+      <title>Agile - Get Started with Kanban</title>
+      <link>https://www.mjurtz.com/posts/2018-07-21-agile-get-started-with-kanban/</link>
+      <pubDate>Sat, 21 Jul 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-07-21-agile-get-started-with-kanban/</guid>
+      <description>After I introduced Scrum in my last article, today will be about Kanban. Like Scrum, Kanban is an agile software development methodology and I have to say that I apply the principles I present today to most of my personal side projects.
+Kanban is Japanese and can be translated as &amp;ldquo;billboard&amp;rdquo;. Kanban was first introduced by Toyota in the automotive industry and is now mostly associated with just-in-time concepts. But I don&amp;rsquo;t want to bore you with historical details, I want to show you the usage in software development.</description>
+    </item>
+    
+    <item>
+      <title>Agile - Get Started with Scrum</title>
+      <link>https://www.mjurtz.com/posts/2018-07-15-agile-get-started-with-scrum/</link>
+      <pubDate>Sun, 15 Jul 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-07-15-agile-get-started-with-scrum/</guid>
+      <description>As a software developer you are certainly aware of Scrum. You may have already used Scrum or heard about it only marginally. With this article I would like to give you an overview of what Scrum is and how you can apply this methodology. Plus: You can also use many of the principles even for working on your side projects alone or in a small group.
+Scrum is probably the best known process model of agile software development.</description>
+    </item>
+    
+    <item>
+      <title>Docker - Installation and First Steps</title>
+      <link>https://www.mjurtz.com/posts/2018-07-08-docker-installation-and-first-steps/</link>
+      <pubDate>Sun, 08 Jul 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-07-08-docker-installation-and-first-steps/</guid>
+      <description>After outlining the theory behind container management with Docker in last week&amp;rsquo;s article, I would like to continue the topic in a more hands-on way today.
+I&amp;rsquo;ll show you the installation and the first steps in Docker. Let&amp;rsquo;s get started!
+Installation Docker is available for Windows, Linux and Mac OS. For the download you&amp;rsquo;ll need to sign up for a free account.
+I would like to point out that the Windows version is not intended for production use, only for development and testing.</description>
+    </item>
+    
+    <item>
+      <title>Tim Ferriss - The 4 Hour Work Week</title>
+      <link>https://www.mjurtz.com/posts/2018-07-04-book-review-four-hour-work-week/</link>
+      <pubDate>Wed, 04 Jul 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-07-04-book-review-four-hour-work-week/</guid>
+      <description>Most of you may already know the book by Tim Ferriss. Nevertheless, I would like to hold my thoughts here, because some approaches and concepts have really made an impression on me.
+The basic idea of the book is that you can work from any location and thus combine work and travelling. The modern definition of wealth is not defined by the bank account balance, but by the ability to freely manage one&amp;rsquo;s time.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started with Docker</title>
+      <link>https://www.mjurtz.com/posts/2018-07-01-docker-getting-started/</link>
+      <pubDate>Sun, 01 Jul 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-07-01-docker-getting-started/</guid>
+      <description>As a software developer, you&amp;rsquo;ve probably heard about Docker and perhaps already used it. But if you&amp;rsquo;re like me, you&amp;rsquo;ve been observing the topic from a distance with some interest, but you haven&amp;rsquo;t gotten into it yet.
+In this article I would like to introduce you to the concept of docker and the &amp;ldquo;big picture&amp;rdquo;. This post will not be a detailed tutorial, but will give you an overview of the technology and help you get started.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to VCS</title>
+      <link>https://www.mjurtz.com/posts/2018-06-23-introduction-to-vcs/</link>
+      <pubDate>Sat, 23 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-23-introduction-to-vcs/</guid>
+      <description>When you start learning to program, you rarely think about how you will be able to work on a project at the same time with other people. By the time your side projects take on larger dimensions or you work in a team, you will be confronted with the topic of version control.
+Version control is basically the management of source code, so that several developers can work on the same files at the same time.</description>
+    </item>
+    
+    <item>
+      <title>C# - Getting Started with Attributes</title>
+      <link>https://www.mjurtz.com/posts/2018-06-18-csharp-attributes/</link>
+      <pubDate>Mon, 18 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-18-csharp-attributes/</guid>
+      <description>In todays post I want to show you how to use attributes in C#. I have to apologize in advance, though, as I&amp;rsquo;m going to focus only to a limited extent on why they make sense and what you can use them for, that&amp;rsquo;s a topic for one of the following articles. Nevertheless, I would like to give you a basic understanding so that you can incorporate this concept into your own applications.</description>
+    </item>
+    
+    <item>
+      <title>Simplify your CSS - LESS is more</title>
+      <link>https://www.mjurtz.com/posts/2018-06-17-less-css/</link>
+      <pubDate>Sun, 17 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-17-less-css/</guid>
+      <description>First things first: I am not a web developer and certainly not a designer. The following examples are not intended to represent good practices in terms of design or aesthetics.
+But now to the topic: As a software developer you can hardly avoid acquiring basic knowledge in web development. Specifically, I mean the handling of HTML and CSS, also in JavaScript as far as I&amp;rsquo;m concerned. If you are like me, you basically have no problems with it, but CSS files will become quite confusing and difficult to revise over time.</description>
+    </item>
+    
+    <item>
+      <title>Sideproject - ClubGrid</title>
+      <link>https://www.mjurtz.com/posts/2018-06-13-sideproject-clubgrid/</link>
+      <pubDate>Wed, 13 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-13-sideproject-clubgrid/</guid>
+      <description>It is finally time to announce my latest side project. ClubGrid was originally designed to make it easier for my coach to manage our baseball games. However, the result can be used for clubs of any kind and I hope that I can also help others with my software.
+The problem we had was the organization of games and events. Some players posted their acceptance or rejection via Whatsapp, others via Facebook, some via email and others personally.</description>
+    </item>
+    
+    <item>
+      <title>Step Outside Your Comfort Zone!</title>
+      <link>https://www.mjurtz.com/posts/2018-05-31-step-outside-your-comfort-zone/</link>
+      <pubDate>Thu, 31 May 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-05-31-step-outside-your-comfort-zone/</guid>
+      <description>We humans tend to make ourselves comfortable. We take the easiest way we can find. But there are so many things we miss this way. In many cases it is the small things that make a big difference. Today I would like to show you how I have taken such a step and what has changed since then.
+Photo by Jenny Hill on Unsplash
+As a child I did athletics for several years.</description>
+    </item>
+    
+    <item>
+      <title>C# - Mastering the Basics - The Repository Pattern</title>
+      <link>https://www.mjurtz.com/posts/2018-05-13-c-mastering-the-basics-repository-pattern/</link>
+      <pubDate>Sun, 13 May 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-05-13-c-mastering-the-basics-repository-pattern/</guid>
+      <description>There’s a very large number of articles about the repository pattern out there. Nevertheless, most of them overlap in the description and cause confusion among developers. For this reason I decided to write my own article to document my opinion.
+In this article I will first clarify the what and why of the repository pattern. Afterwards I will explain how the pattern can look like in C#.
+In his book, Patterns of Enterprise Application Architecture, Martin Fowler describes the Repository Pattern as a “Mediate between the domain and data mapping layers, acting like an in-memory collection of domain objects”.</description>
+    </item>
+    
+    <item>
+      <title>Learning to Learn</title>
+      <link>https://www.mjurtz.com/posts/2018-05-03-learning-to-learn/</link>
+      <pubDate>Thu, 03 May 2018 18:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-05-03-learning-to-learn/</guid>
+      <description>How often did you tell yourself that you want to learn a specific skill and you either stopped while learning it or learned it but never managed to apply it in your workflow?
+I bet you encountered both situations more than once. In this article, I’ll cover my method on how I learn new skills efficiently and actually remember the stuff I read.
+In this post, I’d like to share my thoughts and experiences in learning new skilly.</description>
+    </item>
+    
+    <item>
+      <title>C# - Mastering the Basics - Events and Delegates</title>
+      <link>https://www.mjurtz.com/posts/2018-04-26-c-mastering-the-basics-delegates-events/</link>
+      <pubDate>Thu, 26 Apr 2018 10:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-04-26-c-mastering-the-basics-delegates-events/</guid>
+      <description>Delegates and Events are powerful tools in C#, but they can definitely be confusing in the beginning. Todays article covers the basics of this topic and helps you to get comfortable implementing this approach in your own applications.
+Delegates I think, the main problem is that delegates are often explained unnecessarily complicated. For this reason, I want to give you an easily understandable introduction. Let&amp;rsquo;s look at a basic delegate declaration:</description>
+    </item>
+    
+    <item>
+      <title>Bypassing Microsofts Windows Media Creation Tool</title>
+      <link>https://www.mjurtz.com/posts/2018-04-09-bypass-windows-media-creation-tool/</link>
+      <pubDate>Mon, 09 Apr 2018 18:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-04-09-bypass-windows-media-creation-tool/</guid>
+      <description>Remember when you could simply download official Windows ISO images to burn on DVDs and install? Microsoft now uses this thing called &amp;lsquo;Media Creation Tool&amp;rsquo; to download ISOs, but there&amp;rsquo;s a simple way to bypass this and download actual images.
+When searching for Windows10 ISOs, you&amp;rsquo;ll likely find this url, which provides a download for the Media Creation Tool.
+ https://www.microsoft.com/de-de/software-download/windows10  But: there&amp;rsquo;s also this url
+ https://www.microsoft.com/de-de/software-download/windows10ISO  However, when browsing this site on a windows machine, it automatically redirects you to the first of the pages I linked.</description>
+    </item>
+    
+    <item>
+      <title>Searching Blogposts in Jekyll</title>
+      <link>https://www.mjurtz.com/posts/2018-03-31-jekyll-search/</link>
+      <pubDate>Fri, 30 Mar 2018 12:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-03-31-jekyll-search/</guid>
+      <description>In one of my previous posts, I went over the details why I moved my blog from WordPress to Jekyll. So far, I really appreciate my new system, but I miss one particular feature: searching through my posts.
+Since Jekyll is a static site generator and does not rely on a database for the posts, you can&amp;rsquo;t simply add a search functionality like WordPress does. So, I have to work with some frontend / clientside stuff.</description>
+    </item>
+    
+    <item>
+      <title>Sideproject - Sist!</title>
+      <link>https://www.mjurtz.com/posts/2018-03-28-sideproject-sist/</link>
+      <pubDate>Wed, 28 Mar 2018 18:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-03-28-sideproject-sist/</guid>
+      <description>It&amp;rsquo;s time to announce a new sideproject-launch!
+Some days ago, I&amp;rsquo;ve been looking for an app which allowed my to keep track of shopping lists in a simple and fast way. While there are lots of such apps available for Android, all I tested seemed to be overkill for what I really wanted. So I decided to create my own app for this purpose.
+Besides creating a simple app, my goal was to learn something new while developing the app.</description>
+    </item>
+    
+    <item>
+      <title>Moving to Jekyll</title>
+      <link>https://www.mjurtz.com/posts/2018-03-11-moving-to-jekyll/</link>
+      <pubDate>Sun, 04 Mar 2018 15:17:17 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-03-11-moving-to-jekyll/</guid>
+      <description>I decided that it is time for some changes. When I started this blog, I decided to use WordPress. My goal was to be able to write posts without having to focus on anything other than actual writing. Wordpress was the tool of my choice due to its simplicity.
+Nevertheless, I wasn&amp;rsquo;t always really happy with the CMS. Problems occurred again and again, mainly in connection with performance, loading times and general page speed.</description>
+    </item>
+    
+    <item>
+      <title>Sideproject: Perfeggt</title>
+      <link>https://www.mjurtz.com/posts/2018-03-04-sideproject-perfeggt/</link>
+      <pubDate>Sun, 04 Mar 2018 15:17:17 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-03-04-sideproject-perfeggt/</guid>
+      <description>Once again, it&amp;rsquo;s time to announce one of my side projects: Pefeggt - A boiling time calculator for eggs. Actually, I&amp;rsquo;ve been sitting on this one for quite a while and I decided to complete a working release this weekend. The app is built for Android and it helps you to calculate the perfect time you need to boil eggs to your preferred consistency.
+Functionality &amp;amp; Usage To calculate the time, I&amp;rsquo;m using Charles D.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to i3</title>
+      <link>https://www.mjurtz.com/posts/2018-02-28-introduction-to-i3/</link>
+      <pubDate>Wed, 28 Feb 2018 06:00:57 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-02-28-introduction-to-i3/</guid>
+      <description>In today&amp;rsquo;s article I would like to give you an insight into the usage of a tiling window manager, which I will illustrate with the example of i3.
+A tiling window manager divides the screen into non-overlapping areas. You are probably more used to a stack-based system where windows can overlap. However, the concept of avoiding overlapping offers a major advantage: Due to the pure operation of the computer via keyboard, it is possible to work at a faster pace after a short training period.</description>
+    </item>
+    
+    <item>
+      <title>Getting Stuff Done</title>
+      <link>https://www.mjurtz.com/posts/2018-02-21-getting-stuff-done/</link>
+      <pubDate>Wed, 21 Feb 2018 16:30:38 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-02-21-getting-stuff-done/</guid>
+      <description>While being fun, programming is not easy. To be able to dive into a flow state in which you&amp;rsquo;re completely focussed on the topic, you need to cut off all distractions. With this article I would like to introduce you to my methods of working in a more focused manner and give you some tips that might make your life much easier. My experiences mostly come from the programming area, but the following tips can be extended to various other topics.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Room for Android</title>
+      <link>https://www.mjurtz.com/posts/2018-02-17-introduction-to-room-for-android/</link>
+      <pubDate>Sat, 17 Feb 2018 08:00:46 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-02-17-introduction-to-room-for-android/</guid>
+      <description>In the context of I/O 2017, Google released the Room Persistence Library, an intermediate layer between application logic and Android&amp;rsquo;s SQLite database. Using Room, you no longer have to handle stuff like network connection errors or caching yourself. Today&amp;rsquo;s article will help you get started with the library and teach you all the skills you need to implement Room in your own applications.
+Background of my sample application The following code snippets are part of one of my side projects.</description>
+    </item>
+    
+    <item>
+      <title>Using Androids Recyclerview with Kotlin</title>
+      <link>https://www.mjurtz.com/posts/2018-02-11-using-androids-recyclerview-with-kotlin/</link>
+      <pubDate>Sun, 11 Feb 2018 16:01:31 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-02-11-using-androids-recyclerview-with-kotlin/</guid>
+      <description>Traditionally, you were using a listview to display several homogeneous elements in you Android app. However, this view is now deprecated. Android now offers an alternative, which aims to increase performance by only loading those elements, that are currently rendered on-screen: the RecyclerView.
+This article shows you how to get started with the RecyclerView. To make things a bit more interesting, we will be using Kotlin instead of Java.
+You can set up an Android project for Kotlin by simply clicking the checkbox for Kotlin support in the new project wizard.</description>
+    </item>
+    
+    <item>
+      <title>Using GitHub over SSH on public WIFI</title>
+      <link>https://www.mjurtz.com/posts/2018-01-29-how-to-use-github-over-ssh-on-public-wifi/</link>
+      <pubDate>Mon, 29 Jan 2018 06:00:11 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-29-how-to-use-github-over-ssh-on-public-wifi/</guid>
+      <description>When using GitHub via SSH, port 22 will be used per default. However, often times you&amp;rsquo;ll see this port being blocked on public WIFI networks. On a Linux machine, there is a simple way to change the default port.
+To test if our plan works out, you can use the following command:
+bash &amp;gt;ssh -T -p 443 git@ssh.github.com
+This will test the ssh connection by using port 443. If this returns a positive result, you can change the port in your ssh config file.</description>
+    </item>
+    
+    <item>
+      <title>C# – Mastering the Basics – Operator Overloading</title>
+      <link>https://www.mjurtz.com/posts/2018-01-21-c-mastering-the-basics-operator-overloading/</link>
+      <pubDate>Sun, 21 Jan 2018 11:00:20 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-21-c-mastering-the-basics-operator-overloading/</guid>
+      <description>Most of the built-in operators that are available in C# can be redefined. In todays article, I&amp;rsquo;ll be showing you how you can redefine operators to match your custom classes. Additionally, I&amp;rsquo;ll cover which operators actually can be overwritten.
+Redefining Operators
+ To create custom functionality for operators in combination with your own classes, you&amp;rsquo;ll simply need to create methods matching a specific pattern. These methods require the usage of the keyword operator, followed by the actual operator you&amp;rsquo;ll want to overwrite.</description>
+    </item>
+    
+    <item>
+      <title>Installing MagicaVoxel on Linux</title>
+      <link>https://www.mjurtz.com/posts/2018-01-20-install-magicavoxel-on-linux/</link>
+      <pubDate>Sat, 20 Jan 2018 06:00:57 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-20-install-magicavoxel-on-linux/</guid>
+      <description>As a programmer with definite lack of visual skills, MagicaVoxel is a gift from God to create usable 3D models. Unfortunately, there is no installation option for Linux on the official website. With the help of Wine it is possible to use MagicaVoxel under Linux. And it really works great!
+Installation Prerequisites As I said you need to run Wine. As stated on their landing page, Wine is a compatibility layer that allows Windows applications to run under POSIX-compliant operating systems such as Linux, macOS and BSD.</description>
+    </item>
+    
+    <item>
+      <title>C# – Mastering the Basics – Lambda Expressions</title>
+      <link>https://www.mjurtz.com/posts/2018-01-18-c-mastering-the-basics-lambda-expressions/</link>
+      <pubDate>Thu, 18 Jan 2018 17:52:31 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-18-c-mastering-the-basics-lambda-expressions/</guid>
+      <description>Are you one of the people who are easily intimidated by complicated-looking things? I felt a little bit like that when I saw lambda expressions for the first time. But let me tell you this: they really only look scary on the very first look. This article covers the basics of using lambda expressions and should be seen as quick introduction rather than extensive documentation.
+What are Lambda Expressions? Lambda expressions somehow belong to the anonymous methods.</description>
+    </item>
+    
+    <item>
+      <title>Xamarin Debugging over WIFI</title>
+      <link>https://www.mjurtz.com/posts/2018-01-10-debugging-xamarin-apps-on-physical-device-over-wifi/</link>
+      <pubDate>Wed, 10 Jan 2018 06:00:31 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-10-debugging-xamarin-apps-on-physical-device-over-wifi/</guid>
+      <description>Xamarin utilizes the Android Debug Bridge (ADB) for debugging on physical devices, which are usually connected over usb. While this feature definitely is useful, it would sometimes be more practical if you could do this over WIFI instead.
+Luckily, that is possible! You can simple switch between using USB and TCP/IP for debugging. To get started, you need to connect your device via USB to the computer you&amp;rsquo;re debugging from. I&amp;rsquo;m using Windows, so the commands I&amp;rsquo;ll execute the following commands from the commandline (which runs as an administrator), but since they are adb commands, they should be the same on Linux or macOS.</description>
+    </item>
+    
+    <item>
+      <title>Advanced Git - Git Stash</title>
+      <link>https://www.mjurtz.com/posts/2018-01-08-advanced-git-git-stash/</link>
+      <pubDate>Mon, 08 Jan 2018 06:00:26 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-08-advanced-git-git-stash/</guid>
+      <description>In my introductory post on git, I told you that git uses three areas to track changes. Well, maybe I lied to you in this case. There are actually four areas available and I will cover this fourth area in todays post.
+The fourth area is called Stash. Basically, it works like a clipboard to which you can save current changes.
+Concepts of the Stash &amp;hellip; Imagine the following scenario: You are working on a change.</description>
+    </item>
+    
+    <item>
+      <title>Advanced Git - Git Reset</title>
+      <link>https://www.mjurtz.com/posts/2018-01-04-advanced-git-git-reset/</link>
+      <pubDate>Thu, 04 Jan 2018 19:09:23 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-04-advanced-git-git-reset/</guid>
+      <description>In one of my earliest posts, I wrote an introduction to version control, more specifically: git. The topic I will cover today extends this article by a topic which is actually not that complicated. However, people seem to find it hard to deal with it and use it as a highway to StackOverflow.
+I talk about git reset. This command can be used to reset changes in your working area or to remove staged files from the index.</description>
+    </item>
+    
+    <item>
+      <title>PGP for Thunderbird</title>
+      <link>https://www.mjurtz.com/posts/2018-01-01-pgp-for-thunderbird/</link>
+      <pubDate>Mon, 01 Jan 2018 22:35:11 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-01-pgp-for-thunderbird/</guid>
+      <description>Today, I&amp;rsquo;ll talk about how you can set up PGP for Thunderbird. PGP (Pretty Good Privacy) allows you to encrypt and digitally sign your emails. I wanted to publish this post for quite some time now and thanks to some help from the 34C3, I finally managed to do it.
+Pretty Good Privacy (PGP) Before we can start installing all the requirements and setting up PGP, I&amp;rsquo;d like to give you a short introduction to PGP.</description>
+    </item>
+    
+    <item>
+      <title>C# – Mastering the Basics – Advanced Statements</title>
+      <link>https://www.mjurtz.com/posts/2017-12-26-c-mastering-basics-advanced-statements/</link>
+      <pubDate>Tue, 26 Dec 2017 13:01:09 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-26-c-mastering-basics-advanced-statements/</guid>
+      <description>In todays episode, I&amp;rsquo;ll show you how to use three advanced statements in C#. I&amp;rsquo;ll go over the so-called null-conditional operator, the null-coalescing operator and the ternary operator.
+Null-Conditional Operator You can use the null-conditional operator to prevent _NullReferenceException_s. The basic principle of the operator is to return a value if it is not null, and return null if it is. The following code shows you how to use the operator, which is initiated by a question mark, followed by a dot.</description>
+    </item>
+    
+    <item>
+      <title>Octoprint on a Raspberry Pi</title>
+      <link>https://www.mjurtz.com/posts/2017-12-23-octoprint-raspberry-pi/</link>
+      <pubDate>Sat, 23 Dec 2017 15:44:40 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-23-octoprint-raspberry-pi/</guid>
+      <description>Being tired of running back and forth to my 3D-printer to change stl files and starting / stopping prints, I decided to give Octoprint a shot. Octoprint basically provides a webinterface for 3D-printers, which allows you to send tasks over your local network to the printer and to monitor the prints. The software also provides a plugin functionality, so you can create your custom addons if required.
+Note that you can use Octoprint for slicing, but in my case I will be starting of with only sending pre sliced stl files to print.</description>
+    </item>
+    
+    <item>
+      <title>C# – Mastering the Basics - Extension Methods</title>
+      <link>https://www.mjurtz.com/posts/2017-12-22-c-mastering-basics-extension-methods/</link>
+      <pubDate>Fri, 22 Dec 2017 12:00:58 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-22-c-mastering-basics-extension-methods/</guid>
+      <description>In this series, I go over the very basics of the C# programming language. In todays guide, I will focus on writing custom extension methods for existing, prebuilt classes.
+You can use extension methods to add custom functionality to classes that are built by others. In my very case, I&amp;rsquo;d like to extend the functionality of the String class to set its first letter to upper case. I already implemented this functionality in my sideproject CryptoFolio, be sure to check out my article on the topic!</description>
+    </item>
+    
+    <item>
+      <title>C# – Mastering the Basics – Collections</title>
+      <link>https://www.mjurtz.com/posts/2017-12-19-c-mastering-the-basics-collections/</link>
+      <pubDate>Tue, 19 Dec 2017 09:30:04 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-19-c-mastering-the-basics-collections/</guid>
+      <description>Altough the topic &amp;ldquo;Collections&amp;rdquo; matches programming in general, I&amp;rsquo;ve decided to add it to my series on mastering the basics of C#. For this reason, you will find some content here that is generally applicable, but I will also discuss different language-specific elements.
+Collections support several different use cases, e. g. searching through a set for objects with certain properties, or iterating through multiple elements by predefined sorting specifications.
+In the first part of this article, I will cover the two basic types of collections in C#, lists and dictionaries.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started with .NET Core on Arch Linux</title>
+      <link>https://www.mjurtz.com/posts/2017-12-16-getting-started-net-core-arch-linux/</link>
+      <pubDate>Sat, 16 Dec 2017 16:40:56 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-16-getting-started-net-core-arch-linux/</guid>
+      <description>Hello Internet! Today, we will try to develop and run .NET Core Apps on a Macbook running Arch Linux! Because what could go wrong!
+(Honestly, this went way better than I thought.)
+Installation Before we can start writing .NET Core applications on Linux, we need to install some packages. The Arch Wiki states that to run .NET Core applications, the dotnet-runtime package needs to be installed. Additionally, we will need dotnet-sdk-2.</description>
+    </item>
+    
+    <item>
+      <title>Comments and how to use them</title>
+      <link>https://www.mjurtz.com/posts/2017-12-15-c-mastering-the-basics-comments/</link>
+      <pubDate>Fri, 15 Dec 2017 22:58:08 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-15-c-mastering-the-basics-comments/</guid>
+      <description>Comments are used in a lot of programming languages. While this concept is useful for a lot of purposes, beginners often start bad habits when commenting their code. In this article I will explain when comments are useful and on the other hand illustrate problems where commenting can be less meaningful or even disturbing.
+Bad Comments &amp;hellip; At first sight (especially at the beginning of your programming career), you might think of comments as the perfect way to describe elements of your code that you don&amp;rsquo;t fully understand.</description>
+    </item>
+    
+    <item>
+      <title>Validating LiteDB Data from an Android App</title>
+      <link>https://www.mjurtz.com/posts/2017-12-14-validating-litedb-data-on-android-application-data/</link>
+      <pubDate>Thu, 14 Dec 2017 21:00:28 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-14-validating-litedb-data-on-android-application-data/</guid>
+      <description>In my new sideproject CryptoFolio, which I announced in this article, I described that I&amp;rsquo;d like to use LiteDB to locally store data that I received from the coinmarketcap-API. LiteDB is basically a NoSQL database, in particular a document store. It functions on a serverless file basis and can be accessed via a simple API.
+While it is quite easy to implement the databases functionality itself, testing the resulting data structure is somewhat more difficult.</description>
+    </item>
+    
+    <item>
+      <title>Sideproject: CryptoFolio</title>
+      <link>https://www.mjurtz.com/posts/2017-12-10-sideproject-cryptofolio/</link>
+      <pubDate>Sun, 10 Dec 2017 14:24:38 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-10-sideproject-cryptofolio/</guid>
+      <description>Today I would like to introduce my current side project. I&amp;rsquo;m currently developing CryptoFolio, an app that allows you to keep track of your investments in cryptocurrencies.
+Functionality &amp;amp; MVP The first release of the application will allow you to view the current rates of the top 100 cryptocurrencies with the highest market capitalization. You can then add investments, where input, output and the date of the transaction is recorded.</description>
+    </item>
+    
+    <item>
+      <title>ServiceStack Logging with Slack Integration</title>
+      <link>https://www.mjurtz.com/posts/2017-12-06-servicestack-logging-with-slack-integration/</link>
+      <pubDate>Wed, 06 Dec 2017 23:30:43 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-06-servicestack-logging-with-slack-integration/</guid>
+      <description>Besides my series on how to get started with ServiceStack, I have already published a few articles that are related to the topic, but do not belong directly to the introductory series. In the last such article, I used the example of coinmarketcap.com to show how to access third-party APIs using the C# client.
+Today, I&amp;rsquo;ll show you how to use ServiceStacks Logging API and link it to a slack channel.</description>
+    </item>
+    
+    <item>
+      <title>Query Coinmarketcap API using ServiceStack</title>
+      <link>https://www.mjurtz.com/posts/2017-12-04-query-coinmarketcap-api-using-servicestack/</link>
+      <pubDate>Mon, 04 Dec 2017 21:45:36 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-04-query-coinmarketcap-api-using-servicestack/</guid>
+      <description>In the first article of my series on using ServiceStack I mentioned the feature of the framework that the individual components can be used independently of each other.
+This short article is intended as an example of how the C# client can be used separately from a custom service to communicate with third-party APIs. If you would like to know more about the client specifically, you can read my article on this feature.</description>
+    </item>
+    
+    <item>
+      <title>C# Preprocessor Directives</title>
+      <link>https://www.mjurtz.com/posts/2017-12-02-c-preprocessor-directives/</link>
+      <pubDate>Sat, 02 Dec 2017 15:00:26 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-02-c-preprocessor-directives/</guid>
+      <description>You can use preprocessor directives in csharp to provide straightforward instructions to the compiler. For example, these directives allow you to execute certain code elements only under predefined conditions. Another possible field of use is simply the structuring of your source code into blocks, which can be folded in and out of Visual Studio.
+In this article I will discuss some of these directives. Preprocessor directives are always started with a #-symbol.</description>
+    </item>
+    
+    <item>
+      <title>ServiceStack - Authentication and Authorization</title>
+      <link>https://www.mjurtz.com/posts/2017-12-01-servicestack-authentication-and-authorization/</link>
+      <pubDate>Fri, 01 Dec 2017 15:00:40 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-01-servicestack-authentication-and-authorization/</guid>
+      <description>This is the fourth part on my series on how to get started using ServiceStack. Be sure to check out the earlier articles, if you haven&amp;rsquo;t read them already:
+ Part 1 - What is ServiceStack and why should I use it? Part 2 - Building a Simple Service Part 3 - Using the C#-Client  Today, I&amp;rsquo;ll be adding basic authentication and authorization to the project we&amp;rsquo;ve created over the last parts.</description>
+    </item>
+    
+    <item>
+      <title>ServiceStack - Using the C#-Client</title>
+      <link>https://www.mjurtz.com/posts/2017-11-27-servicestack-using-the-c-client/</link>
+      <pubDate>Mon, 27 Nov 2017 18:35:13 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-27-servicestack-using-the-c-client/</guid>
+      <description>After we covered the basics of ServiceStack in part one and how to set up a service in part two of this series. Today we&amp;rsquo;ll go through how the C#-Client can be utilized to make communication between applications even easier. The sourcecode for todays article is available GitHub. If you missed one of the previous parts, feel free to check out Part 1 - What is ServiceStack and why should I use it?</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Blockchains</title>
+      <link>https://www.mjurtz.com/posts/2017-11-26-introduction-to-blockchains/</link>
+      <pubDate>Sun, 26 Nov 2017 07:00:43 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-26-introduction-to-blockchains/</guid>
+      <description>What if there was a technology that could entirely change the basic elements of our society and our understanding of economy? This technology already exists and it is called crypto currency. Many people think of bitcoin when this buzzword comes up, but if you take a closer look, you will find out that the monetary point of view of the technology behind is only the tip of the iceberg.
+Bitcoin and crypto currencies are currently a highly controversial issue.</description>
+    </item>
+    
+    <item>
+      <title>ServiceStack - Building a Simple Service</title>
+      <link>https://www.mjurtz.com/posts/2017-11-25-servicestack-building-simple-service/</link>
+      <pubDate>Sat, 25 Nov 2017 19:00:46 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-25-servicestack-building-simple-service/</guid>
+      <description>This is the second post in my series on building web services with ServiceStack. In the first part, I covered the benefits of using ServiceStack, this article continues with the setup of a basic service and its several components.
+In this and the following parts I will create a simple example project to illustrate the use of servicestack. This project will be an expenses tracker. In this part, we will develop the functionality to add expenses and establish an overall balance.</description>
+    </item>
+    
+    <item>
+      <title>C# - Mastering the Basics - Application Architecture</title>
+      <link>https://www.mjurtz.com/posts/2017-11-25-csharp-architecture-basics/</link>
+      <pubDate>Sat, 25 Nov 2017 12:00:05 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-25-csharp-architecture-basics/</guid>
+      <description>In this series, I discuss the optimization of the basics of programming in C#. This article deals with the basic structure of an application and its different components.
+C# Application Architecture The top level always represents the so-called solution. A solution can contain several different projects, whereby a project can be used by different solutions, which allows to reuse source code. Each of a solutions projects compiles into either an executable or a dll.</description>
+    </item>
+    
+    <item>
+      <title>What is ServiceStack and why should I use it?</title>
+      <link>https://www.mjurtz.com/posts/2017-11-23-what-is-servicestack/</link>
+      <pubDate>Thu, 23 Nov 2017 20:00:40 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-23-what-is-servicestack/</guid>
+      <description>This article is the beginning of a series of articles in which I want to discuss the basics of building web services and designing REST APIs using ServiceStack. This first article discusses the question of what ServiceStack is all about, the benefits of it, and why you should use (or at least try out) this framework. The following articles will then discuss the design of a simple service by using a simple example to illustrate the various possibilities it offers.</description>
+    </item>
+    
+    <item>
+      <title>Support Multiple Screen Sizes on Android</title>
+      <link>https://www.mjurtz.com/posts/2017-11-22-support-multiple-screen-sizes-on-android/</link>
+      <pubDate>Wed, 22 Nov 2017 21:22:36 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-22-support-multiple-screen-sizes-on-android/</guid>
+      <description>Android runs on a variety of different devices. In order to improve the way your app looks on different phones, depending on their screen size and resolution, Android offers the possibility to use different layouts for different screen sizes. This is the topic I&amp;rsquo;ll discuss in this article.
+Summarizing the Demo Application First of all, I would like to briefly discuss the app, the optimization of which will be discussed below.</description>
+    </item>
+    
+    <item>
+      <title>Custom Visualization for Numeric Values in Xamarin / DevExpress dxGrid</title>
+      <link>https://www.mjurtz.com/posts/2017-11-22-custom-visualization-for-numeric-values-in-xamarin-devexpress-dxgrid/</link>
+      <pubDate>Wed, 22 Nov 2017 17:00:53 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-22-custom-visualization-for-numeric-values-in-xamarin-devexpress-dxgrid/</guid>
+      <description>The dxGrid grid control for Xamarin, which DevExpress provides free of charge, is a powerful feature for mobile application development. However, many of the functions are a little bit hidden. In this article I will discuss how to customize the display of column values.
+In my concrete example my grid contains a numeric column, which can contain numbers with or without decimal places. I want these decimal places to be displayed only if they exist.</description>
+    </item>
+    
+    <item>
+      <title>Reusable Styles for Android</title>
+      <link>https://www.mjurtz.com/posts/2017-11-17-reusable-styles-android/</link>
+      <pubDate>Fri, 17 Nov 2017 18:00:27 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-17-reusable-styles-android/</guid>
+      <description>View definitions under android are often used for many different controls. However, there is an easy way to recycle defined styles and use them for other controls, often saving a lot of code. So, styles basically allow you to move your repeatedly used styles out of the layout file into a styles.xml file (which is located in the values-folder). This article covers the basics of using styles on Android.
+Think of the following layout, which represents two simple buttons inside a LinearLayout:</description>
+    </item>
+    
+    <item>
+      <title>Voxel Explosions in Unity</title>
+      <link>https://www.mjurtz.com/posts/2017-11-16-voxel-explosions-unity/</link>
+      <pubDate>Thu, 16 Nov 2017 18:00:04 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-16-voxel-explosions-unity/</guid>
+      <description>This article describes the process of creating voxel explosions in Unity by using particles. For our models, we use MagicaVoxel, but every other tool can be used as well. The final result will look similar to this:
+Setting up the test environment For test purposes, I&amp;rsquo;ve set up a basic FPS environment using the built-in CharacterController package. I then added a gun model to the _FirstPersonCharacter _game object, which is located as child element in the hierarchy of the FPSController.</description>
+    </item>
+    
+    <item>
+      <title>Touch Controls for Unity Game Development</title>
+      <link>https://www.mjurtz.com/posts/2017-11-15-touch-controls-unity-game-development/</link>
+      <pubDate>Wed, 15 Nov 2017 18:00:46 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-15-touch-controls-unity-game-development/</guid>
+      <description>Some time ago, I created this game (online playable version) in Unity, and I wanted to be able to play it on my Android phone. Since the input options on the smartphone are slightly different from those on the pc, a certain amount of adjustments were necessary. I won&amp;rsquo;t go over the specific details on the game mechanics, you can check out these on GitHub, they are described in the README file.</description>
+    </item>
+    
+    <item>
+      <title>Building a Chess Game in Unity</title>
+      <link>https://www.mjurtz.com/posts/2017-11-13-building-a-chess-game-in-unity/</link>
+      <pubDate>Mon, 13 Nov 2017 17:57:49 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-13-building-a-chess-game-in-unity/</guid>
+      <description>In this post, I&amp;rsquo;ll be covering the basics of building a simple chess game in Unity and C#.
+The MVP of this project will be a fully playable 3D chess game for two players. Each character will only be able to make moves that comply with the rules. After slaying a king, the game is reset. To improve the game, menu scenes, statistics and a simple AI will be added later.</description>
+    </item>
+    
+    <item>
+      <title>Decoupling Views in Xamarin</title>
+      <link>https://www.mjurtz.com/posts/2017-11-12-decoupling-views-in-xamarin/</link>
+      <pubDate>Sun, 12 Nov 2017 10:05:27 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-12-decoupling-views-in-xamarin/</guid>
+      <description>As a software developer, you&amp;rsquo;ve probably stumbled across old source code you&amp;rsquo;ve written from time to time and you&amp;rsquo;ve just been thinking &amp;lsquo;how the hell can someone come up with such bullshit?&amp;rsquo;. I don&amp;rsquo;t see myself as an exception regarding this topic and just recently had such a case, which I would like to document in this article. More specifically, I want to discuss the decoupling of views under xamarin. The source I use in this article is available on my GitHub profile.</description>
+    </item>
+    
+    <item>
+      <title>P2P Synchronization with Syncthing</title>
+      <link>https://www.mjurtz.com/posts/2017-11-01-p2p-synchronization-with-syncthing/</link>
+      <pubDate>Wed, 01 Nov 2017 13:12:23 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-01-p2p-synchronization-with-syncthing/</guid>
+      <description>Everyone has different programs and tools that they particularly appreciate. One of these programs is syncthing for me, so I will briefly discuss how it works and how it is set up in this article. Syncthing is used to synchronize files between different devices and also supports versioning of these files. Syncthing is available for Windows, Android and as cross-platform wrapper. I personally use it on Windows 10, Arch Linux and Android (via Playstore or FDroid).</description>
+    </item>
+    
+    <item>
+      <title>Motivation &amp; Self-Discipline</title>
+      <link>https://www.mjurtz.com/posts/2017-10-23-motivation-self-discipline/</link>
+      <pubDate>Mon, 23 Oct 2017 06:50:39 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-10-23-motivation-self-discipline/</guid>
+      <description>During my participation in various software development projects, I have noticed one thing they usually have in common. While it is often very easy to find the motivation to start a new project, many of them end up unfinished or not in a way you would like them to.
+Laying Focus As you can see on GitHub, I don&amp;rsquo;t see myself as an exception, where I&amp;rsquo;ve started a lot of projects, but only a few end up finished.</description>
+    </item>
+    
+    <item>
+      <title>Self-Organization and Increasing Productivity</title>
+      <link>https://www.mjurtz.com/posts/2017-10-14-self-organization-and-increasing-productivity/</link>
+      <pubDate>Sat, 14 Oct 2017 06:00:33 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-10-14-self-organization-and-increasing-productivity/</guid>
+      <description>In order to get professional elements, side projects, sport and social contacts under one roof, I have recently been busy designing my daily schedule to maximize my productivity. this article presents the results of my reflections.
+As a software developer it is almost self-evident to work on various own side projects, which in my case are currently mostly developed in the form of Android apps. Starting with an originally simple LifeCounter for Magic the Gathering, over smaller games up to the design of websites, my GitHub profile has meanwhile reached a considerable size.</description>
+    </item>
+    
+    <item>
+      <title>Windows Package Management</title>
+      <link>https://www.mjurtz.com/posts/2017-10-10-windows-package-management/</link>
+      <pubDate>Tue, 10 Oct 2017 11:58:04 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-10-10-windows-package-management/</guid>
+      <description>As a Windows user with Linux knowledge there are several things under Linux that I would like to have on for Windows. Since a complete switch from Windows to Linux is not feasible for me due to different requirements, I looked for alternatives. An important component of various Linux distributions is their package manager. This article discusses the implementation of such a feature under Windows and shows how it can be used.</description>
+    </item>
+    
+    <item>
+      <title>RESTful Services with ServiceStack - Part 2</title>
+      <link>https://www.mjurtz.com/posts/2017-09-23-restful-services-servicestack-part-2/</link>
+      <pubDate>Sat, 23 Sep 2017 18:00:14 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-23-restful-services-servicestack-part-2/</guid>
+      <description>In my last post, I&amp;rsquo;ve set up a basic RESTful service using ServiceStack. This article deals with the implementation of a corresponding functionality on the client side. The application will query the path provided by the server and apply the pre-defined authentication method, requiring the user to log in with username and password before the application delivers the desired content.
+Both projects, client and server are located on my GitHub-profile and can be viewed and downloaded there.</description>
+    </item>
+    
+    <item>
+      <title>Creating RESTful Services with ServiceStack</title>
+      <link>https://www.mjurtz.com/posts/2017-09-21-creating-restful-services-servicestack/</link>
+      <pubDate>Thu, 21 Sep 2017 18:00:26 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-21-creating-restful-services-servicestack/</guid>
+      <description>This articles covers the basic usage of ServiceStack, a .NET-framework for creating RESTful services. The framework has a really great documentation, where you can check out all the details.
+Configuration To get started, you&amp;rsquo;ll want to create a new ASP.NET project, and load the ServiceStack package via NuGet. Then, you&amp;rsquo;ll have to edit your Web.config to look like the following (mentioned versions may differ from your project):
+&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; &amp;lt;!</description>
+    </item>
+    
+    <item>
+      <title>Bitcache and K.im</title>
+      <link>https://www.mjurtz.com/posts/2017-09-18-bitcache-k-im/</link>
+      <pubDate>Mon, 18 Sep 2017 06:00:46 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-18-bitcache-k-im/</guid>
+      <description>After Kim Dotcom announced his new service, I just had to sign up for an invitation. After receiving it an hour later, I tried it out. In this article, I&amp;rsquo;ll document my experience with k.im.
+I have to admit that I didn&amp;rsquo;t exactly know what I was getting into. After clicking the received URL, a very minimalistic website is displayed.
+So, the service allows you to upload files. I never would have thought of that.</description>
+    </item>
+    
+    <item>
+      <title>Sublime Text 3 for Atom Users</title>
+      <link>https://www.mjurtz.com/posts/2017-09-17-sublime-text-3-atom-users/</link>
+      <pubDate>Sun, 17 Sep 2017 15:06:13 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-17-sublime-text-3-atom-users/</guid>
+      <description>Due to the release of Sublime Text 3, I thought I&amp;rsquo;ll give this editor a shot. Currently, I&amp;rsquo;m using both Notepad++ and Atom. Altough I really like atom and the several useful plugins, it has one huge problem: speed. The initial loading time is one thing, over 100 mb. of RAM in idle mode is another. For quickly editing stuff, this is not acceptable.
+Sublime Text seems to be a nice alternative, this article documents my switch from Atom to Sublime Text.</description>
+    </item>
+    
+    <item>
+      <title>Building an Android App from Scratch using MVP</title>
+      <link>https://www.mjurtz.com/posts/2017-09-12-building-android-app-scratch-using-mvp/</link>
+      <pubDate>Tue, 12 Sep 2017 06:00:07 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-12-building-android-app-scratch-using-mvp/</guid>
+      <description>In this article, I&amp;rsquo;ll document the process of building an android app from scratch by using the MVP approach of clean architecture. The app itself will represent a minimalistic umpire indicator for tracking baseball games. Please consider using this in the dugout only. Since this will be a longer post, you can use the following links to jump between sections.
+ What is MVP? Background on the app to be built Constructing the GUI Managing interfaces Building the model Connecting view and model by adding the presenter  1.</description>
+    </item>
+    
+    <item>
+      <title>How to set up ssh for git</title>
+      <link>https://www.mjurtz.com/posts/2017-09-11-set-ssh-git/</link>
+      <pubDate>Mon, 11 Sep 2017 08:04:02 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-11-set-ssh-git/</guid>
+      <description>When using github, you usually have to enter your login credentials each time you push. You could solve this problem by saving the credentials or by setting up ssh for your account. In this post, the process of adding and using ssh keys will be explained.
+I&amp;rsquo;m using git bash, if you use git gui/sourcetree/etc. you should consider switching, at least for this process.
+At first, SSH keys are generated. The command for this is the following:</description>
+    </item>
+    
+    <item>
+      <title>Getting started with Git</title>
+      <link>https://www.mjurtz.com/posts/2017-09-10-getting-started-git/</link>
+      <pubDate>Sun, 10 Sep 2017 10:45:42 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-10-getting-started-git/</guid>
+      <description>This post represents an overview of version control with git. The mentioned commands and parameters are only a small part of what&amp;rsquo;s possible. Git is a popular system for version control. Projects on git are called Repositories. Repositories can be used local or with a server. There are several free hosters, for example:
+ Github GitLab BitBucket  Installation  Linux (Debian-based)  apt-get install git-all  Windows Mac  Elements Git-Repositories are separated into working directory, staging area and repository.</description>
+    </item>
+    
+    <item>
+      <title>Making Video Games - Concepts - Part 1</title>
+      <link>https://www.mjurtz.com/posts/2017-09-09-making-video-games-concepts-part-1/</link>
+      <pubDate>Sat, 09 Sep 2017 10:19:34 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-09-making-video-games-concepts-part-1/</guid>
+      <description>In this series, I&amp;rsquo;ll be creating a videogame from scratch using unity. I hope that I&amp;rsquo;ll be able to keep everything understandable for beginners, but if something gets too complex, just contact me and I&amp;rsquo;ll update the specific post.
+This first part covers the basic concepts of what I&amp;rsquo;ll be building, and what tools you may need.
+About the game I&amp;rsquo;d like to build an arcade style, shoot &amp;lsquo;em up, top down shooter like space invaders.</description>
+    </item>
+    
+  </channel>
+</rss>

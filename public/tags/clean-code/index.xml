@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>clean-code on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/clean-code/</link>
+    <description>Recent content in clean-code on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 15 Dec 2017 22:58:08 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/clean-code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Comments and how to use them</title>
+      <link>https://www.mjurtz.com/posts/2017-12-15-c-mastering-the-basics-comments/</link>
+      <pubDate>Fri, 15 Dec 2017 22:58:08 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-15-c-mastering-the-basics-comments/</guid>
+      <description>Comments are used in a lot of programming languages. While this concept is useful for a lot of purposes, beginners often start bad habits when commenting their code. In this article I will explain when comments are useful and on the other hand illustrate problems where commenting can be less meaningful or even disturbing.
+Bad Comments &amp;hellip; At first sight (especially at the beginning of your programming career), you might think of comments as the perfect way to describe elements of your code that you don&amp;rsquo;t fully understand.</description>
+    </item>
+    
+    <item>
+      <title>C# - Mastering the Basics - Application Architecture</title>
+      <link>https://www.mjurtz.com/posts/2017-11-25-csharp-architecture-basics/</link>
+      <pubDate>Sat, 25 Nov 2017 12:00:05 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-25-csharp-architecture-basics/</guid>
+      <description>In this series, I discuss the optimization of the basics of programming in C#. This article deals with the basic structure of an application and its different components.
+C# Application Architecture The top level always represents the so-called solution. A solution can contain several different projects, whereby a project can be used by different solutions, which allows to reuse source code. Each of a solutions projects compiles into either an executable or a dll.</description>
+    </item>
+    
+    <item>
+      <title>Reusable Styles for Android</title>
+      <link>https://www.mjurtz.com/posts/2017-11-17-reusable-styles-android/</link>
+      <pubDate>Fri, 17 Nov 2017 18:00:27 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-17-reusable-styles-android/</guid>
+      <description>View definitions under android are often used for many different controls. However, there is an easy way to recycle defined styles and use them for other controls, often saving a lot of code. So, styles basically allow you to move your repeatedly used styles out of the layout file into a styles.xml file (which is located in the values-folder). This article covers the basics of using styles on Android.
+Think of the following layout, which represents two simple buttons inside a LinearLayout:</description>
+    </item>
+    
+  </channel>
+</rss>

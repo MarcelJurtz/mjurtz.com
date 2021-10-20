@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>raspberrypi on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/raspberrypi/</link>
+    <description>Recent content in raspberrypi on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 20 Jan 2019 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/raspberrypi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>.NET Core on a Raspberry Pi</title>
+      <link>https://www.mjurtz.com/posts/2019-01-20-dotnet-core-raspberry-pi/</link>
+      <pubDate>Sun, 20 Jan 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-01-20-dotnet-core-raspberry-pi/</guid>
+      <description>The Raspberry Pi is one of my favorite toys when it comes to hosting local applications or services like relational databases for testing purposes. At the moment I am trying to test an ASP.NET core application with this setup. However, getting .NET Core to run on the Raspberry Pi is not as easy as I thought, so I&amp;rsquo;d like to briefly outline the necessary steps.
+On GitHub you will find the download links we need.</description>
+    </item>
+    
+  </channel>
+</rss>

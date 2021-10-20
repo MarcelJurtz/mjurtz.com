@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>regex on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/regex/</link>
+    <description>Recent content in regex on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 24 Feb 2019 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/regex/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to RegEx</title>
+      <link>https://www.mjurtz.com/posts/2019-02-24-introduction-to-regex/</link>
+      <pubDate>Sun, 24 Feb 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-02-24-introduction-to-regex/</guid>
+      <description>As a developer you have probably already worked with Regular Expressions. If you&amp;rsquo;re like me and didn&amp;rsquo;t need them too often, you probably googled them up more than you wrote them yourself.
+So today I&amp;rsquo;d like to go through the basics of Regex and show you how to build regular expressions and how to write them yourself.
+If you haven&amp;rsquo;t had anything to do with this topic before, this post is still for you, of course.</description>
+    </item>
+    
+  </channel>
+</rss>

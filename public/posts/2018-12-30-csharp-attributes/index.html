@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>C# Attributes &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>C# Attributes</h1>
+  <time datetime=2018-12-30T06:00:00Z class="post-date">Sun, Dec 30, 2018</time>
+  <p>During the development with C# you have certainly already encountered attributes, whether consciously or unaware. Today I want to go a little deeper into what attributes are, what kind of them are already present in the .NET framework, and how you can define your own attributes.</p>
+<p>Microsoft defines attributes as a powerful way to associate metadata or descriptive information with code. But what exactly does that mean?</p>
+<p>Classes have, among other characteristics, fields, methods, properties, but also a state and behavior. You can &ldquo;decorate&rdquo; code elements with attributes to further describe them. Doing so, however, has no effect on their state.</p>
+<p>You can imagine this a bit like tags or post-its attached to code and providing additional information.</p>
+<p>Attributes are applicable at different times. While writing code, for example, debugging can be controlled, or additional instructions can be added to the compiler. A widespread use of attributes in this category is, for example, marking code elements as obsolete to indicate to developers that something should no longer be used.</p>
+<p>At design time it is conceivable to control positioning etc. via attributes.</p>
+<p>Finally, it is possible to use attributes at runtime. This is done for example for the validation of data in ASP.NET applications. At runtime, attributes can be evaluated using Reflection. Code execution can then be controlled by the presence or absence of attributes or based on their property values. I don&rsquo;t want to go into the validation using attributes separately in the course of this article, but you can find a detailed overview of the available attributes <a href="https://docs.microsoft.com/de-de/dotnet/api/system.componentmodel.dataannotations?view=netframework-4.7.2">here</a>.</p>
+<p>There are some other use cases, some of which you have probably already used yourself. In the course of the article you will surely notice a few of them.</p>
+<p>Attributes are enclosed in square brackets: <code>[MyCustomAttribute]</code>. By convention, the name of all attributes ends with &ldquo;Attributes&rdquo;, which can be omitted. So it comes out the same whether you write <code>[ObsoleteAttribute]</code> or <code>[Obsolete]</code>.</p>
+<p>Attributes can be used at different levels of code elements. On one hand this is directly on assembly level, when defining classes or structures, as well as interfaces and enumerations. But also methods, fields, properties or structures, events, delegates and single parameters can be decorated with attributes. In addition, an attribute can also be defined to the return value of a method.</p>
+<p>It should be noted that not every attribute can be used for every code element. The author of the attribute specifies what it is valid for and where the invalid use throws a compile-time error.</p>
+<h2 id="inheritance-of-attributes">Inheritance of Attributes</h2>
+<p>Attributes on classes are inherited, that is, if class A is decorated with an attribute, class B, which inherits from class A, also has this attribute. You no longer have to specify this explicitly. However, this behavior can be deactivated at attribute level if required.</p>
+<h2 id="using-attributes">Using Attributes</h2>
+<p>As mentioned above, attributes are used by using square brackets. An attribute itself is a normal class which inherits from System.Attribute. If you add an attribute to a code element, you can specify constructor parameters of the underlying class using regular parentheses. Nothing new, so far.</p>
+<p>There are different types of constructor parameters: required and optional parameters, and additional properties. As with normal methods, optional parameters are just parameters with default values. You can specify parameters comma separated as usual, and you can also use named arguments. If you want to use properties that cannot be filled by a constructor, this is also possible within the brackets. The syntax, however, is as follows: first the name of the property, followed by an equal sign and the corresponding value. As with regular classes, you can also use constructor-overloads for attributes, which are a bit clearer than the representation with properties.</p>
+<p>Let&rsquo;s first take a look at some of the predefined attributes in C#. First, I&rsquo;d like to briefly look at attributes that will help you when developing. I&rsquo;ll start with the DebuggerDisplay attribute: This is used to change the text that is displayed during debugging when you move the mouse over an object. To use it, all you have to do is specify a string to be used as text. You can also use curly braces to include property values.</p>
+<p>Another helpful attribute in this area is the DebuggerBrowsable attribute. This is defined at property level and indicates how you can inspect the element during debugging. The attribute has a required DebuggerBrowsableState constructor parameter, an enumeration that can take one of the values Collapsed, Never, and RootHidden. Never hides the property completely from the inspector, Collapsed collapses the nested elements and RootHidden is used for collections. The latter ensures that the elements of the collection itself are displayed in the inspector, but the main element is hidden.</p>
+<p>Another attribute for adjusting the display in the debugger window is the DebuggerTypeProxy attribute. This attribute specifies a proxy class that is used instead of the original class to display the details in the debugger. For example, you can define a helper class here that displays various details of the actual class in a simplified way to save you cumbersome navigation in the debugging window. This is often useful for nested properties or combinations of multiple properties. At this point it should be noted that you can still view the properties of the underlying class, you&rsquo;ll find them at the bottom at the &ldquo;Raw View&rdquo; item when you hover the mouse over the object you want to inspect.</p>
+<p>A widespread attribute, which I mentioned in the introduction and which I&rsquo;m sure you&rsquo;ve already seen when using external libraries in your applications, is the Obsolete attribute. This is used to mark code as deprecated and to tell the developer not to use this element anymore. If you want to use the attribute itself, you will notice that you can configure it in two ways: First, only a warning is generated, but you can still use the code element. The second variant is that the use throws a compilation error.</p>
+<p>You can use the attribute with default constructor, so no arguments are required. In this case only a warning will be displayed, as well as when you move the mouse over the corresponding code element. But you can use it to adjust the behavior. There are two constructor overloads for this: In both cases you can specify a message here, which will be displayed as a hint, optionally you can also use boolean-flag to specify whether a compilation error should be generated.</p>
+<p>An example of the attribute might look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span>
+{ 
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> FirstName { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; } 
+
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> LastName { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; } 
+<span style="color:#a6e22e">
+</span><span style="color:#a6e22e">  [Obsolete(&#34;Use Property &#39;FormattedName&#39; instead&#34;)]</span> 
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> GetFormattedName() { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">$&#34;{FirstName} {LastName}&#34;</span>; }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> FormattedName { <span style="color:#66d9ef">get</span> { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">$&#34;{FirstName} {LastName}&#34;</span>; } } 
+} 
+</code></pre></div><p>Accessing the GetFormattedName-Method displays the following warning: &ldquo;Student.GetFormattedName()&rdquo; is obsolete: Use Property &lsquo;FormattedName&rsquo; instead.</p>
+<p>I already mentioned that you can use attributes at the assembly level as well. To do this, you have to prefix the keyword &ldquo;assembly:&rdquo;.</p>
+<p>If you are working on a .NET Framework project, you can check out the &ldquo;AssemblyInfo&rdquo; class, which you can find in the &ldquo;properties&rdquo; folder. This class already contains some metadata declarations on your project like title, description or copyright. Of course, you can also define custom attributes here as well, just think of the &ldquo;assembly:&rdquo; prefix. If you&rsquo;re using .NET Core, you won&rsquo;t find such a file, since the metadata is generated automatically. However, you can override the values by adding assembly level attributes by yourself, which you can do at any position in your project.</p>
+<p>An attribute that is great if you are working on a project for which you want to write tests, but don&rsquo;t want to change it (for now), is InternalsVisibleTo. Suppose you are writing a test project for the very other project and want to test a class or method but can&rsquo;t access it due to its protection level, you can use this attribute to allow access by specifying the project name of your test project. This attribute is defined at assembly level and therefore does not have to be assigned to each class / method individually.</p>
+<p>A less common feature of attributes is their use in conjunction with method return values. The attribute is specified above the method signature, including the prefix &ldquo;return:&rdquo;.</p>
+<p>Finally, attributes can be used for serialization. Use the &ldquo;NonSerialized&rdquo; attribute for properties that are not to be serialized.</p>
+<p>As you can see, you can already do a lot with the predefined attributes. Nevertheless, it is sometimes necessary to define your own attributes. This is what I want to show you now.</p>
+<h2 id="creating-and-using-your-own-attributes">Creating and using your own attributes</h2>
+<p>To restrict the usage of the attribute, the class is assigned another attribute: AttributeUsage. The constructor of this attribute requires an argument of type <a href="https://docs.microsoft.com/de-de/dotnet/api/system.attributetargets?view=netframework-4.7.2">AttributeTargets</a>, which is an enumeration from which you can select one or more code elements. If you want to support multiple code elements, you can do that by utilizing the bitwise-or operator like this: <code>[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]</code>.</p>
+<p>You can add another property to the constructor if you want to allow multiple use on a single code element. This is done with the AllowMultiple flag, the default value is false.</p>
+<p>The last option to customize at this point is to control inheritance. By default, attributes are inherited with the inheritance of a class. This can be deactivated by setting the property &ldquo;Inherited&rdquo; to false.</p>
+<p>So, enough for theory. Let&rsquo;s illustrate this with an example:</p>
+<p>I define a simple attribute that I want to use later to control the output on the console. I inherit my custom attribute from System.attribute and end the name of the class with &ldquo;attributes&rdquo; according to the convention. The attribute has two properties, one of which is required and the other has a default value. In the case of a null value for the required parameter, an ArgumentException is thrown.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#a6e22e">[AttributeUsage(AttributeTargets.Property)]</span> 
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DisplayAttribute</span> : Attribute 
+{ 
+  <span style="color:#66d9ef">public</span> DisplayAttribute(<span style="color:#66d9ef">string</span> tag, ConsoleColor textColor = ConsoleColor.White) 
+  { 
+    Tag = tag ?? <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> ArgumentException(nameof(tag)); 
+    TextColor = textColor; 
+  } 
+
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Tag { <span style="color:#66d9ef">get</span>; } 
+
+  <span style="color:#66d9ef">public</span> ConsoleColor TextColor { <span style="color:#66d9ef">get</span>; } 
+} 
+</code></pre></div><p>Then I want to evaluate the attribute at runtime. To do this, I use Reflection, where I first evaluate a property for the presence of the attribute, and then I get the value. After that, I want to output the contents of the tag property, followed by the value of the actual property decorated with the attribute. The entire output should be in the color that is stored for the attribute.</p>
+<p>I continue to use my student class from earlier, and create a new writer class to control the output:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Writer</span>
+{ 
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> Student <span style="color:#ae81ff">_</span>student; 
+  <span style="color:#66d9ef">private</span> ConsoleColor <span style="color:#ae81ff">_</span>color; 
+
+  <span style="color:#66d9ef">public</span> Writer(Student student) 
+  { 
+    <span style="color:#ae81ff">_</span>student = student; 
+  } 
+
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Write() 
+  { 
+    PropertyInfo firstNameProp = <span style="color:#66d9ef">typeof</span>(Student).GetProperty(nameof(Student.FirstName)); 
+
+    DisplayAttribute firstNameDisplayAttr = (DisplayAttribute)Attribute.GetCustomAttribute(firstNameProp, <span style="color:#66d9ef">typeof</span>(DisplayAttribute)); 
+
+    <span style="color:#66d9ef">if</span> (firstNameDisplayAttr != <span style="color:#66d9ef">null</span>) 
+    { 
+      SaveDefaultForegroundColor(); 
+      Console.ForegroundColor = firstNameDisplayAttr.TextColor; 
+      Console.WriteLine(<span style="color:#e6db74">$&#34;{firstNameDisplayAttr.Tag} {_student.FirstName}&#34;</span>); 
+      RestoreDefaultForegroundColor(); 
+    } 
+    <span style="color:#66d9ef">else</span> 
+    { 
+      Console.WriteLine(<span style="color:#ae81ff">_</span>student.FirstName); 
+    } 
+  } 
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> SaveDefaultForegroundColor() 
+  { 
+    <span style="color:#ae81ff">_</span>color = Console.ForegroundColor; 
+  } 
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> RestoreDefaultForegroundColor() 
+  { 
+    Console.ForegroundColor = <span style="color:#ae81ff">_</span>color; 
+  } 
+} 
+</code></pre></div><p>As you can see, if the attribute is present, I save the current text color of the console to be able to reset it after the output. Then the output takes place. If the attribute does not exist, only the value of the property is printed to the console.</p>
+<p>The section of reflection shown here is only a minimal part of the available options. For example, you could search an assembly for classes that have a specific attribute, and then use it to control the functionality of your application. You can also set or remove attributes at runtime. But I&rsquo;ll cover that with a separate article about Reflection.</p>
+<p>I hope I was able to give you a general overview of attributes in C#. If you need more information, I recommend checking out MSDNs <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/">full documentation on the topic</a>.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>efficiency on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/efficiency/</link>
+    <description>Recent content in efficiency on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 03 Feb 2019 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/efficiency/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Efficient Learning with the Feynman Technique</title>
+      <link>https://www.mjurtz.com/posts/2019-02-03-learning-with-the-feynman-technique/</link>
+      <pubDate>Sun, 03 Feb 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-02-03-learning-with-the-feynman-technique/</guid>
+      <description>Today&amp;rsquo;s post is about learning new things more efficiently, i.e. wasting as little time as possible on learning. I use the Feynman technique, named after the physicist Richard Feynman. Feynman was known for his ability to break down complex facts into their core message and to convey them very easily.
+You certainly know the concept of being able to explain things to others in order to better understand them yourself. That&amp;rsquo;s exactly what I&amp;rsquo;m doing with my blog and that&amp;rsquo;s also the goal of the Feynman technique.</description>
+    </item>
+    
+    <item>
+      <title>Learning to Learn</title>
+      <link>https://www.mjurtz.com/posts/2018-05-03-learning-to-learn/</link>
+      <pubDate>Thu, 03 May 2018 18:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-05-03-learning-to-learn/</guid>
+      <description>How often did you tell yourself that you want to learn a specific skill and you either stopped while learning it or learned it but never managed to apply it in your workflow?
+I bet you encountered both situations more than once. In this article, I’ll cover my method on how I learn new skills efficiently and actually remember the stuff I read.
+In this post, I’d like to share my thoughts and experiences in learning new skilly.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to i3</title>
+      <link>https://www.mjurtz.com/posts/2018-02-28-introduction-to-i3/</link>
+      <pubDate>Wed, 28 Feb 2018 06:00:57 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-02-28-introduction-to-i3/</guid>
+      <description>In today&amp;rsquo;s article I would like to give you an insight into the usage of a tiling window manager, which I will illustrate with the example of i3.
+A tiling window manager divides the screen into non-overlapping areas. You are probably more used to a stack-based system where windows can overlap. However, the concept of avoiding overlapping offers a major advantage: Due to the pure operation of the computer via keyboard, it is possible to work at a faster pace after a short training period.</description>
+    </item>
+    
+    <item>
+      <title>Getting Stuff Done</title>
+      <link>https://www.mjurtz.com/posts/2018-02-21-getting-stuff-done/</link>
+      <pubDate>Wed, 21 Feb 2018 16:30:38 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-02-21-getting-stuff-done/</guid>
+      <description>While being fun, programming is not easy. To be able to dive into a flow state in which you&amp;rsquo;re completely focussed on the topic, you need to cut off all distractions. With this article I would like to introduce you to my methods of working in a more focused manner and give you some tips that might make your life much easier. My experiences mostly come from the programming area, but the following tips can be extended to various other topics.</description>
+    </item>
+    
+    <item>
+      <title>Comments and how to use them</title>
+      <link>https://www.mjurtz.com/posts/2017-12-15-c-mastering-the-basics-comments/</link>
+      <pubDate>Fri, 15 Dec 2017 22:58:08 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-15-c-mastering-the-basics-comments/</guid>
+      <description>Comments are used in a lot of programming languages. While this concept is useful for a lot of purposes, beginners often start bad habits when commenting their code. In this article I will explain when comments are useful and on the other hand illustrate problems where commenting can be less meaningful or even disturbing.
+Bad Comments &amp;hellip; At first sight (especially at the beginning of your programming career), you might think of comments as the perfect way to describe elements of your code that you don&amp;rsquo;t fully understand.</description>
+    </item>
+    
+    <item>
+      <title>C# Preprocessor Directives</title>
+      <link>https://www.mjurtz.com/posts/2017-12-02-c-preprocessor-directives/</link>
+      <pubDate>Sat, 02 Dec 2017 15:00:26 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-02-c-preprocessor-directives/</guid>
+      <description>You can use preprocessor directives in csharp to provide straightforward instructions to the compiler. For example, these directives allow you to execute certain code elements only under predefined conditions. Another possible field of use is simply the structuring of your source code into blocks, which can be folded in and out of Visual Studio.
+In this article I will discuss some of these directives. Preprocessor directives are always started with a #-symbol.</description>
+    </item>
+    
+    <item>
+      <title>Self-Organization and Increasing Productivity</title>
+      <link>https://www.mjurtz.com/posts/2017-10-14-self-organization-and-increasing-productivity/</link>
+      <pubDate>Sat, 14 Oct 2017 06:00:33 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-10-14-self-organization-and-increasing-productivity/</guid>
+      <description>In order to get professional elements, side projects, sport and social contacts under one roof, I have recently been busy designing my daily schedule to maximize my productivity. this article presents the results of my reflections.
+As a software developer it is almost self-evident to work on various own side projects, which in my case are currently mostly developed in the form of Android apps. Starting with an originally simple LifeCounter for Magic the Gathering, over smaller games up to the design of websites, my GitHub profile has meanwhile reached a considerable size.</description>
+    </item>
+    
+  </channel>
+</rss>

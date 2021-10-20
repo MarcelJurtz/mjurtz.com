@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tips on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/categories/tips/</link>
+    <description>Recent content in tips on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 15 Dec 2017 22:58:08 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/categories/tips/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Comments and how to use them</title>
+      <link>https://www.mjurtz.com/posts/2017-12-15-c-mastering-the-basics-comments/</link>
+      <pubDate>Fri, 15 Dec 2017 22:58:08 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-15-c-mastering-the-basics-comments/</guid>
+      <description>Comments are used in a lot of programming languages. While this concept is useful for a lot of purposes, beginners often start bad habits when commenting their code. In this article I will explain when comments are useful and on the other hand illustrate problems where commenting can be less meaningful or even disturbing.
+Bad Comments &amp;hellip; At first sight (especially at the beginning of your programming career), you might think of comments as the perfect way to describe elements of your code that you don&amp;rsquo;t fully understand.</description>
+    </item>
+    
+    <item>
+      <title>Validating LiteDB Data from an Android App</title>
+      <link>https://www.mjurtz.com/posts/2017-12-14-validating-litedb-data-on-android-application-data/</link>
+      <pubDate>Thu, 14 Dec 2017 21:00:28 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-14-validating-litedb-data-on-android-application-data/</guid>
+      <description>In my new sideproject CryptoFolio, which I announced in this article, I described that I&amp;rsquo;d like to use LiteDB to locally store data that I received from the coinmarketcap-API. LiteDB is basically a NoSQL database, in particular a document store. It functions on a serverless file basis and can be accessed via a simple API.
+While it is quite easy to implement the databases functionality itself, testing the resulting data structure is somewhat more difficult.</description>
+    </item>
+    
+  </channel>
+</rss>

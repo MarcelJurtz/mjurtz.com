@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>microsoft on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/microsoft/</link>
+    <description>Recent content in microsoft on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 20 Jan 2019 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/microsoft/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>.NET Core on a Raspberry Pi</title>
+      <link>https://www.mjurtz.com/posts/2019-01-20-dotnet-core-raspberry-pi/</link>
+      <pubDate>Sun, 20 Jan 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-01-20-dotnet-core-raspberry-pi/</guid>
+      <description>The Raspberry Pi is one of my favorite toys when it comes to hosting local applications or services like relational databases for testing purposes. At the moment I am trying to test an ASP.NET core application with this setup. However, getting .NET Core to run on the Raspberry Pi is not as easy as I thought, so I&amp;rsquo;d like to briefly outline the necessary steps.
+On GitHub you will find the download links we need.</description>
+    </item>
+    
+    <item>
+      <title>Partial Classes and Methods in C#</title>
+      <link>https://www.mjurtz.com/posts/2019-01-13-c-partial-classes-and-methods/</link>
+      <pubDate>Sun, 13 Jan 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-01-13-c-partial-classes-and-methods/</guid>
+      <description>The partial keyword in C# allows you to spread a class definition across multiple files. You&amp;rsquo;ve probably seen this before when you created a WinForms application and viewed the MyForm.Designer.cs file, which contains the properties you define in the Designer. So the Visual Designer stores the entire definition of your user interface in this separate file. The class of your form itself is always marked partial. Files of partial methods must not be in different assemblies and will be merged during compilation.</description>
+    </item>
+    
+    <item>
+      <title>Writing .NET Core Desktop Apps with Electron.NET</title>
+      <link>https://www.mjurtz.com/posts/2019-01-06-dotnet-core-ui-with-electron/</link>
+      <pubDate>Sun, 06 Jan 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-01-06-dotnet-core-ui-with-electron/</guid>
+      <description>The team behind GitHub has created its own interesting open source projects in addition to the web platform. One of them is Electron, a cross-platform desktop solution used for the Atom editor. Microsoft also uses Electron for Visual Studio Code.
+Electron runs with NodeJS, so applications for it are usually written in JavaScript. For .NET developers there is now Electron.NET available, an Electron wrapper for ASP.NET Core applications.
+An Electron.NET application hosts the ASP.</description>
+    </item>
+    
+    <item>
+      <title>C# Attributes</title>
+      <link>https://www.mjurtz.com/posts/2018-12-30-csharp-attributes/</link>
+      <pubDate>Sun, 30 Dec 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-12-30-csharp-attributes/</guid>
+      <description>During the development with C# you have certainly already encountered attributes, whether consciously or unaware. Today I want to go a little deeper into what attributes are, what kind of them are already present in the .NET framework, and how you can define your own attributes.
+Microsoft defines attributes as a powerful way to associate metadata or descriptive information with code. But what exactly does that mean?
+Classes have, among other characteristics, fields, methods, properties, but also a state and behavior.</description>
+    </item>
+    
+  </channel>
+</rss>

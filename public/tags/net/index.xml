@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>net on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/net/</link>
+    <description>Recent content in net on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 21 Oct 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/net/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building your first API in .NET Core</title>
+      <link>https://www.mjurtz.com/posts/2018-10-21-your-first-api-net-core/</link>
+      <pubDate>Sun, 21 Oct 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-10-21-your-first-api-net-core/</guid>
+      <description>Today I want to show you how to develop your first API with .NET Core.
+.NET Core is an alternative to the classic .NET Framework. In contrast to the .NET Framework, .NET Core offers a huge advantage: It is platform-independent and therefore compatible with MacOS, Linux and Windows.
+The purpose of this article is to build a small REST-based API, which will respond to HTTP GET-requests. Of course you can extend the project according to your own ideas and experiment around.</description>
+    </item>
+    
+  </channel>
+</rss>

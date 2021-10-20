@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Writing .NET Core Desktop Apps with Electron.NET &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>Writing .NET Core Desktop Apps with Electron.NET</h1>
+  <time datetime=2019-01-06T06:00:00Z class="post-date">Sun, Jan 6, 2019</time>
+  <p>The team behind GitHub has created its own interesting open source projects in addition to the web platform. One of them is Electron, a cross-platform desktop solution used for the Atom editor. Microsoft also uses Electron for Visual Studio Code.</p>
+<p>Electron runs with NodeJS, so applications for it are usually written in JavaScript. For .NET developers there is now <a href="https://github.com/ElectronNET/Electron.NET">Electron.NET</a> available, an Electron wrapper for ASP.NET Core applications.</p>
+<p>An Electron.NET application hosts the ASP.NET Core project. Electron.NET then provides access to Electron via API. This enables platform-specific functionalities such as push notifications or clipboard access. And the best thing about it is that you don&rsquo;t notice anything about the underlying JavaScript.</p>
+<p>Let&rsquo;s start right away and develop a simple application with Electron.NET. You need first the .NET Core 2 SDK, as well as NodeJS, at least in version 8.6.0. I use Visual Studio 2017 as development environment.  I start by creating an empty ASP.NET Core project. In the following dialog I choose the MVC template. And I&rsquo;m ready to go.</p>
+<p>First I install Electron.NET using <a href="https://www.nuget.org/packages/ElectronNET.API/">NuGet</a>. After that the WebHostBuilder in Program.cs has to be adjusted as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Program</span>
+{ 
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main(<span style="color:#66d9ef">string</span>[] args) 
+  { 
+    CreateWebHostBuilder(args).Build().Run(); 
+  } 
+
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> IWebHostBuilder CreateWebHostBuilder(<span style="color:#66d9ef">string</span>[] args) =&gt; 
+    WebHost.CreateDefaultBuilder(args) 
+    .UseElectron(args) 
+    .UseStartup&lt;Startup&gt;(); 
+} 
+</code></pre></div><p>The application has now been extended with Electron, but so far you don&rsquo;t see anything of it. If you start the project now, it will be started in the browser as usual. However, I would like the application to be started in the familiar Electron window as it would be displayed in the browser. To achieve this, I add the following line at the end of the Configure() method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">Task.Run(<span style="color:#66d9ef">async</span> () =&gt; <span style="color:#66d9ef">await</span> Electron.WindowManager.CreateWindowAsync()); 
+</code></pre></div><p>If you want to be able to start your application as a classic web application, you have to put this statement in an if statement with the condition <em>HybridSupport.IsElectronActive</em>.</p>
+<p>Now another Nuget package is needed, which is not installed for the project itself, but as a global toolset. Use the following command in the Nuget console:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">dotnet tool install ElectronNET.CLI -g 
+</code></pre></div><p>This package provides several tools that you can use, among other things, to initialize and start your project. Then navigate to the project directory and execute the command &ldquo;electronize init&rdquo;. The command creates a configuration file called electron.manifest.json. Now you can start your application from here with the command &ldquo;electronize start&rdquo;. The first start takes a while, but this does not apply to the following starts. At this point you should be able to see your ASP.NET Core application in the normal Electron interface. So let&rsquo;s try some of the features now.</p>
+<p>A quick tip at this point: To debug the application you can simply select the menu item &ldquo;Debugging&rdquo; in Visual Studio and then select the application in the &ldquo;Attach to Process&rdquo; area. You can also use the shortcut CTRL + SHIFT + I to access the Chrome Developer Tools. This functionality is provided via Electron.NET CLI, however, if you want to implement such functionality for later use, you can do it yourself: Electron.WindowManager.BrowserWindows.First().WebContents.OpenDevTools().</p>
+<p>Electron creates multiple processes. The main process called Main contains the code of Startup.cs and Program.cs. A separate renderer process is created for each desktop window, which prevents the entire application from crashing when a renderer process crashes. The communication between these processes is based on Inter-Process Communication (IPC).</p>
+<p>The classic workflow for ASP.NET Core MVC is as follows: The user makes an input and an action command is sent to a controller. The controller returns a result in the form of a view instance, which has a disadvantage: The page is reloaded, which doesn&rsquo;t provide great user experience. With the help of IPC, however, it is easy to remedy the situation:</p>
+<p>I add code to my Index.cshtml file that uses JS to access the API of the renderer process. The ipcRenderer allows message-based communication, optional arguments can be passed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">h3</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;header&#34;</span>&gt;&lt;/<span style="color:#f92672">h3</span>&gt; 
+&lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cmdShowData&#34;</span>&gt;Show Data&lt;/<span style="color:#f92672">button</span>&gt; 
+
+&lt;<span style="color:#f92672">script</span>&gt; 
+  (<span style="color:#66d9ef">function</span> () { 
+    <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">ipcRenderer</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;electron&#34;</span>);
+
+    document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;cmdShowData&#34;</span>).<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, () =&gt; { 
+      <span style="color:#a6e22e">ipcRenderer</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;getData&#34;</span>, <span style="color:#e6db74">&#39;args&#39;</span>); 
+    }); 
+
+    <span style="color:#a6e22e">ipcRenderer</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;sendData&#39;</span>, (<span style="color:#a6e22e">event</span>, <span style="color:#a6e22e">msg</span>) =&gt; { 
+      document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;header&#34;</span>).<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>; 
+    });
+  }()); 
+&lt;/<span style="color:#f92672">script</span>&gt; 
+</code></pre></div><p>I also need a possibility to listen to incoming messages. This is implemented inside the controller (HomeController.cs):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> IActionResult Index()
+{ 
+  Electron.IpcMain.On(<span style="color:#e6db74">&#34;getData&#34;</span>, (args) =&gt; 
+  { 
+    <span style="color:#66d9ef">var</span> mainWindow = Electron.WindowManager.BrowserWindows.First(); 
+    Electron.IpcMain.Send(mainWindow, <span style="color:#e6db74">&#34;sendData&#34;</span>, <span style="color:#e6db74">&#34;Hello IPC World!&#34;</span>); 
+  }); 
+
+  <span style="color:#66d9ef">return</span> View(); 
+} 
+</code></pre></div><p>As you can see, I am only returning a simple message, but of course you can extend this or implement advanced functionality like repeated execution and update of the message by loops.</p>
+<p>I don&rsquo;t want to go into much application development at this point, but you can see how quickly you can package an ASP.NET core application in Electron. But there is one important detail missing for developing real applications: Deployment. In fact, two applications are created when the Electron.NET app is being built. On the one hand, the ASP.NET core application is built including .NET Core runtime. This application is then packaged by Electron Packer like a regular Electron application. You can specify the target operating system by adding the relevant target flag to the build command: Use the command electronize build /target win. Use the flag osx for macOS, or linux for Linux. After execution, you have your application packaged and ready for use.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

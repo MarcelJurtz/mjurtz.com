@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Building your first API in .NET Core &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>Building your first API in .NET Core</h1>
+  <time datetime=2018-10-21T06:00:00Z class="post-date">Sun, Oct 21, 2018</time>
+  <p>Today I want to show you how to develop your first API with .NET Core.</p>
+<p>.NET Core is an alternative to the classic .NET Framework. In contrast to the .NET Framework, .NET Core offers a huge advantage: It is platform-independent and therefore compatible with MacOS, Linux and Windows.</p>
+<p>The purpose of this article is to build a small REST-based API, which will respond to HTTP GET-requests. Of course you can extend the project according to your own ideas and experiment around.</p>
+<h1 id="setup-and-installation">Setup and Installation</h1>
+<p>First of all you need to install the .NET Core SDK. You can download it directly from <a href="https://www.microsoft.com/net/download">Microsoft</a>, where you will find two different links. On the one hand you will find the Runtime Environment, as well as the SDK, which also contains the RE, but additionally tools for development. Download and install the SDK for the platform of your choice.</p>
+<p>In addition, it is a good idea to use an IDE for development. You can use Visual Studio for this, or alternatively you can use Visual Studio Code or JetBrains Rider.</p>
+<p>Since I&rsquo;m currently working on Linux, I&rsquo;ll use Visual Studio Code.</p>
+<h1 id="create-a-project">Create a project</h1>
+<p>When working with .NET Core, the command line is used a lot at the moment. One such point is the creation of a project. Basically you can use any command line interface here, be it the terminal integrated in VS Code or the Windows Power Shell.</p>
+<p>The first command you need to know is dotnet new.  This command initializes a new project, appending the type of the project. For each dotnet command, you can display operating information by appending <em>help</em>. In the case of <em>dotnet new help</em> you will be shown among other things the possible project types.</p>
+<p>We want to create a new ASP .NET Core MVC project. But I don&rsquo;t want to have a preconfiguration, so I initialize my new project with <em>dotnet new web</em>.</p>
+<h1 id="adaptation-of-the-project--implementation-of-the-api">Adaptation of the project &amp; implementation of the API</h1>
+<p>First the Startup.cs class needs to be reworked. I&rsquo;ve made some minor changes, which you can find in the following snippet:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">using</span> System; 
+<span style="color:#66d9ef">using</span> System.Collections.Generic; 
+<span style="color:#66d9ef">using</span> System.Linq; 
+<span style="color:#66d9ef">using</span> System.Threading.Tasks; 
+<span style="color:#66d9ef">using</span> Microsoft.AspNetCore.Builder; 
+<span style="color:#66d9ef">using</span> Microsoft.AspNetCore.Hosting; 
+<span style="color:#66d9ef">using</span> Microsoft.AspNetCore.Http; 
+<span style="color:#66d9ef">using</span> Microsoft.AspNetCore.Mvc; 
+<span style="color:#66d9ef">using</span> Microsoft.Extensions.DependencyInjection; 
+
+<span style="color:#66d9ef">namespace</span> ApiSample 
+{ 
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Startup</span> 
+  { 
+    <span style="color:#75715e">// This method gets called by the runtime. Use this method to add services to the container. 
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940 
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> ConfigureServices(IServiceCollection services) 
+    {
+      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+    } 
+
+    <span style="color:#75715e">// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Configure(IApplicationBuilder app, IHostingEnvironment env) 
+    {
+      <span style="color:#66d9ef">if</span> (env.IsDevelopment()) 
+      { 
+        app.UseDeveloperExceptionPage(); 
+      } 
+      <span style="color:#66d9ef">else</span> 
+      { 
+        <span style="color:#75715e">// Enforce HTTPS for Requests 
+</span><span style="color:#75715e"></span>        app.UseHsts(); 
+      } 
+
+      app.UseHttpsRedirection(); 
+      app.UseMvc(); 
+    } 
+  } 
+}
+</code></pre></div><p>Once everything is configured, the API can be implemented. I want to build a really simple implementation that returns the status of the service. An HTTP GET request should be answered with an info message telling the caller that the API is running.</p>
+<p>First of all we need a model class, which I built as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">namespace</span> ApiSample.Models 
+{ 
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ApplicationState</span> 
+  { 
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Information { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; } 
+  } 
+} 
+</code></pre></div><p>The heart of the API is the controller that handles the requests. So I add a new controller to my project that responds to GET requests via the <em>/api</em> route. The implementation looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">namespace</span> ApiSample.Controllers 
+{ 
+<span style="color:#a6e22e">  [Route(&#34;api/&#34;)]</span> 
+<span style="color:#a6e22e">  [ApiController]</span> 
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SampleController</span> : ControllerBase 
+  { 
+    <span style="color:#66d9ef">public</span> ActionResult&lt;ApplicationState&gt; GetApplicationState() 
+    { 
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ApplicationState() { Information = <span style="color:#e6db74">&#34;API is running&#34;</span> }; 
+    } 
+  } 
+} 
+</code></pre></div><p>If you have already worked with older versions of ASP .NET, you may have been using IActionResult as the return type. Now you can directly use the generic class ActionResult, where the type in braces is the type of the model which is stored in the response. On the one hand, this helps you with the readability of your methods, since the result is directly visible. This in turn is very helpful if you use things like automatic documentation based on method headers.</p>
+<p>Basically the structure as you can see is kept very simple. And that&rsquo;s it for now. Start your project with the command <em>dotnet run</em>, you will get the address and port where the application is running. With a browser of your choice or a test tool like Postman you can now test the API. By calling the address with the attachment <em>/api</em> you should finally get the expected status message.</p>
+<h1 id="further-information">Further information</h1>
+<p>This article really only shows the information you need to get started with the topic. If I could arouse your interest, you can read on directly at <a href="https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-2.1">Microsoft</a>. But of course there are also several other articles about the topic, let your creativity run free and just try a little bit around.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

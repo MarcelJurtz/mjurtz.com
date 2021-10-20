@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gamedev on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/gamedev/</link>
+    <description>Recent content in gamedev on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 20 Jan 2018 06:00:57 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing MagicaVoxel on Linux</title>
+      <link>https://www.mjurtz.com/posts/2018-01-20-install-magicavoxel-on-linux/</link>
+      <pubDate>Sat, 20 Jan 2018 06:00:57 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-20-install-magicavoxel-on-linux/</guid>
+      <description>As a programmer with definite lack of visual skills, MagicaVoxel is a gift from God to create usable 3D models. Unfortunately, there is no installation option for Linux on the official website. With the help of Wine it is possible to use MagicaVoxel under Linux. And it really works great!
+Installation Prerequisites As I said you need to run Wine. As stated on their landing page, Wine is a compatibility layer that allows Windows applications to run under POSIX-compliant operating systems such as Linux, macOS and BSD.</description>
+    </item>
+    
+    <item>
+      <title>Voxel Explosions in Unity</title>
+      <link>https://www.mjurtz.com/posts/2017-11-16-voxel-explosions-unity/</link>
+      <pubDate>Thu, 16 Nov 2017 18:00:04 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-16-voxel-explosions-unity/</guid>
+      <description>This article describes the process of creating voxel explosions in Unity by using particles. For our models, we use MagicaVoxel, but every other tool can be used as well. The final result will look similar to this:
+Setting up the test environment For test purposes, I&amp;rsquo;ve set up a basic FPS environment using the built-in CharacterController package. I then added a gun model to the _FirstPersonCharacter _game object, which is located as child element in the hierarchy of the FPSController.</description>
+    </item>
+    
+    <item>
+      <title>Touch Controls for Unity Game Development</title>
+      <link>https://www.mjurtz.com/posts/2017-11-15-touch-controls-unity-game-development/</link>
+      <pubDate>Wed, 15 Nov 2017 18:00:46 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-15-touch-controls-unity-game-development/</guid>
+      <description>Some time ago, I created this game (online playable version) in Unity, and I wanted to be able to play it on my Android phone. Since the input options on the smartphone are slightly different from those on the pc, a certain amount of adjustments were necessary. I won&amp;rsquo;t go over the specific details on the game mechanics, you can check out these on GitHub, they are described in the README file.</description>
+    </item>
+    
+    <item>
+      <title>Building a Chess Game in Unity</title>
+      <link>https://www.mjurtz.com/posts/2017-11-13-building-a-chess-game-in-unity/</link>
+      <pubDate>Mon, 13 Nov 2017 17:57:49 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-13-building-a-chess-game-in-unity/</guid>
+      <description>In this post, I&amp;rsquo;ll be covering the basics of building a simple chess game in Unity and C#.
+The MVP of this project will be a fully playable 3D chess game for two players. Each character will only be able to make moves that comply with the rules. After slaying a king, the game is reset. To improve the game, menu scenes, statistics and a simple AI will be added later.</description>
+    </item>
+    
+    <item>
+      <title>Making Video Games - Concepts - Part 1</title>
+      <link>https://www.mjurtz.com/posts/2017-09-09-making-video-games-concepts-part-1/</link>
+      <pubDate>Sat, 09 Sep 2017 10:19:34 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-09-making-video-games-concepts-part-1/</guid>
+      <description>In this series, I&amp;rsquo;ll be creating a videogame from scratch using unity. I hope that I&amp;rsquo;ll be able to keep everything understandable for beginners, but if something gets too complex, just contact me and I&amp;rsquo;ll update the specific post.
+This first part covers the basic concepts of what I&amp;rsquo;ll be building, and what tools you may need.
+About the game I&amp;rsquo;d like to build an arcade style, shoot &amp;lsquo;em up, top down shooter like space invaders.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,21 @@
+@media (min-width: 1200px) {
+    .container.narrow {
+        max-width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container.narrow {
+        max-width: 750px;
+    }
+}
+
+img {
+    max-width: 100%;
+}
+
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}

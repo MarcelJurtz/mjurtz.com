@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rest on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/rest/</link>
+    <description>Recent content in rest on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 04 Dec 2017 21:45:36 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/rest/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Query Coinmarketcap API using ServiceStack</title>
+      <link>https://www.mjurtz.com/posts/2017-12-04-query-coinmarketcap-api-using-servicestack/</link>
+      <pubDate>Mon, 04 Dec 2017 21:45:36 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-04-query-coinmarketcap-api-using-servicestack/</guid>
+      <description>In the first article of my series on using ServiceStack I mentioned the feature of the framework that the individual components can be used independently of each other.
+This short article is intended as an example of how the C# client can be used separately from a custom service to communicate with third-party APIs. If you would like to know more about the client specifically, you can read my article on this feature.</description>
+    </item>
+    
+    <item>
+      <title>ServiceStack - Authentication and Authorization</title>
+      <link>https://www.mjurtz.com/posts/2017-12-01-servicestack-authentication-and-authorization/</link>
+      <pubDate>Fri, 01 Dec 2017 15:00:40 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-01-servicestack-authentication-and-authorization/</guid>
+      <description>This is the fourth part on my series on how to get started using ServiceStack. Be sure to check out the earlier articles, if you haven&amp;rsquo;t read them already:
+ Part 1 - What is ServiceStack and why should I use it? Part 2 - Building a Simple Service Part 3 - Using the C#-Client  Today, I&amp;rsquo;ll be adding basic authentication and authorization to the project we&amp;rsquo;ve created over the last parts.</description>
+    </item>
+    
+    <item>
+      <title>What is ServiceStack and why should I use it?</title>
+      <link>https://www.mjurtz.com/posts/2017-11-23-what-is-servicestack/</link>
+      <pubDate>Thu, 23 Nov 2017 20:00:40 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-23-what-is-servicestack/</guid>
+      <description>This article is the beginning of a series of articles in which I want to discuss the basics of building web services and designing REST APIs using ServiceStack. This first article discusses the question of what ServiceStack is all about, the benefits of it, and why you should use (or at least try out) this framework. The following articles will then discuss the design of a simple service by using a simple example to illustrate the various possibilities it offers.</description>
+    </item>
+    
+    <item>
+      <title>RESTful Services with ServiceStack - Part 2</title>
+      <link>https://www.mjurtz.com/posts/2017-09-23-restful-services-servicestack-part-2/</link>
+      <pubDate>Sat, 23 Sep 2017 18:00:14 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-23-restful-services-servicestack-part-2/</guid>
+      <description>In my last post, I&amp;rsquo;ve set up a basic RESTful service using ServiceStack. This article deals with the implementation of a corresponding functionality on the client side. The application will query the path provided by the server and apply the pre-defined authentication method, requiring the user to log in with username and password before the application delivers the desired content.
+Both projects, client and server are located on my GitHub-profile and can be viewed and downloaded there.</description>
+    </item>
+    
+    <item>
+      <title>Creating RESTful Services with ServiceStack</title>
+      <link>https://www.mjurtz.com/posts/2017-09-21-creating-restful-services-servicestack/</link>
+      <pubDate>Thu, 21 Sep 2017 18:00:26 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-21-creating-restful-services-servicestack/</guid>
+      <description>This articles covers the basic usage of ServiceStack, a .NET-framework for creating RESTful services. The framework has a really great documentation, where you can check out all the details.
+Configuration To get started, you&amp;rsquo;ll want to create a new ASP.NET project, and load the ServiceStack package via NuGet. Then, you&amp;rsquo;ll have to edit your Web.config to look like the following (mentioned versions may differ from your project):
+&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; &amp;lt;!</description>
+    </item>
+    
+  </channel>
+</rss>

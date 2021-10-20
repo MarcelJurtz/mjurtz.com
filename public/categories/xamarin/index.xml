@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>xamarin on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/categories/xamarin/</link>
+    <description>Recent content in xamarin on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 10 Dec 2017 14:24:38 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/categories/xamarin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sideproject: CryptoFolio</title>
+      <link>https://www.mjurtz.com/posts/2017-12-10-sideproject-cryptofolio/</link>
+      <pubDate>Sun, 10 Dec 2017 14:24:38 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-10-sideproject-cryptofolio/</guid>
+      <description>Today I would like to introduce my current side project. I&amp;rsquo;m currently developing CryptoFolio, an app that allows you to keep track of your investments in cryptocurrencies.
+Functionality &amp;amp; MVP The first release of the application will allow you to view the current rates of the top 100 cryptocurrencies with the highest market capitalization. You can then add investments, where input, output and the date of the transaction is recorded.</description>
+    </item>
+    
+    <item>
+      <title>Custom Visualization for Numeric Values in Xamarin / DevExpress dxGrid</title>
+      <link>https://www.mjurtz.com/posts/2017-11-22-custom-visualization-for-numeric-values-in-xamarin-devexpress-dxgrid/</link>
+      <pubDate>Wed, 22 Nov 2017 17:00:53 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-22-custom-visualization-for-numeric-values-in-xamarin-devexpress-dxgrid/</guid>
+      <description>The dxGrid grid control for Xamarin, which DevExpress provides free of charge, is a powerful feature for mobile application development. However, many of the functions are a little bit hidden. In this article I will discuss how to customize the display of column values.
+In my concrete example my grid contains a numeric column, which can contain numbers with or without decimal places. I want these decimal places to be displayed only if they exist.</description>
+    </item>
+    
+  </channel>
+</rss>

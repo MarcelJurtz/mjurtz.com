@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>html on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/html/</link>
+    <description>Recent content in html on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 17 Jun 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/html/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Simplify your CSS - LESS is more</title>
+      <link>https://www.mjurtz.com/posts/2018-06-17-less-css/</link>
+      <pubDate>Sun, 17 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-17-less-css/</guid>
+      <description>First things first: I am not a web developer and certainly not a designer. The following examples are not intended to represent good practices in terms of design or aesthetics.
+But now to the topic: As a software developer you can hardly avoid acquiring basic knowledge in web development. Specifically, I mean the handling of HTML and CSS, also in JavaScript as far as I&amp;rsquo;m concerned. If you are like me, you basically have no problems with it, but CSS files will become quite confusing and difficult to revise over time.</description>
+    </item>
+    
+  </channel>
+</rss>

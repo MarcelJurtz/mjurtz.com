@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>web on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/categories/web/</link>
+    <description>Recent content in web on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 10 Feb 2019 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/categories/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Static Site Generators</title>
+      <link>https://www.mjurtz.com/posts/2019-02-10-static-site-generators/</link>
+      <pubDate>Sun, 10 Feb 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-02-10-static-site-generators/</guid>
+      <description>Some time ago I moved this website from WordPress to Jekyll, but I never really explained the reasons. That&amp;rsquo;s why I want to discuss in today&amp;rsquo;s post the option of managing websites using an offline CMS or Static Site Generator.
+CMS like WordPress are often ridiculed and devalued by their complexity or their overall structure. In the meantime, there is a variety of similar content management systems available, but they usually share the core functionalities and structure.</description>
+    </item>
+    
+    <item>
+      <title>Simplify your CSS - LESS is more</title>
+      <link>https://www.mjurtz.com/posts/2018-06-17-less-css/</link>
+      <pubDate>Sun, 17 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-17-less-css/</guid>
+      <description>First things first: I am not a web developer and certainly not a designer. The following examples are not intended to represent good practices in terms of design or aesthetics.
+But now to the topic: As a software developer you can hardly avoid acquiring basic knowledge in web development. Specifically, I mean the handling of HTML and CSS, also in JavaScript as far as I&amp;rsquo;m concerned. If you are like me, you basically have no problems with it, but CSS files will become quite confusing and difficult to revise over time.</description>
+    </item>
+    
+  </channel>
+</rss>

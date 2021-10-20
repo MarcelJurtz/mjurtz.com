@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Decoupling Views in Xamarin &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>Decoupling Views in Xamarin</h1>
+  <time datetime=2017-11-12T10:05:27Z class="post-date">Sun, Nov 12, 2017</time>
+  <p>As a software developer, you&rsquo;ve probably stumbled across old source code you&rsquo;ve written from time to time and you&rsquo;ve just been thinking &lsquo;how the hell can someone come up with such bullshit?&rsquo;. I don&rsquo;t see myself as an exception regarding this topic and just recently had such a case, which I would like to document in this article. More specifically, I want to discuss the decoupling of views under xamarin. The source I use in this article is available on my <a href="https://github.com/MarcelJurtz/XamarinDecouplingDemo">GitHub profile</a>.</p>
+<h2 id="xamarin-navigation">Xamarin Navigation</h2>
+<p>Decoupling allows you to use multiple views without dependencies between them. Without decoupling, all relevant elements would have to be edited for individual changes. Xamarin relies on a simple page-based navigation structure that is managed in the form of a stack (see figure). A new page is added with Push(), the topmost page can be removed with Pop().</p>
+<p><img src="/assets/2017/xamarin-view-decoupling.png" alt="Xamarin View Decoupling"></p>
+<p>These pages are usually interdependent, for example, information is required on a page that is entered on the next page. After entering the required information, the user is taken back to the calling page and the information is transferred to this one. This is exactly the point I want to clarify with this article. The strict interaction of the sides is problematic in the case of subsequent changes.</p>
+<h2 id="building-the-demo-application">Building the demo application</h2>
+<p>Take a look at the following screenshots to see how the demo application works. The app consists of two pages, whereby the second view is opened by a button on the first one. The second view contains an input field whose value will then be accessed in the first view. There is an additional button to abort the process. If the &ldquo;Confirm&rdquo; button is pressed even though no text has been entered, the user will be informed.</p>
+<p><img src="/assets/2017/xamarin-view-decoupling-demo.png" alt="Xamarin View Decoupling Demo GUI"></p>
+<p>The default configuration of Visual Studio already creates a default page for every new Xamarin project. I created an additional one next to it. For interaction I have created an interface which manages the possible handlers. The folder structure of my main project consists of the following files:</p>
+<ul>
+<li>App.xaml (+ code-behind)</li>
+<li>MainPage.xaml (+ code-behind)</li>
+<li>InputPage.xaml (+code-behind)</li>
+<li>IRequireDialogInteraction</li>
+</ul>
+<p>Since this project is used as showcase to demonstrate the decoupling of views, I don&rsquo;t follow the MVVM-approach here. However, this is done only to minimize possible distractions, MVVM can of course still be used.</p>
+<p>The first thing you&rsquo;ll want to do is to set up a navigation page. This is done in App.xaml.cs by adding: <code>csharpMainPage = new NavigationPage(new MainPage());</code> After doing so, you can navigate between your views via:
+<code>csharpNavigation.PushAsync(page);</code></p>
+<p>The next thing is setting up the simple GUI:</p>
+<p>MainPage.xaml</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34; ?&gt;</span>
+<span style="color:#f92672">&lt;ContentPage</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://xamarin.com/schemas/2014/forms&#34;</span>
+             <span style="color:#a6e22e">xmlns:x=</span><span style="color:#e6db74">&#34;http://schemas.microsoft.com/winfx/2009/xaml&#34;</span>
+             <span style="color:#a6e22e">xmlns:local=</span><span style="color:#e6db74">&#34;clr-namespace:XamarinDecouplingDemo&#34;</span>
+             <span style="color:#a6e22e">x:Class=</span><span style="color:#e6db74">&#34;XamarinDecouplingDemo.MainPage&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;ContentPage.Content&gt;</span>
+        <span style="color:#f92672">&lt;StackLayout&gt;</span>
+            <span style="color:#f92672">&lt;Button</span>
+                <span style="color:#a6e22e">Text=</span><span style="color:#e6db74">&#34;Load second page&#34;</span>
+                <span style="color:#a6e22e">Clicked=</span><span style="color:#e6db74">&#34;OnLoadButtonClick&#34;</span><span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;Label</span>
+                <span style="color:#a6e22e">x:Name=</span><span style="color:#e6db74">&#34;lblInputText&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;/StackLayout&gt;</span>
+    <span style="color:#f92672">&lt;/ContentPage.Content&gt;</span>
+<span style="color:#f92672">&lt;/ContentPage&gt;</span>```
+
+InputPage.xaml
+
+```xml
+<span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34; ?&gt;</span>
+<span style="color:#f92672">&lt;ContentPage</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://xamarin.com/schemas/2014/forms&#34;</span>
+             <span style="color:#a6e22e">xmlns:x=</span><span style="color:#e6db74">&#34;http://schemas.microsoft.com/winfx/2009/xaml&#34;</span>
+             <span style="color:#a6e22e">x:Class=</span><span style="color:#e6db74">&#34;XamarinDecouplingDemo.InputPage&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;ContentPage.Content&gt;</span>
+        <span style="color:#f92672">&lt;Grid</span>
+                <span style="color:#a6e22e">Padding=</span><span style="color:#e6db74">&#34;30&#34;</span>
+                <span style="color:#a6e22e">BackgroundColor=</span><span style="color:#e6db74">&#34;White&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;Grid.RowDefinitions&gt;</span>
+                <span style="color:#f92672">&lt;RowDefinition</span> <span style="color:#a6e22e">Height=</span><span style="color:#e6db74">&#34;Auto&#34;</span> <span style="color:#f92672">/&gt;</span>
+                <span style="color:#f92672">&lt;RowDefinition</span> <span style="color:#a6e22e">Height=</span><span style="color:#e6db74">&#34;Auto&#34;</span> <span style="color:#f92672">/&gt;</span>
+                <span style="color:#f92672">&lt;RowDefinition</span> <span style="color:#a6e22e">Height=</span><span style="color:#e6db74">&#34;Auto&#34;</span> <span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;/Grid.RowDefinitions&gt;</span>
+            <span style="color:#f92672">&lt;Grid.ColumnDefinitions&gt;</span>
+                <span style="color:#f92672">&lt;ColumnDefinition</span> <span style="color:#a6e22e">Width=</span><span style="color:#e6db74">&#34;*&#34;</span> <span style="color:#f92672">/&gt;</span>
+                <span style="color:#f92672">&lt;ColumnDefinition</span> <span style="color:#a6e22e">Width=</span><span style="color:#e6db74">&#34;*&#34;</span> <span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;/Grid.ColumnDefinitions&gt;</span>
+
+            <span style="color:#f92672">&lt;Label</span>
+                    <span style="color:#a6e22e">Grid.ColumnSpan=</span><span style="color:#e6db74">&#34;2&#34;</span>
+                    <span style="color:#a6e22e">Grid.Row=</span><span style="color:#e6db74">&#34;0&#34;</span>
+                    <span style="color:#a6e22e">HorizontalOptions=</span><span style="color:#e6db74">&#34;Start&#34;</span>
+                    <span style="color:#a6e22e">Text=</span><span style="color:#e6db74">&#34;Text to return&#34;</span><span style="color:#f92672">/&gt;</span>
+
+            <span style="color:#f92672">&lt;Entry</span>
+                    <span style="color:#a6e22e">Grid.ColumnSpan=</span><span style="color:#e6db74">&#34;2&#34;</span>
+                    <span style="color:#a6e22e">Grid.Row=</span><span style="color:#e6db74">&#34;1&#34;</span>
+                    <span style="color:#a6e22e">x:Name=</span><span style="color:#e6db74">&#34;txtTextToReturn&#34;</span><span style="color:#f92672">/&gt;</span>
+
+            <span style="color:#f92672">&lt;Button</span>
+                    <span style="color:#a6e22e">Grid.Column=</span><span style="color:#e6db74">&#34;0&#34;</span>
+                    <span style="color:#a6e22e">Grid.Row=</span><span style="color:#e6db74">&#34;2&#34;</span>
+                    <span style="color:#a6e22e">x:Name=</span><span style="color:#e6db74">&#34;cmdCancel&#34;</span>
+                    <span style="color:#a6e22e">Text=</span><span style="color:#e6db74">&#34;Cancel&#34;</span>
+                    <span style="color:#a6e22e">Clicked=</span><span style="color:#e6db74">&#34;OnCancel&#34;</span><span style="color:#f92672">/&gt;</span>
+
+            <span style="color:#f92672">&lt;Button</span> 
+                    <span style="color:#a6e22e">Grid.Column=</span><span style="color:#e6db74">&#34;1&#34;</span>
+                    <span style="color:#a6e22e">Grid.Row=</span><span style="color:#e6db74">&#34;2&#34;</span>
+                    <span style="color:#a6e22e">x:Name=</span><span style="color:#e6db74">&#34;cmdConfirm&#34;</span>
+                    <span style="color:#a6e22e">Text=</span><span style="color:#e6db74">&#34;Confirm&#34;</span>
+                    <span style="color:#a6e22e">Clicked=</span><span style="color:#e6db74">&#34;OnConfirm&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+        <span style="color:#f92672">&lt;/Grid&gt;</span>
+    <span style="color:#f92672">&lt;/ContentPage.Content&gt;</span>
+<span style="color:#f92672">&lt;/ContentPage&gt;</span>```
+
+The second view can be left by clicking one of two buttons, cancel and confirm. These interactions will be required by the MainPage later, which is why methods for those will be added to _IRequireDialogInteraction_:
+
+```csharp
+interface IRequireDialogInteraction
+{
+    void OnDialogConfirmation(object sender, EventArgs e);
+    void OnDialogCancellation(object sender, EventArgs e);
+}
+</code></pre></div><p>After the basic settings have been made, the actual magic will now happen in form of public EventHandler properties. MainPage needs a property of the type <em>InputPage</em>, which is used to interact with the second view. <em>InputPage</em> on the other hand will implement two event handlers, which can be accessed by <em>MainPage</em>. These will then be linked to the <em>Clicked</em>-property which is set in the xaml-file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">partial</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InputPage</span> : ContentPage
+{
+    <span style="color:#66d9ef">public</span> InputPage ()
+    {
+      InitializeComponent();
+    }
+
+    <span style="color:#66d9ef">public</span> EventHandler Confirmed;
+    <span style="color:#66d9ef">public</span> EventHandler Cancelled;
+
+    <span style="color:#66d9ef">public</span> String enteredText { <span style="color:#66d9ef">get</span> { <span style="color:#66d9ef">return</span> txtTextToReturn.Text; } }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> OnConfirm(<span style="color:#66d9ef">object</span> sender, EventArgs e)
+    {
+        Confirmed?.Invoke(<span style="color:#66d9ef">this</span>, EventArgs.Empty);
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> OnCancel(<span style="color:#66d9ef">object</span> sender, EventArgs e)
+    {
+        Cancelled?.Invoke(<span style="color:#66d9ef">this</span>, EventArgs.Empty);
+    }
+}<span style="color:#960050;background-color:#1e0010">```</span>
+
+<span style="color:#ae81ff">_</span>MainPage_ now only needs to link the <span style="color:#66d9ef">event</span> handlers to the methods which are implemented <span style="color:#66d9ef">by</span> <span style="color:#ae81ff">_</span>IRequireDialogInteraction_ and can then access the <span style="color:#ae81ff">_</span>enteredText_-property of the <span style="color:#ae81ff">_</span>InputPage_-<span style="color:#66d9ef">object</span>:
+
+<span style="color:#960050;background-color:#1e0010">```</span>csharp
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">partial</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainPage</span> : ContentPage, IRequireDialogInteraction
+{
+    <span style="color:#66d9ef">private</span> InputPage <span style="color:#ae81ff">_</span>InputPage;
+
+    <span style="color:#66d9ef">public</span> MainPage()
+    {
+        InitializeComponent();
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> OnDialogCancellation(<span style="color:#66d9ef">object</span> sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> OnDialogConfirmation(<span style="color:#66d9ef">object</span> sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+        lblInputText.Text = <span style="color:#ae81ff">_</span>InputPage.enteredText ?? <span style="color:#e6db74">&#34;No text entered.&#34;</span>;
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> OnLoadButtonClick(<span style="color:#66d9ef">object</span> sender, EventArgs e)
+    {
+        lblInputText.Text = <span style="color:#e6db74">&#34;&#34;</span>;
+
+        <span style="color:#ae81ff">_</span>InputPage = <span style="color:#66d9ef">new</span> InputPage();
+        <span style="color:#ae81ff">_</span>InputPage.Confirmed += OnDialogConfirmation;
+        <span style="color:#ae81ff">_</span>InputPage.Cancelled += OnDialogCancellation;
+
+        Navigation.PushAsync(<span style="color:#ae81ff">_</span>InputPage);
+    }
+}<span style="color:#960050;background-color:#1e0010">```</span>
+
+And that<span style="color:#960050;background-color:#1e0010">&#39;</span>s basically it! If you want to change the style <span style="color:#66d9ef">in</span> which user interaction happens, you<span style="color:#960050;background-color:#1e0010">&#39;</span>ll be able to simply swap <span style="color:#66d9ef">out</span> the specific part <span style="color:#66d9ef">in</span> the methods <span style="color:#ae81ff">_</span>OnDialogConfirmation_ or <span style="color:#ae81ff">_</span>OnDialogCancellation_.
+
+<span style="color:#960050;background-color:#1e0010">##</span> Implementing Dialogs
+
+Finally, I would like cover one specific detail which helped me a lot <span style="color:#66d9ef">in</span> my work with xamarin. [This plugin](https:<span style="color:#75715e">//github.com/rotorgames/Rg.Plugins.Popup) (available on GitHub &amp; Nuget) allows you to show regular XAML-pages as dialogs. This is really helpful in combination with the decoupling shown above, since you can create custom dialogs, for example to display user prompts or general input fields to take off the load of some of the main pages. The usage looks exactly the same as that of the regular pages, except that the dialog-pages must inherit from _PopupPage_ and are called with _PushPopupAsync()_ instead of _PushAsync()_. The closing of the page takes place analogously with _PopPopupAsync()_.
+</span></code></pre></div>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

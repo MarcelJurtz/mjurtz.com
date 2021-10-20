@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>C# - Mastering the Basics - Events and Delegates &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>C# - Mastering the Basics - Events and Delegates</h1>
+  <time datetime=2018-04-26T10:00:00Z class="post-date">Thu, Apr 26, 2018</time>
+  <p>Delegates and Events are powerful tools in C#, but they can definitely be confusing in the beginning. Todays article covers the basics of this topic and helps you to get comfortable implementing this approach in your own applications.</p>
+<h2 id="delegates">Delegates</h2>
+<p>I think, the main problem is that delegates are often explained unnecessarily complicated. For this reason, I want to give you an easily understandable introduction. Let&rsquo;s look at a basic delegate declaration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">void</span> myDelegate(<span style="color:#66d9ef">string</span> a, <span style="color:#66d9ef">string</span> b);
+</code></pre></div><p>The declaration of a delegate looks very similar to a method declaration. In this case, the delegate looks like a method without a return value, but with two parameters, each of type string. The only difference is the keyword ‘delegate’ and the missing method body. Imagine delegates not as methods, but as references to methods.</p>
+<p>Let&rsquo;s look at the following two methods:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> SayHello(<span style="color:#66d9ef">string</span> yourName, <span style="color:#66d9ef">string</span> myName)
+{
+  Console.WriteLine(<span style="color:#e6db74">$&#34;Hello {yourName}, I am {myName}&#34;</span>);
+}
+
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> AppendStrings(<span style="color:#66d9ef">string</span> a, <span style="color:#66d9ef">string</span> b)
+{
+ 	Console.WriteLine(a + b);
+}
+</code></pre></div><p>It is not difficult to understand what these two methods do. Note, however, the signature of both methods: it is identical to that of the previously defined delegate. This means that the delegate can be used as a reference for the methods. The only decisive factor here is the type of the respective parameter, not the name.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">myDelegate del1 = <span style="color:#66d9ef">new</span> myDelegate(SayHello);
+myDelegate del2 = <span style="color:#66d9ef">new</span> myDelegate(AppendStrings);
+
+del1(<span style="color:#e6db74">&#34;Internet&#34;</span>, <span style="color:#e6db74">&#34;Marcel&#34;</span>);
+del2(<span style="color:#e6db74">&#34;Some&#34;</span>, <span style="color:#e6db74">&#34;Text&#34;</span>);
+</code></pre></div><p>To create this reference, a new instance of the delegate is created. The compiler creates a fully-fledged class from the delegate, which is why instantiation can be done as usual using the <em>new</em> keyword. As an argument, the delegate receives the name of the desired method. The referenced method can now be called via the instantiated delegate.</p>
+<h3 id="multicast-delegates">Multicast Delegates</h3>
+<p>A strong feature of delegates, the so-called multicasting, enables the chaining of method calls. Let us illustrate this with an example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">myDelegate del1 = <span style="color:#66d9ef">new</span> myDelegate(SayHello);
+myDelegate del2 = <span style="color:#66d9ef">new</span> myDelegate(AppendStrings);
+
+del1 += del2;
+del1(<span style="color:#e6db74">&#34;Hello&#34;</span>, <span style="color:#e6db74">&#34;World&#34;</span>);
+</code></pre></div><p>This will execute the stored methods for <em>del1</em> and <em>del2</em> using the arguments &ldquo;Hello&rdquo; and &ldquo;World&rdquo; for both methods. That is based on the so-called invocation list. Each delegate has such a list which holds references to all specified methods, which then are called when invoking the delegate.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">Delegate[] invocationList = del1.GetInvocationList();
+</code></pre></div><p>You can access a delegate&rsquo;s invocation list using the <em>GetInvocationList</em> method. In this example, you will see that <em>del1</em> has two entries here. The entries in the InvocationList are always made in the stored sequence.</p>
+<p>To conclude this chapter, I&rsquo;d like to show you a way to change arguments as you work through the invocation list. Delegates can also have return values, but this is not helpful during the processing steps. When using chained delegates with return types, the result of the last item from the invocation list will be returned.</p>
+<p>The key is to use reference types instead of value types. Doing so, a reference, not a copy of the variable, is passed to the method. To achieve this, the parameters must be marked with the ref keyword. I adjusted the content of my <em>SayHello()</em> method to demonstrate the whole thing. After the text is printed to the console, the method removes all vowels from the <em>yourName</em> variable.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">void</span> myDelegate(<span style="color:#66d9ef">ref</span> <span style="color:#66d9ef">string</span> a, <span style="color:#66d9ef">ref</span> <span style="color:#66d9ef">string</span> b);
+
+<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main(<span style="color:#66d9ef">string</span>[] args)
+{
+  myDelegate del1 = <span style="color:#66d9ef">new</span> myDelegate(SayHello);
+  myDelegate del2 = <span style="color:#66d9ef">new</span> myDelegate(AppendStrings);
+
+  <span style="color:#66d9ef">string</span> hello = <span style="color:#e6db74">&#34;Hello&#34;</span>;
+  <span style="color:#66d9ef">string</span> world = <span style="color:#e6db74">&#34;World!&#34;</span>;
+        
+  del1 += del2;
+  del1(<span style="color:#66d9ef">ref</span> hello, <span style="color:#66d9ef">ref</span> world);
+}
+
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> SayHello(<span style="color:#66d9ef">ref</span> <span style="color:#66d9ef">string</span> yourName, <span style="color:#66d9ef">ref</span> <span style="color:#66d9ef">string</span> myName)
+{
+  Console.WriteLine(<span style="color:#e6db74">$&#34;Hello {yourName}, I am {myName}&#34;</span>);
+  yourName = <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">string</span>(yourName.Where(c =&gt; !<span style="color:#e6db74">&#34;aeiou&#34;</span>.Contains(c)).ToArray());
+}
+
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> AppendStrings(<span style="color:#66d9ef">ref</span> <span style="color:#66d9ef">string</span> a, <span style="color:#66d9ef">ref</span> <span style="color:#66d9ef">string</span> b)
+{
+  Console.WriteLine(a + b);
+}
+</code></pre></div><h2 id="events">Events</h2>
+<p>Events indicate the occurrence of an action. Imagine an event as a notification to all interested parties. The trick here is that the raiser of the event does not have to know about the parties that are interested in that (subscibers). When an event occurs, data can optionally be sent. In C# this is done using the EventArgs class or a derivation of that class.</p>
+<p>Events basically just encapsulate delegates. This is probably the point that took me the longest to embrace. I&rsquo;m going to illustrate the whole thing with an example. With our current knowledge we can build the following application:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">partial</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Form1</span> : Form
+{
+  <span style="color:#66d9ef">public</span> Form1()
+  {
+    InitializeComponent();
+
+    Worker w = <span style="color:#66d9ef">new</span> Worker();
+    w.WorkCompleted += <span style="color:#66d9ef">new</span> WorkCompletedHandler(OnWorkerWorkCompleted);
+    w.Work();
+  }
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> OnWorkerWorkCompleted(<span style="color:#66d9ef">int</span> hoursWorked)
+  {
+    MessageBox.Show(<span style="color:#e6db74">$&#34;Worker has been completed: {hoursWorked} hours worked.&#34;</span>);
+  }
+}
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">void</span> WorkCompletedHandler(<span style="color:#66d9ef">int</span> hoursWorked);
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Worker</span>
+{
+  <span style="color:#66d9ef">public</span> WorkCompletedHandler WorkCompleted;
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> OnWorkCompleted(<span style="color:#66d9ef">int</span> hoursWorked)
+  {
+    Console.WriteLine(<span style="color:#e6db74">&#34;Work Completed - Inside Worker&#34;</span>);
+    WorkCompleted?.Invoke(hoursWorked);
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Work()
+  {
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; <span style="color:#ae81ff">3</span>; i++)
+    {
+      System.Threading.Thread.Sleep(<span style="color:#ae81ff">1000</span>);
+      Console.WriteLine(<span style="color:#e6db74">&#34;Working...&#34;</span>);
+    }
+    OnWorkCompleted(<span style="color:#ae81ff">3</span>);
+  }
+}
+</code></pre></div><p>I think you&rsquo;ll quickly grasp what&rsquo;s happening here, as well. The application launches and instantiates a worker object. The work method is called, which waits three time for one second and then outputs some information. Finally, the Delegate WorkCompletedHandler is called, to which the worked time is passed. The application now displays a message box and notifies the user that the work method has been completed. The only thing to remember here is the linkage of the OnWorkerCompleted method to the delegate&rsquo;s invocation list.</p>
+<p>Let’s take a look at how that looks when using an event:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">partial</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Form1</span> : Form
+{
+  <span style="color:#66d9ef">public</span> Form1()
+  {
+    InitializeComponent();
+
+    w = <span style="color:#66d9ef">new</span> Worker();
+    w.WorkCompleted += <span style="color:#66d9ef">new</span> WorkCompletedHandler(OnWorkerWorkCompleted);
+    w.Work();
+  }
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> OnWorkerWorkCompleted(<span style="color:#66d9ef">int</span> hoursWorked)
+  {
+    MessageBox.Show(<span style="color:#e6db74">$&#34;Worker has been completed: {hoursWorked} hours worked.&#34;</span>);
+  }
+}
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">void</span> WorkCompletedHandler(<span style="color:#66d9ef">int</span> hoursWorked);
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Worker</span>
+{
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">event</span> WorkCompletedHandler WorkCompleted;
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> OnWorkCompleted(<span style="color:#66d9ef">int</span> hoursWorked)
+  {
+    Console.WriteLine(<span style="color:#e6db74">&#34;Work Completed - Inside Worker&#34;</span>);
+    WorkCompleted?.Invoke(hoursWorked);
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Work()
+  {
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; <span style="color:#ae81ff">3</span>; i++)
+    {
+      System.Threading.Thread.Sleep(<span style="color:#ae81ff">1000</span>);
+      Console.WriteLine(<span style="color:#e6db74">&#34;Working...&#34;</span>);
+    }
+    OnWorkCompleted(<span style="color:#ae81ff">3</span>);
+  }
+}
+</code></pre></div><p>Looks almost the same, right? As I said before, events are just wrappers for delegates. So theoretically you can use both versions I have presented. However, events are used for the same reason as properties are used: It is considered bad practice to expose fields directly. According to the principle of encapsulation, these are thus isolated from the outside. That is exactly the case here as well. Events are used to encapsulate access to delegates.</p>
+<p>The final thing I want to share with you in this article is the use of custom EventArgs. The.NET framework has a convention whereby a delegate type used for an event always takes two parameters. The first one is a reference to the object that triggers the event. The other one is an object of the class EventArgs or one that inherits from it. We want to create our own EventArgs inheritance that contains the hours worked. The following code does that for us:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">partial</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Form1</span> : Form
+{
+  <span style="color:#66d9ef">public</span> Form1()
+  {
+    InitializeComponent();
+
+    Worker w = <span style="color:#66d9ef">new</span> Worker();
+    w.WorkCompleted += <span style="color:#66d9ef">new</span> WorkCompletedHandler(OnWorkerWorkCompleted);
+    w.Work();
+  }
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> OnWorkerWorkCompleted(<span style="color:#66d9ef">object</span> sender, WorkerEventArgs e)
+  {
+    MessageBox.Show(<span style="color:#e6db74">$&#34;Worker has been completed: {e.HoursWorked} hours worked.&#34;</span>);
+  }
+}
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">void</span> WorkCompletedHandler(<span style="color:#66d9ef">object</span> sender, WorkerEventArgs e);
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Worker</span>
+{
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">event</span> WorkCompletedHandler WorkCompleted;
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> OnWorkCompleted(<span style="color:#66d9ef">int</span> hoursWorked)
+  {
+    Console.WriteLine(<span style="color:#e6db74">&#34;Work Completed - Inside Worker&#34;</span>);
+    WorkCompleted?.Invoke(<span style="color:#66d9ef">this</span>, <span style="color:#66d9ef">new</span> WorkerEventArgs(<span style="color:#ae81ff">3</span>));
+  }
+
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Work()
+  {
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; <span style="color:#ae81ff">3</span>; i++)
+    {
+      System.Threading.Thread.Sleep(<span style="color:#ae81ff">1000</span>);
+      Console.WriteLine(<span style="color:#e6db74">&#34;Working...&#34;</span>);
+    }
+    OnWorkCompleted(<span style="color:#ae81ff">3</span>);
+  }
+}
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WorkerEventArgs</span> : EventArgs
+{
+  <span style="color:#66d9ef">public</span> WorkerEventArgs(<span style="color:#66d9ef">int</span> hoursWorked)
+  {
+    <span style="color:#ae81ff">_</span>hoursWorked = hoursWorked;
+  }
+
+  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> <span style="color:#ae81ff">_</span>hoursWorked;
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> HoursWorked { <span style="color:#66d9ef">get</span> { <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">_</span>hoursWorked; } }
+}
+
+</code></pre></div><h2 id="wrap-up">Wrap-Up</h2>
+<p>Delegates are references to methods. The compiler creates a class when a delete is generated, instances of the delegate are then created as usual with the new keyword. Like methods, delegates can have a return type. Utiliting multicasting, delegates can be chained together, the call order is based on the delegates invocation list. Events are used to encapsulate delegates. Events usually use two parameters, the first being a reference to the trigger and the second an instance of EventArgs or an inheriting class thereof.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

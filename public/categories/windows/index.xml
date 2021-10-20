@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>windows on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/categories/windows/</link>
+    <description>Recent content in windows on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 09 Apr 2018 18:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/categories/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bypassing Microsofts Windows Media Creation Tool</title>
+      <link>https://www.mjurtz.com/posts/2018-04-09-bypass-windows-media-creation-tool/</link>
+      <pubDate>Mon, 09 Apr 2018 18:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-04-09-bypass-windows-media-creation-tool/</guid>
+      <description>Remember when you could simply download official Windows ISO images to burn on DVDs and install? Microsoft now uses this thing called &amp;lsquo;Media Creation Tool&amp;rsquo; to download ISOs, but there&amp;rsquo;s a simple way to bypass this and download actual images.
+When searching for Windows10 ISOs, you&amp;rsquo;ll likely find this url, which provides a download for the Media Creation Tool.
+ https://www.microsoft.com/de-de/software-download/windows10  But: there&amp;rsquo;s also this url
+ https://www.microsoft.com/de-de/software-download/windows10ISO  However, when browsing this site on a windows machine, it automatically redirects you to the first of the pages I linked.</description>
+    </item>
+    
+  </channel>
+</rss>

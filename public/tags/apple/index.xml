@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>apple on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/apple/</link>
+    <description>Recent content in apple on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 17 Feb 2019 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/apple/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MacOS Package Management</title>
+      <link>https://www.mjurtz.com/posts/2019-02-17-macos-package-management/</link>
+      <pubDate>Sun, 17 Feb 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-02-17-macos-package-management/</guid>
+      <description>The ability to work with the terminal under MacOS and use my familiar Linux workflow is awesome, but I have always missed a crucial component: a package manager.
+Homebrew is a package manager for MacOS, according to the developers &amp;ldquo;The missing package Manager for macOS (or Linux)&amp;rdquo;. Today I would like to explain how you install and use Homebrew productively.
+First of all: You can find the project&amp;rsquo;s website here, there you will find all the information and documentation you could wish for.</description>
+    </item>
+    
+  </channel>
+</rss>

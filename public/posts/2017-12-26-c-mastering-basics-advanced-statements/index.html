@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>C# – Mastering the Basics – Advanced Statements &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>C# – Mastering the Basics – Advanced Statements</h1>
+  <time datetime=2017-12-26T13:01:09Z class="post-date">Tue, Dec 26, 2017</time>
+  <p>In todays episode, I&rsquo;ll show you how to use three advanced statements in C#. I&rsquo;ll go over the so-called <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operators">null-conditional operator</a>, the <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-conditional-operator">null-coalescing operator</a> and the <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/conditional-operator">ternary operator</a>.</p>
+<h2 id="null-conditional-operator">Null-Conditional Operator</h2>
+<p>You can use the null-conditional operator to prevent _NullReferenceException_s. The basic principle of the operator is to return a value if it is not null, and return null if it is. The following code shows you how to use the operator, which is initiated by a question mark, followed by a dot.</p>
+<pre tabindex="0"><code class="language-csharpList<String>" data-lang="csharpList<String>">int? val = stringList?.Count;```
+
+You can see the operator preceding the call of the Count-property. Running the code without the operator would lead to a NullReferenceException, but this way, _null_ is assigned to the variable _val_ instead.
+
+## Null-Coalescing Operator
+
+The next operator is the null-coalescing operator. It is initiated by two question marks and it's used to assign different values based on wether the first choice is null or not. To get a better understanding of this, let's look at an example:
+
+```csharpint? val = null;
+int result = val ?? 0;```
+
+The value of the variable _val_ is assigned to _result_. However, if _val_ is equal to null, _result_ will receive the value 0.
+
+## Ternary Operator
+
+The last operator in todays article is the ternary operator. It basically provides a short hand version for if-else-statements that can be written in a single line.
+
+Let's look at the following example:
+
+```csharpint val1 = 1;
+int val2 = 2;
+int smaller;
+
+if (val1 &gt; val2)
+{
+    smaller = val2;
+}
+else
+{
+    smaller = val1;
+}```
+
+The if-statement takes up a lot of space while its logic is very simple. This can be replaced by the following code using the ternary operator:
+
+```csharpint val1 = 1;
+int val2 = 2;
+int smaller = val1 &gt; val2 ? val2 : val1;```
+
+By using the ternary operator, you can simplify the assignment of variable by typing an expression that returns either true or false after the assignment operator. Complete the statement by a question mark. After that, the two values separated by a colon represent the values that will be assigned to the variable. The first one will be used if the statement is true, otherwise the second one is assigned.</code></pre>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

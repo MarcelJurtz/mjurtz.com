@@ -1,5 +1,5 @@
-baseURL = 'http://blog.mjurtz.com/'
-languageCode = 'de-DE'
+baseURL = 'https://www.mjurtz.com/'
+languageCode = 'en'
 title = 'Marcel Jurtz'
 theme = "hyde"
 

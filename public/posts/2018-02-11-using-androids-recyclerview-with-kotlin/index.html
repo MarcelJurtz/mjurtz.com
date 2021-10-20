@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Using Androids Recyclerview with Kotlin &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>Using Androids Recyclerview with Kotlin</h1>
+  <time datetime=2018-02-11T16:01:31Z class="post-date">Sun, Feb 11, 2018</time>
+  <p>Traditionally, you were using a listview to display several homogeneous elements in you Android app. However, this view is now deprecated. Android now offers an alternative, which aims to increase performance by only loading those elements, that are currently rendered on-screen: the <em>RecyclerView</em>.</p>
+<p>This article shows you how to get started with the RecyclerView. To make things a bit more interesting, we will be using Kotlin instead of Java.</p>
+<p>You can set up an Android project for Kotlin by simply clicking the checkbox for Kotlin support in the new project wizard.</p>
+<h2 id="preceding-configuration">Preceding Configuration</h2>
+<p>Before you can use the Recyclerview in your app, a little preparatory work is necessary. The first thing you&rsquo;ll need to do is to add this dependency to your modules build.gradle file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"></code></pre></div><h2 id="basic-gui-setup">Basic GUI Setup</h2>
+<p>The next thing you&rsquo;ll want to do is to set up a simple xaml page to display the view. I&rsquo;ll be using a coordinator layout, which allows me to add a FloatingActionButton at a later stage.</p>
+<p>The snippets I use in this article are from my ShoppingList-App, which is basically a minimalistic app to save shopping lists. The user can add and remove items from shopping lists, multiple shopping lists can be used at the same time.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;android.support.design.widget.CoordinatorLayout</span>  <span style="color:#a6e22e">xmlns:android=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res/android&#34;</span>
+    <span style="color:#a6e22e">xmlns:app=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res-auto&#34;</span>
+    <span style="color:#a6e22e">xmlns:tools=</span><span style="color:#e6db74">&#34;http://schemas.android.com/tools&#34;</span>
+    <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+    <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+    <span style="color:#a6e22e">tools:context=</span><span style="color:#e6db74">&#34;com.jurtz.marcel.shoppinglist.MainActivity&#34;</span><span style="color:#f92672">&gt;</span>
+
+    <span style="color:#f92672">&lt;android.support.v7.widget.RecyclerView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/rvShoppingLists&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_margin=</span><span style="color:#e6db74">&#34;8dp&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+<span style="color:#f92672">&lt;/android.support.design.widget.CoordinatorLayout &gt;</span>```
+
+## RecyclerView Components: Adapter <span style="color:#960050;background-color:#1e0010">&amp;</span> ViewHolder
+
+While it offers the advantage of improved performance, the RecyclerView is a bit more complicated to create and requires additional components. In our _MainActivity_ class, the first thing to do now is to specify the RecyclerViews LayoutManager. This is required to define the appearance of the multiple items. I&#39;d like to display them in a vertical list.
+
+```kotlin rvShoppingLists.layoutManager = LinearLayoutManager(this)```
+
+The next thing you&#39;ll want to do is to set the views adapter. You can think of the adapter as a bridge between view and model which defines the appearance of your the POJOs.
+
+To implement the adapter, add a new class which inherits from _RecyclerView.Adapter<span style="color:#f92672">&lt;T&gt;</span>_. As you can see, this class is generic and requires a ViewHolder, I&#39;ve also created a custom class for this purpose. The following snippet shows the methods that need to be overridden.
+
+```kotlin class ShoppingListAdapter(var shoppingLists: List<span style="color:#f92672">&lt;ShoppingList</span><span style="color:#960050;background-color:#1e0010">?</span><span style="color:#f92672">&gt;</span>) : RecyclerView.Adapter<span style="color:#f92672">&lt;ShoppingListViewHolder&gt;</span>() {
+
+    override fun getItemCount(): Int {
+        return 5
+    }
+
+    override fun onBindViewHolder(holder: ShoppingListViewHolder?, position: Int) {
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ShoppingListViewHolder {
+        
+    }
+}
+
+class ShoppingListViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+   
+
+}```
+
+Note that I added _5_ as return value for _getItemCount()_, you can leave this for now, we will see what this does in the next steps.
+
+## Custom Layout for RecyclerView Items
+
+Now, we will add a new layout file (xml) to specify how each row in the RecyclerView should look like. For this purpose, I&#39;d like to use a CardView with a nested LinearLayout that contains two TextViews. In my app, I&#39;m using the first TextView to display a shopping lists description and the amount of items in the second one.
+
+```xml <span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span style="color:#f92672">&lt;android.support.v7.widget.CardView</span> <span style="color:#a6e22e">xmlns:android=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res/android&#34;</span>
+    <span style="color:#a6e22e">xmlns:app=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res-auto&#34;</span>
+    <span style="color:#a6e22e">xmlns:card_view=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res-auto&#34;</span>
+    <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/cvRowEntry&#34;</span>
+    <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+    <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+    <span style="color:#a6e22e">card_view:cardCornerRadius=</span><span style="color:#e6db74">&#34;4dp&#34;</span>
+    <span style="color:#a6e22e">android:layout_margin=</span><span style="color:#e6db74">&#34;8dp&#34;</span><span style="color:#f92672">&gt;</span>
+
+    <span style="color:#f92672">&lt;LinearLayout</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:orientation=</span><span style="color:#e6db74">&#34;vertical&#34;</span><span style="color:#f92672">&gt;</span>
+
+        <span style="color:#f92672">&lt;TextView</span>
+            <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/lblShoppingListRowItemHeader&#34;</span>
+            <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+            <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+            <span style="color:#a6e22e">android:layout_margin=</span><span style="color:#e6db74">&#34;8dp&#34;</span>
+            <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/rv_shopping_lists_placeholder_title&#34;</span>
+            <span style="color:#a6e22e">android:textSize=</span><span style="color:#e6db74">&#34;24sp&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+        <span style="color:#f92672">&lt;TextView</span>
+            <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/lblShoppingListRowItemSubheader&#34;</span>
+            <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+            <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+            <span style="color:#a6e22e">android:layout_margin=</span><span style="color:#e6db74">&#34;8dp&#34;</span>
+            <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/rv_shopping_lists_placeholder_subtitle&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;/LinearLayout&gt;</span>
+<span style="color:#f92672">&lt;/android.support.v7.widget.CardView&gt;</span>```
+
+Now we want to link the view to the RecyclerView in the adapter. To do this, we will update the onCreateViewHolder method we overrode earlier.
+
+```kotlin override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ShoppingListViewHolder {
+    val layoutInflater = LayoutInflater.from(parent?.context)
+    val cellForRow = layoutInflater.inflate(R.layout.shopping_list_row, parent, false)
+    return ShoppingListViewHolder(cellForRow)
+}```
+
+This tells the RecyclerView that each row should look like the layout we just created. If you have left the _5_ in the getItemCount()-method, you will see that the view is displayed 5 times when running the app.
+
+## Adding real Data
+
+Of course, that&#39;s not all we want. Currently, we can display multiple instances of the basic view, but we want to be able to show actual data. This is where the ViewHolder comes in. Usually, you will have access to a collection of objects that will be displayed in the RecyclerView.
+
+In my snippet above, you can see that I already added a _List<span style="color:#f92672">&lt;ShoppingList</span><span style="color:#960050;background-color:#1e0010">?</span><span style="color:#f92672">&gt;</span>_ parameter to the adapters constructor. The ShoppingList class basically just contains a description  and a List of ShoppingListItem-objects, that again only have a _description_ field.
+
+The first thing to do now is to update the _getItemCount()_-method to actually return the amount of available objects:
+
+```kotlin override fun getItemCount(): Int {
+    return shoppingLists.size ?: 0
+}```
+
+In the next step, we will link the object to the view, which is done by the following:
+
+```kotlin holder?.bindShoppingList(shoppingList = shoppingLists.get(position))```
+
+And, last but not least, declaring the views properties to the objects variable values:
+
+```kotlin class ShoppingListViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    fun bindShoppingList(shoppingList: ShoppingList?) {
+        view.lblShoppingListRowItemHeader.setText(shoppingList?.description)
+
+        var suffix = &#34;&#34;
+        var count = shoppingList?.items?.size ?: 0
+        if(count == 1) {
+            suffix = view.context.resources.getString(R.string.rv_shopping_list_items_suffix_single)
+        } else {
+            suffix = view.context.resources.getString(R.string.rv_shopping_list_items_suffix_multiple)
+        }
+
+        view.lblShoppingListRowItemSubheader.setText(count.toString() + &#34; &#34; + suffix)
+    }
+}```
+
+That&#39;s it! I added the following code to my MainActivity to test the adapter:
+
+```kotlin rvShoppingLists.layoutManager = LinearLayoutManager(this)
+
+var list1 = ShoppingList()
+list1.description = &#34;Groceries&#34;
+
+var list2 = ShoppingList()
+list2.description = &#34;Clothes&#34;
+
+var list3 = ShoppingList()
+list3.description = &#34;Stuff for the apartment&#34;
+
+var list = listOf(list1, list2, list3)
+
+rvShoppingLists.adapter = ShoppingListAdapter(list)```
+
+&amp;nbsp;</code></pre></div>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

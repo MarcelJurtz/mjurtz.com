@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ServiceStack Logging with Slack Integration &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>ServiceStack Logging with Slack Integration</h1>
+  <time datetime=2017-12-06T23:30:43Z class="post-date">Wed, Dec 6, 2017</time>
+  <p>Besides my series on how to get started with ServiceStack, I have already published a few articles that are related to the topic, but do not belong directly to the introductory series. In the <a href="https://blog.mjurtz.com/2017/12/query-coinmarketcap-api-using-servicestack/">last such article</a>, I used the example of <a href="https://coinmarketcap.com/">coinmarketcap.com</a> to show how to access third-party APIs using the C# client.</p>
+<p>Today, I&rsquo;ll show you how to use ServiceStacks Logging API and link it to a slack channel. The prerequisites for this article are an existing Slack account and a simple ServiceStack service (<a href="https://blog.mjurtz.com/2017/11/servicestack-building-simple-service/">see my article on this topic</a>).</p>
+<h2 id="creating-the-service">Creating the Service</h2>
+<p>To be able to integrate your service to Slack, you need to login to your Slack account and create a <a href="https://my.slack.com/services/new/incoming-webhook/">new Incoming Webhook</a>. A default channel now needs to be specified. However, this will be overwritten by us later, so at this point the selection does not play an important role. After creating the webhook, Slack will provide an url that will be added to our logger in the next step.</p>
+<p>Slack logging requires the nuget package <em>ServiceStack.Logging.Slack.</em> Add this to your project in Visual Studio. As soon as the package is installed, the base of the project is done. Next, the service will be adapted. The following source code must be added to the <em>Configure()</em>-method of your AppHost class:</p>
+<pre tabindex="0"><code class="language-csharpLogManager.LogFactory" data-lang="csharpLogManager.LogFactory">{
+    DefaultChannel = &quot;logs&quot;,
+    ErrorChannel = &quot;errorlogs&quot;,
+    BotUsername = &quot;Sample ServiceStack Logger&quot;
+};```
+
+Replace the first parameter with the URL of the previously created webhook and adjust the logger to cover your personal preferences. I use the channel &quot;logs&quot;as default for all messages, and &quot;errorlogs&quot; for all error messages. Similarly, a separate channel can be created for each logging type (debug, info, warning, error, fatal).
+
+## Generating Logs
+
+And that's it! The logger can now be accessed from any part of the program. While each type of logging has its own method, in slack there is no automatic differentiation between them apart from the different channel distribution.
+
+```csharp
+public static ILog Log = LogManager.GetLogger(typeof(MyService));
+Log.Info(&quot;Hello World!&quot;);
+</code></pre>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

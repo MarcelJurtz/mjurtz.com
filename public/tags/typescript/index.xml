@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>typescript on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/typescript/</link>
+    <description>Recent content in typescript on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 02 Sep 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TypeScript - Up and Running in 10 Minutes</title>
+      <link>https://www.mjurtz.com/posts/2018-09-02-typescript-up-and-running-in-10-minutes/</link>
+      <pubDate>Sun, 02 Sep 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-09-02-typescript-up-and-running-in-10-minutes/</guid>
+      <description>You are aware of JavaScript, but have never really made friends with the language? Today I would like to show you a first insight into the JS-SuperSet TypeScript, so perhaps you can give JavaScript a second chance.
+TypeScript is a SuperSet of JavaScript. SuperSet means that all functionalities of JS are both supported and extended. As the name suggests, the main feature of TypeScript are strongly typed variables. But more on this in a moment.</description>
+    </item>
+    
+  </channel>
+</rss>

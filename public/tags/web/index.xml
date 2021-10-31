@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>web on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/web/</link>
+    <description>Recent content in web on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 23 Dec 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using LESS with ASP.NET Core</title>
+      <link>https://www.mjurtz.com/posts/2018-12-23-using-less-with-asp-net-core/</link>
+      <pubDate>Sun, 23 Dec 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-12-23-using-less-with-asp-net-core/</guid>
+      <description>I have already written about the advantages of a CSS preprocessor like LESS in this post. Today I want to show you how you can easily implement support for such a preprocessor in your ASP.NET Core project. I will use Gulp to create the ability to write LESS files and convert them to CSS files so that they can be integrated into the ASP.NET Core application. Finally, I will automate the whole thing so that the LESS file is converted without manual interaction on every build.</description>
+    </item>
+    
+    <item>
+      <title>Simplify your CSS - LESS is more</title>
+      <link>https://www.mjurtz.com/posts/2018-06-17-less-css/</link>
+      <pubDate>Sun, 17 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-17-less-css/</guid>
+      <description>First things first: I am not a web developer and certainly not a designer. The following examples are not intended to represent good practices in terms of design or aesthetics.
+But now to the topic: As a software developer you can hardly avoid acquiring basic knowledge in web development. Specifically, I mean the handling of HTML and CSS, also in JavaScript as far as I&amp;rsquo;m concerned. If you are like me, you basically have no problems with it, but CSS files will become quite confusing and difficult to revise over time.</description>
+    </item>
+    
+    <item>
+      <title>Sideproject - ClubGrid</title>
+      <link>https://www.mjurtz.com/posts/2018-06-13-sideproject-clubgrid/</link>
+      <pubDate>Wed, 13 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-13-sideproject-clubgrid/</guid>
+      <description>It is finally time to announce my latest side project. ClubGrid was originally designed to make it easier for my coach to manage our baseball games. However, the result can be used for clubs of any kind and I hope that I can also help others with my software.
+The problem we had was the organization of games and events. Some players posted their acceptance or rejection via Whatsapp, others via Facebook, some via email and others personally.</description>
+    </item>
+    
+    <item>
+      <title>Searching Blogposts in Jekyll</title>
+      <link>https://www.mjurtz.com/posts/2018-03-31-jekyll-search/</link>
+      <pubDate>Fri, 30 Mar 2018 12:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-03-31-jekyll-search/</guid>
+      <description>In one of my previous posts, I went over the details why I moved my blog from WordPress to Jekyll. So far, I really appreciate my new system, but I miss one particular feature: searching through my posts.
+Since Jekyll is a static site generator and does not rely on a database for the posts, you can&amp;rsquo;t simply add a search functionality like WordPress does. So, I have to work with some frontend / clientside stuff.</description>
+    </item>
+    
+    <item>
+      <title>Moving to Jekyll</title>
+      <link>https://www.mjurtz.com/posts/2018-03-11-moving-to-jekyll/</link>
+      <pubDate>Sun, 04 Mar 2018 15:17:17 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-03-11-moving-to-jekyll/</guid>
+      <description>I decided that it is time for some changes. When I started this blog, I decided to use WordPress. My goal was to be able to write posts without having to focus on anything other than actual writing. Wordpress was the tool of my choice due to its simplicity.
+Nevertheless, I wasn&amp;rsquo;t always really happy with the CMS. Problems occurred again and again, mainly in connection with performance, loading times and general page speed.</description>
+    </item>
+    
+  </channel>
+</rss>

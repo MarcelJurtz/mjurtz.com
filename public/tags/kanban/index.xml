@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kanban on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/kanban/</link>
+    <description>Recent content in kanban on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 21 Jul 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/kanban/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agile - Get Started with Kanban</title>
+      <link>https://www.mjurtz.com/posts/2018-07-21-agile-get-started-with-kanban/</link>
+      <pubDate>Sat, 21 Jul 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-07-21-agile-get-started-with-kanban/</guid>
+      <description>After I introduced Scrum in my last article, today will be about Kanban. Like Scrum, Kanban is an agile software development methodology and I have to say that I apply the principles I present today to most of my personal side projects.
+Kanban is Japanese and can be translated as &amp;ldquo;billboard&amp;rdquo;. Kanban was first introduced by Toyota in the automotive industry and is now mostly associated with just-in-time concepts. But I don&amp;rsquo;t want to bore you with historical details, I want to show you the usage in software development.</description>
+    </item>
+    
+  </channel>
+</rss>

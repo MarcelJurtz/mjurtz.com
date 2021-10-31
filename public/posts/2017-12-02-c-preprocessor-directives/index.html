@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>C# Preprocessor Directives &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>C# Preprocessor Directives</h1>
+  <time datetime=2017-12-02T15:00:26Z class="post-date">Sat, Dec 2, 2017</time>
+  <p>You can use preprocessor directives in csharp to provide straightforward instructions to the compiler. For example, these directives allow you to execute certain code elements only under predefined conditions. Another possible field of use is simply the structuring of your source code into blocks, which can be folded in and out of Visual Studio.</p>
+<p>In this article I will discuss some of these directives. Preprocessor directives are always started with a #-symbol.</p>
+<h2 id="define--undef">#define &amp; #undef</h2>
+<p>The first two directives I would like to mention are <em>#define</em> and <em>#undef</em>. They are used to define symbols and remove them. Imagine such a symbol as a simple variable, the next elements will help to illustrate it as well. Note, that <em>#define</em>-elements need to be at the very top of a file, even above the using-statements!</p>
+<h2 id="if-else-elif--else">#if, #else, #elif  &amp; #else</h2>
+<p>The next symbols are <em>#if</em>, <em>#else</em>, <em>#elif</em> and <em>#endif</em>. As you have probably already guessed, they are used to execute certain source code only under predefined conditions. And this is exactly where the symbols I defined in the previous section play a role. In the following source code I have defined a symbol, which is then checked for existence. According to this definition, the output <em>&ldquo;Running in demomode!&quot;</em> will be performed. You can also use the predefined symbol <em>&ldquo;DEBUG&rdquo;</em>, to check wether your application runs in debug or release mode.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#75715e">#define DEMOMODE
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> System;
+
+<span style="color:#66d9ef">namespace</span> CompilerDirectivesDemo
+{
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Program</span>
+    {
+        <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main(<span style="color:#66d9ef">string</span>[] args)
+        {
+            <span style="color:#75715e">#if DEMOMODE
+</span><span style="color:#75715e"></span>
+            Console.WriteLine(<span style="color:#e6db74">&#34;Running in demomode!&#34;</span>);
+
+            <span style="color:#75715e">#else
+</span><span style="color:#75715e"></span>            
+            Console.WriteLine(<span style="color:#e6db74">&#34;Not running in demomode!&#34;</span>);
+            
+            <span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>
+            Console.ReadLine();
+        }
+    }
+}<span style="color:#960050;background-color:#1e0010">```</span>
+
+VisualStudio automatically adjusts the display when saving, so that you can see directly <span style="color:#66d9ef">in</span> the editor which part of the <span style="color:#66d9ef">if</span>-statement will be executed.
+
+As just mentioned, it <span style="color:#66d9ef">is</span> possible to use predefined symbols. You can edit these settings <span style="color:#66d9ef">if</span> you go to project settings and check the build tab.
+
+![Preprocessor Directives](/assets/<span style="color:#ae81ff">2017</span>/preprocessor_directives.png)
+
+<span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#75715e">#region &amp; #endregion
+</span><span style="color:#75715e"></span>
+The last directives I would like to mention are <span style="color:#75715e">#region and #endregion. These are used to split source code into related blocks.
+</span><span style="color:#75715e"></span>
+The code within such a block can be expanded and collapsed <span style="color:#66d9ef">by</span> the plus and minus symbols <span style="color:#66d9ef">in</span> Visual Studio, which are displayed next to the row number bar. An optional name following the <span style="color:#75715e">#region-remark allows you to assign a name to each block.
+</span><span style="color:#75715e"></span>
+![Preprocessor Directives - Regions](/assets/<span style="color:#ae81ff">2017</span>/preprocessor_directives_regions.png)</code></pre></div>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

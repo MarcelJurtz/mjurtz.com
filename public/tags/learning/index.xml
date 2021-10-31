@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>learning on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/learning/</link>
+    <description>Recent content in learning on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 02 Dec 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learning to program does not have to be easy</title>
+      <link>https://www.mjurtz.com/posts/2018-12-02-learning-to-program-doesnt-have-to-be-easy/</link>
+      <pubDate>Sun, 02 Dec 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-12-02-learning-to-program-doesnt-have-to-be-easy/</guid>
+      <description>I have been asked all too often which programming language to learn first. And I&amp;rsquo;ve heard almost the same number of different opinions. Java or C++? Python or C#? Or maybe C?
+High-level programming languages like Java offer the big advantage that the entry hurdle is very low. You can quickly put together a functional application that does what it&amp;rsquo;s supposed to do. The extensive ecosystem allows you to make rapid progress and concentrate on the functionality of your software.</description>
+    </item>
+    
+  </channel>
+</rss>

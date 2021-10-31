@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cms on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/cms/</link>
+    <description>Recent content in cms on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 02 Nov 2019 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/cms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Moving to Wyam</title>
+      <link>https://www.mjurtz.com/posts/2019-11-02-moving-to-wyam/</link>
+      <pubDate>Sat, 02 Nov 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-11-02-moving-to-wyam/</guid>
+      <description>It&amp;rsquo;s been quiet for way too long here. I don&amp;rsquo;t really have an excuse for my absence but I&amp;rsquo;ve been kind of busy, both personally and professionally. But I&amp;rsquo;m planning to post on here more frequently from now on.
+As always, trying something new in software development helps to become motivated and excited. In the last months, I&amp;rsquo;ve been using Jekyll as a static site generator to build this site. Though I enjoyed using Jekyll, I never really got into the Ruby environment and have been looking for something more familiar.</description>
+    </item>
+    
+    <item>
+      <title>Static Site Generators</title>
+      <link>https://www.mjurtz.com/posts/2019-02-10-static-site-generators/</link>
+      <pubDate>Sun, 10 Feb 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-02-10-static-site-generators/</guid>
+      <description>Some time ago I moved this website from WordPress to Jekyll, but I never really explained the reasons. That&amp;rsquo;s why I want to discuss in today&amp;rsquo;s post the option of managing websites using an offline CMS or Static Site Generator.
+CMS like WordPress are often ridiculed and devalued by their complexity or their overall structure. In the meantime, there is a variety of similar content management systems available, but they usually share the core functionalities and structure.</description>
+    </item>
+    
+  </channel>
+</rss>

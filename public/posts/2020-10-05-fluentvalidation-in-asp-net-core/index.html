@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FluentValidation in ASP.NET Core &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>FluentValidation in ASP.NET Core</h1>
+  <time datetime=2020-10-05T06:00:00Z class="post-date">Mon, Oct 5, 2020</time>
+  <p>Have you been implementing the validation of your ViewModels in ASP.NET (Core) using DataAttributes so far? If so, chances are you&rsquo;ve always been dissatisfied because your classes became messy and full of unnecessarily replicated code. Yes? Then today&rsquo;s post is for you.</p>
+<h2 id="fluentvalidation">FluentValidation</h2>
+<p>FluentValidation is a way to define strongly typed validation for classes in the form of a Fluent API. The term <em>fluent</em> in this case refers to a code structure where a function always return the modified object. This way, you can chain together multiple method calls and produce very readable source code, especially in configurations where it is often used. You may already be familiar with this structure from areas like the ASP.NET setup or LINQ.</p>
+<p>FluentValidation is a popular library for defining validation rules in .NET and is available open source at <a href="https://github.com/FluentValidation">GitHub</a>. Oh, and before I jump into the topic: the <a href="https://docs.fluentvalidation.net/en/latest/index.html">projects documentation</a> is very good and should be more than sufficient for most of your questions.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<p>To use FluentValidation, you first need to install corresponding NuGet package <em>FluentValidation.AspNetCore</em>. After that, the only thing left to do is the configuration in your applications startup class. Just add a call to <em>AddFluentValidation</em> in the method <em>ConfigureServices</em> and you&rsquo;re all set! To work correctly with the DI infrastructure, the validators must be defined here afterwards tough:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> ConfigureServices(IServiceCollection services) {
+    services.AddMvc()
+        <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>        .AddFluentValidation();
+    
+    services.AddTransient&lt;IValidator&lt;ClubMember&gt;, ClubMemberValidator&gt;();
+    <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>As you may guess, that would of course get very messy very quickly, so let&rsquo;s check for another way to achieve that. Fortunately, the authors also thought of that and provided another solution: the automatic registration of all validators inside a given assembly. The only two requirements to these is that they are a) marked as public and b) inherit the generic <em>AbstractValidator</em>-class.</p>
+<p>To do that, you just need to customize the call to <em>AddFluentValidation</em> as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">.AddFluentValidation(fv =&gt; fv.RegisterValidatorsFromAssemblyContaining&lt;Startup&gt;());
+</code></pre></div><p>This will now register all validators, that are contained inside the same assembly as <em>Startup</em>. Knowing that, we can just jump straight into defining our first validator. In my case, that&rsquo;s the one for the <em>ClubMember</em>-class, which could look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClubMember</span> {
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> Id { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> MemberId { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> ClubId { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Role { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> Number { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+}
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClubMemberValidator</span> : AbstractValidator&lt;ClubMember&gt; {
+    <span style="color:#66d9ef">public</span> ClubMemberValidator() {
+	    (x =&gt; x.Role).Length(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">25</span>);
+        RuleFor(x =&gt; x.Number).InclusiveBetween(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">100</span>);
+        <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>    }
+}
+</code></pre></div><p>There are multiple predefined validationrules available in FluentValidation. However, you can of course create your own if you need to support a specific usecase. The validation itself is now set up, and you can check it by calling <em>ModelState.IsValid</em> inside your controller actions.</p>
+<h2 id="pitfalls">Pitfalls</h2>
+<p>There are a few things to be considered when using the library. For example, the regular asp.net validation using DataAttributes is still active and will be applied after the fluentvalidation. It may be helpful to clean up old code to avoid unexpected side effects.</p>
+<p>Another point to keep in mind is that complex objects are not automatically checked further down in their hierarchical structure. If you want to your validator to validate child objects by default, you have to specify this either on the object itself or in the configuration. To achieve this, you can use the property <em>ImplicitlyValidateChildProperties</em>.</p>
+<p>FluentValidation itself is meant to be used for server-side validation. However, it can also be used to provide metadata for validation on the client side. You can find more information on this topic in the project documentation linked above.</p>
+<h2 id="tldr">TL;DR</h2>
+<p>In my opinion, FluentValidation offers a very nice way to define strongly typed validation rules in ASP.NET (Core), without having to mess up your classes. However, there are many more details I haven&rsquo;t covered yet. As I mentioned earlier, the documentation of the project is a very good place to get answers to potential questions and general information, but you also might find posts on various details here in the future.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

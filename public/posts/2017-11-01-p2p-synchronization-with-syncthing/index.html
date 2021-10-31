@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>P2P Synchronization with Syncthing &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>P2P Synchronization with Syncthing</h1>
+  <time datetime=2017-11-01T13:12:23Z class="post-date">Wed, Nov 1, 2017</time>
+  <p>Everyone has different programs and tools that they particularly appreciate. One of these programs is syncthing for me, so I will briefly discuss how it works and how it is set up in this article. Syncthing is used to synchronize files between different devices and also supports versioning of these files. <a href="https://syncthing.net/">Syncthing is available for Windows, Android and as cross-platform wrapper</a>. I personally use it on Windows 10,  <a href="https://wiki.archlinux.org/index.php/Syncthing">Arch Linux</a> and Android (via <a href="https://play.google.com/store/apps/details?id=com.nutomic.syncthingandroid">Playstore</a> or <a href="https://f-droid.org/en/packages/com.nutomic.syncthingandroid/">FDroid</a>). It is completely open source and available on <a href="https://github.com/syncthing">GitHub</a>. For general problems, I recommend reading <a href="https://docs.syncthing.net/users/faq.html">their FAQ</a>.</p>
+<p>Syncthing transfers files over the internet, but if you use it for local transfers only, it will be restricted to LAN and won&rsquo;t use the internet. However, you can also <a href="https://docs.syncthing.net/users/strelaysrv.html">host your own relay server </a>and contribute to the network, which is organized decentrally.</p>
+<p>In the following, I&rsquo;ll be setting up a shared folder to synchronize my playlist I use for running, since my main smartphone is a Xiaomi Redmi Note 4, but since my nexus 5 is more practical by weight and size, I use this to run. My setup can be summarized as follows:</p>
+<ul>
+<li>Xiaomi Redmi Note 4 (Android)</li>
+<li>Google Nexus 5 (Android)</li>
+<li>MacBook Air (Arch Linux)</li>
+<li>Desktop-PC (Windows 10)</li>
+</ul>
+<h2 id="setting-up-and-connecting-devices">Setting up and Connecting Devices</h2>
+<p>On windows and linux, the graphical user interface of syncthing is started via browser (localhost, default port is 8384). You can set a name for your device, which is used as default on connecting devices later. Each device is uniquely addressable by an id which can be accessed via Actions - Show ID. You can add a device by clicking <em>Add Remote Device</em> in the lower right corner. Devices that are located in the same network are recognized automatically, otherwise they can be added by entering their id.</p>
+<p><img src="/assets/2017/syncthing-gui.png" alt="Syncthing PC GUI"></p>
+<p>When adding devices, there are multiple options available. One of these is to mark a device as <em>Introducer</em>. This allows to forward all devices that are available on the remote device to the current one, which is great for using Syncthing on a NAS-like server.</p>
+<h2 id="sharing-folders">Sharing Folders</h2>
+<p>After networking the devices with each other, directories can be created which will then be synchronized. To do this, simply click <em>Add Folder</em> on the web interface. On Android, this can be done by clicking the plus-button:</p>
+<p><img src="/assets/2017/syncthing-android.png" alt="Syncthing Android GUI"></p>
+<p>You&rsquo;ll want to specify the path of the folder, as well as the label, which will be displayed on all devices later. Since I&rsquo;ll be using this folder for mp3-files, I won&rsquo;t enable versioning for it, but you can select one of multiple options at this point. Finally it is specified for which of the available devices the directory should be available. After completing the setup, the devices that were selected will automatically receive a request to accept the shared folder. By doing this, a local folder needs to be set again. I&rsquo;ve encountered minor problems here, where the shares won&rsquo;t be recognized automatically on Android devices. I&rsquo;ve solved this problem by switching to the Web GUI via settings. By using the web interface, you have the additional option of specifying the scanning interval and more (see <em>advanced settings</em>).</p>
+<p><img src="/assets/2017/syncthing-android-settings.png" alt="Syncthing Android Settings"></p>
+<p>After setting up everything correctly, synchronization should begin automatically. And that&rsquo;s basically it! You can set up multiple folders for different devices and multiple filetypes to fit your individual needs.</p>
+<p><img src="/assets/2017/syncthing-synchronization.png" alt="Syncthing Synchronization"></p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

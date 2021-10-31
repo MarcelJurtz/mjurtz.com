@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cryptocurrency on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/cryptocurrency/</link>
+    <description>Recent content in cryptocurrency on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 10 Dec 2017 14:24:38 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/cryptocurrency/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sideproject: CryptoFolio</title>
+      <link>https://www.mjurtz.com/posts/2017-12-10-sideproject-cryptofolio/</link>
+      <pubDate>Sun, 10 Dec 2017 14:24:38 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-10-sideproject-cryptofolio/</guid>
+      <description>Today I would like to introduce my current side project. I&amp;rsquo;m currently developing CryptoFolio, an app that allows you to keep track of your investments in cryptocurrencies.
+Functionality &amp;amp; MVP The first release of the application will allow you to view the current rates of the top 100 cryptocurrencies with the highest market capitalization. You can then add investments, where input, output and the date of the transaction is recorded.</description>
+    </item>
+    
+    <item>
+      <title>Query Coinmarketcap API using ServiceStack</title>
+      <link>https://www.mjurtz.com/posts/2017-12-04-query-coinmarketcap-api-using-servicestack/</link>
+      <pubDate>Mon, 04 Dec 2017 21:45:36 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-04-query-coinmarketcap-api-using-servicestack/</guid>
+      <description>In the first article of my series on using ServiceStack I mentioned the feature of the framework that the individual components can be used independently of each other.
+This short article is intended as an example of how the C# client can be used separately from a custom service to communicate with third-party APIs. If you would like to know more about the client specifically, you can read my article on this feature.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Blockchains</title>
+      <link>https://www.mjurtz.com/posts/2017-11-26-introduction-to-blockchains/</link>
+      <pubDate>Sun, 26 Nov 2017 07:00:43 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-26-introduction-to-blockchains/</guid>
+      <description>What if there was a technology that could entirely change the basic elements of our society and our understanding of economy? This technology already exists and it is called crypto currency. Many people think of bitcoin when this buzzword comes up, but if you take a closer look, you will find out that the monetary point of view of the technology behind is only the tip of the iceberg.
+Bitcoin and crypto currencies are currently a highly controversial issue.</description>
+    </item>
+    
+    <item>
+      <title>Bitcache and K.im</title>
+      <link>https://www.mjurtz.com/posts/2017-09-18-bitcache-k-im/</link>
+      <pubDate>Mon, 18 Sep 2017 06:00:46 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-18-bitcache-k-im/</guid>
+      <description>After Kim Dotcom announced his new service, I just had to sign up for an invitation. After receiving it an hour later, I tried it out. In this article, I&amp;rsquo;ll document my experience with k.im.
+I have to admit that I didn&amp;rsquo;t exactly know what I was getting into. After clicking the received URL, a very minimalistic website is displayed.
+So, the service allows you to upload files. I never would have thought of that.</description>
+    </item>
+    
+  </channel>
+</rss>

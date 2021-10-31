@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>C# – Mastering the Basics – Collections &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>C# – Mastering the Basics – Collections</h1>
+  <time datetime=2017-12-19T09:30:04Z class="post-date">Tue, Dec 19, 2017</time>
+  <p>Altough the topic <em>&ldquo;Collections&rdquo;</em> matches programming in general, I&rsquo;ve decided to add it to my series on mastering the basics of C#. For this reason, you will find some content here that is generally applicable, but I will also discuss different language-specific elements.</p>
+<p>Collections support several different use cases, e. g. searching through a set for objects with certain properties, or iterating through multiple elements by predefined sorting specifications.</p>
+<p>In the first part of this article, I will cover the two basic types of collections in C#, lists and dictionaries. Then, I will go over the groups of collections you might know from Java: lists, sets and maps. I&rsquo;d like to describe and compare their characteristics and then implement their functionality in C#.</p>
+<h2 id="collections-in-c">Collections in C#</h2>
+<p>The simplest form of collections in C# are arrays. An array allows you to store a group of objects of one specific type. The following example shows a string array, which contains three elements.</p>
+<pre tabindex="0"><code class="language-csharpString[]" data-lang="csharpString[]">
+movies[0] = &quot;The Matrix&quot;;
+movies[1] = &quot;The Dark Knight&quot;;
+movies[2] = &quot;#9&quot;;
+
+foreach(String movie in movies) {
+    Console.WriteLine(movie);
+}```
+
+In this simple example, you can see the problem with arrays: the size of it needs to be known before adding the elements. The &quot;real&quot; collections in C# can be utilized to handle this problem.
+
+The basis of C# collections are List&lt;T&gt; and Dictionary&lt;K,T&gt;, which will be covered in the following section.
+
+### List&lt;T&gt;
+
+Lists offer a way to organize objects in a similar way arrays do. Basically, you create a List of a specific type, which allows you to dynamically add and remove items from this list. Opposed to arrays, lists don't need to specify the amount of objects they can contain, which allows you to dynamically change their size.
+
+The following snippet instaniates two new instances of the class &quot;Person&quot;, adds both to a list and outputs the value of Name-properties (the class consists only of this one property).
+
+```csharpList&lt;Person&gt; persons = new List&lt;Person&gt;();
+
+Person alice = new Person { Name = &quot;Alice&quot; };
+Person bob = new Person { Name = &quot;Bob&quot; };
+
+persons.Add(alice);
+persons.Add(bob);
+
+foreach(Person person in persons) {
+    Console.WriteLine(person.Name);
+}```
+
+Besides adding items, the List&lt;T&gt; class offers multiple useful properties and methods, such as Count to receive the amount of objects, Clear() to remove all items or Contains() to check if the list contains a specific object. Check out the [MSDN page](https://msdn.microsoft.com/en-us/library/6sh2ey19(v=vs.110).aspx) for full documentation.
+
+One last thing I'd like to mention is the option to access a specific item by its index, as you're probably used to from using arrays.
+
+### Dictionary&lt;K,T&gt;
+
+The second main type of collections C# offers is the Dictionary&lt;K,T&gt;. As the name suggests, it allows you to keep track of multiple objects by a unique key. Both object and key can be of whatever type you'd want it to be.
+
+The following snippet shows you how to create a dictionary with a string as key and a person as object. I've also added an int property named _Age_ to the class _Person_.
+
+```csharpDictionary&lt;String,Person&gt; persons = new Dictionary&lt;String,Person&gt;();
+
+Person alice = new Person { Name = &quot;Alice&quot;, Age = 30 };
+Person bob = new Person { Name = &quot;Bob&quot;, Age = 32 };
+
+persons.Add(&quot;alice&quot;, alice);
+persons.Add(&quot;bob&quot;, bob);
+
+Console.WriteLine($&quot;{persons[&quot;bob&quot;].Name} is {persons[&quot;bob&quot;].Age} years old&quot;);
+// Output: Bob is 32 years old```
+
+As you can see, access to a dictionary works like accessing an array by replacing the index with the key. However, you can still iterate over the contained items. At this point, you can choose wether you want to iterate over the dictionary items (key &amp; value) or just key or value.
+
+```csharp// Iterate over dictionary entries
+foreach(var entry in persons) {
+    Console.WriteLine($&quot;Key: {entry.Key}, Name: {entry.Value.Name}, Age: {entry.Value.Age}&quot;);
+}
+
+// Iterate over dictionary values
+foreach(Person person in persons.Values) {
+    Console.WriteLine(person.Name);
+}
+
+// Iterate over dictionary keys
+foreach(String key in persons.Keys) {
+    Console.WriteLine(key);
+}```
+
+## Set
+
+In mathematics, a set is a collection of objects, which has two main criteria: there is no given order and each element of a set is unique.
+
+Of course, C# offers an implementation to cover such collections as well: [HashSet&lt;T&gt;](https://msdn.microsoft.com/en-us/library/bb359438.aspx) is your way to go. HashSets offer high performance set operations on collections that can't hold duplicate elements nor use a specific order.
+
+The following snippet instantiates a new HashSet of type Person and adds alice and bob to it. While you can add an object multiple times, it will be added to the set only once, which is why the output of the snippet will only display bob only once.
+
+```csharpHashSet&lt;Person&gt; persons = new HashSet&lt;Person&gt;();
+
+persons.Add(bob);
+persons.Add(alice);
+persons.Add(bob);
+
+foreach(Person person in persons) {
+    Console.WriteLine(person.Name);
+}```
+
+## List
+
+Compared to sets, lists are very simple to describe. Lists contain a dynamic amount of objects, whereby an object can be contained multiple times. Also, the order of items in a list is important. The previously described List&lt;T&gt; class already offers predefined methods to sort lists.
+
+Besides the List&lt;T&gt; class, there are other variants of lists available, that serve different purposes. ArrayList&lt;T&gt; stores data like an array does, and List&lt;T&gt; basically is a wrapper for ArrayList&lt;T&gt;. It allows you to access the list by index and is optimized for random access.
+
+Another option is LinkedList&lt;T&gt;, which maintains pointers to the actual objects along with references to the next and previous item. This results in more work when adding or removing items from the list since each objects reference must be updated. Also, you can't access a LinkedList via index. However, if you have heavy workload in the form of tail- or head-inserts, this might be your choice.
+
+## Map
+
+The term map is used in Java for collections, which are known as Dictionary under C#. I've already covered this type of collection in the first chapter of the article, but the conclusions will be wrapped up here.
+
+Dictionaries (or Maps) are used to associate objects to a unique key, by which they can be accessed later. One possible use case for dictionaries could be the association of user session ids with the users properties.
+
+To conclude this, you may choose to use a dictionary when you need to look up a value by a key. If you have an object like &lt;code class=&quot;EnlighterJSRAW&quot; data-enlighter-language=&quot;csharp&quot;&gt;{ key, value }&lt;/code&gt; and you need to access both, key and value without knowing them, you might prefer list.</code></pre>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

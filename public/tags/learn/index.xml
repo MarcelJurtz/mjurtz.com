@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>learn on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/learn/</link>
+    <description>Recent content in learn on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 28 Oct 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/learn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Maximize your Productivity</title>
+      <link>https://www.mjurtz.com/posts/2018-10-28-maximize-your-productivity/</link>
+      <pubDate>Sun, 28 Oct 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-10-28-maximize-your-productivity/</guid>
+      <description>When you&amp;rsquo;re at the beginning of your career as a software developer, like me, you probably know the feeling that you&amp;rsquo;re being overwhelmed by everything you want to learn. Especially at the beginning it is often not easy to work productively and to learn why I want to show you which methodologies I have developed for myself. Even though I use my own experience, my approach is of course not limited to the industry.</description>
+    </item>
+    
+    <item>
+      <title>100 Days of Code</title>
+      <link>https://www.mjurtz.com/posts/2018-10-14-100-days-of-code/</link>
+      <pubDate>Sun, 14 Oct 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-10-14-100-days-of-code/</guid>
+      <description>You might be familiar with the following situation: You are in your first job as a software developer and spend less and less time with your own projects? Or the time you spend on them is generally getting less and less? I have the problem right now and I’ve been thinking about what’s causing it and how I can work on it. Well, the main problem, in my opinion, is that I no longer have the pressure from my studies to learn to take an exam, for example.</description>
+    </item>
+    
+    <item>
+      <title>How I Learn Anything Quickly</title>
+      <link>https://www.mjurtz.com/posts/2018-07-29-learn-anything-quickly/</link>
+      <pubDate>Sun, 29 Jul 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-07-29-learn-anything-quickly/</guid>
+      <description>As a software developer, you are probably well aware of the feeling: You are overwhelmed by the amount of interesting stuff you want to test and learn. But I&amp;rsquo;m sure that this problem is also very common in other fields.
+If you feel like me, you may read and watch various books, blog articles or online courses, but you won&amp;rsquo;t really keep much of their contents.
+In today&amp;rsquo;s article, I&amp;rsquo;d like to help you to learn more effectively about the topics that really interest you, wasting less time.</description>
+    </item>
+    
+  </channel>
+</rss>

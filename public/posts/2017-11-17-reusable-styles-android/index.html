@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Reusable Styles for Android &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>Reusable Styles for Android</h1>
+  <time datetime=2017-11-17T18:00:27Z class="post-date">Fri, Nov 17, 2017</time>
+  <p>View definitions under android are often used for many different controls. However, there is an easy way to recycle defined styles and use them for other controls, often saving a lot of code. So, styles basically allow you to move your repeatedly used styles out of the layout file into a styles.xml file (which is located in the values-folder). This article covers the basics of using styles on Android.</p>
+<p>Think of the following layout, which represents two simple buttons inside a LinearLayout:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">        android:orientation=&#34;horizontal&#34;
+        android:layout_width=&#34;match_parent&#34;
+        android:layout_height=&#34;wrap_content&#34;
+        android:layout_weight=&#34;0&#34;&gt;
+
+        <span style="color:#f92672">&lt;Button</span>
+            <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+            <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+            <span style="color:#a6e22e">android:layout_weight=</span><span style="color:#e6db74">&#34;1&#34;</span>
+            <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/cmdPrevPage&#34;</span>
+            <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/cmdPrevPage&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+        <span style="color:#f92672">&lt;Button</span>
+            <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+            <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+            <span style="color:#a6e22e">android:layout_weight=</span><span style="color:#e6db74">&#34;1&#34;</span>
+            <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/cmdNextPage&#34;</span>
+            <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/cmdNextPage&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+<span style="color:#f92672">&lt;/LinearLayout&gt;</span>```
+
+The buttons look nearly identical, which leads us to creating a new entry in styles.xml looking like this:
+
+```xml <span style="color:#f92672">&lt;style</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;button&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;android:layout_width&#34;</span><span style="color:#f92672">&gt;</span>match_parent<span style="color:#f92672">&lt;/item&gt;</span>
+        <span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;android:layout_height&#34;</span><span style="color:#f92672">&gt;</span>wrap_content<span style="color:#f92672">&lt;/item&gt;</span>
+        <span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;android:weight&#34;</span><span style="color:#f92672">&gt;</span>1<span style="color:#f92672">&lt;/item&gt;</span>
+<span style="color:#f92672">&lt;/style&gt;</span>```
+
+The style contains all the elements, that both buttons have in common. Of course, this does not include its ID and text properties. To apply this to the buttons, simply change the first snippet to the following:
+
+```xml <span style="color:#f92672">&lt;LinearLayout</span>
+        <span style="color:#a6e22e">android:orientation=</span><span style="color:#e6db74">&#34;horizontal&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_weight=</span><span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">&gt;</span>
+
+        <span style="color:#f92672">&lt;Button</span>
+            <span style="color:#a6e22e">style=</span><span style="color:#e6db74">&#34;@style/button&#34;</span>
+            <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/cmdPrevPage&#34;</span>
+            <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/cmdPrevPage&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+        <span style="color:#f92672">&lt;Button</span>
+            <span style="color:#a6e22e">style=</span><span style="color:#e6db74">&#34;@style/button&#34;</span>
+            <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/cmdNextPage&#34;</span>
+            <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/cmdNextPage&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+<span style="color:#f92672">&lt;/LinearLayout&gt;</span>```
+
+This small example already shows the advantage of using styles: your layout becomes clearer and if you want to change some layouts, you only have to do this in one place.
+
+However, this approach is not the end of the story. Often only small details of controls are different, for example the positioning of a button on the left or right. In order to be able to handle such minimal changes in case of multiple use, we can use inheritance. Let us go back to the previous example to demonstrate this principle.
+
+One of the buttons is used to mark &#34;Next&#34;, the other one for &#34;Back&#34;. Let&#39;s say the code is developed for an app that represents a blog. With these two buttons you can switch back and forth between the available pages. It is realistic, however, that such a navigation is implemented for the articles themselves, but also for categories or tags, which is why a simple possibility for multiple use is required. With the following two styles this can be realized very easily:
+
+```xml <span style="color:#f92672">&lt;style</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;button_prev&#34;</span> <span style="color:#a6e22e">parent=</span><span style="color:#e6db74">&#34;@android:style/button&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;android:text&#34;</span><span style="color:#f92672">&gt;</span>@string/cmdPrevPage<span style="color:#f92672">&lt;/item&gt;</span>
+<span style="color:#f92672">&lt;/style&gt;</span>
+
+<span style="color:#f92672">&lt;style</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;button_next&#34;</span> <span style="color:#a6e22e">parent=</span><span style="color:#e6db74">&#34;@android:style/button&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;android:text&#34;</span><span style="color:#f92672">&gt;</span>@string/cmdNextPage<span style="color:#f92672">&lt;/item&gt;</span>
+<span style="color:#f92672">&lt;/style&gt;</span>```
+
+Further information on this topic is available in the [Android developer documentation](https://developer.android.com/guide/topics/ui/look-and-feel/themes.html).</code></pre></div>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

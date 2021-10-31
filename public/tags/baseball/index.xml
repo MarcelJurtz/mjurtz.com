@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>baseball on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/baseball/</link>
+    <description>Recent content in baseball on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 12 Sep 2017 06:00:07 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/baseball/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building an Android App from Scratch using MVP</title>
+      <link>https://www.mjurtz.com/posts/2017-09-12-building-android-app-scratch-using-mvp/</link>
+      <pubDate>Tue, 12 Sep 2017 06:00:07 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-12-building-android-app-scratch-using-mvp/</guid>
+      <description>In this article, I&amp;rsquo;ll document the process of building an android app from scratch by using the MVP approach of clean architecture. The app itself will represent a minimalistic umpire indicator for tracking baseball games. Please consider using this in the dugout only. Since this will be a longer post, you can use the following links to jump between sections.
+ What is MVP? Background on the app to be built Constructing the GUI Managing interfaces Building the model Connecting view and model by adding the presenter  1.</description>
+    </item>
+    
+  </channel>
+</rss>

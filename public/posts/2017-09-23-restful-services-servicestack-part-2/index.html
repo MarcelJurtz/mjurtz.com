@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RESTful Services with ServiceStack - Part 2 &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>RESTful Services with ServiceStack - Part 2</h1>
+  <time datetime=2017-09-23T18:00:14Z class="post-date">Sat, Sep 23, 2017</time>
+  <p>In my <a href="http://blog.mjurtz.com/2017/09/creating-restful-services-servicestack/">last post</a>, I&rsquo;ve set up a basic RESTful service using ServiceStack. This article deals with the implementation of a corresponding functionality on the client side. The application will query the path provided by the server and apply the pre-defined authentication method, requiring the user to log in with username and password before the application delivers the desired content.</p>
+<p>Both projects, client and server are located on my <a href="https://github.com/MarcelJurtz/ServiceStackExamples">GitHub-profile</a> and can be viewed and downloaded there.</p>
+<p>The structure of the client is very simple. There are two textboxes for entering username and password, as well as one for entering a name for the _hello/{name*}_ path. The button sends the request and the richtextbox is filled with the response.</p>
+<p><img src="/assets/2017/servicestack-client-demo.png" alt="ServiceStack Client Demo Application"></p>
+<p>Access to the classes created for the server-side service is required. For this reason, these were also added to the project. This includes <em>Hello</em> and <em>HelloResponse</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#a6e22e">[Route(&#34;/hello/{name*}&#34;)]</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Hello</span> : IReturn&lt;HelloResponse&gt;
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Name { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+}
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloResponse</span>
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Result { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+}
+</code></pre></div><p>The same applies to the custom AuthenticationProvider.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomAuthenticationProvider</span> : CredentialsAuthProvider
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">bool</span> TryAuthenticate(IServiceBase authService, <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">string</span> password)
+    {
+        <span style="color:#75715e">// Only checks if username equals password
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// implement custom logic here
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> userName.Equals(password);
+    }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> IHttpResult OnAuthenticated(IServiceBase authService, IAuthSession session, IAuthTokens tokens, Dictionary&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt; authInfo)
+    {
+        <span style="color:#75715e">//session.customElement = &#34;Hello World&#34;;
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">base</span>.OnAuthenticated(authService, session, tokens, authInfo);
+    }
+}
+</code></pre></div><p>An additional class has been created to control access to the service. This encapsulates the requests, which can be easily accessed from outside.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">using</span> System;
+<span style="color:#66d9ef">using</span> ServiceStack;
+
+<span style="color:#66d9ef">namespace</span> RESTfulDemoClient
+{
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RESTfulServiceClient</span> : IDisposable
+    {
+        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">const</span> String url = <span style="color:#e6db74">&#34;http://localhost:64424&#34;</span>;
+        <span style="color:#66d9ef">private</span> JsonServiceClient serviceclient;
+
+        <span style="color:#66d9ef">private</span> JsonServiceClient getServiceClient(String usern, String passw)
+        {
+            <span style="color:#66d9ef">if</span>(serviceclient == <span style="color:#66d9ef">null</span>)
+            {
+                serviceclient = <span style="color:#66d9ef">new</span> JsonServiceClient(url);
+
+                <span style="color:#66d9ef">var</span> authResponse = serviceclient.Post(<span style="color:#66d9ef">new</span> Authenticate
+                {
+                    provider = CustomAuthenticationProvider.Name, <span style="color:#75715e">//= credentials
+</span><span style="color:#75715e"></span>                    UserName = usern,
+                    Password = passw,
+                    RememberMe = <span style="color:#66d9ef">true</span>,
+                });
+
+                serviceclient.AlwaysSendBasicAuthHeader = <span style="color:#66d9ef">true</span>;
+            }
+            <span style="color:#66d9ef">return</span> serviceclient;
+        }
+
+        <span style="color:#66d9ef">public</span> HelloResponse GetHelloResponse(Hello request, String username, String password)
+        {
+            <span style="color:#66d9ef">var</span> client = <span style="color:#66d9ef">this</span>.getServiceClient(username, password);
+            <span style="color:#66d9ef">var</span> response = client.Post(request);
+            <span style="color:#66d9ef">return</span> response;
+        }
+
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Dispose()
+        {
+            serviceclient = <span style="color:#66d9ef">null</span>;
+        }
+    }
+}
+</code></pre></div><p>The class already contains all the logic required for access control, and the method <em>GetHelloResponse</em> can be used to retrieve a response from the <em>Hello</em>-path, which is implemented like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">using(<span style="color:#66d9ef">var</span> client = <span style="color:#66d9ef">new</span> RESTfulServiceClient())
+{
+    <span style="color:#66d9ef">var</span> request = <span style="color:#66d9ef">new</span> Hello() { Name = txtRequest.Text };
+    <span style="color:#66d9ef">try</span>
+    {
+        <span style="color:#66d9ef">var</span> response = client.GetHelloResponse(request, txtUsername.Text, txtPassword.Text);
+        txtResponse.Text = response.Result;
+    }
+    <span style="color:#66d9ef">catch</span> (ServiceStack.WebServiceException ex)
+    {
+        txtResponse.Text = ex.StatusCode + <span style="color:#e6db74">&#34; - &#34;</span> + ex.ErrorMessage;
+    }
+}
+</code></pre></div>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

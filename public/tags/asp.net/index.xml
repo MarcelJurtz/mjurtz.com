@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>asp.net on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/asp.net/</link>
+    <description>Recent content in asp.net on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 17 Jun 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/asp.net/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Simplify your CSS - LESS is more</title>
+      <link>https://www.mjurtz.com/posts/2018-06-17-less-css/</link>
+      <pubDate>Sun, 17 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-17-less-css/</guid>
+      <description>First things first: I am not a web developer and certainly not a designer. The following examples are not intended to represent good practices in terms of design or aesthetics.
+But now to the topic: As a software developer you can hardly avoid acquiring basic knowledge in web development. Specifically, I mean the handling of HTML and CSS, also in JavaScript as far as I&amp;rsquo;m concerned. If you are like me, you basically have no problems with it, but CSS files will become quite confusing and difficult to revise over time.</description>
+    </item>
+    
+    <item>
+      <title>Sideproject - ClubGrid</title>
+      <link>https://www.mjurtz.com/posts/2018-06-13-sideproject-clubgrid/</link>
+      <pubDate>Wed, 13 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-13-sideproject-clubgrid/</guid>
+      <description>It is finally time to announce my latest side project. ClubGrid was originally designed to make it easier for my coach to manage our baseball games. However, the result can be used for clubs of any kind and I hope that I can also help others with my software.
+The problem we had was the organization of games and events. Some players posted their acceptance or rejection via Whatsapp, others via Facebook, some via email and others personally.</description>
+    </item>
+    
+  </channel>
+</rss>

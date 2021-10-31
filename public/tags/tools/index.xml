@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tools on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/tools/</link>
+    <description>Recent content in tools on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 31 Mar 2019 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Database Modeling with dbdiagram.io</title>
+      <link>https://www.mjurtz.com/posts/2019-03-31-database-modeling-with-dbdiagram-io/</link>
+      <pubDate>Sun, 31 Mar 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-03-31-database-modeling-with-dbdiagram-io/</guid>
+      <description>Today I would like to briefly introduce you to a Web application, which I have been stumpled across. I&amp;rsquo;ve tried several tools for db modeling, some more and some less appealing.
+Well, the tool doesn&amp;rsquo;t offer explicit ER modeling, but a SQL-like structure and allows you to import and export directly to SQL and other formats.
+You can find the app I&amp;rsquo;m talking about on dbdiagram.io. The website offers a simple graphical interface, which includes a code editor and a graphical representation of the table structure.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started with Unity ProBuilder</title>
+      <link>https://www.mjurtz.com/posts/2019-03-03-getting-started-with-unity-probuilder/</link>
+      <pubDate>Sun, 03 Mar 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-03-03-getting-started-with-unity-probuilder/</guid>
+      <description>ProBuilder allows you to bring more complex objects into your Unity scene without requiring in-depth knowledge of modeling programs such as Blender or Cinema4D. By now ProBuilder is integrated into Unity and can also be used free of charge in the Community Edition. In todays article I want to show you how you can integrate ProBuilder into your project and start modeling.
+ProBuilder is not installed on your project by default, but you can add it via Window - Packages - All.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to RegEx</title>
+      <link>https://www.mjurtz.com/posts/2019-02-24-introduction-to-regex/</link>
+      <pubDate>Sun, 24 Feb 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-02-24-introduction-to-regex/</guid>
+      <description>As a developer you have probably already worked with Regular Expressions. If you&amp;rsquo;re like me and didn&amp;rsquo;t need them too often, you probably googled them up more than you wrote them yourself.
+So today I&amp;rsquo;d like to go through the basics of Regex and show you how to build regular expressions and how to write them yourself.
+If you haven&amp;rsquo;t had anything to do with this topic before, this post is still for you, of course.</description>
+    </item>
+    
+    <item>
+      <title>MacOS Package Management</title>
+      <link>https://www.mjurtz.com/posts/2019-02-17-macos-package-management/</link>
+      <pubDate>Sun, 17 Feb 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-02-17-macos-package-management/</guid>
+      <description>The ability to work with the terminal under MacOS and use my familiar Linux workflow is awesome, but I have always missed a crucial component: a package manager.
+Homebrew is a package manager for MacOS, according to the developers &amp;ldquo;The missing package Manager for macOS (or Linux)&amp;rdquo;. Today I would like to explain how you install and use Homebrew productively.
+First of all: You can find the project&amp;rsquo;s website here, there you will find all the information and documentation you could wish for.</description>
+    </item>
+    
+    <item>
+      <title>Bypassing Microsofts Windows Media Creation Tool</title>
+      <link>https://www.mjurtz.com/posts/2018-04-09-bypass-windows-media-creation-tool/</link>
+      <pubDate>Mon, 09 Apr 2018 18:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-04-09-bypass-windows-media-creation-tool/</guid>
+      <description>Remember when you could simply download official Windows ISO images to burn on DVDs and install? Microsoft now uses this thing called &amp;lsquo;Media Creation Tool&amp;rsquo; to download ISOs, but there&amp;rsquo;s a simple way to bypass this and download actual images.
+When searching for Windows10 ISOs, you&amp;rsquo;ll likely find this url, which provides a download for the Media Creation Tool.
+ https://www.microsoft.com/de-de/software-download/windows10  But: there&amp;rsquo;s also this url
+ https://www.microsoft.com/de-de/software-download/windows10ISO  However, when browsing this site on a windows machine, it automatically redirects you to the first of the pages I linked.</description>
+    </item>
+    
+    <item>
+      <title>Using GitHub over SSH on public WIFI</title>
+      <link>https://www.mjurtz.com/posts/2018-01-29-how-to-use-github-over-ssh-on-public-wifi/</link>
+      <pubDate>Mon, 29 Jan 2018 06:00:11 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-29-how-to-use-github-over-ssh-on-public-wifi/</guid>
+      <description>When using GitHub via SSH, port 22 will be used per default. However, often times you&amp;rsquo;ll see this port being blocked on public WIFI networks. On a Linux machine, there is a simple way to change the default port.
+To test if our plan works out, you can use the following command:
+bash &amp;gt;ssh -T -p 443 git@ssh.github.com
+This will test the ssh connection by using port 443. If this returns a positive result, you can change the port in your ssh config file.</description>
+    </item>
+    
+    <item>
+      <title>Installing MagicaVoxel on Linux</title>
+      <link>https://www.mjurtz.com/posts/2018-01-20-install-magicavoxel-on-linux/</link>
+      <pubDate>Sat, 20 Jan 2018 06:00:57 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-20-install-magicavoxel-on-linux/</guid>
+      <description>As a programmer with definite lack of visual skills, MagicaVoxel is a gift from God to create usable 3D models. Unfortunately, there is no installation option for Linux on the official website. With the help of Wine it is possible to use MagicaVoxel under Linux. And it really works great!
+Installation Prerequisites As I said you need to run Wine. As stated on their landing page, Wine is a compatibility layer that allows Windows applications to run under POSIX-compliant operating systems such as Linux, macOS and BSD.</description>
+    </item>
+    
+    <item>
+      <title>Xamarin Debugging over WIFI</title>
+      <link>https://www.mjurtz.com/posts/2018-01-10-debugging-xamarin-apps-on-physical-device-over-wifi/</link>
+      <pubDate>Wed, 10 Jan 2018 06:00:31 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-10-debugging-xamarin-apps-on-physical-device-over-wifi/</guid>
+      <description>Xamarin utilizes the Android Debug Bridge (ADB) for debugging on physical devices, which are usually connected over usb. While this feature definitely is useful, it would sometimes be more practical if you could do this over WIFI instead.
+Luckily, that is possible! You can simple switch between using USB and TCP/IP for debugging. To get started, you need to connect your device via USB to the computer you&amp;rsquo;re debugging from. I&amp;rsquo;m using Windows, so the commands I&amp;rsquo;ll execute the following commands from the commandline (which runs as an administrator), but since they are adb commands, they should be the same on Linux or macOS.</description>
+    </item>
+    
+    <item>
+      <title>Advanced Git - Git Stash</title>
+      <link>https://www.mjurtz.com/posts/2018-01-08-advanced-git-git-stash/</link>
+      <pubDate>Mon, 08 Jan 2018 06:00:26 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-08-advanced-git-git-stash/</guid>
+      <description>In my introductory post on git, I told you that git uses three areas to track changes. Well, maybe I lied to you in this case. There are actually four areas available and I will cover this fourth area in todays post.
+The fourth area is called Stash. Basically, it works like a clipboard to which you can save current changes.
+Concepts of the Stash &amp;hellip; Imagine the following scenario: You are working on a change.</description>
+    </item>
+    
+    <item>
+      <title>Advanced Git - Git Reset</title>
+      <link>https://www.mjurtz.com/posts/2018-01-04-advanced-git-git-reset/</link>
+      <pubDate>Thu, 04 Jan 2018 19:09:23 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-04-advanced-git-git-reset/</guid>
+      <description>In one of my earliest posts, I wrote an introduction to version control, more specifically: git. The topic I will cover today extends this article by a topic which is actually not that complicated. However, people seem to find it hard to deal with it and use it as a highway to StackOverflow.
+I talk about git reset. This command can be used to reset changes in your working area or to remove staged files from the index.</description>
+    </item>
+    
+    <item>
+      <title>PGP for Thunderbird</title>
+      <link>https://www.mjurtz.com/posts/2018-01-01-pgp-for-thunderbird/</link>
+      <pubDate>Mon, 01 Jan 2018 22:35:11 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-01-pgp-for-thunderbird/</guid>
+      <description>Today, I&amp;rsquo;ll talk about how you can set up PGP for Thunderbird. PGP (Pretty Good Privacy) allows you to encrypt and digitally sign your emails. I wanted to publish this post for quite some time now and thanks to some help from the 34C3, I finally managed to do it.
+Pretty Good Privacy (PGP) Before we can start installing all the requirements and setting up PGP, I&amp;rsquo;d like to give you a short introduction to PGP.</description>
+    </item>
+    
+    <item>
+      <title>Validating LiteDB Data from an Android App</title>
+      <link>https://www.mjurtz.com/posts/2017-12-14-validating-litedb-data-on-android-application-data/</link>
+      <pubDate>Thu, 14 Dec 2017 21:00:28 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-12-14-validating-litedb-data-on-android-application-data/</guid>
+      <description>In my new sideproject CryptoFolio, which I announced in this article, I described that I&amp;rsquo;d like to use LiteDB to locally store data that I received from the coinmarketcap-API. LiteDB is basically a NoSQL database, in particular a document store. It functions on a serverless file basis and can be accessed via a simple API.
+While it is quite easy to implement the databases functionality itself, testing the resulting data structure is somewhat more difficult.</description>
+    </item>
+    
+    <item>
+      <title>Self-Organization and Increasing Productivity</title>
+      <link>https://www.mjurtz.com/posts/2017-10-14-self-organization-and-increasing-productivity/</link>
+      <pubDate>Sat, 14 Oct 2017 06:00:33 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-10-14-self-organization-and-increasing-productivity/</guid>
+      <description>In order to get professional elements, side projects, sport and social contacts under one roof, I have recently been busy designing my daily schedule to maximize my productivity. this article presents the results of my reflections.
+As a software developer it is almost self-evident to work on various own side projects, which in my case are currently mostly developed in the form of Android apps. Starting with an originally simple LifeCounter for Magic the Gathering, over smaller games up to the design of websites, my GitHub profile has meanwhile reached a considerable size.</description>
+    </item>
+    
+    <item>
+      <title>Windows Package Management</title>
+      <link>https://www.mjurtz.com/posts/2017-10-10-windows-package-management/</link>
+      <pubDate>Tue, 10 Oct 2017 11:58:04 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-10-10-windows-package-management/</guid>
+      <description>As a Windows user with Linux knowledge there are several things under Linux that I would like to have on for Windows. Since a complete switch from Windows to Linux is not feasible for me due to different requirements, I looked for alternatives. An important component of various Linux distributions is their package manager. This article discusses the implementation of such a feature under Windows and shows how it can be used.</description>
+    </item>
+    
+    <item>
+      <title>Sublime Text 3 for Atom Users</title>
+      <link>https://www.mjurtz.com/posts/2017-09-17-sublime-text-3-atom-users/</link>
+      <pubDate>Sun, 17 Sep 2017 15:06:13 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-17-sublime-text-3-atom-users/</guid>
+      <description>Due to the release of Sublime Text 3, I thought I&amp;rsquo;ll give this editor a shot. Currently, I&amp;rsquo;m using both Notepad++ and Atom. Altough I really like atom and the several useful plugins, it has one huge problem: speed. The initial loading time is one thing, over 100 mb. of RAM in idle mode is another. For quickly editing stuff, this is not acceptable.
+Sublime Text seems to be a nice alternative, this article documents my switch from Atom to Sublime Text.</description>
+    </item>
+    
+    <item>
+      <title>How to set up ssh for git</title>
+      <link>https://www.mjurtz.com/posts/2017-09-11-set-ssh-git/</link>
+      <pubDate>Mon, 11 Sep 2017 08:04:02 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-11-set-ssh-git/</guid>
+      <description>When using github, you usually have to enter your login credentials each time you push. You could solve this problem by saving the credentials or by setting up ssh for your account. In this post, the process of adding and using ssh keys will be explained.
+I&amp;rsquo;m using git bash, if you use git gui/sourcetree/etc. you should consider switching, at least for this process.
+At first, SSH keys are generated. The command for this is the following:</description>
+    </item>
+    
+    <item>
+      <title>Getting started with Git</title>
+      <link>https://www.mjurtz.com/posts/2017-09-10-getting-started-git/</link>
+      <pubDate>Sun, 10 Sep 2017 10:45:42 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-10-getting-started-git/</guid>
+      <description>This post represents an overview of version control with git. The mentioned commands and parameters are only a small part of what&amp;rsquo;s possible. Git is a popular system for version control. Projects on git are called Repositories. Repositories can be used local or with a server. There are several free hosters, for example:
+ Github GitLab BitBucket  Installation  Linux (Debian-based)  apt-get install git-all  Windows Mac  Elements Git-Repositories are separated into working directory, staging area and repository.</description>
+    </item>
+    
+  </channel>
+</rss>

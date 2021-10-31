@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>css on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/css/</link>
+    <description>Recent content in css on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 23 Dec 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/css/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using LESS with ASP.NET Core</title>
+      <link>https://www.mjurtz.com/posts/2018-12-23-using-less-with-asp-net-core/</link>
+      <pubDate>Sun, 23 Dec 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-12-23-using-less-with-asp-net-core/</guid>
+      <description>I have already written about the advantages of a CSS preprocessor like LESS in this post. Today I want to show you how you can easily implement support for such a preprocessor in your ASP.NET Core project. I will use Gulp to create the ability to write LESS files and convert them to CSS files so that they can be integrated into the ASP.NET Core application. Finally, I will automate the whole thing so that the LESS file is converted without manual interaction on every build.</description>
+    </item>
+    
+    <item>
+      <title>Simplify your CSS - LESS is more</title>
+      <link>https://www.mjurtz.com/posts/2018-06-17-less-css/</link>
+      <pubDate>Sun, 17 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-17-less-css/</guid>
+      <description>First things first: I am not a web developer and certainly not a designer. The following examples are not intended to represent good practices in terms of design or aesthetics.
+But now to the topic: As a software developer you can hardly avoid acquiring basic knowledge in web development. Specifically, I mean the handling of HTML and CSS, also in JavaScript as far as I&amp;rsquo;m concerned. If you are like me, you basically have no problems with it, but CSS files will become quite confusing and difficult to revise over time.</description>
+    </item>
+    
+  </channel>
+</rss>

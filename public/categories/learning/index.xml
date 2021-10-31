@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>learning on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/categories/learning/</link>
+    <description>Recent content in learning on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 03 Feb 2019 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/categories/learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Efficient Learning with the Feynman Technique</title>
+      <link>https://www.mjurtz.com/posts/2019-02-03-learning-with-the-feynman-technique/</link>
+      <pubDate>Sun, 03 Feb 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-02-03-learning-with-the-feynman-technique/</guid>
+      <description>Today&amp;rsquo;s post is about learning new things more efficiently, i.e. wasting as little time as possible on learning. I use the Feynman technique, named after the physicist Richard Feynman. Feynman was known for his ability to break down complex facts into their core message and to convey them very easily.
+You certainly know the concept of being able to explain things to others in order to better understand them yourself. That&amp;rsquo;s exactly what I&amp;rsquo;m doing with my blog and that&amp;rsquo;s also the goal of the Feynman technique.</description>
+    </item>
+    
+  </channel>
+</rss>

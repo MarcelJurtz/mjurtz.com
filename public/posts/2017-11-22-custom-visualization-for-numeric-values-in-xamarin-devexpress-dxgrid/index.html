@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Custom Visualization for Numeric Values in Xamarin / DevExpress dxGrid &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>Custom Visualization for Numeric Values in Xamarin / DevExpress dxGrid</h1>
+  <time datetime=2017-11-22T17:00:53Z class="post-date">Wed, Nov 22, 2017</time>
+  <p>The dxGrid <a href="https://components.xamarin.com/view/devexpress-grid">grid control for Xamarin</a>, which DevExpress provides free of charge, is a powerful feature for mobile application development. However, many of the functions are a little bit hidden. In this article I will discuss how to customize the display of column values.</p>
+<p>In my concrete example my grid contains a numeric column, which can contain numbers with or without decimal places. I want these decimal places to be displayed only if they exist. The magic term that DevExpress provides fortunately is <em>DisplayFormat</em>. You can use this parameter to make various adjustments that describe the corresponding value and its representation.</p>
+<p>The <a href="https://documentation.devexpress.com/Xamarin/DevExpress.Mobile.DataGrid.GridColumn.DisplayFormat.property">documentation of DevExpress</a> describes the use of standard or custom numeric format strings, which can be used when using the dxGrid. Both of these types of formatting are documented in the MSDN:</p>
+<ul>
+<li><a href="https://msdn.microsoft.com/en-us/library/dwhawy9k(v=vs.85).aspx">Standard Numeric Format Strings</a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/0c899ak8(v=vs.85)">Custom Numeric Format Strings</a></li>
+</ul>
+<p>To solve my problem I use the custom formats. The available elements for controlling the display are easy to understand, and in my case I only need the following two elements:</p>
+<ul>
+<li>0 to display the number before the decimal point</li>
+<li># for optional display of decimal places</li>
+</ul>
+<p>The combination of these elements solves my problem with the following statement:</p>
+<p><code>csharpString.Format(&quot;{0:0.###}&quot;, myNumber)</code></p>
+<p>The prefix 0: ensures that the formatting is only applied to the first argument of the statement and can be omitted in this case, but is useful for concatenated strings.</p>
+<p>While this method can be used for all Xamarin controls, the dxGrid also offers the possibility to make adjustments directly in the XAML file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">    x:Name=&#34;grid&#34; 
+    <span style="color:#75715e">&lt;!-- ... --&gt;</span>
+    IsReadOnly=&#34;true&#34;&gt;
+    <span style="color:#f92672">&lt;dxGrid:GridControl.Columns&gt;</span>
+        <span style="color:#75715e">&lt;!-- ... --&gt;</span>
+        <span style="color:#f92672">&lt;dxGrid:NumberColumn</span> 
+            <span style="color:#a6e22e">FieldName=</span><span style="color:#e6db74">&#34;NumberSample&#34;</span> 
+            <span style="color:#a6e22e">Caption =</span> <span style="color:#e6db74">&#34;Number&#34;</span> 
+            <span style="color:#a6e22e">DisplayFormat=</span><span style="color:#e6db74">&#34;0:0.###&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;/dxGrid:GridControl.Columns&gt;</span>
+<span style="color:#f92672">&lt;/dxGrid:GridControl&gt;</span>```</code></pre></div>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

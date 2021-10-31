@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>p2p on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/p2p/</link>
+    <description>Recent content in p2p on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 26 Nov 2017 07:00:43 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/p2p/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to Blockchains</title>
+      <link>https://www.mjurtz.com/posts/2017-11-26-introduction-to-blockchains/</link>
+      <pubDate>Sun, 26 Nov 2017 07:00:43 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-26-introduction-to-blockchains/</guid>
+      <description>What if there was a technology that could entirely change the basic elements of our society and our understanding of economy? This technology already exists and it is called crypto currency. Many people think of bitcoin when this buzzword comes up, but if you take a closer look, you will find out that the monetary point of view of the technology behind is only the tip of the iceberg.
+Bitcoin and crypto currencies are currently a highly controversial issue.</description>
+    </item>
+    
+    <item>
+      <title>P2P Synchronization with Syncthing</title>
+      <link>https://www.mjurtz.com/posts/2017-11-01-p2p-synchronization-with-syncthing/</link>
+      <pubDate>Wed, 01 Nov 2017 13:12:23 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-11-01-p2p-synchronization-with-syncthing/</guid>
+      <description>Everyone has different programs and tools that they particularly appreciate. One of these programs is syncthing for me, so I will briefly discuss how it works and how it is set up in this article. Syncthing is used to synchronize files between different devices and also supports versioning of these files. Syncthing is available for Windows, Android and as cross-platform wrapper. I personally use it on Windows 10, Arch Linux and Android (via Playstore or FDroid).</description>
+    </item>
+    
+  </channel>
+</rss>

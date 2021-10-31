@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Git Workflows &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>Git Workflows</h1>
+  <time datetime=2018-09-30T06:00:00Z class="post-date">Sun, Sep 30, 2018</time>
+  <p>Almost all programming projects work with some kind of version control.
+When I started to work with Git, I used the tool also directly for my private projects. 
+But especially at the beginning I found it hard to structure my commits and branches in a practical way. 
+For this reason I would like to show you some common strategies today, the so-called Git Workflows.</p>
+<h1 id="simple-workflow">Simple Workflow</h1>
+<p>The simple workflow consists of a single master branch. 
+There is only this one branch to which changes are pushed. 
+This workflow is only suitable for very small projects, e.g. private ones, where only you work on yourself. 
+As the team grows, this workflow becomes very messy and you' re going to have to deal with a lot of merge conflicts.</p>
+<p><a href="/assets/2018/git_workflow_simple.png" data-lightbox="git_workflow_simple"><img src="/assets/2018/git_workflow_simple.png"/></a></p>
+<h1 id="feature-branches">Feature Branches</h1>
+<p>This second level adds feature branches to the simple workflow. 
+These branches are used to develop new functionalities separately from the rest of the project. 
+After a feature is completed, the branch is merged. 
+Unlike the master branch, the feature branches are therefore short-lived and only exist until their merge. 
+Depending on their complexity, feature branches can often be further subdivided. 
+Just make sure you don&rsquo;t exaggerate, which could again affect the overall structure.</p>
+<p><a href="/assets/2018/git_workflow_feature.png" data-lightbox="git_workflow_feature"><img src="/assets/2018/git_workflow_feature.png"/></a></p>
+<h1 id="developer-branch">Developer Branch</h1>
+<p>With the Developer Branch, a second, long-lived branch is created next to the Master Branch. 
+This is the only place where development takes place, so that the master branch always remains in a release-ready state. 
+Here, however, similar problems arise as with the simple workflow, which is why it should only be used for very small teams.</p>
+<p><a href="/assets/2018/git_workflow_develop.png" data-lightbox="git_workflow_develop"><img src="/assets/2018/git_workflow_develop.png"/></a></p>
+<h1 id="developer-and-feature-branches">Developer and Feature Branches</h1>
+<p>The previous two strategies can be combined very well. 
+Again, the master branch must always be ready for release, feature branches are only ever merged with the developer branch. 
+After successful testing of the functionalities on the developer branch, this branch is merged to master, which then can be released.</p>
+<p><a href="/assets/2018/git_workflow_dev_feature.png" data-lightbox="git_workflow_dev_feature"><img src="/assets/2018/git_workflow_dev_feature.png"/></a></p>
+<h1 id="release-branches">Release Branches</h1>
+<p>This extension of the developer and feature branch workflow is often used for large projects that are planning frequent releases. 
+For a new release, a new release branch is created from the developer branch. 
+This only is used for final bug fixes, no new features are developed here. 
+As soon as the release can be shipped, the branch will be merged into both the master and the developer branch. 
+The fixes in the release branches allow other teams to work on new features without disturbing the work on the release.</p>
+<p>The model is often complemented by another branch: the hotfix branch which allows direct bug fixing from the master branch.</p>
+<p><a href="/assets/2018/git_workflow_release.png" data-lightbox="git_workflow_release"><img src="/assets/2018/git_workflow_release.png"/></a></p>
+<h1 id="but-which-concept-is-right-for-me">But which concept is right for me?</h1>
+<p>Basically, the more complex your project, the more complex the workflow should be. 
+But also for one-man projects it often makes sense not to use the simple workflow and to use a branching strategy already here. 
+For my own projects, for example, I currently use the Developer Branch concept.
+But whatever you decide to do: Make sure you have a consistent naming strategy for branches (and commits, of course) 
+and you&rsquo;re very good to go.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

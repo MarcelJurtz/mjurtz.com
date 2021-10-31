@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Create Unity Skyboxes From 360° Images &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>Create Unity Skyboxes From 360° Images</h1>
+  <time datetime=2018-11-04T06:00:00Z class="post-date">Sun, Nov 4, 2018</time>
+  <p>Today I want to show you how to use a 360° panorama picture as a skybox for Unity. As you may know, skyboxes are usually created from 6 images (cubemaps), with each image representing one of the sides. However, 360° photos usually use a so-called &ldquo;Equirectangular&rdquo; format, which looks something like this:</p>
+<p><a href="/assets/2018/equirectangular.png" data-lightbox="Equirectangular 360° Photo"><img src="/assets/2018/equirectangular.png"/></a></p>
+<p>So in order to be able to use such an image in Unity, the idea of creating a cubemap from a 360° photo is obvious. But there is an easier way, which I would like to show you now: Cubemap: I start with my image, which I import into Unity. Then I select it and change the <em>Texture Shape</em> property from 2D to Cube. I then save the changes by hitting Apply and then create a new material. I change the shader from default to Skybox - Cubemap and specify the image I want to use.</p>
+<p>That&rsquo;s almost it, now you only have to set the Skybox via <em>Window - Lighting Settings</em> and already you have your image and can integrate it into your projects.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

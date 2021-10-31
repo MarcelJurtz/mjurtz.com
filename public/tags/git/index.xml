@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/git/</link>
+    <description>Recent content in git on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 30 Sep 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git Workflows</title>
+      <link>https://www.mjurtz.com/posts/2018-09-30-git-workflows/</link>
+      <pubDate>Sun, 30 Sep 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-09-30-git-workflows/</guid>
+      <description>Almost all programming projects work with some kind of version control. When I started to work with Git, I used the tool also directly for my private projects. But especially at the beginning I found it hard to structure my commits and branches in a practical way. For this reason I would like to show you some common strategies today, the so-called Git Workflows.
+Simple Workflow The simple workflow consists of a single master branch.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to VCS</title>
+      <link>https://www.mjurtz.com/posts/2018-06-23-introduction-to-vcs/</link>
+      <pubDate>Sat, 23 Jun 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-06-23-introduction-to-vcs/</guid>
+      <description>When you start learning to program, you rarely think about how you will be able to work on a project at the same time with other people. By the time your side projects take on larger dimensions or you work in a team, you will be confronted with the topic of version control.
+Version control is basically the management of source code, so that several developers can work on the same files at the same time.</description>
+    </item>
+    
+    <item>
+      <title>Using GitHub over SSH on public WIFI</title>
+      <link>https://www.mjurtz.com/posts/2018-01-29-how-to-use-github-over-ssh-on-public-wifi/</link>
+      <pubDate>Mon, 29 Jan 2018 06:00:11 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-29-how-to-use-github-over-ssh-on-public-wifi/</guid>
+      <description>When using GitHub via SSH, port 22 will be used per default. However, often times you&amp;rsquo;ll see this port being blocked on public WIFI networks. On a Linux machine, there is a simple way to change the default port.
+To test if our plan works out, you can use the following command:
+bash &amp;gt;ssh -T -p 443 git@ssh.github.com
+This will test the ssh connection by using port 443. If this returns a positive result, you can change the port in your ssh config file.</description>
+    </item>
+    
+    <item>
+      <title>Advanced Git - Git Stash</title>
+      <link>https://www.mjurtz.com/posts/2018-01-08-advanced-git-git-stash/</link>
+      <pubDate>Mon, 08 Jan 2018 06:00:26 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-08-advanced-git-git-stash/</guid>
+      <description>In my introductory post on git, I told you that git uses three areas to track changes. Well, maybe I lied to you in this case. There are actually four areas available and I will cover this fourth area in todays post.
+The fourth area is called Stash. Basically, it works like a clipboard to which you can save current changes.
+Concepts of the Stash &amp;hellip; Imagine the following scenario: You are working on a change.</description>
+    </item>
+    
+    <item>
+      <title>Advanced Git - Git Reset</title>
+      <link>https://www.mjurtz.com/posts/2018-01-04-advanced-git-git-reset/</link>
+      <pubDate>Thu, 04 Jan 2018 19:09:23 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-01-04-advanced-git-git-reset/</guid>
+      <description>In one of my earliest posts, I wrote an introduction to version control, more specifically: git. The topic I will cover today extends this article by a topic which is actually not that complicated. However, people seem to find it hard to deal with it and use it as a highway to StackOverflow.
+I talk about git reset. This command can be used to reset changes in your working area or to remove staged files from the index.</description>
+    </item>
+    
+    <item>
+      <title>How to set up ssh for git</title>
+      <link>https://www.mjurtz.com/posts/2017-09-11-set-ssh-git/</link>
+      <pubDate>Mon, 11 Sep 2017 08:04:02 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-11-set-ssh-git/</guid>
+      <description>When using github, you usually have to enter your login credentials each time you push. You could solve this problem by saving the credentials or by setting up ssh for your account. In this post, the process of adding and using ssh keys will be explained.
+I&amp;rsquo;m using git bash, if you use git gui/sourcetree/etc. you should consider switching, at least for this process.
+At first, SSH keys are generated. The command for this is the following:</description>
+    </item>
+    
+    <item>
+      <title>Getting started with Git</title>
+      <link>https://www.mjurtz.com/posts/2017-09-10-getting-started-git/</link>
+      <pubDate>Sun, 10 Sep 2017 10:45:42 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2017-09-10-getting-started-git/</guid>
+      <description>This post represents an overview of version control with git. The mentioned commands and parameters are only a small part of what&amp;rsquo;s possible. Git is a popular system for version control. Projects on git are called Repositories. Repositories can be used local or with a server. There are several free hosters, for example:
+ Github GitLab BitBucket  Installation  Linux (Debian-based)  apt-get install git-all  Windows Mac  Elements Git-Repositories are separated into working directory, staging area and repository.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>apps on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/apps/</link>
+    <description>Recent content in apps on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 31 Mar 2019 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/apps/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Database Modeling with dbdiagram.io</title>
+      <link>https://www.mjurtz.com/posts/2019-03-31-database-modeling-with-dbdiagram-io/</link>
+      <pubDate>Sun, 31 Mar 2019 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2019-03-31-database-modeling-with-dbdiagram-io/</guid>
+      <description>Today I would like to briefly introduce you to a Web application, which I have been stumpled across. I&amp;rsquo;ve tried several tools for db modeling, some more and some less appealing.
+Well, the tool doesn&amp;rsquo;t offer explicit ER modeling, but a SQL-like structure and allows you to import and export directly to SQL and other formats.
+You can find the app I&amp;rsquo;m talking about on dbdiagram.io. The website offers a simple graphical interface, which includes a code editor and a graphical representation of the table structure.</description>
+    </item>
+    
+  </channel>
+</rss>

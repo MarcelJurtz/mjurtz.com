@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>versioning on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/versioning/</link>
+    <description>Recent content in versioning on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 07 Oct 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/versioning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Semantic Versioning</title>
+      <link>https://www.mjurtz.com/posts/2018-10-07-semantic-versioning/</link>
+      <pubDate>Sun, 07 Oct 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-10-07-semantic-versioning/</guid>
+      <description>Have you ever wondered what kind of methodology you should use to label the releases of your software? Many projects use a structure with three numbers, each separated by a dot. I have good news for you: This structure is very common and well documented. It&amp;rsquo;s called Semantic Versioning and you&amp;rsquo;ll find all the details about it here.
+Building Version Identifiers with SemVer Version numbers are structured according to the X.</description>
+    </item>
+    
+  </channel>
+</rss>

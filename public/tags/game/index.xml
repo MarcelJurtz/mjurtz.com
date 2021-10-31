@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>game on Marcel Jurtz</title>
+    <link>https://www.mjurtz.com/tags/game/</link>
+    <description>Recent content in game on Marcel Jurtz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 04 Nov 2018 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/game/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create Unity Skyboxes From 360° Images</title>
+      <link>https://www.mjurtz.com/posts/2018-11-04-unity-skybox-from-360-photo/</link>
+      <pubDate>Sun, 04 Nov 2018 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2018-11-04-unity-skybox-from-360-photo/</guid>
+      <description>Today I want to show you how to use a 360° panorama picture as a skybox for Unity. As you may know, skyboxes are usually created from 6 images (cubemaps), with each image representing one of the sides. However, 360° photos usually use a so-called &amp;ldquo;Equirectangular&amp;rdquo; format, which looks something like this:
+
+So in order to be able to use such an image in Unity, the idea of creating a cubemap from a 360° photo is obvious.</description>
+    </item>
+    
+  </channel>
+</rss>

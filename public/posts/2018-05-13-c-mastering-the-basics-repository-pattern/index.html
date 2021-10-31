@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>C# - Mastering the Basics - The Repository Pattern &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>C# - Mastering the Basics - The Repository Pattern</h1>
+  <time datetime=2018-05-13T06:00:00Z class="post-date">Sun, May 13, 2018</time>
+  <p>There’s a very large number of articles about the repository pattern out there.
+Nevertheless, most of them overlap in the description and cause confusion among developers.
+For this reason I decided to write my own article to document my opinion.</p>
+<p>In this article I will first clarify the what and why of the repository pattern.
+Afterwards I will explain how the pattern can look like in C#.</p>
+<p>In his book, Patterns of Enterprise Application Architecture, Martin Fowler describes the Repository Pattern as a “Mediate between the domain and data mapping layers, acting like an in-memory collection of domain objects”.</p>
+<p>The following benefits of utilizing this pattern are usually listed when reading articles on the topic:</p>
+<ul>
+<li>Minimize query logic</li>
+<li>Decoupling from persistence frameworks</li>
+<li>Easier testing</li>
+</ul>
+<p>The idea of reducing query logic refers to the reusability of code. Imagine you work directly on a collection. If you need a certain subset of the stored objects, you will query them via LINQ. But chances are, you won&rsquo;t need this query logic in just one place. However, since the entire collection is available everywhere, you will implement this logic in each place, resulting in duplicated code. The alternative is to move this logic to the repository. All code elements involved then retrieve the subset from this.</p>
+<p>The decoupling from persistence frameworks follows the same principle. The connection to data storage only takes place in the repository. The business logic only accesses the repository, the implementation details are irrelevant at this point. This means that the repository can be exchanged at any time, for example with another ORM or even to a new storage strategy.</p>
+<p>The idea behind the simplification of testability is to make repositories easily exchangeable by using an interface and thus to be able to easily implement a mock repository. But this is not a peculiarity of the repository pattern, so I don&rsquo;t really see this point as an advantage of the pattern.</p>
+<h2 id="in-a-nutshell">In a Nutshell</h2>
+<p>As mentioned above, the basic idea of the repository pattern is to design an intermediate layer so that the business logic can operate as if on an in-memory collection. In a very simple way, this interface can look like this:</p>
+<ul>
+<li>Add(obj)</li>
+<li>Remove(obj)</li>
+<li>Get(id)</li>
+<li>GetAll()</li>
+<li>Find(predicate)</li>
+</ul>
+<p>As you can see, there is no item for saving changes. And that&rsquo;s exactly where the in-memory collection comes into play. Since the collections only contain object references, the entries can be edited directly.</p>
+<p>Nevertheless, database entries must somehow be persisted. This is where the Unit-of-Work Pattern comes in. Again, from Martin Fowler: A unit of work maintains a list of objects affected by a business transaction and coordinates the writing out of changes.</p>
+<p>So this means that we will combine one or more repositories with a single unit of work which will persist changes to the database. An interface for a basic unit of work could have the following methods and properties:</p>
+<ul>
+<li>IMyRepository MyRepository { get; }</li>
+<li>SaveChanges();</li>
+</ul>
+<p>Of course, in a real application, there would be some more repositories.</p>
+<p>If you look at the whole thing now, you might get the idea that Entity Framework already implements these mechanisms. More precisely, a DbSet looks like a repository and a DbContext like a unit of work. Let&rsquo;s take a closer look:</p>
+<p>At a surface level, a DbSet looks like a repository. It provides access to a collection and allows you to edit, add and remove entries. Using the DbContext you can persist changes afterwards. However, this approach is problematic in view of the previously defined advantages of the repository pattern: One point was the reduction of duplicated source code by outsourcing functionalities with regard to special subsets. With this approach here the pure collection is published and worked with. The result is exactly what we want to avoid, namely the direct selection and projection of items from the collection.</p>
+<p>The use of DbContext is also not suitable here. Another positive argument of the repository pattern was the decoupling of persistence frameworks. This contradicts the approach, since the business logic would be tied to Entity Framework.</p>
+<p>So while DbSet and DbContext look like implementations of the repository and unit of work pattern, they don’t provide the architectural benefits, which is why you still have to provide your own implementation for this.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

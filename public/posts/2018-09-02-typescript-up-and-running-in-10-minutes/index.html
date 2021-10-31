@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TypeScript - Up and Running in 10 Minutes &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>TypeScript - Up and Running in 10 Minutes</h1>
+  <time datetime=2018-09-02T06:00:00Z class="post-date">Sun, Sep 2, 2018</time>
+  <p>You are aware of JavaScript, but have never really made friends with the language? 
+Today I would like to show you a first insight into the JS-SuperSet TypeScript, 
+so perhaps you can give JavaScript a second chance.</p>
+<p>TypeScript is a SuperSet of JavaScript. SuperSet means that all functionalities of JS are both supported and extended. 
+As the name suggests, the main feature of TypeScript are strongly typed variables. But more on this in a moment.</p>
+<p>TypeScript is developed by Microsoft and was initiated by MS employee Anders Hejlsberg, who had already designed C#. 
+TypeScript files typically end with the extension .ts and can be converted to JavaScript using the TypeScript Compiler (tsc). 
+Did I also mention that TypeScript is completely open source?</p>
+<h2 id="setup">Setup</h2>
+<p>I use Visual Studio code to design the example in this article. Of course you can use any other editor as well. 
+My application is also based on NodeJS, which you can download from the project&rsquo;s website or via the package manager of your choice.</p>
+<p>In short, NodeJS is a way to run JavaScript on the server side. This allows you to use your applications without a browser. 
+After you have installed Node, you should install the typescript package, which gives you access to the TS compiler. 
+You can use the Node Package Manager (npm) to install packages. 
+To do so, open a terminal window of your choice and enter the command <em>npm install -g typescript</em>.
+The -g flag specifies that the package should be installed globally instead of only in the current directory, 
+so that the TS compiler is now available to you from anywhere.</p>
+<h2 id="hello-world">Hello World!</h2>
+<p>Let&rsquo;s start with an example. How could it be otherwise, we will develop our Hello World application in TypeScript. 
+Next snippet is all we need:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">msg</span>:<span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello World!&#34;</span>;
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">msg</span>);
+</code></pre></div><p>As you can see, variables are declared with the keyword var as in JavaScript. 
+However, the type of variable follows the name of the variable, separated by a colon. 
+TypeScript provides three basic types: string for strings, 
+number for numeric values (always represented by a 64-bit floating point number) and boolean for logical values. 
+Here, too, we will go into more detail in a moment, but now we would like to know how to get our program up and running.</p>
+<p>Currently you should have a directory containing a single .ts file. 
+To generate a JavaScript file from it, we call the TS compiler from a terminal and pass our script to it. 
+In my case it looks like this: tsc main.ts.</p>
+<p>If everything is ok, a new file will be created with the same name as our .ts file. 
+Now, however, with the.js extension. The new file contains the following content:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">msg</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello World!&#34;</span>;
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">msg</span>);
+</code></pre></div><p>Admittedly, there is hardly any difference here. 
+You can see, however, that the typing is no longer applied. The new JavaScript file can now be used with Node. 
+Here, too, the terminal is used to invoke the program: node main.js.</p>
+<p>This creates the &ldquo;Hello World!&rdquo; output we are looking for.</p>
+<p>The TypeScript compiler also helps you to avoid errors. For example, if you try to assign a text to a variable of type <em>number</em>, 
+you will receive the following error message when compiling:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">main.ts<span style="color:#f92672">(</span>3,5<span style="color:#f92672">)</span>: error TS2322: Type <span style="color:#e6db74">&#39;&#34;test&#34;&#39;</span> is not assignable to type <span style="color:#e6db74">&#39;number&#39;</span>.
+</code></pre></div><p>Depending on which editor or plugins you are using, you will be notified during development. 
+VS code, for example, shows you directly the displays the corresponding error message.</p>
+<p>Of course, this is only the tip of the iceberg, but we want to start small.</p>
+<p>Your first piece of TypeScript is ready - but you certainly can&rsquo;t do too much with it yet. 
+My goal for this article was to give you a basic idea of TypeScript and give the language a chance. 
+With Microsoft in the background, TypeScript has a strong backing company and offers great potential, especially for C# developers, 
+since learning the language should be much easier than using JavaScript directly.</p>
+<p>If you would like to learn more about TypeScript, the language has extensive documentation. 
+I have also planned a follow-up article for the next steps.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

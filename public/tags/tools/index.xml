@@ -6,7 +6,16 @@
     <description>Recent content in tools on Marcel Jurtz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 31 Mar 2019 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Nov 2021 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Password-Synchronization with Syncthing</title>
+      <link>https://www.mjurtz.com/posts/2021-11-25-synchronizing-keepass/</link>
+      <pubDate>Thu, 25 Nov 2021 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2021-11-25-synchronizing-keepass/</guid>
+      <description>If you are reding this, chances are you already use a password manager. I have been doing that for several years now. But I have to admit that my password manager has only run on my phone so far and I have always transferred passwords that I use on my PC by hand. Probably out of sheer laziness. Today, I use this blog post to finally synchronise my password database between any number of devices - and to show you how to do it.</description>
+    </item>
+    
     <item>
       <title>Database Modeling with dbdiagram.io</title>
       <link>https://www.mjurtz.com/posts/2019-03-31-database-modeling-with-dbdiagram-io/</link>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Resolve Open Generics with ASP.NET Cores DI-Container &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>Resolve Open Generics with ASP.NET Cores DI-Container</h1>
+  <time datetime=2020-11-10T06:00:00Z class="post-date">Tue, Nov 10, 2020</time>
+  <p>ASP .NET Core already has quite a decent di-container built in. However, there are some quirks you might need to be aware of. In one of my applications, I&rsquo;ve been using a factory pattern to register my views by using open generics. To be more clear about that: I have an Interface <em>IView&lt;TView&gt;</em>, and I want to register all of this interfaces implementations.</p>
+<p>As I found out, Microsofts DI-Container currently doesn&rsquo;t support that by default (text me if I&rsquo;m wrong!), but there&rsquo;s a solution for this problem.
+<a href="https://github.com/khellang/Scrutor">Scrutor</a> is a package that adds more complex di-features - specifically <em>scanning</em>. This means that, using this library, you now have the ability to scan through your assemblies and perform registrations based on your findings.</p>
+<p>Now, for my case, this was quite simple: All I had to do was to add the following snippet to my startup-class:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">services.Scan(scan =&gt;
+  scan.FromAssembliesOf(<span style="color:#66d9ef">typeof</span>(IView&lt;&gt;))
+    .AddClasses(classes =&gt;
+    classes.AssignableTo(<span style="color:#66d9ef">typeof</span>(IView&lt;&gt;)).Where(x =&gt; !x.IsGenericType))
+        .AsImplementedInterfaces()
+        .WithTransientLifetime());
+</code></pre></div><p>And that&rsquo;s it! Now, all the implementations of the interface find their way into my di container and I can easily retrieve new instances by utilizing the following factory class:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewFactory</span> : IViewFactory
+{
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> IServiceProvider <span style="color:#ae81ff">_</span>services;
+    <span style="color:#66d9ef">public</span> ViewFactory(IServiceProvider services)
+    {
+        <span style="color:#ae81ff">_</span>services = services;
+    }
+
+    <span style="color:#66d9ef">public</span> Task&lt;TView&gt; CreateViewAsync&lt;TView&gt;()
+    {
+        <span style="color:#66d9ef">var</span> builder = <span style="color:#ae81ff">_</span>services.GetService&lt;IView&lt;TView&gt;&gt;();
+
+        <span style="color:#66d9ef">if</span> (builder == <span style="color:#66d9ef">null</span>) 
+        {
+          <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Exception(<span style="color:#e6db74">$&#34;View {typeof(TView)} not registered&#34;</span>);
+        }
+          
+        <span style="color:#66d9ef">return</span> builder.BuildAsync();
+    }
+}
+</code></pre></div><p>If needed, you could easily extend this by a second type parameter to specify e.g. arguments to pass to the view. Those would then be passed to the <em>CreateViewAsync</em>-Method, which in turn would forward them to the builders <em>BuildAsync</em>-Method.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

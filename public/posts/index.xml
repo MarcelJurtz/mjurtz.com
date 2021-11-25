@@ -6,7 +6,35 @@
     <description>Recent content in Posts on Marcel Jurtz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 Nov 2020 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Nov 2021 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Password-Synchronization with Syncthing</title>
+      <link>https://www.mjurtz.com/posts/2021-11-25-synchronizing-keepass/</link>
+      <pubDate>Thu, 25 Nov 2021 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2021-11-25-synchronizing-keepass/</guid>
+      <description>If you are reding this, chances are you already use a password manager. I have been doing that for several years now. But I have to admit that my password manager has only run on my phone so far and I have always transferred passwords that I use on my PC by hand. Probably out of sheer laziness. Today, I use this blog post to finally synchronise my password database between any number of devices - and to show you how to do it.</description>
+    </item>
+    
+    <item>
+      <title>Building a CrossFit Workout-App with Node.JS and Vue</title>
+      <link>https://www.mjurtz.com/posts/2021-01-03-crossfit-workout-app-with-node-and-vue/</link>
+      <pubDate>Sun, 03 Jan 2021 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2021-01-03-crossfit-workout-app-with-node-and-vue/</guid>
+      <description>If you follow my blog a bit more closely, you might know that my most time-consuming hobby is triathlon. Strength training in the gym or at home is and remains part of it, but is more a means to an end. Then in October 2020 I had my first experience with CrossFit - (very) short, very intense workouts without too much equipment, leaving you with a feeling like the one you have after finishing a very hard interval session on the running track - I was immediately captivated.</description>
+    </item>
+    
+    <item>
+      <title>Resolve Open Generics with ASP.NET Cores DI-Container</title>
+      <link>https://www.mjurtz.com/posts/2020-11-10-resolve-open-generics-with-asp-net-core-di-container/</link>
+      <pubDate>Tue, 10 Nov 2020 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2020-11-10-resolve-open-generics-with-asp-net-core-di-container/</guid>
+      <description>ASP .NET Core already has quite a decent di-container built in. However, there are some quirks you might need to be aware of. In one of my applications, I&amp;rsquo;ve been using a factory pattern to register my views by using open generics. To be more clear about that: I have an Interface IView&amp;lt;TView&amp;gt;, and I want to register all of this interfaces implementations.
+As I found out, Microsofts DI-Container currently doesn&amp;rsquo;t support that by default (text me if I&amp;rsquo;m wrong!</description>
+    </item>
+    
     <item>
       <title>Domain Redirection with .htaccess and PHP</title>
       <link>https://www.mjurtz.com/posts/2020-11-07-redirection-with-htaccess-and-php/</link>

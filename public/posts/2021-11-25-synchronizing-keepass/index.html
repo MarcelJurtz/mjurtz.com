@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Password-Synchronization with Syncthing &middot; Marcel Jurtz</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://www.mjurtz.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <a href="https://www.mjurtz.com/">
+                <h1>Marcel Jurtz</h1>
+            </a>
+            <p class="lead">
+                 Notes and thoughts on software development 
+            </p>
+        </div>
+
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="https://www.mjurtz.com/">Home</a> </li>
+                <li><a href="/about/"> About </a></li><li><a href="/imprint/"> Imprint / Impressum </a></li><li><a href="/privacy/"> Privacy / Datenschutz </a></li>
+            </ul>
+        </nav>
+
+    </div>
+</aside>
+    <main class="content container">
+    <div class="post">
+  <h1>Password-Synchronization with Syncthing</h1>
+  <time datetime=2021-11-25T06:00:00Z class="post-date">Thu, Nov 25, 2021</time>
+  <p>If you are reding this, chances are you already use a password manager. I have been doing that for several years now. But I have to admit that my password manager has only run on my phone so far and I have always transferred passwords that I use on my PC by hand. Probably out of sheer laziness. Today, I use this blog post to finally synchronise my password database between any number of devices - and to show you how to do it. The whole thing not only makes dealing with passwords more convenient, but naturally also reduces the inhibition threshold to actually use the applications. This in turn improves the overall security of your accounts.</p>
+<p>Let&rsquo;s briefly talk about the software: I use Keepass 2 on my PC and Keepass2Android on my mobile phone. This article should work with all applications that use kdbx files. To synchronise the individual files, I use Syncthing, which is available for various platforms. Accordingly, this article is not limited to Windows and Android.</p>
+<h2 id="syncthing">Syncthing</h2>
+<p>Syncthing is an <a href="https://github.com/syncthing/syncthing">open source application</a> that can be used to synchronise files between devices. The software supports synchronization via local and remote networks. As mentioned earlier, syncthing is available for a lot of different platforms, check out their <a href="https://syncthing.net/downloads/">download-page</a> for details.</p>
+<p>Syncthing is implemented in a peer-to-peer manner, which means that files are synchronised between the devices without a central server. Communication is protected via <a href="https://de.wikipedia.org/wiki/Transport_Layer_Security">TLS</a> and <a href="https://de.wikipedia.org/wiki/Perfect_Forward_Secrecy">Perfect Forward Secrecy</a>.</p>
+<p>Syncthing allocated a unique ID to each device, which is used for address resolution, authentication and authorisation. In order for two devices to communicate with each other, they must know the respective device ID. If the IDs are known to each other, the devices are located using several discovery protocols:</p>
+<ul>
+<li><strong>Local Discovery</strong>: Broad- or multicast packets are sent into the local network via the router at intervals of 30 to 60 seconds. Each participating device therefore sends so-called announcement packets at regular intervals and keeps a table with all received announcements. Even in the event of an IP address change within a network, this ensures that the devices know the current IP address of all participants.</li>
+<li><strong>Global Discovery</strong>: If two devices are not in the same network, the global discovery protocol is used. This consists of two steps: First, each device periodically sends an announcement packet to a global discovery server. In the second step, each device sends a query packet with the (known) device ID of its counterpart. If the Syncthing server knows the device ID and the current location or IP address, it responds with the announcement packet.</li>
+</ul>
+<p>Syncthing automatically starts the synchronization as soon as the location of the participating devices is known. If the devices cannot communicate directly with each other, e.g. due to firewall restrictions, a connection using a relay server is established. Syncthing hereby automatically detects whether a relay server is necessary or not. If you want to use syncthing only in your local network, you can also turn off the (remote) discovery protocols.</p>
+<p>One last thing to mention is that syncthing doesn&rsquo;t perform a <em>real</em> synchronization. It&rsquo;s more of a <em>push</em> to other devices after recent changes.</p>
+<h2 id="setup">Setup</h2>
+<p>To get started, use the <a href="https://syncthing.net/downloads/">download-page</a> to get syncthing for your respective platform(s). I am going to use Android and Windows 10 for this post.
+For Windows, just unzip the downloaded folder and run the contained executable. You&rsquo;ll be greeted with a web interface that shows you your installation details and let&rsquo;s you the configure your setup.</p>
+<p>After installing, you&rsquo;ll want to connect your devices. To do so, I use my phone to scan the QR-Code on my PC. You can do this both ways, but might have to type in the id if you have no camera available. When you have the devices on the same local network, syncthing can discover devices automatically. On the second device, you will now receive a notification that the first device would like to establish a connection. As soon as you have agreed to this, you can continue with the configuration.</p>
+<p>Synthing works with the concept of directories. A virtual directory is created for each physical folder I want to synchronize between devices. The virtual folders are displayed in the web interface. I start by creating a &ldquo;Keepass&rdquo; folder on my Android device and link it to the file path I want to use. I then select my PC to share the folder with it. After saving, I receive a new notification on my PC to include the shared folder. I confirm this too and now configure the physical part of my second device.</p>
+<p>Now the two directories are linked, and as long as both devices are online, Syncthing will keep their contents up to date. It also displays the current status, which is currently &ldquo;Out of sync&rdquo;. Shortly afterwards, syncthing starts the first adjustment and my Keepass file already ends up on the PC.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Syncthing is a fast, simple and very flexible solution to synchronise files between multiple devices. This also works very well with Keepass databases, but care must be taken here regarding merge conflicts. You should therefore avoid changing data on both databases while both devices are not connected. If necessary, Keepass itself has a merge function that can be used to synchronise database statuses that have drifted apart.</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

@@ -2,19 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mjurtz.com/categories/</loc>
+    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/</loc>
+    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/posts/2021-11-25-synchronizing-keepass/</loc>
+    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/posts/</loc>
+    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/security/</loc>
+    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/categories/security/</loc>
+    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/</loc>
+    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/tools/</loc>
+    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.mjurtz.com/about/</loc>
     <lastmod>2021-08-07T06:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.mjurtz.com/categories/</loc>
-    <lastmod>2020-11-07T06:00:00+00:00</lastmod>
+    <loc>https://www.mjurtz.com/posts/2021-01-03-crossfit-workout-app-with-node-and-vue/</loc>
+    <lastmod>2021-01-03T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/categories/development/</loc>
+    <lastmod>2021-01-03T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/nodejs/</loc>
+    <lastmod>2021-01-03T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/vue/</loc>
+    <lastmod>2021-01-03T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/webdevelopment/</loc>
+    <lastmod>2021-01-03T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/dependency-injection/</loc>
+    <lastmod>2020-11-10T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/dotnet-core/</loc>
+    <lastmod>2020-11-10T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/posts/2020-11-10-resolve-open-generics-with-asp-net-core-di-container/</loc>
+    <lastmod>2020-11-10T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/posts/2020-11-07-redirection-with-htaccess-and-php/</loc>
-    <lastmod>2020-11-07T06:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.mjurtz.com/</loc>
-    <lastmod>2020-11-07T06:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.mjurtz.com/posts/</loc>
     <lastmod>2020-11-07T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/categories/webserver/</loc>
@@ -36,9 +75,6 @@
     <lastmod>2020-08-22T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/tags/social/</loc>
-    <lastmod>2020-08-22T06:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.mjurtz.com/tags/</loc>
     <lastmod>2020-08-22T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/tags/csharp/</loc>
@@ -78,9 +114,6 @@
     <lastmod>2019-03-31T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/tags/modeling/</loc>
-    <lastmod>2019-03-31T06:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.mjurtz.com/tags/tools/</loc>
     <lastmod>2019-03-31T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/categories/tools/</loc>
@@ -163,9 +196,6 @@
   </url><url>
     <loc>https://www.mjurtz.com/tags/raspberrypi/</loc>
     <lastmod>2019-01-20T06:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.mjurtz.com/categories/development/</loc>
-    <lastmod>2019-01-13T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/posts/2019-01-13-c-partial-classes-and-methods/</loc>
     <lastmod>2019-01-13T06:00:00+00:00</lastmod>
@@ -545,9 +575,6 @@
     <loc>https://www.mjurtz.com/posts/2018-01-01-pgp-for-thunderbird/</loc>
     <lastmod>2018-01-01T22:35:11+00:00</lastmod>
   </url><url>
-    <loc>https://www.mjurtz.com/categories/security/</loc>
-    <lastmod>2018-01-01T22:35:11+00:00</lastmod>
-  </url><url>
     <loc>https://www.mjurtz.com/posts/2017-12-26-c-mastering-basics-advanced-statements/</loc>
     <lastmod>2017-12-26T13:01:09+00:00</lastmod>
   </url><url>
@@ -564,9 +591,6 @@
     <lastmod>2017-12-23T15:44:40+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/posts/2017-12-22-c-mastering-basics-extension-methods/</loc>
-    <lastmod>2017-12-22T12:00:58+00:00</lastmod>
-  </url><url>
-    <loc>https://www.mjurtz.com/tags/dotnet-core/</loc>
     <lastmod>2017-12-22T12:00:58+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/posts/2017-12-19-c-mastering-the-basics-collections/</loc>

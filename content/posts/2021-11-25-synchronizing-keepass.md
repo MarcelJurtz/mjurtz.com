@@ -11,7 +11,7 @@ tags:
   - tools
 ---
 
-If you are reding this, chances are you already use a password manager. I have been doing that for several years now. But I have to admit that my password manager has only run on my phone so far and I have always transferred passwords that I use on my PC by hand. Probably out of sheer laziness. Today, I use this blog post to finally synchronise my password database between any number of devices - and to show you how to do it. The whole thing not only makes dealing with passwords more convenient, but naturally also reduces the inhibition threshold to actually use the applications. This in turn improves the overall security of your accounts.
+If you are reading this, chances are you already use a password manager. I have been doing that for several years now. But I have to admit that my password manager has only run on my phone so far and I have always transferred passwords that I use on my PC by hand. Probably out of sheer laziness. Today, I use this blog post to finally synchronise my password database between any number of devices - and to show you how to do it. The whole thing not only makes dealing with passwords more convenient, but naturally also reduces the inhibition threshold to actually use the applications. This in turn improves the overall security of your accounts.
 
 Let's briefly talk about the software: I use Keepass 2 on my PC and Keepass2Android on my mobile phone. This article should work with all applications that use kdbx files. To synchronise the individual files, I use Syncthing, which is available for various platforms. Accordingly, this article is not limited to Windows and Android.
 

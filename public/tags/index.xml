@@ -6,22 +6,58 @@
     <description>Recent content in Tags on Marcel Jurtz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 25 Nov 2021 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Dec 2021 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>security</title>
-      <link>https://www.mjurtz.com/tags/security/</link>
-      <pubDate>Thu, 25 Nov 2021 06:00:00 +0000</pubDate>
+      <title>aspnetcore</title>
+      <link>https://www.mjurtz.com/tags/aspnetcore/</link>
+      <pubDate>Fri, 31 Dec 2021 06:00:00 +0000</pubDate>
       
-      <guid>https://www.mjurtz.com/tags/security/</guid>
+      <guid>https://www.mjurtz.com/tags/aspnetcore/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>debugging</title>
+      <link>https://www.mjurtz.com/tags/debugging/</link>
+      <pubDate>Fri, 31 Dec 2021 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/tags/debugging/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dotnet</title>
+      <link>https://www.mjurtz.com/tags/dotnet/</link>
+      <pubDate>Fri, 31 Dec 2021 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/tags/dotnet/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tools</title>
       <link>https://www.mjurtz.com/tags/tools/</link>
-      <pubDate>Thu, 25 Nov 2021 06:00:00 +0000</pubDate>
+      <pubDate>Fri, 31 Dec 2021 06:00:00 +0000</pubDate>
       
       <guid>https://www.mjurtz.com/tags/tools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>webdevelopment</title>
+      <link>https://www.mjurtz.com/tags/webdevelopment/</link>
+      <pubDate>Fri, 31 Dec 2021 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/tags/webdevelopment/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>security</title>
+      <link>https://www.mjurtz.com/tags/security/</link>
+      <pubDate>Thu, 25 Nov 2021 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/tags/security/</guid>
       <description></description>
     </item>
     
@@ -40,15 +76,6 @@
       <pubDate>Sun, 03 Jan 2021 06:00:00 +0000</pubDate>
       
       <guid>https://www.mjurtz.com/tags/vue/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>webdevelopment</title>
-      <link>https://www.mjurtz.com/tags/webdevelopment/</link>
-      <pubDate>Sun, 03 Jan 2021 06:00:00 +0000</pubDate>
-      
-      <guid>https://www.mjurtz.com/tags/webdevelopment/</guid>
       <description></description>
     </item>
     
@@ -265,15 +292,6 @@
       <pubDate>Sun, 03 Feb 2019 06:00:00 +0000</pubDate>
       
       <guid>https://www.mjurtz.com/tags/self/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dotnet</title>
-      <link>https://www.mjurtz.com/tags/dotnet/</link>
-      <pubDate>Sun, 20 Jan 2019 06:00:00 +0000</pubDate>
-      
-      <guid>https://www.mjurtz.com/tags/dotnet/</guid>
       <description></description>
     </item>
     

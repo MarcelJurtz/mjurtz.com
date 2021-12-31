@@ -2,16 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mjurtz.com/tags/aspnetcore/</loc>
+    <lastmod>2021-12-31T06:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.mjurtz.com/categories/</loc>
-    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
+    <lastmod>2021-12-31T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/debugging/</loc>
+    <lastmod>2021-12-31T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/categories/development/</loc>
+    <lastmod>2021-12-31T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/dotnet/</loc>
+    <lastmod>2021-12-31T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/</loc>
-    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.mjurtz.com/posts/2021-11-25-synchronizing-keepass/</loc>
-    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
+    <lastmod>2021-12-31T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/posts/</loc>
+    <lastmod>2021-12-31T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/posts/2021-12-31-remote-debugging-asp-net-core-with-ngrok/</loc>
+    <lastmod>2021-12-31T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/</loc>
+    <lastmod>2021-12-31T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/tools/</loc>
+    <lastmod>2021-12-31T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/tags/webdevelopment/</loc>
+    <lastmod>2021-12-31T06:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.mjurtz.com/posts/2021-11-25-synchronizing-keepass/</loc>
     <lastmod>2021-11-25T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/tags/security/</loc>
@@ -20,28 +44,16 @@
     <loc>https://www.mjurtz.com/categories/security/</loc>
     <lastmod>2021-11-25T06:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.mjurtz.com/tags/</loc>
-    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.mjurtz.com/tags/tools/</loc>
-    <lastmod>2021-11-25T06:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.mjurtz.com/about/</loc>
     <lastmod>2021-08-07T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/posts/2021-01-03-crossfit-workout-app-with-node-and-vue/</loc>
     <lastmod>2021-01-03T06:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.mjurtz.com/categories/development/</loc>
-    <lastmod>2021-01-03T06:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.mjurtz.com/tags/nodejs/</loc>
     <lastmod>2021-01-03T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/tags/vue/</loc>
-    <lastmod>2021-01-03T06:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.mjurtz.com/tags/webdevelopment/</loc>
     <lastmod>2021-01-03T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/tags/dependency-injection/</loc>
@@ -183,9 +195,6 @@
     <lastmod>2019-02-03T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/posts/2019-01-20-dotnet-core-raspberry-pi/</loc>
-    <lastmod>2019-01-20T06:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.mjurtz.com/tags/dotnet/</loc>
     <lastmod>2019-01-20T06:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.mjurtz.com/categories/linux/</loc>

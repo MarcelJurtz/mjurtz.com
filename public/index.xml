@@ -6,14 +6,23 @@
     <description>Recent content on Marcel Jurtz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 25 Nov 2021 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Dec 2021 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Remote Debugging ASP.NET Core with Ngrok</title>
+      <link>https://www.mjurtz.com/posts/2021-12-31-remote-debugging-asp-net-core-with-ngrok/</link>
+      <pubDate>Fri, 31 Dec 2021 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2021-12-31-remote-debugging-asp-net-core-with-ngrok/</guid>
+      <description>Sometimes it can be helpful to test your apps not only on a local machine, but also using other devices within or outside, your network. In my current example, I use an ASP.NET Core web application that contains an API that I can in turn access via an Android app. I debug the Android app on a physical device that is on the same network as the ASP.NET Core application.</description>
+    </item>
+    
     <item>
       <title>Password-Synchronization with Syncthing</title>
       <link>https://www.mjurtz.com/posts/2021-11-25-synchronizing-keepass/</link>
       <pubDate>Thu, 25 Nov 2021 06:00:00 +0000</pubDate>
       
       <guid>https://www.mjurtz.com/posts/2021-11-25-synchronizing-keepass/</guid>
-      <description>If you are reding this, chances are you already use a password manager. I have been doing that for several years now. But I have to admit that my password manager has only run on my phone so far and I have always transferred passwords that I use on my PC by hand. Probably out of sheer laziness. Today, I use this blog post to finally synchronise my password database between any number of devices - and to show you how to do it.</description>
+      <description>If you are reading this, chances are you already use a password manager. I have been doing that for several years now. But I have to admit that my password manager has only run on my phone so far and I have always transferred passwords that I use on my PC by hand. Probably out of sheer laziness. Today, I use this blog post to finally synchronise my password database between any number of devices - and to show you how to do it.</description>
     </item>
     
     <item>

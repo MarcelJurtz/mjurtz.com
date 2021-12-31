@@ -6,7 +6,16 @@
     <description>Recent content in development on Marcel Jurtz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 Jan 2021 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/categories/development/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Dec 2021 06:00:00 +0000</lastBuildDate><atom:link href="https://www.mjurtz.com/categories/development/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Remote Debugging ASP.NET Core with Ngrok</title>
+      <link>https://www.mjurtz.com/posts/2021-12-31-remote-debugging-asp-net-core-with-ngrok/</link>
+      <pubDate>Fri, 31 Dec 2021 06:00:00 +0000</pubDate>
+      
+      <guid>https://www.mjurtz.com/posts/2021-12-31-remote-debugging-asp-net-core-with-ngrok/</guid>
+      <description>Sometimes it can be helpful to test your apps not only on a local machine, but also using other devices within or outside, your network. In my current example, I use an ASP.NET Core web application that contains an API that I can in turn access via an Android app. I debug the Android app on a physical device that is on the same network as the ASP.NET Core application.</description>
+    </item>
+    
     <item>
       <title>Building a CrossFit Workout-App with Node.JS and Vue</title>
       <link>https://www.mjurtz.com/posts/2021-01-03-crossfit-workout-app-with-node-and-vue/</link>

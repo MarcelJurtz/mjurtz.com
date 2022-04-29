@@ -16,6 +16,7 @@ tags:
   - programming
   - unity
 ---
+
 This article describes the process of creating voxel explosions in Unity by using particles. For our models, we use [MagicaVoxel](https://ephtracy.github.io/), but every other tool can be used as well. The final result will look similar to this:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/n4mzQTFuP68?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -76,7 +77,8 @@ public class GunScript : MonoBehaviour {
         }
         return fireable;
     }
-}```
+}
+```
 
 So basically, this script takes up three public variables, one for the camera of the controller, which is needed to shoot from the player's perspective, a maxDistance to set how far can be shot, and an AudioClip to play a sound file when a shot has been fired. Additionally, there are a few private variables:
 
@@ -154,13 +156,15 @@ I'll start with the shader. You use the context menu and add a new _shader_ - _s
         ENDCG
     }
     FallBack "Diffuse"
-}```
+}
+```
 
 There are two lines that need to be adjusted, I've marked them with the comment _//NEW LINE_. After that, the currently used material for the particles should be set to the color white. The color that is going to be set later will be mixed with the default color, and if that isn't white the colors won't match our wanted ones. Also, the shader of the material needs to be set to the newly created one.
 
 An additional script is needed to edit the palette.
 
-```csharpusing UnityEngine;
+```csharp
+using UnityEngine;
 
 public class ExplosionScript : MonoBehaviour {
 
@@ -195,7 +199,8 @@ public class ExplosionScript : MonoBehaviour {
             Destroy(gameObject);
         }       
     }
-}```
+}
+```
 
 Again, here are some public and private variables:
 
@@ -210,7 +215,8 @@ The _gameObject_ itself is destroyed in the very end, since it is needed to assi
 
 All the particles of the explosion are collected inside the _particles _array. The for-loop is iterating through all of the particles and assigns a new color. The color is determined via random selection of a color of the above-mentioned array. I found this solution to be a bit ugly, so I created another script called _ColorManager_, which contains arrays for each of my models. It basically just contains the following code:
 
-```csharpprivate static Color32[] foxColors =
+```csharp
+private static Color32[] foxColors =
 {
     new Color32(238, 0, 0, 255),
     new Color32(0, 0, 34, 255),
@@ -242,9 +248,8 @@ public static Color32[] getColor(string colorDescription)
         default:
             return emptyColors;
     }
-}```
-
-&nbsp;
+}
+```
 
 Note that you can view the colors that have been used using MagicaVoxel by clicking on the tool marked by a _smaller-than sign_ and then clicking on _HSV_.
 

@@ -4,7 +4,6 @@ date: 2018-07-08T06:00:00+00:00
 author: Marcel Jurtz
 layout: post
 permalink: /2018/07/docker-installation-and-first-steps
-cover: "/assets/2018/docker_first_steps_header.jpg"
 categories:
   - development
 tags:

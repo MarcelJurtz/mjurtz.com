@@ -2,6 +2,7 @@
 title: 'Privacy / Datenschutz'
 author: Marcel Jurtz
 menu: main
+ShowReadingTime: false
 ---
 
 Die nachfolgende Datenschutzerklärung gilt für die Nutzung unseres Online-Angebots www.mjurtz.com (nachfolgend "Website"). Wir messen dem Datenschutz große Bedeutung bei. Die Erhebung und Verarbeitung Ihrer personenbezogenen Daten geschieht unter Beachtung der geltenden datenschutzrechtlichen Vorschriften, insbesondere der Datenschutzgrundverordnung (DSGVO).

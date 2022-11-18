@@ -2,6 +2,7 @@
 title: 'Imprint / Impressum'
 author: Marcel Jurtz
 menu: main
+ShowReadingTime: false
 ---
 
 ## Angaben gemäß § 5 TMG:

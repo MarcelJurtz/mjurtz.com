@@ -5,16 +5,11 @@ author: Marcel Jurtz
 menu: main
 ---
 
-Hey! Glad you found me. I'm Marcel, live in Ueberlingen (Germany) right next to lake constance and I'm working as a full-stack software developer. Besides work, I spend my time with triathlon training, coaching other athletes and constantly searching for new challenges and new knowledge. In 2020, I founded my own, bootstrapped business and started to built TrackClub, a Software to help coaches manage their sports clubs and training plans. You're interested in on of my apps or would like to start a cooperation for your web-project? Don't hesitate to get in touch! Use one of the following options to find me online:
+Hey! Glad you found me. I'm Marcel, live in Ueberlingen (Germany) right next to lake constance and I'm working as a full-stack software developer. Besides work, I spend my time with triathlon training, coaching other athletes and constantly searching for new challenges and new knowledge. In 2020, I founded my own, bootstrapped business and started to built TrackClub, a Software to help coaches manage their athletes and training plans. You're interested in on of my apps or would like to start a cooperation for your web-project? Don't hesitate to get in touch! Use one of the following options to find me online:
 
-* [GitHub](https://github.com/MarcelJurtz)
-* [Strava](https://www.strava.com/athletes/33542098)
-* [Medium](https://medium.com/@jurtzmarcel)
-* [LinkedIn](https://www.linkedin.com/in/marcel-jurtz-302b881b1/)
-* [Xing](https://www.xing.com/profile/Marcel_Jurtz/cv)
-* [Mail](mailto:marcel@mjurtz.com)
+[GitHub](https://github.com/MarcelJurtz) / [Strava](https://www.strava.com/athletes/33542098) / [LinkedIn](https://www.linkedin.com/in/marcel-jurtz-302b881b1/) / [eMail](mailto:marcel@mjurtz.com)
 
-## EXPERIENCE
+## CV
 
 ### FULL STACK WEB DEVELOPER (ASP.NET MVC)
 

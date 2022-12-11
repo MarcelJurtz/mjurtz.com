@@ -6,7 +6,7 @@ paginate: 5
 
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
-    description: "Personal Website"
+    description: "Being interested in software, but also endurance sports and general fitness, I use this site to document my findings in the intersections of both worlds."
     author: "Marcel Jurtz"
     defaultTheme: dark
     # disableThemeToggle: true

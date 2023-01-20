@@ -39,8 +39,11 @@ jobs:
       - name: 🚀 Publish to Webspace
         uses: SamKirkland/web-deploy@v1
         with:
-          target-server: ${{ secrets.SSH_HOST }}
-          remote-user: ${{ secrets.SSH_USER }}
-          private-ssh-key: ${{ secrets.SSH_KEY }}
           source-path: ./dist/
           destination-path: ~/
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_KEY }}
+          forceUpload: true
+          localDir: './dist'
+          remoteDir: '/'

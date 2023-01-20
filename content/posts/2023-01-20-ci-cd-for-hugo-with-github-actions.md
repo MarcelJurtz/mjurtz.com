@@ -61,7 +61,7 @@ After these two steps, the environment is all set up. Subsequently, I need to ru
   run: hugo --minify -d $GITHUB_WORKSPACE/dist
 ```
 
-So far, so good. The build is now running as it should. As I said, I also wanted to include a way to verify the internal references - links to other pages as well as images. While searching for an option to achieve that, I stumbled across ![htmltest](https://github.com/wjdp/htmltest). This tool looked to exactly support my requirements, so I decided to set it up. It also includes a prebuilt action you can use for your own workflows.
+So far, so good. The build is now running as it should. As I said, I also wanted to include a way to verify the internal references - links to other pages as well as images. While searching for an option to achieve that, I stumbled across [htmltest](https://github.com/wjdp/htmltest). This tool looked to exactly support my requirements, so I decided to set it up. It also includes a prebuilt action you can use for your own workflows.
 
 To use the tool, you simply give it a source directory to analyze and receive results for your page after a few seconds. Per default, it also includes verification of external links, but you can turn this off via configuration.
 
@@ -89,6 +89,23 @@ DirectoryPath: "dist"
 IgnoreDirectoryMissingTrailingSlash: true
 CheckExternal: false
 ```
+
+In the beginning I mentioned, that I don't want any real deployment happen right now - that's still the case. Anyways, I played around with an option to deploy via SFTP and didn't want to keep my results from you. First, I tried to use the [Web-Deploy Action by Sam Kirkland](https://github.com/SamKirkland/web-deploy), which supports FTPS and SSH. However, I needed to run with SFTP, so I ended up using [wangyucode/sftp-upload-action](https://github.com/wangyucode/sftp-upload-action) instead. After a simple setup, I added the following step to my pipeline:
+
+```yaml
+- name: Publish to Webspace
+  uses: wangyucode/sftp-upload-action@v1.4.8
+  with:
+    host: ${{ secrets.HOST }}
+    username: ${{ secrets.USER }}
+    password: ${{ secrets.KEY }}
+    dryRun: false
+    forceUpload: true
+    localDir: './dist'
+    remoteDir: ${{ secrets.WEBSPACE_PATH }}
+```
+
+I added the config options to my repos secrets. Note that you need to specify an absolute path to your webspace as remoteDir. Usually you can find this path for your profile in your hosters website. With this configuration I upload the contens from my dist-folder, overwriting files that are there already but leaving other files on there.
 
 And that's it! Here's the full config file:
 
@@ -133,4 +150,15 @@ jobs:
           name: htmltest-report
           path: tmp/.htmltest/htmltest.log
           retention-days: 7
+
+      - name: Publish to Webspace
+        uses: wangyucode/sftp-upload-action@v1.4.8
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.KEY }}
+          dryRun: false
+          forceUpload: true
+          localDir: './dist'
+          remoteDir: ${{ secrets.WEBSPACE_PATH }}
 ```

@@ -1,4 +1,4 @@
-name: Build Hugo and Publish as Release
+name: Build & Publish
 
 on: [ push, workflow_dispatch ]
 

@@ -36,5 +36,13 @@ jobs:
           path: tmp/.htmltest/htmltest.log
           retention-days: 7 # Default is 90 days
 
-      - name: Debugging
-        run: cd dist && find -printf "%TY-%Tm-%Td %TT %p\n" | sort -n
+      - name: 🚀 Publish to Webspace
+        uses: wangyucode/sftp-upload-action@v1.4.8
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_KEY }}
+          dryRun: false
+          forceUpload: true
+          localDir: './dist'
+          remoteDir: ${{ secrets.WEBSPACE_PATH }}

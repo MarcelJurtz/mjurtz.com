@@ -45,4 +45,4 @@ jobs:
           dryRun: false
           forceUpload: true
           localDir: './dist'
-          remoteDir: '/'
+          remoteDir: ${{ secrets.WEBSPACE_PATH }}

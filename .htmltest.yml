@@ -1,0 +1,5 @@
+# https://github.com/wjdp/htmltest
+DirectoryPath: "dist"
+# Hugo's directory structure triggers this:
+IgnoreDirectoryMissingTrailingSlash: true
+CheckExternal: false

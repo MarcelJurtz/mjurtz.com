@@ -1,6 +1,6 @@
 ---
 id: 378
-title: How to set up ssh for git
+title: How to set up SSH for git
 date: 2017-09-11T08:04:02+00:00
 author: Marcel Jurtz
 layout: post

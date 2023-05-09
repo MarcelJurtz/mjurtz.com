@@ -40,6 +40,8 @@ params:
           url: "https://instagram.com/marceljurtz"
         - name: strava
           url: "https://www.strava.com/athletes/33542098"
+        - name: youtube
+          url: "https://www.youtube.com/@marceljurtz"
 
     assets:
         disableHLJS: true

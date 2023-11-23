@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Ebene_1"
+   data-name="Ebene 1"
+   viewBox="0 0 263.67002 214.13"
+   version="1.1"
+   sodipodi:docname="logo-only.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   width="263.67001"
+   height="214.13"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview25"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="0.83460854"
+     inkscape:cx="60.507408"
+     inkscape:cy="119.21757"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Ebene_1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{font-size:148.31px;font-family:Rig-BoldInline, Rig Shaded;font-weight:700;letter-spacing:-0.12em;}.cls-2{letter-spacing:-0.12em;}.cls-3{letter-spacing:-0.12em;}.cls-4{letter-spacing:-0.17em;}</style>
+  </defs>
+  <polygon
+     points="423.91,337.9 382.69,409.29 257.61,195.16 340.47,195.16 "
+     id="polygon6"
+     transform="translate(-257.60999,-195.16)" />
+  <polygon
+     points="521.28,294.15 454.8,409.29 454.58,195.16 521.28,195.16 "
+     id="polygon8"
+     transform="translate(-257.60999,-195.16)" />
+  <rect
+     x="0"
+     y="153.79001"
+     width="60.34"
+     height="60.34"
+     id="rect10" />
+</svg>

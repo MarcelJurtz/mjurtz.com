@@ -15,7 +15,7 @@ params:
     # disableSpecial1stPost: true
     displayFullLangName: true
     ShowPostNavLinks: false
-    ShowBreadCrumbs: true
+    ShowBreadCrumbs: false
     ShowCodeCopyButtons: true
     ShowRssButtonInSectionTermList: true
     ShowToc: false
@@ -24,14 +24,11 @@ params:
 
     showPostsOnMainPage: false
     homeInfoParams:
-        Title: "Home"
+        Title: "Marcel Jurtz"
         Content: >
-            Welcome to my site.
-            - I use this space to write about whatever comes to my mind - mostly related to programming and / or endurance sports.
+            Hey, I'm Marcel. I use this space to write about whatever comes to my mind - mostly related to programming and / or (endurance) sports.
             However, I also include other topics if I think they'd be worth to save or helpful for others.
-            Feel free to use any of the options below to get in touch! I'm always up for new connections and feedback!
-
-            Below the socials you find an overview of my recent posts. For all current articles, check out the archive.
+            Feel free to get in touch, I'm always up for new connections and feedback!
     socialIcons:
         - name: github
           url: "https://github.com/marceljurtz"
@@ -46,6 +43,11 @@ params:
 
     assets:
         disableHLJS: true
+    
+    label:
+        text: mjurtz.com
+        icon: /assets/logo-only.svg
+        iconHeight: 25
     #     favicon: "<link / abs url>"
     #     favicon16x16: "<link / abs url>"
     #     favicon32x32: "<link / abs url>"

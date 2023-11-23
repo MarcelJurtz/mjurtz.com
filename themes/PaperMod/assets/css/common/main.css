@@ -66,3 +66,19 @@ div.highlight:hover .copy-code,
 pre:hover .copy-code {
     display: block;
 }
+
+.d-flex {
+    display: flex !important;
+}
+
+.flex-row {
+    flex-direction: row !important;
+}
+
+.gap-1 {
+    gap: 1em !important;
+}
+
+.home-info img {
+    border-radius: 0.25em;
+}

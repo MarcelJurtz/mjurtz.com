@@ -1,13 +1,18 @@
 {{- with site.Params.homeInfoParams }}
-<article class="first-entry home-info">
-    <header class="entry-header">
-        <h1>{{ .Title | markdownify }}</h1>
-    </header>
-    <div class="entry-content">
-        {{ .Content | markdownify }}
+<article class="first-entry home-info flex-row gap-1">
+    <div>
+        <img src="/assets/profile.jpg" alt="Marcel Jurtz Profile Picture" />
     </div>
-    <footer class="entry-footer">
-        {{ partial "social_icons.html" site.Params.socialIcons }}
-    </footer>
+    <div>
+        <header class="entry-header">
+            <h1>{{ .Title | markdownify }}</h1>
+        </header>
+        <div class="entry-content">
+            {{ .Content | markdownify }}
+        </div>
+        <footer class="entry-footer">
+            {{ partial "social_icons.html" site.Params.socialIcons }}
+        </footer>
+    </div>
 </article>
 {{- end -}}

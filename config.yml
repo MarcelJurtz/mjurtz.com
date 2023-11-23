@@ -22,6 +22,7 @@ params:
     # comments: false
     images: ["papermod-cover.png"]
 
+    showPostsOnMainPage: false
     homeInfoParams:
         Title: "Home"
         Content: >

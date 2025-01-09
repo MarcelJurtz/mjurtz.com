@@ -1,5 +1,5 @@
 ---
-title: 'Privacy / Datenschutz'
+title: 'Datenschutz'
 author: Marcel Jurtz
 menu: main
 ShowReadingTime: false
@@ -11,11 +11,11 @@ Die nachfolgende Datenschutzerklärung gilt für die Nutzung unseres Online-Ange
 
 Verantwortlicher für die Erhebung, Verarbeitung und Nutzung Ihrer personenbezogenen Daten im Sinne von Art. 4 Nr. 7 DSGVO ist
 
-Marcel Jurtz
-Nussdorfer Straße 6
-D-88662 Überlingen
-eMail: jurtzmarcel@gmail.com / marcel@mjurtz.com
-Web: www.mjurtz.com
+Marcel Jurtz<br/>
+In den Lettenäckern 7<br/>
+D-88662 Überlingen<br/>
+eMail: jurtzmarcel@gmail.com / marcel@mjurtz.com<br/>
+Web: www.mjurtz.com<br/>
 Telefon: +49 1775711065
 
 Sofern Sie der Erhebung, Verarbeitung oder Nutzung Ihrer Daten durch uns nach Maßgabe dieser Datenschutzbestimmungen insgesamt oder für einzelne Maßnahmen widersprechen wollen, können Sie Ihren Widerspruch an den Verantwortlichen richten. Sie können diese Datenschutzerklärung jederzeit speichern und ausdrucken.

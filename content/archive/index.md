@@ -1,5 +1,5 @@
 ---
-title: "Archive"
+title: "Archiv"
 layout: "archives"
 menu: main
 ---

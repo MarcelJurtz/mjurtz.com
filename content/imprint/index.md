@@ -1,5 +1,5 @@
 ---
-title: 'Imprint / Impressum'
+title: 'Impressum'
 author: Marcel Jurtz
 menu: main
 ShowReadingTime: false
@@ -7,13 +7,13 @@ ShowReadingTime: false
 
 ## Angaben gemäß § 5 TMG:
 
-Marcel Jurtz
-Nussdorfer Straße 6
+Marcel Jurtz<br/>
+In den Lettenäckern 7<br/>
 88662 Überlingen
 
 ## Kontakt:
 
-Telefon: 	01775711065
+Telefon: 	01775711065<br/>
 E-Mail: 	marcel@mjurtz.com
 
 ## Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:

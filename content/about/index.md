@@ -1,77 +1,82 @@
 ---
-title: 'About'
-date: 2021-08-07T06:00:00+00:00
-author: Marcel Jurtz
+title: 'Über Mich'
 menu: main
 ShowReadingTime: false
 ---
 
-Hey! Glad you found me. I'm Marcel, live in Ueberlingen (Germany) right next to lake constance and I'm working as a full-stack software developer. Besides work, I spend my time with triathlon training, coaching other athletes and constantly searching for new challenges and new knowledge. In 2020, I founded my own, bootstrapped business and started to built TrackClub, a Software to help coaches manage their athletes and training plans. You're interested in on of my apps or would like to start a cooperation for your web-project? Don't hesitate to get in touch! Use one of the following options to find me online:
+Hey! Schön, dass du zu mir gefunden hast. Ich bin Marcel und lebe in Überlingen am Bodensee. Seit 2014 bin ich in der Softwareentwicklung unterwegs und seit 2020 auch selbstständig aktiv. 2025 habe ich den Schritt zur Vollzeit-Selbstständigkeit gewagt und dort hauptsächlich im Bereich der Webentwicklung tätig.
 
-[GitHub](https://github.com/MarcelJurtz) / [Strava](https://www.strava.com/athletes/33542098) / [LinkedIn](https://www.linkedin.com/in/marcel-jurtz-302b881b1/) / [eMail](mailto:marcel@mjurtz.com)
+Du bist auf der Suche nach einem Entwickler für dein Projekt oder zur Ergänzung deines bestehenden Teams? Melde dich gerne unverbindlich bei mir und ich unterstütze dich gerne bei Entwurf, Umsetzung und Wartung deiner Anwendung oder Website. Ich freue mich auf deine Kontaktaufnahme!
 
-## CV
+<div id="contact">
+<div>
+<a href="mailto:marcel@mjurtz.com">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+</svg>
+marcel@mjurtz.com</a>
+</div>
+<div>
+<a href="tel: +4917622773010">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+  <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+</svg> +49 17622773010</a>
+</div>
+<div>
+<a href="https://www.linkedin.com/in/marcel-jurtz-302b881b1/">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+</svg> Marcel Jurtz
+</a>
+</div>
+</div>
 
-### FULL STACK WEB DEVELOPER (ASP.NET MVC)
+## Berufserfahrung
+
+### Selbstständig
+
+September 2020 - Heute
+
+Softwareentwicklung (Web, Desktop & Mobile)
+
+Techstack (u.A.): Microsoft ASP.NET (C#, HTML, SCSS / CSS), SQL (Postgres, SQLServer, MySQL), JavaScript, TypeScript, NodeJS, WebPack, Elastic-Stack
+
+### Full-Stack Web-Entwickler (ASP.NET MVC)
 
 **NISSEN & VELTEN SOFTWARE GMBH**
 
-September 2019 - Present
+September 2019 - Januar 2025
 
 Web development in the ecommerce sector based on modern technologies. The technological focus lays on ASP.NET MVC with a backing relational database and search engine, as well as client-side JavaScript.
 
-### SOLO-FOUNDER
-
-**TRACKCLUB.DE**
-
-September 2020 - Present
-
-Software for Sportsclubs to manage their members, payments and TrainingPlans. Founder and Full-Stack Developer (ASP.NET Core).
-
-### LECTURER
+### Lehrbeauftragter
 
 **DHBW RAVENSBURG**
 
-October 2017 - Present
+Oktober 2017 - Heute
 
-Conception, supervision, mentoring and review of student semester projects in the field of Virtual Reality.
+Konzeption, Verwaltung & Mentoring für Studentenprojekte im Bereich Virtual-Reality-Spieleentwicklung.
 
-### SOFTWARE DEVELOPER
+### Softwareentwickler
 
 **COCO COMMERCIELLE COMPUTERSYSTEME GMBH**
 
-October 2017 - June 2019
+Oktober 2017 - Juni 2019
 
-Development of conventional ERP software for small and medium-sized companies in the retail and recycling industry. Technological focus on desktop software based on .NET and relational databases, in addition to cross platform development with Xamarin and API-based web development.
+ERP-Softwareentwicklung für kleine und mittelständische Unternehmen im Bereich des Einzelhandel und der Recyclingbranche. Technischer Fokus: Desktop Client-Server-Anwendungsentwicklung mit Anbindung relationaler Datenbanken und REST-API-Anbindung für Xamarin-Apps.development.
 
-### STUDENT (CO-OP ED.) B.SC. BUSINESS INFORMATICS
+### STUDENT (CO-OP ED.) B.SC. Wirtschaftsinformatik
 
 **DHBW RAVENSBURG / COCO COMMERCIELLE COMPUTERSYSTEME GMBH**
 
-October 2014 - September 2017
+Oktober 2014 - September 2017
 
-Studies of computer science and economics with an emphasis on business engineering.
+Duales Studium mit Schwerpunkt Business-Engineering.
 
-### SOFTWARE DEVELOPMENT INTERN
+### Praktikum Softwareentwicklung
 
 **COCO COMMERCIELLE COMPUTERSYSTEME GMBH**
 
 September 2014
 
-First extracurricular experiences with the development of business software.
-
-
-## PORTFOLIO
-
-You can find most of my projects in [public Repositories on GitHub](https://github.com/MarcelJurtz/), check it out for the most recent updates.
-
-### WEBSITES
-
-* [mjurtz.com](https://mjurtz.com/)
-* [manuelmicheler.com](https://manuelmicheler.com/)
-* [praxis-vukicevic.de](https://praxis-vukicevic.de/)
-
-### APPS / SOFTWARE
-
-* [TrackClub - Software to manage Sports-Clubs and Trainingplans](https://trackclub.de/)
-* [Life-Counter for Magic the Gathering (Android, 25K+ Downloads)](https://play.google.com/store/apps/details?id=com.marceljurtz.lifecounter)
+Erste außerkurrikulare Erfahrungen im Bereich der Softwareentwicklung.

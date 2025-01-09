@@ -19,3 +19,7 @@ table {
     overflow-x: auto;
     white-space: nowrap;
 }
+
+main.main article.post-entry {
+    display: none;
+}

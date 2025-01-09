@@ -2,7 +2,8 @@ baseURL: https://mjurtz.com/
 languageCode: en-us
 title: Marcel Jurtz
 theme: "PaperMod"
-paginate: 5
+pagination: 
+    pagerSize: 5
 
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
@@ -26,14 +27,18 @@ params:
     homeInfoParams:
         Title: "Marcel Jurtz"
         Content: >
-            Hey, I'm Marcel. I use this space to write about whatever comes to my mind - mostly related to programming and / or (endurance) sports.
-            However, I also include other topics if I think they'd be worth to save or helpful for others.
-            Feel free to get in touch, I'm always up for new connections and feedback!
+            Hey! Schön, dass du zu mir gefunden hast. Ich bin Marcel und lebe in Überlingen am Bodensee. Seit 2014 bin ich in der Softwareentwicklung unterwegs und seit 2020 auch selbstständig aktiv. 2025 habe ich den Schritt zur Vollzeit-Selbstständigkeit gewagt und dort hauptsächlich im Bereich der Webentwicklung tätig.
+            <br/><br/>Du bist auf der Suche nach einem Entwickler für dein Projekt oder zur Ergänzung deines bestehenden Teams? Melde dich gerne unverbindlich bei mir und ich unterstütze dich gerne bei Entwurf, Umsetzung und Wartung deiner Anwendung oder Website. Ich freue mich auf deine Kontaktaufnahme!
+            <br/><br/>Bist du aus dem Fitness-Bereich auf mich aufmerksam geworden? Dann wirst du <a href="https://www.fitness.mjurtz.com">hier</a> fündig!
     socialIcons:
-        - name: github
-          url: "https://github.com/marceljurtz"
+        - name: email
+          url: "mailto:marcel@mjurtz.com"
+        - name: phone
+          url: "tel:+4917622773010"
         - name: linkedin
           url: "https://www.linkedin.com/in/marcel-jurtz/"
+        - name: github
+          url: "https://github.com/marceljurtz"
         - name: instagram
           url: "https://instagram.com/marceljurtz"
         - name: strava
@@ -79,6 +84,10 @@ markup:
         guessSyntax: false
         lineNos: true
         style: monokai
+    goldmark:
+        renderer:
+            unsafe: true
+
 
 privacy:
     vimeo:

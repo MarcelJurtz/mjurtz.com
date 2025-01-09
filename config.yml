@@ -25,9 +25,9 @@ params:
 
     showPostsOnMainPage: false
     homeInfoParams:
-        Title: "Marcel Jurtz"
+        Title: "Hey!"
         Content: >
-            Hey! Schön, dass du zu mir gefunden hast. Ich bin Marcel und lebe in Überlingen am Bodensee. Seit 2014 bin ich in der Softwareentwicklung unterwegs und seit 2020 auch selbstständig aktiv. 2025 habe ich den Schritt zur Vollzeit-Selbstständigkeit gewagt und dort hauptsächlich im Bereich der Webentwicklung tätig.
+            Schön, dass du zu mir gefunden hast. Ich bin Marcel und lebe in Überlingen am Bodensee. Seit 2014 bin ich in der Softwareentwicklung unterwegs und seit 2020 auch selbstständig aktiv. 2025 habe ich den Schritt zur Vollzeit-Selbstständigkeit gewagt und dort hauptsächlich im Bereich der Webentwicklung tätig.
             <br/><br/>Du bist auf der Suche nach einem Entwickler für dein Projekt oder zur Ergänzung deines bestehenden Teams? Melde dich gerne unverbindlich bei mir und ich unterstütze dich gerne bei Entwurf, Umsetzung und Wartung deiner Anwendung oder Website. Ich freue mich auf deine Kontaktaufnahme!
             <br/><br/>Bist du aus dem Fitness-Bereich auf mich aufmerksam geworden? Dann wirst du <a href="https://www.fitness.mjurtz.com">hier</a> fündig!
     socialIcons:

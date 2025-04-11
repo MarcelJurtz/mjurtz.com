@@ -116,21 +116,9 @@ Erfolgt die Datenverarbeitung zur Durchführung vorvertraglicher Maßnahmen, die
 
 Weitere personenbezogene Daten verarbeiten wir nur, wenn Sie dazu einwilligen (Art. 6 Abs. 1 S. 1 a) DSGVO) oder wir ein berechtigtes Interesse an der Verarbeitung Ihrer Daten haben (Art. 6 Abs. 1 S. 1 f) DSGVO). Ein berechtigtes Interesse liegt z. B. darin, auf Ihre E-Mail zu antworten.
 
-## 4. Google Analytics
+## 4. Burst Analytics
 
-Wir benutzen Google Analytics, einen Webanalysedienst der Google Inc. ("Google"). Google Analytics verwendet sog. "Cookies", Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch den Cookie erzeugten Informationen über Benutzung dieser Website durch die Seitenbesucher werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.
-
-Hierin liegt auch unser berechtigtes Interesse gemäß Art 6 Abs. 1 S. 1 f) DSGVO.
-
-Google hat sich dem zwischen der Europäischen Union und den USA geschlossenen Privacy-Shield-Abkommen unterworfen und sich zertifiziert. Dadurch verpflichtet sich Google, die Standards und Vorschriften des europäischen Datenschutzrechts einzuhalten. Nähere Informationen können Sie dem nachfolgend verlinkten Eintrag entnehmen: https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active.
-
-Wir haben die IP-Anonymisierung auf dieser Website aktiviert (anonymizeIp). Dadurch wird Ihre IP-Adresse von Google jedoch innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum zuvor gekürzt. Nur in Ausnahmefällen wird die volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt. In unserem Auftrag wird Google diese Informationen benutzen, um die Nutzung der Website durch Sie auszuwerten, um Reports über die Websiteaktivitäten zusammenzustellen und um weitere mit der Websitenutzung und der Internetnutzung verbundene Dienstleistungen uns gegenüber zu erbringen.
-
-Die im Rahmen von Google Analytics von Ihrem Browser übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt. Sie können die Speicherung der Cookies durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich werden nutzen können.
-
-Sie können darüber hinaus die übertragung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren: http://tools.google.com/dlpage/gaoptout?hl=de.
-
-Alternativ zum Browser-Plugin oder innerhalb von Browsern auf mobilen Geräten können Sie auf den folgenden Link klicken, um ein Opt-Out-Cookie zu setzen, der die Erfassung durch Google Analytics innerhalb dieser Website zukünftig verhindert (dieses Opt-Out-Cookie funktioniert nur in diesem Browser und nur für diese Domain. Löschen Sie die Cookies in Ihrem Browser, müssen Sie diesen Link erneut klicken): Google Analytics deaktivieren
+Unsere Website nutzt Burst Statistics, ein datenschutzfreundliches Webanalyse-Tool. Burst Statistics arbeitet ohne den Einsatz von Cookies und speichert keine personenbezogenen Daten. Alle Daten werden anonymisiert und lokal auf unserem Server verarbeitet, sodass keine Weitergabe an Dritte erfolgt.
 
 ## 5. Speicherdauer
 

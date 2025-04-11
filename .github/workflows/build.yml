@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📬 Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: ✨ Setup Hugo
         env:
@@ -30,7 +30,7 @@ jobs:
           config: .htmltest.yml
 
       - name: 🗄️ Archive Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: htmltest-report
           path: tmp/.htmltest/htmltest.log
